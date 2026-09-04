@@ -1,6 +1,7 @@
 use crate::{
     AudioClip, AudioError, AudioMetadata, db, rms,
     spectrum::{Partial, SpectralPeak, SpectralSnapshot, Spectrum},
+    tracking::PartialTracking,
 };
 use serde::Serialize;
 
@@ -68,6 +69,7 @@ pub struct Analysis {
     pub spectra: Vec<SpectralSnapshot>,
     pub partial_window_seconds: f64,
     pub partial_tracks: Vec<PartialFrame>,
+    pub inharmonic_tracking: PartialTracking,
 }
 
 pub fn analyze(clip: &AudioClip, options: AnalysisOptions) -> Result<Analysis, AudioError> {
@@ -146,9 +148,11 @@ pub fn analyze(clip: &AudioClip, options: AnalysisOptions) -> Result<Analysis, A
     let partial_size = ((fs * 0.128).round() as usize).min(32_768);
     let partial_hop = (fs * 0.032).round() as usize;
     let mut partial_tracks = Vec::new();
+    let mut inharmonic_tracking = PartialTracking::new(partial_size, partial_hop, rate);
     if samples.len() >= partial_size && onset.is_some() {
         for start in (0..=samples.len() - partial_size).step_by(partial_hop.max(1)) {
             let spectrum = Spectrum::new(&samples[start..start + partial_size], rate);
+            inharmonic_tracking.push(&spectrum, (start as f64 + partial_size as f64 / 2.0) / fs);
             let harmonics = (1..=6)
                 .filter(|&n| n as f64 * expected < fs / 2.0)
                 .map(|n| Partial {
@@ -168,9 +172,10 @@ pub fn analyze(clip: &AudioClip, options: AnalysisOptions) -> Result<Analysis, A
             });
         }
     }
+    inharmonic_tracking.finish(onset_seconds, options.sustain_end_seconds);
     Ok(Analysis {
-        schema_version: 1,
-        method: "hann-v1; amplitude-onset-40db; rms20ms-hop5ms; harmonic-track128ms-hop32ms",
+        schema_version: 2,
+        method: "hann-v1; amplitude-onset-40db; rms20ms-hop5ms; harmonic-track128ms-hop32ms; free-peaks-v1",
         audio: clip.metadata.clone(),
         duration_seconds: clip.duration(),
         expected_note: options.note,
@@ -192,6 +197,7 @@ pub fn analyze(clip: &AudioClip, options: AnalysisOptions) -> Result<Analysis, A
         spectra,
         partial_window_seconds: partial_size as f64 / fs,
         partial_tracks,
+        inharmonic_tracking,
     })
 }
 

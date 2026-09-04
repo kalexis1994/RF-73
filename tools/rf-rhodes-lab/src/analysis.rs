@@ -11,6 +11,8 @@ Multichannel files require explicit zero-based channel selection; no downmixing.
 Comparison requires equal sample rates. Reports never overwrite existing files.
 Decay is estimated only when --sustain-end marks the end of an uninterrupted
 sustain region in seconds from file start. Extrapolated T60 is not measured T60.
+Analysis schema 2 includes independent spectral tracks with resolution limits,
+background estimates and explicit per-track decay rejection reasons.
 ";
 
 pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
@@ -77,6 +79,22 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                 .decay
                 .as_ref()
                 .and_then(|d| d.extrapolated_t60_seconds)
+        );
+        println!(
+            "spectral_tracks={} qualified_partial_decays={} minimum_separation_hz={:.3} dropped_track_observations={}",
+            report.inharmonic_tracking.tracks.len(),
+            report
+                .inharmonic_tracking
+                .tracks
+                .iter()
+                .filter(|t| t
+                    .decay
+                    .estimate
+                    .as_ref()
+                    .is_some_and(|d| d.extrapolated_t60_seconds.is_some()))
+                .count(),
+            report.inharmonic_tracking.minimum_separation_hz,
+            report.inharmonic_tracking.dropped_track_observations,
         );
     } else {
         let reference_channel = flags

@@ -35,7 +35,7 @@ Requires Rust 1.98 and a sibling RackForge checkout for its public SDK. See [Dev
 
 - `rf-rhodes-dsp`: safe Rust DSP with bounded contact integration, 73 fixed key states, per-key pickups and 4x antialias filtering.
 - `rf-rhodes-plugin`: RackForge adapter with MIDI 1.0/2.0, output gain, program and versioned state.
-- `rf-rhodes-analysis`: offline WAV input, FFT spectra, partial tracks, decay estimates and aligned comparisons.
+- `rf-rhodes-analysis`: offline WAV input, FFT spectra, harmonic and independent partial tracks, qualified decay estimates and aligned comparisons.
 - `rf-rhodes-lab`: Rust WAV renderer, physical CSV traces, measurement commands, JSON reports and timing diagnostics.
 - Tests for mechanical passivity, repeated strikes, dampers, MIDI ownership, block invariance, malformed input and file integrity.
 
@@ -50,6 +50,7 @@ The audio path uses no explicit allocation, locks or I/O. The laboratory does no
 - [Numerical convergence](docs/CONVERGENCE.md): the treble-contact correction, experiment and residual errors.
 - [Desktop audition](docs/AUDITION.md): build, install and launch each test version.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.
+- [September research review](docs/RESEARCH-2026-09.md): papers, Rust projects, recording candidates and prioritized experiments.
 - [Development](docs/DEVELOPMENT.md): commands, integration and output formats.
 - [Validation results](docs/VALIDATION.md): tests, native/WASM timing and remaining limitations.
 

@@ -1,6 +1,6 @@
 # Analysis laboratory
 
-This offline Rust tool measures rendered or recorded isolated notes. It does not alter the physical model, fit its parameters, normalize source files or establish equivalence to a real Rhodes. Reports use schema version 1; undefined measurements are JSON `null`, never fabricated zeroes or infinities.
+This offline Rust tool measures rendered or recorded isolated notes. It does not alter the physical model, fit its parameters, normalize source files or establish equivalence to a real Rhodes. Single-note analysis uses schema version 2, adding `inharmonic_tracking` while retaining the existing harmonic outputs. Comparison remains schema version 1. Undefined measurements are JSON `null`, never fabricated zeroes or infinities.
 
 ## Inputs and commands
 
@@ -24,7 +24,8 @@ For comparison, use equal sample rates, comparable note durations and matching c
 | Envelope peak | Largest envelope point within 500 ms after onset; timing is window-dependent |
 | Spectra | Hann windows of up to 32 and 96 ms from onset, plus up to 350 ms starting 250 ms later |
 | Fundamental candidate | Local spectral maximum within ±6% of the expected frequency; longest available successful observation containing at least four cycles |
-| Partial tracks | Six harmonic search bands, 128 ms Hann windows and 32 ms hop; missing peaks remain null |
+| Harmonic tracks (`partial_tracks`) | Six harmonic search bands, 128 ms Hann windows and 32 ms hop; missing peaks remain null |
+| Independent tracks (`inharmonic_tracking`) | Local spectral peaks without assumed frequency ratios, contiguous frame association and qualified per-track decay |
 
 Each spectrum removes its own DC mean and uses a symmetric Hann window. The one-sided amplitude normalization compensates coherent window gain. A pure stationary sinusoid therefore reports its peak amplitude, not its RMS. FFT size is twice the next power of two of the observed length. Each observation is capped at 32,768 samples; zero padding refines the interpolation grid, not the physical resolution. Reports include both bin spacing and reciprocal observation duration. Peaks use quadratic interpolation of log amplitude and must exceed −60 dB relative to that window's maximum. Spectral centroid is weighted by squared bin amplitudes.
 
@@ -32,11 +33,33 @@ Harmonic search tolerance is the larger of two FFT bins or 1.5% of the target ha
 
 Onset detection assumes a reasonably quiet, isolated note. It is sensitive to leading noise, DC and clicks. Sustained chords, processed music and multiple strikes invalidate a single expected-fundamental interpretation. The tool does not classify these inputs automatically.
 
+## Independent spectral tracks
+
+The independent detector reuses the harmonic track FFTs: nominal 128 ms Hann observations, 32 ms hop, capped at 32,768 observed samples. Actual durations and resolution are reported, including at sample rates where rounding or the cap changes them. Clips shorter than one complete window return empty tracking arrays. The detector does not use the expected note, harmonic bands or ideal beam ratios. A track can represent a harmonic, inharmonic component, intermodulation product or analysis artifact; its presence does not identify a mechanical mode.
+
+The search band starts at the larger of 20 Hz and twice the reciprocal observation duration, and ends at the smaller of 20 kHz and Nyquist minus that separation. Background is the upper median of spectral-bin amplitudes. Each peak also uses a local median within the larger of ±200 Hz or ±12 observation-resolution units, excluding the central ±2 units. Detection requires 18 dB above the larger background estimate and at least −70 dB relative to the current band maximum. Background amplitudes are floored at −180 dBFS for finite reporting. They are spectral background proxies, not calibrated broadband noise RMS or statistical confidence bounds.
+
+Candidates are processed strongest first. Beyond two resolution units, a continuous-Hann sidelobe envelope with 6 dB margin rejects likely leakage from accepted stronger peaks: amplitude ratio `2 / (pi d (d*d - 1))`, where `d` is separation divided by reciprocal observation duration. This conservative heuristic can suppress a weak real neighbor, and modulated signals can still produce transient false peaks. It is tested for isolated off-bin tones, but it is not a guarantee of artifact-free detection.
+
+Two retained peaks closer than `minimum_separation_hz` (twice the reciprocal observation duration) are flagged `ambiguous_neighbor`. A single blended peak cannot reveal hidden unresolved components. At 48 kHz the reported reciprocal duration is 7.8125 Hz and the separation guard is 15.625 Hz, regardless of the finer FFT grid. Interpolated frequency is not accompanied by an invented confidence interval.
+
+One-to-one nearest-frequency association uses a gate of 0.75 observation-resolution units and deterministic tie ordering. Only adjacent frames can connect. Missing detections split a track; no extrapolation bridges silence or noise. Each observation retains its frame, time, frequency, amplitude, background margin and ambiguity/capacity flags. Track IDs belong to this report only, not to fixed physical modes across recordings. Rapid pitch variation and crossings are outside this tracker's intended use.
+
+Limits are 32 retained peaks per frame and 2,048 tracks per recording. Frame summaries count weak, leakage and capacity exclusions; `dropped_track_observations` reports lifetime overflow. Capacity-limited frames invalidate per-track extrapolation. Input duration, FFT size and these limits bound work and report growth. Brief tracks are retained for attack inspection even when no decay fit is possible.
+
+### Per-track decay qualification
+
+An explicit `--sustain-end` is required. Fit observations must have their entire window after 100 ms from detected onset and before that boundary. A contiguous track needs at least 12 eligible observations. Its least-squares dB slope, actual center-time interval, R², drop and residual RMS are reported when available, even if extrapolation is rejected. Separate first-half and second-half slopes expose a common multistage-decay failure.
+
+An extrapolated T60 additionally requires all of: at least 350 ms fitted span, no ambiguous or capacity-limited observations, frequency range no greater than half an observation-resolution unit, a decreasing slope, at least 5 dB fitted drop, R² ≥ 0.98, residual RMS ≤ 1 dB, decreasing early/late slopes differing by no more than 30% of the overall slope magnitude. These are provisional engineering gates, not published perceptual thresholds. Overlapping windows are correlated; point count is not a count of independent experiments.
+
+`rejection_reasons` distinguishes `sustain_boundary_required`, `insufficient_points`, `insufficient_duration`, `ambiguous_neighbors`, `capacity_limited`, `frequency_variation`, `non_decaying`, `insufficient_drop`, `poor_fit` and `inconsistent_slopes`. A rejected fit has no T60. A short attack may therefore have visible observations and no decay estimate. Noise-floor censoring, interference and preprocessing can bias even an accepted estimate; recorded repetitions and held-out validation are still required.
+
 ## Decay estimation
 
 Natural decay is fitted only when `--sustain-end` specifies the end of an uninterrupted sustain region, in seconds from file start. Set it before release, pedal change or a new strike. The regression begins at the later of 100 ms after onset or 50 ms after the envelope peak. Every included RMS window ends before the declared boundary, avoiding contamination by release. Points more than 60 dB below the envelope peak are excluded; this relative cutoff is not a measured noise floor.
 
-The report exposes the least-squares dB/second slope, R², fitted drop, point count and actual fit interval. An **extrapolated** T60 (`−60 / slope`) is returned only for a decreasing fit with at least ten points, 100 ms span, 5 dB fitted drop and R² ≥ 0.95. It does not mean 60 dB of decay was recorded. Beating, multiple decay slopes, room sound and noise require more specific models. Current fits describe the total RMS envelope, not individual modal loss constants.
+The legacy `decay` field exposes the least-squares dB/second slope, R², fitted drop, point count and actual fit interval. An **extrapolated** T60 (`−60 / slope`) is returned only for a decreasing fit with at least ten points, 100 ms span, 5 dB fitted drop and R² ≥ 0.95. It does not mean 60 dB of decay was recorded. This field describes the total RMS envelope. Per-track fits use the separate, stricter qualification above; neither output automatically identifies individual mechanical loss constants.
 
 ## Comparison
 
@@ -51,3 +74,5 @@ Log-spectral distance is the RMS dB difference across FFT bins from 20 Hz to bel
 Tests compare the FFT with a direct DFT, recover known sinusoidal pitch and amplitude, recover a known exponential slope, exclude release from decay windows, preserve null values for silence and missing fundamentals, recover injected delays, preserve gain/polarity differences, and handle leading silence. WAV fixtures cover integer widths, channel selection, float headroom, metadata chunks, truncation and nonfinite samples. CLI tests render, analyze, compare, parse JSON and verify no-overwrite/error behavior.
 
 These tests validate the measurement implementation against known signals. Real-instrument calibration still requires documented direct recordings and held-out validation takes.
+
+Independent-track tests cover noninteger frequencies and unequal exponential decays at 8/44.1/48/192 kHz, off-bin Hann leakage, silence/DC/noise, fading into noise, separated and unresolved beating tones, missing-frame splitting, brief attacks, release boundaries, flat/rising/multistage envelopes, short input and capacity overflow. In the two-component fixture, frequency error must stay below 0.15 Hz and extrapolated T60 error below 0.04 seconds; these isolated-fixture tolerances are not accuracy promises for recorded instruments.

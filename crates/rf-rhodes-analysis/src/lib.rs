@@ -3,10 +3,14 @@ mod audio;
 mod compare;
 mod measurement;
 mod spectrum;
+mod tracking;
 
 pub use audio::{AudioClip, AudioError, AudioMetadata};
 pub use compare::{Comparison, compare};
 pub use measurement::{Analysis, AnalysisOptions, analyze};
+pub use tracking::{
+    DecayRejection, PartialDecay, PartialObservation, PartialTrack, PartialTracking,
+};
 
 pub(crate) fn db(amplitude: f64) -> Option<f64> {
     (amplitude > 0.0).then(|| 20.0 * amplitude.log10())

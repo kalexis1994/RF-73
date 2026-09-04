@@ -1,6 +1,6 @@
 # Initial validation report
 
-Historical 0.1.0 results are retained below. The latest local results are in the 0.1.1 section at the end.
+Historical results are retained below. The latest local results are in the independent partial tracking section at the end.
 
 Date: 2026-09-04. RF-Rhodes 0.1.0 research prototype.
 
@@ -80,3 +80,33 @@ Validation on the same Windows/Ryzen environment:
 The native worst block still exceeds the 1.333 ms provisional half-deadline target, despite remaining below the full 2.667 ms deadline in this short run. Scheduling affects wall time; the lower aggregate WASM ratio does not prove a speedup. Maximum WASM fuel increased from the initial 10,586,033 to 14,176,281, consistent with the additional contact work. No mobile or long-duration real-time qualification is claimed.
 
 New ignored artifacts: `renders/a3-0.1.1.wav`, `renders/treble-0.1.1.wav` and its physical CSV, `renders/a3-version-comparison.json`, `renders/refined-*.json`, `dist/native-stress-0.1.1.json`, `dist/wasm-stress-0.1.1.txt`, and the validated `dist/RF-Rhodes-0.1.1.rfplugin` archive (25,662 bytes, SHA-256 `5a119fb8001bbaee6511afbf9ab28b6d2c4605f633976b3e6b39b498993eb8cc`). The earlier 0.1.0 archive is retained separately.
+
+## Independent partial tracking: analysis schema 2
+
+Date: 2026-09-04. This is an offline laboratory addition following 0.1.1, with no new instrument release. The 55 current Rust tests passed locally (54 in the workspace run, followed by the additional capacity-qualification unit test and the existing analysis unit suite). Strict Clippy, formatting and native/WASM release builds passed. Eleven new tests cover independent tracking and its rejection behavior; the existing CLI test also checks the schema-2 payload and no-overwrite contract.
+
+The deterministic two-component fixture recovers 220.37 and 731.23 Hz with independent 5.0 and 2.5 second extrapolated T60 values at 8, 44.1, 48 and 192 kHz. Assertions bound frequency error below 0.15 Hz and T60 error below 0.04 seconds. Other cases verify floor censoring, no persistent white-noise tracks, sidelobe rejection for an isolated tone, close-tone ambiguity, interrupted tracks, short attacks, release exclusion and rejection of inconsistent decay slopes. Capacity tests exercise both report limits and refusal to qualify a fit from capacity-limited frames.
+
+Six production-model renders were analyzed: A3/A4 at normalized velocities 0.2, 0.5 and 0.9, 48 kHz, three seconds per file, release at 2.5 seconds, sustain-fit end at 2.4 seconds, default pickup geometry. Every render reports zero numerical faults. No recording of a real instrument was used.
+
+| MIDI note | Velocity | Spectral tracks | Qualified partial decays |
+| --- | --- | --- | --- |
+| 57 (A3) | 0.2 | 9 | 3 |
+| 57 (A3) | 0.5 | 12 | 3 |
+| 57 (A3) | 0.9 | 17 | 5 |
+| 69 (A4) | 0.2 | 8 | 2 |
+| 69 (A4) | 0.5 | 9 | 3 |
+| 69 (A4) | 0.9 | 15 | 3 |
+
+These are track counts, not counts of physical modes: a missed frame starts a new track, and some tracks are short transients or mixing products. The loud A3 contains an early track near 1378.72 Hz, consistent with its programmed second beam mode, plus nearby components around 1158.72 and 1598.72 Hz, consistent with mixing with the 220 Hz fundamental. Those short tracks receive `insufficient_points` rather than a T60. This is a model-based interpretation, not experimental identification of a real tine or tonebar.
+
+All six reports have zero dropped track observations. Minimum separation is reported as 15.625 Hz; interpolated frequencies do not improve that resolution limit. Generated WAVs, render receipts and schema-2 reports are under `renders/inharmonic-20260904-184419/` (ignored). For example, the loud A3 report is `note-57-v-0.9-analysis.json`.
+
+Reproduce one case with fresh output names:
+
+```text
+cargo run --locked --release -p rf-rhodes-lab -- render --output renders/tracking-a3.wav --note 57 --velocity 0.9 --seconds 3 --hold 2.5
+cargo run --locked --release -p rf-rhodes-lab -- analyze renders/tracking-a3.wav --output renders/tracking-a3-analysis.json --note 57 --sustain-end 2.4
+```
+
+This validates the new measurement path against known signals and current model output. Untreated reference recordings, physical parameter identification and an audible realism improvement remain the next experiment.

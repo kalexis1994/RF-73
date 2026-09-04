@@ -123,7 +123,19 @@ fn rendered_audio_can_be_analyzed_and_compared_without_overwriting() {
         "0.29",
     ]);
     let report = scratch.json("analysis.json");
-    assert_eq!(report["analysis"]["schema_version"], 1);
+    assert_eq!(report["analysis"]["schema_version"], 2);
+    assert!(
+        !report["analysis"]["inharmonic_tracking"]["tracks"]
+            .as_array()
+            .unwrap()
+            .is_empty()
+    );
+    assert!(
+        report["analysis"]["inharmonic_tracking"]["minimum_separation_hz"]
+            .as_f64()
+            .unwrap()
+            > 0.0
+    );
     assert!(
         report["analysis"]["fundamental"]["frequency_hz"]
             .as_f64()

@@ -22,10 +22,14 @@ All application code, analysis tools and tests are Rust. Documentation, identifi
 
 ## Next milestone: a calibrated A3
 
+Implemented research tooling after 0.1.1: independent spectral peak tracking, local/global background estimates, resolution and capacity flags, contiguous association, and qualified per-track decay with explicit rejection reasons. Single-note analysis now uses schema 2. The production instrument profile is still 0.1.1.
+
+The [September research review](RESEARCH-2026-09.md) specifies the next experiment: document reference metadata and run an A3/A4 pilot with held-out intensities using the new independent tracking. A4 provides a second anchor; neither note is calibrated yet.
+
 The measurement foundation is implemented: external WAV input, multi-resolution spectra, bounded harmonic searches, RMS envelopes, qualified decay estimates, and raw/level-matched comparison reports. Known synthetic signals validate these estimators; they do not calibrate the instrument. See [Analysis laboratory](ANALYSIS.md).
 
 1. Obtain dry recordings from a documented instrument at multiple intensities.
-2. Extend current harmonic tracking to measured inharmonic modes, robust noise-floor estimation and per-component decay fits.
+2. Evaluate the implemented independent tracking on those recordings, refine background qualification, and use longer observations where close components remain unresolved; distinguish observed spectral peaks from identified mechanical modes.
 3. Extend the current convergence measurements to extreme profiles, retriggers and isolated nonlinear aliasing; establish explicit error budgets.
 4. Identify modal frequencies, weights, losses and pickup geometry jointly, keeping a held-out validation set.
 5. Add hammer hysteresis and assembly modes where measured residuals justify them.

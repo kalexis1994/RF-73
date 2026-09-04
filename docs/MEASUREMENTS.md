@@ -37,7 +37,7 @@ Provisional targets: sustained tuning within 3 cents, dominant component levels 
 
 The `stress` command includes 73 simultaneous strikes and periodic retriggers under pedal in 128-frame blocks. It reports wall-clock worst block, p99 and deadline misses after warmup. It includes OS scheduling effects and is a short diagnostic rather than a qualification soak.
 
-`analyze` now reads external PCM/float WAV and reports tuning candidates, attack/body spectra, harmonic tracks and RMS envelopes. `--sustain-end` explicitly bounds natural-decay fitting; no boundary means no decay estimate. `compare` reports both the original level difference and a separate RMS-matched error. The [analysis specification](ANALYSIS.md) defines the windows, normalization and limitations. Neither command estimates a calibrated hammer velocity or proves timbral fidelity.
+`analyze` reads external PCM/float WAV and reports tuning candidates, attack/body spectra, harmonic tracks, independent spectral tracks and RMS envelopes. Independent tracks carry background margins, resolution/capacity flags and per-track decay rejection reasons. `--sustain-end` explicitly bounds natural-decay fitting; no boundary means no decay estimate. `compare` reports both the original level difference and a separate RMS-matched error. The [analysis specification](ANALYSIS.md) defines the windows, normalization and limitations. Neither command estimates a calibrated hammer velocity or proves timbral fidelity.
 
 ## Without an instrument
 

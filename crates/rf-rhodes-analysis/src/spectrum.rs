@@ -71,7 +71,7 @@ impl Spectrum {
         }
     }
 
-    fn peak(&self, i: usize) -> SpectralPeak {
+    pub(crate) fn peak(&self, i: usize) -> SpectralPeak {
         let a = self.amplitudes[i - 1].max(1e-150).ln();
         let b = self.amplitudes[i].max(1e-150).ln();
         let c = self.amplitudes[i + 1].max(1e-150).ln();
