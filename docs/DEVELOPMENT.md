@@ -54,7 +54,17 @@ cargo run --locked --release -p rf-rhodes-lab -- sweep-pickup references/audio/a
 
 See [Pickup sweep](PICKUP-SWEEP.md) for input bounds, ranking semantics, reference requirements and a reproducible synthetic recovery example. Candidate audio stays in memory; the only output is a create-new JSON report.
 
-## Contact convergence
+## Shared pickup fit and held-out validation
+
+To fit several recordings and evaluate reserved notes/intensities with frozen geometry and gain:
+
+```text
+cargo run --locked --release -p rf-rhodes-lab -- fit-pickup-set references/pickup-set.synthetic.json --output renders/pickup-set-demo/result.json
+```
+
+First generate the example's three reference WAVs using [Pickup reference set](PICKUP-SET.md). That document also specifies provenance, shared capture gain, held-note regions and the strict JSON manifest contract.
+
+## Contact refinement experiment
 
 ```text
 cargo run --locked --release -p rf-rhodes-lab -- converge --output renders/treble-convergence.json --note 100 --velocity 0.2

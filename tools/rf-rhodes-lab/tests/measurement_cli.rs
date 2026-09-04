@@ -56,6 +56,153 @@ impl Drop for Scratch {
 }
 
 #[test]
+fn pickup_set_freezes_fit_geometry_and_gain_before_validation() {
+    let scratch = Scratch::new();
+    for (file, velocity, gap) in [
+        ("soft.wav", "0.3", "2"),
+        ("loud.wav", "0.7", "2"),
+        ("held.wav", "0.5", "2"),
+        ("different.wav", "0.5", "1"),
+    ] {
+        scratch.success(&[
+            "render",
+            "--output",
+            file,
+            "--note",
+            "57",
+            "--velocity",
+            velocity,
+            "--gap-mm",
+            gap,
+            "--offset-mm",
+            "0.75",
+            "--seconds",
+            "0.7",
+            "--hold",
+            "0.6",
+        ]);
+    }
+    let take = |id: &str, file: &str, role: &str, velocity: f64| {
+        serde_json::json!({
+            "id":id,"file":file,"role":role,"note":57,"velocity":velocity,
+            "velocity_basis":"Known synthetic model input", "reference_start_seconds":0.1,
+            "model_start_seconds":0.1,"seconds":0.4,"sustain_end_seconds":0.6,
+        })
+    };
+    let mut manifest = serde_json::json!({
+        "schema_version":1,"source":"Local synthetic fixture","source_revision":"Model 0.1.1",
+        "license":"Project-generated test signal","instrument":"RF-Rhodes research model",
+        "processing":"None","capture_gain":"Fixed engine output gain",
+        "gaps_mm":[1.5,2],"offsets_mm":[0.5,0.75],
+        "takes":[take("soft", "soft.wav", "fit", 0.3), take("loud", "loud.wav", "fit", 0.7),
+            take("held", "held.wav", "validation", 0.5)]
+    });
+    fs::write(
+        scratch.0.join("set.json"),
+        serde_json::to_vec(&manifest).unwrap(),
+    )
+    .unwrap();
+    scratch.success(&["fit-pickup-set", "set.json", "--output", "fit.json"]);
+    let report = scratch.json("fit.json");
+    assert_eq!(report["best_candidate_index"], 3);
+    assert_eq!(report["validation_objective_db"], 0.0);
+    assert_eq!(report["candidates"][3]["fit"]["applied_gain"], 1.0);
+    assert_eq!(report["validation"].as_array().unwrap().len(), 1);
+    let before = fs::read(scratch.0.join("fit.json")).unwrap();
+    assert!(
+        !scratch
+            .run(&["fit-pickup-set", "set.json", "--output", "fit.json"])
+            .status
+            .success()
+    );
+    assert_eq!(before, fs::read(scratch.0.join("fit.json")).unwrap());
+
+    // Deliberately change only the held-out geometry. It must not affect fitting.
+    manifest["takes"][2]["file"] = "different.wav".into();
+    fs::write(
+        scratch.0.join("set.json"),
+        serde_json::to_vec(&manifest).unwrap(),
+    )
+    .unwrap();
+    scratch.success(&[
+        "fit-pickup-set",
+        "set.json",
+        "--output",
+        "validation-changed.json",
+    ]);
+    let changed = scratch.json("validation-changed.json");
+    assert_eq!(changed["candidates"], report["candidates"]);
+    assert_eq!(changed["ranking_indices"], report["ranking_indices"]);
+    assert!(changed["validation_objective_db"].as_f64().unwrap() > 0.05);
+    assert_eq!(
+        changed["validation"][0]["metrics"]["applied_candidate_gain"],
+        1.0
+    );
+    assert!(
+        changed["validation"][0]["metrics"]["applied_gain_normalized_rmse"]
+            .as_f64()
+            .unwrap()
+            > 0.1
+    );
+
+    for invalid in [
+        {
+            let mut m = manifest.clone();
+            m["takes"][2]["velocity"] = 0.3.into();
+            m
+        },
+        {
+            let mut m = manifest.clone();
+            m["takes"][2]["file"] = "soft.wav".into();
+            m
+        },
+        {
+            let mut m = manifest.clone();
+            m["takes"][0]["sustain_end_seconds"] = 0.2.into();
+            m
+        },
+        {
+            let mut m = manifest.clone();
+            m["processing"] = "".into();
+            m
+        },
+        {
+            let mut m = manifest.clone();
+            m["takes"][1]["role"] = "validation".into();
+            m
+        },
+        {
+            let mut m = manifest.clone();
+            m["schema_version"] = 2.into();
+            m
+        },
+        {
+            let mut m = manifest.clone();
+            m["gaps_mm"] = serde_json::json!([1, 1]);
+            m
+        },
+        {
+            let mut m = manifest.clone();
+            m["unknown_option"] = true.into();
+            m
+        },
+    ] {
+        fs::write(
+            scratch.0.join("invalid.json"),
+            serde_json::to_vec(&invalid).unwrap(),
+        )
+        .unwrap();
+        assert!(
+            !scratch
+                .run(&["fit-pickup-set", "invalid.json", "--output", "bad.json"])
+                .status
+                .success()
+        );
+        assert!(!scratch.0.join("bad.json").exists());
+    }
+}
+
+#[test]
 fn pickup_sweep_recovers_known_geometry_and_preserves_files() {
     let scratch = Scratch::new();
     scratch.success(&[

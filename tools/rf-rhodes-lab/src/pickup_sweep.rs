@@ -37,11 +37,13 @@ struct WindowScore {
 }
 
 #[derive(Serialize)]
-struct Metrics {
-    objective_db: f64,
+pub(super) struct Metrics {
+    pub objective_db: f64,
     raw_objective_db: f64,
     candidate_level_minus_reference_db: f64,
     candidate_gain_to_match_reference: f64,
+    applied_candidate_gain: f64,
+    applied_gain_normalized_rmse: f64,
     raw_normalized_rmse: Option<f64>,
     level_matched_normalized_rmse: Option<f64>,
     scored_windows: usize,
@@ -56,7 +58,7 @@ struct Candidate {
     rejection_reason: Option<String>,
 }
 
-fn grid(value: &str, low: f64, high: f64) -> Result<Vec<f64>, Box<dyn Error>> {
+pub(super) fn grid(value: &str, low: f64, high: f64) -> Result<Vec<f64>, Box<dyn Error>> {
     let mut values = Vec::new();
     for token in value.split(',') {
         let number: f64 = token.trim().parse()?;
@@ -90,15 +92,16 @@ fn validate(options: &Options) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-fn render(
+pub(super) fn render(
     rate: u32,
     frames: usize,
     start: usize,
-    options: &Options,
+    note: u8,
+    velocity: f64,
     profile: Profile,
 ) -> Result<AudioClip, Box<dyn Error>> {
     let mut engine = Engine::new(rate as f64, profile)?;
-    if !engine.note_on(0, options.note, options.velocity) {
+    if !engine.note_on(0, note, velocity) {
         return Err("model rejected the strike".into());
     }
     let mut samples = Vec::with_capacity(frames);
@@ -119,6 +122,14 @@ fn rms(samples: &[f64]) -> f64 {
 }
 
 fn score(reference: &AudioClip, candidate: &AudioClip) -> Result<Metrics, Box<dyn Error>> {
+    score_with_gain(reference, candidate, None)
+}
+
+pub(super) fn score_with_gain(
+    reference: &AudioClip,
+    candidate: &AudioClip,
+    fixed_gain: Option<f64>,
+) -> Result<Metrics, Box<dyn Error>> {
     let rate = reference.metadata().sample_rate;
     let size = (rate as f64 * 0.128).round() as usize;
     if reference.samples().len() < size
@@ -128,9 +139,13 @@ fn score(reference: &AudioClip, candidate: &AudioClip) -> Result<Metrics, Box<dy
         return Err("scoring requires equal-rate, equal-length regions of at least 128 ms".into());
     }
     let whole = compare(reference, candidate, 0.0)?;
-    let gain = whole
+    let matching_gain = whole
         .candidate_gain_to_match_reference
         .ok_or("candidate or reference has insufficient signal energy")?;
+    let gain = fixed_gain.unwrap_or(matching_gain);
+    if !gain.is_finite() || gain <= 0.0 {
+        return Err("applied gain must be finite and positive".into());
+    }
     let hop = (rate as f64 * 0.064).round() as usize;
     let mut starts: Vec<_> = (0..=reference.samples().len() - size)
         .step_by(hop)
@@ -183,7 +198,15 @@ fn score(reference: &AudioClip, candidate: &AudioClip) -> Result<Metrics, Box<dy
         candidate_level_minus_reference_db: whole
             .candidate_level_minus_reference_db
             .expect("positive gain"),
-        candidate_gain_to_match_reference: gain,
+        candidate_gain_to_match_reference: matching_gain,
+        applied_candidate_gain: gain,
+        applied_gain_normalized_rmse: rms(&reference
+            .samples()
+            .iter()
+            .zip(candidate.samples())
+            .map(|(a, b)| a - gain * b)
+            .collect::<Vec<_>>())
+            / rms(reference.samples()),
         raw_normalized_rmse: whole.raw_normalized_rmse,
         level_matched_normalized_rmse: whole.level_matched_normalized_rmse,
         scored_windows: count,
@@ -273,8 +296,15 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                 pickup_offset_m: offset / 1000.0,
                 ..Profile::default()
             };
-            let result = render(rate, frames, model_start, &options, profile)
-                .and_then(|candidate| score(&reference, &candidate));
+            let result = render(
+                rate,
+                frames,
+                model_start,
+                options.note,
+                options.velocity,
+                profile,
+            )
+            .and_then(|candidate| score(&reference, &candidate));
             let (metrics, rejection_reason) = match result {
                 Ok(metrics) => (Some(metrics), None),
                 Err(error) => (None, Some(error.to_string())),
@@ -365,6 +395,10 @@ mod tests {
         .unwrap();
         let reference = AudioClip::from_samples(48000, a).unwrap();
         assert!(score(&reference, &constant).unwrap().objective_db < 1e-10);
+        let frozen = score_with_gain(&reference, &constant, Some(1.0)).unwrap();
+        assert!(frozen.objective_db > 0.1);
+        assert!((frozen.applied_gain_normalized_rmse - 0.5).abs() < 1e-12);
+        assert_eq!(frozen.applied_candidate_gain, 1.0);
         assert!(score(&reference, &varying).unwrap().objective_db > 0.1);
     }
 

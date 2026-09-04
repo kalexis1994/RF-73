@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "source": "Locally rendered RF-Rhodes synthetic references",
+  "source_revision": "29cbd98; research-0.1.1 DSP",
+  "license": "Project-generated research fixture; no third-party audio",
+  "instrument": "RF-Rhodes model; A3; gap 2 mm; offset 0.75 mm",
+  "processing": "No effects, normalization or resampling",
+  "capture_gain": "Fixed engine gain; identical for all takes",
+  "gaps_mm": [
+    1.5,
+    2,
+    2.5
+  ],
+  "offsets_mm": [
+    0.5,
+    0.75,
+    1
+  ],
+  "takes": [
+    {
+      "id": "soft",
+      "file": "../renders/pickup-set-demo/soft.wav",
+      "role": "fit",
+      "note": 57,
+      "velocity": 0.3,
+      "velocity_basis": "Known normalized model input; not a measured physical hammer speed",
+      "reference_start_seconds": 0.1,
+      "model_start_seconds": 0.1,
+      "seconds": 1,
+      "sustain_end_seconds": 1.4,
+      "channel": null
+    },
+    {
+      "id": "loud",
+      "file": "../renders/pickup-set-demo/loud.wav",
+      "role": "fit",
+      "note": 57,
+      "velocity": 0.7,
+      "velocity_basis": "Known normalized model input; not a measured physical hammer speed",
+      "reference_start_seconds": 0.1,
+      "model_start_seconds": 0.1,
+      "seconds": 1,
+      "sustain_end_seconds": 1.4,
+      "channel": null
+    },
+    {
+      "id": "held",
+      "file": "../renders/pickup-set-demo/held.wav",
+      "role": "validation",
+      "note": 57,
+      "velocity": 0.5,
+      "velocity_basis": "Known normalized model input; not a measured physical hammer speed",
+      "reference_start_seconds": 0.1,
+      "model_start_seconds": 0.1,
+      "seconds": 1,
+      "sustain_end_seconds": 1.4,
+      "channel": null
+    }
+  ]
+}

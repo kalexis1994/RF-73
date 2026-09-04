@@ -170,3 +170,13 @@ Two synthetic A3 references use a non-default 2 mm gap and 0.75 mm offset, at no
 Both known geometries are recovered exactly, with zero raw waveform NRMSE and unity matching gain. All 18 candidate renders are accepted. These are two independent synthetic recovery runs, not held-out validation against a measured instrument or proof of uniquely identifiable physical dimensions.
 
 Ignored artifacts are `renders/pickup-sweep-20260904-193143/reference-{0.3,0.7}.wav`, their render receipts and `sweep-{0.3,0.7}.json`. The [pickup sweep specification](PICKUP-SWEEP.md) provides reproduction commands, the window objective and its limitations. Candidate WAVs are not saved. The production instrument remains the 0.1.1 research profile; this milestone provides calibration tooling rather than a new sound version.
+
+## Shared fit and held-out evaluation
+
+Date: 2026-09-04. Added `fit-pickup-set` with a strict bounded reference manifest and a gain shared across fitting takes, frozen for validation. All 77 Rust tests passed. Strict Clippy, formatting, native release and WASM release builds passed with session-local `CARGO_INCREMENTAL=0`.
+
+The new shared-gain fixture recovers a uniform 2x recording gain with less than 1e-10 dB objective error. Scaling the two fitting intensities differently leaves more than 0.1 dB error instead of independently normalizing them. The CLI fixture changes only a held-out reference to a different pickup geometry: every fitting candidate and the ranking remain exactly identical, the applied validation gain stays at 1, and the held-out objective exceeds 0.05 dB with waveform NRMSE above 0.1. Additional cases reject split leakage, reused files, missing provenance, unknown fields, invalid schema/grid, insufficient fitting pairs and regions crossing release, and preserve existing reports.
+
+The checked-in `references/pickup-set.synthetic.json` was run against fresh A3/48 kHz renders at velocities 0.3 and 0.7 for fitting, reserving 0.5 for validation. All use a 2 mm gap and 0.75 mm offset, duration 1.5 seconds and release at 1.4 seconds; selected regions are 0.1..1.1 seconds. Nine geometries were fitted. The selected index is 4, exactly recovering the known geometry and unity gain, with zero fitting and validation objective. It is the only candidate within the 0.01 dB reporting band. The three source renders have zero numerical faults.
+
+Ignored artifacts are under `renders/pickup-set-demo/`; `result.json` records every fit and the frozen validation result. This confirms the split/gain workflow against synthetic data. It does not establish real-instrument calibration. The instrument remains the 0.1.1 research profile.

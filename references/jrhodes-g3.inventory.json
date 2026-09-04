@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "inventory_type": "processed_recording_pilot_not_a_fit_manifest",
+  "acquired_on": "2026-09-04",
+  "author": "Jeffrey Learman",
+  "instrument": "1977 Rhodes Mark I Stage 73",
+  "source": "https://github.com/jlearman/jRhodes3d-wav",
+  "source_revision": "a886e6cebf074c995a10634f82ebe4fdb90f5ca6",
+  "license": "CC BY-NC 4.0 for samples; see upstream LICENSE for musical-use and other-material terms",
+  "license_url": "https://github.com/jlearman/jRhodes3d-wav/blob/a886e6cebf074c995a10634f82ebe4fdb90f5ca6/LICENSE",
+  "processing": "Harp output; treble boost, low-mid scoop and CoolEdit 96 noise reduction; mono version",
+  "capture_gain": "Unknown; raw distributed sample levels are not a calibrated strike-intensity curve",
+  "note": 55,
+  "note_name": "G3",
+  "source_mapping": "https://github.com/sfzinstruments/jlearman.jRhodes3d/blob/aea5b8d3e11e2f7102593789a4e0a0e41b30271a/jRhodes3d-mono-no-xfade.sfz",
+  "model_velocity": null,
+  "sustain_end_seconds": null,
+  "local_audio_directory": "audio/jrhodes-g3-a886e6c",
+  "use": "Initial spectral inspection only; no physical profile fitting or sample redistribution",
+  "files": [
+    {
+      "file": "A_055__G3_1.wav",
+      "layer_suffix": 1,
+      "sampler_velocity_low": 112,
+      "sampler_velocity_high": 127,
+      "url": "https://raw.githubusercontent.com/jlearman/jRhodes3d-wav/a886e6cebf074c995a10634f82ebe4fdb90f5ca6/jRhodes3d-mono-wav/A_055__G3_1.wav",
+      "bytes": 1429026,
+      "git_blob_sha1": "2a95dbf514bd9b721d4084c6ed5816ad123f2712",
+      "sha256": "76ae13c5b1319e0877b1b38d5c7a448be8ee6be4ebf6ef2e8ccc4f69b7ebc7c8"
+    },
+    {
+      "file": "A_055__G3_2.wav",
+      "layer_suffix": 2,
+      "sampler_velocity_low": 96,
+      "sampler_velocity_high": 111,
+      "url": "https://raw.githubusercontent.com/jlearman/jRhodes3d-wav/a886e6cebf074c995a10634f82ebe4fdb90f5ca6/jRhodes3d-mono-wav/A_055__G3_2.wav",
+      "bytes": 1605428,
+      "git_blob_sha1": "c46d5086be237b50dcb2286e7891aba13cf4f183",
+      "sha256": "8a5c1a960b1804d436d3e4d97f572b174b010c2b61fb52ff3877788c4ee52abd"
+    },
+    {
+      "file": "A_055__G3_3.wav",
+      "layer_suffix": 3,
+      "sampler_velocity_low": 73,
+      "sampler_velocity_high": 95,
+      "url": "https://raw.githubusercontent.com/jlearman/jRhodes3d-wav/a886e6cebf074c995a10634f82ebe4fdb90f5ca6/jRhodes3d-mono-wav/A_055__G3_3.wav",
+      "bytes": 1799436,
+      "git_blob_sha1": "e16318eb5d9cdf0c4c951aaa725d5e6138657c3b",
+      "sha256": "bf4fc2bb9578eb828a697acefc93ee744b099aee78a63a0451416634e8e546e4"
+    },
+    {
+      "file": "A_055__G3_4.wav",
+      "layer_suffix": 4,
+      "sampler_velocity_low": 48,
+      "sampler_velocity_high": 72,
+      "url": "https://raw.githubusercontent.com/jlearman/jRhodes3d-wav/a886e6cebf074c995a10634f82ebe4fdb90f5ca6/jRhodes3d-mono-wav/A_055__G3_4.wav",
+      "bytes": 1764186,
+      "git_blob_sha1": "a3ad5115e19e8d011ed45052122d43718a0a7d52",
+      "sha256": "111ac5f35d79e2891ad2fcd8c97e81c7b67b7db97df0e981b197676873bf6108"
+    },
+    {
+      "file": "A_055__G3_5.wav",
+      "layer_suffix": 5,
+      "sampler_velocity_low": 1,
+      "sampler_velocity_high": 47,
+      "url": "https://raw.githubusercontent.com/jlearman/jRhodes3d-wav/a886e6cebf074c995a10634f82ebe4fdb90f5ca6/jRhodes3d-mono-wav/A_055__G3_5.wav",
+      "bytes": 1799468,
+      "git_blob_sha1": "c41b60a18683c78f9c77b45e9b5accf0fd2a775c",
+      "sha256": "e694f5f934c5dc88b3ef00ecaace54d97c25b5570de53a2e6872bf9f6b8cba9d"
+    }
+  ]
+}

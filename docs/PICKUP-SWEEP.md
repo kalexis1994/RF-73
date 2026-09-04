@@ -2,6 +2,8 @@
 
 `sweep-pickup` is a bounded offline experiment against a mono or explicitly selected WAV channel. It renders a grid of provisional pickup gaps and offsets, then ranks their spectral errors. It writes one JSON report and keeps candidate audio in memory. It does not apply a profile to the instrument.
 
+For multiple takes with one shared gain and a separate validation split, use [Pickup reference set](PICKUP-SET.md). The single-take report also exposes `applied_candidate_gain` and `applied_gain_normalized_rmse`; these equal its existing per-take matching gain and matched NRMSE.
+
 ## Reproduce a known-geometry experiment
 
 Use fresh output paths:

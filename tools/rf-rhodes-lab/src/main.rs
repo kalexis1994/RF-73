@@ -4,6 +4,7 @@ mod audition;
 mod convergence;
 mod package;
 mod partial_comparison;
+mod pickup_set;
 mod pickup_sweep;
 mod wav;
 use rf_rhodes_dsp::{Engine, FIRST_NOTE, LAST_NOTE, Profile};
@@ -172,6 +173,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", analysis::HELP);
         print!("{}", partial_comparison::HELP);
         print!("{}", pickup_sweep::HELP);
+        print!("{}", pickup_set::HELP);
         print!("{}", convergence::HELP);
         return Ok(());
     }
@@ -187,6 +189,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "sweep-pickup" {
         return pickup_sweep::run(&args);
+    }
+    if args[0] == "fit-pickup-set" {
+        return pickup_set::run(&args);
     }
     if matches!(args[0].as_str(), "analyze" | "compare") {
         return analysis::run(&args);
