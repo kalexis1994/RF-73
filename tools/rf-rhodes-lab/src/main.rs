@@ -1,4 +1,5 @@
 //! Offline laboratory. All rendering, WAV writing and analysis runs in Rust.
+mod analysis;
 mod package;
 mod wav;
 use rf_rhodes_dsp::{Engine, FIRST_NOTE, LAST_NOTE, Profile};
@@ -163,6 +164,7 @@ fn run() -> Result<(), Box<dyn Error>> {
     let args: Vec<_> = std::env::args().skip(1).collect();
     if args.is_empty() || matches!(args[0].as_str(), "--help" | "-h") {
         print!("{HELP}");
+        print!("{}", analysis::HELP);
         return Ok(());
     }
     if args[0] == "inspect" {
@@ -171,6 +173,9 @@ fn run() -> Result<(), Box<dyn Error>> {
         }
         println!("{}", wav::inspect(File::open(&args[1])?)?);
         return Ok(());
+    }
+    if matches!(args[0].as_str(), "analyze" | "compare") {
+        return analysis::run(&args);
     }
     if args[0] == "package" {
         if args.len() != 1 {

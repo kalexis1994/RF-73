@@ -40,4 +40,24 @@ The archive was produced after host validation. Its physical model is unchanged 
 
 ## Not yet demonstrated
 
-Real-instrument timbral fidelity, measured hammer material response, high-order assembly modes, spectral convergence/aliasing bounds, browser execution, Android/Pi timing, actual audio-device latency, long-duration soak behavior and hosted CI execution. A Windows/Linux CI workflow is provided; it has not been run remotely.
+Real-instrument timbral fidelity, measured hammer material response, high-order assembly modes, spectral convergence/aliasing bounds, browser execution, Android/Pi timing, actual audio-device latency and long-duration soak behavior.
+
+The initial commit passed hosted CI on Windows and Linux: [run 33915204770](https://github.com/kalexis1994/RF-Rhodes/actions/runs/33915204770).
+
+## Offline analysis milestone
+
+The analysis addition passed 35 local Rust tests, strict Clippy, formatting, the native release build and the WASM plugin build on the same environment. The 17 new tests cover numerical measurement, external WAV input and the complete CLI flow. The plugin dependency tree still contains only the DSP and RackForge SDK; offline decoding and serialization dependencies do not enter its audio path.
+
+The following measurements come from the unchanged research model: A3, 48 kHz, four-second files, key release at two seconds, default pickup geometry, sustain-fit boundary at 1.8 seconds. Values describe model output, not a real instrument.
+
+| Normalized velocity | Peak dBFS | Full-file RMS dBFS | Fundamental Hz | Extrapolated T60 s | 32 ms attack centroid Hz |
+| --- | --- | --- | --- | --- | --- |
+| 0.20 | −29.302 | −44.664 | 220.0004 | 5.001 | 237.78 |
+| 0.55 | −16.510 | −32.475 | 220.0004 | 5.016 | 250.85 |
+| 1.00 | −8.306 | −25.332 | 220.0005 | 5.056 | 313.66 |
+
+All three render reports show zero numerical faults. Decay-fit R² exceeds 0.9996, but only the declared sustain interval was observed: the roughly five-second T60 values are extrapolations. Comparing the quiet and loud takes without time adjustment gives +19.332 dB full-file RMS difference and 0.384 level-matched normalized waveform error. The centroid change supports a measurable attack-spectrum change; neither metric is a perceptual fidelity score.
+
+Artifacts are ignored under `renders/`: `a3-velocity-{0.2,0.55,1.0}.wav`, their `-analysis.json` reports, `a3-dynamics-comparison.json`, `a3-baseline-analysis.json` and `a3-self-comparison.json`. The baseline file compared with itself gives exactly zero delay, level difference and normalized waveform errors.
+
+To reproduce, render each listed velocity using default settings, then run `analyze` with `--note 57 --sustain-end 1.8`; compare the 0.2 and 1.0 files with `--align-ms 0`. See [Analysis laboratory](ANALYSIS.md) for commands and precise metric definitions. The CI workflow now also analyzes and compares its generated WAV.

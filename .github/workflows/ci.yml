@@ -43,3 +43,7 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- render --output renders/ci.wav --seconds 0.2 --hold 0.1
       - name: Verify the reference file
         run: cargo run --locked --release -p rf-rhodes-lab -- inspect renders/ci.wav
+      - name: Analyze the reference file
+        run: cargo run --locked --release -p rf-rhodes-lab -- analyze renders/ci.wav --output renders/ci-analysis.json --note 57 --sustain-end 0.09
+      - name: Compare identical audio
+        run: cargo run --locked --release -p rf-rhodes-lab -- compare renders/ci.wav renders/ci.wav --output renders/ci-comparison.json

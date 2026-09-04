@@ -1,15 +1,13 @@
 [package]
-name = "rf-rhodes-lab"
+name = "rf-rhodes-analysis"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 publish.workspace = true
 
 [dependencies]
-rf-rhodes-dsp.workspace = true
-rf-rhodes-analysis.workspace = true
+hound.workspace = true
 serde.workspace = true
-serde_json.workspace = true
 
 [lints]
 workspace = true

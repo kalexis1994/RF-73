@@ -2,7 +2,7 @@
 
 ## Toolchain and dependency
 
-Rust 1.98.0 is pinned. The DSP and laboratory have no third-party dependencies. The plugin uses the public Rust SDK from a sibling `rackforge` checkout through an explicit Cargo path. For this prototype use RackForge revision `7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1`. A local path dependency is not a reproducible distribution pin: before external releases, replace it with an exact published version or Git revision and regenerate Cargo.lock.
+Rust 1.98.0 is pinned. The DSP has no third-party dependencies. Offline analysis uses `hound` for WAV decoding and `serde`/`serde_json` for reports; its FFT is implemented and tested in Rust. These dependencies stay outside the audio plugin. Cargo.lock records exact versions. The plugin uses the public Rust SDK from a sibling `rackforge` checkout through an explicit Cargo path. For this prototype use RackForge revision `7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1`. A local path dependency is not a reproducible distribution pin: before external releases, replace it with an exact published version or Git revision and regenerate Cargo.lock.
 
 On this Windows GNU setup, put `C:/msys64/ucrt64/bin` on the current shell's PATH so Rust can find the linker and dlltool. No machine-wide environment changes are needed.
 
@@ -30,6 +30,16 @@ cargo run --release -p rf-rhodes-lab -- stress
 
 The raw WAV has no automatic normalization or clipping. Its JSON report exposes peak and RMS. Output gain is intentionally conservative for ordinary notes, but dense stress chords can exceed full scale. Use host gain when auditioning.
 
+## Analyze recordings
+
+```text
+cargo run --locked --release -p rf-rhodes-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
+cargo run --locked --release -p rf-rhodes-lab -- analyze references/audio/a3.wav --output renders/reference-analysis.json --channel 0 --note 57 --sustain-end 3
+cargo run --locked --release -p rf-rhodes-lab -- compare references/audio/a3.wav renders/a3.wav --reference-channel 0 --output renders/comparison.json
+```
+
+Use `analyze` to read external WAV files; `inspect` remains the strict checker for the renderer's own WAV format. Comparison requires matching sample rates. See [Analysis laboratory](ANALYSIS.md) before interpreting metrics or choosing a sustain boundary. No reference audio is included in this repository.
+
 ## Package
 
 The research manifest uses supported legacy schema 1 and RackForge's generic appearance. No HTML, JavaScript or custom GUI is included. Gain and the Research Direct program are exposed through host contracts.
@@ -53,6 +63,7 @@ The package is a research build, with one immutable physical profile and one use
 
 ```text
 crates/rf-rhodes-dsp/       model, contact solver, voices, pickup and decimation
+crates/rf-rhodes-analysis/  offline audio decoding, spectra, envelopes and comparison
 crates/rf-rhodes-plugin/    SDK adapter, MIDI validation and versioned state
 tools/rf-rhodes-lab/       Rust rendering, traces, reports and stress measurements
 package/                  RackForge manifest and metadata

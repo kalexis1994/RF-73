@@ -13,6 +13,8 @@ cargo test --locked --workspace
 cargo run --release -p rf-rhodes-lab -- demo --output renders/demo.wav
 cargo run --release -p rf-rhodes-lab -- render --output renders/a3.wav --trace
 cargo run --release -p rf-rhodes-lab -- inspect renders/demo.wav
+cargo run --release -p rf-rhodes-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
+cargo run --release -p rf-rhodes-lab -- compare renders/a3.wav renders/a3.wav --output renders/self-comparison.json
 cargo run --release -p rf-rhodes-lab -- stress
 ```
 
@@ -22,7 +24,8 @@ Requires Rust 1.98 and a sibling RackForge checkout for its public SDK. See [Dev
 
 - `rf-rhodes-dsp`: safe Rust DSP with bounded contact integration, 73 fixed key states, per-key pickups and 4x antialias filtering.
 - `rf-rhodes-plugin`: RackForge adapter with MIDI 1.0/2.0, output gain, program and versioned state.
-- `rf-rhodes-lab`: Rust WAV renderer, physical CSV traces, JSON reports and timing diagnostics.
+- `rf-rhodes-analysis`: offline WAV input, FFT spectra, partial tracks, decay estimates and aligned comparisons.
+- `rf-rhodes-lab`: Rust WAV renderer, physical CSV traces, measurement commands, JSON reports and timing diagnostics.
 - Tests for mechanical passivity, repeated strikes, dampers, MIDI ownership, block invariance, malformed input and file integrity.
 
 The audio path uses no explicit allocation, locks or I/O. The laboratory does not open an audio device. No samples, reverb, amplifier or normalization hide the direct model output.
@@ -32,6 +35,7 @@ The audio path uses no explicit allocation, locks or I/O. The laboratory does no
 - [Physical model ledger](docs/MODEL.md): equations, constants and known approximations.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
+- [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.
 - [Development](docs/DEVELOPMENT.md): commands, integration and output formats.
 - [Validation results](docs/VALIDATION.md): tests, native/WASM timing and remaining limitations.

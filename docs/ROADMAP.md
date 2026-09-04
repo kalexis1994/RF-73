@@ -15,8 +15,10 @@ All application code, analysis tools and tests are Rust. Documentation, identifi
 
 ## Next milestone: a calibrated A3
 
+The measurement foundation is implemented: external WAV input, multi-resolution spectra, bounded harmonic searches, RMS envelopes, qualified decay estimates, and raw/level-matched comparison reports. Known synthetic signals validate these estimators; they do not calibrate the instrument. See [Analysis laboratory](ANALYSIS.md).
+
 1. Obtain dry recordings from a documented instrument at multiple intensities.
-2. Add Rust spectral analysis: partial tracking, multi-resolution attack spectra, energy envelopes and decay estimates.
+2. Extend current harmonic tracking to measured inharmonic modes, robust noise-floor estimation and per-component decay fits.
 3. Compare the current solver to a finer-time-step reference; quantify contact integration error and aliasing.
 4. Identify modal frequencies, weights, losses and pickup geometry jointly, keeping a held-out validation set.
 5. Add hammer hysteresis and assembly modes where measured residuals justify them.
