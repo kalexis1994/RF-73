@@ -153,3 +153,20 @@ This demonstrates the current model's velocity-dependent spectrum after preservi
 Ignored reports: `renders/partial-pairs-20260904-192121/identity.json` and `dynamics.json`. Inputs are `renders/inharmonic-20260904-184419/note-57-v-{0.2,0.9}.wav`. Reproduce with a new report name using `compare-partials REFERENCE.wav CANDIDATE.wav --seconds 2 --reference-start 0.15 --candidate-start 0.15 --output REPORT.json`. The [comparison specification](PARTIAL-COMPARISON.md) defines the metrics and exclusions.
 
 Builds for this milestone used session-local `CARGO_INCREMENTAL=0` after disk-space cleanup, so they did not recreate the deleted incremental caches. The instrument remains the 0.1.1 research profile; this milestone changes the measurement tools.
+
+## Bounded pickup sweep
+
+Date: 2026-09-04. Added `sweep-pickup` to the offline laboratory. All 75 Rust tests passed, including known-geometry CLI recovery, output preservation, invalid grid/region rejection, insufficient-energy handling and a global-gain fixture. Strict Clippy, formatting, native release and WASM release builds passed. Builds used session-local `CARGO_INCREMENTAL=0`.
+
+The gain fixture compares a stationary sinusoid to a uniformly attenuated copy and to a copy with different levels in its first and second halves. Uniform attenuation produces less than 1e-10 dB objective error after matching; the time-varying case exceeds 0.1 dB. This verifies that each window uses the same whole-region gain and does not independently normalize away envelope differences.
+
+Two synthetic A3 references use a non-default 2 mm gap and 0.75 mm offset, at normalized velocities 0.3 and 0.7. Both are 1.5-second production-engine renders at 48 kHz, with release at 1.4 seconds and zero numerical faults. Each sweep selects 0.1..1.1 seconds in both signals, testing gaps 1.5/2/2.5 mm against offsets 0.5/0.75/1 mm: nine candidates and 15 scored windows per candidate.
+
+| Velocity | Best gap mm | Best offset mm | Best objective dB | Next-best objective dB | Candidates within 0.01 dB of best |
+| --- | --- | --- | --- | --- | --- |
+| 0.3 | 2 | 0.75 | 0 | 0.12 (rounded) | 1 |
+| 0.7 | 2 | 0.75 | 0 | 0.20 (rounded) | 1 |
+
+Both known geometries are recovered exactly, with zero raw waveform NRMSE and unity matching gain. All 18 candidate renders are accepted. These are two independent synthetic recovery runs, not held-out validation against a measured instrument or proof of uniquely identifiable physical dimensions.
+
+Ignored artifacts are `renders/pickup-sweep-20260904-193143/reference-{0.3,0.7}.wav`, their render receipts and `sweep-{0.3,0.7}.json`. The [pickup sweep specification](PICKUP-SWEEP.md) provides reproduction commands, the window objective and its limitations. Candidate WAVs are not saved. The production instrument remains the 0.1.1 research profile; this milestone provides calibration tooling rather than a new sound version.

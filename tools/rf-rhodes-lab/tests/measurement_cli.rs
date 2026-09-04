@@ -56,6 +56,103 @@ impl Drop for Scratch {
 }
 
 #[test]
+fn pickup_sweep_recovers_known_geometry_and_preserves_files() {
+    let scratch = Scratch::new();
+    scratch.success(&[
+        "render",
+        "--output",
+        "reference.wav",
+        "--seconds",
+        "0.8",
+        "--hold",
+        "0.7",
+        "--note",
+        "57",
+        "--velocity",
+        "0.7",
+        "--gap-mm",
+        "2",
+        "--offset-mm",
+        "0.75",
+    ]);
+    let reference_before = fs::read(scratch.0.join("reference.wav")).unwrap();
+    let args = [
+        "sweep-pickup",
+        "reference.wav",
+        "--output",
+        "sweep.json",
+        "--note",
+        "57",
+        "--velocity",
+        "0.7",
+        "--seconds",
+        "0.5",
+        "--reference-start",
+        "0.1",
+        "--model-start",
+        "0.1",
+        "--gaps-mm",
+        "1.5,2",
+        "--offsets-mm",
+        "0.5,0.75",
+    ];
+    scratch.success(&args);
+    let report = scratch.json("sweep.json");
+    assert_eq!(report["best_candidate_index"], 3);
+    assert_eq!(report["ranking_indices"].as_array().unwrap().len(), 4);
+    assert_eq!(report["reference_start_frame"], 4800);
+    assert_eq!(report["model_start_frame"], 4800);
+    assert_eq!(report["compared_frames"], 24000);
+    let metrics = &report["candidates"][3]["metrics"];
+    assert_eq!(metrics["objective_db"], 0.0);
+    assert_eq!(metrics["raw_normalized_rmse"], 0.0);
+    assert_eq!(metrics["scored_windows"], 7);
+    assert_eq!(metrics["windows"][0]["requested_samples"], 6144);
+    assert!(
+        metrics["windows"][0]["spectral_observation_samples"]
+            .as_u64()
+            .unwrap()
+            > 6000
+    );
+    let report_before = fs::read(scratch.0.join("sweep.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(
+        report_before,
+        fs::read(scratch.0.join("sweep.json")).unwrap()
+    );
+    assert_eq!(
+        reference_before,
+        fs::read(scratch.0.join("reference.wav")).unwrap()
+    );
+
+    for (flag, value) in [
+        ("--gaps-mm", "1,1.0"),
+        ("--offsets-mm", "NaN"),
+        ("--seconds", "0.01"),
+        ("--note", "101"),
+        ("--velocity", "0"),
+        ("--reference-start", "0.4"),
+        ("--model-start", "3"),
+        ("--channel", "1"),
+    ] {
+        let mut invalid = args.to_vec();
+        invalid[3] = "bad.json";
+        if let Some(index) = invalid.iter().position(|v| *v == flag) {
+            invalid[index + 1] = value;
+        } else {
+            invalid.extend([flag, value]);
+        }
+        assert!(!scratch.run(&invalid).status.success(), "{flag} {value}");
+        assert!(!scratch.0.join("bad.json").exists());
+    }
+    let mut missing = args.to_vec();
+    missing[3] = "bad.json";
+    missing.drain(6..8); // The strike velocity must be supplied explicitly.
+    assert!(!scratch.run(&missing).status.success());
+    assert!(!scratch.0.join("bad.json").exists());
+}
+
+#[test]
 fn partial_comparison_roundtrip_and_invalid_regions_preserve_files() {
     let scratch = Scratch::new();
     scratch.success(&[

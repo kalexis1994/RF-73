@@ -48,6 +48,7 @@ The audio path uses no explicit allocation, locks or I/O. The laboratory does no
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.
 - [Partial comparison](docs/PARTIAL-COMPARISON.md): compare corresponding spectral components and qualified decays across recordings.
+- [Pickup sweep](docs/PICKUP-SWEEP.md): rank a bounded geometry grid against a reference with one global level correction.
 - [Numerical convergence](docs/CONVERGENCE.md): the treble-contact correction, experiment and residual errors.
 - [Desktop audition](docs/AUDITION.md): build, install and launch each test version.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.

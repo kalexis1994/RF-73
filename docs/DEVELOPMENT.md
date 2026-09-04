@@ -44,7 +44,17 @@ cargo run --locked --release -p rf-rhodes-lab -- compare-partials references/aud
 
 Use `analyze` to read external WAV files; `inspect` remains the strict checker for the renderer's own WAV format. Comparison requires matching sample rates. See [Analysis laboratory](ANALYSIS.md) before interpreting metrics or choosing a sustain boundary. No reference audio is included in this repository.
 
-## Convergence experiment
+## Pickup geometry experiment
+
+For a bounded pickup-geometry experiment against an explicitly selected held-note region:
+
+```text
+cargo run --locked --release -p rf-rhodes-lab -- sweep-pickup references/audio/a3.wav --output renders/pickup-sweep.json --note 57 --velocity 0.7 --seconds 1 --reference-start 0.1 --model-start 0.1 --gaps-mm 1,1.5,2 --offsets-mm 0.25,0.5,0.75
+```
+
+See [Pickup sweep](PICKUP-SWEEP.md) for input bounds, ranking semantics, reference requirements and a reproducible synthetic recovery example. Candidate audio stays in memory; the only output is a create-new JSON report.
+
+## Contact convergence
 
 ```text
 cargo run --locked --release -p rf-rhodes-lab -- converge --output renders/treble-convergence.json --note 100 --velocity 0.2

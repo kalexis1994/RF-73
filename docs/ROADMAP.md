@@ -32,6 +32,8 @@ The measurement foundation is implemented: external WAV input, multi-resolution 
 
 `compare-partials` now pairs simultaneous detections across explicit equal-duration regions, preserving raw gain and reporting unmatched/ambiguous observations. Decay differences require qualified fits over identical fully paired intervals. See [Partial comparison](PARTIAL-COMPARISON.md).
 
+`sweep-pickup` now evaluates up to 25 gap/offset combinations against an explicit held-note region, using one global RMS gain and multiple spectral windows. It preserves raw errors, reports near ties and leaves the instrument profile unchanged. Synthetic references verify recovery of a known grid geometry at two intensities; measured calibration and held-out validation remain outstanding. See [Pickup sweep](PICKUP-SWEEP.md).
+
 1. Obtain dry recordings from a documented instrument at multiple intensities.
 2. Evaluate independent tracking across the available observation lengths on those recordings, refine background qualification, and distinguish observed spectral peaks from identified mechanical modes.
 3. Extend the current convergence measurements to extreme profiles, retriggers and isolated nonlinear aliasing; establish explicit error budgets.
