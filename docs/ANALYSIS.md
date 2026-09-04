@@ -76,6 +76,8 @@ The legacy `decay` field exposes the least-squares dB/second slope, R², fitted 
 
 ## Comparison
 
+The waveform `compare` command below is complemented by [partial comparison](PARTIAL-COMPARISON.md): `compare-partials` pairs independent spectral observations in explicit equal-duration regions and reports pitch, raw/level-matched amplitude and qualified decay differences.
+
 Alignment searches ±20 ms by default (allowed 0–100 ms) using signed normalized correlation on the first 150 ms after reference onset. A coarse grid with 16-sample box averages is followed by full-rate local refinement. Positive delay means the candidate starts later. Correlation and a search-boundary flag are reported; this heuristic can choose the wrong period for tonal signals. It does not reverse polarity or stretch time. Use `--align-ms 0` for sample-synchronized renders.
 
 Metrics use the common overlap after alignment; original lengths and overlap frame count remain in the report. Extra non-overlapping tails are not scored. Candidate RMS/reference RMS produces the original level difference. Its reciprocal is the positive gain used only for the separate level-matched metrics. Normalized RMSE is waveform-error RMS divided by reference RMS. It is phase-sensitive and is not a perceptual similarity score.

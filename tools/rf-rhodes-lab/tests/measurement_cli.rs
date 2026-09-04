@@ -2,20 +2,33 @@ use std::{
     fs,
     path::PathBuf,
     process::{Command, Output},
+    sync::atomic::{AtomicU64, Ordering},
     time::{SystemTime, UNIX_EPOCH},
 };
 
 struct Scratch(PathBuf);
+static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 impl Scratch {
     fn new() -> Self {
         let unique = SystemTime::now()
             .duration_since(UNIX_EPOCH)
             .unwrap()
             .as_nanos();
-        let path =
-            std::env::temp_dir().join(format!("rf-rhodes-cli-{}-{unique}", std::process::id()));
-        fs::create_dir(&path).unwrap();
-        Self(path)
+        // Windows clock resolution can give parallel tests the same timestamp.
+        // Reserve each directory atomically; never adopt an existing directory.
+        for _ in 0..64 {
+            let id = SCRATCH_ID.fetch_add(1, Ordering::Relaxed);
+            let path = std::env::temp_dir().join(format!(
+                "rf-rhodes-cli-{}-{unique}-{id}",
+                std::process::id()
+            ));
+            match fs::create_dir(&path) {
+                Ok(()) => return Self(path),
+                Err(error) if error.kind() == std::io::ErrorKind::AlreadyExists => continue,
+                Err(error) => panic!("failed to reserve test directory: {error}"),
+            }
+        }
+        panic!("could not reserve a unique test directory");
     }
     fn run(&self, args: &[&str]) -> Output {
         Command::new(env!("CARGO_BIN_EXE_rf-rhodes-lab"))
@@ -39,6 +52,72 @@ impl Scratch {
 impl Drop for Scratch {
     fn drop(&mut self) {
         let _ = fs::remove_dir_all(&self.0);
+    }
+}
+
+#[test]
+fn partial_comparison_roundtrip_and_invalid_regions_preserve_files() {
+    let scratch = Scratch::new();
+    scratch.success(&[
+        "render",
+        "--output",
+        "a.wav",
+        "--seconds",
+        "1.2",
+        "--hold",
+        "1.1",
+    ]);
+    scratch.success(&[
+        "compare-partials",
+        "a.wav",
+        "a.wav",
+        "--output",
+        "partials.json",
+        "--seconds",
+        "1",
+    ]);
+    let report = scratch.json("partials.json");
+    let comparison = &report["partial_comparison"];
+    assert_eq!(comparison["schema_version"], 1);
+    assert_eq!(comparison["candidate_level_minus_reference_db"], 0.0);
+    assert_eq!(comparison["reference_region"]["end_frame_exclusive"], 48000);
+    assert!(!comparison["matches"].as_array().unwrap().is_empty());
+    assert!(
+        comparison["matches"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .all(|p| p["rms_frequency_error_cents"] == 0.0 && p["rms_level_error_db"] == 0.0)
+    );
+    let before = fs::read(scratch.0.join("partials.json")).unwrap();
+    assert!(
+        !scratch
+            .run(&[
+                "compare-partials",
+                "a.wav",
+                "a.wav",
+                "--output",
+                "partials.json",
+                "--seconds",
+                "1"
+            ])
+            .status
+            .success()
+    );
+    assert_eq!(before, fs::read(scratch.0.join("partials.json")).unwrap());
+    for flags in [
+        vec![],
+        vec!["--seconds", "NaN"],
+        vec!["--seconds", "2"],
+        vec!["--seconds", "1", "--candidate-start", "0.3"],
+        vec!["--seconds", "1", "--match-cents", "200"],
+        vec!["--seconds", "1", "--seconds", "1"],
+        vec!["--seconds", "1", "--unknown", "1"],
+    ] {
+        let mut args = vec!["compare-partials", "a.wav", "a.wav", "--output", "bad.json"];
+        args.extend(flags);
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
     }
 }
 

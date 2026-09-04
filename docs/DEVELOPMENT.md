@@ -17,6 +17,8 @@ cargo build --locked --release --target wasm32-unknown-unknown -p rf-rhodes-plug
 
 The PowerShell line only configures the shell; every build tool, renderer and test in the project is Rust.
 
+When disk space is limited, set `$env:CARGO_INCREMENTAL = '0'` in the build shell to avoid regenerating incremental compilation caches. This changes only that shell's builds and may increase rebuild time; normal dependencies and release artifacts still occupy space in `target`.
+
 ## Render and inspect
 
 ```text
@@ -37,6 +39,7 @@ cargo run --locked --release -p rf-rhodes-lab -- analyze renders/a3.wav --output
 cargo run --locked --release -p rf-rhodes-lab -- analyze references/audio/a3.wav --output renders/reference-analysis.json --channel 0 --note 57 --sustain-end 3
 cargo run --locked --release -p rf-rhodes-lab -- analyze references/audio/a3.wav --output renders/reference-long.json --channel 0 --note 57 --sustain-end 5 --partial-window-ms 1024
 cargo run --locked --release -p rf-rhodes-lab -- compare references/audio/a3.wav renders/a3.wav --reference-channel 0 --output renders/comparison.json
+cargo run --locked --release -p rf-rhodes-lab -- compare-partials references/audio/a3.wav renders/a3.wav --reference-channel 0 --output renders/partial-comparison.json --seconds 2 --reference-start 0.2 --candidate-start 0.2
 ```
 
 Use `analyze` to read external WAV files; `inspect` remains the strict checker for the renderer's own WAV format. Comparison requires matching sample rates. See [Analysis laboratory](ANALYSIS.md) before interpreting metrics or choosing a sustain boundary. No reference audio is included in this repository.

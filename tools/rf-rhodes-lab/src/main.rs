@@ -3,6 +3,7 @@ mod analysis;
 mod audition;
 mod convergence;
 mod package;
+mod partial_comparison;
 mod wav;
 use rf_rhodes_dsp::{Engine, FIRST_NOTE, LAST_NOTE, Profile};
 use std::{
@@ -168,6 +169,7 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args.is_empty() || matches!(args[0].as_str(), "--help" | "-h") {
         print!("{HELP}");
         print!("{}", analysis::HELP);
+        print!("{}", partial_comparison::HELP);
         print!("{}", convergence::HELP);
         return Ok(());
     }
@@ -177,6 +179,9 @@ fn run() -> Result<(), Box<dyn Error>> {
         }
         println!("{}", wav::inspect(File::open(&args[1])?)?);
         return Ok(());
+    }
+    if args[0] == "compare-partials" {
+        return partial_comparison::run(&args);
     }
     if matches!(args[0].as_str(), "analyze" | "compare") {
         return analysis::run(&args);

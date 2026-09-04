@@ -1,6 +1,6 @@
 # Initial validation report
 
-Historical results are retained below. The latest local results are in the selectable tracking windows section at the end.
+Historical results are retained below. The latest local results are in the component comparison section at the end.
 
 Date: 2026-09-04. RF-Rhodes 0.1.0 research prototype.
 
@@ -129,3 +129,27 @@ A six-second A3 production render at 48 kHz/velocity 0.9 was measured at every s
 Track counts include short artifacts, mixing components and separate tracks after missed frames. They are not physical-mode counts or a ranking of window quality. The fundamental estimate and legacy RMS decay match across all four reports, as expected from the independent measurement paths. Each report has zero dropped track observations. Long windows improve frequency separation but smear the attack and leave fewer fit observations.
 
 Ignored artifacts: `renders/windows-20260904-185203/a3.wav`, its render receipt and `analysis-{32,128,512,1024}.json`. Reproduce with a new output name using `render --note 57 --velocity 0.9 --seconds 6 --hold 5.5`, then `analyze --note 57 --sustain-end 5.4 --partial-window-ms WINDOW` for each window. See [Analysis laboratory](ANALYSIS.md) for full command examples and resolution limits.
+
+## Component comparison
+
+Date: 2026-09-04. Added the offline `compare-partials` command. All 71 Rust tests passed locally, including ten new comparison fixtures and a CLI roundtrip/error test. Strict Clippy, formatting, native release and WASM release builds passed. A parallel CLI test exposed a timestamp collision in Windows temporary-directory naming; directory reservation now combines an atomic counter with the timestamp and bounded retries, never adopting an existing directory.
+
+Comparison tests preserve identity and raw gain differences, recover a known +20-cent pitch change and +2-second extrapolated T60 difference, and verify unmatched components, silence, ambiguous alternatives, explicit sample offsets, mismatched fit intervals, incomplete pairing and invalid inputs. An amplitude-modulated fixture has near-zero mean level error but more than 1.8 dB RMS error, verifying that opposite errors do not cancel. A dense spectral fixture exceeds detection capacity and correctly disables matching.
+
+The production-model experiment reuses the existing three-second A3/48 kHz renders at velocities 0.2 and 0.9. Both selected regions run from 0.15 to 2.15 seconds, before their 2.5-second release; tracking uses 128 ms and a 50-cent matching gate. No new reference recordings or physical parameters were introduced.
+
+Self-comparison finds three track pairs, 136 paired observations, three qualified decay comparisons and no unmatched/ambiguous observations. Frequency and amplitude differences are zero. Comparing the quiet render against the loud render also finds three pairs and 136 paired observations, with 71 additional candidate observations lacking a counterpart. Both reports have complete detection under the configured capacity limits.
+
+The loud selected region is 18.093 dB higher in RMS. Per-pair results are:
+
+| Reference frequency Hz | Paired observations | Raw mean level difference dB | Level-matched mean difference dB | Level-matched RMS error dB | Decay comparison |
+| --- | --- | --- | --- | --- | --- |
+| 220.002 | 59 | 18.048 | −0.045 | 0.209 | Qualified; candidate T60 +0.106 s |
+| 440.001 | 59 | 36.394 | 18.300 | 18.300 | Qualified; candidate T60 +0.004 s |
+| 660.002 | 18 | 54.137 | 36.044 | 36.045 | Rejected: different fit intervals |
+
+This demonstrates the current model's velocity-dependent spectrum after preserving the original level difference. It does not establish realistic Rhodes dynamics or identify mechanical losses from electrical-output decays. The third component's decay is intentionally not compared because the qualified fits cover different time spans.
+
+Ignored reports: `renders/partial-pairs-20260904-192121/identity.json` and `dynamics.json`. Inputs are `renders/inharmonic-20260904-184419/note-57-v-{0.2,0.9}.wav`. Reproduce with a new report name using `compare-partials REFERENCE.wav CANDIDATE.wav --seconds 2 --reference-start 0.15 --candidate-start 0.15 --output REPORT.json`. The [comparison specification](PARTIAL-COMPARISON.md) defines the metrics and exclusions.
+
+Builds for this milestone used session-local `CARGO_INCREMENTAL=0` after disk-space cleanup, so they did not recreate the deleted incremental caches. The instrument remains the 0.1.1 research profile; this milestone changes the measurement tools.

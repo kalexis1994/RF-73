@@ -30,6 +30,8 @@ The [September research review](RESEARCH-2026-09.md) specifies the next experime
 
 The measurement foundation is implemented: external WAV input, multi-resolution spectra, bounded harmonic searches, RMS envelopes, qualified decay estimates, and raw/level-matched comparison reports. Known synthetic signals validate these estimators; they do not calibrate the instrument. See [Analysis laboratory](ANALYSIS.md).
 
+`compare-partials` now pairs simultaneous detections across explicit equal-duration regions, preserving raw gain and reporting unmatched/ambiguous observations. Decay differences require qualified fits over identical fully paired intervals. See [Partial comparison](PARTIAL-COMPARISON.md).
+
 1. Obtain dry recordings from a documented instrument at multiple intensities.
 2. Evaluate independent tracking across the available observation lengths on those recordings, refine background qualification, and distinguish observed spectral peaks from identified mechanical modes.
 3. Extend the current convergence measurements to extreme profiles, retriggers and isolated nonlinear aliasing; establish explicit error budgets.

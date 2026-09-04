@@ -2,12 +2,17 @@
 mod audio;
 mod compare;
 mod measurement;
+mod partial_comparison;
 mod spectrum;
 mod tracking;
 
 pub use audio::{AudioClip, AudioError, AudioMetadata};
 pub use compare::{Comparison, compare};
 pub use measurement::{Analysis, AnalysisOptions, analyze};
+pub use partial_comparison::{
+    MatchedPartial, PairedDecayStatus, PartialComparison, PartialComparisonOptions,
+    compare_partials,
+};
 pub use tracking::{
     DecayRejection, PartialDecay, PartialObservation, PartialTrack, PartialTracking,
 };
