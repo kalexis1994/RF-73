@@ -4,6 +4,7 @@ use std::{collections::BTreeMap, error::Error, io::Write, path::Path};
 
 pub const HELP: &str = "Measurements:
   analyze INPUT.wav --output REPORT.json [--note 57] [--channel 0] [--sustain-end 1.8]
+          [--partial-window-ms 128]
   compare REFERENCE.wav CANDIDATE.wav --output REPORT.json [--align-ms 20]
           [--reference-channel 0] [--candidate-channel 0]
 WAV: PCM 8/16/24/32 or float32, 8..192 kHz, at most 60 seconds.
@@ -13,6 +14,8 @@ Decay is estimated only when --sustain-end marks the end of an uninterrupted
 sustain region in seconds from file start. Extrapolated T60 is not measured T60.
 Analysis schema 2 includes independent spectral tracks with resolution limits,
 background estimates and explicit per-track decay rejection reasons.
+Independent windows: 32, 128 (default), 512 or 1024 ms; hop is one quarter.
+Long windows resolve closer frequencies but smear attacks and need longer takes.
 ";
 
 pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
@@ -28,7 +31,10 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     for pair in remaining.as_chunks::<2>().0 {
         let flag = pair[0].as_str();
         let allowed = if args[0] == "analyze" {
-            matches!(flag, "--output" | "--note" | "--channel" | "--sustain-end")
+            matches!(
+                flag,
+                "--output" | "--note" | "--channel" | "--sustain-end" | "--partial-window-ms"
+            )
         } else {
             matches!(
                 flag,
@@ -62,6 +68,9 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                 .get("--sustain-end")
                 .map(|v| v.parse::<f64>())
                 .transpose()?,
+            partial_window_ms: flags
+                .get("--partial-window-ms")
+                .map_or(Ok(128), |v| v.parse())?,
         };
         let report = analyze(&clip, options)?;
         write_report(

@@ -6,6 +6,8 @@ This offline Rust tool measures rendered or recorded isolated notes. It does not
 
 ```text
 cargo run --locked --release -p rf-rhodes-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
+cargo run --locked --release -p rf-rhodes-lab -- analyze renders/a3.wav --output renders/a3-attack.json --note 57 --partial-window-ms 32
+cargo run --locked --release -p rf-rhodes-lab -- analyze references/audio/a3.wav --output renders/a3-sustain.json --note 57 --partial-window-ms 1024 --sustain-end 5
 cargo run --locked --release -p rf-rhodes-lab -- compare references/audio/a3.wav renders/a3.wav --output renders/comparison.json --align-ms 20
 ```
 
@@ -35,7 +37,18 @@ Onset detection assumes a reasonably quiet, isolated note. It is sensitive to le
 
 ## Independent spectral tracks
 
-The independent detector reuses the harmonic track FFTs: nominal 128 ms Hann observations, 32 ms hop, capped at 32,768 observed samples. Actual durations and resolution are reported, including at sample rates where rounding or the cap changes them. Clips shorter than one complete window return empty tracking arrays. The detector does not use the expected note, harmonic bands or ideal beam ratios. A track can represent a harmonic, inharmonic component, intermodulation product or analysis artifact; its presence does not identify a mechanical mode.
+The independent detector accepts `--partial-window-ms 32|128|512|1024`, defaulting to 128. Its hop is one quarter of the requested duration; window and hop sample counts are rounded independently. The default reuses harmonic track FFTs. Other choices use a separate pass over complete observations, without changing the original harmonic summaries. Actual durations, observed sample count, FFT size, bin spacing and resolution are reported. Clips shorter than one complete window return empty tracking arrays rather than silently reducing the requested duration. The detector does not use the expected note, harmonic bands or ideal beam ratios. A track can represent a harmonic, inharmonic component, intermodulation product or analysis artifact; its presence does not identify a mechanical mode.
+
+| Independent window | Hop | Minimum separation at 48 kHz | Intended use |
+| --- | --- | --- | --- |
+| 32 ms | 8 ms | 62.5 Hz | Brief attack components; low-frequency separation is poor |
+| 128 ms | 32 ms | 15.625 Hz | Default compromise |
+| 512 ms | 128 ms | 3.90625 Hz | Closer sustained components |
+| 1024 ms | 256 ms | 1.953125 Hz | Fine sustained separation; attacks are strongly smeared |
+
+Window selection changes time/frequency resolution, spectral background and which tracks survive. Results from different windows are separate measurements; track IDs cannot be joined across runs. Longer windows need longer uninterrupted recordings for the same minimum fit-point count. Twelve eligible observations with a 1024 ms window require approximately 4.1 seconds before release, including the initial attack exclusion. A single long observation can separate frequencies without supporting any decay estimate.
+
+The independent path is bounded by 196,608 observed samples and a 524,288-point FFT (1024 ms at the supported 192 kHz maximum). It does not inherit the 32,768-sample cap used by legacy snapshots/comparison. At 48 kHz the 32 ms option produces 7,497 frames for a 60-second recording, with at most 32 retained peaks per frame; other rates use their reported rounded hop. These costs belong to the offline laboratory, not the audio callback.
 
 The search band starts at the larger of 20 Hz and twice the reciprocal observation duration, and ends at the smaller of 20 kHz and Nyquist minus that separation. Background is the upper median of spectral-bin amplitudes. Each peak also uses a local median within the larger of ±200 Hz or ±12 observation-resolution units, excluding the central ±2 units. Detection requires 18 dB above the larger background estimate and at least −70 dB relative to the current band maximum. Background amplitudes are floored at −180 dBFS for finite reporting. They are spectral background proxies, not calibrated broadband noise RMS or statistical confidence bounds.
 
@@ -76,3 +89,5 @@ Tests compare the FFT with a direct DFT, recover known sinusoidal pitch and ampl
 These tests validate the measurement implementation against known signals. Real-instrument calibration still requires documented direct recordings and held-out validation takes.
 
 Independent-track tests cover noninteger frequencies and unequal exponential decays at 8/44.1/48/192 kHz, off-bin Hann leakage, silence/DC/noise, fading into noise, separated and unresolved beating tones, missing-frame splitting, brief attacks, release boundaries, flat/rising/multistage envelopes, short input and capacity overflow. In the two-component fixture, frequency error must stay below 0.15 Hz and extrapolated T60 error below 0.04 seconds; these isolated-fixture tolerances are not accuracy promises for recorded instruments.
+
+Window-selection tests resolve 700.3/705.7 Hz with less than 0.04 Hz error using 1024 ms, verify that harmonic results remain unchanged, detect a tone occurring beyond the old sample cap at 192 kHz, retain a short attack using 32 ms, recover known decay with 512/1024 ms while excluding release, and reject invalid window values. CLI coverage checks the option, report metadata and duplicate/invalid flags without creating an output file.

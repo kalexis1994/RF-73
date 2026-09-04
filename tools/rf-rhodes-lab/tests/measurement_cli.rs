@@ -143,6 +143,33 @@ fn rendered_audio_can_be_analyzed_and_compared_without_overwriting() {
             > 200.0
     );
     scratch.success(&["compare", "a.wav", "a.wav", "--output", "comparison.json"]);
+    scratch.success(&[
+        "analyze",
+        "a.wav",
+        "--output",
+        "short-window.json",
+        "--partial-window-ms",
+        "32",
+    ]);
+    let short_window = scratch.json("short-window.json");
+    assert_eq!(
+        short_window["analysis"]["inharmonic_tracking"]["observed_samples"],
+        1536
+    );
+    assert_eq!(
+        short_window["analysis"]["inharmonic_tracking"]["window_seconds"],
+        0.032
+    );
+    assert!(
+        short_window["analysis"]["inharmonic_tracking"]["frames"]
+            .as_array()
+            .unwrap()
+            .len()
+            > report["analysis"]["inharmonic_tracking"]["frames"]
+                .as_array()
+                .unwrap()
+                .len()
+    );
     let report = scratch.json("comparison.json");
     assert_eq!(report["comparison"]["candidate_delay_samples"], 0);
     assert_eq!(report["comparison"]["raw_normalized_rmse"], 0.0);
@@ -168,6 +195,40 @@ fn rendered_audio_can_be_analyzed_and_compared_without_overwriting() {
         ],
         vec!["analyze", "a.wav", "--output", "bad.json", "--unknown", "1"],
         vec!["analyze", "missing.wav", "--output", "bad.json"],
+        vec![
+            "analyze",
+            "a.wav",
+            "--output",
+            "bad.json",
+            "--partial-window-ms",
+            "0",
+        ],
+        vec![
+            "analyze",
+            "a.wav",
+            "--output",
+            "bad.json",
+            "--partial-window-ms",
+            "NaN",
+        ],
+        vec![
+            "analyze",
+            "a.wav",
+            "--output",
+            "bad.json",
+            "--partial-window-ms",
+            "2048",
+        ],
+        vec![
+            "analyze",
+            "a.wav",
+            "--output",
+            "bad.json",
+            "--partial-window-ms",
+            "32",
+            "--partial-window-ms",
+            "128",
+        ],
     ] {
         assert!(!scratch.run(&args).status.success());
         assert!(!scratch.0.join("bad.json").exists());

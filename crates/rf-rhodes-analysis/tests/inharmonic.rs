@@ -21,6 +21,7 @@ fn measure(
         AnalysisOptions {
             note: 57,
             sustain_end_seconds: end,
+            ..Default::default()
         },
     )
     .unwrap()

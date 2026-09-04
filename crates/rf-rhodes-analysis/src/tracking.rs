@@ -67,6 +67,9 @@ pub struct PartialTracking {
     pub method: &'static str,
     pub window_seconds: f64,
     pub hop_seconds: f64,
+    pub observed_samples: usize,
+    pub fft_size: usize,
+    pub bin_spacing_hz: f64,
     /// Reciprocal observation duration. This is not a confidence interval.
     pub observation_resolution_hz: f64,
     pub minimum_separation_hz: f64,
@@ -109,6 +112,9 @@ impl PartialTracking {
             method: "free-peaks-v1; median-background; hann-leakage-guard; contiguous-nearest",
             window_seconds: size as f64 / rate as f64,
             hop_seconds: hop as f64 / rate as f64,
+            observed_samples: size,
+            fft_size: (size * 2).next_power_of_two().max(8),
+            bin_spacing_hz: rate as f64 / (size * 2).next_power_of_two().max(8) as f64,
             observation_resolution_hz: resolution,
             minimum_separation_hz: 2.0 * resolution,
             matching_tolerance_hz: 0.75 * resolution,
@@ -122,6 +128,10 @@ impl PartialTracking {
     }
 
     pub(crate) fn push(&mut self, spectrum: &Spectrum, center: f64) {
+        assert_eq!(
+            spectrum.observed, self.observed_samples,
+            "tracking window was truncated"
+        );
         let frame = self.frames.len();
         // Exclude DC/main-lobe edges and Nyquist. The upper analysis band is 20 kHz.
         let low_hz = 20.0_f64.max(self.minimum_separation_hz);

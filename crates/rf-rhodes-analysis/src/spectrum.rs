@@ -39,7 +39,18 @@ impl Spectrum {
     /// Symmetric Hann, DC removal, coherent-gain amplitude correction, 2x padding.
     pub fn new(samples: &[f64], sample_rate: u32) -> Self {
         let observed = samples.len().min(32_768);
-        let samples = &samples[..observed];
+        Self::from_observation(&samples[..observed], sample_rate)
+    }
+
+    /// Tracking accepts a complete, validated observation up to 1024 ms at 192 kHz.
+    /// Unlike the legacy snapshot path, this never silently truncates the window.
+    pub(crate) fn for_tracking(samples: &[f64], sample_rate: u32) -> Self {
+        assert!((4..=196_608).contains(&samples.len()));
+        Self::from_observation(samples, sample_rate)
+    }
+
+    fn from_observation(samples: &[f64], sample_rate: u32) -> Self {
+        let observed = samples.len();
         let fft_size = (observed * 2).next_power_of_two().max(8);
         let mut re = vec![0.0; fft_size];
         let mut im = vec![0.0; fft_size];

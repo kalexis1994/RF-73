@@ -1,6 +1,6 @@
 # Initial validation report
 
-Historical results are retained below. The latest local results are in the independent partial tracking section at the end.
+Historical results are retained below. The latest local results are in the selectable tracking windows section at the end.
 
 Date: 2026-09-04. RF-Rhodes 0.1.0 research prototype.
 
@@ -110,3 +110,22 @@ cargo run --locked --release -p rf-rhodes-lab -- analyze renders/tracking-a3.wav
 ```
 
 This validates the new measurement path against known signals and current model output. Untreated reference recordings, physical parameter identification and an audible realism improvement remain the next experiment.
+
+## Selectable tracking windows
+
+Date: 2026-09-04. Following commit `2787676`, the laboratory adds `--partial-window-ms 32|128|512|1024`. All 60 Rust tests passed in the workspace run, including five new window tests and expanded CLI option/error coverage. Strict Clippy, formatting, native release and WASM release builds passed locally. The instrument remains the 0.1.1 research profile.
+
+The 1024 ms synthetic fixture separates 700.3 and 705.7 Hz with less than 0.04 Hz frequency error and continuous, unambiguous tracks. A 192 kHz fixture places its tone after the previous 32,768-sample cap: detection and metadata verify use of all 196,608 samples, a 524,288-point FFT and one complete 1024 ms observation. Other fixtures cover a 96 ms attack recording, unchanged harmonic measurements, known decay with release exclusion, invalid windows and insufficient file duration. These are controlled cases, not general precision guarantees.
+
+A six-second A3 production render at 48 kHz/velocity 0.9 was measured at every supported window, with release at 5.5 seconds and fit boundary at 5.4 seconds. Its render reports zero numerical faults.
+
+| Window ms | Minimum separation Hz | Tracks | Qualified partial decays |
+| --- | --- | --- | --- |
+| 32 | 62.5 | 40 | 3 |
+| 128 | 15.625 | 19 | 5 |
+| 512 | 3.90625 | 17 | 3 |
+| 1024 | 1.953125 | 38 | 2 |
+
+Track counts include short artifacts, mixing components and separate tracks after missed frames. They are not physical-mode counts or a ranking of window quality. The fundamental estimate and legacy RMS decay match across all four reports, as expected from the independent measurement paths. Each report has zero dropped track observations. Long windows improve frequency separation but smear the attack and leave fewer fit observations.
+
+Ignored artifacts: `renders/windows-20260904-185203/a3.wav`, its render receipt and `analysis-{32,128,512,1024}.json`. Reproduce with a new output name using `render --note 57 --velocity 0.9 --seconds 6 --hold 5.5`, then `analyze --note 57 --sustain-end 5.4 --partial-window-ms WINDOW` for each window. See [Analysis laboratory](ANALYSIS.md) for full command examples and resolution limits.

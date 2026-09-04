@@ -12,6 +12,9 @@ pub struct AnalysisOptions {
     /// Explicit end of the uninterrupted sustain region, relative to file start.
     /// None disables natural-decay estimation rather than fitting a key release.
     pub sustain_end_seconds: Option<f64>,
+    /// Independent tracking observation: 32, 128, 512 or 1024 ms; hop is one quarter.
+    /// Harmonic summaries retain their original 128 ms observation.
+    pub partial_window_ms: u32,
 }
 
 impl Default for AnalysisOptions {
@@ -19,6 +22,7 @@ impl Default for AnalysisOptions {
         Self {
             note: 57,
             sustain_end_seconds: None,
+            partial_window_ms: 128,
         }
     }
 }
@@ -73,6 +77,11 @@ pub struct Analysis {
 }
 
 pub fn analyze(clip: &AudioClip, options: AnalysisOptions) -> Result<Analysis, AudioError> {
+    if ![32, 128, 512, 1024].contains(&options.partial_window_ms) {
+        return Err(AudioError(
+            "partial window must be 32, 128, 512 or 1024 ms".into(),
+        ));
+    }
     if options.note > 127 {
         return Err(AudioError("expected note must be MIDI 0..127".into()));
     }
@@ -148,11 +157,16 @@ pub fn analyze(clip: &AudioClip, options: AnalysisOptions) -> Result<Analysis, A
     let partial_size = ((fs * 0.128).round() as usize).min(32_768);
     let partial_hop = (fs * 0.032).round() as usize;
     let mut partial_tracks = Vec::new();
-    let mut inharmonic_tracking = PartialTracking::new(partial_size, partial_hop, rate);
+    let tracking_size = (fs * options.partial_window_ms as f64 / 1000.0).round() as usize;
+    let tracking_hop = (fs * options.partial_window_ms as f64 / 4000.0).round() as usize;
+    let mut inharmonic_tracking = PartialTracking::new(tracking_size, tracking_hop, rate);
     if samples.len() >= partial_size && onset.is_some() {
         for start in (0..=samples.len() - partial_size).step_by(partial_hop.max(1)) {
             let spectrum = Spectrum::new(&samples[start..start + partial_size], rate);
-            inharmonic_tracking.push(&spectrum, (start as f64 + partial_size as f64 / 2.0) / fs);
+            if options.partial_window_ms == 128 {
+                inharmonic_tracking
+                    .push(&spectrum, (start as f64 + partial_size as f64 / 2.0) / fs);
+            }
             let harmonics = (1..=6)
                 .filter(|&n| n as f64 * expected < fs / 2.0)
                 .map(|n| Partial {
@@ -170,6 +184,12 @@ pub fn analyze(clip: &AudioClip, options: AnalysisOptions) -> Result<Analysis, A
                 center_seconds: (start as f64 + partial_size as f64 / 2.0) / fs,
                 harmonics,
             });
+        }
+    }
+    if options.partial_window_ms != 128 && samples.len() >= tracking_size && onset.is_some() {
+        for start in (0..=samples.len() - tracking_size).step_by(tracking_hop) {
+            let spectrum = Spectrum::for_tracking(&samples[start..start + tracking_size], rate);
+            inharmonic_tracking.push(&spectrum, (start as f64 + tracking_size as f64 / 2.0) / fs);
         }
     }
     inharmonic_tracking.finish(onset_seconds, options.sustain_end_seconds);

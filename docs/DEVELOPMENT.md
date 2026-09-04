@@ -35,6 +35,7 @@ The raw WAV has no automatic normalization or clipping. Its JSON report exposes 
 ```text
 cargo run --locked --release -p rf-rhodes-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
 cargo run --locked --release -p rf-rhodes-lab -- analyze references/audio/a3.wav --output renders/reference-analysis.json --channel 0 --note 57 --sustain-end 3
+cargo run --locked --release -p rf-rhodes-lab -- analyze references/audio/a3.wav --output renders/reference-long.json --channel 0 --note 57 --sustain-end 5 --partial-window-ms 1024
 cargo run --locked --release -p rf-rhodes-lab -- compare references/audio/a3.wav renders/a3.wav --reference-channel 0 --output renders/comparison.json
 ```
 
