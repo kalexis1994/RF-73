@@ -1,0 +1,64 @@
+# Development
+
+## Toolchain and dependency
+
+Rust 1.98.0 is pinned. The DSP and laboratory have no third-party dependencies. The plugin uses the public Rust SDK from a sibling `rackforge` checkout through an explicit Cargo path. For this prototype use RackForge revision `7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1`. A local path dependency is not a reproducible distribution pin: before external releases, replace it with an exact published version or Git revision and regenerate Cargo.lock.
+
+On this Windows GNU setup, put `C:/msys64/ucrt64/bin` on the current shell's PATH so Rust can find the linker and dlltool. No machine-wide environment changes are needed.
+
+```powershell
+$env:Path = 'C:/msys64/ucrt64/bin;' + $env:Path
+cargo test --locked --workspace
+cargo clippy --locked --workspace --all-targets -- -D warnings
+cargo fmt --all -- --check
+cargo build --locked --release --workspace
+cargo build --locked --release --target wasm32-unknown-unknown -p rf-rhodes-plugin
+```
+
+The PowerShell line only configures the shell; every build tool, renderer and test in the project is Rust.
+
+## Render and inspect
+
+```text
+cargo run --release -p rf-rhodes-lab -- render --output renders/a3.wav --trace
+cargo run --release -p rf-rhodes-lab -- demo --output renders/demo.wav
+cargo run --release -p rf-rhodes-lab -- inspect renders/demo.wav
+cargo run --release -p rf-rhodes-lab -- stress
+```
+
+`--help` lists validated render parameters. Output files use create-new semantics; choose a new name to rerun. A failed disk write may leave a partial file; `inspect` checks the laboratory's WAV structure, exact length and finite samples. An existing report or trace also prevents accidental overwrite.
+
+The raw WAV has no automatic normalization or clipping. Its JSON report exposes peak and RMS. Output gain is intentionally conservative for ordinary notes, but dense stress chords can exceed full scale. Use host gain when auditioning.
+
+## Package
+
+The research manifest uses supported legacy schema 1 and RackForge's generic appearance. No HTML, JavaScript or custom GUI is included. Gain and the Research Direct program are exposed through host contracts.
+
+Build RackForge's current Rust `rackforge-store` and `rackforge-core` tools in its own repository (`cargo build --locked --release -p rackforge-store -p rackforge-core`). Then from RF-Rhodes run:
+
+```text
+cargo run --release -p rf-rhodes-lab -- package
+```
+
+The Rust laboratory resolves the sibling host tools, copies the current WASM to ignored `package/component.wasm`, validates metadata, renders through the host and creates the archive only after validation succeeds. It never overwrites an existing archive. Old prebuilt host binaries may not support the current API; rebuild them from the pinned source. To inspect or smoke-test manually:
+
+```text
+../rackforge/target/release/rackforge-core inspect package
+../rackforge/target/release/rackforge-core smoke package --preset research-direct --data-root dist/smoke-data
+```
+
+The package is a research build, with one immutable physical profile and one user parameter. A dedicated instrument UI, branded schema 3 package, profile controls and calibrated presets are later milestones.
+
+## Repository layout
+
+```text
+crates/rf-rhodes-dsp/       model, contact solver, voices, pickup and decimation
+crates/rf-rhodes-plugin/    SDK adapter, MIDI validation and versioned state
+tools/rf-rhodes-lab/       Rust rendering, traces, reports and stress measurements
+package/                  RackForge manifest and metadata
+docs/                     English design, measurement and development documents
+renders/                  ignored generated WAV, CSV and JSON
+dist/                     ignored distributable and validation outputs
+```
+
+The DSP and laboratory forbid unsafe Rust. The plugin export macro contains the SDK's raw ABI implementation; handwritten adapter code uses safe Rust. All event lists are validated before mutation, and invalid blocks are silenced without applying partial edits.

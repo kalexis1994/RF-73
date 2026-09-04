@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "banks": [{ "id": "research", "name": "Research", "order": 0 }],
+  "presets": [{
+    "id": "research-direct", "name": "Research Direct", "bank": "research",
+    "category": "Electric Piano", "order": 0, "tags": ["default", "uncalibrated"],
+    "description": "Provisional direct signal. No amplifier, modulation or reverb."
+  }]
+}

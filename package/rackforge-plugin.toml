@@ -1,0 +1,23 @@
+# Schema 1 intentionally uses RackForge's generic identity during DSP research.
+# Branded release packages will move to schema 3 after product artwork exists.
+schema_version = 1
+id = "org.rackforge.rhodes"
+name = "RF-Rhodes Research"
+vendor = "RackForge"
+version = "0.1.0"
+description = "Uncalibrated physical-model research prototype: hammer, modal tine and magnetic pickup"
+kind = "instrument"
+state_version = 1
+capabilities = ["audio_output", "midi_input", "presets", "state"]
+ui_layouts = ["little@1"]
+
+[api]
+major = 1
+minor = 11
+
+[component]
+abi = "wasm-v1"
+path = "component.wasm"
+runtime_descriptor = "metadata/runtime.json"
+parameter_schema = "metadata/parameters.json"
+preset_catalog = "metadata/presets.json"

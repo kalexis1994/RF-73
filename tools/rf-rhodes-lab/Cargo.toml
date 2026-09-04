@@ -1,0 +1,12 @@
+[package]
+name = "rf-rhodes-lab"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+rf-rhodes-dsp.workspace = true
+
+[lints]
+workspace = true

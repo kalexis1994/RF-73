@@ -1,0 +1,24 @@
+[workspace]
+resolver = "3"
+members = ["crates/rf-rhodes-dsp", "crates/rf-rhodes-plugin", "tools/rf-rhodes-lab"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.98"
+publish = false
+
+[workspace.dependencies]
+rf-rhodes-dsp = { path = "crates/rf-rhodes-dsp" }
+# Development checkout, deliberately explicit. See docs/DEVELOPMENT.md.
+rackforge-plugin-sdk = { path = "../rackforge/crates/rackforge-plugin-sdk" }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = "warn"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
