@@ -110,7 +110,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-fn write_report(path: &Path, report: &impl Serialize) -> Result<(), Box<dyn Error>> {
+pub(crate) fn write_report(path: &Path, report: &impl Serialize) -> Result<(), Box<dyn Error>> {
     // Serialize before opening the output so serialization failure creates no file.
     let bytes = serde_json::to_vec_pretty(report)?;
     let mut file = super::new_file(path)?;

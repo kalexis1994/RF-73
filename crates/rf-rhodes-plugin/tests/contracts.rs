@@ -9,13 +9,13 @@ fn prepared() -> RhodesProcessor {
     plugin
 }
 
-fn render(block: usize) -> Vec<f32> {
+fn render(block: usize, note: u8) -> Vec<f32> {
     let events = [
-        (17, [0x90, 57, 110]),
+        (17, [0x90, note, 110]),
         (230, [0xb0, 64, 127]),
-        (477, [0x80, 57, 0]),
-        (997, [0x90, 57, 70]),
-        (1900, [0x80, 57, 0]),
+        (477, [0x80, note, 0]),
+        (997, [0x90, note, 70]),
+        (1900, [0x80, note, 0]),
         (2100, [0xb0, 64, 0]),
     ];
     let mut plugin = prepared();
@@ -49,11 +49,13 @@ fn render(block: usize) -> Vec<f32> {
 
 #[test]
 fn block_size_does_not_change_sound_or_event_timing() {
-    let reference = render(4096);
-    assert!(reference[..34].iter().all(|v| *v == 0.0));
-    assert!(reference.iter().any(|v| v.abs() > 1e-5));
-    for block in [1, 64, 127, 128, 256, 512] {
-        assert_eq!(render(block), reference);
+    for note in [57, 100] {
+        let reference = render(4096, note);
+        assert!(reference[..34].iter().all(|v| *v == 0.0));
+        assert!(reference.iter().any(|v| v.abs() > 1e-5));
+        for block in [1, 64, 127, 128, 256, 512] {
+            assert_eq!(render(block, note), reference);
+        }
     }
 }
 

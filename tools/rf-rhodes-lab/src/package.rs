@@ -16,7 +16,7 @@ pub fn build() -> Result<(), Box<dyn Error>> {
     let component = root.join("target/wasm32-unknown-unknown/release/rf_rhodes_plugin.wasm");
     let package = root.join("package");
     let dist = root.join("dist");
-    let output = dist.join("RF-Rhodes-0.1.0.rfplugin");
+    let output = dist.join("RF-Rhodes-0.1.1.rfplugin");
     if output.exists() {
         return Err(format!("refusing to overwrite {}", output.display()).into());
     }

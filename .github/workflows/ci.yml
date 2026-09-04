@@ -47,3 +47,5 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- analyze renders/ci.wav --output renders/ci-analysis.json --note 57 --sustain-end 0.09
       - name: Compare identical audio
         run: cargo run --locked --release -p rf-rhodes-lab -- compare renders/ci.wav renders/ci.wav --output renders/ci-comparison.json
+      - name: Measure integration convergence
+        run: cargo run --locked --release -p rf-rhodes-lab -- converge --output renders/ci-convergence.json --seconds 0.05

@@ -43,6 +43,64 @@ impl Drop for Scratch {
 }
 
 #[test]
+fn convergence_reports_reference_and_refinement_without_overwriting() {
+    let scratch = Scratch::new();
+    scratch.success(&[
+        "converge",
+        "--output",
+        "convergence.json",
+        "--seconds",
+        "0.05",
+    ]);
+    let report = scratch.json("convergence.json");
+    assert_eq!(report["reference"]["substeps"], 64);
+    assert_eq!(report["comparisons"].as_array().unwrap().len(), 4);
+    assert_eq!(report["frames"], 2400);
+    for row in report["comparisons"].as_array().unwrap() {
+        assert_eq!(row["full_audio"]["candidate_delay_samples"], 0);
+        assert_eq!(row["full_audio"]["compared_frames"], 2400);
+        assert!(row["mechanics"]["separation_seconds"].as_f64().unwrap() > 0.0);
+        assert!(
+            row["displacement_normalized_rmse"]
+                .as_f64()
+                .unwrap()
+                .is_finite()
+        );
+    }
+    assert!(
+        report["comparisons"][3]["displacement_normalized_rmse"]
+            .as_f64()
+            .unwrap()
+            < report["comparisons"][0]["displacement_normalized_rmse"]
+                .as_f64()
+                .unwrap()
+    );
+    let before = fs::read(scratch.0.join("convergence.json")).unwrap();
+    assert!(
+        !scratch
+            .run(&["converge", "--output", "convergence.json"])
+            .status
+            .success()
+    );
+    assert_eq!(
+        before,
+        fs::read(scratch.0.join("convergence.json")).unwrap()
+    );
+    for args in [
+        vec!["converge", "--output", "bad.json", "--velocity", "NaN"],
+        vec!["converge", "--output", "bad.json", "--velocity", "1e-100"],
+        vec!["converge", "--output", "bad.json", "--seconds", "10"],
+        vec![
+            "converge", "--output", "bad.json", "--note", "57", "--note", "58",
+        ],
+        vec!["converge", "--output", "bad.json", "--sample-rate", "8000"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+    }
+}
+
+#[test]
 fn rendered_audio_can_be_analyzed_and_compared_without_overwriting() {
     let scratch = Scratch::new();
     scratch.success(&[

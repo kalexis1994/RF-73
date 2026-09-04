@@ -4,6 +4,8 @@ A Rust physical-model electric piano research project for RackForge.
 
 The first working prototype includes a nonlinear hammer-contact solver, a three-mode resonator per key, a geometry-dependent magnetic pickup, sustain and sample-accurate MIDI. It renders audio offline and compiles to a portable RackForge WASM plugin.
 
+Version 0.1.1 adds measured numerical convergence and contact-only refinement for upper-register accuracy. The physical profile remains provisional.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start
@@ -16,6 +18,7 @@ cargo run --release -p rf-rhodes-lab -- inspect renders/demo.wav
 cargo run --release -p rf-rhodes-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
 cargo run --release -p rf-rhodes-lab -- compare renders/a3.wav renders/a3.wav --output renders/self-comparison.json
 cargo run --release -p rf-rhodes-lab -- stress
+cargo run --release -p rf-rhodes-lab -- converge --output renders/convergence.json --note 100 --velocity 0.2
 ```
 
 Requires Rust 1.98 and a sibling RackForge checkout for its public SDK. See [Development](docs/DEVELOPMENT.md) for Windows linker setup, WASM builds and packaging. Existing audio and report files are never overwritten.
@@ -36,6 +39,7 @@ The audio path uses no explicit allocation, locks or I/O. The laboratory does no
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.
+- [Numerical convergence](docs/CONVERGENCE.md): the treble-contact correction, experiment and residual errors.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.
 - [Development](docs/DEVELOPMENT.md): commands, integration and output formats.
 - [Validation results](docs/VALIDATION.md): tests, native/WASM timing and remaining limitations.

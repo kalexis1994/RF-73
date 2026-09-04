@@ -1,6 +1,6 @@
 # Physical model ledger
 
-Status: research prototype 0.1.0. All constants are provisional unless explicitly marked as measured. No real-instrument calibration has been performed.
+Status: research prototype 0.1.1. All constants are provisional unless explicitly marked as measured. No real-instrument calibration has been performed.
 
 ## Signal path
 
@@ -37,6 +37,8 @@ This follows the energy-accounting principle of Falaize and Hélie, but is our r
 
 After separation, exact damped-oscillator transition matrices advance each free mode. Matrices are prepared for lifted and applied dampers. Retriggering retains all resonator positions and velocities, then introduces a new hammer strike. It intentionally replaces an unfinished hammer contact rather than simulating the entire key/action mechanism.
 
+Version 0.1.1 subdivides contact ticks when the fastest mode would advance by more than 0.2 radians per midpoint step. Preparation chooses a power of two, bounded to 1–16 microsteps across supported notes and rates. If separation occurs inside a tick, exact free transitions complete only the remaining microsteps. The reported contact force is the average across the base tick, so multiplying it by the base duration preserves impulse. Pickup evaluation and the production decimator remain at 4x; unconstrained free motion still uses its exact base-rate transition. See [Numerical convergence](CONVERGENCE.md) for the observed treble error and correction.
+
 ## Provisional constants and simplifications
 
 | Quantity | Initial choice | Evidence status |
@@ -50,7 +52,8 @@ After separation, exact damped-oscillator transition matrices advance each free 
 | A3 modal T60 | 5 s, 160 ms, 55 ms | Assumed |
 | Pickup gap / offset | 1.5 / 0.5 mm | Initial study coordinates, not measured |
 | Extra damper decay rate | 55/s | Assumed binary damper |
-| Internal sample rate | 4x output rate | Fixed research configuration |
+| Pickup/internal base rate | 4x output rate | Fixed research configuration |
+| Contact subdivision | 1–16 microsteps per base tick | Prepared from highest modal frequency; numerical accuracy choice |
 
 Mass and decay scale smoothly with pitch; this is a convenient initial profile, not a Rhodes scale measurement. No stiffness, damping or geometry is taken from Concert Grand's strings or soundboard.
 

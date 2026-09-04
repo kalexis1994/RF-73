@@ -1,5 +1,7 @@
 # Initial validation report
 
+Historical 0.1.0 results are retained below. The latest local results are in the 0.1.1 section at the end.
+
 Date: 2026-09-04. RF-Rhodes 0.1.0 research prototype.
 
 Environment: Windows, AMD Ryzen 5 5600X, Rust 1.98.0, Windows GNU toolchain. RackForge source revision `7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1`; its host tools were rebuilt before integration validation.
@@ -61,3 +63,20 @@ All three render reports show zero numerical faults. Decay-fit R² exceeds 0.999
 Artifacts are ignored under `renders/`: `a3-velocity-{0.2,0.55,1.0}.wav`, their `-analysis.json` reports, `a3-dynamics-comparison.json`, `a3-baseline-analysis.json` and `a3-self-comparison.json`. The baseline file compared with itself gives exactly zero delay, level difference and normalized waveform errors.
 
 To reproduce, render each listed velocity using default settings, then run `analyze` with `--note 57 --sustain-end 1.8`; compare the 0.2 and 1.0 files with `--align-ms 0`. See [Analysis laboratory](ANALYSIS.md) for commands and precise metric definitions. The CI workflow now also analyzes and compares its generated WAV.
+
+## Version 0.1.1: contact convergence correction
+
+The convergence laboratory revealed a soft-treble contact integration error. Contact-only subdivision reduces the 48 kHz/MIDI 100/velocity 0.2 attack discrepancy from 10.540% to 0.125% against the same finite 64x reference. The [convergence report](CONVERGENCE.md) documents the method, 21-case grid and limitations. A3 at velocity 0.7 remains sample-identical to its 0.1.0 render, verified with zero raw and matched waveform errors.
+
+Validation on the same Windows/Ryzen environment:
+
+- 41 Rust tests, including refined contact passivity, fixed-reference convergence, the soft-treble regression, offline FIR response/ring ordering and CLI failure behavior.
+- Block-invariant plugin output with both A3 and the refined highest note, including retrigger and pedal events.
+- Strict Clippy, formatting, native release and WASM release builds.
+- RackForge metadata validation, WASM loading, program selection, gain roundtrip and 16-byte state smoke test.
+- Native stress: 73 keys, 1125 blocks at 128 frames/48 kHz, worst 2.3625 ms, p99 0.716 ms, zero deadline misses and zero numerical faults.
+- WASM stress: 60 distinct notes, 256 blocks at 128 frames, maximum fuel 14,176,281, wall/audio ratio 0.185, successful completion.
+
+The native worst block still exceeds the 1.333 ms provisional half-deadline target, despite remaining below the full 2.667 ms deadline in this short run. Scheduling affects wall time; the lower aggregate WASM ratio does not prove a speedup. Maximum WASM fuel increased from the initial 10,586,033 to 14,176,281, consistent with the additional contact work. No mobile or long-duration real-time qualification is claimed.
+
+New ignored artifacts: `renders/a3-0.1.1.wav`, `renders/treble-0.1.1.wav` and its physical CSV, `renders/a3-version-comparison.json`, `renders/refined-*.json`, `dist/native-stress-0.1.1.json`, `dist/wasm-stress-0.1.1.txt`, and the validated `dist/RF-Rhodes-0.1.1.rfplugin` archive (25,662 bytes, SHA-256 `5a119fb8001bbaee6511afbf9ab28b6d2c4605f633976b3e6b39b498993eb8cc`). The earlier 0.1.0 archive is retained separately.

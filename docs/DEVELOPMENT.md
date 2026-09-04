@@ -40,6 +40,14 @@ cargo run --locked --release -p rf-rhodes-lab -- compare references/audio/a3.wav
 
 Use `analyze` to read external WAV files; `inspect` remains the strict checker for the renderer's own WAV format. Comparison requires matching sample rates. See [Analysis laboratory](ANALYSIS.md) before interpreting metrics or choosing a sustain boundary. No reference audio is included in this repository.
 
+## Convergence experiment
+
+```text
+cargo run --locked --release -p rf-rhodes-lab -- converge --output renders/treble-convergence.json --note 100 --velocity 0.2
+```
+
+The command compares fixed 4/8/16/32x integration and the production contact-refined voice against a finite 64x reference. It uses a common offline filter and writes mechanical, attack and full-window errors without automatic alignment. See [Numerical convergence](CONVERGENCE.md). Duration is limited to 0.05–1 second and velocity to 0.01–1 so the experiment stays bounded and above negligible excitation.
+
 ## Package
 
 The research manifest uses supported legacy schema 1 and RackForge's generic appearance. No HTML, JavaScript or custom GUI is included. Gain and the Research Direct program are exposed through host contracts.

@@ -1,5 +1,6 @@
 //! Offline laboratory. All rendering, WAV writing and analysis runs in Rust.
 mod analysis;
+mod convergence;
 mod package;
 mod wav;
 use rf_rhodes_dsp::{Engine, FIRST_NOTE, LAST_NOTE, Profile};
@@ -11,7 +12,7 @@ use std::{
     time::Instant,
 };
 
-const HELP: &str = "RF-Rhodes research laboratory 0.1.0
+const HELP: &str = "RF-Rhodes research laboratory 0.1.1
 Usage:
   rf-rhodes-lab render --output PATH.wav [options]
   rf-rhodes-lab demo --output PATH.wav
@@ -165,6 +166,7 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args.is_empty() || matches!(args[0].as_str(), "--help" | "-h") {
         print!("{HELP}");
         print!("{}", analysis::HELP);
+        print!("{}", convergence::HELP);
         return Ok(());
     }
     if args[0] == "inspect" {
@@ -176,6 +178,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if matches!(args[0].as_str(), "analyze" | "compare") {
         return analysis::run(&args);
+    }
+    if args[0] == "converge" {
+        return convergence::run(&args);
     }
     if args[0] == "package" {
         if args.len() != 1 {
@@ -293,7 +298,7 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
     }
     let elapsed = started.elapsed().as_secs_f64();
     let report = format!(
-        "{{\n  \"schema_version\": 1,\n  \"model\": \"research-0.1.0-uncalibrated\",\n  \"mode\": \"{}\",\n  \"sample_rate\": {},\n  \"frames\": {},\n  \"note\": {},\n  \"velocity\": {},\n  \"hold_seconds\": {},\n  \"pickup_gap_mm\": {},\n  \"pickup_offset_mm\": {},\n  \"oversampling\": 4,\n  \"peak\": {:.9},\n  \"rms\": {:.9},\n  \"faults\": {},\n  \"render_wall_seconds_including_io\": {:.6}\n}}\n",
+        "{{\n  \"schema_version\": 1,\n  \"model\": \"research-0.1.1-uncalibrated\",\n  \"mode\": \"{}\",\n  \"sample_rate\": {},\n  \"frames\": {},\n  \"note\": {},\n  \"velocity\": {},\n  \"hold_seconds\": {},\n  \"pickup_gap_mm\": {},\n  \"pickup_offset_mm\": {},\n  \"oversampling\": 4,\n  \"peak\": {:.9},\n  \"rms\": {:.9},\n  \"faults\": {},\n  \"render_wall_seconds_including_io\": {:.6}\n}}\n",
         o.command,
         o.rate,
         frames,

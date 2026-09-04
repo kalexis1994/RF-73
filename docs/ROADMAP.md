@@ -13,13 +13,20 @@ All application code, analysis tools and tests are Rust. Documentation, identifi
 - Native and WASM build targets; development package metadata.
 - Numerical, MIDI, block-invariance, input-validation and WAV integrity tests.
 
+## Implemented in 0.1.1
+
+- A reproducible Rust convergence experiment with fixed 4/8/16/32x paths and a 64x reference.
+- A common offline filter, equal physical time sampling, contact diagnostics and attack comparisons.
+- Contact-only subdivision that reduces the measured soft-treble integration error without raising the continuous pickup processing rate.
+- Regression coverage for refined passivity, unchanged A3 behavior, treble accuracy, filter integrity and CLI reports.
+
 ## Next milestone: a calibrated A3
 
 The measurement foundation is implemented: external WAV input, multi-resolution spectra, bounded harmonic searches, RMS envelopes, qualified decay estimates, and raw/level-matched comparison reports. Known synthetic signals validate these estimators; they do not calibrate the instrument. See [Analysis laboratory](ANALYSIS.md).
 
 1. Obtain dry recordings from a documented instrument at multiple intensities.
 2. Extend current harmonic tracking to measured inharmonic modes, robust noise-floor estimation and per-component decay fits.
-3. Compare the current solver to a finer-time-step reference; quantify contact integration error and aliasing.
+3. Extend the current convergence measurements to extreme profiles, retriggers and isolated nonlinear aliasing; establish explicit error budgets.
 4. Identify modal frequencies, weights, losses and pickup geometry jointly, keeping a held-out validation set.
 5. Add hammer hysteresis and assembly modes where measured residuals justify them.
 6. Produce matched-level blind listening pairs and an error report.

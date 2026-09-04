@@ -23,35 +23,46 @@ struct Mode {
     omega: f64,
     gamma: f64,
     free: [[f64; 4]; 2],
+    contact_free: [[f64; 4]; 2],
 }
 
 impl Mode {
-    fn new(frequency: f64, mass: f64, gamma: f64, dt: f64) -> Self {
+    fn new(frequency: f64, mass: f64, gamma: f64, dt: f64, contact_dt: f64) -> Self {
         let omega = TAU * frequency;
-        let free = [gamma, gamma + 55.0].map(|g| {
-            let wd = (omega * omega - g * g).sqrt();
-            let (sin, cos) = (wd * dt).sin_cos();
-            let envelope = (-g * dt).exp();
-            let s = sin / wd;
-            [
-                envelope * (cos + g * s),
-                envelope * s,
-                -envelope * omega * omega * s,
-                envelope * (cos - g * s),
-            ]
-        });
+        let transitions = |dt: f64| {
+            [gamma, gamma + 55.0].map(|g| {
+                let wd = (omega * omega - g * g).sqrt();
+                let (sin, cos) = (wd * dt).sin_cos();
+                let envelope = (-g * dt).exp();
+                let s = sin / wd;
+                [
+                    envelope * (cos + g * s),
+                    envelope * s,
+                    -envelope * omega * omega * s,
+                    envelope * (cos - g * s),
+                ]
+            })
+        };
         Self {
             q: 0.0,
             v: 0.0,
             mass,
             omega,
             gamma,
-            free,
+            free: transitions(dt),
+            contact_free: transitions(contact_dt),
         }
     }
 
     fn advance_free(&mut self, damped: bool) {
-        let [a, b, c, d] = self.free[usize::from(damped)];
+        self.advance(self.free[usize::from(damped)]);
+    }
+
+    fn advance_contact_remainder(&mut self, damped: bool) {
+        self.advance(self.contact_free[usize::from(damped)]);
+    }
+
+    fn advance(&mut self, [a, b, c, d]: [f64; 4]) {
         let q = a * self.q + b * self.v;
         self.v = c * self.q + d * self.v;
         self.q = q;
@@ -68,6 +79,7 @@ pub struct Voice {
     modes: [Mode; MODES],
     profile: Profile,
     dt: f64,
+    contact_steps: usize,
     hammer_mass: f64,
     hammer_x: f64,
     hammer_v: f64,
@@ -85,15 +97,56 @@ impl Voice {
         if !(FIRST_NOTE..=LAST_NOTE).contains(&note) {
             return Err(ModelError("note must be in the 73-key range, MIDI 28..100"));
         }
-        Ok(Self::new_validated(sample_rate, note, profile))
+        Ok(Self::prepare(sample_rate, note, profile, OVERSAMPLE, true))
+    }
+
+    /// Prepare a standalone research voice at 4, 8, 16, 32 or 64 internal steps
+    /// per output sample, without production contact refinement. The production
+    /// pickup/decimator runs at 4x, with finer contact steps where required.
+    /// Call `tick` exactly `substeps` times per output frame; this voice does not
+    /// perform antialias filtering or decimation itself.
+    pub fn new_for_convergence(
+        sample_rate: f64,
+        note: u8,
+        profile: Profile,
+        substeps: usize,
+    ) -> Result<Self, ModelError> {
+        profile.validate(sample_rate)?;
+        if !(4..=64).contains(&substeps) || !substeps.is_power_of_two() {
+            return Err(ModelError("research substeps must be 4, 8, 16, 32 or 64"));
+        }
+        if !(FIRST_NOTE..=LAST_NOTE).contains(&note) {
+            return Err(ModelError("note must be in the 73-key range, MIDI 28..100"));
+        }
+        Ok(Self::prepare(sample_rate, note, profile, substeps, false))
     }
 
     pub(crate) fn new_validated(sample_rate: f64, note: u8, profile: Profile) -> Self {
+        Self::prepare(sample_rate, note, profile, OVERSAMPLE, true)
+    }
+
+    fn prepare(
+        sample_rate: f64,
+        note: u8,
+        profile: Profile,
+        substeps: usize,
+        refine_contact: bool,
+    ) -> Self {
         let frequency = 440.0 * 2.0_f64.powf((note as f64 - 69.0) / 12.0);
-        let dt = 1.0 / (sample_rate * OVERSAMPLE as f64);
+        let dt = 1.0 / (sample_rate * substeps as f64);
         let scale = (220.0 / frequency).clamp(0.15, 4.0);
         // Ideal uniform cantilever ratios, not measurements of a Rhodes assembly.
         let ratios = [1.0, 6.267, 17.55];
+        // Bound the fastest mode's phase advance during midpoint contact.
+        // At supported rates/notes this requires at most 16 bounded microsteps.
+        let contact_steps = if refine_contact {
+            ((TAU * frequency * ratios[2] * dt / 0.2).ceil() as usize)
+                .max(1)
+                .next_power_of_two()
+                .min(16)
+        } else {
+            1
+        };
         let t60 = [
             profile.decay_seconds * scale.sqrt(),
             0.16 * scale.sqrt(),
@@ -105,12 +158,14 @@ impl Voice {
                 profile.modal_mass_kg * scale,
                 1000.0_f64.ln() / t60[i],
                 dt,
+                dt / contact_steps as f64,
             )
         });
         Self {
             modes,
             profile,
             dt,
+            contact_steps,
             hammer_mass: profile.hammer_mass_kg * scale.sqrt(),
             hammer_x: 0.0,
             hammer_v: 0.0,
@@ -140,18 +195,36 @@ impl Voice {
         self.damped = damped;
     }
 
+    /// Prepared contact-only subdivision count; free motion keeps the base rate.
+    pub fn contact_substeps(&self) -> usize {
+        self.contact_steps
+    }
+
     pub(crate) fn is_active(&self) -> bool {
         self.active
     }
 
-    /// Advance ONE internal sample (4x the output rate).
+    /// Advance ONE internal sample (4x by default, or the research substep rate).
     pub fn tick(&mut self) -> f64 {
         if !self.active {
             return 0.0;
         }
         self.force = 0.0;
         if self.contact {
-            self.advance_contact();
+            let mut force_sum = 0.0;
+            for _ in 0..self.contact_steps {
+                if self.contact {
+                    self.advance_contact(self.dt / self.contact_steps as f64);
+                    force_sum += self.force;
+                } else {
+                    // Complete the same physical interval after a separation
+                    // inside this tick; never advance a full extra base step.
+                    for mode in &mut self.modes {
+                        mode.advance_contact_remainder(self.damped);
+                    }
+                }
+            }
+            self.force = force_sum / self.contact_steps as f64;
         } else {
             for mode in &mut self.modes {
                 mode.advance_free(self.damped);
@@ -170,8 +243,7 @@ impl Voice {
         self.signal
     }
 
-    fn advance_contact(&mut self) {
-        let h = self.dt;
+    fn advance_contact(&mut self, h: f64) {
         let delta0 = self.hammer_x - self.contact_position();
         let mut free_q = [0.0; MODES];
         let mut free_v = [0.0; MODES];
