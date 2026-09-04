@@ -50,6 +50,8 @@ The command compares fixed 4/8/16/32x integration and the production contact-ref
 
 ## Package
 
+For the complete build/install/launch cycle, use `cargo run --locked --release -p rf-rhodes-lab -- audition`. See [Desktop audition](AUDITION.md) for the dedicated library, settings retention and repeat-run behavior. The standalone `package` command below remains useful for producing a versioned release archive without launching a host.
+
 The research manifest uses supported legacy schema 1 and RackForge's generic appearance. No HTML, JavaScript or custom GUI is included. Gain and the Research Direct program are exposed through host contracts.
 
 Build RackForge's current Rust `rackforge-store` and `rackforge-core` tools in its own repository (`cargo build --locked --release -p rackforge-store -p rackforge-core`). Then from RF-Rhodes run:

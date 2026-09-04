@@ -2,6 +2,23 @@
 use std::{error::Error, fs, path::Path, process::Command};
 
 pub fn build() -> Result<(), Box<dyn Error>> {
+    let root = workspace_root()?;
+    build_to(
+        &root
+            .join("dist")
+            .join(format!("RF-Rhodes-{}.rfplugin", env!("CARGO_PKG_VERSION"))),
+    )
+}
+
+pub(crate) fn workspace_root() -> Result<std::path::PathBuf, Box<dyn Error>> {
+    Ok(Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .and_then(Path::parent)
+        .ok_or("cannot resolve the workspace root")?
+        .to_path_buf())
+}
+
+pub(crate) fn build_to(output: &Path) -> Result<(), Box<dyn Error>> {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"))
         .parent()
         .and_then(Path::parent)
@@ -16,7 +33,6 @@ pub fn build() -> Result<(), Box<dyn Error>> {
     let component = root.join("target/wasm32-unknown-unknown/release/rf_rhodes_plugin.wasm");
     let package = root.join("package");
     let dist = root.join("dist");
-    let output = dist.join("RF-Rhodes-0.1.1.rfplugin");
     if output.exists() {
         return Err(format!("refusing to overwrite {}", output.display()).into());
     }
@@ -39,15 +55,26 @@ pub fn build() -> Result<(), Box<dyn Error>> {
         .arg("pack-wasm")
         .arg(&package)
         .arg(&component)
-        .arg(&output))?;
+        .arg(output))?;
     println!("Validated package: {}", output.display());
     Ok(())
 }
 
-fn run(command: &mut Command) -> Result<(), Box<dyn Error>> {
+pub(crate) fn run(command: &mut Command) -> Result<(), Box<dyn Error>> {
+    hide_console(command);
     let status = command.status()?;
     if !status.success() {
         return Err(format!("RackForge validation failed: {status}").into());
     }
     Ok(())
+}
+
+pub(crate) fn hide_console(command: &mut Command) {
+    #[cfg(windows)]
+    {
+        use std::os::windows::process::CommandExt;
+        command.creation_flags(0x08000000); // CREATE_NO_WINDOW for CLI helpers.
+    }
+    #[cfg(not(windows))]
+    let _ = command;
 }

@@ -10,6 +10,14 @@ Version 0.1.1 adds measured numerical convergence and contact-only refinement fo
 
 ## Quick start
 
+To build, validate, install and open the current instrument in RackForge Desktop on Windows:
+
+```text
+cargo run --locked --release -p rf-rhodes-lab -- audition
+```
+
+The [audition workflow](docs/AUDITION.md) keeps a dedicated test library, retains audio/MIDI preferences and supports repeated builds of the same version.
+
 ```text
 cargo test --locked --workspace
 cargo run --release -p rf-rhodes-lab -- demo --output renders/demo.wav
@@ -40,6 +48,7 @@ The audio path uses no explicit allocation, locks or I/O. The laboratory does no
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.
 - [Numerical convergence](docs/CONVERGENCE.md): the treble-contact correction, experiment and residual errors.
+- [Desktop audition](docs/AUDITION.md): build, install and launch each test version.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.
 - [Development](docs/DEVELOPMENT.md): commands, integration and output formats.
 - [Validation results](docs/VALIDATION.md): tests, native/WASM timing and remaining limitations.

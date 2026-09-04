@@ -1,5 +1,6 @@
 //! Offline laboratory. All rendering, WAV writing and analysis runs in Rust.
 mod analysis;
+mod audition;
 mod convergence;
 mod package;
 mod wav;
@@ -19,6 +20,7 @@ Usage:
   rf-rhodes-lab stress [--sample-rate HZ]
   rf-rhodes-lab inspect PATH.wav
   rf-rhodes-lab package
+  rf-rhodes-lab audition [--prepare-only]
 Render options:
   --note N          MIDI 28..100 (default 57 / A3)
   --velocity V      Greater than 0, up to 1 (default 0.7)
@@ -187,6 +189,9 @@ fn run() -> Result<(), Box<dyn Error>> {
             return Err("package takes no arguments".into());
         }
         return package::build();
+    }
+    if args[0] == "audition" {
+        return audition::run(&args[1..]);
     }
     let options = Options::parse(&args)?;
     if options.command == "stress" {
