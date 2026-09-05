@@ -196,8 +196,14 @@ impl MemoryHammer {
         let old_gap = self.tip - self.surface_position;
         let open_tip = free_tip + at * open_force - surface_free;
         let upper = contact_gradient(self.p.surface_stiffness_n_m2, old_gap, open_tip);
+        // Keep the material reaction from the last outer residual evaluation.
+        // The open branch is already solved even when the normal bracket is empty.
+        let mut evaluated_normal = 0.0;
+        let mut evaluated_force = open_force;
         let normal = root::<FAST>(0.0, upper, |normal| {
             let (force, derivative) = material_force(normal);
+            evaluated_normal = normal;
+            evaluated_force = force;
             let gap = free_tip + at * (force - normal) - surface_free - compliance * normal;
             let reaction = contact_gradient(self.p.surface_stiffness_n_m2, old_gap, gap);
             let slope = contact_slope(self.p.surface_stiffness_n_m2, old_gap, gap, reaction);
@@ -206,7 +212,13 @@ impl MemoryHammer {
                 1.0 + slope * (at * (1.0 - derivative) + compliance),
             )
         });
-        let force = material_force(normal).0;
+        // The bounded bisection fallback may return a new, unevaluated midpoint.
+        // Reuse only an exact endpoint match; never a nearby Newton candidate.
+        let force = if normal == evaluated_normal {
+            evaluated_force
+        } else {
+            material_force(normal).0
+        };
         let core = free_core - ac * force;
         let tip = free_tip + at * (force - normal);
         let vc = self.vc - self.h * force / self.p.core_mass_kg;
@@ -267,7 +279,11 @@ impl MemoryHammer {
 }
 
 // Monotone residuals with positive tangent and a proven finite bracket.
-fn root<const FAST: bool>(mut lo: f64, mut hi: f64, evaluate: impl Fn(f64) -> (f64, f64)) -> f64 {
+fn root<const FAST: bool>(
+    mut lo: f64,
+    mut hi: f64,
+    mut evaluate: impl FnMut(f64) -> (f64, f64),
+) -> f64 {
     if lo == hi {
         return lo;
     }

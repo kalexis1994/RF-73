@@ -96,6 +96,9 @@ and runtime cost remains necessary before realtime integration.
 The [contact scheduling experiment](MEMORY-CONTACT-SCHEDULING.md) now avoids
 short contact trials and defers retries while continuing every original fine
 tick. It retains the strict tolerance and separate previous-controller controls.
+The [contact reaction reuse](MEMORY-CONTACT-FORCE-REUSE.md) removes a redundant
+material solve at converged normal forces without changing integration steps
+or physical tolerances. Contact integration cost remains an open gate.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

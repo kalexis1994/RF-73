@@ -789,3 +789,28 @@ regresses about 14%; short sequential timings remain load-sensitive. New cost
 is still 30–55 seconds per simulated second. The option remains experimental,
 and neither default mechanics nor audible plugin behavior is replaced. CI
 includes the new audit; remote CI and GUI/audio testing were not performed.
+
+## Reusing the converged contact material reaction
+
+Date: 2026-09-05. The [reaction reuse optimization](MEMORY-CONTACT-FORCE-REUSE.md)
+keeps the last material reaction evaluated by the outer contact solver. It
+reuses that force only at an exactly matching returned normal force, with
+the original solve retained for an unevaluated fallback midpoint. The zero
+normal branch reuses its existing open-contact solution. No integrator,
+material parameter, tolerance, work check or controller policy changes.
+
+All 172 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. The new economical and strict modal audits each pass 12 cases/24 takes;
+the fixed-wall audit passes 24 cases/48 takes. All three complete JSON reports
+are byte-identical to their retained pre-change references; hashes and links
+are recorded in the optimization document.
+
+Separate native before/after batches retain three repetitions per path/profile.
+The economical controller's median elapsed times decrease by 2.9–7.3% in these
+four cases; the uniform path decreases by 4.5–12.9%. All 24 before/after run
+pairs preserve their reported final mechanical states and controller counters.
+Sequential batches are sensitive to machine load and do not establish a
+universal speedup. Economical execution still costs about 27–51 seconds per
+simulated second. This remains offline numerical work, with calibration and
+realtime contact integration still open. Remote CI and GUI/audio tests were
+not run; existing CI already executes all three affected audit commands.
