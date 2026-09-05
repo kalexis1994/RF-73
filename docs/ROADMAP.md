@@ -71,9 +71,11 @@ The loss coefficient remains provisional and defaults to zero; internal material
 relaxation and measured calibration are still missing.
 The [material-memory coupon](HAMMER-MEMORY.md) now implements and validates an
 internal Maxwell deformation, analytic relaxation and positive material heat
-under prescribed loading. Its bilateral reaction cannot yet drive hammer contact:
-nonadhesive coupling, energy through separation and unrestrained recovery remain
-the next gate before the memory model can excite the tine.
+under prescribed loading. The subsequent [two-mass memory hammer](MEMORY-HAMMER.md)
+connects that bilateral reaction to core/tip inertia and a nonadhesive fixed
+surface, preserving memory through separation, free recovery and impulse-driven
+reimpact. Coupling it to the moving tine, improving temporal accuracy per unit
+cost and identifying material parameters remain gates before plugin integration.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

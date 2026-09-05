@@ -3,7 +3,8 @@
 `HammerMemory` is a displacement-controlled material experiment with one internal
 viscous deformation. Unlike the preceding instantaneous rate-loss law, its force
 depends on loading history and relaxes while deformation is held fixed. It is
-not yet connected to `ModalAssembly`, the hammer's mass or the plugin.
+connected to hammer inertia in the separate [two-mass experiment](MEMORY-HAMMER.md),
+but not to `ModalAssembly` or the plugin.
 
 ## Mechanical hypothesis
 
@@ -126,10 +127,11 @@ Output paths must be new, and the audit does not open an audio device.
 
 ## Coupling gate
 
-The next step is a nonadhesive contact connection that accounts for internal
-stored energy during separation and recovery, with a physically consistent
-traction boundary. Clipping the coupon's signed force or erasing z at separation
-would not preserve the model above. That coupling needs independent force/work
-and collision tests before it can replace the rate-loss experiment. A spectrum
-of relaxation times and material measurements are later identification gates.
+The [two-mass hammer](MEMORY-HAMMER.md) now connects this material to a separate
+tip inertia and a nonadhesive fixed surface, retaining stored energy during
+separation and free recovery. It does not clip the coupon's signed force or erase
+z at separation. Coupling to the moving tine assembly and resolving the measured
+temporal accuracy/cost tradeoff remain gates before replacing the rate-loss
+experiment. A spectrum of relaxation times and material measurements are later
+identification gates.
 The current audible engine and package version 0.1.2 remain unchanged.

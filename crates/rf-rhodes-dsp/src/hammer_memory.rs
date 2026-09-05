@@ -56,6 +56,7 @@ pub struct HammerMemoryProbe {
 /// Cubic/linear equilibrium elasticity in parallel with one Maxwell branch.
 /// advance_to prescribes a linear displacement ramp over a fixed timestep.
 /// All state, force, work and heat are analytic for that ramp (up to f64 rounding).
+#[derive(Clone)]
 pub struct HammerMemory {
     p: HammerMemoryProfile,
     decay: f64,
@@ -133,10 +134,7 @@ impl HammerMemory {
         }
         let dx = displacement_m - self.x;
         let extension = self.decay * self.extension + self.mean_old * dx;
-        let mean_extension = self.mean_old * self.extension + self.mean_delta * dx;
-        let mean_force = 0.5 * self.p.equilibrium_stiffness_n_m * (self.x + displacement_m)
-            + self.p.equilibrium_cubic_n_m2 * cubic_gradient(self.x, displacement_m)
-            + self.p.memory_stiffness_n_m * mean_extension;
+        let mean_force = self.response_at(displacement_m).0;
         // Integrated eta*z_dot^2 in a positive quadratic form, not E/work subtraction.
         let step_heat = self.heat_scale
             * (self.heat_old * (self.extension + self.heat_shift * dx).powi(2)
@@ -159,6 +157,28 @@ impl HammerMemory {
         self.absolute_work = absolute_work;
         self.last_heat = step_heat;
         Ok(self.probe())
+    }
+
+    /// Trial ramp reaction and endpoint tangent for internal coupling solvers.
+    /// Only the committed update enforces the coupon displacement domain.
+    pub(crate) fn response_at(&self, end: f64) -> (f64, f64) {
+        let gradient = cubic_gradient(self.x, end);
+        let slope = if self.x >= 0.0 && end >= 0.0 {
+            (self.x + 2.0 * end) / 3.0
+        } else if self.x <= 0.0 && end <= 0.0 {
+            -(self.x + 2.0 * end) / 3.0
+        } else {
+            (end * end.abs() - gradient) / (end - self.x)
+        };
+        (
+            0.5 * self.p.equilibrium_stiffness_n_m * (self.x + end)
+                + self.p.equilibrium_cubic_n_m2 * gradient
+                + self.p.memory_stiffness_n_m
+                    * (self.mean_old * self.extension + self.mean_delta * (end - self.x)),
+            0.5 * self.p.equilibrium_stiffness_n_m
+                + self.p.equilibrium_cubic_n_m2 * slope
+                + self.p.memory_stiffness_n_m * self.mean_delta,
+        )
     }
 
     pub fn probe(&self) -> HammerMemoryProbe {

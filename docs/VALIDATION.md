@@ -508,3 +508,41 @@ The next gate is a nonadhesive coupling that preserves stored internal energy
 through separation and unrestrained recovery. There is no new listening package,
 audio-device or Desktop interaction, or realtime qualification; version 0.1.2
 and the existing instrument mechanics remain unchanged.
+
+## Stateful hammer impacts and free recovery
+
+Date: 2026-09-05. The [two-mass hammer](MEMORY-HAMMER.md) couples the internal
+material state to core/tip inertia and a fixed cubic penalty surface. External
+contact is nonadhesive; bilateral material tension acts only inside the hammer.
+Both masses retain their motion and memory through separation. An explicitly
+accounted core impulse drives reimpact without resetting or repositioning.
+
+The 151-test workspace suite passed, followed by a sixth focused hammer test
+against the analytic damped relative mode of a free linear Maxwell hammer
+(152 total tests). The other five additions cover common free flight, nested
+pure-bisection reference agreement, energy/momentum balance, repeated impact and
+free recovery, 16 mass/contact/relaxation corner cases, and invalid/atomic updates.
+Strict workspace Clippy, formatting and release WASM plugin compilation passed.
+
+The [final audit](../references/memory-hammer-validation.json) passes 24 cases /
+48 takes over two output rates, three relaxation times, two launch speeds and
+two tip masses at a fixed 4 g total mass. It uses at most 5 ns candidate steps
+and a fourfold finer finite reference. Maximum relative energy residual is
+`3.546e-11`; momentum residual is `2.268e-12`. Maximum normalized velocity RMSE
+is 0.6996%; normalized cumulative surface-impulse error is 0.1224%; output-frame
+mean-contact-force RMSE is 0.1238%. Every take demonstrates post-impulse contact
+and positive heat during force-free recovery. These are numerical checks of a
+provisional mechanical hypothesis, not comparisons with a measured Rhodes.
+
+The [resolution pilot](../references/memory-hammer-resolution-pilot.json) records
+the failed coarse attempts: 20/24 accuracy failures at 32/128 substeps and 8/24
+at 256/1024. Their energy ledgers pass despite large trajectory differences.
+The fine audit's extremely small intervals establish a laboratory reference,
+not an audio-rate implementation or realtime qualification. Efficient free
+motion, event handling and connection to the moving tine are the next gates.
+
+The previous 72-take material coupon audit is byte-identical after the internal
+reaction/tangent refactor. Rejection of an existing impact report preserves its SHA256.
+CI includes the new impact audit; the remote workflow was not executed locally.
+This milestone produces no new listening package, audio-device access or Desktop
+interaction. Plugin mechanics and version 0.1.2 remain unchanged.
