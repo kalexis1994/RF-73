@@ -99,6 +99,11 @@ tick. It retains the strict tolerance and separate previous-controller controls.
 The [contact reaction reuse](MEMORY-CONTACT-FORCE-REUSE.md) removes a redundant
 material solve at converged normal forces without changing integration steps
 or physical tolerances. Contact integration cost remains an open gate.
+The [contact resolution diagnostic](MEMORY-CONTACT-RESOLUTION.md) now separates
+the estimator's squared-error terms without committing trial motion. Its sampled
+state-limited steps mostly have surface-contact or structural contributions and
+approximately cubic local error growth. The next integrator experiment should
+target coupled temporal accuracy while retaining independent heat/work checks.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

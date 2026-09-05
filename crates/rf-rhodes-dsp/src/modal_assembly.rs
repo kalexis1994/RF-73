@@ -6,7 +6,8 @@ mod contact;
 mod dissipative_contact;
 mod memory_coupling;
 pub use memory_coupling::{
-    MemoryContactStatus, MemoryContactStep, MemoryModalAssembly, MemoryModalProbe,
+    MemoryContactInspection, MemoryContactStatus, MemoryContactStep, MemoryModalAssembly,
+    MemoryModalProbe,
 };
 mod numerics;
 use numerics::{Free, Midpoint, apply, dot};

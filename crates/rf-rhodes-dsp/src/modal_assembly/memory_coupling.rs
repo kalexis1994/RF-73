@@ -5,7 +5,7 @@ mod free_motion;
 use free_motion::FreeBank;
 mod contact_motion;
 use contact_motion::ContactBank;
-pub use contact_motion::{MemoryContactStatus, MemoryContactStep};
+pub use contact_motion::{MemoryContactInspection, MemoryContactStatus, MemoryContactStep};
 
 #[derive(Clone)]
 struct Motion {

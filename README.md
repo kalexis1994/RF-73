@@ -74,6 +74,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Adaptive contact](docs/MEMORY-ADAPTIVE-CONTACT.md): continuous compression bounds, step doubling and retained fine references.
 - [Contact scheduling](docs/MEMORY-CONTACT-SCHEDULING.md): minimum useful trial lengths and deferred retries with unchanged physical checks.
 - [Contact reaction reuse](docs/MEMORY-CONTACT-FORCE-REUSE.md): avoid repeating the material solve at an already evaluated normal force.
+- [Contact resolution](docs/MEMORY-CONTACT-RESOLUTION.md): read-only trial sweeps identify which coupled state errors limit the timestep.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

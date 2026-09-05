@@ -814,3 +814,28 @@ universal speedup. Economical execution still costs about 27–51 seconds per
 simulated second. This remains offline numerical work, with calibration and
 realtime contact integration still open. Remote CI and GUI/audio tests were
 not run; existing CI already executes all three affected audit commands.
+
+## Read-only contact resolution and error attribution
+
+Date: 2026-09-05. The [contact resolution diagnostic](MEMORY-CONTACT-RESOLUTION.md)
+adds read-only prepared trials and the seven squared-error terms of the existing
+contact estimator. The commit path uses the same trial implementation, summation
+order, physical checks and tolerance. A new test exercises both accepted and
+rejected inspections without state changes and verifies subsequent committed
+motion with both damper states.
+
+All 173 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. The strict 12-case/24-take regression audit is byte-identical to the
+pre-inspection reference. CLI discovery, invalid arguments and overwrite
+protection pass. The new command is included in CI; remote CI and GUI/audio
+tests were not performed.
+
+The retained diagnostic covers 528 snapshots and 6,336 trials over 12 profiles.
+For the 162 snapshots with a finite state-error rejection, the first failing
+level is dominated by surface contact in 87, structural terms in 62, tip
+velocity in 12 and equilibrium material in one. A largest term need not exceed
+half of the metric. The 159 usable adjacent-level slopes range from 2.983 to
+3.031, consistent with approximately cubic local error growth. These observations
+support investigating a more accurate coupled contact integrator; they do not
+justify changing physical coefficients or relaxing acceptance. This is an
+offline diagnosis, with no runtime improvement or calibration claim.

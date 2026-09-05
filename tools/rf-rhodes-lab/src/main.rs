@@ -4,6 +4,7 @@ mod assembly_check;
 mod audition;
 mod convergence;
 mod hammer_memory;
+mod memory_contact_resolution;
 mod memory_free_check;
 mod memory_hammer_check;
 mod memory_modal_check;
@@ -214,6 +215,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", hammer_memory::HELP);
         print!("{}", memory_hammer_check::HELP);
         print!("{}", memory_free_check::HELP);
+        print!("{}", memory_contact_resolution::HELP);
         print!("{}", memory_modal_check::HELP);
         print!("{}", memory_modal_timing::HELP);
         print!("{}", modal_timing::HELP);
@@ -249,6 +251,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "memory-free-check" {
         return memory_free_check::run(&args);
+    }
+    if args[0] == "memory-contact-resolution" {
+        return memory_contact_resolution::run(&args);
     }
     if matches!(
         args[0].as_str(),
