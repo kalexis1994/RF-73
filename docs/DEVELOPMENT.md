@@ -56,6 +56,14 @@ Generate the candidate WAV first using [G3 residual pilot](G3-RESIDUAL-PILOT.md)
 
 ## Pickup geometry sweep
 
+To generate three level-matched listening tracks and observe isolated/polyphonic headroom:
+
+```text
+cargo run --locked --release -p rf-rhodes-lab -- pickup-listening --output renders/pickup-listening
+```
+
+See [Pickup listening](PICKUP-LISTENING.md) for the exact performance, constant-gain matching and output names. Use `--measure-only` to write the complete receipt without WAVs.
+
 For a register-specific convergence check of both laws, including an independently refined reference:
 
 ```text

@@ -56,6 +56,7 @@ The audio path uses no explicit allocation, locks or I/O. The laboratory does no
 - [Isolated pickup transfer](docs/PICKUP-TRANSFER.md): compare two magnetic laws under identical motion and measure internal sampling error.
 - [Mechanical pickup pairs](docs/PICKUP-PAIR.md): compare the two laws on the production trajectory and filter, with a complete G3 reference matrix.
 - [Pickup convergence](docs/PICKUP-CONVERGENCE.md): separate mechanical and pickup/filter sampling residuals across registers, with finite 128x/256x references.
+- [Pickup listening](docs/PICKUP-LISTENING.md): three performances with fixed global RMS matching, sample-peak control and measured full-keyboard headroom.
 - [Numerical convergence](docs/CONVERGENCE.md): the treble-contact correction, experiment and residual errors.
 - [Desktop audition](docs/AUDITION.md): build, install and launch each test version.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.

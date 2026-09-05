@@ -42,6 +42,8 @@ The [isolated pickup experiment](PICKUP-TRANSFER.md) compares the current law wi
 
 The [pickup convergence matrix](PICKUP-CONVERGENCE.md) now covers three register anchors, two intensities and two geometries, with treble checks at all output rates and 256x reference confirmations. The tested frozen-trajectory residuals are much smaller than the remaining contact/trajectory differences. Candidate gain/headroom and level-matched listening comparisons are the next release gates; no whole-keyboard or perceptual qualification is claimed.
 
+The [listening study](PICKUP-LISTENING.md) now supplies three versions of one performance with fixed global RMS matching and controlled sample peaks. The full keyboard and repeated chords have been measured at 44.1/192 kHz. Listening artifacts are ready; human assessment and a deliberate plugin gain/headroom policy remain outstanding. Large raw stress peaks in both the current and candidate models prevent treating the listening gain as a universal output bound.
+
 1. Obtain dry recordings from a documented instrument at multiple intensities.
 2. Evaluate independent tracking across the available observation lengths on those recordings, refine background qualification, and distinguish observed spectral peaks from identified mechanical modes.
 3. Extend the current convergence measurements to extreme profiles, retriggers and isolated nonlinear aliasing; establish explicit error budgets.

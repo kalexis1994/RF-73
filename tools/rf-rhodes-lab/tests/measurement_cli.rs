@@ -56,6 +56,62 @@ impl Drop for Scratch {
 }
 
 #[test]
+fn listening_wavs_match_global_rms_stay_below_ceiling_and_preserve_outputs() {
+    let scratch = Scratch::new();
+    let args = ["pickup-listening", "--output", "study"];
+    scratch.success(&args);
+    let report = scratch.json("study/report.json");
+    assert_eq!(report["schema_version"], 1);
+    assert_eq!(report["faults"], 0);
+    assert_eq!(
+        report["diagnostics"]["isolated_keys"]
+            .as_array()
+            .unwrap()
+            .len(),
+        73
+    );
+    assert_eq!(report["frames"], 24 * 44100);
+    let mut observed_rms = Vec::new();
+    for name in ["current", "close-original", "close-point-pole"] {
+        let path = format!("study/{name}.wav");
+        scratch.success(&["inspect", &path]);
+        let bytes = fs::read(scratch.0.join(path)).unwrap();
+        let mut power = 0.0;
+        for chunk in bytes[58..].as_chunks::<4>().0 {
+            let value = f32::from_le_bytes(*chunk) as f64;
+            assert!(value.is_finite() && value.abs() <= 10.0_f64.powf(-6.0 / 20.0));
+            power += value * value;
+        }
+        observed_rms.push((power / (24.0 * 44100.0)).sqrt());
+    }
+    for rms in &observed_rms[1..] {
+        assert!((rms / observed_rms[0] - 1.0).abs() < 1e-7);
+    }
+    let before = fs::read(scratch.0.join("study/report.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(
+        before,
+        fs::read(scratch.0.join("study/report.json")).unwrap()
+    );
+    for flags in [
+        vec!["--ceiling-dbfs", "0"],
+        vec!["--ceiling-dbfs", "NaN"],
+        vec!["--gap-mm", "0"],
+        vec!["--offset-mm", "inf"],
+        vec!["--sample-rate", "44000"],
+        vec!["--unknown", "1"],
+        vec!["--measure-only", "--measure-only"],
+        vec!["--gap-mm", "1", "--gap-mm", "2"],
+        vec!["--gap-mm"],
+    ] {
+        let mut args = vec!["pickup-listening", "--output", "invalid"];
+        args.extend(flags);
+        assert!(!scratch.run(&args).status.success(), "{args:?}");
+        assert!(!scratch.0.join("invalid").exists());
+    }
+}
+
+#[test]
 fn pickup_convergence_reports_finite_reference_and_frozen_path_without_overwrite() {
     let scratch = Scratch::new();
     let args = [
