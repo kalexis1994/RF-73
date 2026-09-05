@@ -205,6 +205,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", assembly_check::HELP);
         print!("{}", tine_modes::HELP);
         print!("{}", modal_assembly_check::HELP);
+        print!("{}", modal_assembly_check::HAMMER_HELP);
         print!("{}", modal_timing::HELP);
         return Ok(());
     }
@@ -226,6 +227,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "modal-assembly-check" {
         return modal_assembly_check::run(&args);
+    }
+    if args[0] == "modal-hammer-check" {
+        return modal_assembly_check::run_hammer(&args);
     }
     if args[0] == "modal-timing" {
         return modal_timing::run(&args);

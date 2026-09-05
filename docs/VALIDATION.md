@@ -447,3 +447,34 @@ pickup/filter/mixing, host and WASM timing, and are not realtime qualification.
 This offline optimization does not add a material law or measured calibration.
 The plugin and package remain at version 0.1.2, with no new listening release,
 audio-device access or Desktop interaction.
+
+## Dissipative modal hammer
+
+Date: 2026-09-05. The [rate-dependent contact experiment](DISSIPATIVE-HAMMER.md)
+adds a projected Hunt-Crossley-type loss coefficient, independent material heat
+and separate diagnostics for nonadhesive unloading. The default beta is zero;
+the existing elastic solver is called directly in that case. The new law has
+no internal material relaxation state and is not a calibrated neoprene model.
+
+All 141 workspace tests passed. Three additions check force/work/heat over 216
+scalar cases with two solvers, convergence of isolated rigid-wall restitution
+to a continuous analytic invariant, and coupled energy/state behavior through
+restrikes, damping and reset. The coupled test was rerun after adding the final
+limited-heat telemetry. Strict workspace Clippy, formatting and release WASM
+plugin compilation passed.
+
+The [material audit](../references/modal-hammer-validation.json) passes 108 takes
+across 36 length/rate/velocity/beta cases. Contact-32 pickup-velocity RMSE remains
+within `0.01176%` of refined contact 256 and relative energy residual within
+`1.193e-11`. All prior metrics of 36 matching zero-loss takes are identical.
+Nonzero beta dissipates 0.2391–7.6782% of injected energy at the contact in this
+matrix. Sensitivity relative to the elastic trajectory can be large; it does
+not establish acoustic accuracy. The nonadhesive limit activates in two reference
+cases, with limited heat at most `1.024e-5` of injected energy; it is reported
+separately and already included in contact/total dissipated energy.
+
+Existing report paths are rejected without changing their bytes. CI includes the
+new audit; its updated remote workflow was not executed locally. This remains
+offline mechanics, with no pickup voltage, material calibration, listening
+release or new realtime qualification. Plugin version 0.1.2 is unchanged, and
+no audio device or Desktop controls were used.

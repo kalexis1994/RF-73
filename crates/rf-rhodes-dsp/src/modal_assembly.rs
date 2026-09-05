@@ -3,6 +3,7 @@
 use crate::{ModelError, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN, TineGeometry, TineModes};
 use core::f64::consts::TAU;
 mod contact;
+mod dissipative_contact;
 mod numerics;
 use numerics::{Free, Midpoint, apply, dot};
 const N: usize = 9;
@@ -28,6 +29,8 @@ pub struct ModalAssemblyProfile {
     pub damper_n_s_m: f64,
     pub hammer_mass_kg: f64,
     pub contact_stiffness_n_m2: f64,
+    /// Hunt-Crossley-type rate loss beta, seconds/meter. Zero preserves elastic contact.
+    pub contact_damping_s_m: f64,
     pub maximum_hammer_speed_m_s: f64,
 }
 impl Default for ModalAssemblyProfile {
@@ -48,6 +51,7 @@ impl Default for ModalAssemblyProfile {
             damper_n_s_m: 0.2,
             hammer_mass_kg: 0.004,
             contact_stiffness_n_m2: 4e10,
+            contact_damping_s_m: 0.0,
             maximum_hammer_speed_m_s: 0.8,
         }
     }
@@ -69,6 +73,7 @@ impl ModalAssemblyProfile {
             (self.damper_n_s_m, 0.0, 1000.0),
             (self.hammer_mass_kg, 0.001, 0.02),
             (self.contact_stiffness_n_m2, 1e8, 1e12),
+            (self.contact_damping_s_m, 0.0, 10.0),
             (self.maximum_hammer_speed_m_s, 0.1, 3.0),
         ] {
             bounded(value, low, high)?;
@@ -107,6 +112,12 @@ pub struct ModalProbe {
     pub contact_active: bool,
     pub mechanical_energy_j: f64,
     pub dissipated_energy_j: f64,
+    /// Contact material heat, already included in dissipated_energy_j.
+    pub contact_dissipated_energy_j: f64,
+    /// Subset of contact heat from unloading steps with the nonadhesive limit active.
+    pub contact_limited_heat_j: f64,
+    /// Contact microsteps where the nonadhesive unloading limit was active.
+    pub contact_limit_steps: u64,
     pub escaped_hammer_energy_j: f64,
     pub injected_energy_j: f64,
     pub balance_residual_j: f64,
@@ -204,6 +215,9 @@ pub struct ModalAssembly {
     damped: bool,
     force: f64,
     dissipated: f64,
+    contact_heat: f64,
+    contact_limited_heat: f64,
+    contact_limit_steps: u64,
     escaped: f64,
     injected: f64,
 }
@@ -272,6 +286,9 @@ impl ModalAssembly {
             damped: false,
             force: 0.0,
             dissipated: 0.0,
+            contact_heat: 0.0,
+            contact_limited_heat: 0.0,
+            contact_limit_steps: 0,
             escaped: 0.0,
             injected: 0.0,
         })
@@ -343,11 +360,20 @@ impl ModalAssembly {
             let dfree = self.hx + h * self.hv - dot(self.op.hammer, fq);
             let compliance = h * h / (2.0 * self.p.hammer_mass_kg)
                 + 0.5 * h * dot(self.op.hammer, step.response);
-            self.force = if FAST {
-                contact::solve(self.p.contact_stiffness_n_m2, a, dfree, compliance)
-            } else {
-                contact::bisect(self.p.contact_stiffness_n_m2, a, dfree, compliance)
-            };
+            let step = dissipative_contact::RateContact {
+                stiffness: self.p.contact_stiffness_n_m2,
+                rate: self.p.contact_damping_s_m / h,
+            }
+            .advance::<FAST>(a, dfree, compliance);
+            self.force = step.force;
+            self.contact_heat += step.heat;
+            if step.limited {
+                self.contact_limited_heat += step.heat;
+            }
+            self.dissipated += step.heat;
+            self.contact_limit_steps = self
+                .contact_limit_steps
+                .saturating_add(u64::from(step.limited));
             self.hx += h * self.hv - 0.5 * h * h * self.force / self.p.hammer_mass_kg;
             self.hv -= h * self.force / self.p.hammer_mass_kg;
         }
@@ -383,6 +409,9 @@ impl ModalAssembly {
             contact_active: self.contact,
             mechanical_energy_j: energy,
             dissipated_energy_j: self.dissipated,
+            contact_dissipated_energy_j: self.contact_heat,
+            contact_limited_heat_j: self.contact_limited_heat,
+            contact_limit_steps: self.contact_limit_steps,
             escaped_hammer_energy_j: self.escaped,
             injected_energy_j: self.injected,
             balance_residual_j: energy + self.dissipated + self.escaped - self.injected,
@@ -397,6 +426,9 @@ impl ModalAssembly {
         self.damped = false;
         self.force = 0.0;
         self.dissipated = 0.0;
+        self.contact_heat = 0.0;
+        self.contact_limited_heat = 0.0;
+        self.contact_limit_steps = 0;
         self.escaped = 0.0;
         self.injected = 0.0;
     }
@@ -685,6 +717,73 @@ mod tests {
                     assert!(!fast.probe().contact_active);
                 }
             }
+        }
+    }
+
+    #[test]
+    fn material_loss_survives_restrikes_damping_and_bounded_reference_comparison() {
+        for beta in [0.5, 2.0, 10.0] {
+            for rate in [44100.0, 192000.0] {
+                let p = ModalAssemblyProfile {
+                    contact_damping_s_m: beta,
+                    ..ModalAssemblyProfile::default()
+                };
+                let mut fast =
+                    ModalAssembly::new(rate, TineGeometry::default(), p, refined()).unwrap();
+                let mut reference =
+                    ModalAssembly::new(rate, TineGeometry::default(), p, refined()).unwrap();
+                for tick in 0..12000 {
+                    if tick % 6000 == 0 {
+                        assert!(fast.strike(1.0));
+                        assert!(reference.strike(1.0));
+                    }
+                    if tick % 6000 == 3000 {
+                        fast.set_damped(true);
+                        reference.set_damped(true);
+                    }
+                    let before = fast.probe();
+                    fast.tick();
+                    reference.tick_with_solver::<false>();
+                    let after = fast.probe();
+                    let r = reference.probe();
+                    assert!(after.contact_force_n >= 0.0);
+                    assert!(
+                        after.contact_limited_heat_j >= 0.0
+                            && after.contact_limited_heat_j <= after.contact_dissipated_energy_j
+                    );
+                    assert!(
+                        after.contact_dissipated_energy_j >= before.contact_dissipated_energy_j
+                    );
+                    assert!(
+                        after.mechanical_energy_j
+                            <= before.mechanical_energy_j + after.injected_energy_j * 1e-10
+                    );
+                    assert!(after.balance_residual_j.abs() < after.injected_energy_j * 1e-8);
+                    let dq = core::array::from_fn(|i| after.position[i] - r.position[i]);
+                    let dv = core::array::from_fn(|i| after.velocity[i] - r.velocity[i]);
+                    assert!(
+                        dot(dq, apply(&fast.op.k, dq)) + dot(dv, apply(&fast.op.m, dv))
+                            < after.injected_energy_j * 1e-16
+                    );
+                }
+                assert!(!fast.probe().contact_active);
+                assert!(fast.probe().contact_dissipated_energy_j > 0.0);
+                assert!(
+                    fast.probe().contact_dissipated_energy_j < fast.probe().dissipated_energy_j
+                );
+                fast.reset();
+                assert_eq!(fast.probe().contact_dissipated_energy_j, 0.0);
+                assert_eq!(fast.probe().contact_limited_heat_j, 0.0);
+                assert_eq!(fast.probe().contact_limit_steps, 0);
+                assert_eq!(fast.probe().balance_residual_j, 0.0);
+            }
+        }
+        for beta in [-1.0, 10.1, f64::INFINITY, f64::NAN] {
+            let p = ModalAssemblyProfile {
+                contact_damping_s_m: beta,
+                ..ModalAssemblyProfile::default()
+            };
+            assert!(ModalAssembly::new(44100.0, TineGeometry::default(), p, refined()).is_err());
         }
     }
 

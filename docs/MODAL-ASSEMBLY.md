@@ -72,6 +72,9 @@ scaled degree-18 Taylor approximation, positive-weight quadrature and bounded
 squaring. Both damper states and contact-remainder intervals are prepared.
 The runtime transition and independent work are now folded into physical
 coordinates during preparation; see [cost and block timing](MODAL-PERFORMANCE.md).
+An optional [dissipative hammer law](DISSIPATIVE-HAMMER.md) now adds contact heat
+with a separate ledger. Its default coefficient is zero, preserving this elastic
+baseline and the measurements below.
 
 Contact uses the existing nonnegative cubic potential and its discrete gradient.
 The coupled midpoint response solves the positive-definite matrix
@@ -114,6 +117,7 @@ integration error.
 | Damper position / coefficient | 0.80 of tine length / 0.2 N s/m |
 | Hammer mass / maximum speed | 0.004 kg / 0.8 m/s |
 | Hammer speed mapping / contact coefficient | `velocity^1.4` / 4e10 N/m² |
+| Contact rate-loss coefficient beta | 0 s/m (elastic baseline) |
 
 All values above are design assumptions. Isolated T60/frequency values are not
 the eigenfrequencies and decays of the assembled system. Tine modes come from

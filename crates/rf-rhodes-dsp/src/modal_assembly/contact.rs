@@ -64,7 +64,7 @@ fn solve_bounded<const NEWTON_STEPS: usize>(k: f64, a: f64, free: f64, complianc
     bisect_bracket(k, a, free, compliance, lo, hi)
 }
 
-fn gradient_slope(k: f64, a: f64, b: f64, value: f64) -> f64 {
+pub(super) fn gradient_slope(k: f64, a: f64, b: f64, value: f64) -> f64 {
     if a >= 0.0 && b >= 0.0 {
         k * (a + 2.0 * b) / 3.0
     } else if a <= 0.0 && b <= 0.0 {

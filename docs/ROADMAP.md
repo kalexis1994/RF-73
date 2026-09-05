@@ -63,6 +63,12 @@ changes and measures synthetic 1/8/32/73-voice block workloads. The subsequent
 [bounded contact solve](MODAL-CONTACT-SOLVER.md) accelerates the existing scalar
 equation with a bracketed Newton method and bisection fallback, while preserving
 the uniform reference. Contact bursts and WASM/host deadlines remain open gates.
+The [dissipative hammer experiment](DISSIPATIVE-HAMMER.md) now couples a
+rate-dependent loss law to all nine coordinates, with explicit nonadhesive
+unloading and independent contact heat. Analytic rigid-wall restitution and
+refined/uniform comparisons separate material sensitivity from integration error.
+The loss coefficient remains provisional and defaults to zero; internal material
+relaxation and measured calibration are still missing.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

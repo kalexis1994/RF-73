@@ -63,6 +63,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Coupled assembly](docs/COUPLED-ASSEMBLY.md): mechanical reduction, energy balance, analytic tests and convergence limits.
 - [Modal performance](docs/MODAL-PERFORMANCE.md): prepared nine-coordinate mechanics, independent work and native block timing.
 - [Modal contact solver](docs/MODAL-CONTACT-SOLVER.md): bounded root-search acceleration with bisection and energy references.
+- [Dissipative hammer](docs/DISSIPATIVE-HAMMER.md): rate-dependent contact loss, nonadhesive unloading and independent material heat.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

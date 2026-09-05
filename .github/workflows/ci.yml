@@ -63,3 +63,5 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- tine-modes --output renders/ci-tine-modes.json
       - name: Audit nine-coordinate modal assembly
         run: cargo run --locked --release -p rf-rhodes-lab -- modal-assembly-check --output renders/ci-modal-assembly.json
+      - name: Audit dissipative modal hammer
+        run: cargo run --locked --release -p rf-rhodes-lab -- modal-hammer-check --output renders/ci-modal-hammer.json
