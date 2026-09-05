@@ -4,10 +4,16 @@ const TAPS: usize = 127;
 
 /// Four-times-rate windowed-sinc FIR; 63 internal samples of group delay.
 /// Blackman window, cutoff at 0.105 cycles/internal sample (0.42 output Fs).
-pub(crate) struct Decimator {
+pub struct Decimator {
     taps: [f64; TAPS],
     history: [f64; TAPS],
     cursor: usize,
+}
+
+impl Default for Decimator {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl Decimator {

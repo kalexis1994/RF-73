@@ -222,3 +222,13 @@ An intentionally demanding 2,756.25 Hz sinusoid, 3 mm amplitude and 0.5/0.25 mm 
 | Point-pole proxy | 0.0044734 | -46.99 | -129.22 | Below -160 |
 
 That synthetic trajectory reaches approximately 52 m/s peak tine velocity; it is a numerical stress case, not a claimed attainable Rhodes motion. At the same frequency with 0.75 mm amplitude, both 4x residuals are below the reporting floor. These results justify testing the alternative on actual simulated mechanical trajectories with the production filter before selecting a sound change. They do not establish an audible realism gain. The plugin remains the 0.1.1 research profile; no new audition version was produced.
+
+## Mechanical pickup pairs with production filtering
+
+Date: 2026-09-04. Added `render-pickup-pair`, exposing the existing production decimator for offline reuse. One voice supplies both magnetic laws with the same internal-rate trajectory; the command writes two raw float WAVs and an attack/body comparison receipt. All 92 Rust tests passed, as did strict Clippy, formatting, native release and WASM release builds. Builds used session-local `CARGO_INCREMENTAL=0`.
+
+The new identity fixture verifies every production sample against `Engine`, including release, for 24 combinations: four supported sample rates, notes 28/55/100 and two geometry/velocity pairs. A CLI fixture verifies byte-identical WAV output, readable alternative audio, internal sample count and tone-window coverage. It also rejects invalid parameters and preserves existing production, alternative and receipt files without creating a partial pair for those validation failures.
+
+Six G3 pairs and thirty comparisons against all five source layers are complete. All six production WAVs match the previous pilot's SHA-256 hashes; all twelve outputs have zero numerical faults. The [experiment report](PICKUP-PAIR.md) and tracked `references/g3-pickup-pair-summary.json` preserve the full numeric matrix and its interpretation limits. At close geometry/velocity 0.9, the H3 deficit against the strongest source is now 1.51 dB in the 96 ms attack and 5.65 dB in the body, compared with 6.49/9.71 dB using the original law. Body H4 and H6 remain about 14.02/16.12 dB too low relative to H1, and raw peak rises to 2.41225.
+
+This milestone establishes the candidate's effect under actual model motion and production filtering; it does not establish high-rate convergence or an audible realism gain. The plugin and its 0.1.1 research profile are unchanged. No new audition package was produced.

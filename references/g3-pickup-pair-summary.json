@@ -1,0 +1,2890 @@
+{
+  "schema_version": 1,
+  "experiment": "G3 same-mechanical-trajectory pickup pair",
+  "date": "2026-09-04",
+  "model": "research-0.1.1-uncalibrated",
+  "source_revision": "a886e6cebf074c995a10634f82ebe4fdb90f5ca6",
+  "source_inventory": "references/jrhodes-g3.inventory.json",
+  "prior_comparison": "references/g3-residual-summary.json",
+  "note": 55,
+  "sample_rate": 44100,
+  "frames": 132300,
+  "hold_seconds": 2.8,
+  "reference_anchor_frame": 0,
+  "candidate_anchor_frame": 0,
+  "harmonic_array_order": "H1 through H12; null means unavailable, not zero",
+  "interpretation": "Processed reference; model velocities are independent probes, not mapped to source strikes. All five layers inspected; no held-out claim. Actual 4x production FIR included; no high-rate aliasing reference.",
+  "artifact_directory": "renders/pickup-pair-20260904-231302",
+  "takes": [
+    {
+      "geometry": "model",
+      "velocity": 0.2,
+      "gap_mm": 1.5,
+      "offset_mm": 0.5,
+      "production_wav_sha256": "1ae9a4daa39cd076cfe032d0004e1a83f198276e18cce294c51cef2cb5f08544",
+      "point_pole_wav_sha256": "d7d2b2d7fc7a35793e28674716a579c7a5073b81ed0d61933d92cd713053eb86",
+      "production_identical_to_previous_pilot": true,
+      "mechanics": {
+        "contact_impulse_n_s": 0.00019082626801067974,
+        "contact_substeps": 1,
+        "final_energy_j": 1.235687282900996E-18,
+        "first_separation_seconds": 0.00022675736961451248,
+        "internal_samples": 529200,
+        "peak_displacement_m": 9.387118099882481E-05,
+        "peak_step_average_force_n": 1.782167833188431,
+        "peak_velocity_m_s": 0.13946101915061346
+      },
+      "production_levels": {
+        "exceeds_full_scale": false,
+        "peak": 0.03380396589636803,
+        "rms": 0.006842406782037975
+      },
+      "point_pole_levels": {
+        "exceeds_full_scale": false,
+        "peak": 0.09088641405105591,
+        "rms": 0.01844844494423257
+      },
+      "point_pole_rms_matching_gain_not_applied": 0.3708934169097584,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "production_rms_dbfs": -34.468159588465646,
+          "point_pole_rms_dbfs": -25.869528727159874,
+          "production_relative_harmonics_db": [
+            0.0,
+            -24.019494031341292,
+            -50.7008567598519,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -26.926691486642095,
+            -46.867769735017035,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -2.9071974553008033,
+            3.8330870248348674,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "production_rms_dbfs": -34.87761547726241,
+          "point_pole_rms_dbfs": -26.273560718285797,
+          "production_relative_harmonics_db": [
+            0.0,
+            -24.34318277489587,
+            -51.054233580808926,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -27.238602590477964,
+            -47.33262628968042,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -2.8954198155820947,
+            3.7216072911285067,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "production_rms_dbfs": -39.01606098185057,
+          "point_pole_rms_dbfs": -30.397790191394442,
+          "production_relative_harmonics_db": [
+            0.0,
+            -28.54459556657863,
+            -59.371821886902445,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -31.456219017563342,
+            -55.65659136338084,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -2.911623450984713,
+            3.7152305235216048,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "geometry": "model",
+      "velocity": 0.5,
+      "gap_mm": 1.5,
+      "offset_mm": 0.5,
+      "production_wav_sha256": "7eee9734dd19e998d811bff5cfbc38f93c2f0e4f3ec65cbbbe393c76644e2bbe",
+      "point_pole_wav_sha256": "64f97d392a0651cc53f23ffd412093cba3012a952f8f193dc36a3901f51bd9ad",
+      "production_identical_to_previous_pilot": true,
+      "mechanics": {
+        "contact_impulse_n_s": 0.0006837568900429203,
+        "contact_substeps": 1,
+        "final_energy_j": 1.5775378258928467E-17,
+        "first_separation_seconds": 0.00014739229024943312,
+        "internal_samples": 529200,
+        "peak_displacement_m": 0.0003366876837914891,
+        "peak_step_average_force_n": 9.79870794984994,
+        "peak_velocity_m_s": 0.5058569866565027
+      },
+      "production_levels": {
+        "exceeds_full_scale": false,
+        "peak": 0.1281958371400833,
+        "rms": 0.024406724988112916
+      },
+      "point_pole_levels": {
+        "exceeds_full_scale": false,
+        "peak": 0.3376900553703308,
+        "rms": 0.06479998210826371
+      },
+      "point_pole_rms_matching_gain_not_applied": 0.37664709455221307,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "production_rms_dbfs": -23.409628058368874,
+          "point_pole_rms_dbfs": -15.078556864898715,
+          "production_relative_harmonics_db": [
+            0.0,
+            -12.638326006314376,
+            -28.2143765564353,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -15.191900591680541,
+            -24.411636405719378,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -2.5535745853661656,
+            3.8027401507159233,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "production_rms_dbfs": -23.85010084746616,
+          "point_pole_rms_dbfs": -15.485993529169324,
+          "production_relative_harmonics_db": [
+            0.0,
+            -13.007948012218936,
+            -28.908792577617273,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -15.585439174935104,
+            -25.11611398154362,
+            -59.054208997539696,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -2.577491162716168,
+            3.792678596073653,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "production_rms_dbfs": -27.959295010288145,
+          "point_pole_rms_dbfs": -19.441011240747095,
+          "production_relative_harmonics_db": [
+            0.0,
+            -17.35916938459951,
+            -37.21028681800435,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -20.143367047278748,
+            -33.466978681281276,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -2.7841976626792366,
+            3.7433081367230727,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "geometry": "model",
+      "velocity": 0.9,
+      "gap_mm": 1.5,
+      "offset_mm": 0.5,
+      "production_wav_sha256": "ab10c76f94006fd109884a88b0c959ac468d61681575634570bd37372e4c5446",
+      "point_pole_wav_sha256": "df5c2343cd02c28f3d5882201efb9785847a5514bb92fab2a825106380ffdf10",
+      "production_identical_to_previous_pilot": true,
+      "mechanics": {
+        "contact_impulse_n_s": 0.0015534220666128789,
+        "contact_substeps": 1,
+        "final_energy_j": 8.119837611099206E-17,
+        "first_separation_seconds": 0.00011337868480725624,
+        "internal_samples": 529200,
+        "peak_displacement_m": 0.0007651454588771601,
+        "peak_step_average_force_n": 29.239709906082574,
+        "peak_velocity_m_s": 1.1539365266843498
+      },
+      "production_levels": {
+        "exceeds_full_scale": false,
+        "peak": 0.32492613792419434,
+        "rms": 0.05478803374003139
+      },
+      "point_pole_levels": {
+        "exceeds_full_scale": false,
+        "peak": 0.7977082133293152,
+        "rms": 0.13802995368680654
+      },
+      "point_pole_rms_matching_gain_not_applied": 0.39692858163487343,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "production_rms_dbfs": -16.338240741405844,
+          "point_pole_rms_dbfs": -8.78768432479185,
+          "production_relative_harmonics_db": [
+            0.0,
+            -4.493908486233547,
+            -14.205120171266234,
+            -37.01254875411702,
+            -36.72047779111437,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -5.89883937326667,
+            -10.099853060622731,
+            -51.138646683217715,
+            -30.689200398581693,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -1.4049308870331227,
+            4.105267110643503,
+            -14.126097929100695,
+            6.031277392532676,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "production_rms_dbfs": -16.825351609162105,
+          "point_pole_rms_dbfs": -9.20252751819899,
+          "production_relative_harmonics_db": [
+            0.0,
+            -4.937774790344426,
+            -14.89073827222534,
+            -37.81267477838168,
+            -37.90336248892995,
+            -57.74305374457097,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -6.432547952047023,
+            -10.813598559266033,
+            null,
+            -31.532403056988787,
+            -46.997504059343804,
+            -56.52998306482136,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -1.4947731617025974,
+            4.0771397129593066,
+            null,
+            6.370959431941163,
+            10.745549685227168,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "production_rms_dbfs": -20.941878378200084,
+          "point_pole_rms_dbfs": -12.81253851162921,
+          "production_relative_harmonics_db": [
+            0.0,
+            -9.829528152753152,
+            -23.049159500305976,
+            -53.2698538401876,
+            -54.060502950147274,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -12.10568639527454,
+            -19.187482441751463,
+            -53.13413326312214,
+            -48.18524589866556,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -2.2761582425213884,
+            3.8616770585545126,
+            0.13572057706546303,
+            5.875257051481711,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "geometry": "close",
+      "velocity": 0.2,
+      "gap_mm": 0.5,
+      "offset_mm": 0.25,
+      "production_wav_sha256": "baee9a7fe628af5979aa3acf015785d738e4dd898bd86f59825e388a52dab710",
+      "point_pole_wav_sha256": "b495ef9d18cc518a8ec462ecc0c119f30f044084d751fdf55730d3a36739ff59",
+      "production_identical_to_previous_pilot": true,
+      "mechanics": {
+        "contact_impulse_n_s": 0.00019082626801067974,
+        "contact_substeps": 1,
+        "final_energy_j": 1.235687282900996E-18,
+        "first_separation_seconds": 0.00022675736961451248,
+        "internal_samples": 529200,
+        "peak_displacement_m": 9.387118099882481E-05,
+        "peak_step_average_force_n": 1.782167833188431,
+        "peak_velocity_m_s": 0.13946101915061346
+      },
+      "production_levels": {
+        "exceeds_full_scale": false,
+        "peak": 0.12763580679893494,
+        "rms": 0.025596615788753777
+      },
+      "point_pole_levels": {
+        "exceeds_full_scale": false,
+        "peak": 0.30117926001548767,
+        "rms": 0.06112322247099433
+      },
+      "point_pole_rms_matching_gain_not_applied": 0.41877071845975566,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "production_rms_dbfs": -23.071472751826548,
+          "point_pole_rms_dbfs": -15.572535330615494,
+          "production_relative_harmonics_db": [
+            0.0,
+            -22.49169557450078,
+            -34.217617202613006,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -45.42288475548569,
+            -31.5909410935486,
+            -49.98669783353788,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -22.93118918098491,
+            2.6266761090644053,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "production_rms_dbfs": -23.472066160779953,
+          "point_pole_rms_dbfs": -15.952237818921805,
+          "production_relative_harmonics_db": [
+            0.0,
+            -22.84955614141826,
+            -34.879368955603795,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -46.16532395227225,
+            -32.272225666307136,
+            -52.29777400021383,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -23.31576781085399,
+            2.6071432892966584,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "production_rms_dbfs": -27.537753020402377,
+          "point_pole_rms_dbfs": -19.96562629291808,
+          "production_relative_harmonics_db": [
+            0.0,
+            -27.25370079625329,
+            -43.231768493410584,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -58.50898423830961,
+            -40.690079322168586,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -31.255283442056317,
+            2.5416891712419982,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "geometry": "close",
+      "velocity": 0.5,
+      "gap_mm": 0.5,
+      "offset_mm": 0.25,
+      "production_wav_sha256": "39e4fb5b8d69e60edbb211e7a64dedd3ecfd6cdbde01040b9a1c787e91849071",
+      "point_pole_wav_sha256": "d16a0bfa2084e67e876d54eb79b42ae81cea948747d68cf3a3f3669032ea0cbe",
+      "production_identical_to_previous_pilot": true,
+      "mechanics": {
+        "contact_impulse_n_s": 0.0006837568900429203,
+        "contact_substeps": 1,
+        "final_energy_j": 1.5775378258928467E-17,
+        "first_separation_seconds": 0.00014739229024943312,
+        "internal_samples": 529200,
+        "peak_displacement_m": 0.0003366876837914891,
+        "peak_step_average_force_n": 9.79870794984994,
+        "peak_velocity_m_s": 0.5058569866565027
+      },
+      "production_levels": {
+        "exceeds_full_scale": false,
+        "peak": 0.47760123014450073,
+        "rms": 0.08506430702416325
+      },
+      "point_pole_levels": {
+        "exceeds_full_scale": true,
+        "peak": 1.0823874473571777,
+        "rms": 0.19263029251332647
+      },
+      "point_pole_rms_matching_gain_not_applied": 0.44159361393420693,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "production_rms_dbfs": -13.03936779308499,
+          "point_pole_rms_dbfs": -6.454128738087124,
+          "production_relative_harmonics_db": [
+            0.0,
+            -8.077082973422405,
+            -11.78144416214928,
+            null,
+            -34.21611128347372,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -12.586656599350125,
+            -8.179074839425944,
+            -21.19972210350624,
+            -29.91412387738162,
+            null,
+            -51.08970340881037,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -4.50957362592772,
+            3.6023693227233355,
+            null,
+            4.301987406092103,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "production_rms_dbfs": -13.432681941244194,
+          "point_pole_rms_dbfs": -6.753752077415105,
+          "production_relative_harmonics_db": [
+            0.0,
+            -8.647116978805405,
+            -12.498593538818175,
+            -34.205670864142455,
+            -35.16024051617862,
+            -44.449659929772096,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -13.58316498939652,
+            -8.964454414186562,
+            -22.335757647047792,
+            -31.185114837855572,
+            -35.33035424788046,
+            -57.73212164563085,
+            -56.06287713347296,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -4.936048010591115,
+            3.534139124631613,
+            11.869913217094663,
+            3.975125678323046,
+            9.119305681891639,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "production_rms_dbfs": -17.00360173442505,
+          "point_pole_rms_dbfs": -9.811044083527628,
+          "production_relative_harmonics_db": [
+            0.0,
+            -14.718374504588269,
+            -20.92820159779172,
+            -42.7849582237547,
+            -52.75065402748904,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -25.552613248895412,
+            -17.94947925887833,
+            -32.49293145862573,
+            -51.623631231282765,
+            -55.28857881675774,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -10.834238744307143,
+            2.9787223389133892,
+            10.292026765128966,
+            1.1270227962062762,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "geometry": "close",
+      "velocity": 0.9,
+      "gap_mm": 0.5,
+      "offset_mm": 0.25,
+      "production_wav_sha256": "66ad178a89bb703bb81f9ac8e0c47ebfb1d433e7cb8fe1eb7202aaf992e9e5dd",
+      "point_pole_wav_sha256": "1f8a04489e7c4b028a77c939bf401119b7b179faff5a02a715d8085c986e96c6",
+      "production_identical_to_previous_pilot": true,
+      "mechanics": {
+        "contact_impulse_n_s": 0.0015534220666128789,
+        "contact_substeps": 1,
+        "final_energy_j": 8.119837611099206E-17,
+        "first_separation_seconds": 0.00011337868480725624,
+        "internal_samples": 529200,
+        "peak_displacement_m": 0.0007651454588771601,
+        "peak_step_average_force_n": 29.239709906082574,
+        "peak_velocity_m_s": 1.1539365266843498
+      },
+      "production_levels": {
+        "exceeds_full_scale": true,
+        "peak": 1.1132313013076782,
+        "rms": 0.17911105835850616
+      },
+      "point_pole_levels": {
+        "exceeds_full_scale": true,
+        "peak": 2.412248373031616,
+        "rms": 0.3774628593617478
+      },
+      "point_pole_rms_matching_gain_not_applied": 0.47451306510358443,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "production_rms_dbfs": -6.233456936824845,
+          "point_pole_rms_dbfs": -0.2588602396372219,
+          "production_relative_harmonics_db": [
+            0.0,
+            4.421302299914547,
+            1.0523163489677874,
+            -10.875286212095025,
+            -6.286909315810588,
+            -23.82139826147963,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            5.667293183344473,
+            6.103779540841073,
+            -8.24283491952653,
+            1.673489365478158,
+            -11.275232456225591,
+            -6.858164177213872,
+            -10.64499808854611,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            1.2459908834299256,
+            5.051463191873285,
+            2.6324512925684953,
+            7.960398681288746,
+            12.546165805254038,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "production_rms_dbfs": -6.6816340795641,
+          "point_pole_rms_dbfs": -0.6060265462816493,
+          "production_relative_harmonics_db": [
+            0.0,
+            3.7870465268033717,
+            0.5185381838221801,
+            -12.541371240172301,
+            -7.215067563225764,
+            -24.090465382414564,
+            -18.854137895265488,
+            -25.407166737853125,
+            -35.43684815642645,
+            -33.75927981970876,
+            null,
+            -45.43737282331844
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            4.858661149639229,
+            5.49944789498794,
+            -10.943971070559389,
+            0.5160276658137972,
+            -11.330437315848911,
+            -9.564968711220043,
+            -13.18388132871737,
+            -26.77607116659893,
+            -20.733475682855417,
+            -36.60828460094474,
+            -31.8389282568647
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            1.071614622835857,
+            4.98090971116576,
+            1.5974001696129125,
+            7.731095229039561,
+            12.760028066565653,
+            9.289169184045445,
+            12.223285409135755,
+            8.660776989827522,
+            13.025804136853342,
+            null,
+            13.59844456645374
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "production_rms_dbfs": -10.814331269288749,
+          "point_pole_rms_dbfs": -4.413074848697899,
+          "production_relative_harmonics_db": [
+            0.0,
+            -3.732395351873391,
+            -6.790487132750309,
+            -38.07746666039218,
+            -22.579552713313966,
+            -32.81947162123424,
+            -45.59779066773561,
+            -46.1536375736568,
+            null,
+            null,
+            null,
+            null
+          ],
+          "point_pole_relative_harmonics_db": [
+            0.0,
+            -5.589382424812198,
+            -2.723220975796141,
+            -18.77625398894118,
+            -16.781732390116566,
+            -22.64677029039074,
+            -43.85557106466738,
+            -35.7193010916686,
+            -48.50848597935482,
+            -54.60674129153526,
+            -58.32397899556505,
+            null
+          ],
+          "point_pole_minus_production_balance_db": [
+            0.0,
+            -1.8569870729388072,
+            4.067266156954168,
+            19.301212671451005,
+            5.797820323197399,
+            10.172701330843502,
+            1.7422196030682287,
+            10.434336481988204,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    }
+  ],
+  "reference_comparisons": [
+    {
+      "layer_suffix": 1,
+      "geometry": "model",
+      "model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -14.924587123837217,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -30.20482562185859,
+            -54.040486834424236,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -15.002641301540368,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -29.620611054861552,
+            -54.34529525837465,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -16.312656326680425,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -27.234901037456872,
+            -58.58099933464169,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 2,
+      "geometry": "model",
+      "model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -15.442672676829455,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -10.92002457269837,
+            -44.484670050989145,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -15.454315687281063,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -12.105176691459233,
+            -44.83394451852942,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -17.757760433634083,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -1.6145276996718039,
+            -48.35309725509606,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 3,
+      "geometry": "model",
+      "model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -18.369359781747896,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -11.471032179335435,
+            -33.16652101068694,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -18.302044563979308,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -9.808529026852675,
+            -33.77451241592814,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -21.26364666706423,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -14.69116843148204,
+            -37.28436375215212,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 4,
+      "geometry": "model",
+      "model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -19.061133496463018,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -11.741088904936337,
+            -14.823188955894224,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -19.03150262085422,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -10.210782753102055,
+            -18.72270671852276,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -22.074109309083493,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -12.950025375721843,
+            -24.440649273597653,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 5,
+      "geometry": "model",
+      "model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -19.703597314587874,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -6.8342334828622775,
+            -2.561518568674636,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -19.741233894041116,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -5.58700785081836,
+            -5.726696653051306,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -22.901440053615083,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -7.838002602308933,
+            -14.000133701653269,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 1,
+      "geometry": "model",
+      "model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -4.1336152615760575,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -18.470034726897033,
+            -31.58435350512658,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -4.2150741124238955,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -17.967447639318692,
+            -32.12878295023785,
+            -49.88731972871875,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -5.355877376033076,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -15.922049067172278,
+            -36.391386652542124,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 2,
+      "geometry": "model",
+      "model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -4.651700814568295,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            0.8147663222631838,
+            -22.028536721691488,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -4.666748498164591,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -0.4520132759163733,
+            -22.61743221039262,
+            -51.9955737083751,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -6.800981482986735,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            9.69832427061279,
+            -26.163484572996495,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 3,
+      "geometry": "model",
+      "model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -7.578387919486737,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            0.2637587156261194,
+            -10.710387681389285,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -7.5144773748628335,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            1.844634388690185,
+            -11.558000107791347,
+            -41.7166801993788,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -10.306867716416884,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -3.3783164611974463,
+            -15.094751070052553,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 4,
+      "geometry": "model",
+      "model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -8.270161634201859,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -0.006298009974782914,
+            7.632944373403433,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -8.243935431737746,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            1.4423806624408044,
+            3.493805589614041,
+            -22.17322003888986,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -11.117330358436146,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -1.6371734054372489,
+            -2.2510365914980888,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 5,
+      "geometry": "model",
+      "model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -8.912625452326713,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            4.9005574120992765,
+            19.89461476062302,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -8.953666704924643,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            6.0661555647245,
+            16.489815655085494,
+            -3.1418554065893716,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -11.944661102967736,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            3.4748493679756614,
+            8.189478980446296,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 1,
+      "geometry": "model",
+      "model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 2.157257278530807,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -9.176973508483163,
+            -17.272570160029936,
+            -38.70959542268871,
+            -33.16207220000124,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 2.068391898546439,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -8.814556416430612,
+            -17.826267527960265,
+            null,
+            -33.38132287120046,
+            -46.87570433198459,
+            -32.50285337058475,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": 1.2725953530848084,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -7.884368415168071,
+            -22.11189041301231,
+            -48.38148000008217,
+            -37.100232453442786,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 2,
+      "geometry": "model",
+      "model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 1.639171725538569,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            10.107827540677055,
+            -7.716753376594843,
+            -44.369953270887954,
+            -7.087015048840396,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 1.616717512805744,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            8.700877946971708,
+            -8.314916788115035,
+            null,
+            -8.363106588885987,
+            -27.09391030327557,
+            -37.56016365069741,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -0.17250875386885056,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            17.736004922617,
+            -11.883988333466684,
+            -42.14075014535022,
+            -27.937930188414406,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 3,
+      "geometry": "model",
+      "model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -1.2875153793798724,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            9.556819934039991,
+            3.601395663707361,
+            -34.96668898484325,
+            -7.618508889773416,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -1.2310113638924989,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            10.997525611578265,
+            2.7445153144862395,
+            null,
+            -6.9122532508804895,
+            -12.471433587275143,
+            -7.069856954305301,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -3.678394987298999,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            4.659364190806761,
+            -0.8152548305227398,
+            -30.374250991246186,
+            -18.471562608726323,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 4,
+      "geometry": "model",
+      "model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -1.9792890940949945,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            9.286763208439089,
+            21.94472771850008,
+            -14.909663131271898,
+            13.035384295280945,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -1.960469420767411,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            10.595271885328884,
+            17.796321011891628,
+            null,
+            16.02843523445947,
+            7.291348307527805,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -4.488857629318261,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            6.400507246566958,
+            12.028459648031724,
+            -12.240210316950552,
+            3.663440743658576,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 5,
+      "geometry": "model",
+      "model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -2.621752912219849,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            14.193618630513148,
+            34.20639810571967,
+            4.598049563320757,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -2.6702006939543095,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            15.21904678761258,
+            30.79233107736308,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -5.316188373849851,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            11.512530019979868,
+            22.46897521997611,
+            4.245954796472084,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 1,
+      "geometry": "close",
+      "model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -4.627593727292837,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -48.70101889070219,
+            -38.7636581929558,
+            -37.55764657300888,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -4.681318402176377,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -48.54733241665584,
+            -39.284894635001365,
+            -43.13088473139288,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -5.880492428204063,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -54.28766625820314,
+            -43.614487293429434,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 2,
+      "geometry": "close",
+      "model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -5.145679280285075,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -29.416217841541965,
+            -29.20784140952071,
+            -43.21800442120812,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -5.132992787917072,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -31.03189805325352,
+            -29.773543895156138,
+            -45.23913871104923,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -7.325596535157722,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -28.66729292041807,
+            -33.386585213883805,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 3,
+      "geometry": "close",
+      "model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -8.072366385203516,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -29.96722544817903,
+            -17.88969236921851,
+            -33.81474013516342,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -7.980721664615315,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -28.735250388646964,
+            -18.714111792554863,
+            -34.96024520205293,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -10.83148276858787,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -41.74393365222831,
+            -22.317851710939863,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 4,
+      "geometry": "close",
+      "model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -8.764140099918638,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -30.23728217377993,
+            0.45363968557420975,
+            -13.757714281592065,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -8.710179721490228,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -29.137504114896345,
+            -3.662306095149475,
+            -15.41678504156399,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -11.641945410607132,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -40.00279059646811,
+            -9.474137232385399,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 5,
+      "geometry": "close",
+      "model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -9.406603918043492,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -25.330426751705872,
+            12.715310072793798,
+            5.74999841300059,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -9.419910994677124,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -24.51372921261265,
+            9.333703970321977,
+            3.614579590736497,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -12.469276155138722,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -34.8907678230552,
+            0.966378339558986,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 1,
+      "geometry": "close",
+      "model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 4.490812865235534,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -15.864790734566618,
+            -15.351791938833147,
+            -8.770670842977236,
+            -32.38699567880117,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 4.5171673393303235,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -15.965173453780109,
+            -15.977123382880794,
+            -13.168868378226843,
+            -33.03403465206725,
+            -35.20855452052125,
+            -33.70499195139424,
+            -51.544748077608645,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": 4.27408978118639,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -21.331295268788942,
+            -20.87388723013918,
+            -27.740278195585766,
+            -40.53861778605999,
+            -48.76325161665507,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 2,
+      "geometry": "close",
+      "model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 3.972727312243296,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            3.4200103145936005,
+            -5.795975155398056,
+            -14.43102869117648,
+            -6.311938527640322,
+            null,
+            -31.776330800545942,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 4.0654929535896285,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            1.5502609096222102,
+            -6.465772643035564,
+            -15.277122357883192,
+            -8.015818369752772,
+            -15.426760491812225,
+            -38.7623022315069,
+            -30.35598378654909,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": 2.8289856742327313,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            4.289078068996126,
+            -10.645985150593551,
+            -21.499548340853813,
+            -31.376315521031607,
+            -12.462234218256484,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 3,
+      "geometry": "close",
+      "model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 1.0460402073248547,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            2.869002707956536,
+            5.522173884904149,
+            -5.0277644051317765,
+            -6.8434323685733425,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 1.2177640768913855,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            3.8469085742287685,
+            4.5936594595657105,
+            -4.9982288488868996,
+            -6.564965031747274,
+            -0.8042837758117969,
+            -8.27199553511479,
+            -14.343432895749288,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -0.6769005591974171,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -8.78756266281411,
+            0.42274835235039276,
+            -9.733049186749781,
+            -21.909947941343525,
+            -18.396767153746005,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 4,
+      "geometry": "close",
+      "model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 0.35426649260973253,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            2.598945982355634,
+            23.865505939696867,
+            15.029261448439577,
+            13.810460816481019,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 0.4883060200164735,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            3.444654847979388,
+            19.6454651569711,
+            14.545231311602045,
+            16.375723453592684,
+            18.95849811899115,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -1.487363201216679,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -7.046419607053913,
+            13.266462830904857,
+            8.400991487545852,
+            0.2250554110413745,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 5,
+      "geometry": "close",
+      "model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": -0.2881973255151218,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            7.505801404429693,
+            36.127176326916455,
+            34.53697414303223,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": -0.22142525317042505,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            8.068429750263084,
+            32.64147522244255,
+            33.57659594390253,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": -2.314693945748269,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -1.934396833641003,
+            23.70697840284924,
+            24.88715660096849,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 1,
+      "geometry": "close",
+      "model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 10.686081363685435,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            2.389159048127979,
+            -1.0689375585661303,
+            4.186216341002474,
+            -0.7993824359413892,
+            -10.426366783162766,
+            null,
+            -5.580576106655194,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 10.66489287046378,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            2.4766526852556403,
+            -1.5132210737062923,
+            -1.77708180173844,
+            -1.3328921483978755,
+            -11.208637588489701,
+            14.462160983016563,
+            -8.665752272853055,
+            -18.487781142532842,
+            1.466235963783948,
+            -25.43854710050163,
+            -14.696161670537794
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": 9.67205901601612,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            -1.3680644447057286,
+            -5.647628947056989,
+            -14.023600725901211,
+            -5.696718944893789,
+            -16.121443090288068,
+            -31.18614529743419,
+            -9.709096893900362,
+            -32.48169784588384,
+            -33.8430909516258,
+            -22.82913404515333,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 2,
+      "geometry": "close",
+      "model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 10.167995810693197,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            21.673960097288198,
+            8.48687922486896,
+            -1.4741415071967694,
+            25.275674715219456,
+            8.13474277543644,
+            12.455208431050558,
+            17.734009594295443,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 10.213218484723084,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            19.992087048657957,
+            7.998129666138938,
+            -3.8853357813947884,
+            23.6853241339166,
+            8.573156440219321,
+            9.404850702903904,
+            12.5230120182065,
+            14.679744745387314,
+            10.549262513097442,
+            -0.3774023820512937,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": 8.22695490906246,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            24.252308893079338,
+            4.580273132488638,
+            -7.782870871169257,
+            3.4655833201345914,
+            20.179574308110517,
+            -15.295245584975213,
+            -5.587979132825147,
+            -8.27968343266457,
+            -8.414557194775803,
+            -14.746352785400795,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 3,
+      "geometry": "close",
+      "model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 7.241308705774757,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            21.122952490651134,
+            19.805028265171167,
+            7.929122778847933,
+            24.744180874286435,
+            22.974487846025003,
+            null,
+            30.056044285718507,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 7.365489608024841,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            22.288734713264517,
+            19.057561768740214,
+            6.393557727601504,
+            25.136177471922096,
+            23.19563315621975,
+            39.89515739929601,
+            28.535562909006302,
+            18.098371044300468,
+            35.44400692588911,
+            23.32955935604646,
+            26.6729889118166
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": 4.721068675632313,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            11.175668161269103,
+            15.649006635432581,
+            3.983628282934774,
+            12.931950899822674,
+            14.245041372620996,
+            6.60100852506357,
+            20.455598775836975,
+            4.465876254246531,
+            3.8344792973230284,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 4,
+      "geometry": "close",
+      "model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 6.549534991059635,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            20.85289576505023,
+            38.148360319963885,
+            27.986148632419287,
+            45.3980740593408,
+            41.31989123739649,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 6.636031551149929,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            21.886480987015137,
+            34.1093674661456,
+            25.93701788809045,
+            48.07686595726205,
+            42.9584150510227,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": 3.9106060336130506,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            12.9168112170293,
+            28.492721113987045,
+            22.117668957230407,
+            35.06695425220757,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 5,
+      "geometry": "close",
+      "model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "point_pole_minus_reference_rms_db": 5.9070711729347805,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            25.75975118712429,
+            50.41003070718347,
+            47.49386132701194,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "point_pole_minus_reference_rms_db": 5.926300277963031,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            26.510255889298833,
+            47.10537753161705,
+            44.96838252039093,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "point_pole_minus_reference_rms_db": 3.0832752890814605,
+          "point_pole_minus_reference_balance_db": [
+            0.0,
+            18.02883399044221,
+            38.93323668593143,
+            38.60383407065304,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    }
+  ]
+}

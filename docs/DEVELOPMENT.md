@@ -56,6 +56,14 @@ Generate the candidate WAV first using [G3 residual pilot](G3-RESIDUAL-PILOT.md)
 
 ## Pickup geometry sweep
 
+To compare transfer laws under identical production mechanics and filtering:
+
+```text
+cargo run --locked --release -p rf-rhodes-lab -- render-pickup-pair --output renders/g3-pair.wav --note 55 --velocity 0.9 --sample-rate 44100 --seconds 3 --hold 2.8
+```
+
+See [Mechanical pickup pairs](PICKUP-PAIR.md) for the companion WAV/report names, duration constraints and reference experiment. The alternative remains an offline research path.
+
 For a bounded pickup-geometry experiment against an explicitly selected held-note region:
 
 ```text

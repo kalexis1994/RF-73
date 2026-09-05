@@ -56,6 +56,82 @@ impl Drop for Scratch {
 }
 
 #[test]
+fn mechanical_pickup_pair_preserves_production_wav_and_all_existing_outputs() {
+    let scratch = Scratch::new();
+    let options = [
+        "--note",
+        "55",
+        "--sample-rate",
+        "44100",
+        "--seconds",
+        "0.8",
+        "--hold",
+        "0.7",
+    ];
+    let mut args = vec!["render-pickup-pair", "--output", "pair.wav"];
+    args.extend(options);
+    scratch.success(&args);
+    let mut regular = vec!["render", "--output", "regular.wav"];
+    regular.extend(options);
+    scratch.success(&regular);
+    assert_eq!(
+        fs::read(scratch.0.join("pair.wav")).unwrap(),
+        fs::read(scratch.0.join("regular.wav")).unwrap()
+    );
+    scratch.success(&["inspect", "pair-point-pole.wav"]);
+    let report = scratch.json("pair-pickup-pair.json");
+    assert_eq!(report["faults"], 0);
+    assert_eq!(report["mechanics"]["internal_samples"], 141120);
+    assert_eq!(
+        report["tone_comparison"]["windows"]
+            .as_array()
+            .unwrap()
+            .len(),
+        3
+    );
+    assert!(
+        report["point_pole_levels"]["rms"].as_f64().unwrap()
+            > report["production_levels"]["rms"].as_f64().unwrap()
+    );
+    let before = fs::read(scratch.0.join("pair-pickup-pair.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(
+        before,
+        fs::read(scratch.0.join("pair-pickup-pair.json")).unwrap()
+    );
+    for existing in ["blocked-point-pole.wav", "blocked-pickup-pair.json"] {
+        fs::write(scratch.0.join(existing), "preserve").unwrap();
+        assert!(
+            !scratch
+                .run(&["render-pickup-pair", "--output", "blocked.wav"])
+                .status
+                .success()
+        );
+        assert!(!scratch.0.join("blocked.wav").exists());
+        assert_eq!(fs::read(scratch.0.join(existing)).unwrap(), b"preserve");
+        fs::remove_file(scratch.0.join(existing)).unwrap();
+    }
+    for flags in [
+        vec!["--trace"],
+        vec!["--seconds", "10.1"],
+        vec!["--seconds", "0.64", "--hold", "0.6"],
+        vec!["--hold", "0.59"],
+        vec!["--velocity", "NaN"],
+        vec!["--gap-mm", "0"],
+        vec!["--offset-mm", "4"],
+        vec!["--note", "27"],
+        vec!["--velocity", "0.5", "--velocity", "0.6"],
+    ] {
+        let mut args = vec!["render-pickup-pair", "--output", "invalid.wav"];
+        args.extend(flags);
+        assert!(!scratch.run(&args).status.success(), "{args:?}");
+        assert!(!scratch.0.join("invalid.wav").exists());
+        assert!(!scratch.0.join("invalid-point-pole.wav").exists());
+        assert!(!scratch.0.join("invalid-pickup-pair.json").exists());
+    }
+}
+
+#[test]
 fn pickup_transfer_reports_both_laws_and_rejects_invalid_or_existing_output() {
     let scratch = Scratch::new();
     let args = [

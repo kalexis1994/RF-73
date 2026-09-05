@@ -54,6 +54,7 @@ The audio path uses no explicit allocation, locks or I/O. The laboratory does no
 - [Tone comparison](docs/TONE-COMPARISON.md): explicit attack/body windows and harmonic balance without inferred velocity or decay.
 - [G3 residual pilot](docs/G3-RESIDUAL-PILOT.md): measured baseline and exploratory pickup differences against the acquired recordings.
 - [Isolated pickup transfer](docs/PICKUP-TRANSFER.md): compare two magnetic laws under identical motion and measure internal sampling error.
+- [Mechanical pickup pairs](docs/PICKUP-PAIR.md): compare the two laws on the production trajectory and filter, with a complete G3 reference matrix.
 - [Numerical convergence](docs/CONVERGENCE.md): the treble-contact correction, experiment and residual errors.
 - [Desktop audition](docs/AUDITION.md): build, install and launch each test version.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.

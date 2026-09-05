@@ -5,6 +5,7 @@ mod model;
 mod pickup;
 mod voice;
 
+pub use filter::Decimator as ProductionDecimator;
 pub use model::{ModelError, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
 pub use pickup::MagneticPickup;
 pub use voice::{Probe, Voice};
