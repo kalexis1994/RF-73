@@ -28,6 +28,7 @@ pub struct MemoryModalAssembly {
     hammer: MemoryHammer,
     damped: bool,
     heat: f64,
+    structural_energy: f64,
 }
 impl MemoryModalAssembly {
     /// Only structural/damper fields of `structure` are used. Legacy scalar-hammer
@@ -56,12 +57,14 @@ impl MemoryModalAssembly {
             hammer,
             damped: false,
             heat: 0.0,
+            structural_energy: 0.0,
         })
     }
     pub fn set_damped(&mut self, damped: bool) {
         self.damped = damped;
     }
     pub fn apply_core_impulse(&mut self, impulse_n_s: f64) -> Result<(), ModelError> {
+        // An impulse changes only the hammer, so structural energy remains valid.
         self.hammer.apply_core_impulse(impulse_n_s)
     }
     pub fn mass_matrix(&self) -> [[f64; 9]; 9] {
@@ -83,7 +86,8 @@ impl MemoryModalAssembly {
         let mid = core::array::from_fn(|i| 0.5 * (self.v[i] + v[i]));
         let loss = self.h * dot(mid, apply(&self.op.c[usize::from(self.damped)], mid));
         let heat = self.heat + loss;
-        let energy = mechanical(&self.op.m, &self.op.k, q, v) + hp.mechanical_energy_j;
+        let structure = mechanical(&self.op.m, &self.op.k, q, v);
+        let energy = structure + hp.mechanical_energy_j;
         if !q.iter().chain(v.iter()).all(|x| x.is_finite())
             || !heat.is_finite()
             || !energy.is_finite()
@@ -95,26 +99,43 @@ impl MemoryModalAssembly {
         self.v = v;
         self.heat = heat;
         self.hammer = hammer;
-        Ok(self.probe())
+        self.structural_energy = structure;
+        Ok(make_probe(&self.op, q, v, heat, hp, structure))
     }
+    /// Current snapshot using the structural energy of the last committed step.
     pub fn probe(&self) -> MemoryModalProbe {
-        let hammer = self.hammer.probe();
-        let structure = mechanical(&self.op.m, &self.op.k, self.q, self.v);
-        let energy = structure + hammer.mechanical_energy_j;
-        MemoryModalProbe {
-            position: self.q,
-            velocity: self.v,
-            pickup_displacement_m: dot(self.op.pickup, self.q),
-            pickup_velocity_m_s: dot(self.op.pickup, self.v),
-            hammer,
-            structural_energy_j: structure,
-            structural_heat_j: self.heat,
-            mechanical_energy_j: energy,
-            balance_residual_j: energy + self.heat + hammer.material.dissipated_energy_j
-                - hammer.initial_energy_j
-                - hammer.external_work_j,
-            structural_work_residual_j: structure + self.heat - hammer.surface_work_j,
-        }
+        make_probe(
+            &self.op,
+            self.q,
+            self.v,
+            self.heat,
+            self.hammer.probe(),
+            self.structural_energy,
+        )
+    }
+}
+fn make_probe(
+    op: &Operators,
+    q: Vector,
+    v: Vector,
+    heat: f64,
+    hammer: MemoryHammerProbe,
+    structure: f64,
+) -> MemoryModalProbe {
+    let energy = structure + hammer.mechanical_energy_j;
+    MemoryModalProbe {
+        position: q,
+        velocity: v,
+        pickup_displacement_m: dot(op.pickup, q),
+        pickup_velocity_m_s: dot(op.pickup, v),
+        hammer,
+        structural_energy_j: structure,
+        structural_heat_j: heat,
+        mechanical_energy_j: energy,
+        balance_residual_j: energy + heat + hammer.material.dissipated_energy_j
+            - hammer.initial_energy_j
+            - hammer.external_work_j,
+        structural_work_residual_j: structure + heat - hammer.surface_work_j,
     }
 }
 fn mechanical(m: &Matrix, k: &Matrix, q: Vector, v: Vector) -> f64 {
@@ -124,6 +145,49 @@ fn mechanical(m: &Matrix, k: &Matrix, q: Vector, v: Vector) -> f64 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn cached_diagnostics_follow_committed_motion_and_signed_impulse_work() {
+        let mut v = voice(2e-6);
+        for i in 0..10000 {
+            if i == 1500 {
+                v.apply_core_impulse(0.008).unwrap();
+            }
+            if i == 3000 {
+                let before = v.probe();
+                let impulse = -0.5 * 0.0038 * before.hammer.core_velocity_m_s;
+                v.apply_core_impulse(impulse).unwrap();
+                let after = v.probe();
+                assert!(after.hammer.external_work_j < before.hammer.external_work_j);
+                assert_eq!(before.structural_energy_j, after.structural_energy_j);
+                assert_eq!(before.position, after.position);
+                assert_eq!(before.hammer.material, after.hammer.material);
+            }
+            if i == 4500 {
+                v.set_damped(true);
+            }
+            if i == 7000 {
+                v.set_damped(false);
+            }
+            let fresh = || {
+                make_probe(
+                    &v.op,
+                    v.q,
+                    v.v,
+                    v.heat,
+                    v.hammer.probe(),
+                    mechanical(&v.op.m, &v.op.k, v.q, v.v),
+                )
+            };
+            assert_eq!(v.probe(), fresh());
+            let returned = v.tick().unwrap();
+            assert_eq!(returned, v.probe());
+            let scale = returned.hammer.initial_energy_j + returned.hammer.absolute_impulse_work_j;
+            assert!(returned.balance_residual_j.abs() < scale * 1e-8);
+        }
+        let before = v.probe();
+        assert!(v.apply_core_impulse(f64::NAN).is_err());
+        assert_eq!(v.probe(), before);
+    }
     fn voice(h: f64) -> MemoryModalAssembly {
         MemoryModalAssembly::new(
             h,

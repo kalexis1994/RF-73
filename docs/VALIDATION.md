@@ -582,3 +582,42 @@ its SHA256 preserved. CI includes the new audit; remote CI was not run during
 this validation. No new dependencies, listening package, audio-device access or
 Desktop interaction were introduced. Plugin version 0.1.2 and its audible
 mechanics remain unchanged. Accuracy per unit cost is the next numerical gate.
+
+## Reusing structural energy in stateful diagnostics
+
+Date: 2026-09-05. The [diagnostic optimization](MEMORY-MODAL-PERFORMANCE.md)
+retains the structural energy already evaluated and validated by each successful
+step. Returned probes reuse that value and the current hammer probe. Subsequent
+observations use the cached structural value with the current hammer state.
+Only one f64 is added to the voice, increasing native storage from 5944 to 5952
+bytes. Coordinates, physical forces, heat integration and timesteps are unchanged.
+
+All 157 workspace tests passed. The added test compares every diagnostic field
+with a fresh reconstruction through 10,000 steps, positive and energy-removing
+core impulses, damper engagement/release and invalid impulse rejection. Existing
+tests retain atomic failure checks for excessive material travel. Strict Clippy,
+formatting and release WASM plugin compilation passed.
+
+The [24-take audit](../references/memory-modal-cache-validation.json) is
+byte-identical to the pre-optimization report: maximum relative global energy
+residual remains `9.512e-10`, kinetic-metric velocity RMSE 0.7693%, pickup-velocity
+RMSE 0.09629%, and output mean-contact-force RMSE 0.1406%. The numerical reference
+and all error gates are unchanged. Existing timing output paths are rejected
+with their SHA256 preserved.
+
+The new `memory-modal-timing` command measures the native single-voice tick and
+its returned probe over the same 8 ms event sequence. It excludes construction,
+pickup voltage, mixing and a host. Timing has no machine-dependent speed gate;
+finite clocks and final energy are checked. The existing CI physical audit now
+exercises the optimized path; remote CI was not executed locally. No new
+dependencies, listening package, audio-device or Desktop interaction were added.
+Plugin version 0.1.2 and its audible engine remain unchanged.
+
+The [native comparison](../references/memory-modal-cache-timing-comparison.json)
+pools two batches of three repetitions per version/profile, retaining all
+observations. Median speedups are 1.202x, 1.191x, 1.196x and 1.023x across four
+length/speed combinations. The last profile changes direction between batches,
+so its small pooled gain is not a reliable margin. Final mechanical diagnostics
+agree exactly across all timing runs. Optimized medians still cost 125–150
+seconds per simulated second; reducing the required integration steps remains
+the substantial performance gate.

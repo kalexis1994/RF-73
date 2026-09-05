@@ -154,6 +154,10 @@ surface extension, including all its stored diagnostics and comparisons.
 
 ## Remaining gates
 
+The [diagnostic optimization](MEMORY-MODAL-PERFORMANCE.md) reuses the structural
+energy already validated by each step, avoiding repeated quadratic evaluations.
+Its native kernel benchmark keeps the integration interval and physics fixed.
+
 Efficient free-motion integration, event-aware contact refinement and measured
 timing remain necessary before this model can approach polyphonic realtime use.
 The next numerical milestone should improve accuracy per unit cost against the

@@ -78,6 +78,9 @@ reimpact. The [stateful modal coupling](MEMORY-MODAL-COUPLING.md) now connects
 that hammer to all nine moving structural coordinates with separate port-work
 checks, persistent recovery and damper transitions. Improving temporal accuracy
 per unit cost and identifying material parameters remain gates before plugin integration.
+The [stateful diagnostic optimization](MEMORY-MODAL-PERFORMANCE.md) now removes
+repeated structural-energy evaluation and measures native kernel cost at the
+same fixed resolution. Reducing required integration steps remains open.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "experiment": "memory-modal-cache-timing-comparison",
+  "description": "Two batches of three repetitions per version and profile, pooled without discarding observations. First batch order after/before; repeat order before/after. No other agent-launched builds, tests or audits during these batches. External background load and CPU clocks were not controlled. Median of six is the mean of sorted observations 3 and 4. No realtime qualification.",
+  "baseline_commit": "84ded26",
+  "before_voice_bytes": 5944,
+  "after_voice_bytes": 5952,
+  "cases": [
+    {
+      "tine_length_m": 0.05,
+      "launch_speed_m_s": 0.2,
+      "before_seconds": [
+        1.3381814,
+        1.2201371,
+        1.3208237999999999,
+        1.1528502,
+        1.1546353,
+        1.1929539
+      ],
+      "after_seconds": [
+        1.078557,
+        1.0304266,
+        1.0622447,
+        0.9633847,
+        0.9581581,
+        0.976472
+      ],
+      "before_median_seconds": 1.2065455,
+      "after_median_seconds": 1.0034493,
+      "median_speedup": 1.202398068342865,
+      "after_seconds_per_simulated_second": 125.4311625,
+      "final_diagnostics_identical": true
+    },
+    {
+      "tine_length_m": 0.05,
+      "launch_speed_m_s": 0.8,
+      "before_seconds": [
+        1.3563093,
+        1.3606308999999999,
+        1.3690376,
+        1.2066391,
+        1.1825823,
+        1.1923775
+      ],
+      "after_seconds": [
+        1.1363095,
+        1.2175824,
+        1.2766525,
+        1.0148073,
+        0.9970078,
+        0.9791596
+      ],
+      "before_median_seconds": 1.2814742,
+      "after_median_seconds": 1.0755584,
+      "median_speedup": 1.1914501341814632,
+      "after_seconds_per_simulated_second": 134.4448,
+      "final_diagnostics_identical": true
+    },
+    {
+      "tine_length_m": 0.12,
+      "launch_speed_m_s": 0.2,
+      "before_seconds": [
+        1.4355158000000001,
+        1.3385332,
+        1.2708514,
+        1.2537069,
+        1.2509392,
+        1.2653034
+      ],
+      "after_seconds": [
+        1.1764218,
+        1.1079933,
+        1.0694556,
+        1.0505224,
+        1.0439603,
+        1.0471362
+      ],
+      "before_median_seconds": 1.2680774000000001,
+      "after_median_seconds": 1.0599889999999998,
+      "median_speedup": 1.196311848519183,
+      "after_seconds_per_simulated_second": 132.49862499999998,
+      "final_diagnostics_identical": true
+    },
+    {
+      "tine_length_m": 0.12,
+      "launch_speed_m_s": 0.8,
+      "before_seconds": [
+        1.2533449,
+        1.2205219,
+        1.2033821,
+        1.2372658,
+        1.2274599,
+        1.2086253
+      ],
+      "after_seconds": [
+        1.9219412,
+        1.6848325,
+        1.3415119,
+        1.0267844,
+        1.0354342,
+        1.051233
+      ],
+      "before_median_seconds": 1.2239909,
+      "after_median_seconds": 1.1963724500000001,
+      "median_speedup": 1.0230851604782438,
+      "after_seconds_per_simulated_second": 149.54655625,
+      "final_diagnostics_identical": true
+    }
+  ]
+}
