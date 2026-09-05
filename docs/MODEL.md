@@ -41,6 +41,12 @@ Version 0.1.1 subdivides contact ticks when the fastest mode would advance by mo
 
 ## Provisional constants and simplifications
 
+The independent [coupled assembly experiment](COUPLED-ASSEMBLY.md) adds an explicit
+tine/tonebar/common-support network and energy ledger to the offline laboratory.
+It does not change the production voice described here. Its lowest-order
+coordinates, parameter hypotheses and numerical accuracy limits are documented
+separately; measured assembly identification remains outstanding.
+
 | Quantity | Initial choice | Evidence status |
 | --- | --- | --- |
 | Hammer mass at A3 | 4 g | Assumed |

@@ -264,3 +264,32 @@ The [tracked receipt](../references/pickup-lab-validation.json) records observed
 The final audition run is `dist/audition/0.1.2-1788579391438077200-17052/`. Its 237,223-byte archive has SHA-256 `6e26ce4eb3287739d8b4541f7b2c08834b30b9a97c08b364cfb43e1a1a0a964c`. Installation compared the DSP component and all four UI files byte for byte, then launched Desktop. Startup logs report WASAPI at 48 kHz; read-only host API requests confirm the active 0.1.2 PLAY surface and HTTP 200 for HTML, CSS, JavaScript bindings and UI WASM with appropriate MIME types. The earlier root-level `dist/RF-Rhodes-0.1.2.rfplugin` is a retained intermediate artifact without the screen UI; use the final audition archive identified here.
 
 The final panel has not been visually exercised or judged by listening. Desktop automation was stopped at the user's request; subsequent verification used console commands, installed-file checks and read-only local API requests. No keyboard/mouse automation is part of the final validation. See [Pickup Lab UI](PICKUP-LAB-UI.md) for usage and limitations.
+
+## Passive coupled assembly laboratory
+
+Date: 2026-09-05. Added an independent three-coordinate tine/tonebar/common-support
+mechanical candidate, with immutable SI parameters, reciprocal coupling,
+nonlinear elastic hammer contact and an explicit stored/dissipated/escaped
+energy ledger. The production engine and plugin state remain unchanged.
+See [Coupled assembly](COUPLED-ASSEMBLY.md) for the reduction and its assumptions.
+
+All 117 workspace tests passed, including seven new mechanics tests covering
+analytic elastic collision, analytic fork/support normal modes, second-order
+convergence, reciprocal impulse response, energy accounting, disconnected
+components, overdamped parameter corners, invalid inputs and restrikes.
+Strict native workspace Clippy, formatting and the release WASM plugin build passed.
+
+The [tracked audit](../references/assembly-validation.json) reports 120 takes
+across 24 note/rate/velocity cases. Maximum relative energy-balance residual was
+`4.458e-10`; maximum positive single-step energy change was `5.146e-16` of injected
+energy. Maximum 128/256-step displacement and velocity differences were
+`0.01146%` and `0.01910%`. Every strike separated during the 50 ms observation.
+The reproducible `assembly-check` command is included in CI; the updated remote
+CI workflow has not been executed by this local validation.
+
+The 4-step candidate reached `25.8869%` velocity error against the 256-step
+reference in the treble despite remaining passive. Therefore this implementation
+is an offline reference, not a numerically qualified 4x plugin replacement.
+The current candidate omits higher bending modes, root rotation and calibrated
+geometry. No new plugin version, installed package, listening result or real-time
+qualification is claimed; no Desktop or native UI control was used for this milestone.

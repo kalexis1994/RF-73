@@ -6,6 +6,8 @@ The first working prototype includes a nonlinear hammer-contact solver, a three-
 
 Version 0.1.2 adds a Rust pickup laboratory editor in RackForge: three continuously filtered variants, fixed level matching, smooth A/B selection and complete saved settings. The physical profile remains provisional.
 
+The offline [coupled assembly experiment](docs/COUPLED-ASSEMBLY.md) now models a tine, tonebar and compliant common support with reciprocal forces, nonlinear hammer contact and a complete energy ledger. Its parameters remain provisional; high-resolution validation precedes plugin integration.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start
@@ -46,6 +48,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 
 - [Pickup Lab UI](docs/PICKUP-LAB-UI.md): controls, A/B, saving, transition and gain policy.
 - [Physical model ledger](docs/MODEL.md): equations, constants and known approximations.
+- [Coupled assembly](docs/COUPLED-ASSEMBLY.md): mechanical reduction, energy balance, analytic tests and convergence limits.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

@@ -1,5 +1,6 @@
 //! Offline laboratory. All rendering, WAV writing and analysis runs in Rust.
 mod analysis;
+mod assembly_check;
 mod audition;
 mod convergence;
 mod package;
@@ -198,6 +199,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", tone_comparison::HELP);
         print!("{}", pickup_transfer::HELP);
         print!("{}", convergence::HELP);
+        print!("{}", assembly_check::HELP);
         return Ok(());
     }
     if args[0] == "inspect" {
@@ -206,6 +208,9 @@ fn run() -> Result<(), Box<dyn Error>> {
         }
         println!("{}", wav::inspect(File::open(&args[1])?)?);
         return Ok(());
+    }
+    if args[0] == "assembly-check" {
+        return assembly_check::run(&args);
     }
     if args[0] == "compare-partials" {
         return partial_comparison::run(&args);

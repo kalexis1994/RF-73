@@ -1,11 +1,13 @@
 //! Provisional Rhodes research engine. Physical plausibility is not calibration.
 //! Construction prepares all memory; rendering uses fixed-size state only.
+mod assembly;
 mod filter;
 mod laboratory;
 mod model;
 mod pickup;
 mod voice;
 
+pub use assembly::{AssemblyParameters, AssemblyProbe, AssemblyVoice};
 pub use filter::Decimator as ProductionDecimator;
 pub use laboratory::{PICKUP_LEVEL_MATCH, PICKUP_NAMES};
 pub use model::{ModelError, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};

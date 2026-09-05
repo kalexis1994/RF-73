@@ -55,3 +55,5 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- compare renders/ci.wav renders/ci.wav --output renders/ci-comparison.json
       - name: Measure integration convergence
         run: cargo run --locked --release -p rf-rhodes-lab -- converge --output renders/ci-convergence.json --seconds 0.05
+      - name: Audit passive coupled assembly
+        run: cargo run --locked --release -p rf-rhodes-lab -- assembly-check --output renders/ci-assembly.json

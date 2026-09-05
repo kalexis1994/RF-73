@@ -352,7 +352,7 @@ impl Voice {
 
 /// Difference quotient of V(d) = k * max(d, 0)^3 / 3.
 /// Piecewise algebra avoids catastrophic cancellation at nearby compressions.
-fn contact_gradient(k: f64, a: f64, b: f64) -> f64 {
+pub(crate) fn contact_gradient(k: f64, a: f64, b: f64) -> f64 {
     if a >= 0.0 && b >= 0.0 {
         k * (a * a + a * b + b * b) / 3.0
     } else if a <= 0.0 && b <= 0.0 {

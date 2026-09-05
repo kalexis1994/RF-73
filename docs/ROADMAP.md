@@ -34,6 +34,14 @@ See [Pickup Lab UI](PICKUP-LAB-UI.md). Human listening feedback now guides the n
 
 ## Physical-model ambition and next implementation gate
 
+Implemented first gate: the offline [passive common-support assembly](COUPLED-ASSEMBLY.md)
+has reciprocal tine/tonebar coupling, nonlinear hammer contact and explicit
+stored/dissipated/escaped energy accounting. Analytic mechanics tests and the
+24-case, 120-take audit pass. This is an uncalibrated lowest-order reduction.
+Its 4x treble phase error prevents direct plugin integration; efficient coupled
+free transitions, contact refinement and measured higher-mode identification
+are the next implementation gates.
+
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 
 The next mechanical milestone is an explicit passive tine/tonebar assembly with mounting compliance, replacing the present three-mode ideal-cantilever approximation only after isolated tests establish its behavior. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, with independent convergence and energy accounting before real-time integration.
