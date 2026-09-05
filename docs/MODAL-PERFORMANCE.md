@@ -28,7 +28,9 @@ For work evaluation, each diagonal coefficient is stored once and each pair of
 off-diagonal coefficients is summed. The 18-state quadratic form therefore stores
 171 coefficients rather than 324. Neither negative-work clipping nor energy
 renormalization is used. Matrix-vector evaluation borrows rows without copying
-the entire matrix. Contact still uses the same midpoint equations and 48 bisections.
+the entire matrix. At this milestone contact used the same midpoint equations and
+48 bisections; the subsequent [contact solver optimization](MODAL-CONTACT-SOLVER.md)
+retains those equations and accelerates the refined root search.
 
 One new test compares 48 damped trajectories against the previous normalized
 evaluation, including light support inertia, a negative tonebar arm, both damper

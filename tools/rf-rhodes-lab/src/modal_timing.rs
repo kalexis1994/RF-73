@@ -30,6 +30,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             "voice_size_bytes":std::mem::size_of::<ModalAssembly>(),
             "duration_seconds":0.25,"block_frames":128,"measured_runs":5,"warmup_runs":1,
             "contact_substeps":32,"steps_per_sample":4,
+            "contact_solver":"up to 8 safeguarded Newton evaluations, then 48 bisections if needed",
             "geometry":"Default TineGeometry, cycling lengths 0.05/0.075/0.12 m by voice index; not a calibrated keyboard",
             "profile_parameters":"ModalAssemblyProfile::default()",
             "gesture":"All voices strike at velocity 1 every 50 ms, damper applied 25 ms after each strike",

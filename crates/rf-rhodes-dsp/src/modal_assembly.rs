@@ -2,6 +2,7 @@
 //! Coordinates: root translation, root angle, six tine modal amplitudes, bar deflection.
 use crate::{ModelError, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN, TineGeometry, TineModes};
 use core::f64::consts::TAU;
+mod contact;
 mod numerics;
 use numerics::{Free, Midpoint, apply, dot};
 const N: usize = 9;
@@ -297,8 +298,11 @@ impl ModalAssembly {
         self.damped = damped;
     }
     pub fn tick(&mut self) {
+        self.tick_with_solver::<true>();
+    }
+    fn tick_with_solver<const FAST: bool>(&mut self) {
         if self.free.is_none() {
-            self.advance_midpoint(self.dt);
+            self.advance_midpoint::<false>(self.dt);
         } else if !self.contact {
             self.advance_free(false);
             self.force = 0.0;
@@ -307,7 +311,7 @@ impl ModalAssembly {
             let mut force = 0.0;
             for _ in 0..self.contact_steps {
                 if self.contact {
-                    self.advance_midpoint(h);
+                    self.advance_midpoint::<FAST>(h);
                     force += self.force;
                 } else {
                     self.advance_free(true);
@@ -328,7 +332,7 @@ impl ModalAssembly {
         self.v = v;
         self.dissipated += loss;
     }
-    fn advance_midpoint(&mut self, h: f64) {
+    fn advance_midpoint<const FAST: bool>(&mut self, h: f64) {
         let step = &self.midpoint[usize::from(self.damped)];
         let old_v = self.v;
         let fv = step.free_velocity(self.q, self.v);
@@ -339,21 +343,11 @@ impl ModalAssembly {
             let dfree = self.hx + h * self.hv - dot(self.op.hammer, fq);
             let compliance = h * h / (2.0 * self.p.hammer_mass_kg)
                 + 0.5 * h * dot(self.op.hammer, step.response);
-            let mut lo = 0.0;
-            let mut hi = self.p.contact_stiffness_n_m2 * a.max(dfree).max(0.0).powi(2);
-            for _ in 0..48 {
-                let f = 0.5 * (lo + hi);
-                if f > crate::voice::contact_gradient(
-                    self.p.contact_stiffness_n_m2,
-                    a,
-                    dfree - compliance * f,
-                ) {
-                    hi = f;
-                } else {
-                    lo = f;
-                }
-            }
-            self.force = 0.5 * (lo + hi);
+            self.force = if FAST {
+                contact::solve(self.p.contact_stiffness_n_m2, a, dfree, compliance)
+            } else {
+                contact::bisect(self.p.contact_stiffness_n_m2, a, dfree, compliance)
+            };
             self.hx += h * self.hv - 0.5 * h * h * self.force / self.p.hammer_mass_kg;
             self.hv -= h * self.force / self.p.hammer_mass_kg;
         }
@@ -637,6 +631,60 @@ mod tests {
             assert_eq!(loss, 0.0);
             let energy = 0.5 * (dot(q, apply(&op.k, q)) + dot(v, apply(&op.m, v)));
             assert!((energy / initial - 1.0).abs() < 1e-8);
+        }
+    }
+
+    #[test]
+    fn accelerated_contact_matches_bisection_through_damping_and_restrikes() {
+        for rate in [44100.0, 192000.0] {
+            for length in [0.05, 0.075, 0.12] {
+                for strong in [false, true] {
+                    let p = if strong {
+                        ModalAssemblyProfile {
+                            contact_stiffness_n_m2: 1e12,
+                            maximum_hammer_speed_m_s: 3.0,
+                            support_mass_kg: 0.001,
+                            damper_n_s_m: 10.0,
+                            ..ModalAssemblyProfile::default()
+                        }
+                    } else {
+                        ModalAssemblyProfile::default()
+                    };
+                    let g = TineGeometry {
+                        length_m: length,
+                        ..TineGeometry::default()
+                    };
+                    let mut fast = ModalAssembly::new(rate, g, p, refined()).unwrap();
+                    let mut reference = ModalAssembly::new(rate, g, p, refined()).unwrap();
+                    let (mut force_error, mut force_energy) = (0.0, 0.0);
+                    for tick in 0..6000 {
+                        if tick % 3000 == 0 {
+                            let velocity = if strong { 1.0 } else { 0.1 };
+                            assert!(fast.strike(velocity));
+                            assert!(reference.strike(velocity));
+                        }
+                        if tick % 3000 == 1500 {
+                            fast.set_damped(true);
+                            reference.set_damped(true);
+                        }
+                        fast.tick();
+                        reference.tick_with_solver::<false>();
+                        let p = fast.probe();
+                        let r = reference.probe();
+                        assert_eq!(p.contact_active, r.contact_active);
+                        let dq = core::array::from_fn(|i| p.position[i] - r.position[i]);
+                        let dv = core::array::from_fn(|i| p.velocity[i] - r.velocity[i]);
+                        let error = dot(dq, apply(&fast.op.k, dq)) + dot(dv, apply(&fast.op.m, dv));
+                        assert!(error.is_finite() && error < p.injected_energy_j * 1e-16);
+                        assert!(p.balance_residual_j.abs() < p.injected_energy_j * 1e-8);
+                        assert!(r.balance_residual_j.abs() < r.injected_energy_j * 1e-8);
+                        force_error += (p.contact_force_n - r.contact_force_n).powi(2);
+                        force_energy += r.contact_force_n.powi(2);
+                    }
+                    assert!(force_energy > 0.0 && force_error / force_energy < 1e-18);
+                    assert!(!fast.probe().contact_active);
+                }
+            }
         }
     }
 

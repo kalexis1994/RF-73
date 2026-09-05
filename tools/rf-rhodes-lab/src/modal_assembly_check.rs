@@ -199,6 +199,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let g = TineGeometry::default();
     let report = json!({"schema_version":1,"experiment":"nine-coordinate-modal-assembly-v1","status":if pass{"pass"}else{"fail"},
         "calibrated":false,"plugin_integrated":false,"duration_seconds":0.04,"damper_frame":"floor(output_frames/2)",
+        "contact_solver":{"refined":"up to 8 safeguarded Newton evaluations, then 48 bisections if needed","midpoint":"original 48 bisections"},
         "coordinates":["root_m","root_rad","tine_1_m","tine_2_m","tine_3_m","tine_4_m","tine_5_m","tine_6_m","relative_tonebar_m"],
         "tine_defaults":{"elements":64,"diameter_m":g.diameter_m,"young_modulus_pa":g.young_modulus_pa,"density_kg_m3":g.density_kg_m3,
             "tuning_mass_kg":g.tuning_mass_kg,"tuning_position":g.tuning_position,"hammer_position":g.hammer_position,"pickup_position":g.pickup_position},

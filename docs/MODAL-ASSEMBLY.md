@@ -81,7 +81,8 @@ The coupled midpoint response solves the positive-definite matrix
 compliance = h^2/(2 mhammer) + (h^2/2) Bhammer^T A^-1 Bhammer
 ```
 
-The contact force is found with 48 bounded bisections. Separation transfers the
+The refined contact force now uses a [bounded safeguarded Newton solve](MODAL-CONTACT-SOLVER.md)
+with bisection fallback; the uniform reference retains 48 bisections. Separation transfers the
 outgoing hammer kinetic energy to the escaped-energy ledger. Remaining intervals
 inside a contact tick advance freely; force is averaged over the base tick to
 preserve impulse. Retriggers retain all mechanical coordinates and velocities,

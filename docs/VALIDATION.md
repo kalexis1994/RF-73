@@ -415,3 +415,35 @@ miss every block at both rates. Average throughput alone would hide contact burs
 This remains offline mechanics with no magnetic conversion, antialias filter,
 host timing or measured physical calibration. The production instrument and
 package version stay at 0.1.2. No audio device or Desktop controls were used.
+
+## Bounded acceleration of modal contact
+
+Date: 2026-09-05. The [refined contact root solver](MODAL-CONTACT-SOLVER.md)
+uses up to eight safeguarded Newton evaluations and a 48-bisection fallback.
+The potential, mechanical integration, contact subdivisions and energy ledger
+are unchanged; the uniform-midpoint reference keeps its original bisection.
+The worst scalar path is bounded but can cost more than the original method.
+
+All 138 workspace tests pass, including three new tests for 882 scalar root
+cases with forced fallback, cubic contact work, and twelve paired trajectories
+through damping/restrikes with default and stiff/high-speed contact profiles.
+Strict workspace Clippy, formatting and release WASM plugin compilation pass.
+The [84-take audit](../references/modal-assembly-contact-validation.json) passes
+the existing gates: contact-32 pickup velocity RMSE remains `0.01176%` against
+refined contact 256, and the maximum relative energy residual is `1.193e-11`.
+All 24 uniform-midpoint rows retain identical mechanical metrics from the
+preceding audit; RMSE fields change only because their refined reference changed.
+
+A fresh [before](../references/modal-timing-before-contact.json) run of the
+retained `fe4cf96` release executable and an [after](../references/modal-timing-after-contact.json)
+run of the rebuilt laboratory use the same block workload. Median render speed
+improves by 1.70x to 2.03x across eight cases. At eight voices/48 kHz, p99 block
+time falls from 6.514 to 1.183 times the deadline; 25 of 470 blocks still exceed
+it. Full polyphony and the 192 kHz single-voice contact bursts remain over budget.
+Voice storage stays at 21,712 bytes; the worst block-boundary energy residual
+is `1.467e-11` of cumulative injected energy. These native observations exclude
+pickup/filter/mixing, host and WASM timing, and are not realtime qualification.
+
+This offline optimization does not add a material law or measured calibration.
+The plugin and package remain at version 0.1.2, with no new listening release,
+audio-device access or Desktop interaction.

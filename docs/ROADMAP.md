@@ -59,8 +59,10 @@ independent energy accounting pass an 84-take audit. The solver remains offline
 and needs further performance work, pickup/filter comparison and physical
 parameter identification before it can replace the plugin engine. The
 [prepared free-motion optimization](MODAL-PERFORMANCE.md) removes repeated basis
-changes and measures synthetic 1/8/32/73-voice block workloads. Contact bursts and
-WASM/host deadlines remain open gates.
+changes and measures synthetic 1/8/32/73-voice block workloads. The subsequent
+[bounded contact solve](MODAL-CONTACT-SOLVER.md) accelerates the existing scalar
+equation with a bracketed Newton method and bisection fallback, while preserving
+the uniform reference. Contact bursts and WASM/host deadlines remain open gates.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

@@ -1,0 +1,3836 @@
+{
+  "calibrated": false,
+  "cases": [
+    {
+      "mass_matrix": [
+        [
+          0.045793604753050374,
+          0.0012215901188262592,
+          0.0003498560654539614,
+          -0.00017502861763193085,
+          0.00008183412348552354,
+          -0.00004989504849654126,
+          0.000046347239339294,
+          -0.00005130734743921995,
+          0.015
+        ],
+        [
+          0.0012215901188262592,
+          0.0001067586289608753,
+          0.000013207880908703903,
+          -1.853713674594388e-6,
+          5.221724294093777e-7,
+          -2.31829035024379e-7,
+          1.702142099111083e-7,
+          -1.5320582331818064e-7,
+          0.0012
+        ],
+        [
+          0.0003498560654539614,
+          0.000013207880908703903,
+          0.00023551953645480753,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00017502861763193085,
+          -1.853713674594388e-6,
+          0.0,
+          0.00022479591677967306,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00008183412348552354,
+          5.221724294093777e-7,
+          0.0,
+          0.0,
+          0.00015263719660292717,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00004989504849654126,
+          -2.31829035024379e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.00011620161077302785,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.000046347239339294,
+          1.702142099111083e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0001516185761467136,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00005130734743921995,
+          -1.5320582331818064e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0002560750304853286,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 44100,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.00021556165945645615,
+          "displacement_relative_rmse_vs_refined_256": 0.0000626585515123346,
+          "dissipated_energy_j": 1.0336858162612613e-6,
+          "escaped_hammer_energy_j": 9.716855287207683e-7,
+          "final_energy_j": 2.3291941354191934e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 6.903483118235335e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            9.461565245304811e-6,
+            0.0002281212675239667,
+            0.00002479364950435163,
+            5.119691204360114e-6,
+            1.0213260621817078e-6,
+            3.702936668998728e-7,
+            1.2073788744349432e-7,
+            2.4583956440147882e-8,
+            4.06740103970365e-6
+          ],
+          "peak_tick_mean_force_n": 0.567613218096914,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.005820372195577925,
+          "separation_seconds": 0.0006065759637188208,
+          "velocity_relative_rmse_vs_refined_256": 0.0040227223696198975
+        },
+        {
+          "contact_impulse_n_s": 0.00021555703450256753,
+          "displacement_relative_rmse_vs_refined_256": 6.130381241547735e-8,
+          "dissipated_energy_j": 1.033782419089366e-6,
+          "escaped_hammer_energy_j": 9.715835888952815e-7,
+          "final_energy_j": 2.3297278351135572e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 7.119556210873945e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            9.461347633505163e-6,
+            0.00022811807512167743,
+            0.00002479450980763809,
+            5.118679487255257e-6,
+            1.0209190514635701e-6,
+            3.7142842579423875e-7,
+            1.2057166162456468e-7,
+            2.4568586605699133e-8,
+            4.067964513014618e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671355973302931,
+          "pickup_velocity_relative_rmse_vs_refined_256": 6.156401506133352e-6,
+          "separation_seconds": 0.0006065759637188208,
+          "velocity_relative_rmse_vs_refined_256": 4.357491886274058e-6
+        },
+        {
+          "contact_impulse_n_s": 0.00021555703094547276,
+          "displacement_relative_rmse_vs_refined_256": 1.4590465196194651e-8,
+          "dissipated_energy_j": 1.03378249352974e-6,
+          "escaped_hammer_energy_j": 9.71583510494482e-7,
+          "final_energy_j": 2.329728231461453e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 5.614351381961499e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            9.461347468119611e-6,
+            0.00022811807261534378,
+            0.000024794510432304727,
+            5.118678769126315e-6,
+            1.02091846188956e-6,
+            3.714288717215609e-7,
+            1.2057095245447808e-7,
+            2.4568700310622367e-8,
+            4.067964935256251e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671353632152555,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.4658490438364812e-6,
+          "separation_seconds": 0.0006065759637188208,
+          "velocity_relative_rmse_vs_refined_256": 1.0375295673070865e-6
+        },
+        {
+          "contact_impulse_n_s": 0.00021555703005618382,
+          "displacement_relative_rmse_vs_refined_256": 2.8944372504876918e-9,
+          "dissipated_energy_j": 1.0337825121368973e-6,
+          "escaped_hammer_energy_j": 9.715834908939499e-7,
+          "final_energy_j": 2.329728330243164e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 8.353991183600615e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            9.461347426720952e-6,
+            0.00022811807197921079,
+            0.00002479451058851868,
+            5.118678589596812e-6,
+            1.0209183144608456e-6,
+            3.714289829757461e-7,
+            1.2057077479843446e-7,
+            2.456872835173465e-8,
+            4.067965040802886e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671353046629798,
+          "pickup_velocity_relative_rmse_vs_refined_256": 2.9315910371023293e-7,
+          "separation_seconds": 0.0006065759637188208,
+          "velocity_relative_rmse_vs_refined_256": 2.0749805776593853e-7
+        },
+        {
+          "contact_impulse_n_s": 0.0002155570300561842,
+          "displacement_relative_rmse_vs_refined_256": 2.0899739856199172e-8,
+          "dissipated_energy_j": 1.0337825120253382e-6,
+          "escaped_hammer_energy_j": 9.715834908939505e-7,
+          "final_energy_j": 2.329728343486639e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 2.0838840612650686e-11,
+          "maximum_positive_energy_step_relative": 4.1753254616156617e-16,
+          "peak_absolute_coordinates": [
+            9.461350675246479e-6,
+            0.00022811829269231735,
+            0.000024794842938240716,
+            5.118678589596811e-6,
+            1.0212059882878743e-6,
+            3.7149424281218504e-7,
+            1.205911737644454e-7,
+            2.4569631738238936e-8,
+            4.067996777110356e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671986912978455,
+          "pickup_velocity_relative_rmse_vs_refined_256": 2.21592995258323e-6,
+          "separation_seconds": 0.0006038743622448979,
+          "velocity_relative_rmse_vs_refined_256": 1.5815566025750034e-6
+        },
+        {
+          "contact_impulse_n_s": 0.00021555702983364622,
+          "displacement_relative_rmse_vs_refined_256": 5.015044388505646e-9,
+          "dissipated_energy_j": 1.0337825169169507e-6,
+          "escaped_hammer_energy_j": 9.715834859890715e-7,
+          "final_energy_j": 2.329728354956622e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 6.0924470239438e-11,
+          "maximum_positive_energy_step_relative": 4.1753254616156617e-16,
+          "peak_absolute_coordinates": [
+            9.461350669487622e-6,
+            0.0002281182930588804,
+            0.000024794842951680537,
+            5.11867864807869e-6,
+            1.0212060162751185e-6,
+            3.714942971620667e-7,
+            1.205911514271087e-7,
+            2.4569643263873603e-8,
+            4.067996814084719e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671986734921964,
+          "pickup_velocity_relative_rmse_vs_refined_256": 5.205725461085488e-7,
+          "separation_seconds": 0.0006038743622448979,
+          "velocity_relative_rmse_vs_refined_256": 3.718613894444444e-7
+        },
+        {
+          "contact_impulse_n_s": 0.00021555702983364668,
+          "dissipated_energy_j": 1.0337825168082497e-6,
+          "escaped_hammer_energy_j": 9.715834859890698e-7,
+          "final_energy_j": 2.329728355441557e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 7.655668000145396e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            9.461347416513192e-6,
+            0.00022811807183632855,
+            0.000024794510627559316,
+            5.118678544713449e-6,
+            1.0209182776007388e-6,
+            3.714290107748235e-7,
+            1.2057073036165893e-7,
+            2.4568735337899983e-8,
+            4.067965067261647e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671352900231942,
+          "separation_seconds": 0.0006065759637188208
+        }
+      ],
+      "tine_length_m": 0.05,
+      "velocity": 0.1
+    },
+    {
+      "mass_matrix": [
+        [
+          0.045793604753050374,
+          0.0012215901188262592,
+          0.0003498560654539614,
+          -0.00017502861763193085,
+          0.00008183412348552354,
+          -0.00004989504849654126,
+          0.000046347239339294,
+          -0.00005130734743921995,
+          0.015
+        ],
+        [
+          0.0012215901188262592,
+          0.0001067586289608753,
+          0.000013207880908703903,
+          -1.853713674594388e-6,
+          5.221724294093777e-7,
+          -2.31829035024379e-7,
+          1.702142099111083e-7,
+          -1.5320582331818064e-7,
+          0.0012
+        ],
+        [
+          0.0003498560654539614,
+          0.000013207880908703903,
+          0.00023551953645480753,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00017502861763193085,
+          -1.853713674594388e-6,
+          0.0,
+          0.00022479591677967306,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00008183412348552354,
+          5.221724294093777e-7,
+          0.0,
+          0.0,
+          0.00015263719660292717,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00004989504849654126,
+          -2.31829035024379e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.00011620161077302785,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.000046347239339294,
+          1.702142099111083e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0001516185761467136,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00005130734743921995,
+          -1.5320582331818064e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0002560750304853286,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 44100,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.005333617633284085,
+          "displacement_relative_rmse_vs_refined_256": 0.0032517073616513724,
+          "dissipated_energy_j": 0.0006968773678250824,
+          "escaped_hammer_energy_j": 0.0005690405256325971,
+          "final_energy_j": 0.000014082106533723532,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 6.716632458547698e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00023426910509736525,
+            0.00565854690946935,
+            0.0006203975429555293,
+            0.000173835130982649,
+            0.000039989706616353855,
+            0.00001535046487986184,
+            5.030935679177697e-6,
+            1.0071917297268437e-6,
+            0.00010284077075132904
+          ],
+          "peak_tick_mean_force_n": 22.261859202887972,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.07742052962625813,
+          "separation_seconds": 0.00042517006802721087,
+          "velocity_relative_rmse_vs_refined_256": 0.05375505741998513
+        },
+        {
+          "contact_impulse_n_s": 0.005316654087648639,
+          "displacement_relative_rmse_vs_refined_256": 1.6640785880103115e-6,
+          "dissipated_energy_j": 0.0007059685617654721,
+          "escaped_hammer_energy_j": 0.0005600280658449641,
+          "final_energy_j": 0.000014003372380630435,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 6.979551485375433e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00023353907984073965,
+            0.005641117438364589,
+            0.0006185966343260808,
+            0.0001737646553764546,
+            0.000039922265208650656,
+            0.000015786385188159388,
+            4.9989624710529165e-6,
+            1.1285441177763164e-6,
+            0.0001025904795025747
+          ],
+          "peak_tick_mean_force_n": 22.676800390623022,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.00011750742417173792,
+          "separation_seconds": 0.0004308390022675737,
+          "velocity_relative_rmse_vs_refined_256": 0.00010118739552631991
+        },
+        {
+          "contact_impulse_n_s": 0.005316647646066823,
+          "displacement_relative_rmse_vs_refined_256": 3.960505239649984e-7,
+          "dissipated_energy_j": 0.0007059719966020942,
+          "escaped_hammer_energy_j": 0.0005600246572000267,
+          "final_energy_j": 0.000014003346190935661,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 5.4247378073954395e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00023353879963141153,
+            0.005641110804784142,
+            0.0006185959323804934,
+            0.0001737646071257819,
+            0.00003992225171533461,
+            0.000015786511223530733,
+            4.99946067369513e-6,
+            1.1286266968507728e-6,
+            0.00010259037502552522
+          ],
+          "peak_tick_mean_force_n": 22.6761491468437,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.000027978745746456753,
+          "separation_seconds": 0.0004308390022675737,
+          "velocity_relative_rmse_vs_refined_256": 0.000024094856571102707
+        },
+        {
+          "contact_impulse_n_s": 0.00531664603645802,
+          "displacement_relative_rmse_vs_refined_256": 7.914718397740555e-8,
+          "dissipated_energy_j": 0.000705972854888624,
+          "escaped_hammer_energy_j": 0.000560023805456673,
+          "final_energy_j": 0.000014003339644950883,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 7.61906136055243e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00023353872961162238,
+            0.005641109147000158,
+            0.0006185957569797903,
+            0.0001737645950785588,
+            0.0000399222483563265,
+            0.00001578654215505339,
+            4.999585174252452e-6,
+            1.1286472539502455e-6,
+            0.00010259034892747347
+          ],
+          "peak_tick_mean_force_n": 22.675986075517983,
+          "pickup_velocity_relative_rmse_vs_refined_256": 5.596285386091889e-6,
+          "separation_seconds": 0.0004308390022675737,
+          "velocity_relative_rmse_vs_refined_256": 4.819590316230808e-6
+        },
+        {
+          "contact_impulse_n_s": 0.005316646036458035,
+          "displacement_relative_rmse_vs_refined_256": 2.104948665623567e-7,
+          "dissipated_energy_j": 0.0007059728548032057,
+          "escaped_hammer_energy_j": 0.0005600238054566717,
+          "final_energy_j": 0.000014003339743515247,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 2.035606519500479e-11,
+          "maximum_positive_energy_step_relative": 1.6940658945086002e-16,
+          "peak_absolute_coordinates": [
+            0.00023353894287846501,
+            0.005641117935689257,
+            0.000618610514676814,
+            0.00017380690883050321,
+            0.000039978924693849305,
+            0.000015859739778465444,
+            4.999950176024411e-6,
+            1.130143913475309e-6,
+            0.00010259132478478732
+          ],
+          "peak_tick_mean_force_n": 22.933667771721773,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.00004282248918682274,
+          "separation_seconds": 0.0004307061366213152,
+          "velocity_relative_rmse_vs_refined_256": 0.00003675679331153348
+        },
+        {
+          "contact_impulse_n_s": 0.0053166456341002255,
+          "displacement_relative_rmse_vs_refined_256": 4.559407783156726e-8,
+          "dissipated_energy_j": 0.0007059730695130762,
+          "escaped_hammer_energy_j": 0.0005600235925444424,
+          "final_energy_j": 0.000014003338012958641,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 6.38208832570014e-11,
+          "maximum_positive_energy_step_relative": 1.6940658945086002e-16,
+          "peak_absolute_coordinates": [
+            0.00023353892472381313,
+            0.005641117500241362,
+            0.0006186104674604109,
+            0.00017380691001734607,
+            0.000039978922929765004,
+            0.000015859783539549346,
+            4.99998301049128e-6,
+            1.1301512411115926e-6,
+            0.00010259131790521744
+          ],
+          "peak_tick_mean_force_n": 22.933684141861626,
+          "pickup_velocity_relative_rmse_vs_refined_256": 9.77155322119435e-6,
+          "separation_seconds": 0.0004306839923469388,
+          "velocity_relative_rmse_vs_refined_256": 8.378057286812552e-6
+        },
+        {
+          "contact_impulse_n_s": 0.0053166456341002186,
+          "dissipated_energy_j": 0.0007059730694441327,
+          "escaped_hammer_energy_j": 0.0005600235925444426,
+          "final_energy_j": 0.000014003338011280889,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 6.552646879959266e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.0002335387121115548,
+            0.005641108732948729,
+            0.0006185957131342011,
+            0.0001737645920676961,
+            0.000039922247517471764,
+            0.00001578654985181081,
+            4.999616296256799e-6,
+            1.1286523877390221e-6,
+            0.00010259034240579417
+          ],
+          "peak_tick_mean_force_n": 22.675945291425716,
+          "separation_seconds": 0.0004308390022675737
+        }
+      ],
+      "tine_length_m": 0.05,
+      "velocity": 1.0
+    },
+    {
+      "mass_matrix": [
+        [
+          0.045793604753050374,
+          0.0012215901188262592,
+          0.0003498560654539614,
+          -0.00017502861763193085,
+          0.00008183412348552354,
+          -0.00004989504849654126,
+          0.000046347239339294,
+          -0.00005130734743921995,
+          0.015
+        ],
+        [
+          0.0012215901188262592,
+          0.0001067586289608753,
+          0.000013207880908703903,
+          -1.853713674594388e-6,
+          5.221724294093777e-7,
+          -2.31829035024379e-7,
+          1.702142099111083e-7,
+          -1.5320582331818064e-7,
+          0.0012
+        ],
+        [
+          0.0003498560654539614,
+          0.000013207880908703903,
+          0.00023551953645480753,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00017502861763193085,
+          -1.853713674594388e-6,
+          0.0,
+          0.00022479591677967306,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00008183412348552354,
+          5.221724294093777e-7,
+          0.0,
+          0.0,
+          0.00015263719660292717,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00004989504849654126,
+          -2.31829035024379e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.00011620161077302785,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.000046347239339294,
+          1.702142099111083e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0001516185761467136,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00005130734743921995,
+          -1.5320582331818064e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0002560750304853286,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 192000,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.00021555728474439856,
+          "displacement_relative_rmse_vs_refined_256": 3.3636632678386007e-6,
+          "dissipated_energy_j": 1.0337771834942447e-6,
+          "escaped_hammer_energy_j": 9.715891044044737e-7,
+          "final_energy_j": 2.32969984273421e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.1997171415133361e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            9.461362203416041e-6,
+            0.0002281184612955877,
+            0.0000247947984538801,
+            5.118652488377497e-6,
+            1.0212028841355896e-6,
+            3.714283631646266e-7,
+            1.2062109171166474e-7,
+            2.4556108629208578e-8,
+            4.067963718736111e-6
+          ],
+          "peak_tick_mean_force_n": 0.5672159277551196,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.00033578126390086693,
+          "separation_seconds": 0.0006041666666666667,
+          "velocity_relative_rmse_vs_refined_256": 0.00023707124974650307
+        },
+        {
+          "contact_impulse_n_s": 0.00021555703000991064,
+          "displacement_relative_rmse_vs_refined_256": 3.1803898891662513e-9,
+          "dissipated_energy_j": 1.0337825130988764e-6,
+          "escaped_hammer_energy_j": 9.715834898740506e-7,
+          "final_energy_j": 2.3297283353836176e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.1652707064550068e-11,
+          "maximum_positive_energy_step_relative": 1.0438313654039153e-15,
+          "peak_absolute_coordinates": [
+            9.46135052068239e-6,
+            0.0002281182812141148,
+            0.00002479484261403011,
+            5.118602800176135e-6,
+            1.0211837247724745e-6,
+            3.714942541099849e-7,
+            1.2058690572298793e-7,
+            2.4569205884751108e-8,
+            4.067994175126662e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671952355232329,
+          "pickup_velocity_relative_rmse_vs_refined_256": 3.2321520352700285e-7,
+          "separation_seconds": 0.0006041666666666667,
+          "velocity_relative_rmse_vs_refined_256": 2.2838590704914662e-7
+        },
+        {
+          "contact_impulse_n_s": 0.00021555702982232078,
+          "displacement_relative_rmse_vs_refined_256": 7.334626283845011e-10,
+          "dissipated_energy_j": 1.033782517018377e-6,
+          "escaped_hammer_energy_j": 9.715834857394376e-7,
+          "final_energy_j": 2.3297283561471152e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.533743178442589e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            9.461350512027738e-6,
+            0.00022811828107670935,
+            0.000024794842646323795,
+            5.118602763783173e-6,
+            1.0211837101864407e-6,
+            3.7149429998656297e-7,
+            1.2058688961662224e-7,
+            2.4569212770061026e-8,
+            4.067994197463764e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671952200495111,
+          "pickup_velocity_relative_rmse_vs_refined_256": 7.695399931131621e-8,
+          "separation_seconds": 0.0006041666666666667,
+          "velocity_relative_rmse_vs_refined_256": 5.437603987172966e-8
+        },
+        {
+          "contact_impulse_n_s": 0.00021555702977504965,
+          "displacement_relative_rmse_vs_refined_256": 1.4961305266383492e-10,
+          "dissipated_energy_j": 1.0337825180320296e-6,
+          "escaped_hammer_energy_j": 9.715834846975178e-7,
+          "final_energy_j": 2.3297283623096e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.3093611881353634e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            9.461350510048466e-6,
+            0.00022811828107316173,
+            0.000024794842654493122,
+            5.118602754685857e-6,
+            1.0211837065391568e-6,
+            3.71494311454624e-7,
+            1.2058688558884748e-7,
+            2.4569214490311045e-8,
+            4.067994203248132e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671952161805109,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.5391178009518965e-8,
+          "separation_seconds": 0.0006041666666666667,
+          "velocity_relative_rmse_vs_refined_256": 1.0875526883968852e-8
+        },
+        {
+          "contact_impulse_n_s": 0.00021555702977504968,
+          "displacement_relative_rmse_vs_refined_256": 1.2033194623194353e-9,
+          "dissipated_energy_j": 1.0337825181304326e-6,
+          "escaped_hammer_energy_j": 9.715834846975189e-7,
+          "final_energy_j": 2.3297283620747527e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 1.0381884130425419e-10,
+          "maximum_positive_energy_step_relative": 6.262988192423492e-16,
+          "peak_absolute_coordinates": [
+            9.461350668367551e-6,
+            0.00022811829322127625,
+            0.000024794842954864843,
+            5.118678632032574e-6,
+            1.021206013927814e-6,
+            3.7149431145462325e-7,
+            1.2059114430751803e-7,
+            2.4569646049686675e-8,
+            4.067996820769559e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671986691016874,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.1686438660781035e-7,
+          "separation_seconds": 0.0006038614908854166,
+          "velocity_relative_rmse_vs_refined_256": 8.340462686978877e-8
+        },
+        {
+          "contact_impulse_n_s": 0.0002155570297633415,
+          "displacement_relative_rmse_vs_refined_256": 1.6140554793971332e-9,
+          "dissipated_energy_j": 1.0337825176497822e-6,
+          "escaped_hammer_energy_j": 9.715834844395692e-7,
+          "final_energy_j": 2.329728368129595e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 4.089835672789081e-10,
+          "maximum_positive_energy_step_relative": 6.262988192423492e-16,
+          "peak_absolute_coordinates": [
+            9.46135066582474e-6,
+            0.00022811829303517046,
+            0.00002479484295414497,
+            5.118678635243441e-6,
+            1.021206013419125e-6,
+            3.714943143218419e-7,
+            1.2059114287416673e-7,
+            2.4569646633512456e-8,
+            4.0679968228823495e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671986681342708,
+          "pickup_velocity_relative_rmse_vs_refined_256": 2.7464720353123316e-8,
+          "separation_seconds": 0.0006038564046223959,
+          "velocity_relative_rmse_vs_refined_256": 1.9632732239217978e-8
+        },
+        {
+          "contact_impulse_n_s": 0.00021555702976334474,
+          "dissipated_energy_j": 1.0337825182554468e-6,
+          "escaped_hammer_energy_j": 9.715834844395688e-7,
+          "final_energy_j": 2.3297283638897845e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 8.127062244761804e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            9.46135050927702e-6,
+            0.00022811828107134532,
+            0.00002479484265662921,
+            5.1186027524042476e-6,
+            1.0211837056265525e-6,
+            3.71494314321842e-7,
+            1.2058688458192738e-7,
+            2.4569214920320093e-8,
+            4.067994204697491e-6
+          ],
+          "peak_tick_mean_force_n": 0.5671952152135894,
+          "separation_seconds": 0.0006041666666666667
+        }
+      ],
+      "tine_length_m": 0.05,
+      "velocity": 0.1
+    },
+    {
+      "mass_matrix": [
+        [
+          0.045793604753050374,
+          0.0012215901188262592,
+          0.0003498560654539614,
+          -0.00017502861763193085,
+          0.00008183412348552354,
+          -0.00004989504849654126,
+          0.000046347239339294,
+          -0.00005130734743921995,
+          0.015
+        ],
+        [
+          0.0012215901188262592,
+          0.0001067586289608753,
+          0.000013207880908703903,
+          -1.853713674594388e-6,
+          5.221724294093777e-7,
+          -2.31829035024379e-7,
+          1.702142099111083e-7,
+          -1.5320582331818064e-7,
+          0.0012
+        ],
+        [
+          0.0003498560654539614,
+          0.000013207880908703903,
+          0.00023551953645480753,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00017502861763193085,
+          -1.853713674594388e-6,
+          0.0,
+          0.00022479591677967306,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00008183412348552354,
+          5.221724294093777e-7,
+          0.0,
+          0.0,
+          0.00015263719660292717,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00004989504849654126,
+          -2.31829035024379e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.00011620161077302785,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.000046347239339294,
+          1.702142099111083e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0001516185761467136,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00005130734743921995,
+          -1.5320582331818064e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0002560750304853286,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 192000,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.005317124395080659,
+          "displacement_relative_rmse_vs_refined_256": 0.00009413912175940432,
+          "dissipated_energy_j": 0.0007057177540638901,
+          "escaped_hammer_energy_j": 0.0005602769630307047,
+          "final_energy_j": 0.000014005282889989046,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.2124768420176954e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00023355976342518835,
+            0.005641610015697562,
+            0.0006186619722306631,
+            0.00017380621193907646,
+            0.00003997804786925571,
+            0.000015800054595376378,
+            4.962220651119826e-6,
+            1.121055618442746e-6,
+            0.00010259924558950805
+          ],
+          "peak_tick_mean_force_n": 22.925001537199364,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.006298451142397465,
+          "separation_seconds": 0.0004309895833333333,
+          "velocity_relative_rmse_vs_refined_256": 0.00539940834499619
+        },
+        {
+          "contact_impulse_n_s": 0.0053166459528195525,
+          "displacement_relative_rmse_vs_refined_256": 8.765466841064664e-8,
+          "dissipated_energy_j": 0.0007059728994811864,
+          "escaped_hammer_energy_j": 0.0005600237611984221,
+          "final_energy_j": 0.000014003339305229839,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.1928256776413956e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00023353893679285982,
+            0.005641117156464848,
+            0.0006186100365386228,
+            0.00017380307152839566,
+            0.00003997568703858519,
+            0.000015858370874701074,
+            4.999938325199757e-6,
+            1.1293124546640605e-6,
+            0.00010259122285051778
+          ],
+          "peak_tick_mean_force_n": 22.916314528719404,
+          "pickup_velocity_relative_rmse_vs_refined_256": 6.118316354723819e-6,
+          "separation_seconds": 0.0004309895833333333,
+          "velocity_relative_rmse_vs_refined_256": 5.276833266150271e-6
+        },
+        {
+          "contact_impulse_n_s": 0.005316645613196179,
+          "displacement_relative_rmse_vs_refined_256": 2.07334998351354e-8,
+          "dissipated_energy_j": 0.000705973080573933,
+          "escaped_hammer_energy_j": 0.00056002358148283,
+          "final_energy_j": 0.000014003337923342193,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.5627249657073485e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00023353892200321608,
+            0.00564111680649016,
+            0.0006186099996441157,
+            0.00017380306945642194,
+            0.0000399756854080978,
+            0.000015858411553714915,
+            4.999965477791986e-6,
+            1.1293199466742809e-6,
+            0.0001025912172375954
+          ],
+          "peak_tick_mean_force_n": 22.91630424339695,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.4567503959031607e-6,
+          "separation_seconds": 0.0004309895833333333,
+          "velocity_relative_rmse_vs_refined_256": 1.2563994578321203e-6
+        },
+        {
+          "contact_impulse_n_s": 0.0053166455282852585,
+          "displacement_relative_rmse_vs_refined_256": 4.121165545507503e-9,
+          "dissipated_energy_j": 0.0007059731258654165,
+          "escaped_hammer_energy_j": 0.0005600235365512351,
+          "final_energy_j": 0.0000140033375823434,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.1225050023603436e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00023353891830923487,
+            0.005641116719578546,
+            0.0006186099904242866,
+            0.00017380306893855302,
+            0.000039975685000514796,
+            0.000015858421722231084,
+            4.99997226581543e-6,
+            1.1293218194918284e-6,
+            0.00010259121583926669
+          ],
+          "peak_tick_mean_force_n": 22.916301671188076,
+          "pickup_velocity_relative_rmse_vs_refined_256": 2.9135024164039846e-7,
+          "separation_seconds": 0.0004309895833333333,
+          "velocity_relative_rmse_vs_refined_256": 2.5128032804721646e-7
+        },
+        {
+          "contact_impulse_n_s": 0.005316645528285314,
+          "displacement_relative_rmse_vs_refined_256": 1.1097000154377035e-8,
+          "dissipated_energy_j": 0.0007059731259460744,
+          "escaped_hammer_energy_j": 0.0005600235365512353,
+          "final_energy_j": 0.000014003337584274584,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 1.1048358950806189e-10,
+          "maximum_positive_energy_step_relative": 1.6940658945086002e-16,
+          "peak_absolute_coordinates": [
+            0.00023353891995250975,
+            0.005641117387153364,
+            0.0006186104550439484,
+            0.00017380690974958942,
+            0.000039978923016904664,
+            0.000015859796823978153,
+            4.999992043265689e-6,
+            1.1301532162034735e-6,
+            0.00010259131613359517
+          ],
+          "peak_tick_mean_force_n": 22.933687756270874,
+          "pickup_velocity_relative_rmse_vs_refined_256": 2.2605525052049544e-6,
+          "separation_seconds": 0.0004306640625,
+          "velocity_relative_rmse_vs_refined_256": 1.940029804580918e-6
+        },
+        {
+          "contact_impulse_n_s": 0.0053166455070567074,
+          "displacement_relative_rmse_vs_refined_256": 2.887081755020568e-9,
+          "dissipated_energy_j": 0.0007059731368023646,
+          "escaped_hammer_energy_j": 0.0005600235253179018,
+          "final_energy_j": 0.000014003337522272458,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 3.9635382107459916e-10,
+          "maximum_positive_energy_step_relative": 3.3881317890172004e-16,
+          "peak_absolute_coordinates": [
+            0.00023353891893895508,
+            0.005641117359101279,
+            0.0006186104525245468,
+            0.00017380690980498808,
+            0.00003997892318735157,
+            0.000015859799660998187,
+            4.999993729668504e-6,
+            1.130153681544266e-6,
+            0.00010259131577980498
+          ],
+          "peak_tick_mean_force_n": 22.93368855149479,
+          "pickup_velocity_relative_rmse_vs_refined_256": 5.155869494156634e-7,
+          "separation_seconds": 0.0004306640625,
+          "velocity_relative_rmse_vs_refined_256": 4.420129486985461e-7
+        },
+        {
+          "contact_impulse_n_s": 0.005316645507056699,
+          "dissipated_energy_j": 0.0007059731371746031,
+          "escaped_hammer_energy_j": 0.0005600235253179011,
+          "final_energy_j": 0.00001400333749850536,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 7.104742954979619e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00023353891738119636,
+            0.005641116697987869,
+            0.0006186099881203071,
+            0.00017380306880882703,
+            0.000039975684898620154,
+            0.000015858424264253107,
+            4.9999739628217225e-6,
+            1.1293222876858908e-6,
+            0.00010259121548932531
+          ],
+          "peak_tick_mean_force_n": 22.916301028106396,
+          "separation_seconds": 0.0004309895833333333
+        }
+      ],
+      "tine_length_m": 0.05,
+      "velocity": 1.0
+    },
+    {
+      "mass_matrix": [
+        [
+          0.04614040712957555,
+          0.0012453902673590833,
+          0.00048555217056362116,
+          -0.0002518399298755647,
+          0.00012523210260119303,
+          -0.00007922866235253517,
+          0.00006932907142276774,
+          -0.00007195804211202282,
+          0.015
+        ],
+        [
+          0.0012453902673590833,
+          0.00010835716961795416,
+          0.000027207046149360167,
+          -3.987469803753413e-6,
+          1.1981050963212113e-6,
+          -5.48911920988383e-7,
+          3.7844846266355363e-7,
+          -3.203025561529984e-7,
+          0.0012
+        ],
+        [
+          0.00048555217056362116,
+          0.000027207046149360167,
+          0.0003221796543487008,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0002518399298755647,
+          -3.987469803753413e-6,
+          0.0,
+          0.00031375135013558407,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00012523210260119303,
+          1.1981050963212113e-6,
+          0.0,
+          0.0,
+          0.00023679211781759088,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00007922866235253517,
+          -5.48911920988383e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.00019170268674747811,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00006932907142276774,
+          3.7844846266355363e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.00022913831792607952,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00007195804211202282,
+          -3.203025561529984e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0003444595953669882,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 44100,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.00021085856795298674,
+          "displacement_relative_rmse_vs_refined_256": 0.00011045272948846842,
+          "dissipated_energy_j": 1.1207041644545757e-6,
+          "escaped_hammer_energy_j": 8.707856162701936e-7,
+          "final_energy_j": 3.71735056279724e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.2427856236499016e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            8.88922155492338e-6,
+            0.0002570934325085472,
+            0.00003701172910526732,
+            0.000012715826229350256,
+            2.8811873131803325e-6,
+            9.435889617195954e-7,
+            2.8617459937974206e-7,
+            6.357116196158479e-8,
+            4.208884699841499e-6
+          ],
+          "peak_tick_mean_force_n": 0.41943945815043676,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.007742859994923569,
+          "separation_seconds": 0.0009693877551020408,
+          "velocity_relative_rmse_vs_refined_256": 0.005755006049426693
+        },
+        {
+          "contact_impulse_n_s": 0.0002108735614192685,
+          "displacement_relative_rmse_vs_refined_256": 1.0007721623894868e-7,
+          "dissipated_energy_j": 1.1204077538831834e-6,
+          "escaped_hammer_energy_j": 8.710984990628585e-7,
+          "final_energy_j": 3.7157033406004266e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 8.993651044320135e-13,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            8.889799748209703e-6,
+            0.00025711060371278214,
+            0.00003701541449841291,
+            0.000012715936051294411,
+            2.880758738552961e-6,
+            9.402100035983332e-7,
+            2.8993016983011546e-7,
+            6.352704325708212e-8,
+            4.209078155013182e-6
+          ],
+          "peak_tick_mean_force_n": 0.42066461627166396,
+          "pickup_velocity_relative_rmse_vs_refined_256": 7.586770050947023e-6,
+          "separation_seconds": 0.0009693877551020408,
+          "velocity_relative_rmse_vs_refined_256": 5.682637039350388e-6
+        },
+        {
+          "contact_impulse_n_s": 0.00021087357080023595,
+          "displacement_relative_rmse_vs_refined_256": 2.383860769364125e-8,
+          "dissipated_energy_j": 1.120407570721761e-6,
+          "escaped_hammer_energy_j": 8.710986948419216e-7,
+          "final_energy_j": 3.7157020790432286e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.9187708158854774e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            8.889800103190672e-6,
+            0.00025711061474363285,
+            0.00003701541704693697,
+            0.000012715936145895865,
+            2.8807584474079994e-6,
+            9.402073340411994e-7,
+            2.899330292347277e-7,
+            6.352672419121672e-8,
+            4.209078288941436e-6
+          ],
+          "peak_tick_mean_force_n": 0.42066544809668405,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.8063115761142478e-6,
+          "separation_seconds": 0.0009693877551020408,
+          "velocity_relative_rmse_vs_refined_256": 1.3529620936518643e-6
+        },
+        {
+          "contact_impulse_n_s": 0.00021087357314514635,
+          "displacement_relative_rmse_vs_refined_256": 4.769339289216449e-9,
+          "dissipated_energy_j": 1.1204075249353462e-6,
+          "escaped_hammer_energy_j": 8.710987437798063e-7,
+          "final_energy_j": 3.7157017637847515e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.4621989766578046e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            8.889800191986291e-6,
+            0.00025711061750470314,
+            0.000037015417683721164,
+            0.000012715936169554334,
+            2.880758374626778e-6,
+            9.40206666608439e-7,
+            2.899337441031288e-7,
+            6.352664436213335e-8,
+            4.2090783223317565e-6
+          ],
+          "peak_tick_mean_force_n": 0.4206656560369185,
+          "pickup_velocity_relative_rmse_vs_refined_256": 3.6125459310409963e-7,
+          "separation_seconds": 0.0009693877551020408,
+          "velocity_relative_rmse_vs_refined_256": 2.705864268875068e-7
+        },
+        {
+          "contact_impulse_n_s": 0.00021087357314514635,
+          "displacement_relative_rmse_vs_refined_256": 2.393601064560452e-8,
+          "dissipated_energy_j": 1.1204075243063416e-6,
+          "escaped_hammer_energy_j": 8.710987437798068e-7,
+          "final_energy_j": 3.7157018325947594e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 3.9005264163594265e-11,
+          "maximum_positive_energy_step_relative": 4.1753254616156617e-16,
+          "peak_absolute_coordinates": [
+            8.88980585028286e-6,
+            0.00025711191120831515,
+            0.00003701567654946,
+            0.000012716984801791764,
+            2.881125942613631e-6,
+            9.403019030454806e-7,
+            2.9000261896254754e-7,
+            6.358105389303861e-8,
+            4.209264995026243e-6
+          ],
+          "peak_tick_mean_force_n": 0.420824844860337,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.4350818038152027e-6,
+          "separation_seconds": 0.0009678376558956916,
+          "velocity_relative_rmse_vs_refined_256": 1.1004954971534082e-6
+        },
+        {
+          "contact_impulse_n_s": 0.00021087357373095338,
+          "displacement_relative_rmse_vs_refined_256": 5.5496876387947655e-9,
+          "dissipated_energy_j": 1.1204075136588916e-6,
+          "escaped_hammer_energy_j": 8.710987560054507e-7,
+          "final_energy_j": 3.715701710294841e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 2.0558592767667041e-10,
+          "maximum_positive_energy_step_relative": 4.1753254616156617e-16,
+          "peak_absolute_coordinates": [
+            8.889805868541233e-6,
+            0.00025711191145456457,
+            0.000037015676701198614,
+            0.000012716984811674533,
+            2.8811259288669847e-6,
+            9.403018048644839e-7,
+            2.9000279469041857e-7,
+            6.358104835613354e-8,
+            4.209265003452301e-6
+          ],
+          "peak_tick_mean_force_n": 0.4208249012897318,
+          "pickup_velocity_relative_rmse_vs_refined_256": 3.113246209303929e-7,
+          "separation_seconds": 0.0009678376558956916,
+          "velocity_relative_rmse_vs_refined_256": 2.393108293738844e-7
+        },
+        {
+          "contact_impulse_n_s": 0.00021087357373095306,
+          "dissipated_energy_j": 1.1204075135169558e-6,
+          "escaped_hammer_energy_j": 8.710987560054513e-7,
+          "final_energy_j": 3.715701684987887e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.0876305294962637e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            8.889800214214762e-6,
+            0.0002571106181966009,
+            0.00003701541784359327,
+            0.000012715936175458218,
+            2.880758356432453e-6,
+            9.402064997478311e-7,
+            2.89933922821403e-7,
+            6.352662440096422e-8,
+            4.20907833085143e-6
+          ],
+          "peak_tick_mean_force_n": 0.4206657080210868,
+          "separation_seconds": 0.0009693877551020408
+        }
+      ],
+      "tine_length_m": 0.075,
+      "velocity": 0.1
+    },
+    {
+      "mass_matrix": [
+        [
+          0.04614040712957555,
+          0.0012453902673590833,
+          0.00048555217056362116,
+          -0.0002518399298755647,
+          0.00012523210260119303,
+          -0.00007922866235253517,
+          0.00006932907142276774,
+          -0.00007195804211202282,
+          0.015
+        ],
+        [
+          0.0012453902673590833,
+          0.00010835716961795416,
+          0.000027207046149360167,
+          -3.987469803753413e-6,
+          1.1981050963212113e-6,
+          -5.48911920988383e-7,
+          3.7844846266355363e-7,
+          -3.203025561529984e-7,
+          0.0012
+        ],
+        [
+          0.00048555217056362116,
+          0.000027207046149360167,
+          0.0003221796543487008,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0002518399298755647,
+          -3.987469803753413e-6,
+          0.0,
+          0.00031375135013558407,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00012523210260119303,
+          1.1981050963212113e-6,
+          0.0,
+          0.0,
+          0.00023679211781759088,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00007922866235253517,
+          -5.48911920988383e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.00019170268674747811,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00006932907142276774,
+          3.7844846266355363e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.00022913831792607952,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00007195804211202282,
+          -3.203025561529984e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0003444595953669882,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 44100,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.005224818331362176,
+          "displacement_relative_rmse_vs_refined_256": 0.005722940581269983,
+          "dissipated_energy_j": 0.0007450122919153357,
+          "escaped_hammer_energy_j": 0.0005124861593775387,
+          "final_energy_j": 0.000022501548708751643,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.2722434867759587e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00021997788807489539,
+            0.006358783536074983,
+            0.0009165527709954702,
+            0.0003362758501135444,
+            0.00008900239825781706,
+            0.000028913305623118876,
+            0.000014052863267689062,
+            4.853601598580408e-6,
+            0.00010348943988278363
+          ],
+          "peak_tick_mean_force_n": 18.432905110244313,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.09093455284061103,
+          "separation_seconds": 0.0008333333333333334,
+          "velocity_relative_rmse_vs_refined_256": 0.08004959651077517
+        },
+        {
+          "contact_impulse_n_s": 0.005254474595104232,
+          "displacement_relative_rmse_vs_refined_256": 4.513402145285192e-6,
+          "dissipated_energy_j": 0.0007297443242161959,
+          "escaped_hammer_energy_j": 0.0005276082327410843,
+          "final_energy_j": 0.00002264744304368442,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 7.558922021297374e-13,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00022116946297826262,
+            0.006389391468660636,
+            0.0009208609255432166,
+            0.00033641261821580734,
+            0.00008888890087929956,
+            0.000028556063886096275,
+            0.00001461487752789155,
+            4.737088354470585e-6,
+            0.00010348576639317245
+          ],
+          "peak_tick_mean_force_n": 18.611767838937055,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.00009005066283137332,
+          "separation_seconds": 0.0008219954648526077,
+          "velocity_relative_rmse_vs_refined_256": 0.00007917320060459792
+        },
+        {
+          "contact_impulse_n_s": 0.005254492331336482,
+          "displacement_relative_rmse_vs_refined_256": 1.0742643318796985e-6,
+          "dissipated_energy_j": 0.0007297351549099088,
+          "escaped_hammer_energy_j": 0.0005276173424400549,
+          "final_energy_j": 0.000022647502652164566,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.6649279611230523e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.0002211701706968955,
+            0.006389409962844439,
+            0.0009208636357041971,
+            0.0003364127049993882,
+            0.00008888880038060915,
+            0.000028555832451611472,
+            0.000014614893794576162,
+            4.736803474393899e-6,
+            0.00010348574961560681
+          ],
+          "peak_tick_mean_force_n": 18.611035749218694,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.000021439448633263754,
+          "separation_seconds": 0.0008219954648526077,
+          "velocity_relative_rmse_vs_refined_256": 0.000018849566840781333
+        },
+        {
+          "contact_impulse_n_s": 0.00525449676337172,
+          "displacement_relative_rmse_vs_refined_256": 2.148253680768708e-7,
+          "dissipated_energy_j": 0.0007297328636265282,
+          "escaped_hammer_energy_j": 0.0005276196188381135,
+          "final_energy_j": 0.00002264751753843633,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 2.407267636096721e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00022117034754520146,
+            0.0063894145845443465,
+            0.0009208643129777392,
+            0.0003364127266886655,
+            0.00008888877525397433,
+            0.00002855577454861833,
+            0.000014614897756003892,
+            4.736732206818797e-6,
+            0.00010348574541692114
+          ],
+          "peak_tick_mean_force_n": 18.610852435277046,
+          "pickup_velocity_relative_rmse_vs_refined_256": 4.2878378214137795e-6,
+          "separation_seconds": 0.0008219954648526077,
+          "velocity_relative_rmse_vs_refined_256": 3.769861154215127e-6
+        },
+        {
+          "contact_impulse_n_s": 0.005254496763371682,
+          "displacement_relative_rmse_vs_refined_256": 2.220848672303146e-7,
+          "dissipated_energy_j": 0.0007297328634059152,
+          "escaped_hammer_energy_j": 0.0005276196188381132,
+          "final_energy_j": 0.00002264751779521951,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 3.905126818703335e-11,
+          "maximum_positive_energy_step_relative": 1.6940658945086002e-16,
+          "peak_absolute_coordinates": [
+            0.0002211703510321405,
+            0.0063894218090976476,
+            0.0009208671875445143,
+            0.0003364192686326067,
+            0.00008893597051542275,
+            0.000028569381846369262,
+            0.000014751381652919739,
+            4.85077877633545e-6,
+            0.00010348576489441747
+          ],
+          "peak_tick_mean_force_n": 18.929391498833823,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.000010331374458386416,
+          "separation_seconds": 0.0008173894557823129,
+          "velocity_relative_rmse_vs_refined_256": 9.693865115686923e-6
+        },
+        {
+          "contact_impulse_n_s": 0.005254497871243606,
+          "displacement_relative_rmse_vs_refined_256": 1.1633616198866538e-8,
+          "dissipated_energy_j": 0.0007297322910157708,
+          "escaped_hammer_energy_j": 0.0005276201878680537,
+          "final_energy_j": 0.000022647521372955834,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 2.0060941975522448e-10,
+          "maximum_positive_energy_step_relative": 1.6940658945086002e-16,
+          "peak_absolute_coordinates": [
+            0.00022117039503129646,
+            0.006389422948745302,
+            0.0009208673567418269,
+            0.00033641927666866136,
+            0.00008893596615479876,
+            0.000028569362652849344,
+            0.000014751406249733201,
+            4.850776783050997e-6,
+            0.00010348576384625768
+          ],
+          "peak_tick_mean_force_n": 18.9294027690582,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.973613659885453e-6,
+          "separation_seconds": 0.0008173673115079366,
+          "velocity_relative_rmse_vs_refined_256": 1.8880379623856372e-6
+        },
+        {
+          "contact_impulse_n_s": 0.005254497871243627,
+          "dissipated_energy_j": 0.000729732290885646,
+          "escaped_hammer_energy_j": 0.0005276201878680544,
+          "final_energy_j": 0.000022647521258337677,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 9.406978505616807e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00022117039175223723,
+            0.0063894157398035065,
+            0.0009208644822971873,
+            0.00033641273211028506,
+            0.00008888876897222073,
+            0.000028555760070102834,
+            0.00001461489873978346,
+            4.736714386951595e-6,
+            0.00010348574437139875
+          ],
+          "peak_tick_mean_force_n": 18.610806588578743,
+          "separation_seconds": 0.0008219954648526077
+        }
+      ],
+      "tine_length_m": 0.075,
+      "velocity": 1.0
+    },
+    {
+      "mass_matrix": [
+        [
+          0.04614040712957555,
+          0.0012453902673590833,
+          0.00048555217056362116,
+          -0.0002518399298755647,
+          0.00012523210260119303,
+          -0.00007922866235253517,
+          0.00006932907142276774,
+          -0.00007195804211202282,
+          0.015
+        ],
+        [
+          0.0012453902673590833,
+          0.00010835716961795416,
+          0.000027207046149360167,
+          -3.987469803753413e-6,
+          1.1981050963212113e-6,
+          -5.48911920988383e-7,
+          3.7844846266355363e-7,
+          -3.203025561529984e-7,
+          0.0012
+        ],
+        [
+          0.00048555217056362116,
+          0.000027207046149360167,
+          0.0003221796543487008,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0002518399298755647,
+          -3.987469803753413e-6,
+          0.0,
+          0.00031375135013558407,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00012523210260119303,
+          1.1981050963212113e-6,
+          0.0,
+          0.0,
+          0.00023679211781759088,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00007922866235253517,
+          -5.48911920988383e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.00019170268674747811,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00006932907142276774,
+          3.7844846266355363e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.00022913831792607952,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00007195804211202282,
+          -3.203025561529984e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0003444595953669882,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 192000,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.00021087289260110105,
+          "displacement_relative_rmse_vs_refined_256": 5.507172514158377e-6,
+          "dissipated_energy_j": 1.1204208217014048e-6,
+          "escaped_hammer_energy_j": 8.710845410061918e-7,
+          "final_energy_j": 3.7157923640309474e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.1475882031250647e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            8.889779382875782e-6,
+            0.0002571110572626889,
+            0.00003701549086453133,
+            0.00001271695892385349,
+            2.88112964669342e-6,
+            9.40467363648254e-7,
+            2.898000677581384e-7,
+            6.358673041946053e-8,
+            4.209252919450413e-6
+          ],
+          "peak_tick_mean_force_n": 0.42076429933487125,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.0004162561476582002,
+          "separation_seconds": 0.00096875,
+          "velocity_relative_rmse_vs_refined_256": 0.00031171329811518377
+        },
+        {
+          "contact_impulse_n_s": 0.00021087357326688647,
+          "displacement_relative_rmse_vs_refined_256": 5.39034180665464e-9,
+          "dissipated_energy_j": 1.120407522552386e-6,
+          "escaped_hammer_energy_j": 8.71098746320475e-7,
+          "final_energy_j": 3.715701747267251e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 2.320437125292904e-12,
+          "maximum_positive_energy_step_relative": 4.1753254616156617e-16,
+          "peak_absolute_coordinates": [
+            8.889805250405165e-6,
+            0.0002571118561475178,
+            0.000037015673270248625,
+            0.000012716970783017987,
+            2.8811127859058826e-6,
+            9.402839012252982e-7,
+            2.900024699689911e-7,
+            6.357918373838394e-8,
+            4.209262465142307e-6
+          ],
+          "peak_tick_mean_force_n": 0.42081870506045693,
+          "pickup_velocity_relative_rmse_vs_refined_256": 4.002295969528006e-7,
+          "separation_seconds": 0.00096875,
+          "velocity_relative_rmse_vs_refined_256": 2.997826466460629e-7
+        },
+        {
+          "contact_impulse_n_s": 0.00021087357376187586,
+          "displacement_relative_rmse_vs_refined_256": 1.4806900935873166e-9,
+          "dissipated_energy_j": 1.1204075128880804e-6,
+          "escaped_hammer_energy_j": 8.710987566508182e-7,
+          "final_energy_j": 3.715701679624218e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 7.441891336510675e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            8.889805269100288e-6,
+            0.0002571118567004873,
+            0.00003701567340344115,
+            0.000012716970791739275,
+            2.8811127736126114e-6,
+            9.402837661877251e-7,
+            2.900026184616202e-7,
+            6.357917737947146e-8,
+            4.209262472289976e-6
+          ],
+          "peak_tick_mean_force_n": 0.4208187447432147,
+          "pickup_velocity_relative_rmse_vs_refined_256": 9.529064001666678e-8,
+          "separation_seconds": 0.00096875,
+          "velocity_relative_rmse_vs_refined_256": 7.137619144597895e-8
+        },
+        {
+          "contact_impulse_n_s": 0.00021087357388596234,
+          "displacement_relative_rmse_vs_refined_256": 4.806587635970676e-10,
+          "dissipated_energy_j": 1.1204075104837196e-6,
+          "escaped_hammer_energy_j": 8.710987592404703e-7,
+          "final_energy_j": 3.715701663447263e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 5.310387688355879e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            8.889805273657962e-6,
+            0.00025711185685834814,
+            0.00003701567343703474,
+            0.00001271697079396124,
+            2.881112770537207e-6,
+            9.402837324262079e-7,
+            2.900026555838763e-7,
+            6.357917578939135e-8,
+            4.209262474224524e-6
+          ],
+          "peak_tick_mean_force_n": 0.42081875466274693,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.9056126659833805e-8,
+          "separation_seconds": 0.00096875,
+          "velocity_relative_rmse_vs_refined_256": 1.4275046365011758e-8
+        },
+        {
+          "contact_impulse_n_s": 0.00021087357388596532,
+          "displacement_relative_rmse_vs_refined_256": 1.5388171626601393e-9,
+          "dissipated_energy_j": 1.1204075106833483e-6,
+          "escaped_hammer_energy_j": 8.710987592404703e-7,
+          "final_energy_j": 3.715701650632599e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 1.529375788009739e-10,
+          "maximum_positive_energy_step_relative": 4.1753254616156617e-16,
+          "peak_absolute_coordinates": [
+            8.889805872364348e-6,
+            0.00025711191145969534,
+            0.00003701567674068816,
+            0.000012716984831669982,
+            2.8811259242232345e-6,
+            9.403017635446393e-7,
+            2.900028409947915e-7,
+            6.358104584895352e-8,
+            4.20926500769643e-6
+          ],
+          "peak_tick_mean_force_n": 0.4208249140622966,
+          "pickup_velocity_relative_rmse_vs_refined_256": 7.571275488038289e-8,
+          "separation_seconds": 0.0009678243001302083,
+          "velocity_relative_rmse_vs_refined_256": 5.806432103358065e-8
+        },
+        {
+          "contact_impulse_n_s": 0.0002108735739152512,
+          "displacement_relative_rmse_vs_refined_256": 1.1614473339298373e-9,
+          "dissipated_energy_j": 1.120407510952092e-6,
+          "escaped_hammer_energy_j": 8.710987598517494e-7,
+          "final_energy_j": 3.715701665946559e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 6.049539291837507e-10,
+          "maximum_positive_energy_step_relative": 4.1753254616156617e-16,
+          "peak_absolute_coordinates": [
+            8.889805873914533e-6,
+            0.0002571119116995244,
+            0.000037015676748106905,
+            0.00001271698483664779,
+            2.8811259266789423e-6,
+            9.40301755388741e-7,
+            2.9000285067180014e-7,
+            6.358104553152116e-8,
+            4.209265008593769e-6
+          ],
+          "peak_tick_mean_force_n": 0.42082491738747374,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.642582903709323e-8,
+          "separation_seconds": 0.0009678243001302083,
+          "velocity_relative_rmse_vs_refined_256": 1.2666840711880061e-8
+        },
+        {
+          "contact_impulse_n_s": 0.0002108735739152515,
+          "dissipated_energy_j": 1.1204075099606496e-6,
+          "escaped_hammer_energy_j": 8.710987598517505e-7,
+          "final_energy_j": 3.7157016613808664e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 3.859775239854058e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            8.889805274969607e-6,
+            0.0002571118569541352,
+            0.00003701567344635944,
+            0.00001271697079447125,
+            2.88111276976883e-6,
+            9.402837239860722e-7,
+            2.900026648643698e-7,
+            6.357917539182946e-8,
+            4.209262475122067e-6
+          ],
+          "peak_tick_mean_force_n": 0.42081875714258155,
+          "separation_seconds": 0.00096875
+        }
+      ],
+      "tine_length_m": 0.075,
+      "velocity": 0.1
+    },
+    {
+      "mass_matrix": [
+        [
+          0.04614040712957555,
+          0.0012453902673590833,
+          0.00048555217056362116,
+          -0.0002518399298755647,
+          0.00012523210260119303,
+          -0.00007922866235253517,
+          0.00006932907142276774,
+          -0.00007195804211202282,
+          0.015
+        ],
+        [
+          0.0012453902673590833,
+          0.00010835716961795416,
+          0.000027207046149360167,
+          -3.987469803753413e-6,
+          1.1981050963212113e-6,
+          -5.48911920988383e-7,
+          3.7844846266355363e-7,
+          -3.203025561529984e-7,
+          0.0012
+        ],
+        [
+          0.00048555217056362116,
+          0.000027207046149360167,
+          0.0003221796543487008,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0002518399298755647,
+          -3.987469803753413e-6,
+          0.0,
+          0.00031375135013558407,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00012523210260119303,
+          1.1981050963212113e-6,
+          0.0,
+          0.0,
+          0.00023679211781759088,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00007922866235253517,
+          -5.48911920988383e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.00019170268674747811,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00006932907142276774,
+          3.7844846266355363e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.00022913831792607952,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00007195804211202282,
+          -3.203025561529984e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0003444595953669882,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 192000,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.005253188905020247,
+          "displacement_relative_rmse_vs_refined_256": 0.0002537309269343094,
+          "dissipated_energy_j": 0.0007304089673797993,
+          "escaped_hammer_energy_j": 0.00052694808496228,
+          "final_energy_j": 0.000022642947656331043,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.2493735972000926e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00022111813018908628,
+            0.0063880595567757026,
+            0.0009206671730901438,
+            0.0003364129510620224,
+            0.00008894181782177933,
+            0.00002859111246820286,
+            0.000014722245687733705,
+            4.852942679295073e-6,
+            0.00010348692986480822
+          ],
+          "peak_tick_mean_force_n": 18.913094878605044,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.004963048346799523,
+          "separation_seconds": 0.0008190104166666667,
+          "velocity_relative_rmse_vs_refined_256": 0.004373393365024874
+        },
+        {
+          "contact_impulse_n_s": 0.005254496993661684,
+          "displacement_relative_rmse_vs_refined_256": 2.381258741404963e-7,
+          "dissipated_energy_j": 0.0007297327445662047,
+          "escaped_hammer_energy_j": 0.0005276197371206056,
+          "final_energy_j": 0.00002264751831019725,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 2.3439095716420995e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.0002211703484973569,
+            0.006389421485960497,
+            0.0009208670064355932,
+            0.0003364191745056122,
+            0.00008893497314076605,
+            0.000028569290999865965,
+            0.000014747944252470442,
+            4.8504621200463854e-6,
+            0.00010348575686686961
+          ],
+          "peak_tick_mean_force_n": 18.92284179185476,
+          "pickup_velocity_relative_rmse_vs_refined_256": 4.751070040214262e-6,
+          "separation_seconds": 0.0008177083333333333,
+          "velocity_relative_rmse_vs_refined_256": 4.183555143183875e-6
+        },
+        {
+          "contact_impulse_n_s": 0.005254497928825019,
+          "displacement_relative_rmse_vs_refined_256": 5.693308800513393e-8,
+          "dissipated_energy_j": 0.0007297322611028637,
+          "escaped_hammer_energy_j": 0.0005276202174432874,
+          "final_energy_j": 0.00002264752144310955,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 8.396129386363525e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00022117038581412964,
+            0.0063894224596447976,
+            0.0009208671499747794,
+            0.00033641917899628136,
+            0.0000889349680503059,
+            0.000028569274454206422,
+            0.000014747961936993166,
+            4.8504597311305194e-6,
+            0.00010348575598433477
+          ],
+          "peak_tick_mean_force_n": 18.922845487197147,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.1311946713991563e-6,
+          "separation_seconds": 0.0008177083333333333,
+          "velocity_relative_rmse_vs_refined_256": 9.96074803168513e-7
+        },
+        {
+          "contact_impulse_n_s": 0.005254498162621236,
+          "displacement_relative_rmse_vs_refined_256": 1.1562544956524207e-8,
+          "dissipated_energy_j": 0.0007297321402464701,
+          "escaped_hammer_energy_j": 0.0005276203375267488,
+          "final_energy_j": 0.000022647522230113834,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 4.048817487875555e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00022117039514067802,
+            0.006389422703472856,
+            0.0009208671858648647,
+            0.00033641918011993786,
+            0.00008893496677758187,
+            0.000028569270317603947,
+            0.00001474796635780086,
+            4.850459133765887e-6,
+            0.0001034857557674079
+          ],
+          "peak_tick_mean_force_n": 18.92284641019102,
+          "pickup_velocity_relative_rmse_vs_refined_256": 2.2623545026703355e-7,
+          "separation_seconds": 0.0008177083333333333,
+          "velocity_relative_rmse_vs_refined_256": 1.9921409977978786e-7
+        },
+        {
+          "contact_impulse_n_s": 0.005254498162621173,
+          "displacement_relative_rmse_vs_refined_256": 1.2164172460265242e-8,
+          "dissipated_energy_j": 0.000729732140368667,
+          "escaped_hammer_energy_j": 0.0005276203375267488,
+          "final_energy_j": 0.00002264752214181759,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 1.414084235991375e-10,
+          "maximum_positive_energy_step_relative": 3.3881317890172004e-16,
+          "peak_absolute_coordinates": [
+            0.00022117040657318012,
+            0.006389423246267944,
+            0.000920867401194187,
+            0.00033641927793733425,
+            0.00008893596465094722,
+            0.000028569358037224723,
+            0.00001475141272552551,
+            4.850776253774794e-6,
+            0.00010348576360175117
+          ],
+          "peak_tick_mean_force_n": 18.92940739206133,
+          "pickup_velocity_relative_rmse_vs_refined_256": 5.450455531179522e-7,
+          "separation_seconds": 0.0008173624674479166,
+          "velocity_relative_rmse_vs_refined_256": 5.115351705146572e-7
+        },
+        {
+          "contact_impulse_n_s": 0.005254498221024411,
+          "displacement_relative_rmse_vs_refined_256": 1.3370629811108105e-9,
+          "dissipated_energy_j": 0.0007297321106765613,
+          "escaped_hammer_energy_j": 0.000527620367524046,
+          "final_energy_j": 0.000022647522466230437,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 5.773952550889443e-10,
+          "maximum_positive_energy_step_relative": 5.082197683525801e-16,
+          "peak_absolute_coordinates": [
+            0.0002211704089085804,
+            0.00638942331196714,
+            0.0009208674100973757,
+            0.0003364192783985503,
+            0.00008893596440224377,
+            0.000028569357022825624,
+            0.00001475141402339562,
+            4.8507761487714874e-6,
+            0.0001034857635706793
+          ],
+          "peak_tick_mean_force_n": 18.92940777982907,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.0411982240137046e-7,
+          "separation_seconds": 0.0008173624674479166,
+          "velocity_relative_rmse_vs_refined_256": 9.961073418903334e-8
+        },
+        {
+          "contact_impulse_n_s": 0.005254498221024389,
+          "dissipated_energy_j": 0.0007297321100769958,
+          "escaped_hammer_energy_j": 0.0005276203675240452,
+          "final_energy_j": 0.00002264752243786226,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 3.16539600520721e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00022117039747517696,
+            0.006389422765679025,
+            0.0009208671948668414,
+            0.0003364191803996337,
+            0.00008893496645942873,
+            0.000028569269283437054,
+            0.000014747967462979511,
+            4.850458984406004e-6,
+            0.00010348575572339475
+          ],
+          "peak_tick_mean_force_n": 18.92284664085186,
+          "separation_seconds": 0.0008177083333333333
+        }
+      ],
+      "tine_length_m": 0.075,
+      "velocity": 1.0
+    },
+    {
+      "mass_matrix": [
+        [
+          0.04676465140732089,
+          0.0013100790844392534,
+          0.0007298738603604103,
+          -0.0003885914584618514,
+          0.00020398854475624302,
+          -0.00013383631399058703,
+          0.00011170218874054515,
+          -0.00010828118131481225,
+          0.015
+        ],
+        [
+          0.0013100790844392534,
+          0.00011503072675514027,
+          0.0000648330190939498,
+          -9.81494930602162e-6,
+          3.121305673648949e-6,
+          -1.4758919632287356e-6,
+          9.670839264245972e-7,
+          -7.660222064784248e-7,
+          0.0012
+        ],
+        [
+          0.0007298738603604103,
+          0.0000648330190939498,
+          0.00047820459801897156,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0003885914584618514,
+          -9.81494930602162e-6,
+          0.0,
+          0.00047160280789873424,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00020398854475624302,
+          3.121305673648949e-6,
+          0.0,
+          0.0,
+          0.0003904977766588082,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00013383631399058703,
+          -1.4758919632287356e-6,
+          0.0,
+          0.0,
+          0.0,
+          0.00033624132817670693,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00011170218874054515,
+          9.670839264245972e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0003745250777136697,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00010828118131481225,
+          -7.660222064784248e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.000499670809847195,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 44100,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.00015040490911853182,
+          "displacement_relative_rmse_vs_refined_256": 0.00013730186123233254,
+          "dissipated_energy_j": 1.8834865254317594e-6,
+          "escaped_hammer_energy_j": 6.618604769668447e-8,
+          "final_energy_j": 7.899071322277747e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 4.912270405590826e-13,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            5.519461770754772e-6,
+            0.0002567326206416549,
+            0.00004111711913813639,
+            0.000026595182505819382,
+            7.72705399230933e-6,
+            2.509531805850914e-6,
+            9.874076427461452e-7,
+            2.679968555430385e-7,
+            3.3322658146350025e-6
+          ],
+          "peak_tick_mean_force_n": 0.30338920545307824,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.0034520994212755255,
+          "separation_seconds": 0.001139455782312925,
+          "velocity_relative_rmse_vs_refined_256": 0.0037228052477178363
+        },
+        {
+          "contact_impulse_n_s": 0.0001503878353410324,
+          "displacement_relative_rmse_vs_refined_256": 1.323648326932304e-7,
+          "dissipated_energy_j": 1.883587836409456e-6,
+          "escaped_hammer_energy_j": 6.608786460771653e-8,
+          "final_energy_j": 7.898758533333985e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 4.020838419535882e-13,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            5.518864282390049e-6,
+            0.00025670724837995013,
+            0.00004111314835575301,
+            0.000026596149167004602,
+            7.726337861092058e-6,
+            2.508272308567971e-6,
+            9.86944353685531e-7,
+            2.6806375592140656e-7,
+            3.3321407704832193e-6
+          ],
+          "peak_tick_mean_force_n": 0.30410128043310575,
+          "pickup_velocity_relative_rmse_vs_refined_256": 3.3326389342455536e-6,
+          "separation_seconds": 0.001139455782312925,
+          "velocity_relative_rmse_vs_refined_256": 3.601280844625078e-6
+        },
+        {
+          "contact_impulse_n_s": 0.00015038782278959553,
+          "displacement_relative_rmse_vs_refined_256": 3.153419262757433e-8,
+          "dissipated_energy_j": 1.8835879109670931e-6,
+          "escaped_hammer_energy_j": 6.60877924572426e-8,
+          "final_energy_j": 7.898758292823385e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.1555213215021344e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            5.51886384442618e-6,
+            0.00025670722970833146,
+            0.00004111314544059179,
+            0.000026596149862906306,
+            7.726337333895885e-6,
+            2.5082713847745025e-6,
+            9.86943957772306e-7,
+            2.680636192581707e-7,
+            3.3321406810364016e-6
+          ],
+          "peak_tick_mean_force_n": 0.30410168257760145,
+          "pickup_velocity_relative_rmse_vs_refined_256": 7.934890998971834e-7,
+          "separation_seconds": 0.001139455782312925,
+          "velocity_relative_rmse_vs_refined_256": 8.574531237141699e-7
+        },
+        {
+          "contact_impulse_n_s": 0.00015038781965182637,
+          "displacement_relative_rmse_vs_refined_256": 6.298108489629273e-9,
+          "dissipated_energy_j": 1.883587929605742e-6,
+          "escaped_hammer_energy_j": 6.60877744201466e-8,
+          "final_energy_j": 7.898758232460894e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 3.32982205563849e-13,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            5.518863734962596e-6,
+            0.0002567072250335095,
+            0.00004111314471194509,
+            0.000026596150036872406,
+            7.726337202101562e-6,
+            2.508271153825944e-6,
+            9.86943858781225e-7,
+            2.6806358504959713e-7,
+            3.332140658669355e-6
+          ],
+          "peak_tick_mean_force_n": 0.30410178308627195,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.5869418988708257e-7,
+          "separation_seconds": 0.001139455782312925,
+          "velocity_relative_rmse_vs_refined_256": 1.7148663900511562e-7
+        },
+        {
+          "contact_impulse_n_s": 0.00015038781965182561,
+          "displacement_relative_rmse_vs_refined_256": 1.4748065443932664e-8,
+          "dissipated_energy_j": 1.8835879287654386e-6,
+          "escaped_hammer_energy_j": 6.608777442014645e-8,
+          "final_energy_j": 7.898758305899684e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 5.2075911754909016e-11,
+          "maximum_positive_energy_step_relative": 4.1753254616156617e-16,
+          "peak_absolute_coordinates": [
+            5.5188639839483424e-6,
+            0.00025670773472521053,
+            0.000041113183512123375,
+            0.000026596156990650715,
+            7.726444959339067e-6,
+            2.508908581823322e-6,
+            9.871651351110262e-7,
+            2.6811504990953046e-7,
+            3.332204580936361e-6
+          ],
+          "peak_tick_mean_force_n": 0.30425728731852264,
+          "pickup_velocity_relative_rmse_vs_refined_256": 4.75745489387922e-7,
+          "separation_seconds": 0.001139234339569161,
+          "velocity_relative_rmse_vs_refined_256": 4.960578372675143e-7
+        },
+        {
+          "contact_impulse_n_s": 0.0001503878188671849,
+          "displacement_relative_rmse_vs_refined_256": 2.8413066422756747e-9,
+          "dissipated_energy_j": 1.8835879341355915e-6,
+          "escaped_hammer_energy_j": 6.608776990973032e-8,
+          "final_energy_j": 7.89875823411892e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 3.015106898969209e-11,
+          "maximum_positive_energy_step_relative": 6.262988192423492e-16,
+          "peak_absolute_coordinates": [
+            5.518863959678135e-6,
+            0.00025670773369137166,
+            0.00004111318338329793,
+            0.00002659615703435514,
+            7.726444925903697e-6,
+            2.508908540880016e-6,
+            9.871651409553996e-7,
+            2.681150312846012e-7,
+            3.332204575428503e-6
+          ],
+          "peak_tick_mean_force_n": 0.30425732466431266,
+          "pickup_velocity_relative_rmse_vs_refined_256": 9.085580370883693e-8,
+          "separation_seconds": 0.0011392121952947846,
+          "velocity_relative_rmse_vs_refined_256": 9.382958233783117e-8
+        },
+        {
+          "contact_impulse_n_s": 0.000150387818867186,
+          "dissipated_energy_j": 1.8835879342758957e-6,
+          "escaped_hammer_energy_j": 6.608776990973025e-8,
+          "final_energy_j": 7.898758217436876e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 4.815611621154423e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            5.5188637076194635e-6,
+            0.0002567072238684783,
+            0.00004111314453126295,
+            0.000026596150080308174,
+            7.72633716913907e-6,
+            2.5082710960907074e-6,
+            9.869438340329828e-7,
+            2.6806357649448855e-7,
+            3.3321406532051575e-6
+          ],
+          "peak_tick_mean_force_n": 0.30410180821041477,
+          "separation_seconds": 0.001139455782312925
+        }
+      ],
+      "tine_length_m": 0.12,
+      "velocity": 0.1
+    },
+    {
+      "mass_matrix": [
+        [
+          0.04676465140732089,
+          0.0013100790844392534,
+          0.0007298738603604103,
+          -0.0003885914584618514,
+          0.00020398854475624302,
+          -0.00013383631399058703,
+          0.00011170218874054515,
+          -0.00010828118131481225,
+          0.015
+        ],
+        [
+          0.0013100790844392534,
+          0.00011503072675514027,
+          0.0000648330190939498,
+          -9.81494930602162e-6,
+          3.121305673648949e-6,
+          -1.4758919632287356e-6,
+          9.670839264245972e-7,
+          -7.660222064784248e-7,
+          0.0012
+        ],
+        [
+          0.0007298738603604103,
+          0.0000648330190939498,
+          0.00047820459801897156,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0003885914584618514,
+          -9.81494930602162e-6,
+          0.0,
+          0.00047160280789873424,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00020398854475624302,
+          3.121305673648949e-6,
+          0.0,
+          0.0,
+          0.0003904977766588082,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00013383631399058703,
+          -1.4758919632287356e-6,
+          0.0,
+          0.0,
+          0.0,
+          0.00033624132817670693,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00011170218874054515,
+          9.670839264245972e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0003745250777136697,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00010828118131481225,
+          -7.660222064784248e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.000499670809847195,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 44100,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.00042143175036055234,
+          "displacement_relative_rmse_vs_refined_256": 0.00546776006831958,
+          "dissipated_energy_j": 0.00031410846762062143,
+          "escaped_hammer_energy_j": 0.0009650551897380536,
+          "final_energy_j": 8.363426412455133e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 6.640738306473713e-14,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.000015732577237680175,
+            0.0007299328858616058,
+            0.0001218364263166147,
+            0.00009315264173189719,
+            0.00007437766509517287,
+            0.00005080283349737871,
+            0.000026266099348113346,
+            8.188553572462562e-6,
+            0.000014427867618623789
+          ],
+          "peak_tick_mean_force_n": 12.969427583456309,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.007784175816329916,
+          "separation_seconds": 0.00007369614512471656,
+          "velocity_relative_rmse_vs_refined_256": 0.008406447662194921
+        },
+        {
+          "contact_impulse_n_s": 0.00041914204430685404,
+          "displacement_relative_rmse_vs_refined_256": 5.282019139066803e-6,
+          "dissipated_energy_j": 0.000312526279673635,
+          "escaped_hammer_energy_j": 0.0009666463712177312,
+          "final_energy_j": 8.273491085553899e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 6.606856988583541e-14,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.000015647431794789493,
+            0.0007259677484092938,
+            0.00012117815033656427,
+            0.00009265193880170305,
+            0.00007401104337871275,
+            0.000050630583166453666,
+            0.00002623258502240128,
+            8.229818984601004e-6,
+            0.000014349761393797375
+          ],
+          "peak_tick_mean_force_n": 13.151887081452529,
+          "pickup_velocity_relative_rmse_vs_refined_256": 7.486465115813496e-6,
+          "separation_seconds": 0.00007369614512471656,
+          "velocity_relative_rmse_vs_refined_256": 8.075944559491932e-6
+        },
+        {
+          "contact_impulse_n_s": 0.0004191403573967252,
+          "displacement_relative_rmse_vs_refined_256": 1.2576263416271074e-6,
+          "dissipated_energy_j": 0.00031252511351736784,
+          "escaped_hammer_energy_j": 0.0009666475439824527,
+          "final_energy_j": 8.273425001030427e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 6.403569081242509e-14,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.000015647369058681078,
+            0.000725964827216385,
+            0.00012117766529611275,
+            0.00009265156983204112,
+            0.00007401077613833927,
+            0.00005063045497464137,
+            0.000026232558796288476,
+            8.229848249765739e-6,
+            0.00001434970436769419
+          ],
+          "peak_tick_mean_force_n": 13.152022600862388,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.782503443608153e-6,
+          "separation_seconds": 0.00007369614512471656,
+          "velocity_relative_rmse_vs_refined_256": 1.922857226843108e-6
+        },
+        {
+          "contact_impulse_n_s": 0.0004191399356675458,
+          "displacement_relative_rmse_vs_refined_256": 2.51523892205456e-7,
+          "dissipated_energy_j": 0.0003125248219771196,
+          "escaped_hammer_energy_j": 0.000966647837174887,
+          "final_energy_j": 8.273408479872141e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 5.675120746603811e-14,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.000015647353374597553,
+            0.0007259640969151525,
+            0.0001211775440355325,
+            0.00009265147758923318,
+            0.00007401070932789448,
+            0.00005063042292627238,
+            0.000026232552239332296,
+            8.22985556582998e-6,
+            0.000014349690111100045
+          ],
+          "peak_tick_mean_force_n": 13.152056481108099,
+          "pickup_velocity_relative_rmse_vs_refined_256": 3.565013993653589e-7,
+          "separation_seconds": 0.00007369614512471656,
+          "velocity_relative_rmse_vs_refined_256": 3.845721965484859e-7
+        },
+        {
+          "contact_impulse_n_s": 0.0004191399356675451,
+          "displacement_relative_rmse_vs_refined_256": 3.245498446507117e-7,
+          "dissipated_energy_j": 0.0003125248219804012,
+          "escaped_hammer_energy_j": 0.0009666478371748873,
+          "final_energy_j": 8.273408474822317e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 2.542454094478507e-12,
+          "maximum_positive_energy_step_relative": 1.6940658945086002e-16,
+          "peak_absolute_coordinates": [
+            0.000015647446166888792,
+            0.0007259644289355262,
+            0.00012117931152069299,
+            0.00009265427274751638,
+            0.00007402723055232039,
+            0.00005065938574263369,
+            0.000026263757145673692,
+            8.230426440272574e-6,
+            0.000014350393060205718
+          ],
+          "peak_tick_mean_force_n": 13.281516141847577,
+          "pickup_velocity_relative_rmse_vs_refined_256": 3.921539872527291e-6,
+          "separation_seconds": 0.00006997590702947846,
+          "velocity_relative_rmse_vs_refined_256": 4.667384729130813e-6
+        },
+        {
+          "contact_impulse_n_s": 0.0004191398302351933,
+          "displacement_relative_rmse_vs_refined_256": 4.951616275176464e-8,
+          "dissipated_energy_j": 0.0003125247490899018,
+          "escaped_hammer_energy_j": 0.0009666479104730455,
+          "final_energy_j": 8.27340434737183e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 1.8096011885140868e-12,
+          "maximum_positive_energy_step_relative": 5.082197683525801e-16,
+          "peak_absolute_coordinates": [
+            0.00001564744256984611,
+            0.0007259642462074479,
+            0.00012117928203742082,
+            0.00009265424965625137,
+            0.00007402721359207242,
+            0.000050659377169154054,
+            0.000026263759871649218,
+            8.230428176005572e-6,
+            0.000014350389090555846
+          ],
+          "peak_tick_mean_force_n": 13.281536056008317,
+          "pickup_velocity_relative_rmse_vs_refined_256": 9.290979680254788e-7,
+          "separation_seconds": 0.00006997590702947846,
+          "velocity_relative_rmse_vs_refined_256": 1.111350064588769e-6
+        },
+        {
+          "contact_impulse_n_s": 0.00041913983023519224,
+          "dissipated_energy_j": 0.00031252474909187263,
+          "escaped_hammer_energy_j": 0.0009666479104730462,
+          "final_energy_j": 8.273404349592394e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 9.825582188149881e-14,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.000015647349453580864,
+            0.0007259639143408346,
+            0.00012117751372029537,
+            0.00009265145452851767,
+            0.00007401069262518162,
+            0.00005063041491416927,
+            0.00002623255060006407,
+            8.229857394830908e-6,
+            0.000014349686546940639
+          ],
+          "peak_tick_mean_force_n": 13.152064951194493,
+          "separation_seconds": 0.00007369614512471656
+        }
+      ],
+      "tine_length_m": 0.12,
+      "velocity": 1.0
+    },
+    {
+      "mass_matrix": [
+        [
+          0.04676465140732089,
+          0.0013100790844392534,
+          0.0007298738603604103,
+          -0.0003885914584618514,
+          0.00020398854475624302,
+          -0.00013383631399058703,
+          0.00011170218874054515,
+          -0.00010828118131481225,
+          0.015
+        ],
+        [
+          0.0013100790844392534,
+          0.00011503072675514027,
+          0.0000648330190939498,
+          -9.81494930602162e-6,
+          3.121305673648949e-6,
+          -1.4758919632287356e-6,
+          9.670839264245972e-7,
+          -7.660222064784248e-7,
+          0.0012
+        ],
+        [
+          0.0007298738603604103,
+          0.0000648330190939498,
+          0.00047820459801897156,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0003885914584618514,
+          -9.81494930602162e-6,
+          0.0,
+          0.00047160280789873424,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00020398854475624302,
+          3.121305673648949e-6,
+          0.0,
+          0.0,
+          0.0003904977766588082,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00013383631399058703,
+          -1.4758919632287356e-6,
+          0.0,
+          0.0,
+          0.0,
+          0.00033624132817670693,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00011170218874054515,
+          9.670839264245972e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0003745250777136697,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00010828118131481225,
+          -7.660222064784248e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.000499670809847195,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 192000,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.00015038872260853168,
+          "displacement_relative_rmse_vs_refined_256": 7.263324454424532e-6,
+          "dissipated_energy_j": 1.8835825662565033e-6,
+          "escaped_hammer_energy_j": 6.609296506147651e-8,
+          "final_energy_j": 7.898775503721757e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 2.4504985134222317e-12,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            5.518895479825112e-6,
+            0.0002567090543593153,
+            0.00004111339151990706,
+            0.000026596065030455773,
+            7.72644665483348e-6,
+            2.508965130288141e-6,
+            9.87180467615578e-7,
+            2.6811837832970364e-7,
+            3.332209318769041e-6
+          ],
+          "peak_tick_mean_force_n": 0.3042066929553683,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.00018286023710543565,
+          "separation_seconds": 0.0011393229166666665,
+          "velocity_relative_rmse_vs_refined_256": 0.00019758348473753525
+        },
+        {
+          "contact_impulse_n_s": 0.00015038781948876088,
+          "displacement_relative_rmse_vs_refined_256": 6.976903919907946e-9,
+          "dissipated_energy_j": 1.8835879305769852e-6,
+          "escaped_hammer_energy_j": 6.608777348278154e-8,
+          "final_energy_j": 7.898758229364933e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.5722188025713774e-12,
+          "maximum_positive_energy_step_relative": 8.350650923231323e-16,
+          "peak_absolute_coordinates": [
+            5.518863877589111e-6,
+            0.00025670771257624075,
+            0.000041113181388410616,
+            0.000026596116177510074,
+            7.726407894316863e-6,
+            2.5089023399199395e-6,
+            9.871333221897847e-7,
+            2.681031549432827e-7,
+            3.3322028273453707e-6
+          ],
+          "peak_tick_mean_force_n": 0.30423850083718845,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.758163967944049e-7,
+          "separation_seconds": 0.0011393229166666665,
+          "velocity_relative_rmse_vs_refined_256": 1.89992024964428e-7
+        },
+        {
+          "contact_impulse_n_s": 0.00015038781882616134,
+          "displacement_relative_rmse_vs_refined_256": 1.6929538211703076e-9,
+          "dissipated_energy_j": 1.8835879345310993e-6,
+          "escaped_hammer_energy_j": 6.608776967390827e-8,
+          "final_energy_j": 7.898758216938245e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.191136847689716e-11,
+          "maximum_positive_energy_step_relative": 1.8788964577270476e-15,
+          "peak_absolute_coordinates": [
+            5.5188638543771424e-6,
+            0.00025670771160194437,
+            0.00004111318123760242,
+            0.00002659611621505267,
+            7.72640786588467e-6,
+            2.5089022938830598e-6,
+            9.871332874650312e-7,
+            2.681031432599628e-7,
+            3.332202822619705e-6
+          ],
+          "peak_tick_mean_force_n": 0.3042385238158017,
+          "pickup_velocity_relative_rmse_vs_refined_256": 4.1861463788974436e-8,
+          "separation_seconds": 0.0011393229166666665,
+          "velocity_relative_rmse_vs_refined_256": 4.523656713346162e-8
+        },
+        {
+          "contact_impulse_n_s": 0.000150387818660462,
+          "displacement_relative_rmse_vs_refined_256": 3.087971417904378e-10,
+          "dissipated_energy_j": 1.8835879355151773e-6,
+          "escaped_hammer_energy_j": 6.608776872140607e-8,
+          "final_energy_j": 7.898758213327478e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.0732047800263815e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            5.518863848419616e-6,
+            0.0002567077113402363,
+            0.00004111318119883044,
+            0.000026596116224410678,
+            7.726407858784239e-6,
+            2.508902282376487e-6,
+            9.87133278784539e-7,
+            2.6810314033823453e-7,
+            3.3322028216475745e-6
+          ],
+          "peak_tick_mean_force_n": 0.3042385295609556,
+          "pickup_velocity_relative_rmse_vs_refined_256": 8.37320560139841e-9,
+          "separation_seconds": 0.0011393229166666665,
+          "velocity_relative_rmse_vs_refined_256": 9.047828893723532e-9
+        },
+        {
+          "contact_impulse_n_s": 0.0001503878186604613,
+          "displacement_relative_rmse_vs_refined_256": 2.272696461358102e-9,
+          "dissipated_energy_j": 1.8835879361575176e-6,
+          "escaped_hammer_energy_j": 6.608776872140623e-8,
+          "final_energy_j": 7.898758239593246e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 4.557829114817003e-10,
+          "maximum_positive_energy_step_relative": 6.262988192423492e-16,
+          "peak_absolute_coordinates": [
+            5.518863952652391e-6,
+            0.00025670773358846033,
+            0.00004111318334859515,
+            0.000026596157055424144,
+            7.726444916776964e-6,
+            2.5089085348476196e-6,
+            9.871651331288575e-7,
+            2.681150323146742e-7,
+            3.3322045738198813e-6
+          ],
+          "peak_tick_mean_force_n": 0.3042573327333269,
+          "pickup_velocity_relative_rmse_vs_refined_256": 2.5100621940029064e-8,
+          "separation_seconds": 0.0011392110188802084,
+          "velocity_relative_rmse_vs_refined_256": 2.6185422336272584e-8
+        },
+        {
+          "contact_impulse_n_s": 0.00015038781861997002,
+          "displacement_relative_rmse_vs_refined_256": 6.83347542005117e-9,
+          "dissipated_energy_j": 1.883587935026026e-6,
+          "escaped_hammer_energy_j": 6.60877684886027e-8,
+          "final_energy_j": 7.898758163296646e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 6.243888166099331e-10,
+          "maximum_positive_energy_step_relative": 4.1753254616156617e-16,
+          "peak_absolute_coordinates": [
+            5.518863951720472e-6,
+            0.0002567077326155847,
+            0.00004111318333744792,
+            0.00002659615705778034,
+            7.726444916816514e-6,
+            2.508908533291492e-6,
+            9.871651335150228e-7,
+            2.681150313272862e-7,
+            3.3322045739352493e-6
+          ],
+          "peak_tick_mean_force_n": 0.30425733407502153,
+          "pickup_velocity_relative_rmse_vs_refined_256": 4.902894838769012e-9,
+          "separation_seconds": 0.0011392110188802084,
+          "velocity_relative_rmse_vs_refined_256": 5.646754429265641e-9
+        },
+        {
+          "contact_impulse_n_s": 0.00015038781861996566,
+          "dissipated_energy_j": 1.883587935758606e-6,
+          "escaped_hammer_energy_j": 6.60877684886027e-8,
+          "final_energy_j": 7.898758212900865e-8,
+          "injected_energy_j": 2.0286632863502263e-6,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.2812194945240738e-11,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            5.518863847139396e-6,
+            0.00025670771128624784,
+            0.0000411131811829458,
+            0.000026596116226799948,
+            7.726407857014889e-6,
+            2.5089022794936975e-6,
+            9.871332766128206e-7,
+            2.6810313961020166e-7,
+            3.3322028213544935e-6
+          ],
+          "peak_tick_mean_force_n": 0.30423853099878223,
+          "separation_seconds": 0.0011393229166666665
+        }
+      ],
+      "tine_length_m": 0.12,
+      "velocity": 0.1
+    },
+    {
+      "mass_matrix": [
+        [
+          0.04676465140732089,
+          0.0013100790844392534,
+          0.0007298738603604103,
+          -0.0003885914584618514,
+          0.00020398854475624302,
+          -0.00013383631399058703,
+          0.00011170218874054515,
+          -0.00010828118131481225,
+          0.015
+        ],
+        [
+          0.0013100790844392534,
+          0.00011503072675514027,
+          0.0000648330190939498,
+          -9.81494930602162e-6,
+          3.121305673648949e-6,
+          -1.4758919632287356e-6,
+          9.670839264245972e-7,
+          -7.660222064784248e-7,
+          0.0012
+        ],
+        [
+          0.0007298738603604103,
+          0.0000648330190939498,
+          0.00047820459801897156,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.0003885914584618514,
+          -9.81494930602162e-6,
+          0.0,
+          0.00047160280789873424,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00020398854475624302,
+          3.121305673648949e-6,
+          0.0,
+          0.0,
+          0.0003904977766588082,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00013383631399058703,
+          -1.4758919632287356e-6,
+          0.0,
+          0.0,
+          0.0,
+          0.00033624132817670693,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.00011170218874054515,
+          9.670839264245972e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0003745250777136697,
+          0.0,
+          0.0
+        ],
+        [
+          -0.00010828118131481225,
+          -7.660222064784248e-7,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.000499670809847195,
+          0.0
+        ],
+        [
+          0.015,
+          0.0012,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.015
+        ]
+      ],
+      "sample_rate_hz": 192000,
+      "takes": [
+        {
+          "contact_impulse_n_s": 0.00041926127438130135,
+          "displacement_relative_rmse_vs_refined_256": 0.00028980483527459293,
+          "dissipated_energy_j": 0.0003126087012245352,
+          "escaped_hammer_energy_j": 0.0009665634825194385,
+          "final_energy_j": 8.278162560239048e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 1,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 3.405072447962287e-14,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00001565195960681329,
+            0.0007261745389715097,
+            0.00012121410625450687,
+            0.00009268060635226892,
+            0.00007404657844256375,
+            0.00005066885070819272,
+            0.000026262006298587367,
+            8.228226730805849e-6,
+            0.000014354498930171151
+          ],
+          "peak_tick_mean_force_n": 13.265737078255357,
+          "pickup_velocity_relative_rmse_vs_refined_256": 0.000410981806085151,
+          "separation_seconds": 0.0000703125,
+          "velocity_relative_rmse_vs_refined_256": 0.00044378516494608086
+        },
+        {
+          "contact_impulse_n_s": 0.0004191399137518937,
+          "displacement_relative_rmse_vs_refined_256": 2.7866239071475633e-7,
+          "dissipated_energy_j": 0.00031252480682692364,
+          "escaped_hammer_energy_j": 0.0009666478524109848,
+          "final_energy_j": 8.273407621376373e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 32,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 4.0149361699853823e-14,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.000015647445311663816,
+            0.0007259643765685095,
+            0.00012117924497287815,
+            0.00009265411948763867,
+            0.0000740270575856883,
+            0.000050658970906472605,
+            0.000026260656172196188,
+            8.230162145459956e-6,
+            0.000014350379116724921
+          ],
+          "peak_tick_mean_force_n": 13.274833345349881,
+          "pickup_velocity_relative_rmse_vs_refined_256": 3.9497069739443046e-7,
+          "separation_seconds": 0.0000703125,
+          "velocity_relative_rmse_vs_refined_256": 4.2645200415419115e-7
+        },
+        {
+          "contact_impulse_n_s": 0.00041913982475626937,
+          "displacement_relative_rmse_vs_refined_256": 6.635021875309881e-8,
+          "dissipated_energy_j": 0.0003125247453044071,
+          "escaped_hammer_energy_j": 0.0009666479142820775,
+          "final_energy_j": 8.273404135006317e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 64,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 4.5400965972830486e-14,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.00001564744200123668,
+            0.0007259642224540396,
+            0.00012117921940850365,
+            0.0000926541000642432,
+            0.00007402704326928053,
+            0.00005065896365803816,
+            0.00002626065517789068,
+            8.230163561906902e-6,
+            0.000014350376095736051
+          ],
+          "peak_tick_mean_force_n": 13.274840016975372,
+          "pickup_velocity_relative_rmse_vs_refined_256": 9.404081970678455e-8,
+          "separation_seconds": 0.0000703125,
+          "velocity_relative_rmse_vs_refined_256": 1.0153645224902347e-7
+        },
+        {
+          "contact_impulse_n_s": 0.0004191398025072853,
+          "displacement_relative_rmse_vs_refined_256": 1.3269974232937074e-8,
+          "dissipated_energy_j": 0.0003125247299239646,
+          "escaped_hammer_energy_j": 0.0009666479297499054,
+          "final_energy_j": 8.273403263403745e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 128,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 1.6669608401964626e-13,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.000015647441173622666,
+            0.0007259641839240645,
+            0.0001211792130171919,
+            0.00009265409520839542,
+            0.00007402703969021918,
+            0.00005065896184598388,
+            0.00002626065492929575,
+            8.23016391601279e-6,
+            0.000014350375340489407
+          ],
+          "peak_tick_mean_force_n": 13.274841684881679,
+          "pickup_velocity_relative_rmse_vs_refined_256": 1.8807980422308336e-8,
+          "separation_seconds": 0.0000703125,
+          "velocity_relative_rmse_vs_refined_256": 2.030693415342573e-8
+        },
+        {
+          "contact_impulse_n_s": 0.0004191398025072851,
+          "displacement_relative_rmse_vs_refined_256": 1.8288557162348615e-8,
+          "dissipated_energy_j": 0.00031252472994246173,
+          "escaped_hammer_energy_j": 0.0009666479297499057,
+          "final_energy_j": 8.273403280962559e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 512
+          },
+          "maximum_balance_relative_residual": 1.626269377410366e-11,
+          "maximum_positive_energy_step_relative": 3.3881317890172004e-16,
+          "peak_absolute_coordinates": [
+            0.00001564744161988577,
+            0.0007259641986589968,
+            0.00012117927428071758,
+            0.00009265424361188781,
+            0.00007402720925582902,
+            0.00005065937480805986,
+            0.00002626375956847837,
+            8.23042861561578e-6,
+            0.000014350388040990763
+          ],
+          "peak_tick_mean_force_n": 13.281539571004458,
+          "pickup_velocity_relative_rmse_vs_refined_256": 2.0688993173304884e-7,
+          "separation_seconds": 0.00006997680664062499,
+          "velocity_relative_rmse_vs_refined_256": 2.46244701488906e-7
+        },
+        {
+          "contact_impulse_n_s": 0.0004191397969451379,
+          "displacement_relative_rmse_vs_refined_256": 7.212701820556819e-9,
+          "dissipated_energy_j": 0.0003125247260734329,
+          "escaped_hammer_energy_j": 0.0009666479336168002,
+          "final_energy_j": 8.273403008730927e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "kind": "midpoint",
+            "steps_per_sample": 1024
+          },
+          "maximum_balance_relative_residual": 7.715792523128871e-12,
+          "maximum_positive_energy_step_relative": 3.3881317890172004e-16,
+          "peak_absolute_coordinates": [
+            0.000015647441430593296,
+            0.0007259641864509218,
+            0.0001211792727134404,
+            0.00009265424239750823,
+            0.00007402720836116,
+            0.00005065937448784212,
+            0.000026263759516142815,
+            8.230428707217195e-6,
+            0.000014350387831483833
+          ],
+          "peak_tick_mean_force_n": 13.2815404671785,
+          "pickup_velocity_relative_rmse_vs_refined_256": 4.9017733161699477e-8,
+          "separation_seconds": 0.00006997172037760417,
+          "velocity_relative_rmse_vs_refined_256": 5.864272867370838e-8
+        },
+        {
+          "contact_impulse_n_s": 0.00041913979694513745,
+          "dissipated_energy_j": 0.0003125247260785882,
+          "escaped_hammer_energy_j": 0.0009666479336168002,
+          "final_energy_j": 8.273403045502839e-7,
+          "injected_energy_j": 0.0012800000000000003,
+          "integration": {
+            "contact_substeps": 256,
+            "kind": "refined",
+            "steps_per_sample": 4
+          },
+          "maximum_balance_relative_residual": 8.131516293641281e-14,
+          "maximum_positive_energy_step_relative": 0.0,
+          "peak_absolute_coordinates": [
+            0.000015647440966687716,
+            0.0007259641742916028,
+            0.00012117921141982814,
+            0.00009265409399441826,
+            0.0000740270387954624,
+            0.00005065896139286326,
+            0.00002626065486716128,
+            8.230164004555483e-6,
+            0.000014350375151707979
+          ],
+          "peak_tick_mean_force_n": 13.274842101859221,
+          "separation_seconds": 0.0000703125
+        }
+      ],
+      "tine_length_m": 0.12,
+      "velocity": 1.0
+    }
+  ],
+  "contact_solver": {
+    "midpoint": "original 48 bisections",
+    "refined": "up to 8 safeguarded Newton evaluations, then 48 bisections if needed"
+  },
+  "coordinates": [
+    "root_m",
+    "root_rad",
+    "tine_1_m",
+    "tine_2_m",
+    "tine_3_m",
+    "tine_4_m",
+    "tine_5_m",
+    "tine_6_m",
+    "relative_tonebar_m"
+  ],
+  "damper_frame": "floor(output_frames/2)",
+  "duration_seconds": 0.04,
+  "experiment": "nine-coordinate-modal-assembly-v1",
+  "gates": {
+    "balance_relative": 1e-8,
+    "midpoint_1024_rmse": 0.005,
+    "positive_energy_step_relative": 1e-10,
+    "refined_32_rmse": 0.001
+  },
+  "native_timing": {
+    "duration_seconds": 0.25,
+    "maximum_seconds": 0.0178362,
+    "median_seconds": 0.0158973,
+    "minimum_seconds": 0.0146367,
+    "preparation_timed": false,
+    "profile": "release",
+    "runs": 5,
+    "sample_rate_hz": 48000,
+    "scope": "One native nine-coordinate voice, no pickup or host; energy ledger included; not a polyphonic deadline qualification.",
+    "strikes": 5
+  },
+  "plugin_integrated": false,
+  "profile": {
+    "contact_stiffness_n_m2": 40000000000.0,
+    "damper_n_s_m": 0.2,
+    "damper_position": 0.8,
+    "hammer_mass_kg": 0.004,
+    "maximum_hammer_speed_m_s": 0.8,
+    "rotation_damping_n_m_s_rad": 0.002,
+    "rotation_stiffness_n_m_rad": 3.9478417604357436,
+    "support_inertia_kg_m2": 0.00001,
+    "support_mass_kg": 0.03,
+    "tine_decay_seconds": [
+      5.0,
+      0.16,
+      0.055,
+      0.035,
+      0.025,
+      0.02
+    ],
+    "tonebar_arm_m": 0.08,
+    "tonebar_decay_seconds": 8.0,
+    "tonebar_frequency_hz": 190.0,
+    "tonebar_mass_kg": 0.015,
+    "translation_damping_n_s_m": 5.0,
+    "translation_stiffness_n_m": 7579.856180036627
+  },
+  "schema_version": 1,
+  "scope": "Finite-reference mechanical metrics; physical inertia weights mixed translation/rotation coordinates. Refined probes observe base ticks, not each contact microstep. No magnetic conversion or antialias filtering; no audio/host qualification.",
+  "status": "pass",
+  "tine_defaults": {
+    "density_kg_m3": 7850.0,
+    "diameter_m": 0.0015,
+    "elements": 64,
+    "hammer_position": 0.2,
+    "pickup_position": 0.98,
+    "tuning_mass_kg": 0.0001,
+    "tuning_position": 0.85,
+    "young_modulus_pa": 200000000000.0
+  }
+}
