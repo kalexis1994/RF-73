@@ -73,6 +73,8 @@ The analytical gradient is multiplied by tip velocity, with an arbitrary electri
 
 Conversion occurs separately for every key, before summation. This keeps pickup intermodulation within that key; a nonlinear amplifier across the mix would be a separate circuit. Gabrielli and colleagues specifically analyze attack modes and their pickup intermodulation. Their abstract was consulted; full modal tables remain to be obtained. [JASA 2020](https://iris.univpm.it/handle/11566/286030).
 
+`MagneticPickup` now owns this unchanged production transfer and exposes an explicitly experimental point-pole field proxy to the offline laboratory. [Isolated pickup transfer](PICKUP-TRANSFER.md) defines its additional assumptions and ideal-band aliasing diagnostic. The experimental law is not selected by the voice engine or plugin.
+
 ## Antialiasing, output and numerical limits
 
 A 127-tap Blackman-windowed sinc filters the summed 4x-rate signal before decimation. Cutoff is 0.105 cycles/internal sample; group delay is 63 internal samples, or 15.75 output samples. The filter's measured stopband response has unit tests. This does not prove that all nonlinear aliasing is inaudible: aliases generated above the internal Nyquist frequency require a higher-rate comparison and cannot be removed afterward.

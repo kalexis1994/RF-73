@@ -38,6 +38,8 @@ The measurement foundation is implemented: external WAV input, multi-resolution 
 
 The [G3 residual pilot](G3-RESIDUAL-PILOT.md) now compares all five acquired source layers against three model velocities and two pickup geometries. A closer pickup reduces a strong-probe H3 deficit but selects the minimum supported gap and leaves substantial residuals. `compare-tone` provides explicit attack/body diagnostics without inferred velocities or decay fits; the production profile remains unchanged. The next isolated physical experiment targets pickup transfer shape and excitation scale, including nonlinear aliasing.
 
+The [isolated pickup experiment](PICKUP-TRANSFER.md) now compares the current law with a more localized point-pole field proxy under identical periodic motion. It reports raw sensitivity, harmonic balance and internal sampling residuals separately. The next step is to evaluate a research transfer on identical rendered mechanical trajectories, including actual filtering and explicit attack/body comparisons, before proposing an instrument change.
+
 1. Obtain dry recordings from a documented instrument at multiple intensities.
 2. Evaluate independent tracking across the available observation lengths on those recordings, refine background qualification, and distinguish observed spectral peaks from identified mechanical modes.
 3. Extend the current convergence measurements to extreme profiles, retriggers and isolated nonlinear aliasing; establish explicit error budgets.

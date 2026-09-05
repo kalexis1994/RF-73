@@ -1,0 +1,592 @@
+{
+  "experiment": "periodic_pickup_transfer",
+  "frequency_hz": 196.0,
+  "gap_mm": 1.5,
+  "ideal_band_limit_hz": 18522.0,
+  "last_retained_harmonic": 94,
+  "limitations": [
+    "Finite 128x reference; inspect 64x residual before interpreting 4x error.",
+    "Ideal Fourier band projection; no production FIR, transients or mechanical solver.",
+    "Single-coordinate flux proxies, uncalibrated common scale; not full published pickup geometry.",
+    "More harmonics do not establish realism or improvement against recorded Rhodes audio."
+  ],
+  "numerical_reporting_floor_db": -160.0,
+  "observations": [
+    {
+      "amplitude_mm": 0.05,
+      "law": "production",
+      "reference_dc": 1.4614649061914828e-17,
+      "reference_harmonics": [
+        {
+          "amplitude": 0.1750819618495301,
+          "order": 1,
+          "relative_to_fundamental_db": 0.0
+        },
+        {
+          "amplitude": 0.006132845447155886,
+          "order": 2,
+          "relative_to_fundamental_db": -29.11158768273477
+        },
+        {
+          "amplitude": 0.0001641161299149185,
+          "order": 3,
+          "relative_to_fundamental_db": -60.56180274451108
+        },
+        {
+          "amplitude": 3.8546717165780465e-7,
+          "order": 4,
+          "relative_to_fundamental_db": -113.145080142787
+        },
+        {
+          "amplitude": 5.90172195927724e-8,
+          "order": 5,
+          "relative_to_fundamental_db": -129.44525318249129
+        },
+        {
+          "amplitude": 5.283555434945241e-10,
+          "order": 6,
+          "relative_to_fundamental_db": -170.40630271972006
+        },
+        {
+          "amplitude": 1.197797591958277e-11,
+          "order": 7,
+          "relative_to_fundamental_db": null
+        },
+        {
+          "amplitude": 2.823474322906666e-13,
+          "order": 8,
+          "relative_to_fundamental_db": null
+        },
+        {
+          "amplitude": 4.0306031115719074e-16,
+          "order": 9,
+          "relative_to_fundamental_db": null
+        },
+        {
+          "amplitude": 7.413658131928451e-17,
+          "order": 10,
+          "relative_to_fundamental_db": null
+        },
+        {
+          "amplitude": 1.1051210187534738e-16,
+          "order": 11,
+          "relative_to_fundamental_db": null
+        },
+        {
+          "amplitude": 6.172826246902259e-17,
+          "order": 12,
+          "relative_to_fundamental_db": null
+        }
+      ],
+      "reference_ideal_band_rms": 0.12387762528522893,
+      "sampling_errors": [
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.1115430419024168e-14,
+          "internal_oversampling": 4
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 8.843028392116033e-15,
+          "internal_oversampling": 8
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.2213934794973171e-14,
+          "internal_oversampling": 16
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.4259536831239465e-14,
+          "internal_oversampling": 32
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.6835962358051203e-14,
+          "internal_oversampling": 64
+        }
+      ]
+    },
+    {
+      "amplitude_mm": 0.05,
+      "law": "research_point_pole",
+      "reference_dc": -6.651792415837086e-17,
+      "reference_harmonics": [
+        {
+          "amplitude": 0.47248499848792336,
+          "order": 1,
+          "relative_to_fundamental_db": 0.0
+        },
+        {
+          "amplitude": 0.011834707373568346,
+          "order": 2,
+          "relative_to_fundamental_db": -32.024610002622794
+        },
+        {
+          "amplitude": 0.000679270202909724,
+          "order": 3,
+          "relative_to_fundamental_db": -56.8469092001256
+        },
+        {
+          "amplitude": 2.7888589136834785e-6,
+          "order": 4,
+          "relative_to_fundamental_db": -104.57922959852156
+        },
+        {
+          "amplitude": 3.011762043164785e-7,
+          "order": 5,
+          "relative_to_fundamental_db": -123.91134736949792
+        },
+        {
+          "amplitude": 5.132408320471395e-9,
+          "order": 6,
+          "relative_to_fundamental_db": -159.28133647485873
+        },
+        {
+          "amplitude": 5.6308392876151514e-11,
+          "order": 7,
+          "relative_to_fundamental_db": -198.47629783983336
+        },
+        {
+          "amplitude": 2.6069241053629305e-12,
+          "order": 8,
+          "relative_to_fundamental_db": null
+        },
+        {
+          "amplitude": 1.0935762292325216e-14,
+          "order": 9,
+          "relative_to_fundamental_db": null
+        },
+        {
+          "amplitude": 7.91957218654723e-16,
+          "order": 10,
+          "relative_to_fundamental_db": null
+        },
+        {
+          "amplitude": 2.900059341599647e-16,
+          "order": 11,
+          "relative_to_fundamental_db": null
+        },
+        {
+          "amplitude": 1.5944628922366114e-16,
+          "order": 12,
+          "relative_to_fundamental_db": null
+        }
+      ],
+      "reference_ideal_band_rms": 0.3342024801752883,
+      "sampling_errors": [
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.9780458081171198e-14,
+          "internal_oversampling": 4
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.0262009473888224e-14,
+          "internal_oversampling": 8
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.2631471515857347e-14,
+          "internal_oversampling": 16
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.379638170911006e-14,
+          "internal_oversampling": 32
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.6962933140367656e-14,
+          "internal_oversampling": 64
+        }
+      ]
+    },
+    {
+      "amplitude_mm": 0.25,
+      "law": "production",
+      "reference_dc": 3.1165234276426725e-17,
+      "reference_harmonics": [
+        {
+          "amplitude": 0.8560585931962358,
+          "order": 1,
+          "relative_to_fundamental_db": 0.0
+        },
+        {
+          "amplitude": 0.1528212844892845,
+          "order": 2,
+          "relative_to_fundamental_db": -14.966392908648846
+        },
+        {
+          "amplitude": 0.019991206780815673,
+          "order": 3,
+          "relative_to_fundamental_db": -32.63328959533839
+        },
+        {
+          "amplitude": 0.00027121381634004273,
+          "order": 4,
+          "relative_to_fundamental_db": -69.9838336252314
+        },
+        {
+          "amplitude": 0.0001799549015370875,
+          "order": 5,
+          "relative_to_fundamental_db": -73.54679621663738
+        },
+        {
+          "amplitude": 7.640588345843974e-6,
+          "order": 6,
+          "relative_to_fundamental_db": -100.98753378818313
+        },
+        {
+          "amplitude": 9.290707080208358e-7,
+          "order": 7,
+          "relative_to_fundamental_db": -119.28909446740963
+        },
+        {
+          "amplitude": 1.0413378069097857e-7,
+          "order": 8,
+          "relative_to_fundamental_db": -138.29823709801883
+        },
+        {
+          "amplitude": 1.1270523786823021e-9,
+          "order": 9,
+          "relative_to_fundamental_db": -177.6111878235798
+        },
+        {
+          "amplitude": 7.834632074519951e-10,
+          "order": 10,
+          "relative_to_fundamental_db": -180.76969769838092
+        },
+        {
+          "amplitude": 3.272300234995664e-11,
+          "order": 11,
+          "relative_to_fundamental_db": null
+        },
+        {
+          "amplitude": 3.64986761939321e-12,
+          "order": 12,
+          "relative_to_fundamental_db": null
+        }
+      ],
+      "reference_ideal_band_rms": 0.6150570763460006,
+      "sampling_errors": [
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.2920689983405765e-14,
+          "internal_oversampling": 4
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 9.007508058025044e-15,
+          "internal_oversampling": 8
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.2826774705459819e-14,
+          "internal_oversampling": 16
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.4000477144904449e-14,
+          "internal_oversampling": 32
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.3027464739817148e-14,
+          "internal_oversampling": 64
+        }
+      ]
+    },
+    {
+      "amplitude_mm": 0.25,
+      "law": "research_point_pole",
+      "reference_dc": -1.837751293253593e-16,
+      "reference_harmonics": [
+        {
+          "amplitude": 2.282662960565507,
+          "order": 1,
+          "relative_to_fundamental_db": 0.0
+        },
+        {
+          "amplitude": 0.29885141094003875,
+          "order": 2,
+          "relative_to_fundamental_db": -17.65972962531237
+        },
+        {
+          "amplitude": 0.08223567779072838,
+          "order": 3,
+          "relative_to_fundamental_db": -28.867630311698207
+        },
+        {
+          "amplitude": 0.001448064886446382,
+          "order": 4,
+          "relative_to_fundamental_db": -63.95307538409274
+        },
+        {
+          "amplitude": 0.000919705608209516,
+          "order": 5,
+          "relative_to_fundamental_db": -67.89585914175863
+        },
+        {
+          "amplitude": 0.00007451374294278819,
+          "order": 6,
+          "relative_to_fundamental_db": -89.72410825186432
+        },
+        {
+          "amplitude": 4.52242348144414e-6,
+          "order": 7,
+          "relative_to_fundamental_db": -114.06141128844638
+        },
+        {
+          "amplitude": 9.618268258927957e-7,
+          "order": 8,
+          "relative_to_fundamental_db": -127.50689812420914
+        },
+        {
+          "amplitude": 1.6221168317147116e-8,
+          "order": 9,
+          "relative_to_fundamental_db": -162.96719322216532
+        },
+        {
+          "amplitude": 7.252439594066381e-9,
+          "order": 10,
+          "relative_to_fundamental_db": -169.95915343212118
+        },
+        {
+          "amplitude": 5.441951242094881e-10,
+          "order": 11,
+          "relative_to_fundamental_db": -192.45374290989614
+        },
+        {
+          "amplitude": 2.7913788435700246e-11,
+          "order": 12,
+          "relative_to_fundamental_db": null
+        }
+      ],
+      "reference_ideal_band_rms": 1.62889963048437,
+      "sampling_errors": [
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.933507342167648e-14,
+          "internal_oversampling": 4
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 7.268112876435441e-15,
+          "internal_oversampling": 8
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.4969137961150944e-14,
+          "internal_oversampling": 16
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.826224010084015e-14,
+          "internal_oversampling": 32
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.6851812078777118e-14,
+          "internal_oversampling": 64
+        }
+      ]
+    },
+    {
+      "amplitude_mm": 0.75,
+      "law": "production",
+      "reference_dc": 1.5802608817618565e-16,
+      "reference_harmonics": [
+        {
+          "amplitude": 2.1541156700081574,
+          "order": 1,
+          "relative_to_fundamental_db": 0.0
+        },
+        {
+          "amplitude": 1.3194281543161848,
+          "order": 2,
+          "relative_to_fundamental_db": -4.257665461091417
+        },
+        {
+          "amplitude": 0.43745599261841006,
+          "order": 3,
+          "relative_to_fundamental_db": -13.846692995486578
+        },
+        {
+          "amplitude": 0.03542009979759306,
+          "order": 4,
+          "relative_to_fundamental_db": -35.68038478986076
+        },
+        {
+          "amplitude": 0.03528640169353207,
+          "order": 5,
+          "relative_to_fundamental_db": -35.71323292507463
+        },
+        {
+          "amplitude": 0.0027894403416343573,
+          "order": 6,
+          "relative_to_fundamental_db": -57.755038849920396
+        },
+        {
+          "amplitude": 0.0017885269599491025,
+          "order": 7,
+          "relative_to_fundamental_db": -61.6154705795294
+        },
+        {
+          "amplitude": 0.0004182983677722498,
+          "order": 8,
+          "relative_to_fundamental_db": -74.23565700106296
+        },
+        {
+          "amplitude": 0.000047299523529554244,
+          "order": 9,
+          "relative_to_fundamental_db": -93.16824508170168
+        },
+        {
+          "amplitude": 0.00003079199431616496,
+          "order": 10,
+          "relative_to_fundamental_db": -96.89662404140974
+        },
+        {
+          "amplitude": 1.5169251997675297e-6,
+          "order": 11,
+          "relative_to_fundamental_db": -123.0460970784796
+        },
+        {
+          "amplitude": 1.5391565218435158e-6,
+          "order": 12,
+          "relative_to_fundamental_db": -122.9197246618551
+        }
+      ],
+      "reference_ideal_band_rms": 1.8131441739749485,
+      "sampling_errors": [
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.4504389625737485e-14,
+          "internal_oversampling": 4
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 9.658709058478731e-15,
+          "internal_oversampling": 8
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.7415345031534887e-14,
+          "internal_oversampling": 16
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.475419630667952e-14,
+          "internal_oversampling": 32
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.6742125892436255e-14,
+          "internal_oversampling": 64
+        }
+      ]
+    },
+    {
+      "amplitude_mm": 0.75,
+      "law": "research_point_pole",
+      "reference_dc": -1.8885187588129564e-16,
+      "reference_harmonics": [
+        {
+          "amplitude": 5.209222341432754,
+          "order": 1,
+          "relative_to_fundamental_db": 0.0
+        },
+        {
+          "amplitude": 2.7299100996415575,
+          "order": 2,
+          "relative_to_fundamental_db": -5.612490984930493
+        },
+        {
+          "amplitude": 1.699827627778661,
+          "order": 3,
+          "relative_to_fundamental_db": -9.727360216602825
+        },
+        {
+          "amplitude": 0.017389799923004448,
+          "order": 4,
+          "relative_to_fundamental_db": -49.52956618425097
+        },
+        {
+          "amplitude": 0.1783156297013935,
+          "order": 5,
+          "relative_to_fundamental_db": -29.311669658559136
+        },
+        {
+          "amplitude": 0.02877796324265846,
+          "order": 6,
+          "relative_to_fundamental_db": -45.154256819216585
+        },
+        {
+          "amplitude": 0.009997954362103493,
+          "order": 7,
+          "relative_to_fundamental_db": -54.33723489031191
+        },
+        {
+          "amplitude": 0.003813691196744974,
+          "order": 8,
+          "relative_to_fundamental_db": -62.70854740362764
+        },
+        {
+          "amplitude": 0.00014378794952986585,
+          "order": 9,
+          "relative_to_fundamental_db": -91.18100807898442
+        },
+        {
+          "amplitude": 0.00029227500639192116,
+          "order": 10,
+          "relative_to_fundamental_db": -85.01962431640565
+        },
+        {
+          "amplitude": 0.000034082204258552736,
+          "order": 11,
+          "relative_to_fundamental_db": -103.68490439211853
+        },
+        {
+          "amplitude": 0.000014522792356500249,
+          "order": 12,
+          "relative_to_fundamental_db": -111.09445533077636
+        }
+      ],
+      "reference_ideal_band_rms": 4.3307541011754385,
+      "sampling_errors": [
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.8099150185151688e-14,
+          "internal_oversampling": 4
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 8.78491728446187e-15,
+          "internal_oversampling": 8
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.7911094226278463e-14,
+          "internal_oversampling": 16
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.0704782970859917e-14,
+          "internal_oversampling": 32
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.806217193239303e-14,
+          "internal_oversampling": 64
+        }
+      ]
+    }
+  ],
+  "offset_mm": 0.5,
+  "period_frames": 225,
+  "reference_oversampling": 128,
+  "sample_rate_hz": 44100,
+  "schema_version": 1,
+  "trajectory": "x=A*cos(2*pi*f*t); v=-A*2*pi*f*sin(2*pi*f*t)"
+}

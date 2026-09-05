@@ -56,6 +56,53 @@ impl Drop for Scratch {
 }
 
 #[test]
+fn pickup_transfer_reports_both_laws_and_rejects_invalid_or_existing_output() {
+    let scratch = Scratch::new();
+    let args = [
+        "pickup-transfer",
+        "--output",
+        "transfer.json",
+        "--period-frames",
+        "32",
+        "--amplitudes-mm",
+        "0.25",
+    ];
+    scratch.success(&args);
+    let report = scratch.json("transfer.json");
+    assert_eq!(report["schema_version"], 1);
+    assert_eq!(report["frequency_hz"], 1378.125);
+    assert_eq!(report["last_retained_harmonic"], 13);
+    let rows = report["observations"].as_array().unwrap();
+    assert_eq!(rows.len(), 2);
+    assert_eq!(rows[0]["law"], "production");
+    assert_eq!(rows[1]["law"], "research_point_pole");
+    assert_eq!(rows[0]["sampling_errors"].as_array().unwrap().len(), 5);
+    assert_eq!(rows[1]["reference_harmonics"].as_array().unwrap().len(), 12);
+    let before = fs::read(scratch.0.join("transfer.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(before, fs::read(scratch.0.join("transfer.json")).unwrap());
+    for flags in [
+        vec!["--period-frames", "15"],
+        vec!["--period-frames", "513"],
+        vec!["--sample-rate", "44000"],
+        vec!["--gap-mm", "NaN"],
+        vec!["--offset-mm", "inf"],
+        vec!["--amplitudes-mm", "0"],
+        vec!["--amplitudes-mm", "0.1,0.1"],
+        vec!["--amplitudes-mm", "0.1,0.2,0.3,0.4,0.5,0.6"],
+        vec!["--amplitudes-mm", "NaN"],
+        vec!["--gap-mm", "1", "--gap-mm", "2"],
+        vec!["--unknown", "1"],
+        vec!["--period-frames"],
+    ] {
+        let mut args = vec!["pickup-transfer", "--output", "invalid.json"];
+        args.extend(flags);
+        assert!(!scratch.run(&args).status.success(), "{args:?}");
+        assert!(!scratch.0.join("invalid.json").exists());
+    }
+}
+
+#[test]
 fn tone_comparison_roundtrip_needs_no_sustain_claim_and_preserves_output() {
     let scratch = Scratch::new();
     scratch.success(&[

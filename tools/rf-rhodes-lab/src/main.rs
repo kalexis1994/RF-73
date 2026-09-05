@@ -6,6 +6,7 @@ mod package;
 mod partial_comparison;
 mod pickup_set;
 mod pickup_sweep;
+mod pickup_transfer;
 mod tone_comparison;
 mod wav;
 use rf_rhodes_dsp::{Engine, FIRST_NOTE, LAST_NOTE, Profile};
@@ -176,6 +177,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", pickup_sweep::HELP);
         print!("{}", pickup_set::HELP);
         print!("{}", tone_comparison::HELP);
+        print!("{}", pickup_transfer::HELP);
         print!("{}", convergence::HELP);
         return Ok(());
     }
@@ -191,6 +193,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "compare-tone" {
         return tone_comparison::run(&args);
+    }
+    if args[0] == "pickup-transfer" {
+        return pickup_transfer::run(&args);
     }
     if args[0] == "sweep-pickup" {
         return pickup_sweep::run(&args);

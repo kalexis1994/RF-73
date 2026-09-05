@@ -1,4 +1,4 @@
-use crate::{FIRST_NOTE, LAST_NOTE, ModelError, OVERSAMPLE, Profile};
+use crate::{FIRST_NOTE, LAST_NOTE, MagneticPickup, ModelError, OVERSAMPLE, Profile};
 use core::f64::consts::TAU;
 
 const MODES: usize = 3;
@@ -78,6 +78,7 @@ impl Mode {
 pub struct Voice {
     modes: [Mode; MODES],
     profile: Profile,
+    pickup: MagneticPickup,
     dt: f64,
     contact_steps: usize,
     hammer_mass: f64,
@@ -164,6 +165,7 @@ impl Voice {
         Self {
             modes,
             profile,
+            pickup: MagneticPickup::from_validated_profile(profile),
             dt,
             contact_steps,
             hammer_mass: profile.hammer_mass_kg * scale.sqrt(),
@@ -234,9 +236,7 @@ impl Voice {
         // Smooth, bounded flux linkage surrogate. Gap never reaches zero.
         // Phi = 1 / sqrt(1 + ((offset + position) / gap)^2).
         // Output follows -dPhi/dt, not displacement and not a post-mix clipper.
-        let z = (self.profile.pickup_offset_m + position) / self.profile.pickup_gap_m;
-        let base = 1.0 + z * z;
-        self.signal = 0.015 * z * velocity / (self.profile.pickup_gap_m * base * base.sqrt());
+        self.signal = self.pickup.voltage(position, velocity);
         if !self.contact && self.modes.iter().map(Mode::energy).sum::<f64>() < 1e-18 {
             self.reset();
         }

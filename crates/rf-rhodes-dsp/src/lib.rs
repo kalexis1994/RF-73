@@ -2,9 +2,11 @@
 //! Construction prepares all memory; rendering uses fixed-size state only.
 mod filter;
 mod model;
+mod pickup;
 mod voice;
 
 pub use model::{ModelError, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
+pub use pickup::MagneticPickup;
 pub use voice::{Probe, Voice};
 
 pub const FIRST_NOTE: u8 = 28;

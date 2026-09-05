@@ -1,0 +1,282 @@
+{
+  "experiment": "periodic_pickup_transfer",
+  "frequency_hz": 2756.25,
+  "gap_mm": 0.5,
+  "ideal_band_limit_hz": 18522.0,
+  "last_retained_harmonic": 6,
+  "limitations": [
+    "Finite 128x reference; inspect 64x residual before interpreting 4x error.",
+    "Ideal Fourier band projection; no production FIR, transients or mechanical solver.",
+    "Single-coordinate flux proxies, uncalibrated common scale; not full published pickup geometry.",
+    "More harmonics do not establish realism or improvement against recorded Rhodes audio."
+  ],
+  "numerical_reporting_floor_db": -160.0,
+  "observations": [
+    {
+      "amplitude_mm": 0.75,
+      "law": "production",
+      "reference_dc": -1.7461753614236852e-15,
+      "reference_harmonics": [
+        {
+          "amplitude": 48.369715447929835,
+          "order": 1,
+          "relative_to_fundamental_db": 0.0
+        },
+        {
+          "amplitude": 83.6221475126886,
+          "order": 2,
+          "relative_to_fundamental_db": 4.754955680682005
+        },
+        {
+          "amplitude": 56.46464759441426,
+          "order": 3,
+          "relative_to_fundamental_db": 1.3440617894867715
+        },
+        {
+          "amplitude": 15.682824295889414,
+          "order": 4,
+          "relative_to_fundamental_db": -9.782985113639555
+        },
+        {
+          "amplitude": 25.741551797426535,
+          "order": 5,
+          "relative_to_fundamental_db": -5.478776164879494
+        },
+        {
+          "amplitude": 2.727381502389746,
+          "order": 6,
+          "relative_to_fundamental_db": -24.976552835918486
+        }
+      ],
+      "reference_ideal_band_rms": 81.96513414801399,
+      "sampling_errors": [
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.8044998023617616e-14,
+          "internal_oversampling": 4
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.985209719354602e-14,
+          "internal_oversampling": 8
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.9355515587928243e-14,
+          "internal_oversampling": 16
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.2337063117834404e-14,
+          "internal_oversampling": 32
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.070107189344562e-14,
+          "internal_oversampling": 64
+        }
+      ]
+    },
+    {
+      "amplitude_mm": 0.75,
+      "law": "research_point_pole",
+      "reference_dc": 6.420862105893654e-15,
+      "reference_harmonics": [
+        {
+          "amplitude": 67.59348650634719,
+          "order": 1,
+          "relative_to_fundamental_db": 0.0
+        },
+        {
+          "amplitude": 136.44256082186166,
+          "order": 2,
+          "relative_to_fundamental_db": 6.100900274313279
+        },
+        {
+          "amplitude": 141.7528330050921,
+          "order": 3,
+          "relative_to_fundamental_db": 6.4325379820950035
+        },
+        {
+          "amplitude": 31.226896959641277,
+          "order": 4,
+          "relative_to_fundamental_db": -6.70752035895593
+        },
+        {
+          "amplitude": 89.48613608420165,
+          "order": 5,
+          "relative_to_fundamental_db": 2.437018159270278
+        },
+        {
+          "amplitude": 18.54846289804538,
+          "order": 6,
+          "relative_to_fundamental_db": -11.231938449559697
+        }
+      ],
+      "reference_ideal_band_rms": 162.18238284038307,
+      "sampling_errors": [
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.6089535552300415e-14,
+          "internal_oversampling": 4
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.7224461067954422e-14,
+          "internal_oversampling": 8
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.7785663219083016e-14,
+          "internal_oversampling": 16
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 1.847828844424252e-14,
+          "internal_oversampling": 32
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.142015085175485e-14,
+          "internal_oversampling": 64
+        }
+      ]
+    },
+    {
+      "amplitude_mm": 3.0,
+      "law": "production",
+      "reference_dc": 3.716676218092768e-14,
+      "reference_harmonics": [
+        {
+          "amplitude": 9.844730155726836,
+          "order": 1,
+          "relative_to_fundamental_db": 0.0
+        },
+        {
+          "amplitude": 134.3153476965804,
+          "order": 2,
+          "relative_to_fundamental_db": 22.698436480864515
+        },
+        {
+          "amplitude": 38.30923407823144,
+          "order": 3,
+          "relative_to_fundamental_db": 11.801993050898425
+        },
+        {
+          "amplitude": 142.6529694207998,
+          "order": 4,
+          "relative_to_fundamental_db": 23.221539992262294
+        },
+        {
+          "amplitude": 59.86515334309659,
+          "order": 5,
+          "relative_to_fundamental_db": 15.67940565319532
+        },
+        {
+          "amplitude": 120.70118302587173,
+          "order": 6,
+          "relative_to_fundamental_db": 21.770154202867943
+        }
+      ],
+      "reference_ideal_band_rms": 170.45176826240638,
+      "sampling_errors": [
+        {
+          "error_db_above_numerical_floor": -66.63464992991615,
+          "ideal_band_nrmse_against_128x": 0.00046587295942061483,
+          "internal_oversampling": 4
+        },
+        {
+          "error_db_above_numerical_floor": -154.87288912714573,
+          "ideal_band_nrmse_against_128x": 1.8044944208508134e-8,
+          "internal_oversampling": 8
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.165518704174591e-14,
+          "internal_oversampling": 16
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.2936209197620542e-14,
+          "internal_oversampling": 32
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.706354399005052e-14,
+          "internal_oversampling": 64
+        }
+      ]
+    },
+    {
+      "amplitude_mm": 3.0,
+      "law": "research_point_pole",
+      "reference_dc": 2.076607615180445e-14,
+      "reference_harmonics": [
+        {
+          "amplitude": 4.854496933789217,
+          "order": 1,
+          "relative_to_fundamental_db": 0.0
+        },
+        {
+          "amplitude": 98.39081977307848,
+          "order": 2,
+          "relative_to_fundamental_db": 26.136206958577798
+        },
+        {
+          "amplitude": 35.04409582482275,
+          "order": 3,
+          "relative_to_fundamental_db": 17.169412561766496
+        },
+        {
+          "amplitude": 155.61204898543502,
+          "order": 4,
+          "relative_to_fundamental_db": 30.117979802180717
+        },
+        {
+          "amplitude": 76.40492862512437,
+          "order": 5,
+          "relative_to_fundamental_db": 23.93954286486325
+        },
+        {
+          "amplitude": 173.10812870540556,
+          "order": 6,
+          "relative_to_fundamental_db": 31.043464611498884
+        }
+      ],
+      "reference_ideal_band_rms": 188.35027918723796,
+      "sampling_errors": [
+        {
+          "error_db_above_numerical_floor": -46.98724677505682,
+          "ideal_band_nrmse_against_128x": 0.004473399256673907,
+          "internal_oversampling": 4
+        },
+        {
+          "error_db_above_numerical_floor": -129.21611660776168,
+          "ideal_band_nrmse_against_128x": 3.4609407915337286e-7,
+          "internal_oversampling": 8
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.115213196983637e-14,
+          "internal_oversampling": 16
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 2.0757911763174492e-14,
+          "internal_oversampling": 32
+        },
+        {
+          "error_db_above_numerical_floor": null,
+          "ideal_band_nrmse_against_128x": 3.0787462578183966e-14,
+          "internal_oversampling": 64
+        }
+      ]
+    }
+  ],
+  "offset_mm": 0.25,
+  "period_frames": 16,
+  "reference_oversampling": 128,
+  "sample_rate_hz": 44100,
+  "schema_version": 1,
+  "trajectory": "x=A*cos(2*pi*f*t); v=-A*2*pi*f*sin(2*pi*f*t)"
+}

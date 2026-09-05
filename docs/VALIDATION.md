@@ -190,3 +190,35 @@ Five new analysis fixtures cover known gain and harmonic-balance changes, missin
 The [G3 residual pilot](G3-RESIDUAL-PILOT.md) compares five acquired real-instrument layers against six fresh model renders. Thirty compact tone reports and a tracked numeric summary preserve the results. A 25-candidate strong-layer sweep reduces its windowed spectral objective from 8.7878 to 7.3568 dB by selecting gap 0.5 mm/offset 0.25 mm. This is at the minimum supported gap. At model velocity 0.9, the H3/H1 deficit against the strongest reference falls from 21.90 to 6.49 dB in the 96 ms observation and from 25.97 to 9.71 dB in the body. Those model/reference strike intensities are not independently matched.
 
 All six renders have zero numerical faults; the close-gap loud render exceeds unity peak in unclipped float output. That exploratory profile was not promoted to the plugin. The observed improvement is diagnostic, with processed-source, capture-gain, strike and alignment uncertainty; it is not a validated audible release or proof of realistic physical geometry.
+
+## Isolated magnetic transfer
+
+Date: 2026-09-04. Extracted the unchanged production transfer into `MagneticPickup` and added `pickup-transfer` for analytic periodic motion. All 90 Rust tests passed. Formatting, strict Clippy, native release and WASM release builds passed with session-local `CARGO_INCREMENTAL=0`. Six new tests cover independent finite-difference flux derivatives, validated geometry and reflection symmetry, Fourier phase/DC/Parseval energy, even-only centered-pickup harmonics, demanding-motion sampling convergence and CLI validation/no-overwrite.
+
+Three new MIDI 55/44.1 kHz production renders at velocities 0.2/0.5/0.9, duration 3 seconds and hold 2.8 seconds, have exactly the same SHA-256 hashes as the preceding G3 pilot WAVs. All have zero numerical faults. A 73-key/48 kHz native stress run reports zero faults and deadline misses, p99 0.5876 ms and worst block 2.2261 ms against a 2.6667 ms deadline. This short desktop observation is not device qualification; its worst block also exceeds the provisional half-deadline budget.
+
+The [experiment specification](PICKUP-TRANSFER.md) defines the two flux proxies and their limitations. Full numerical reports are tracked in `references/pickup-transfer/{default,close,treble}.json`. Original run artifacts and compatibility WAVs are under ignored `renders/pickup-transfer-20260904-230603/`.
+
+At 196 Hz, the relative third harmonic increases with the more localized field proxy:
+
+| Gap / offset mm | Amplitude mm | Production H3/H1 dB | Point-pole H3/H1 dB | Change dB |
+| --- | --- | --- | --- | --- |
+| 1.5 / 0.5 | 0.05 | -60.56 | -56.85 | +3.71 |
+| 1.5 / 0.5 | 0.25 | -32.63 | -28.87 | +3.77 |
+| 1.5 / 0.5 | 0.75 | -13.85 | -9.73 | +4.12 |
+| 0.5 / 0.25 | 0.05 | -44.42 | -41.89 | +2.54 |
+| 0.5 / 0.25 | 0.25 | -16.26 | -13.02 | +3.25 |
+| 0.5 / 0.25 | 0.75 | +1.34 | +6.43 | +5.09 |
+
+This is not simply a brighter copy of the same spectrum: at the close geometry and 0.05 mm amplitude, H2/H1 falls from -27.84 to -60.37 dB. The geometry is near a small-displacement curvature cancellation for the point-pole proxy. Raw sensitivity also changes: at default geometry and 0.75 mm amplitude, ideal-band RMS rises from 1.8131 to 4.3308 in arbitrary pre-engine units. Neither the amplitude probes nor their gain are matched to the recorded instrument.
+
+All twelve 196 Hz observations have 4x sampling residuals below the -160 dB reporting floor in the ideal output band. The 64x residuals against 128x are also below that floor. This does not assess the production FIR's stopband leakage or nonperiodic attacks.
+
+An intentionally demanding 2,756.25 Hz sinusoid, 3 mm amplitude and 0.5/0.25 mm geometry exposes a difference:
+
+| Law | 4x ideal-band NRMSE | 4x error dB | 8x error dB | 64x error dB |
+| --- | --- | --- | --- | --- |
+| Production | 0.0004659 | -66.63 | -154.87 | Below -160 |
+| Point-pole proxy | 0.0044734 | -46.99 | -129.22 | Below -160 |
+
+That synthetic trajectory reaches approximately 52 m/s peak tine velocity; it is a numerical stress case, not a claimed attainable Rhodes motion. At the same frequency with 0.75 mm amplitude, both 4x residuals are below the reporting floor. These results justify testing the alternative on actual simulated mechanical trajectories with the production filter before selecting a sound change. They do not establish an audible realism gain. The plugin remains the 0.1.1 research profile; no new audition version was produced.
