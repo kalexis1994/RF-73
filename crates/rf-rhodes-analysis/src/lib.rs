@@ -4,6 +4,7 @@ mod compare;
 mod measurement;
 mod partial_comparison;
 mod spectrum;
+mod tone_comparison;
 mod tracking;
 
 pub use audio::{AudioClip, AudioError, AudioMetadata};
@@ -12,6 +13,9 @@ pub use measurement::{Analysis, AnalysisOptions, analyze};
 pub use partial_comparison::{
     MatchedPartial, PairedDecayStatus, PartialComparison, PartialComparisonOptions,
     compare_partials,
+};
+pub use tone_comparison::{
+    HarmonicBalance, ToneComparison, ToneComparisonOptions, ToneWindow, compare_tone,
 };
 pub use tracking::{
     DecayRejection, PartialDecay, PartialObservation, PartialTrack, PartialTracking,

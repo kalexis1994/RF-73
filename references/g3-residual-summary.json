@@ -1,0 +1,721 @@
+{
+  "schema_version": 1,
+  "experiment": "G3 processed-reference tone residual pilot",
+  "date": "2026-09-04",
+  "model": "research-0.1.1-uncalibrated",
+  "source_revision": "a886e6cebf074c995a10634f82ebe4fdb90f5ca6",
+  "note": 55,
+  "sample_rate": 44100,
+  "reference_anchor_frame": 0,
+  "candidate_anchor_frame": 0,
+  "harmonic_array_order": "H1 through H12; null means unavailable, not zero",
+  "interpretation": "Model velocities are independent probes; no mapping to source strike speeds and no held-out calibration claim",
+  "geometries": {
+    "model": {
+      "gap_mm": 1.5,
+      "offset_mm": 0.5
+    },
+    "close": {
+      "gap_mm": 0.5,
+      "offset_mm": 0.25
+    }
+  },
+  "references": [
+    {
+      "layer_suffix": 1,
+      "model_velocity": null,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 738.379577093897,
+          "relative_harmonics_db": [
+            0.0,
+            3.2781341352164937,
+            7.172717099407203,
+            -12.429051260529004,
+            2.472871801419547,
+            -0.848865673062825,
+            null,
+            -5.064421981890916,
+            -11.087822103830845,
+            null,
+            -13.8953335501371,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 715.4337424153999,
+          "relative_harmonics_db": [
+            0.0,
+            2.3820084643835884,
+            7.012668968694232,
+            -9.166889268820949,
+            1.8489198142116727,
+            -0.12179972735921041,
+            -24.027129694236606,
+            -4.518129055864314,
+            -8.288290024066086,
+            -22.199711646639365,
+            -11.169737500443112,
+            -17.142766586326907
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 555.3160477978279,
+          "relative_harmonics_db": [
+            0.0,
+            -4.22131798010647,
+            2.924407971260848,
+            -4.752653263039967,
+            -11.085013445222778,
+            -6.525327200102673,
+            -12.66942576723319,
+            -26.010204197768235,
+            -16.026788133470983,
+            -20.763650339909457,
+            -35.49484495041172,
+            -24.90795431768895
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 2,
+      "model_velocity": null,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 424.0551646179196,
+          "relative_harmonics_db": [
+            0.0,
+            -16.006666913943725,
+            -2.383099684027888,
+            -6.76869341232976,
+            -23.602185349741298,
+            -19.40997523166203,
+            -19.31337260826443,
+            -28.379007682841554,
+            null,
+            -32.215209027183704,
+            -41.39978200679769,
+            -47.07408901134467
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 407.37744459094966,
+          "relative_harmonics_db": [
+            0.0,
+            -15.13342589901873,
+            -2.4986817711509985,
+            -7.0586352891646005,
+            -23.1692964681028,
+            -19.903593756068233,
+            -18.969819414123947,
+            -25.70689334692387,
+            -41.45581591198624,
+            -31.28273819595286,
+            -36.23088221889345,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 299.1294702756911,
+          "relative_harmonics_db": [
+            0.0,
+            -29.841691317891538,
+            -7.303494108284779,
+            -10.993383117771922,
+            -20.247315710251158,
+            -42.82634459850126,
+            -28.560325479692168,
+            -30.13132195884345,
+            -40.228802546690254,
+            -46.192184096759455,
+            -43.577626210164254,
+            -53.465550191996584
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 3,
+      "model_velocity": null,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 238.43389984596803,
+          "relative_harmonics_db": [
+            0.0,
+            -15.45565930730666,
+            -13.701248724330092,
+            -16.171957698374463,
+            -23.070691508808277,
+            -34.249720302250594,
+            null,
+            -40.70104237426462,
+            -45.091508450137624,
+            null,
+            -53.95523354079569,
+            -59.41310751949521
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 229.30970601876552,
+          "relative_harmonics_db": [
+            0.0,
+            -17.43007356362529,
+            -13.558113873752273,
+            -17.337528798160893,
+            -24.620149806108298,
+            -34.52607047206866,
+            -49.46012611051606,
+            -41.71944423772367,
+            -44.874442210899396,
+            -56.17748260874453,
+            -59.9378439569912,
+            -58.5119171686813
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 209.85759480673522,
+          "relative_harmonics_db": [
+            0.0,
+            -16.7650505860813,
+            -18.372227611228723,
+            -22.759882271875952,
+            -29.71368328993924,
+            -36.89181166301174,
+            -50.45657958973095,
+            -56.17489986750557,
+            -52.974362233601354,
+            -58.441220588858286,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 4,
+      "model_velocity": null,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 203.54270620781838,
+          "relative_harmonics_db": [
+            0.0,
+            -15.185602581705758,
+            -32.04458077912281,
+            -36.22898355194582,
+            -43.72458469386264,
+            -52.595123693622085,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 201.50378237221423,
+          "relative_harmonics_db": [
+            0.0,
+            -17.027819837375908,
+            -28.60991957115766,
+            -36.88098895864984,
+            -47.560838291448256,
+            -54.28885236687161,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 199.4177309920643,
+          "relative_harmonics_db": [
+            0.0,
+            -18.5061936418415,
+            -31.215942089783187,
+            -40.893922946171585,
+            -51.84868664232414,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "layer_suffix": 5,
+      "model_velocity": null,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 197.80543400776762,
+          "relative_harmonics_db": [
+            0.0,
+            -20.092458003779818,
+            -44.3062511663424,
+            -55.73669624653847,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 197.61795014273346,
+          "relative_harmonics_db": [
+            0.0,
+            -21.651594739659604,
+            -41.605929636629114,
+            -55.912353590950325,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 197.23167179927384,
+          "relative_harmonics_db": [
+            0.0,
+            -23.61821641525441,
+            -41.65645766172757,
+            -57.38008805959422,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    }
+  ],
+  "model_probes": [
+    {
+      "variant": "model",
+      "normalized_model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 213.6943768487649,
+          "relative_harmonics_db": [
+            0.0,
+            -24.019494031341292,
+            -50.7008567598519,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 198.9990543281263,
+          "relative_harmonics_db": [
+            0.0,
+            -24.34318277489587,
+            -51.054233580808926,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 196.2725881871301,
+          "relative_harmonics_db": [
+            0.0,
+            -28.54459556657863,
+            -59.371821886902445,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "model",
+      "normalized_model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 224.2516262142766,
+          "relative_harmonics_db": [
+            0.0,
+            -12.638326006314376,
+            -28.2143765564353,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 208.17237819464768,
+          "relative_harmonics_db": [
+            0.0,
+            -13.007948012218936,
+            -28.908792577617273,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 199.62401022703904,
+          "relative_harmonics_db": [
+            0.0,
+            -17.35916938459951,
+            -37.21028681800435,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "model",
+      "normalized_model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 274.8377018608817,
+          "relative_harmonics_db": [
+            0.0,
+            -4.493908486233547,
+            -14.205120171266234,
+            -37.01254875411702,
+            -36.72047779111437,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 254.49857216930928,
+          "relative_harmonics_db": [
+            0.0,
+            -4.937774790344426,
+            -14.89073827222534,
+            -37.81267477838168,
+            -37.90336248892995,
+            -57.74305374457097,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 216.23851761513137,
+          "relative_harmonics_db": [
+            0.0,
+            -9.829528152753152,
+            -23.049159500305976,
+            -53.2698538401876,
+            -54.060502950147274,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "close",
+      "normalized_model_velocity": 0.2,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 213.65732658156514,
+          "relative_harmonics_db": [
+            0.0,
+            -22.49169557450078,
+            -34.217617202613006,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 199.34914521911898,
+          "relative_harmonics_db": [
+            0.0,
+            -22.84955614141826,
+            -34.879368955603795,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 196.38601100446303,
+          "relative_harmonics_db": [
+            0.0,
+            -27.25370079625329,
+            -43.231768493410584,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "close",
+      "normalized_model_velocity": 0.5,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 258.21132181173294,
+          "relative_harmonics_db": [
+            0.0,
+            -8.077082973422405,
+            -11.78144416214928,
+            null,
+            -34.21611128347372,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 239.39016866694513,
+          "relative_harmonics_db": [
+            0.0,
+            -8.647116978805405,
+            -12.498593538818175,
+            -34.205670864142455,
+            -35.16024051617862,
+            -44.449659929772096,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 205.48777143937957,
+          "relative_harmonics_db": [
+            0.0,
+            -14.718374504588269,
+            -20.92820159779172,
+            -42.7849582237547,
+            -52.75065402748904,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "close",
+      "normalized_model_velocity": 0.9,
+      "windows": [
+        {
+          "label": "attack_32_ms",
+          "observed_samples": 1411,
+          "centroid_hz": 457.59164681283386,
+          "relative_harmonics_db": [
+            0.0,
+            4.421302299914547,
+            1.0523163489677874,
+            -10.875286212095025,
+            -6.286909315810588,
+            -23.82139826147963,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "attack_96_ms",
+          "observed_samples": 4234,
+          "centroid_hz": 431.8763927383899,
+          "relative_harmonics_db": [
+            0.0,
+            3.7870465268033717,
+            0.5185381838221801,
+            -12.541371240172301,
+            -7.215067563225764,
+            -24.090465382414564,
+            -18.854137895265488,
+            -25.407166737853125,
+            -35.43684815642645,
+            -33.75927981970876,
+            null,
+            -45.43737282331844
+          ]
+        },
+        {
+          "label": "body_350_ms",
+          "observed_samples": 15435,
+          "centroid_hz": 300.33731703808627,
+          "relative_harmonics_db": [
+            0.0,
+            -3.732395351873391,
+            -6.790487132750309,
+            -38.07746666039218,
+            -22.579552713313966,
+            -32.81947162123424,
+            -45.59779066773561,
+            -46.1536375736568,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ]
+    }
+  ],
+  "artifacts": "renders/g3-residual-20260904-224021"
+}

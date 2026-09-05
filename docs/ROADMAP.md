@@ -36,6 +36,8 @@ The measurement foundation is implemented: external WAV input, multi-resolution 
 
 `fit-pickup-set` now selects shared geometry and gain from multiple fitting takes, then evaluates only that frozen choice on held-out note/velocity pairs. Its strict manifest records provenance and explicit sustain boundaries. The [reference-set workflow](PICKUP-SET.md) is validated synthetically; the [sample-bank review](REFERENCE-BANKS.md) identifies commercial candidates and a small processed real-instrument pilot.
 
+The [G3 residual pilot](G3-RESIDUAL-PILOT.md) now compares all five acquired source layers against three model velocities and two pickup geometries. A closer pickup reduces a strong-probe H3 deficit but selects the minimum supported gap and leaves substantial residuals. `compare-tone` provides explicit attack/body diagnostics without inferred velocities or decay fits; the production profile remains unchanged. The next isolated physical experiment targets pickup transfer shape and excitation scale, including nonlinear aliasing.
+
 1. Obtain dry recordings from a documented instrument at multiple intensities.
 2. Evaluate independent tracking across the available observation lengths on those recordings, refine background qualification, and distinguish observed spectral peaks from identified mechanical modes.
 3. Extend the current convergence measurements to extreme profiles, retriggers and isolated nonlinear aliasing; establish explicit error budgets.

@@ -56,6 +56,63 @@ impl Drop for Scratch {
 }
 
 #[test]
+fn tone_comparison_roundtrip_needs_no_sustain_claim_and_preserves_output() {
+    let scratch = Scratch::new();
+    scratch.success(&[
+        "render",
+        "--output",
+        "tone.wav",
+        "--seconds",
+        "0.8",
+        "--hold",
+        "0.7",
+    ]);
+    let args = [
+        "compare-tone",
+        "tone.wav",
+        "tone.wav",
+        "--note",
+        "57",
+        "--output",
+        "tone-comparison.json",
+    ];
+    scratch.success(&args);
+    let report = scratch.json("tone-comparison.json");
+    let tone = &report["tone_comparison"];
+    assert_eq!(tone["schema_version"], 1);
+    assert_eq!(tone["windows"].as_array().unwrap().len(), 3);
+    assert!(tone.get("decay").is_none());
+    assert_eq!(
+        tone["windows"][2]["harmonics"][0]["candidate_minus_reference_balance_db"],
+        0.0
+    );
+    let before = fs::read(scratch.0.join("tone-comparison.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(
+        before,
+        fs::read(scratch.0.join("tone-comparison.json")).unwrap()
+    );
+    for flags in [
+        vec![],
+        vec!["--note", "128"],
+        vec!["--note", "57", "--candidate-start", "0.3"],
+        vec!["--note", "57", "--unknown", "1"],
+        vec!["--note", "57", "--note", "55"],
+    ] {
+        let mut invalid = vec![
+            "compare-tone",
+            "tone.wav",
+            "tone.wav",
+            "--output",
+            "bad.json",
+        ];
+        invalid.extend(flags);
+        assert!(!scratch.run(&invalid).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+    }
+}
+
+#[test]
 fn pickup_set_freezes_fit_geometry_and_gain_before_validation() {
     let scratch = Scratch::new();
     for (file, velocity, gap) in [

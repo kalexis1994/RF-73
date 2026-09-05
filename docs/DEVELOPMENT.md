@@ -44,7 +44,17 @@ cargo run --locked --release -p rf-rhodes-lab -- compare-partials references/aud
 
 Use `analyze` to read external WAV files; `inspect` remains the strict checker for the renderer's own WAV format. Comparison requires matching sample rates. See [Analysis laboratory](ANALYSIS.md) before interpreting metrics or choosing a sustain boundary. No reference audio is included in this repository.
 
-## Pickup geometry experiment
+## Attack and body tone comparison
+
+For short attack/body comparisons without a declared sustain boundary or velocity mapping:
+
+```text
+cargo run --locked --release -p rf-rhodes-lab -- compare-tone references/audio/jrhodes-g3-a886e6c/A_055__G3_1.wav renders/g3-baseline.wav --note 55 --output renders/g3-tone.json
+```
+
+Generate the candidate WAV first using [G3 residual pilot](G3-RESIDUAL-PILOT.md). [Tone comparison](TONE-COMPARISON.md) specifies the fixed observation windows and relative harmonic metrics.
+
+## Pickup geometry sweep
 
 For a bounded pickup-geometry experiment against an explicitly selected held-note region:
 

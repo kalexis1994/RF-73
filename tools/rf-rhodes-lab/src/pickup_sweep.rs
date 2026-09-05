@@ -76,6 +76,38 @@ pub(super) fn grid(value: &str, low: f64, high: f64) -> Result<Vec<f64>, Box<dyn
     Ok(values)
 }
 
+/// Selection diagnostics, not confidence estimates; grid input order is irrelevant.
+pub(super) fn selection_limits(
+    gap: f64,
+    offset: f64,
+    gaps: &[f64],
+    offsets: &[f64],
+) -> Vec<String> {
+    let mut limits = Vec::new();
+    for (name, selected, values, low, high) in [
+        ("gap", gap, gaps, 0.5, 5.0),
+        ("offset", offset, offsets, -3.0, 3.0),
+    ] {
+        if values.len() == 1 {
+            limits.push(format!("{name}_fixed"));
+        } else {
+            if selected == values.iter().copied().fold(f64::INFINITY, f64::min) {
+                limits.push(format!("{name}_grid_min"));
+            }
+            if selected == values.iter().copied().fold(f64::NEG_INFINITY, f64::max) {
+                limits.push(format!("{name}_grid_max"));
+            }
+        }
+        if selected == low {
+            limits.push(format!("{name}_profile_min"));
+        }
+        if selected == high {
+            limits.push(format!("{name}_profile_max"));
+        }
+    }
+    limits
+}
+
 fn validate(options: &Options) -> Result<(), Box<dyn Error>> {
     if !(FIRST_NOTE..=LAST_NOTE).contains(&options.note)
         || !options.velocity.is_finite()
@@ -330,6 +362,14 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             .then(a.cmp(&b))
     });
     let best = ranking.first().copied();
+    let limits = best.map(|i| {
+        selection_limits(
+            candidates[i].gap_mm,
+            candidates[i].offset_mm,
+            &options.gaps_mm,
+            &options.offsets_mm,
+        )
+    });
     let near_best: Vec<_> = best.map_or_else(Vec::new, |index| {
         let limit = candidates[index].metrics.as_ref().unwrap().objective_db + 0.01;
         ranking
@@ -348,6 +388,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             "fixed_profile":{"hammer_mass_kg":base.hammer_mass_kg,"modal_mass_kg":base.modal_mass_kg,
                 "contact_stiffness":base.contact_stiffness,"maximum_hammer_speed_m_s":base.maximum_hammer_speed_m_s,"decay_seconds":base.decay_seconds},
             "near_best_tolerance_db":0.01,"best_candidate_index":best,"near_best_candidate_indices":near_best,
+            "selection_limits":limits,
             "ranking_indices":ranking,"candidates":candidates,
         }),
     )?;
@@ -377,6 +418,19 @@ mod tests {
             assert!(grid(bad, 0.5, 5.0).is_err(), "{bad}");
         }
         assert_eq!(grid("1,1.5,2", 0.5, 5.0).unwrap(), vec![1.0, 1.5, 2.0]);
+    }
+
+    #[test]
+    fn selection_limits_distinguish_edges_fixed_axes_and_interior() {
+        assert_eq!(
+            selection_limits(0.5, 0.25, &[1.5, 0.5, 1.0], &[0.5, 0.0, 0.25]),
+            vec!["gap_grid_min", "gap_profile_min"]
+        );
+        assert!(selection_limits(1.0, 0.25, &[1.5, 0.5, 1.0], &[0.5, 0.0, 0.25]).is_empty());
+        assert_eq!(
+            selection_limits(1.0, 3.0, &[1.0], &[-3.0, 3.0]),
+            vec!["gap_fixed", "offset_grid_max", "offset_profile_max"]
+        );
     }
 
     #[test]

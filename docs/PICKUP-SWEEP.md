@@ -47,6 +47,8 @@ Schema 1 includes all candidates in input order, `ranking_indices` from lowest e
 
 ## Interpretation and next experiment
 
+The additive `selection_limits` field reports the selected geometry's `gap_grid_min/max`, `offset_grid_min/max`, `gap_profile_min/max` or `offset_profile_min/max` flags. A single-value axis receives `gap_fixed` or `offset_fixed` instead of a grid-edge flag. Null means no candidate was selected; an empty list means an interior selection on both axes. The same diagnostics are included in `fit-pickup-set`. They are bounds checks, not uncertainty estimates.
+
 This magnitude-spectrum objective is not a perceptual metric. Quiet bins can dilute its average; its floor can conceal weak partials, and the onset and Hann window reduce sensitivity to brief attacks. Results depend on sample rate, region, strike velocity and the chosen grid. Use [partial comparison](PARTIAL-COMPARISON.md), attack observations and listening to inspect residuals, rather than accepting the lowest scalar error alone.
 
 A grid minimum is not a continuous optimum. Similar geometries can be indistinguishable after gain matching; a minimum at a grid edge calls for a revised range. Model gap and offset are provisional parameters, not identified physical measurements. A wrong hammer, modal profile, tuning or recording chain can shift their apparent optimum.

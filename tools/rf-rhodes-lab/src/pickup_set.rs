@@ -1,5 +1,5 @@
 //! Shared-geometry fit with a frozen gain and separately evaluated held-out takes.
-use super::pickup_sweep::{Metrics, grid, render, score_with_gain};
+use super::pickup_sweep::{Metrics, grid, render, score_with_gain, selection_limits};
 use rf_rhodes_analysis::AudioClip;
 use rf_rhodes_dsp::{FIRST_NOTE, LAST_NOTE, Profile};
 use serde::{Deserialize, Serialize};
@@ -304,6 +304,14 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             .then(a.cmp(&b))
     });
     let best = ranking.first().copied();
+    let limits = best.map(|i| {
+        selection_limits(
+            candidates[i].gap_mm,
+            candidates[i].offset_mm,
+            &manifest.gaps_mm,
+            &manifest.offsets_mm,
+        )
+    });
     let near_best: Vec<_> = ranking
         .iter()
         .copied()
@@ -351,6 +359,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             "fixed_profile":{"hammer_mass_kg":base.hammer_mass_kg,"modal_mass_kg":base.modal_mass_kg,
                 "contact_stiffness":base.contact_stiffness,"maximum_hammer_speed_m_s":base.maximum_hammer_speed_m_s,"decay_seconds":base.decay_seconds},
             "best_candidate_index":best,"ranking_indices":ranking,"near_best_candidate_indices":near_best,
+            "selection_limits":limits,
             "near_best_tolerance_db":0.01,"candidates":candidates,"validation":validation,
             "validation_objective_db":if complete { Some(aggregate(&validation)) } else { None },
             "validation_errors":validation_errors,"evaluation_complete":complete,
