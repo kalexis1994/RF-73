@@ -20,7 +20,10 @@ pub use assembly::{AssemblyParameters, AssemblyProbe, AssemblyVoice};
 pub use filter::Decimator as ProductionDecimator;
 pub use hammer_memory::{HammerMemory, HammerMemoryProbe, HammerMemoryProfile};
 pub use laboratory::{PICKUP_LEVEL_MATCH, PICKUP_NAMES};
-pub use memory_hammer::{MemoryHammer, MemoryHammerProbe, MemoryHammerProfile};
+pub use memory_hammer::{
+    MemoryHammer, MemoryHammerContactStatus, MemoryHammerContactStep, MemoryHammerProbe,
+    MemoryHammerProfile,
+};
 pub use modal_assembly::{ModalAssembly, ModalAssemblyProfile, ModalIntegration, ModalProbe};
 pub use model::{ModelError, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
 pub use pickup::MagneticPickup;

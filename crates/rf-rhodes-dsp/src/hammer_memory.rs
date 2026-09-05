@@ -231,8 +231,8 @@ impl HammerMemory {
             .then_some(x)
     }
 
-    /// Internal free-motion quadrature; not a prescribed linear ramp.
-    pub(crate) fn commit_free_motion(
+    /// Internal trajectory quadrature; not a prescribed linear ramp.
+    pub(crate) fn commit_integrated_motion(
         &mut self,
         x: f64,
         extension: f64,
@@ -246,7 +246,7 @@ impl HammerMemory {
             || x.abs() > 0.01
             || heat < 0.0
         {
-            return Err(ModelError("invalid free material update"));
+            return Err(ModelError("invalid integrated material update"));
         }
         let total_heat = self.heat + heat;
         let total_work = self.work + work;
@@ -255,7 +255,7 @@ impl HammerMemory {
             .iter()
             .all(|v| v.is_finite())
         {
-            return Err(ModelError("non-finite free material ledger"));
+            return Err(ModelError("non-finite integrated material ledger"));
         }
         self.x = x;
         self.extension = extension;

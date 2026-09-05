@@ -104,6 +104,11 @@ the estimator's squared-error terms without committing trial motion. Its sampled
 state-limited steps mostly have surface-contact or structural contributions and
 approximately cubic local error growth. The next integrator experiment should
 target coupled temporal accuracy while retaining independent heat/work checks.
+The [fourth-order fixed-wall contact experiment](MEMORY-CONTACT-RK4.md) now
+integrates the same two-mass/material law with checked RK4 contact intervals,
+independent heat/work/impulse quadratures and original fine ticks at boundaries.
+Its 24-case comparison passes without relaxing global gates. Native timing and
+the full moving modal connection remain the next gates before adoption.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

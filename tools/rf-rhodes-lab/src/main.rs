@@ -249,7 +249,10 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "memory-hammer-check" {
         return memory_hammer_check::run(&args);
     }
-    if args[0] == "memory-free-check" {
+    if matches!(
+        args[0].as_str(),
+        "memory-free-check" | "memory-contact-check"
+    ) {
         return memory_free_check::run(&args);
     }
     if args[0] == "memory-contact-resolution" {

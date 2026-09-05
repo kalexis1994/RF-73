@@ -75,6 +75,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Contact scheduling](docs/MEMORY-CONTACT-SCHEDULING.md): minimum useful trial lengths and deferred retries with unchanged physical checks.
 - [Contact reaction reuse](docs/MEMORY-CONTACT-FORCE-REUSE.md): avoid repeating the material solve at an already evaluated normal force.
 - [Contact resolution](docs/MEMORY-CONTACT-RESOLUTION.md): read-only trial sweeps identify which coupled state errors limit the timestep.
+- [Fourth-order hammer contact](docs/MEMORY-CONTACT-RK4.md): certified fixed-wall RK4 contact with independent heat, work and impulse integration.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

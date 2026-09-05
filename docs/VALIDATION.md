@@ -839,3 +839,35 @@ half of the metric. The 159 usable adjacent-level slopes range from 2.983 to
 support investigating a more accurate coupled contact integrator; they do not
 justify changing physical coefficients or relaxing acceptance. This is an
 offline diagnosis, with no runtime improvement or calibration claim.
+
+## Fourth-order fixed-wall material-memory contact
+
+Date: 2026-09-05. The [RK4 contact experiment](MEMORY-CONTACT-RK4.md) adds
+continuously certified compressed intervals for the existing two-mass hammer
+against a fixed wall. Heat, material work, normal impulse and surface-potential
+work are integrated independently. Coarse/two-half-step comparisons retain a
+`1e-11` state limit, `1e-13` local energy/work defect limit and independent
+passivity/momentum checks. Rejections are atomic, base preparation is preserved,
+and unresolved boundaries use original implicit ticks.
+
+All 177 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. Four new tests cover smooth fourth-order convergence, rejection and
+preparation, selected parameter corners, and comparison with a 1 ns implicit
+trajectory through an impulse. The 10 ns reference was too coarse for the
+pointwise comparison; its step was refined without relaxing the error gate.
+CLI help, invalid arguments and existing-report preservation pass. CI includes
+the new audit; remote CI and GUI/audio tests were not performed.
+
+The new 24-case/48-take audit passes all existing global gates. Maximum relative
+combined energy, material work and momentum residuals are `1.683e-10`,
+`1.012e-10` and `1.518e-14`. Velocity RMSE / launch speed is at most 0.04681%,
+output mean-force RMSE 0.008282% and impulse error / initial momentum 0.008213%.
+All cases retain free recovery heat and impulse-driven reimpact.
+
+Accepted contact intervals replace 22.42 base ticks on average and reach
+approximately 160 ns. Including free motion, uniform-to-accepted-interval ratios
+are 74.8–669.7. These counts do not establish runtime improvement: each contact
+attempt evaluates 12 RHS stages plus work/energy checks. The free-only control
+report remains byte-identical to its previous reference, and all 24 uniform
+reference reports match. Timing, moving modal coupling, physical calibration
+and realtime qualification remain open; the audible plugin is unchanged.

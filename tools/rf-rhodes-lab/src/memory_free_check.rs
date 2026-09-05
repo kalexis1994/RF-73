@@ -1,18 +1,24 @@
 use crate::memory_hammer_check::{Take, state, take};
-use rf_rhodes_dsp::{HammerMemoryProfile, MemoryFreeStatus, MemoryHammer, MemoryHammerProfile};
+use rf_rhodes_dsp::{
+    HammerMemoryProfile, MemoryFreeStatus, MemoryHammer, MemoryHammerContactStatus,
+    MemoryHammerContactStep, MemoryHammerProfile,
+};
 use serde_json::json;
 use std::{error::Error, io::Write, path::Path};
 
 pub const HELP: &str = "Certified free-recovery experiment:
   memory-free-check --output REPORT.json
+  memory-contact-check --output REPORT.json
 Compares bounded RK4 free intervals plus fine implicit contact against uniform
 fine steps in 24 fixed-wall cases. No moving tine, audio or plugin integration.
+Contact check also attempts certified RK4 compressed contact with unchanged accuracy gates.
 ";
 fn adaptive(
     rate: u32,
     p: MemoryHammerProfile,
     speed: f64,
     substeps: usize,
+    contact: bool,
 ) -> Result<Take, Box<dyn Error>> {
     let h = 1.0 / (f64::from(rate) * substeps as f64);
     let mut v = MemoryHammer::new(h, p, 0.0, speed)?;
@@ -34,6 +40,10 @@ fn adaptive(
     let mut reimpact = false;
     let mut pass = true;
     let mut max_interval = 0.0_f64;
+    let mut contact_level = 0u32;
+    let (mut contacts, mut contact_ticks, mut contact_accuracy, mut contact_boundary) =
+        (0usize, 0usize, 0usize, 0usize);
+    let mut max_contact_interval = 0.0_f64;
     for frame in 0..frames {
         if frame == kick {
             v.apply_core_impulse(2.5 * mass * speed)?;
@@ -44,6 +54,41 @@ fn adaptive(
             let before = v.probe();
             let mut consumed = 1;
             let mut used_free = false;
+            let mut used_contact = false;
+            if contact && before.tip_position_m > 0.0 {
+                loop {
+                    let ticks = (1usize << contact_level)
+                        .min(1usize << (usize::BITS - 1 - remaining.leading_zeros()));
+                    let attempt = v.try_contact_step(h * ticks as f64)?;
+                    match attempt.status {
+                        MemoryHammerContactStatus::Advanced => {
+                            consumed = ticks;
+                            used_contact = true;
+                            contacts += 1;
+                            contact_ticks += ticks;
+                            max_contact_interval = max_contact_interval.max(h * ticks as f64);
+                            if attempt.normalized_state_error.unwrap_or(1.0)
+                                < MemoryHammerContactStep::STATE_ERROR_LIMIT / 64.0
+                                && attempt.relative_energy_defect.unwrap_or(1.0)
+                                    < MemoryHammerContactStep::ENERGY_DEFECT_LIMIT / 64.0
+                            {
+                                contact_level = (contact_level + 1).min(12);
+                            }
+                            break;
+                        }
+                        MemoryHammerContactStatus::BoundaryRequired => {
+                            contact_boundary += 1;
+                        }
+                        MemoryHammerContactStatus::AccuracyRequired => {
+                            contact_accuracy += 1;
+                        }
+                    }
+                    if contact_level == 0 {
+                        break;
+                    }
+                    contact_level -= 1;
+                }
+            }
             if before.tip_position_m < 0.0 {
                 loop {
                     let ticks = (1usize << level)
@@ -76,9 +121,15 @@ fn adaptive(
                     level -= 1;
                 }
             }
-            if !used_free {
+            if !used_free && !used_contact {
                 v.tick()?;
                 fixed += 1;
+                level = 0;
+            }
+            if used_free {
+                contact_level = 0;
+            }
+            if used_contact {
                 level = 0;
             }
             remaining -= consumed;
@@ -115,20 +166,30 @@ fn adaptive(
         && free_heat > 0.0
         && reimpact
         && free > 0;
+    pass &= !contact || contacts > 0;
+    let mut report = json!({"passed":pass,"fixed_step_seconds":h,
+        "fixed_ticks":fixed,"accepted_free_intervals":free,"accuracy_rejections":rejected,
+        "uncertified_clearance_rejections":contact_checks,"uniform_ticks_replaced":free_ticks,
+        "uniform_to_accepted_interval_ratio":(frames*substeps) as f64/(fixed+free+contacts) as f64,
+        "maximum_free_interval_seconds":max_interval,"maximum_relative_energy_residual":balance,
+        "maximum_relative_material_work_residual":material_balance,"maximum_relative_momentum_residual":momentum,
+        "free_recovery_heat_j":free_heat,"reimpact_after_impulse":reimpact,"final_state":state(v.probe())});
+    if contact {
+        report["contact"] = json!({"accepted_intervals":contacts,"uniform_ticks_replaced":contact_ticks,
+            "accuracy_rejections":contact_accuracy,"boundary_rejections":contact_boundary,
+            "maximum_interval_seconds":max_contact_interval,
+            "state_error_limit":MemoryHammerContactStep::STATE_ERROR_LIMIT,
+            "local_energy_defect_limit":MemoryHammerContactStep::ENERGY_DEFECT_LIMIT});
+    }
     Ok(Take {
         states,
         forces,
         pass,
-        report: json!({"passed":pass,"fixed_step_seconds":h,
-        "fixed_ticks":fixed,"accepted_free_intervals":free,"accuracy_rejections":rejected,
-        "uncertified_clearance_rejections":contact_checks,"uniform_ticks_replaced":free_ticks,
-        "uniform_to_accepted_interval_ratio":(frames*substeps) as f64/(fixed+free) as f64,
-        "maximum_free_interval_seconds":max_interval,"maximum_relative_energy_residual":balance,
-        "maximum_relative_material_work_residual":material_balance,"maximum_relative_momentum_residual":momentum,
-        "free_recovery_heat_j":free_heat,"reimpact_after_impulse":reimpact,"final_state":state(v.probe())}),
+        report,
     })
 }
 pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
+    let contact = args.first().is_some_and(|a| a == "memory-contact-check");
     if args.len() != 3
         || args[1] != "--output"
         || Path::new(&args[2]).extension().is_none_or(|s| s != "json")
@@ -152,7 +213,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                         ..MemoryHammerProfile::default()
                     };
                     let steps = (1.0 / (f64::from(rate) * 5e-9)).ceil() as usize * 4;
-                    let a = adaptive(rate, p, speed, steps)?;
+                    let a = adaptive(rate, p, speed, steps, contact)?;
                     let b = take(rate, p, speed, steps)?;
                     let velocity = (a
                         .states
@@ -197,20 +258,27 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             }
         }
     }
-    serde_json::to_writer_pretty(
-        &mut file,
-        &json!({"schema_version":1,"experiment":"certified-hammer-free-motion-v1","status":if pass{"pass"}else{"fail"},
+    let mut report = json!({"schema_version":1,"experiment":"certified-hammer-free-motion-v1","status":if pass{"pass"}else{"fail"},
         "scope":"Fixed-wall experiment only. Continuous passive energy supplies a conservative tip-travel envelope before any free step. RK4 step doubling accepts two half steps without extrapolation. Local state and independent energy/work defects are checked; global errors are audited. Contact retains the original fine implicit solver.",
         "protocol":"Same 24 profiles and 16 ms/4 ms impulse protocol as memory-hammer-check. Candidate and reference share the original fine reference step. Dyadic free intervals never cross an output/event boundary. Each free attempt uses 12 RHS evaluations, so interval reduction is not a measured speedup.",
         "gates":{"relative_energy_and_material_work":1e-8,"relative_momentum":1e-10,"velocity_rmse":0.01,"mean_force_rmse":0.02,"impulse_error":0.01},
-        "calibrated":false,"modal_integrated":false,"plugin_integrated":false,"cases":cases}),
-    )?;
+        "calibrated":false,"modal_integrated":false,"plugin_integrated":false,"cases":cases});
+    if contact {
+        report["experiment"] = json!("certified-hammer-contact-rk4-v1");
+        report["scope"] = json!(
+            "Fixed-wall RK4 contact with whole-interval compression certification, stage domain checks, step doubling without extrapolation, independent heat/material work/surface potential work quadratures, local passivity and momentum checks. Same free controller and original implicit ticks at unresolved boundaries. No modal coupling, calibration, pickup, audio or realtime qualification."
+        );
+        report["protocol"] = json!(
+            "Same 24 profiles and 16 ms/4 ms impulse protocol as memory-hammer-check. Original uniform fine-step reference. Candidate attempts dyadic RK4 compressed contact and free intervals through level 12; no interval crosses an observation or impulse. Each accepted contact integrates normal impulse and reports its interval mean force. Twelve RHS evaluations per contact attempt; interval reduction is not a measured speedup."
+        );
+    }
+    serde_json::to_writer_pretty(&mut file, &report)?;
     writeln!(file)?;
     if !pass {
-        return Err("free-recovery audit failed; see report".into());
+        return Err("hammer motion audit failed; see report".into());
     }
     println!(
-        "Free-recovery audit passed: 24 cases, 48 takes. Report: {}",
+        "Hammer motion audit passed: 24 cases, 48 takes. Report: {}",
         args[2]
     );
     Ok(())

@@ -135,8 +135,13 @@ impl MemoryHammer {
             });
         }
         let mut next = self.clone();
-        next.material
-            .commit_free_motion(core - tip, fine[2], fine[3], fine[4], fine[5] / h)?;
+        next.material.commit_integrated_motion(
+            core - tip,
+            fine[2],
+            fine[3],
+            fine[4],
+            fine[5] / h,
+        )?;
         next.core = core;
         next.tip = tip;
         next.vc = vc;
