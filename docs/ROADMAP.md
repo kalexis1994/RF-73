@@ -38,9 +38,12 @@ Implemented first gate: the offline [passive common-support assembly](COUPLED-AS
 has reciprocal tine/tonebar coupling, nonlinear hammer contact and explicit
 stored/dissipated/escaped energy accounting. Analytic mechanics tests and the
 24-case, 120-take audit pass. This is an uncalibrated lowest-order reduction.
-Its 4x treble phase error prevents direct plugin integration; efficient coupled
-free transitions, contact refinement and measured higher-mode identification
-are the next implementation gates.
+The subsequent [free-motion refinement](ASSEMBLY-REFINEMENT.md) resolves the
+measured 4x treble phase error using a prepared exponential transition and
+contact-only subdivision. Its 48-case, 288-take audit passes, including an
+independent comparison between two contact resolutions. Measured higher-mode
+and support identification, pickup comparison and polyphonic timing remain
+the next gates before plugin integration.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

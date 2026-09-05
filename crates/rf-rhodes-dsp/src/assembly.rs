@@ -4,6 +4,9 @@
 use crate::{FIRST_NOTE, LAST_NOTE, ModelError, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
 use core::f64::consts::TAU;
 
+mod free;
+use free::FreeStep;
+
 type Vector = [f64; 3];
 type Matrix = [[f64; 3]; 3];
 
@@ -89,6 +92,7 @@ fn bounded(value: f64, lo: f64, hi: f64, error: &'static str) -> Result<(), Mode
 pub struct AssemblyProbe {
     pub displacement_m: Vector,
     pub velocity_m_s: Vector,
+    /// Mean force over the last tick, including contact-only microsteps.
     pub contact_force_n: f64,
     pub contact_active: bool,
     /// Includes all three coordinates and active hammer/contact potential.
@@ -144,6 +148,7 @@ pub struct AssemblyVoice {
     parameters: AssemblyParameters,
     h: f64,
     steps: [Step; 2],
+    refined: Option<Refined>,
     q: Vector,
     v: Vector,
     hammer_x: f64,
@@ -154,6 +159,12 @@ pub struct AssemblyVoice {
     dissipated: f64,
     escaped: f64,
     injected: f64,
+}
+
+struct Refined {
+    contact_substeps: usize,
+    free: [FreeStep; 2],
+    remainder: [FreeStep; 2],
 }
 
 impl AssemblyVoice {
@@ -183,6 +194,7 @@ impl AssemblyVoice {
             parameters,
             h,
             steps,
+            refined: None,
             q: [0.0; 3],
             v: [0.0; 3],
             hammer_x: 0.0,
@@ -194,6 +206,43 @@ impl AssemblyVoice {
             escaped: 0.0,
             injected: 0.0,
         })
+    }
+
+    /// Four base ticks per output frame; exponential free motion and a bounded
+    /// power-of-two subdivision (1..64) of contact ticks only. This remains a
+    /// research candidate; subdivision accuracy must be checked for the profile.
+    pub fn new_refined(
+        sample_rate: f64,
+        contact_substeps: usize,
+        parameters: AssemblyParameters,
+    ) -> Result<Self, ModelError> {
+        if !(1..=64).contains(&contact_substeps) || !contact_substeps.is_power_of_two() {
+            return Err(ModelError(
+                "assembly contact substeps must be a power of two from 1 to 64",
+            ));
+        }
+        let mut voice = Self::new(sample_rate, 4, parameters)?;
+        let h = voice.h / contact_substeps as f64;
+        voice.steps = [
+            Step::prepare(parameters, h, false)?,
+            Step::prepare(parameters, h, true)?,
+        ];
+        voice.refined = Some(Refined {
+            contact_substeps,
+            free: [
+                FreeStep::prepare(parameters, voice.h, false)?,
+                FreeStep::prepare(parameters, voice.h, true)?,
+            ],
+            remainder: [
+                FreeStep::prepare(parameters, h, false)?,
+                FreeStep::prepare(parameters, h, true)?,
+            ],
+        });
+        Ok(voice)
+    }
+
+    pub fn contact_substeps(&self) -> usize {
+        self.refined.as_ref().map_or(1, |r| r.contact_substeps)
     }
 
     /// Retains assembly motion. An unfinished strike is rejected, not replaced:
@@ -215,18 +264,55 @@ impl AssemblyVoice {
     }
 
     pub fn tick(&mut self) {
+        if self.refined.is_none() {
+            self.advance_midpoint(self.h);
+        } else if !self.contact {
+            self.advance_free(false);
+            self.force = 0.0;
+        } else {
+            let count = self.contact_substeps();
+            let h = self.h / count as f64;
+            let mut force = 0.0;
+            for _ in 0..count {
+                if self.contact {
+                    self.advance_midpoint(h);
+                    force += self.force;
+                } else {
+                    // Advance only the remaining micro-intervals of this tick.
+                    self.advance_free(true);
+                }
+            }
+            // Base-tick average preserves the impulse, including a partial tick.
+            self.force = force / count as f64;
+        }
+    }
+
+    fn advance_free(&mut self, remainder: bool) {
+        let refined = self.refined.as_ref().expect("prepared refined voice");
+        let step = if remainder {
+            &refined.remainder
+        } else {
+            &refined.free
+        };
+        let (q, v, loss) = step[usize::from(self.damped)].advance(self.q, self.v);
+        self.q = q;
+        self.v = v;
+        self.dissipated += loss;
+    }
+
+    fn advance_midpoint(&mut self, h: f64) {
         let step = self.steps[usize::from(self.damped)];
         let old_v = self.v;
         let free_v: Vector =
             core::array::from_fn(|i| dot(step.from_v[i], self.v) + dot(step.from_q[i], self.q));
         let free_q: Vector =
-            core::array::from_fn(|i| self.q[i] + 0.5 * self.h * (self.v[i] + free_v[i]));
+            core::array::from_fn(|i| self.q[i] + 0.5 * h * (self.v[i] + free_v[i]));
         self.force = 0.0;
         if self.contact {
             let d0 = self.hammer_x - self.q[0];
-            let d_free = self.hammer_x + self.h * self.hammer_v - free_q[0];
-            let compliance = self.h * self.h / (2.0 * self.parameters.hammer_mass_kg)
-                + 0.5 * self.h * step.force_response[0];
+            let d_free = self.hammer_x + h * self.hammer_v - free_q[0];
+            let compliance =
+                h * h / (2.0 * self.parameters.hammer_mass_kg) + 0.5 * h * step.force_response[0];
             let k = self.parameters.contact_stiffness_n_m2;
             let mut lo = 0.0;
             let mut hi = k * d0.max(d_free).max(0.0).powi(2);
@@ -239,19 +325,18 @@ impl AssemblyVoice {
                 }
             }
             self.force = 0.5 * (lo + hi);
-            self.hammer_x += self.h * self.hammer_v
-                - 0.5 * self.h * self.h * self.force / self.parameters.hammer_mass_kg;
-            self.hammer_v -= self.h * self.force / self.parameters.hammer_mass_kg;
+            self.hammer_x +=
+                h * self.hammer_v - 0.5 * h * h * self.force / self.parameters.hammer_mass_kg;
+            self.hammer_v -= h * self.force / self.parameters.hammer_mass_kg;
         }
         self.v = core::array::from_fn(|i| free_v[i] + step.force_response[i] * self.force);
-        self.q = core::array::from_fn(|i| {
-            free_q[i] + 0.5 * self.h * step.force_response[i] * self.force
-        });
+        self.q =
+            core::array::from_fn(|i| free_q[i] + 0.5 * h * step.force_response[i] * self.force);
         let mid_v: Vector = core::array::from_fn(|i| 0.5 * (old_v[i] + self.v[i]));
         let relative_v = [mid_v[0] - mid_v[2], mid_v[1] - mid_v[2], mid_v[2]];
-        self.dissipated += self.h * dot(self.parameters.damping_n_s_m, relative_v.map(|v| v * v));
+        self.dissipated += h * dot(self.parameters.damping_n_s_m, relative_v.map(|v| v * v));
         if self.damped {
-            self.dissipated += self.h * self.parameters.damper_n_s_m * mid_v[0].powi(2);
+            self.dissipated += h * self.parameters.damper_n_s_m * mid_v[0].powi(2);
         }
         if self.contact && self.hammer_x <= self.q[0] && self.hammer_v <= self.v[0] {
             self.escaped += 0.5 * self.parameters.hammer_mass_kg * self.hammer_v.powi(2);
@@ -347,6 +432,161 @@ mod tests {
 
     fn parameters() -> AssemblyParameters {
         AssemblyParameters::provisional(55).unwrap()
+    }
+
+    #[test]
+    fn exponential_tracks_analytic_treble_motion_without_midpoint_phase_drift() {
+        for rate in [44100.0, 192000.0] {
+            let mut p = AssemblyParameters::provisional(100).unwrap();
+            p.masses_kg[1] = p.masses_kg[0];
+            p.stiffnesses_n_m[1] = p.stiffnesses_n_m[0];
+            p.damping_n_s_m = [0.0; 3];
+            let omega = (p.stiffnesses_n_m[0] / p.masses_kg[0]).sqrt();
+            let mut voice = AssemblyVoice::new_refined(rate, 32, p).unwrap();
+            voice.q = [1e-4, -1e-4, 0.0];
+            let initial = voice.probe().mechanical_energy_j;
+            for frame in 1..=rate as usize {
+                for _ in 0..4 {
+                    voice.tick();
+                }
+                let phase = omega * frame as f64 / rate;
+                assert!((voice.q[0] / 1e-4 - phase.cos()).abs() < 1e-8);
+                assert!((voice.v[0] / (1e-4 * omega) + phase.sin()).abs() < 1e-8);
+                assert!((voice.probe().mechanical_energy_j / initial - 1.0).abs() < 1e-8);
+                assert_eq!(voice.probe().dissipated_energy_j, 0.0);
+            }
+        }
+    }
+
+    #[test]
+    fn exponential_handles_free_translation_and_overdamped_analytic_decay() {
+        let mut p = parameters();
+        p.stiffnesses_n_m = [0.0; 3];
+        p.damping_n_s_m = [0.0; 3];
+        for damping in [0.0, 1.0, 1000.0] {
+            p.damper_n_s_m = damping;
+            let mut voice = AssemblyVoice::new_refined(44100.0, 32, p).unwrap();
+            voice.v[0] = 0.3;
+            voice.damped = true;
+            let initial = voice.probe().mechanical_energy_j;
+            let gamma = damping / p.masses_kg[0];
+            for i in 1..=10000 {
+                voice.tick();
+                let time = i as f64 * voice.h;
+                let expected_v = 0.3 * (-gamma * time).exp();
+                let expected_q = if gamma == 0.0 {
+                    0.3 * time
+                } else {
+                    -0.3 * (-gamma * time).exp_m1() / gamma
+                };
+                assert!((voice.v[0] - expected_v).abs() < 1e-10);
+                assert!((voice.q[0] - expected_q).abs() < 1e-12);
+                let probe = voice.probe();
+                let expected_loss = initial * -(-2.0 * gamma * time).exp_m1();
+                assert!((probe.dissipated_energy_j - expected_loss).abs() < initial * 1e-9);
+                assert!(
+                    (probe.mechanical_energy_j + probe.dissipated_energy_j - initial).abs()
+                        < initial * 1e-9
+                );
+            }
+        }
+    }
+
+    #[test]
+    fn separation_remainder_matches_explicit_microsteps_and_preserves_impulse() {
+        let p = parameters();
+        let mut base = AssemblyVoice::new_refined(48000.0, 32, p).unwrap();
+        let mut micro = AssemblyVoice::new_refined(48000.0, 32, p).unwrap();
+        assert!(base.strike(0.8));
+        assert!(micro.strike(0.8));
+        let h = base.h / 32.0;
+        let mut saw_partial_tick = false;
+        for _ in 0..1000 {
+            let started_contact = micro.contact;
+            let mut impulse = 0.0;
+            let mut contact_steps = 0;
+            for _ in 0..32 {
+                if micro.contact {
+                    micro.advance_midpoint(h);
+                    impulse += micro.force * h;
+                    contact_steps += 1;
+                } else {
+                    micro.advance_free(true);
+                }
+            }
+            base.tick();
+            if started_contact && !micro.contact {
+                saw_partial_tick = contact_steps < 32;
+                assert!((base.force * base.h - impulse).abs() < 1e-16);
+            }
+            for i in 0..3 {
+                assert!((base.q[i] - micro.q[i]).abs() < 1e-13);
+                assert!((base.v[i] - micro.v[i]).abs() < 1e-10);
+            }
+        }
+        assert!(saw_partial_tick);
+    }
+
+    #[test]
+    fn refined_energy_survives_release_restrike_and_parameter_corners() {
+        for corner in 0..5 {
+            let mut p = parameters();
+            match corner {
+                1 => {
+                    p.masses_kg = [1e-4, 1.0, 1e-4];
+                    p.stiffnesses_n_m = [1e8; 3];
+                    p.damping_n_s_m = [1000.0; 3];
+                }
+                2 => {
+                    p.masses_kg = [1.0, 1e-4, 1.0];
+                    p.stiffnesses_n_m = [1e8; 3];
+                    p.damping_n_s_m = [0.0; 3];
+                }
+                3 => {
+                    p.stiffnesses_n_m = [0.0; 3];
+                    p.damping_n_s_m = [0.0; 3];
+                }
+                4 => {
+                    p.stiffnesses_n_m = [0.0; 3];
+                    p.damping_n_s_m = [1000.0; 3];
+                }
+                _ => {}
+            }
+            let mut voice = AssemblyVoice::new_refined(44100.0, 32, p).unwrap();
+            assert!(voice.strike(0.9));
+            for n in 0..20000 {
+                if n % 1000 == 0 {
+                    voice.set_damped(n % 2000 == 0);
+                }
+                if n == 10000 && !voice.contact {
+                    let (q, v) = (voice.q, voice.v);
+                    assert!(voice.strike(1.0));
+                    assert_eq!((voice.q, voice.v), (q, v));
+                }
+                let before = voice.probe();
+                voice.tick();
+                let after = voice.probe();
+                assert!(after.mechanical_energy_j.is_finite());
+                assert!(
+                    after.mechanical_energy_j
+                        <= before.mechanical_energy_j + after.injected_energy_j * 1e-10
+                );
+                assert!(
+                    after.dissipated_energy_j
+                        >= before.dissipated_energy_j - after.injected_energy_j * 1e-12
+                );
+                assert!(
+                    after.balance_residual_j.abs() < after.injected_energy_j * 1e-8,
+                    "corner {corner}: {after:?}"
+                );
+            }
+            voice.reset();
+            assert_eq!(voice.probe().balance_residual_j, 0.0);
+            assert!(voice.strike(0.8));
+        }
+        for count in [0, 3, 65, usize::MAX] {
+            assert!(AssemblyVoice::new_refined(48000.0, count, parameters()).is_err());
+        }
     }
 
     #[test]

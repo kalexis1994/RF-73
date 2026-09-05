@@ -5,6 +5,10 @@ This is a lowest-order mechanical research candidate, not a calibrated replaceme
 for the existing three-mode voice. It provides an explicit reciprocal coupling
 path and an auditable energy balance before higher-order structural work.
 
+The subsequent [free-motion refinement](ASSEMBLY-REFINEMENT.md) adds a prepared
+exponential transition and contact-only subdivision. This document retains the
+original midpoint experiment and its results as a reference.
+
 ## Physical basis and reduction
 
 The Rhodes service manual describes the tine and tonebar as the two unequal
@@ -173,8 +177,9 @@ Mixed mass/stiffness/damping/contact corners include strongly overdamped cases.
 1. Obtain measured assembly modal frequencies, mode shapes and losses; decide
    whether translational/rotational support coordinates and more bending modes
    are needed. Preserve the distinctions between measured, inferred and assumed.
-2. Develop efficient coupled free motion and contact refinement against this
-   high-resolution reference, with explicit treble phase and contact budgets.
+2. The [exponential free-motion and contact refinement](ASSEMBLY-REFINEMENT.md)
+   now passes the provisional-profile numerical gates; extend its accuracy and
+   timing audit as measured higher modes change the mechanical system.
 3. Add higher tine modes and two-polarization behavior with justified participation;
    then connect the same pickup geometry to both models for controlled comparisons.
 4. Fit multiple register/intensity observations, keep held-out recordings, and

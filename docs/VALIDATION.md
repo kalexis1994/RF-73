@@ -293,3 +293,33 @@ is an offline reference, not a numerically qualified 4x plugin replacement.
 The current candidate omits higher bending modes, root rotation and calibrated
 geometry. No new plugin version, installed package, listening result or real-time
 qualification is claimed; no Desktop or native UI control was used for this milestone.
+
+## Coupled free-motion and contact refinement
+
+Date: 2026-09-05. The [refined assembly](ASSEMBLY-REFINEMENT.md) prepares exponential
+free transitions and independent integrated dashpot work, with fine midpoint
+steps only during hammer contact. Four base ticks per frame and 32 contact
+subdivisions are validated for the unchanged provisional parameters.
+
+All 121 workspace tests passed. New tests cover one-second analytic treble
+phase/energy, free translation and overdamped decay/loss, exact interval ownership
+at separation, and repeated damping/restrikes with parameter corners. Strict
+native workspace Clippy, formatting and the release WASM plugin build passed.
+After the full test run, the audit added a direct 32/64 contact comparison; the
+final release audit and strict workspace Clippy also passed with that addition.
+
+The [288-take audit](../references/assembly-refinement-validation.json) spans 48
+note/rate/velocity cases. The 32-subdivision candidate's maximum velocity error
+against midpoint 256 is `0.005829%`, versus `25.8869%` for the original 4x solver.
+Comparing refined 32 directly with refined 64 yields at most `0.0005014%` velocity
+and `0.0003628%` displacement differences. The independent energy-balance residual
+is at most `4.023e-12` of injected energy. Shared original-midpoint scalar results
+match the prior audit exactly. CI now runs both assembly audits; the updated
+remote workflow has not been executed as part of this local verification.
+
+An isolated native release probe measured median times of `2.1299 ms` for the
+refined candidate versus `16.2842 ms` for continuous 128x, rendering 250 ms of one
+voice with five strikes. This is not polyphonic, pickup/filter or host timing
+qualification. The physical parameters remain uncalibrated and the candidate
+still omits higher bending modes. No plugin version, installed package, listening
+claim or Desktop interaction is part of this numerical milestone.

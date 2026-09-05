@@ -8,6 +8,8 @@ Version 0.1.2 adds a Rust pickup laboratory editor in RackForge: three continuou
 
 The offline [coupled assembly experiment](docs/COUPLED-ASSEMBLY.md) now models a tine, tonebar and compliant common support with reciprocal forces, nonlinear hammer contact and a complete energy ledger. Its parameters remain provisional; high-resolution validation precedes plugin integration.
 
+[Prepared free motion and contact refinement](docs/ASSEMBLY-REFINEMENT.md) now reduce its measured treble integration error while retaining the independent energy ledger. This remains an offline candidate awaiting higher-mode identification and calibration.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

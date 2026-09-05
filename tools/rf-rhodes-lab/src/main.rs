@@ -212,6 +212,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "assembly-check" {
         return assembly_check::run(&args);
     }
+    if args[0] == "assembly-refinement" {
+        return assembly_check::run_refinement(&args);
+    }
     if args[0] == "compare-partials" {
         return partial_comparison::run(&args);
     }
