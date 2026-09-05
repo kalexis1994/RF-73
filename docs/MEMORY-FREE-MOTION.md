@@ -7,8 +7,10 @@ checks fourth-order Runge-Kutta step doubling and independent energy/work defect
 before committing any state.
 
 This milestone validates the free-motion primitive against a stationary wall.
-It is not yet connected to `MemoryModalAssembly` or the audible plugin. The
-existing implicit contact solver and its prepared fixed interval are unchanged.
+The subsequent [moving modal experiment](MEMORY-MODAL-FREE.md) connects it to
+`MemoryModalAssembly` using its own moving-surface certificate. Neither experiment
+is integrated into the audible plugin. The existing implicit contact solver and
+its prepared fixed interval are unchanged.
 
 ## Continuous free equations
 
@@ -51,8 +53,8 @@ collision, including one followed by separation before the endpoint. Merely
 checking endpoint clearance would not provide that guarantee. The bound is
 conservative: `ContactRequired` means contact cannot be excluded, not that it
 has necessarily happened. A nonzero stored surface coordinate is rejected by
-this fixed-wall API; the modal wrapper does not expose this method. Generalizing
-the certificate to the moving tine is a separate next step.
+this fixed-wall API. The modal wrapper uses its own
+[moving-tine certificate](MEMORY-MODAL-FREE.md) and an internal certified endpoint.
 
 ## Accuracy checks and atomic commit
 
@@ -137,11 +139,10 @@ uniform reference rows retain the original fixed-wall audit's exact diagnostics.
 All 161 workspace tests, strict Clippy, formatting and release WASM compilation
 pass. CI includes this audit; its remote workflow was not executed locally.
 
-## Next integration gate
+## Subsequent integration
 
-Combine this free relative-motion primitive with the prepared exact structural
-propagator and a moving-tine clearance bound. Audit work, contact transitions,
-reimpact and damper changes against the existing coupled reference, then measure
-native/WASM cost. This fixed-wall result does not qualify that future combination
-or establish realtime performance. Material coefficients and Rhodes geometry
-remain uncalibrated; no new listening package is produced.
+The [moving modal experiment](MEMORY-MODAL-FREE.md) combines this primitive with
+prepared structural propagation and audits work, contact transitions, reimpact
+and damper changes against the coupled reference. Native/WASM realtime
+qualification and physical calibration remain open. This fixed-wall result alone
+does not qualify the combination. No new listening package is produced.

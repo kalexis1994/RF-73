@@ -657,3 +657,38 @@ does not yet connect free intervals to the moving modal structure or plugin.
 That connection needs a moving-surface certificate and a new coupled audit.
 No listening package, audio-device access or Desktop interaction was introduced;
 the audible instrument remains version 0.1.2 with its previous mechanics.
+
+## Certified free recovery against the moving modal structure
+
+Date: 2026-09-05. The [moving modal experiment](MEMORY-MODAL-FREE.md) uses the
+full structural mass metric to exclude contact throughout each attempted free
+interval. Prepared linear motion and independent structural heat are combined
+with the checked nonlinear hammer evolution. Every rejection preserves all
+physical coordinates and work/heat ledgers; fixed contact remains unchanged.
+
+All 165 workspace tests pass, including four new moving-surface and transactional
+tests. Strict Clippy, formatting and release WASM plugin compilation pass. The
+[coupled audit](../references/memory-modal-free-validation.json) passes all 12
+cases/24 takes with unchanged error gates and exact original uniform-reference
+rows. Maximum candidate relative energy and structural/hammer port-work residuals
+are `1.166e-10`, `1.178e-10` and `8.609e-11`. Kinetic velocity, pickup velocity and
+output mean-force RMSE are at most 0.006220%, 0.000772% and 0.001313%, respectively.
+
+Accepted interval counts fall by 4.16x–12.58x. The separate
+[native timing](../references/memory-modal-free-timing.json), at the same fine
+base resolution for both paths, observes median speedups of 3.66x–7.63x over
+four profiles with three paired repetitions each. Preparation and reserved
+operator heap payload are reported separately. The adaptive mechanics still
+cost 31–70 seconds per simulated second; this is not realtime qualification.
+Both new commands reject existing outputs without changing their SHA256.
+
+The original 24-case/48-take fixed-wall free audit was also rerun after sharing
+the certified hammer endpoint implementation. Its report remains byte-identical
+to the retained baseline (SHA256
+`6D6AC93E57E3DE6DB279BB55160701D636293396A4FA68BAD36785F903DB1B0C`).
+All 24 new timing runs match their respective audited final mechanical states.
+
+CI now includes the coupled free audit; remote CI was not executed locally.
+No dependencies, audio-device access, Desktop interaction or listening package
+were introduced. Physical calibration, longer/wider numerical qualification and
+remaining contact cost are still open before integration into the audible plugin.

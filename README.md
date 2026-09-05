@@ -69,6 +69,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Stateful modal hammer](docs/MEMORY-MODAL-COUPLING.md): reciprocal memory-hammer/tine coupling, persistent recovery and independent port work.
 - [Stateful modal performance](docs/MEMORY-MODAL-PERFORMANCE.md): reused structural energy, exact diagnostic checks and native kernel timing.
 - [Hammer free recovery](docs/MEMORY-FREE-MOTION.md): conservative clearance bounds and error-controlled longer free intervals.
+- [Moving modal free recovery](docs/MEMORY-MODAL-FREE.md): moving-port contact exclusion, transactional propagation and coupled validation.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

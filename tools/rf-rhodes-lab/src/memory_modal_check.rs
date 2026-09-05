@@ -4,11 +4,15 @@ use rf_rhodes_dsp::{
 };
 use serde_json::json;
 use std::{error::Error, io::Write, path::Path};
+pub(crate) mod free_controller;
+use free_controller::Controller;
 
 pub const HELP: &str = "Stateful multimode hammer:
   memory-modal-check --output REPORT.json [--coarse]
+  memory-modal-free-check --output REPORT.json
 Audits reciprocal hammer/tine work, free recovery, reimpact and damper changes.
-12 uncalibrated cases, 2.5 ns candidate steps and twofold finer reference.
+12 uncalibrated cases; uniform audit uses 2.5 ns steps and twofold finer reference.
+Free audit uses certified longer intervals and 1.25 ns contact/reference steps.
 --coarse reproduces the preliminary 10/2.5 ns experiment, which can fail accuracy.
 No audio device, pickup voltage or plugin integration.
 ";
@@ -31,6 +35,15 @@ fn state(q: MemoryModalProbe) -> serde_json::Value {
         "impulse_work_j":q.hammer.external_work_j,"balance_residual_j":q.balance_residual_j})
 }
 fn take(length: f64, speed: f64, tau: f64, substeps: usize) -> Result<Take, Box<dyn Error>> {
+    take_impl(length, speed, tau, substeps, false)
+}
+fn take_impl(
+    length: f64,
+    speed: f64,
+    tau: f64,
+    substeps: usize,
+    adaptive: bool,
+) -> Result<Take, Box<dyn Error>> {
     let h = 1.0 / (48000.0 * substeps as f64);
     let mut v = MemoryModalAssembly::new(
         h,
@@ -49,6 +62,10 @@ fn take(length: f64, speed: f64, tau: f64, substeps: usize) -> Result<Take, Box<
         0.0,
         speed,
     )?;
+    let mut controller = Controller::default();
+    if adaptive {
+        v.prepare_free_steps(12)?;
+    }
     let mut states = Vec::new();
     let mut forces = Vec::new();
     let mut events = Vec::new();
@@ -79,9 +96,17 @@ fn take(length: f64, speed: f64, tau: f64, substeps: usize) -> Result<Take, Box<
             );
         }
         let mut force = 0.0;
-        for _ in 0..substeps {
+        let mut remaining = substeps;
+        while remaining > 0 {
             let before = v.probe();
-            let q = v.tick()?;
+            let consumed = if adaptive {
+                controller.advance(&mut v, remaining)?
+            } else {
+                v.tick()?;
+                1
+            };
+            remaining -= consumed;
+            let q = v.probe();
             let scale = q.hammer.initial_energy_j + q.hammer.absolute_impulse_work_j;
             balance = balance.max(q.balance_residual_j.abs() / scale);
             port_balance = port_balance.max(q.structural_work_residual_j.abs() / scale);
@@ -101,7 +126,7 @@ fn take(length: f64, speed: f64, tau: f64, substeps: usize) -> Result<Take, Box<
             for (peak, x) in peaks.iter_mut().zip(q.position) {
                 *peak = peak.max(x.abs());
             }
-            force += q.hammer.contact_force_n / substeps as f64;
+            force += q.hammer.contact_force_n * consumed as f64 / substeps as f64;
         }
         states.push(v.probe());
         forces.push(force);
@@ -113,7 +138,7 @@ fn take(length: f64, speed: f64, tau: f64, substeps: usize) -> Result<Take, Box<
         && free_heat > 0.0
         && reimpact
         && peaks.iter().all(|x| *x > 0.0);
-    Ok(Take {
+    let mut result = Take {
         states,
         forces,
         mass: v.mass_matrix(),
@@ -123,9 +148,19 @@ fn take(length: f64, speed: f64, tau: f64, substeps: usize) -> Result<Take, Box<
             "maximum_positive_relative_energy_step":positive,"force_free_material_heat_j":free_heat,
             "reimpact_after_impulse":reimpact,"coordinate_absolute_peaks":peaks,"events":events,
             "final_state":state(v.probe()),"passed":pass}),
-    })
+    };
+    if adaptive {
+        result.report["free_controller"] = controller.report(h);
+        result.pass &= result.report["free_controller"]["accepted_free_intervals"]
+            .as_u64()
+            .unwrap_or(0)
+            > 0;
+        result.report["passed"] = json!(result.pass);
+    }
+    Ok(result)
 }
 pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
+    let adaptive = args[0] == "memory-modal-free-check";
     if !matches!(args.len(), 3 | 4)
         || args[1] != "--output"
         || Path::new(&args[2]).extension().is_none_or(|s| s != "json")
@@ -133,7 +168,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         return Err(HELP.into());
     }
     let coarse = args.len() == 4;
-    if coarse && args[3] != "--coarse" {
+    if coarse && (adaptive || args[3] != "--coarse") {
         return Err(HELP.into());
     }
     let mut file = crate::new_file(Path::new(&args[2]))?;
@@ -142,7 +177,19 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     for length in [0.05, 0.075, 0.12] {
         for speed in [0.2, 0.8] {
             for tau in [0.001, 0.01] {
-                let a = take(length, speed, tau, if coarse { 2084 } else { 8336 })?;
+                let a = take_impl(
+                    length,
+                    speed,
+                    tau,
+                    if adaptive {
+                        16672
+                    } else if coarse {
+                        2084
+                    } else {
+                        8336
+                    },
+                    adaptive,
+                )?;
                 let b = take(length, speed, tau, if coarse { 8336 } else { 16672 })?;
                 let mut kinetic_error = 0.0;
                 let mut pickup_error = 0.0;
@@ -189,11 +236,11 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     }
     serde_json::to_writer_pretty(
         &mut file,
-        &json!({"schema_version":1,"experiment":"memory-modal-coupling-v1",
+        &json!({"schema_version":1,"experiment":if adaptive {"memory-modal-free-v1"} else {"memory-modal-coupling-v1"},
         "status":if pass{"pass"}else{"fail"},"calibrated":false,"plugin_integrated":false,
         "observation_rate_hz":48000,"duration_seconds":0.008,
         "coarse":coarse,
-        "protocol":"Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Memory and all coordinates persist. Default 8336 versus 16672 uniform microsteps per output frame; coarse 2084 versus 8336.",
+        "protocol":if adaptive {"Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Candidate uses certified dyadic free intervals and fine implicit contact; reference uses 16672 uniform steps per 48 kHz frame. Candidate uses the same base step, with maximum level 12; intervals cannot cross observation or event boundaries. Every accepted interval checks energy and both port work balances. Counts include rejections separately; interval ratios are not runtime speedups."} else {"Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Memory and all coordinates persist. Default 8336 versus 16672 uniform microsteps per output frame; coarse 2084 versus 8336."},
         "scope":"Nine reciprocal structural coordinates plus two hammer masses and one material memory state. Provisional default profiles except case-specific length, launch speed and relaxation time. Surface coefficient 1e12 N/m2; core/tip masses 3.8/0.2 g. No action, pickup voltage, calibration or realtime qualification.",
         "gates":{"energy_and_each_port_work_residual":1e-8,"positive_energy_step":1e-10,
             "kinetic_velocity_rmse":0.01,"pickup_velocity_rmse":0.01,"mean_force_rmse":0.02},"cases":cases}),

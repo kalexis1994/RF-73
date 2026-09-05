@@ -12,7 +12,7 @@ pub struct MemoryFreeStep {
     pub status: MemoryFreeStatus,
     /// Difference between one RK4 step and two half steps, without extrapolation.
     pub normalized_state_error: Option<f64>,
-    /// Largest half-step or reconstructed endpoint energy/work defect.
+    /// Largest checked energy/work defect, including structural/global defects in the modal API.
     pub relative_energy_defect: Option<f64>,
 }
 
@@ -39,6 +39,26 @@ impl MemoryHammer {
                 relative_energy_defect: None,
             });
         }
+        self.advance_certified_free(h, 0.0)
+    }
+
+    /// Caller must certify whole-interval separation from its moving surface.
+    pub(crate) fn advance_certified_free(
+        &mut self,
+        h: f64,
+        surface_end: f64,
+    ) -> Result<MemoryFreeStep, ModelError> {
+        if !h.is_finite() || !(1e-9..=0.001).contains(&h) || !surface_end.is_finite() {
+            return Err(ModelError("invalid certified free interval"));
+        }
+        if self.tip >= self.surface_position {
+            return Ok(MemoryFreeStep {
+                status: MemoryFreeStatus::ContactRequired,
+                normalized_state_error: None,
+                relative_energy_defect: None,
+            });
+        }
+        let before = self.probe();
         let y = [
             before.material.displacement_m,
             self.vc - self.vt,
@@ -107,7 +127,7 @@ impl MemoryHammer {
         let tip = center + h * velocity - self.p.core_mass_kg / mass * fine[0];
         let vc = velocity + self.p.tip_mass_kg / mass * fine[1];
         let vt = velocity - self.p.core_mass_kg / mass * fine[1];
-        if ![core, tip, vc, vt].iter().all(|x| x.is_finite()) || tip >= 0.0 {
+        if ![core, tip, vc, vt].iter().all(|x| x.is_finite()) || tip >= surface_end {
             return Ok(MemoryFreeStep {
                 status: MemoryFreeStatus::AccuracyRequired,
                 normalized_state_error: Some(state_error),
@@ -122,6 +142,7 @@ impl MemoryHammer {
         next.vc = vc;
         next.vt = vt;
         next.force = 0.0;
+        next.surface_position = surface_end;
         let after = next.probe();
         defect = defect
             .max(
@@ -146,7 +167,7 @@ impl MemoryHammer {
             });
         }
         *self = next;
-        // Stationary wall: no contact impulse/work in a certified free interval.
+        // No contact impulse/work in a certified free interval, even if the surface moves.
         Ok(MemoryFreeStep {
             status: MemoryFreeStatus::Advanced,
             normalized_state_error: Some(state_error),

@@ -1,6 +1,8 @@
 //! Reciprocal connection of the stateful hammer to all nine structural coordinates.
 use super::{Matrix, Midpoint, ModalAssemblyProfile, N, Operators, Vector, apply, dot};
 use crate::{MemoryHammer, MemoryHammerProbe, MemoryHammerProfile, ModelError, TineGeometry};
+mod free_motion;
+use free_motion::FreeBank;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct MemoryModalProbe {
@@ -17,8 +19,9 @@ pub struct MemoryModalProbe {
     pub structural_work_residual_j: f64,
 }
 
-/// Offline uniform midpoint model; no pickup voltage, action or plugin integration.
-/// Construction prepares matrices. Each tick advances one fixed interval, not an audio frame.
+/// Offline midpoint contact model with optional certified free propagation.
+/// No pickup voltage, action or plugin integration. Construction prepares fixed matrices.
+/// Each tick advances one fixed interval, not an audio frame; free steps need separate preparation.
 pub struct MemoryModalAssembly {
     op: Operators,
     steps: [Midpoint; 2],
@@ -29,6 +32,7 @@ pub struct MemoryModalAssembly {
     damped: bool,
     heat: f64,
     structural_energy: f64,
+    free: Option<FreeBank>,
 }
 impl MemoryModalAssembly {
     /// Only structural/damper fields of `structure` are used. Legacy scalar-hammer
@@ -58,6 +62,7 @@ impl MemoryModalAssembly {
             damped: false,
             heat: 0.0,
             structural_energy: 0.0,
+            free: None,
         })
     }
     pub fn set_damped(&mut self, damped: bool) {

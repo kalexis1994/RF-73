@@ -81,6 +81,9 @@ pub struct MemoryHammer {
     surface_work: f64,
 }
 impl MemoryHammer {
+    pub(crate) fn inverse_tip_mass(&self) -> f64 {
+        1.0 / self.p.tip_mass_kg
+    }
     pub fn new(
         h: f64,
         p: MemoryHammerProfile,

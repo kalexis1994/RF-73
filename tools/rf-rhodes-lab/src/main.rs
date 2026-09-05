@@ -250,11 +250,17 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "memory-free-check" {
         return memory_free_check::run(&args);
     }
-    if args[0] == "memory-modal-check" {
+    if matches!(
+        args[0].as_str(),
+        "memory-modal-check" | "memory-modal-free-check"
+    ) {
         return memory_modal_check::run(&args);
     }
     if args[0] == "memory-modal-timing" {
         return memory_modal_timing::run(&args);
+    }
+    if args[0] == "memory-modal-free-timing" {
+        return memory_modal_timing::run_free(&args);
     }
     if args[0] == "modal-timing" {
         return modal_timing::run(&args);
