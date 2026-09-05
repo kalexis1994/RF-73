@@ -3,6 +3,7 @@
 mod assembly;
 mod filter;
 mod laboratory;
+mod modal_assembly;
 mod model;
 mod pickup;
 mod tine;
@@ -11,6 +12,7 @@ mod voice;
 pub use assembly::{AssemblyParameters, AssemblyProbe, AssemblyVoice};
 pub use filter::Decimator as ProductionDecimator;
 pub use laboratory::{PICKUP_LEVEL_MATCH, PICKUP_NAMES};
+pub use modal_assembly::{ModalAssembly, ModalAssemblyProfile, ModalIntegration, ModalProbe};
 pub use model::{ModelError, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
 pub use pickup::MagneticPickup;
 pub use tine::{TINE_MODE_COUNT, TineGeometry, TineMode, TineModes};

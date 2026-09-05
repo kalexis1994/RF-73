@@ -13,7 +13,12 @@ The offline [coupled assembly experiment](docs/COUPLED-ASSEMBLY.md) now models a
 [Geometry-derived tine modes](docs/TINE-MODES.md) now prepare six bending modes,
 a movable tuning mass, spatial hammer/pickup weights and reciprocal inertia for
 root translation and rotation. This structural basis is validated independently
-and awaits integration into the coupled solver.
+and is used by the coupled solver described below.
+
+The [nine-coordinate assembly](docs/MODAL-ASSEMBLY.md) now connects that structural
+basis to nonlinear hammer contact and a spatial damper. Its time-domain energy
+and convergence audits pass; it remains an offline experiment pending calibration
+and polyphonic performance work.
 
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 

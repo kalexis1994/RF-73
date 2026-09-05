@@ -355,3 +355,35 @@ polarization or nonlinear beam motion. The next integration must extend the
 coupled mass matrix and recheck energy/contact accuracy for the higher modes.
 No audio-device or Desktop interaction, new package or listening claim accompanies
 this offline structural milestone.
+
+## Nine-coordinate modal assembly
+
+Date: 2026-09-05. The [multimode time-domain assembly](MODAL-ASSEMBLY.md) now uses
+the tine's six derived bending modes and full moving-root inertia, with support
+translation/rotation and a provisional tonebar bending coordinate. Hammer and
+damper forces use their spatial shape ports; component masses are counted once.
+Generalized midpoint contact, prepared mass-whitened free transitions and
+independent dissipated-work integration preserve the energy ledger.
+
+All 133 workspace tests passed. Six new tests cover component inertia/virtual
+work, continuous rigid-motion limits, reciprocal hammer/tonebar impulses,
+free-transition composition and independent loss, energy through contact/restrike/
+damper changes, and invalid inputs. Strict workspace Clippy, formatting and the
+release WASM plugin build passed. Original plugin/assembly behavior is unchanged.
+
+The [final audit](../references/modal-assembly-validation.json) passed 84 takes
+across 12 length/rate/velocity cases. With 32 contact subdivisions, maximum
+relative RMSE against refined contact 256 was `0.0005283%` for mass-weighted
+displacement, `0.01012%` for mass-weighted velocity and `0.01176%` for velocity at
+the pickup observation point. Independent uniform midpoint 1024 agreed within
+`0.0009772%` pickup velocity RMSE. Maximum candidate energy-balance residual was
+`1.267e-11` of injected energy; maximum positive base-tick energy change was
+`1.044e-15`. Repeating the final audit preserved all case data; timing is variable.
+The new CI audit has not been run remotely during this local verification.
+
+The native release timing probe took a median `28.6175 ms` to generate 250 ms
+of one nine-coordinate voice with five strikes at 48 kHz, including the energy
+ledger and excluding preparation. This cost is substantial; full polyphony,
+pickup/filter processing and host/WASM timing remain unqualified. No calibrated
+tonebar/support geometry or magnetic comparison is claimed. This milestone
+produces no new instrument package and uses no Desktop controls or audio device.

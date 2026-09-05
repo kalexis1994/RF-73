@@ -3,6 +3,7 @@ mod analysis;
 mod assembly_check;
 mod audition;
 mod convergence;
+mod modal_assembly_check;
 mod package;
 mod partial_comparison;
 mod pickup_convergence;
@@ -202,6 +203,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", convergence::HELP);
         print!("{}", assembly_check::HELP);
         print!("{}", tine_modes::HELP);
+        print!("{}", modal_assembly_check::HELP);
         return Ok(());
     }
     if args[0] == "inspect" {
@@ -219,6 +221,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "tine-modes" {
         return tine_modes::run(&args);
+    }
+    if args[0] == "modal-assembly-check" {
+        return modal_assembly_check::run(&args);
     }
     if args[0] == "compare-partials" {
         return partial_comparison::run(&args);

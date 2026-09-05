@@ -47,14 +47,21 @@ the next gates before plugin integration.
 
 The [tine modal preparation](TINE-MODES.md) now derives six fixed-root bending
 modes, port weights and moving-root inertia from a uniform beam plus a movable
-tuning point mass. Analytical and mesh-convergence checks pass. Extending the
-coupled solver to this derived mass matrix, identifying the tonebar/root geometry
-and revalidating the higher-frequency trajectories are the next physical gates;
-the beam geometry itself remains illustrative.
+tuning point mass. Analytical and mesh-convergence checks pass. Its full-matrix
+time-domain connection is implemented in the following milestone; identification
+of the tonebar/root geometry and measured higher-frequency behavior remains open.
+The beam geometry itself remains illustrative.
+
+Implemented next integration gate: the [nine-coordinate modal assembly](MODAL-ASSEMBLY.md)
+connects all six tine modes, root translation/rotation and one provisional tonebar
+coordinate using the full reciprocal inertia. Spatial hammer/damper ports and
+independent energy accounting pass an 84-take audit. The solver remains offline
+and needs performance optimization, pickup/filter comparison and physical
+parameter identification before it can replace the plugin engine.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 
-The next mechanical milestone is an explicit passive tine/tonebar assembly with mounting compliance, replacing the present three-mode ideal-cantilever approximation only after isolated tests establish its behavior. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, with independent convergence and energy accounting before real-time integration.
+The current mechanical work builds on the explicit tine/tonebar assembly with mounting compliance. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing plugin engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, and qualify numerical accuracy and performance before real-time integration.
 
 Subsequent work covers hammer-tip material/history and strike geometry, action/repetition, geometry-based magnetic conversion, continuous dampers and release response. Extend identified behavior across the keyboard and velocities before adding optional electronics or spending time on final visual styling. A complete physical-field simulation of every part is not required for real-time fidelity; every reduction must have a documented assumption and a measurable validity range. The current five processed G3 layers do not identify all these physical parameters.
 

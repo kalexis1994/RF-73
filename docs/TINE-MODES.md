@@ -3,8 +3,8 @@
 `TineModes::prepare` computes six bending modes of a uniform circular tine with
 a movable tuning point mass. Frequencies, effective masses, hammer/pickup weights
 and root coupling follow from the same spatial modes. This is an offline
-structural preparation step; it is not yet connected to `AssemblyVoice` or the
-0.1.2 instrument. The earlier solvers remain unchanged.
+structural preparation step used by the [nine-coordinate assembly](MODAL-ASSEMBLY.md).
+The earlier `AssemblyVoice` reference and the 0.1.2 instrument remain unchanged.
 
 ## Physical scope and sources
 
@@ -164,8 +164,13 @@ not the assumptions that reduce the real instrument to those equations.
 
 ## Next physical gate
 
-Extend the coupled mechanical state to use these six modal coordinates and
-the derived translation/rotation inertia. Identify the tonebar and root support
+The [nine-coordinate assembly](MODAL-ASSEMBLY.md) now connects this mass matrix
+and all six modes to root translation/rotation, a provisional tonebar coordinate
+and nonlinear hammer contact. Its numerical audit passes; geometry identification,
+pickup/filter comparison and polyphonic performance remain open.
+
+The extended mechanical state now uses these six modal coordinates and the
+derived translation/rotation inertia. Identify the tonebar and root support
 geometry and avoid double-counting mass. Recheck contact, energy balance,
 sampling and performance with the higher frequencies; the previous assembly's
 contact subdivision and 4x base-rate conclusions do not automatically transfer.
