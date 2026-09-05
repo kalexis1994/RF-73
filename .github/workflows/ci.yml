@@ -77,3 +77,5 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-free-check --output renders/ci-memory-modal-free.json
       - name: Audit error-controlled modal contact
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-adaptive-check --output renders/ci-memory-modal-adaptive.json
+      - name: Audit economical contact scheduling
+        run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-economical-check --output renders/ci-memory-modal-economical.json

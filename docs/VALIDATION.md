@@ -756,3 +756,36 @@ consistently for three solves and local checks. Adaptive cost remains 41–51
 seconds per simulated second. This is an explicitly selected offline experiment;
 the existing contact path and audible plugin are unchanged. CI includes its
 audit; remote CI and GUI/audio tests were not run.
+
+## Scheduling strict contact estimates without relaxing acceptance
+
+Date: 2026-09-05. The [scheduling experiment](MEMORY-CONTACT-SCHEDULING.md)
+adds a separate controller with an eight-base-tick minimum trial and 64 fine
+ticks between retries after a rejected minimum interval. Every deferred tick
+still executes the original mechanics and responds to external events. Accepted
+contact retains the complete three-solve estimator, `1e-11` tolerance,
+compression bound, independent work/heat checks and two-half-step commit.
+The estimator also reuses its already computed coarse/fine hammer probes.
+
+All 172 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. Two new tests check short frame remainders and deferred ticks through
+impulse/damper changes. The [strict regression report](../references/memory-modal-estimator-reuse-control.json)
+is byte-identical to the retained strict audit (SHA256
+`D209D20B9F6D8E73581FB1157BF66B55A7F2C1B372A64A20C7EAF156DD2123AB`).
+
+The [new audit](../references/memory-modal-economical-validation.json) passes
+all 12 cases/24 takes with unchanged uniform-reference rows. Candidate maximum
+kinetic velocity RMSE is 0.004014%, pickup velocity RMSE 0.000328% and mean-force
+RMSE 0.001120%. Relative combined energy and structural/hammer work residuals
+are at most `1.093e-10`, `1.096e-10` and `8.079e-11`. Contact attempts fall by
+90.4%, from 3,292,012 to 315,855; physical fine ticks continue throughout.
+
+Retained [new](../references/memory-modal-economical-timing.json),
+[strict](../references/memory-modal-scheduling-strict-timing.json) and
+[fixed-contact](../references/memory-modal-scheduling-fixed-timing.json) native
+batches show improved medians in three of four profiles versus strict scheduling,
+with strict/new ratios 1.083x, 1.829x, 0.878x and 1.318x. The soft 120 mm case
+regresses about 14%; short sequential timings remain load-sensitive. New cost
+is still 30–55 seconds per simulated second. The option remains experimental,
+and neither default mechanics nor audible plugin behavior is replaced. CI
+includes the new audit; remote CI and GUI/audio testing were not performed.

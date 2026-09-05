@@ -93,6 +93,9 @@ contact steps with continuous compression bounds and coarse/fine state checks.
 Its stricter local tolerance passes the retained 12-case protocol after a looser
 trial failed trajectory accuracy. Qualifying longer trajectories, wider profiles
 and runtime cost remains necessary before realtime integration.
+The [contact scheduling experiment](MEMORY-CONTACT-SCHEDULING.md) now avoids
+short contact trials and defers retries while continuing every original fine
+tick. It retains the strict tolerance and separate previous-controller controls.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

@@ -252,7 +252,10 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if matches!(
         args[0].as_str(),
-        "memory-modal-check" | "memory-modal-free-check" | "memory-modal-adaptive-check"
+        "memory-modal-check"
+            | "memory-modal-free-check"
+            | "memory-modal-adaptive-check"
+            | "memory-modal-economical-check"
     ) {
         return memory_modal_check::run(&args);
     }
@@ -261,7 +264,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if matches!(
         args[0].as_str(),
-        "memory-modal-free-timing" | "memory-modal-adaptive-timing"
+        "memory-modal-free-timing"
+            | "memory-modal-adaptive-timing"
+            | "memory-modal-economical-timing"
     ) {
         return memory_modal_timing::run_free(&args);
     }

@@ -2,6 +2,8 @@ use rf_rhodes_dsp::{
     MemoryContactStatus, MemoryContactStep, MemoryFreeStatus, MemoryModalAssembly, ModelError,
 };
 use serde_json::{Value, json};
+const ECONOMICAL_MINIMUM_LEVEL: u32 = 3;
+const CONTACT_RETRY_TICKS: usize = 64;
 
 #[derive(Default)]
 pub(crate) struct Controller {
@@ -20,8 +22,18 @@ pub(crate) struct Controller {
     contact_boundary: usize,
     largest_contact: usize,
     mean_force: Option<f64>,
+    economical: bool,
+    retry_ticks: usize,
+    deferred_ticks: usize,
 }
 impl Controller {
+    pub(crate) fn with_economical_contact() -> Self {
+        Self {
+            economical: true,
+            contact_level: ECONOMICAL_MINIMUM_LEVEL,
+            ..Self::with_contact()
+        }
+    }
     pub(crate) fn with_contact() -> Self {
         Self {
             contact_enabled: true,
@@ -39,11 +51,30 @@ impl Controller {
         remaining: usize,
     ) -> Result<usize, ModelError> {
         self.mean_force = None;
-        if self.contact_enabled && remaining >= 2 && voice.probe().hammer.surface_energy_j > 0.0 {
+        let surface_energy = voice.probe().hammer.surface_energy_j;
+        let contacting = surface_energy > 0.0;
+        let minimum_level = if self.economical {
+            ECONOMICAL_MINIMUM_LEVEL
+        } else {
+            1
+        };
+        if self.economical && !contacting {
+            self.retry_ticks = 0;
+            self.contact_level = minimum_level;
+        }
+        if self.economical && contacting && self.retry_ticks > 0 {
+            voice.tick()?;
+            self.retry_ticks -= 1;
+            self.deferred_ticks += 1;
+            self.fixed += 1;
+            self.level = 0;
+            return Ok(1);
+        }
+        if self.contact_enabled && remaining >= 1usize << minimum_level && contacting {
             self.contact_level = self
                 .contact_level
                 .min(usize::BITS - 1 - remaining.leading_zeros())
-                .max(1);
+                .max(minimum_level);
             loop {
                 let ticks = 1usize << self.contact_level;
                 let attempt = voice.try_contact_step(self.contact_level)?;
@@ -63,13 +94,16 @@ impl Controller {
                     MemoryContactStatus::BoundaryRequired => self.contact_boundary += 1,
                     MemoryContactStatus::AccuracyRequired => self.contact_accuracy += 1,
                 }
-                if self.contact_level == 1 {
+                if self.contact_level == minimum_level {
+                    if self.economical {
+                        self.retry_ticks = CONTACT_RETRY_TICKS;
+                    }
                     break;
                 }
                 self.contact_level -= 1;
             }
         }
-        if voice.probe().hammer.surface_energy_j == 0.0 {
+        if surface_energy == 0.0 {
             self.level = self.level.min(usize::BITS - 1 - remaining.leading_zeros());
             loop {
                 let ticks = 1usize << self.level;
@@ -111,7 +145,70 @@ impl Controller {
                 "accuracy_rejections":self.contact_accuracy,"boundary_rejections":self.contact_boundary,
                 "maximum_interval_seconds":self.largest_contact as f64*h,
                 "accepted_implicit_half_steps":2*self.contacts});
+            if self.economical {
+                report["contact"]["minimum_trial_ticks"] =
+                    json!(1usize << ECONOMICAL_MINIMUM_LEVEL);
+                report["contact"]["retry_delay_ticks"] = json!(CONTACT_RETRY_TICKS);
+                report["contact"]["deferred_fixed_ticks"] = json!(self.deferred_ticks);
+            }
         }
         report
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rf_rhodes_dsp::{MemoryHammerProfile, ModalAssemblyProfile, TineGeometry};
+    fn compressed_voice() -> MemoryModalAssembly {
+        let mut v = MemoryModalAssembly::new(
+            1e-9,
+            TineGeometry::default(),
+            ModalAssemblyProfile::default(),
+            MemoryHammerProfile::default(),
+            0.0,
+            0.8,
+        )
+        .unwrap();
+        v.prepare_free_steps(12).unwrap();
+        v.prepare_contact_steps(12).unwrap();
+        for _ in 0..2000 {
+            v.tick().unwrap();
+        }
+        assert!(v.probe().hammer.surface_energy_j > 0.0);
+        v
+    }
+    #[test]
+    fn short_frame_remainders_use_original_ticks_without_contact_trials() {
+        let mut v = compressed_voice();
+        let mut reference = compressed_voice();
+        let mut c = Controller::with_economical_contact();
+        for remaining in (1..8).rev() {
+            assert_eq!(c.advance(&mut v, remaining).unwrap(), 1);
+            assert_eq!(v.probe(), reference.tick().unwrap());
+        }
+        assert_eq!(c.contacts, 0);
+        assert_eq!(c.contact_accuracy, 0);
+        assert_eq!(c.contact_boundary, 0);
+        assert_eq!(c.fixed, 7);
+    }
+    #[test]
+    fn deferred_retries_still_integrate_impulses_damping_and_every_tick() {
+        let mut v = compressed_voice();
+        let mut reference = compressed_voice();
+        let mut c = Controller::with_economical_contact();
+        c.retry_ticks = 3;
+        v.apply_core_impulse(0.001).unwrap();
+        reference.apply_core_impulse(0.001).unwrap();
+        v.set_damped(true);
+        reference.set_damped(true);
+        for remaining in [10, 2, 1] {
+            assert_eq!(c.advance(&mut v, remaining).unwrap(), 1);
+            assert_eq!(v.probe(), reference.tick().unwrap());
+        }
+        assert_eq!(c.retry_ticks, 0);
+        assert_eq!(c.deferred_ticks, 3);
+        assert_eq!(c.fixed, 3);
+        assert!(c.mean_force().is_none());
     }
 }

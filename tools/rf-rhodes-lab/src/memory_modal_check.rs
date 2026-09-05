@@ -11,6 +11,7 @@ pub const HELP: &str = "Stateful multimode hammer:
   memory-modal-check --output REPORT.json [--coarse]
   memory-modal-free-check --output REPORT.json
   memory-modal-adaptive-check --output REPORT.json
+  memory-modal-economical-check --output REPORT.json
 Audits reciprocal hammer/tine work, free recovery, reimpact and damper changes.
 12 uncalibrated cases; uniform audit uses 2.5 ns steps and twofold finer reference.
 Free audit uses certified longer intervals and 1.25 ns contact/reference steps.
@@ -37,7 +38,7 @@ fn state(q: MemoryModalProbe) -> serde_json::Value {
         "impulse_work_j":q.hammer.external_work_j,"balance_residual_j":q.balance_residual_j})
 }
 fn take(length: f64, speed: f64, tau: f64, substeps: usize) -> Result<Take, Box<dyn Error>> {
-    take_impl(length, speed, tau, substeps, false, false)
+    take_impl(length, speed, tau, substeps, false, false, false)
 }
 fn take_impl(
     length: f64,
@@ -46,6 +47,7 @@ fn take_impl(
     substeps: usize,
     adaptive: bool,
     contact: bool,
+    economical: bool,
 ) -> Result<Take, Box<dyn Error>> {
     let h = 1.0 / (48000.0 * substeps as f64);
     let mut v = MemoryModalAssembly::new(
@@ -65,7 +67,9 @@ fn take_impl(
         0.0,
         speed,
     )?;
-    let mut controller = if contact {
+    let mut controller = if economical {
+        Controller::with_economical_contact()
+    } else if contact {
         Controller::with_contact()
     } else {
         Controller::default()
@@ -178,7 +182,8 @@ fn take_impl(
     Ok(result)
 }
 pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
-    let contact = args[0] == "memory-modal-adaptive-check";
+    let economical = args[0] == "memory-modal-economical-check";
+    let contact = economical || args[0] == "memory-modal-adaptive-check";
     let adaptive = contact || args[0] == "memory-modal-free-check";
     if !matches!(args.len(), 3 | 4)
         || args[1] != "--output"
@@ -209,6 +214,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                     },
                     adaptive,
                     contact,
+                    economical,
                 )?;
                 let b = take(length, speed, tau, if coarse { 8336 } else { 16672 })?;
                 let mut kinetic_error = 0.0;
@@ -256,7 +262,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     }
     serde_json::to_writer_pretty(
         &mut file,
-        &json!({"schema_version":1,"experiment":if contact {"memory-modal-adaptive-v1"} else if adaptive {"memory-modal-free-v1"} else {"memory-modal-coupling-v1"},
+        &json!({"schema_version":1,"experiment":if economical {"memory-modal-economical-v1"} else if contact {"memory-modal-adaptive-v1"} else if adaptive {"memory-modal-free-v1"} else {"memory-modal-coupling-v1"},
         "status":if pass{"pass"}else{"fail"},"calibrated":false,"plugin_integrated":false,
         "observation_rate_hz":48000,"duration_seconds":0.008,
         "coarse":coarse,

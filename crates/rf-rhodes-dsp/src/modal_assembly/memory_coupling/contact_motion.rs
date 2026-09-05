@@ -131,7 +131,7 @@ impl MemoryModalAssembly {
                 return Ok(rejected(MemoryContactStatus::AccuracyRequired, None));
             }
         }
-        let error = phase_error(&self.op, &coarse, &fine, scale);
+        let error = phase_error(&self.op, &coarse, &fine, cp.hammer, fp.hammer, scale);
         if !error.is_finite() || error > MemoryContactStep::STATE_ERROR_LIMIT {
             return Ok(rejected(
                 MemoryContactStatus::AccuracyRequired,
@@ -150,9 +150,14 @@ impl MemoryModalAssembly {
         })
     }
 }
-fn phase_error(op: &Operators, a: &Motion, b: &Motion, scale: f64) -> f64 {
-    let qa = a.hammer.probe();
-    let qb = b.hammer.probe();
+fn phase_error(
+    op: &Operators,
+    a: &Motion,
+    b: &Motion,
+    qa: MemoryHammerProbe,
+    qb: MemoryHammerProbe,
+    scale: f64,
+) -> f64 {
     let p = a.hammer.profile();
     let dv = core::array::from_fn(|i| a.v[i] - b.v[i]);
     let dq = core::array::from_fn(|i| a.q[i] - b.q[i]);
