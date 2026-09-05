@@ -40,6 +40,8 @@ The [G3 residual pilot](G3-RESIDUAL-PILOT.md) now compares all five acquired sou
 
 The [isolated pickup experiment](PICKUP-TRANSFER.md) compares the current law with a more localized point-pole field proxy under identical periodic motion. It reports raw sensitivity, harmonic balance and internal sampling residuals separately. [Mechanical pickup pairs](PICKUP-PAIR.md) now extend this to the production trajectory and FIR, preserving baseline WAVs exactly. The close-gap strong probe further reduces the G3 third-harmonic deficit but leaves substantial upper-harmonic/body residuals and increased output level. Cross-register convergence and gain/headroom evaluation remain necessary before a sound-profile release.
 
+The [pickup convergence matrix](PICKUP-CONVERGENCE.md) now covers three register anchors, two intensities and two geometries, with treble checks at all output rates and 256x reference confirmations. The tested frozen-trajectory residuals are much smaller than the remaining contact/trajectory differences. Candidate gain/headroom and level-matched listening comparisons are the next release gates; no whole-keyboard or perceptual qualification is claimed.
+
 1. Obtain dry recordings from a documented instrument at multiple intensities.
 2. Evaluate independent tracking across the available observation lengths on those recordings, refine background qualification, and distinguish observed spectral peaks from identified mechanical modes.
 3. Extend the current convergence measurements to extreme profiles, retriggers and isolated nonlinear aliasing; establish explicit error budgets.

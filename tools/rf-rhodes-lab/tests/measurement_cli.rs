@@ -56,6 +56,110 @@ impl Drop for Scratch {
 }
 
 #[test]
+fn pickup_convergence_reports_finite_reference_and_frozen_path_without_overwrite() {
+    let scratch = Scratch::new();
+    let args = [
+        "converge-pickup",
+        "--output",
+        "pickup-convergence.json",
+        "--note",
+        "55",
+        "--seconds",
+        "0.05",
+        "--gap-mm",
+        "0.5",
+        "--offset-mm",
+        "0.25",
+    ];
+    scratch.success(&args);
+    let report = scratch.json("pickup-convergence.json");
+    assert_eq!(report["schema_version"], 1);
+    assert_eq!(report["reference"]["internal_steps"], 128);
+    assert_eq!(report["filter_delay_output_samples"], 15.75);
+    assert_eq!(report["faults"], 0);
+    let rows = report["comparisons"].as_array().unwrap();
+    assert_eq!(rows.len(), 6);
+    assert_eq!(rows[4]["internal_steps"], 64);
+    assert_eq!(rows[5]["path"], "frozen_128x_trajectory_sampled_at_4x");
+    assert!(rows[5]["mechanics"].is_null());
+    for row in rows {
+        assert_eq!(row["laws"].as_array().unwrap().len(), 2);
+        for law in row["laws"].as_array().unwrap() {
+            for window in ["full", "attack_32_ms", "after_attack"] {
+                assert!(law[window]["raw_nrmse"].as_f64().unwrap().is_finite());
+            }
+        }
+    }
+    for (fine, coarse) in rows[4]["laws"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .zip(rows[0]["laws"].as_array().unwrap())
+    {
+        assert!(
+            fine["full"]["raw_nrmse"].as_f64().unwrap()
+                < coarse["full"]["raw_nrmse"].as_f64().unwrap() * 0.2
+        );
+    }
+    let before = fs::read(scratch.0.join("pickup-convergence.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(
+        before,
+        fs::read(scratch.0.join("pickup-convergence.json")).unwrap()
+    );
+    scratch.success(&[
+        "converge-pickup",
+        "--output",
+        "fine.json",
+        "--reference-steps",
+        "256",
+        "--note",
+        "100",
+        "--velocity",
+        "0.2",
+        "--seconds",
+        "0.05",
+    ]);
+    let fine_report = scratch.json("fine.json");
+    assert_eq!(fine_report["reference"]["internal_steps"], 256);
+    assert_eq!(fine_report["frozen_reference_stride"], 64);
+    let fine_rows = fine_report["comparisons"].as_array().unwrap();
+    assert_eq!(fine_rows.len(), 7);
+    assert_eq!(fine_rows[5]["internal_steps"], 128);
+    for (fine, coarse) in fine_rows[5]["laws"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .zip(fine_rows[4]["laws"].as_array().unwrap())
+    {
+        assert!(
+            fine["full"]["raw_nrmse"].as_f64().unwrap()
+                < coarse["full"]["raw_nrmse"].as_f64().unwrap() * 0.4
+        );
+    }
+    for flags in [
+        vec!["--reference-steps", "64"],
+        vec!["--reference-steps", "512"],
+        vec!["--seconds", "0.049"],
+        vec!["--seconds", "0.251"],
+        vec!["--seconds", "NaN"],
+        vec!["--velocity", "0.001"],
+        vec!["--gap-mm", "0"],
+        vec!["--offset-mm", "inf"],
+        vec!["--note", "101"],
+        vec!["--sample-rate", "44000"],
+        vec!["--unknown", "1"],
+        vec!["--note", "55", "--note", "57"],
+        vec!["--note"],
+    ] {
+        let mut args = vec!["converge-pickup", "--output", "invalid.json"];
+        args.extend(flags);
+        assert!(!scratch.run(&args).status.success(), "{args:?}");
+        assert!(!scratch.0.join("invalid.json").exists());
+    }
+}
+
+#[test]
 fn mechanical_pickup_pair_preserves_production_wav_and_all_existing_outputs() {
     let scratch = Scratch::new();
     let options = [

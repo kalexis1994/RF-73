@@ -317,14 +317,22 @@ const DELAY: usize = 64;
 
 /// A common physical kernel: 128 output-sample span, cutoff 0.42 * output Fs.
 /// This intentionally does not reuse the shorter production decimator.
-struct OfflineFir {
+pub(super) struct OfflineFir {
     taps: Vec<f64>,
     history: Vec<f64>,
     cursor: usize,
 }
 impl OfflineFir {
     fn new(substeps: usize) -> Self {
-        let length = 2 * DELAY * substeps + 1;
+        Self::with_half_length(substeps, DELAY * substeps)
+    }
+    /// Sample the production filter's physical kernel at a denser internal rate.
+    /// Same 31.5-output-sample support and 15.75-sample group delay at every rate.
+    pub(super) fn production_kernel(substeps: usize) -> Self {
+        Self::with_half_length(substeps, 63 * substeps / 4)
+    }
+    fn with_half_length(substeps: usize, half_length: usize) -> Self {
+        let length = 2 * half_length + 1;
         let cutoff = 0.42 / substeps as f64;
         let mut taps: Vec<_> = (0..length)
             .map(|i| {
@@ -347,11 +355,11 @@ impl OfflineFir {
             cursor: 0,
         }
     }
-    fn push(&mut self, sample: f64) {
+    pub(super) fn push(&mut self, sample: f64) {
         self.history[self.cursor] = sample;
         self.cursor = (self.cursor + 1) % self.history.len();
     }
-    fn output(&self) -> f64 {
+    pub(super) fn output(&self) -> f64 {
         self.taps[..self.cursor]
             .iter()
             .zip(self.history[..self.cursor].iter().rev())
@@ -368,6 +376,28 @@ impl OfflineFir {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn sampled_production_kernel_matches_real_filter_and_preserves_physical_delay() {
+        let mut real = rf_rhodes_dsp::ProductionDecimator::new();
+        let mut sampled = OfflineFir::production_kernel(4);
+        for i in 0..400 {
+            let input = if i == 0 || i == 180 { 1.0 } else { 0.0 };
+            real.push(input);
+            sampled.push(input);
+            assert!((real.output() - sampled.output()).abs() < 1e-14);
+        }
+        for steps in [4, 8, 16, 32, 64, 128, 256] {
+            let filter = OfflineFir::production_kernel(steps);
+            assert_eq!(filter.taps.len(), 126 * steps / 4 + 1);
+            assert!((filter.taps.iter().sum::<f64>() - 1.0).abs() < 1e-12);
+            let center = filter.taps.len() / 2;
+            assert_eq!(center as f64 / steps as f64, 15.75);
+            for i in 0..center {
+                assert!((filter.taps[i] - filter.taps[filter.taps.len() - 1 - i]).abs() < 1e-14);
+            }
+        }
+    }
 
     #[test]
     fn reference_filter_has_consistent_gain_delay_and_rejection() {

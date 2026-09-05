@@ -4,6 +4,7 @@ mod audition;
 mod convergence;
 mod package;
 mod partial_comparison;
+mod pickup_convergence;
 mod pickup_pair;
 mod pickup_set;
 mod pickup_sweep;
@@ -178,6 +179,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", pickup_sweep::HELP);
         print!("{}", pickup_set::HELP);
         print!("{}", pickup_pair::HELP);
+        print!("{}", pickup_convergence::HELP);
         print!("{}", tone_comparison::HELP);
         print!("{}", pickup_transfer::HELP);
         print!("{}", convergence::HELP);
@@ -207,6 +209,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "render-pickup-pair" {
         return pickup_pair::run(&args);
+    }
+    if args[0] == "converge-pickup" {
+        return pickup_convergence::run(&args);
     }
     if matches!(args[0].as_str(), "analyze" | "compare") {
         return analysis::run(&args);

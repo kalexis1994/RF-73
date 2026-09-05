@@ -101,7 +101,7 @@ impl Voice {
         Ok(Self::prepare(sample_rate, note, profile, OVERSAMPLE, true))
     }
 
-    /// Prepare a standalone research voice at 4, 8, 16, 32 or 64 internal steps
+    /// Prepare a standalone research voice at a power of two from 4 to 256 internal steps
     /// per output sample, without production contact refinement. The production
     /// pickup/decimator runs at 4x, with finer contact steps where required.
     /// Call `tick` exactly `substeps` times per output frame; this voice does not
@@ -113,8 +113,10 @@ impl Voice {
         substeps: usize,
     ) -> Result<Self, ModelError> {
         profile.validate(sample_rate)?;
-        if !(4..=64).contains(&substeps) || !substeps.is_power_of_two() {
-            return Err(ModelError("research substeps must be 4, 8, 16, 32 or 64"));
+        if !(4..=256).contains(&substeps) || !substeps.is_power_of_two() {
+            return Err(ModelError(
+                "research substeps must be a power of two from 4 to 256",
+            ));
         }
         if !(FIRST_NOTE..=LAST_NOTE).contains(&note) {
             return Err(ModelError("note must be in the 73-key range, MIDI 28..100"));

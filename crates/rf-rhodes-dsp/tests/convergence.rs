@@ -2,7 +2,7 @@ use rf_rhodes_dsp::{Profile, Voice};
 
 #[test]
 fn research_constructor_preserves_default_and_rejects_invalid_steps() {
-    for substeps in [0, 1, 2, 3, 5, 63, 65, usize::MAX] {
+    for substeps in [0, 1, 2, 3, 5, 63, 65, 129, 257, 512, usize::MAX] {
         assert!(Voice::new_for_convergence(48_000.0, 57, Profile::default(), substeps).is_err());
     }
     let mut normal = Voice::new(48_000.0, 57, Profile::default()).unwrap();
@@ -16,7 +16,7 @@ fn research_constructor_preserves_default_and_rejects_invalid_steps() {
 
 #[test]
 fn refined_contact_stays_passive_and_separates() {
-    for substeps in [8, 16, 32, 64] {
+    for substeps in [8, 16, 32, 64, 128, 256] {
         for note in [28, 57, 100] {
             let mut voice =
                 Voice::new_for_convergence(48_000.0, note, Profile::default(), substeps).unwrap();

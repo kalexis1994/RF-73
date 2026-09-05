@@ -56,6 +56,14 @@ Generate the candidate WAV first using [G3 residual pilot](G3-RESIDUAL-PILOT.md)
 
 ## Pickup geometry sweep
 
+For a register-specific convergence check of both laws, including an independently refined reference:
+
+```text
+cargo run --locked --release -p rf-rhodes-lab -- converge-pickup --output renders/treble-pickup-convergence.json --note 100 --velocity 0.2 --sample-rate 48000 --gap-mm 0.5 --offset-mm 0.25 --reference-steps 256
+```
+
+See [Pickup convergence](PICKUP-CONVERGENCE.md) for the frozen-trajectory diagnostic, physical filter matching and numerical interpretation.
+
 To compare transfer laws under identical production mechanics and filtering:
 
 ```text
