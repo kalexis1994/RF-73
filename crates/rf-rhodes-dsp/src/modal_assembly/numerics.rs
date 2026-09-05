@@ -8,7 +8,7 @@ pub(super) fn dot<const D: usize>(a: [f64; D], b: [f64; D]) -> f64 {
     a.into_iter().zip(b).map(|(a, b)| a * b).sum()
 }
 pub(super) fn apply<const D: usize>(a: &[[f64; D]; D], x: [f64; D]) -> [f64; D] {
-    a.map(|r| dot(r, x))
+    core::array::from_fn(|i| a[i].iter().zip(&x).map(|(a, b)| a * b).sum())
 }
 fn transpose<const D: usize>(a: [[f64; D]; D]) -> [[f64; D]; D] {
     core::array::from_fn(|i| core::array::from_fn(|j| a[j][i]))
@@ -82,12 +82,86 @@ impl Midpoint {
 
 pub(super) struct Free {
     transition: StateMatrix,
+    loss: [f64; S * (S + 1) / 2],
+    #[cfg(test)]
+    reference: NormalizedFree,
+}
+impl Free {
+    pub fn prepare(m: Matrix, k: Matrix, c: Matrix, h: f64) -> Result<Self, ModelError> {
+        let normal = NormalizedFree::prepare(m, k, c, h)?;
+        // z = D [q,v]. Fold the basis changes into prepared operators rather than
+        // repeating four 9x9 products on every free tick. Loss is a congruence of
+        // the independently integrated work, never an endpoint energy difference.
+        let mut d = [[0.0; S]; S];
+        let mut inverse = [[0.0; S]; S];
+        for i in 0..N {
+            for j in 0..N {
+                d[i][j] = normal.scale * normal.to_normal[i][j];
+                d[i + N][j + N] = normal.to_normal[i][j];
+                inverse[i][j] = normal.from_normal[i][j] / normal.scale;
+                inverse[i + N][j + N] = normal.from_normal[i][j];
+            }
+        }
+        let transition = multiply(inverse, multiply(normal.transition, d));
+        let work = multiply(transpose(d), multiply(normal.loss, d));
+        let mut loss = [0.0; S * (S + 1) / 2];
+        let mut index = 0;
+        for (i, row) in work.iter().enumerate() {
+            for j in i..S {
+                // Pair both off-diagonal contributions without assuming bitwise
+                // symmetry after floating-point preparation.
+                loss[index] = if i == j { row[i] } else { row[j] + work[j][i] };
+                index += 1;
+            }
+        }
+        if transition
+            .iter()
+            .flatten()
+            .chain(loss.iter())
+            .any(|x| !x.is_finite())
+        {
+            return Err(ModelError("non-finite physical modal free transition"));
+        }
+        Ok(Self {
+            transition,
+            loss,
+            #[cfg(test)]
+            reference: normal,
+        })
+    }
+    pub fn advance(&self, q: Vector, v: Vector) -> (Vector, Vector, f64) {
+        let state = core::array::from_fn(|i| if i < N { q[i] } else { v[i - N] });
+        let next = apply(&self.transition, state);
+        let mut loss = 0.0;
+        let mut index = 0;
+        for (i, x) in state.iter().enumerate() {
+            let mut row = 0.0;
+            for y in &state[i..] {
+                row += self.loss[index] * y;
+                index += 1;
+            }
+            loss += x * row;
+        }
+        (
+            core::array::from_fn(|i| next[i]),
+            core::array::from_fn(|i| next[i + N]),
+            loss,
+        )
+    }
+    #[cfg(test)]
+    pub fn advance_normalized(&self, q: Vector, v: Vector) -> (Vector, Vector, f64) {
+        self.reference.advance(q, v)
+    }
+}
+
+struct NormalizedFree {
+    transition: StateMatrix,
     loss: StateMatrix,
     to_normal: Matrix,
     from_normal: Matrix,
     scale: f64,
 }
-impl Free {
+impl NormalizedFree {
     pub fn prepare(m: Matrix, k: Matrix, c: Matrix, h: f64) -> Result<Self, ModelError> {
         let l = factor(m)?;
         let inv = inverse_lower(l);
@@ -161,7 +235,8 @@ impl Free {
             scale,
         })
     }
-    pub fn advance(&self, q: Vector, v: Vector) -> (Vector, Vector, f64) {
+    #[cfg(test)]
+    fn advance(&self, q: Vector, v: Vector) -> (Vector, Vector, f64) {
         let qn = apply(&self.to_normal, q);
         let vn = apply(&self.to_normal, v);
         let state = core::array::from_fn(|i| if i < N { self.scale * qn[i] } else { vn[i - N] });

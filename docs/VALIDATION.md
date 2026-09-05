@@ -387,3 +387,31 @@ ledger and excluding preparation. This cost is substantial; full polyphony,
 pickup/filter processing and host/WASM timing remain unqualified. No calibrated
 tonebar/support geometry or magnetic comparison is claimed. This milestone
 produces no new instrument package and uses no Desktop controls or audio device.
+
+## Physical-coordinate free transition and block timing
+
+Date: 2026-09-05. [Prepared operator folding](MODAL-PERFORMANCE.md) removes the
+four per-tick coordinate transforms and stores viscous work as a packed quadratic
+form. Work still comes from an independent power integral. The contact model,
+geometry, six-mode reduction and provisional profile are unchanged.
+
+The new [84-take audit](../references/modal-assembly-folded-validation.json)
+passes the existing gates. At 32 contact subdivisions the maximum pickup velocity
+RMSE remains `0.01176%` against refined contact 256; the maximum relative energy
+residual is `1.193e-11`. Two additional tests compare 48 normalized/physical
+trajectories and check a lossless 20,000-step impulse response. The complete
+workspace has 135 passing tests; strict Clippy, formatting and release WASM plugin
+compilation pass. An existing timing report is rejected without changing its SHA256;
+invalid timing-report extensions are rejected before file creation.
+
+Identical native block workloads were measured before and after the change,
+with 1/8/32/73 simultaneous voices at 48/192 kHz, five runs per case and preparation
+excluded. The observed speed ratio ranges from 1.12x to 1.29x; native voice storage
+falls from 31,824 to 21,712 bytes. The [timing protocol and complete table](MODAL-PERFORMANCE.md)
+record the synthetic geometry, synchronized strikes, timer boundaries and limits.
+Eight voices at 48 kHz still miss 26 of 470 measured block deadlines; 73 voices
+miss every block at both rates. Average throughput alone would hide contact bursts.
+
+This remains offline mechanics with no magnetic conversion, antialias filter,
+host timing or measured physical calibration. The production instrument and
+package version stay at 0.1.2. No audio device or Desktop controls were used.

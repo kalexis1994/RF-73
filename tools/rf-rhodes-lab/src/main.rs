@@ -4,6 +4,7 @@ mod assembly_check;
 mod audition;
 mod convergence;
 mod modal_assembly_check;
+mod modal_timing;
 mod package;
 mod partial_comparison;
 mod pickup_convergence;
@@ -204,6 +205,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", assembly_check::HELP);
         print!("{}", tine_modes::HELP);
         print!("{}", modal_assembly_check::HELP);
+        print!("{}", modal_timing::HELP);
         return Ok(());
     }
     if args[0] == "inspect" {
@@ -224,6 +226,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "modal-assembly-check" {
         return modal_assembly_check::run(&args);
+    }
+    if args[0] == "modal-timing" {
+        return modal_timing::run(&args);
     }
     if args[0] == "compare-partials" {
         return partial_comparison::run(&args);

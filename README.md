@@ -61,6 +61,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Pickup Lab UI](docs/PICKUP-LAB-UI.md): controls, A/B, saving, transition and gain policy.
 - [Physical model ledger](docs/MODEL.md): equations, constants and known approximations.
 - [Coupled assembly](docs/COUPLED-ASSEMBLY.md): mechanical reduction, energy balance, analytic tests and convergence limits.
+- [Modal performance](docs/MODAL-PERFORMANCE.md): prepared nine-coordinate mechanics, independent work and native block timing.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

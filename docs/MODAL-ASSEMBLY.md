@@ -70,6 +70,8 @@ Cholesky mass whitening, a balanced 18-state generator, a prepared exponential
 transition and independently integrated viscous work. Preparation retains the
 scaled degree-18 Taylor approximation, positive-weight quadrature and bounded
 squaring. Both damper states and contact-remainder intervals are prepared.
+The runtime transition and independent work are now folded into physical
+coordinates during preparation; see [cost and block timing](MODAL-PERFORMANCE.md).
 
 Contact uses the existing nonnegative cubic potential and its discrete gradient.
 The coupled midpoint response solves the positive-definite matrix
@@ -167,7 +169,8 @@ the timing is not a claim that a full instrument can run in real time.
 The model still needs identified tonebar/support geometry and losses, further
 beam validity checks, and a magnetic pickup/filter comparison on these new
 trajectories. No shear/rotary beam inertia, large-deflection coupling, second
-polarization, neoprene hysteresis or full action has been added here. Optimizing
-the prepared state transition and measuring realistic polyphony precede plugin
-integration. The audible 0.1.2 instrument remains unchanged; this offline milestone
+polarization, neoprene hysteresis or full action has been added here. The prepared
+transition has since been optimized and synthetic polyphony measured, but contact
+cost and host qualification still precede plugin integration. The audible 0.1.2
+instrument remains unchanged; this offline milestone
 does not produce a new listening package or invoke Desktop controls.

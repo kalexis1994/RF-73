@@ -567,6 +567,80 @@ mod tests {
     }
 
     #[test]
+    fn folded_free_motion_matches_normalized_trajectories_and_independent_work() {
+        for length in [0.05, 0.075, 0.12] {
+            for light_support in [false, true] {
+                let p = if light_support {
+                    ModalAssemblyProfile {
+                        support_mass_kg: 0.001,
+                        support_inertia_kg_m2: 1e-8,
+                        tonebar_arm_m: -0.08,
+                        damper_n_s_m: 2.0,
+                        ..ModalAssemblyProfile::default()
+                    }
+                } else {
+                    ModalAssemblyProfile::default()
+                };
+                let op = Operators::prepare(
+                    TineGeometry {
+                        length_m: length,
+                        ..TineGeometry::default()
+                    },
+                    p,
+                )
+                .unwrap();
+                for rate in [44100.0, 192000.0] {
+                    for c in op.c {
+                        for substeps in [1.0, 32.0] {
+                            let free = Free::prepare(op.m, op.k, c, 1.0 / (4.0 * rate * substeps))
+                                .unwrap();
+                            let mut q = [1e-5, 2e-4, 1e-6, -1e-6, 2e-6, -2e-6, 1e-6, 1e-6, 1e-5];
+                            let mut v = [0.01, 0.1, -0.03, 0.01, -0.01, 0.02, -0.005, 0.005, 0.01];
+                            let (mut qr, mut vr) = (q, v);
+                            let initial = 0.5 * (dot(q, apply(&op.k, q)) + dot(v, apply(&op.m, v)));
+                            let (mut work, mut reference_work) = (0.0, 0.0);
+                            for _ in 0..1000 {
+                                let (qn, vn, loss) = free.advance(q, v);
+                                let (qrn, vrn, reference_loss) = free.advance_normalized(qr, vr);
+                                (q, v, qr, vr) = (qn, vn, qrn, vrn);
+                                work += loss;
+                                reference_work += reference_loss;
+                                let dq = core::array::from_fn(|i| q[i] - qr[i]);
+                                let dv = core::array::from_fn(|i| v[i] - vr[i]);
+                                let error_energy =
+                                    dot(dq, apply(&op.k, dq)) + dot(dv, apply(&op.m, dv));
+                                assert!(error_energy.is_finite() && error_energy < initial * 1e-16);
+                                assert!(loss.is_finite() && loss >= -initial * 1e-14);
+                                assert!((work - reference_work).abs() < initial * 1e-10);
+                                let energy =
+                                    0.5 * (dot(q, apply(&op.k, q)) + dot(v, apply(&op.m, v)));
+                                assert!((energy + work - initial).abs() < initial * 1e-8);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #[test]
+    fn folded_lossless_motion_conserves_energy_without_manufactured_dissipation() {
+        let op =
+            Operators::prepare(TineGeometry::default(), ModalAssemblyProfile::default()).unwrap();
+        let free = Free::prepare(op.m, op.k, [[0.0; N]; N], 1.0 / 176400.0).unwrap();
+        let mut q = [0.0; N];
+        let mut v = apply(&numerics::inverse(op.m).unwrap(), op.hammer).map(|x| x * 1e-5);
+        let initial = 0.5 * dot(v, apply(&op.m, v));
+        for _ in 0..20000 {
+            let (qn, vn, loss) = free.advance(q, v);
+            (q, v) = (qn, vn);
+            assert_eq!(loss, 0.0);
+            let energy = 0.5 * (dot(q, apply(&op.k, q)) + dot(v, apply(&op.m, v)));
+            assert!((energy / initial - 1.0).abs() < 1e-8);
+        }
+    }
+
+    #[test]
     fn malformed_inputs_are_rejected_before_stepping() {
         let p = ModalAssemblyProfile::default();
         let g = TineGeometry::default();
