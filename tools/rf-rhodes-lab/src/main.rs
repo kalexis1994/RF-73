@@ -4,6 +4,7 @@ mod assembly_check;
 mod audition;
 mod convergence;
 mod hammer_memory;
+mod memory_free_check;
 mod memory_hammer_check;
 mod memory_modal_check;
 mod memory_modal_timing;
@@ -212,6 +213,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", modal_assembly_check::HAMMER_HELP);
         print!("{}", hammer_memory::HELP);
         print!("{}", memory_hammer_check::HELP);
+        print!("{}", memory_free_check::HELP);
         print!("{}", memory_modal_check::HELP);
         print!("{}", memory_modal_timing::HELP);
         print!("{}", modal_timing::HELP);
@@ -244,6 +246,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "memory-hammer-check" {
         return memory_hammer_check::run(&args);
+    }
+    if args[0] == "memory-free-check" {
+        return memory_free_check::run(&args);
     }
     if args[0] == "memory-modal-check" {
         return memory_modal_check::run(&args);

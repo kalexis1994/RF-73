@@ -1,6 +1,8 @@
 //! Two-mass material-memory hammer with a fixed-wall API and internal moving port.
 use crate::voice::contact_gradient;
 use crate::{HammerMemory, HammerMemoryProbe, HammerMemoryProfile, ModelError};
+mod free_motion;
+pub use free_motion::{MemoryFreeStatus, MemoryFreeStep};
 
 #[derive(Debug, Clone, Copy)]
 pub struct MemoryHammerProfile {

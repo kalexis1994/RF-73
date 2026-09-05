@@ -104,3 +104,7 @@ number of integration steps required by the current reference. Efficient free
 motion and event-aware contact refinement remain the next numerical gates.
 Material identification remains a separate realism requirement. The audible
 plugin and version 0.1.2 have not changed, and no listening package is produced.
+
+The subsequent [free-recovery experiment](MEMORY-FREE-MOTION.md) validates a
+bounded higher-order primitive against the fixed-wall hammer reference. Its
+longer free intervals have not yet been connected to the moving modal structure.

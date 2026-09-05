@@ -81,6 +81,10 @@ per unit cost and identifying material parameters remain gates before plugin int
 The [stateful diagnostic optimization](MEMORY-MODAL-PERFORMANCE.md) now removes
 repeated structural-energy evaluation and measures native kernel cost at the
 same fixed resolution. Reducing required integration steps remains open.
+The [free-recovery primitive](MEMORY-FREE-MOTION.md) now attempts longer nonlinear
+hammer intervals with a whole-interval clearance certificate and local state/work
+checks. It is validated against the fixed-wall reference. Connecting it to the
+moving modal structure and measuring the combined cost remain the next gates.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

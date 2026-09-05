@@ -43,7 +43,7 @@ pub struct HammerMemoryProbe {
     pub branch_extension_m: f64,
     /// Instantaneous endpoint reaction; may be negative in this bilateral coupon.
     pub force_n: f64,
-    /// Reaction averaged over the prescribed linear displacement ramp.
+    /// Reaction averaged over the last material path (linear for advance_to).
     pub mean_force_n: f64,
     pub stored_energy_j: f64,
     pub dissipated_energy_j: f64,
@@ -179,6 +179,42 @@ impl HammerMemory {
                 + self.p.equilibrium_cubic_n_m2 * slope
                 + self.p.memory_stiffness_n_m * self.mean_delta,
         )
+    }
+
+    /// Internal free-motion quadrature; not a prescribed linear ramp.
+    pub(crate) fn commit_free_motion(
+        &mut self,
+        x: f64,
+        extension: f64,
+        heat: f64,
+        work: f64,
+        mean_force: f64,
+    ) -> Result<(), ModelError> {
+        if ![x, extension, heat, work, mean_force]
+            .iter()
+            .all(|v| v.is_finite())
+            || x.abs() > 0.01
+            || heat < 0.0
+        {
+            return Err(ModelError("invalid free material update"));
+        }
+        let total_heat = self.heat + heat;
+        let total_work = self.work + work;
+        let absolute = self.absolute_work + work.abs();
+        if ![total_heat, total_work, absolute]
+            .iter()
+            .all(|v| v.is_finite())
+        {
+            return Err(ModelError("non-finite free material ledger"));
+        }
+        self.x = x;
+        self.extension = extension;
+        self.heat = total_heat;
+        self.work = total_work;
+        self.absolute_work = absolute;
+        self.mean_force = mean_force;
+        self.last_heat = heat;
+        Ok(())
     }
 
     pub fn probe(&self) -> HammerMemoryProbe {

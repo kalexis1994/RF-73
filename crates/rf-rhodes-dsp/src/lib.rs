@@ -5,6 +5,7 @@ mod filter;
 mod hammer_memory;
 mod laboratory;
 mod memory_hammer;
+pub use memory_hammer::{MemoryFreeStatus, MemoryFreeStep};
 mod modal_assembly;
 pub use modal_assembly::{MemoryModalAssembly, MemoryModalProbe};
 mod model;

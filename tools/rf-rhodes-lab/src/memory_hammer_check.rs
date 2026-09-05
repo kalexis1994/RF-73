@@ -10,14 +10,14 @@ Default candidate step is at most 5 ns, with four times finer reference steps.
 Optional uniform substeps: 1..1302 per output frame; coarse runs can fail accuracy.
 ";
 
-struct Take {
-    report: serde_json::Value,
-    states: Vec<MemoryHammerProbe>,
-    forces: Vec<f64>,
-    pass: bool,
+pub(super) struct Take {
+    pub report: serde_json::Value,
+    pub states: Vec<MemoryHammerProbe>,
+    pub forces: Vec<f64>,
+    pub pass: bool,
 }
 
-fn state(q: MemoryHammerProbe) -> serde_json::Value {
+pub(super) fn state(q: MemoryHammerProbe) -> serde_json::Value {
     json!({"core_position_m":q.core_position_m,"tip_position_m":q.tip_position_m,
         "core_velocity_m_s":q.core_velocity_m_s,"tip_velocity_m_s":q.tip_velocity_m_s,
         "material_deformation_m":q.material.displacement_m,"viscous_deformation_m":q.material.viscous_deformation_m,
@@ -28,7 +28,7 @@ fn state(q: MemoryHammerProbe) -> serde_json::Value {
         "balance_residual_j":q.balance_residual_j})
 }
 
-fn take(
+pub(super) fn take(
     rate: u32,
     p: MemoryHammerProfile,
     speed: f64,

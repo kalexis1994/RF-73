@@ -621,3 +621,39 @@ so its small pooled gain is not a reliable margin. Final mechanical diagnostics
 agree exactly across all timing runs. Optimized medians still cost 125–150
 seconds per simulated second; reducing the required integration steps remains
 the substantial performance gate.
+
+## Certified longer intervals for hammer free recovery
+
+Date: 2026-09-05. The [free-motion primitive](MEMORY-FREE-MOTION.md) combines a
+conservative whole-interval tip-travel bound with RK4 step doubling for nonlinear
+material recovery. Independent heat and work quadratures, half-step and actual
+endpoint energy defects, stage domains and local state error are checked before
+any state is committed. Rejected intervals leave the original hammer unchanged;
+the original fine implicit tick remains available for contact and refinement.
+
+All 161 workspace tests pass. Four additions cover rigid translation and retained
+fixed-tick preparation, non-advancing clearance/invalid-input rejection, nonlinear
+recovery versus fine implicit stepping with momentum and retained heat/memory,
+and the analytic linear Maxwell relative mode. Strict Clippy, formatting and
+release WASM plugin compilation pass. No dependencies were added.
+
+The [48-take audit](../references/memory-free-validation.json) retains 24
+fixed-wall profiles and the original 16 ms reimpact protocol. Candidate global
+energy and material-work relative residuals are at most `1.656e-10` and
+`1.007e-10`; relative momentum residual is `7.292e-14`. Maximum normalized
+velocity RMSE is `3.631e-6`, mean-force RMSE `3.779e-7`, and cumulative impulse
+error `2.298e-7`. All 24 uniform reference rows match their retained original
+diagnostics exactly. Existing output rejection preserves the report's SHA256.
+
+Accepted interval counts fall by 30.15x–62.68x, with free intervals up to 5.119
+microseconds and unchanged approximately 1.25 ns contact ticks. Each free attempt
+can cost twelve RHS evaluations, and rejected attempts add work; this count
+reduction is not a measured runtime speedup. RK4 is error-controlled here, not
+unconditionally energy preserving. The recorded global checks do not constitute
+a proof for arbitrary profiles or durations.
+
+CI includes the new audit; remote CI was not executed locally. This milestone
+does not yet connect free intervals to the moving modal structure or plugin.
+That connection needs a moving-surface certificate and a new coupled audit.
+No listening package, audio-device access or Desktop interaction was introduced;
+the audible instrument remains version 0.1.2 with its previous mechanics.

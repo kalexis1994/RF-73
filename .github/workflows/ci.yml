@@ -71,3 +71,5 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-hammer-check --output renders/ci-memory-hammer.json
       - name: Audit stateful hammer and modal assembly coupling
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-check --output renders/ci-memory-modal.json
+      - name: Audit certified hammer free recovery
+        run: cargo run --locked --release -p rf-rhodes-lab -- memory-free-check --output renders/ci-memory-free.json
