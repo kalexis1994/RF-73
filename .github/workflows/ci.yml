@@ -59,3 +59,5 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- assembly-check --output renders/ci-assembly.json
       - name: Audit coupled free-motion refinement
         run: cargo run --locked --release -p rf-rhodes-lab -- assembly-refinement --output renders/ci-assembly-refinement.json
+      - name: Audit geometry-derived tine modes
+        run: cargo run --locked --release -p rf-rhodes-lab -- tine-modes --output renders/ci-tine-modes.json

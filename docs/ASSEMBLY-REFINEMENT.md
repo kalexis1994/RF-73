@@ -138,6 +138,10 @@ not CPU deadlines: there is no full-keyboard workload, pickup/filter, host or
 WASM timing qualification in this experiment. Results will vary by machine.
 
 This resolves the measured integration obstacle for the provisional profiles.
+
+The subsequent [tine structural preparation](TINE-MODES.md) now supplies six
+geometry-derived fixed-root modes and reciprocal moving-root inertia. It has
+not yet been connected to this three-coordinate time-domain solver.
 It does not calibrate them, restore omitted higher bending modes, or establish
 the correct support geometry. The next physical work is higher-mode and support
 identification, including root rotation and polarization where evidence supports

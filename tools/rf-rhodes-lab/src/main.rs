@@ -11,6 +11,7 @@ mod pickup_pair;
 mod pickup_set;
 mod pickup_sweep;
 mod pickup_transfer;
+mod tine_modes;
 mod tone_comparison;
 mod wav;
 mod web_ui;
@@ -200,6 +201,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", pickup_transfer::HELP);
         print!("{}", convergence::HELP);
         print!("{}", assembly_check::HELP);
+        print!("{}", tine_modes::HELP);
         return Ok(());
     }
     if args[0] == "inspect" {
@@ -214,6 +216,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "assembly-refinement" {
         return assembly_check::run_refinement(&args);
+    }
+    if args[0] == "tine-modes" {
+        return tine_modes::run(&args);
     }
     if args[0] == "compare-partials" {
         return partial_comparison::run(&args);

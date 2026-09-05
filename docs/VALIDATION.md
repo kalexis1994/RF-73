@@ -323,3 +323,35 @@ voice with five strikes. This is not polyphonic, pickup/filter or host timing
 qualification. The physical parameters remain uncalibrated and the candidate
 still omits higher bending modes. No plugin version, installed package, listening
 claim or Desktop interaction is part of this numerical milestone.
+
+## Geometry-derived tine modes
+
+Date: 2026-09-05. The [structural preparer](TINE-MODES.md) now derives six
+fixed-root bending modes from a uniform circular Euler-Bernoulli beam and a
+movable point mass. It exports effective masses, spatial hammer/pickup weights
+and an 8x8 reciprocal inertia matrix for root translation, rotation and the six
+modal coordinates. Preparation validates the generalized eigensystem, modal
+mass orthogonality and positive-definite reduced inertia.
+
+All 127 workspace tests passed. Six new tests cover analytical unloaded beam
+frequencies/shapes and static compliance, continuous tip-mass boundary roots,
+geometry scaling, continuous mass placement, spatial port weights, moving-root
+inertia and invalid inputs. The targeted six-test suite also passed with the
+final reduced-inertia preparation guard. Native workspace Clippy, formatting
+and the release WASM plugin build passed.
+
+The [tracked mesh audit](../references/tine-modes-validation.json) contains 12
+tuning-mass/position configurations at 16/32/64 elements, with 216 modal results.
+The maximum 32/64-element frequency difference is `0.006338%`; maximum absolute
+hammer/pickup weight differences are `0.0003516` and `0.0001315`. Maximum relative
+eigen-equation residual across all rows is `1.806e-7`. The geometry remains
+illustrative, and convergence to these beam equations does not establish
+instrument realism. CI includes the new audit; the updated remote workflow
+was not executed during this local verification.
+
+This preparer has not yet been connected to the time-domain assembly or plugin.
+It does not model tonebar geometry, distributed spring inertia, damping,
+polarization or nonlinear beam motion. The next integration must extend the
+coupled mass matrix and recheck energy/contact accuracy for the higher modes.
+No audio-device or Desktop interaction, new package or listening claim accompanies
+this offline structural milestone.

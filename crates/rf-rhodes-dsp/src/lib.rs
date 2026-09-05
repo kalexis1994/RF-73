@@ -5,6 +5,7 @@ mod filter;
 mod laboratory;
 mod model;
 mod pickup;
+mod tine;
 mod voice;
 
 pub use assembly::{AssemblyParameters, AssemblyProbe, AssemblyVoice};
@@ -12,6 +13,7 @@ pub use filter::Decimator as ProductionDecimator;
 pub use laboratory::{PICKUP_LEVEL_MATCH, PICKUP_NAMES};
 pub use model::{ModelError, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
 pub use pickup::MagneticPickup;
+pub use tine::{TINE_MODE_COUNT, TineGeometry, TineMode, TineModes};
 pub use voice::{Probe, Voice};
 
 pub const FIRST_NOTE: u8 = 28;

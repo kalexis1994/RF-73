@@ -45,6 +45,13 @@ independent comparison between two contact resolutions. Measured higher-mode
 and support identification, pickup comparison and polyphonic timing remain
 the next gates before plugin integration.
 
+The [tine modal preparation](TINE-MODES.md) now derives six fixed-root bending
+modes, port weights and moving-root inertia from a uniform beam plus a movable
+tuning point mass. Analytical and mesh-convergence checks pass. Extending the
+coupled solver to this derived mass matrix, identifying the tonebar/root geometry
+and revalidating the higher-frequency trajectories are the next physical gates;
+the beam geometry itself remains illustrative.
+
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 
 The next mechanical milestone is an explicit passive tine/tonebar assembly with mounting compliance, replacing the present three-mode ideal-cantilever approximation only after isolated tests establish its behavior. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, with independent convergence and energy accounting before real-time integration.

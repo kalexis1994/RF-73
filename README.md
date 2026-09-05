@@ -10,6 +10,11 @@ The offline [coupled assembly experiment](docs/COUPLED-ASSEMBLY.md) now models a
 
 [Prepared free motion and contact refinement](docs/ASSEMBLY-REFINEMENT.md) now reduce its measured treble integration error while retaining the independent energy ledger. This remains an offline candidate awaiting higher-mode identification and calibration.
 
+[Geometry-derived tine modes](docs/TINE-MODES.md) now prepare six bending modes,
+a movable tuning mass, spatial hammer/pickup weights and reciprocal inertia for
+root translation and rotation. This structural basis is validated independently
+and awaits integration into the coupled solver.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start
