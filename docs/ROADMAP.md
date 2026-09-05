@@ -69,6 +69,11 @@ unloading and independent contact heat. Analytic rigid-wall restitution and
 refined/uniform comparisons separate material sensitivity from integration error.
 The loss coefficient remains provisional and defaults to zero; internal material
 relaxation and measured calibration are still missing.
+The [material-memory coupon](HAMMER-MEMORY.md) now implements and validates an
+internal Maxwell deformation, analytic relaxation and positive material heat
+under prescribed loading. Its bilateral reaction cannot yet drive hammer contact:
+nonadhesive coupling, energy through separation and unrestrained recovery remain
+the next gate before the memory model can excite the tine.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

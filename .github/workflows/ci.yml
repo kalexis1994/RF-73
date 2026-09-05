@@ -65,3 +65,5 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- modal-assembly-check --output renders/ci-modal-assembly.json
       - name: Audit dissipative modal hammer
         run: cargo run --locked --release -p rf-rhodes-lab -- modal-hammer-check --output renders/ci-modal-hammer.json
+      - name: Audit material memory coupon
+        run: cargo run --locked --release -p rf-rhodes-lab -- hammer-memory-check --output renders/ci-hammer-memory.json

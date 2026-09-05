@@ -478,3 +478,33 @@ new audit; its updated remote workflow was not executed locally. This remains
 offline mechanics, with no pickup voltage, material calibration, listening
 release or new realtime qualification. Plugin version 0.1.2 is unchanged, and
 no audio device or Desktop controls were used.
+
+## Isolated material memory and relaxation
+
+Date: 2026-09-05. The [material coupon](HAMMER-MEMORY.md) introduces an internal
+Maxwell deformation in parallel with linear/cubic equilibrium elasticity.
+Prepared analytic ramp moments update memory, external work and independent
+positive heat. This bilateral, displacement-controlled experiment is separate
+from the contact, modal assembly and plugin; clamped recovery is not free recovery.
+
+All 146 workspace tests passed. Five additions cover ramp composition and energy,
+analytic relaxation and recovery of clamped reaction, sinusoidal dissipation,
+32 parameter/timestep corner combinations with signed travel, invalid inputs and
+reset. Strict workspace Clippy, formatting and release WASM plugin compilation
+passed. No new dependencies were added.
+
+The [coupon audit](../references/hammer-memory-validation.json) passed 36 cases
+and 72 takes, with two rates, three relaxation times, three amplitudes and two
+rest intervals. The maximum energy residual relative to absolute external work
+was `1.574e-14`; the normalized analytic hold-extension error was `2.257e-14`;
+endpoint-force RMSE between equivalent one/two-substep paths was `1.061e-14`.
+Second-loading endpoint force was 73.31–99.97% of first-loading force after
+short rest and 98.66–100% after long rest. These are sensitivity results for an
+uncalibrated specimen, not observations of a real Rhodes hammer.
+
+An existing report was rejected with its SHA256 preserved. CI includes the
+new audit; its remote workflow was not run during this local validation.
+The next gate is a nonadhesive coupling that preserves stored internal energy
+through separation and unrestrained recovery. There is no new listening package,
+audio-device or Desktop interaction, or realtime qualification; version 0.1.2
+and the existing instrument mechanics remain unchanged.

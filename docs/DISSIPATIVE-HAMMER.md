@@ -143,6 +143,9 @@ Identifying real hammer material behavior requires documented force/compression
 or impact/rebound measurements at multiple speeds, including unloading and
 recovery. A passive result alone does not select beta or establish a material
 family. Relaxation memory, hammer shape/contact area and full action remain open.
+A separate [material-memory coupon](HAMMER-MEMORY.md) now validates internal
+deformation and relaxation under prescribed motion. Its nonadhesive contact
+connection is still pending; it does not alter this rate-loss model.
 This loss-enabled solver has not been qualified for polyphonic or WASM deadlines;
 the preceding elastic timing reports do not establish its cost. No listening
 package, audio-device access or Desktop controls accompany this offline milestone.

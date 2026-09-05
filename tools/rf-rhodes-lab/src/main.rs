@@ -3,6 +3,7 @@ mod analysis;
 mod assembly_check;
 mod audition;
 mod convergence;
+mod hammer_memory;
 mod modal_assembly_check;
 mod modal_timing;
 mod package;
@@ -206,6 +207,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", tine_modes::HELP);
         print!("{}", modal_assembly_check::HELP);
         print!("{}", modal_assembly_check::HAMMER_HELP);
+        print!("{}", hammer_memory::HELP);
         print!("{}", modal_timing::HELP);
         return Ok(());
     }
@@ -230,6 +232,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "modal-hammer-check" {
         return modal_assembly_check::run_hammer(&args);
+    }
+    if args[0] == "hammer-memory-check" {
+        return hammer_memory::run(&args);
     }
     if args[0] == "modal-timing" {
         return modal_timing::run(&args);

@@ -2,6 +2,7 @@
 //! Construction prepares all memory; rendering uses fixed-size state only.
 mod assembly;
 mod filter;
+mod hammer_memory;
 mod laboratory;
 mod modal_assembly;
 mod model;
@@ -11,6 +12,7 @@ mod voice;
 
 pub use assembly::{AssemblyParameters, AssemblyProbe, AssemblyVoice};
 pub use filter::Decimator as ProductionDecimator;
+pub use hammer_memory::{HammerMemory, HammerMemoryProbe, HammerMemoryProfile};
 pub use laboratory::{PICKUP_LEVEL_MATCH, PICKUP_NAMES};
 pub use modal_assembly::{ModalAssembly, ModalAssemblyProfile, ModalIntegration, ModalProbe};
 pub use model::{ModelError, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
