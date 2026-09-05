@@ -2,7 +2,7 @@
 
 ## Toolchain and dependency
 
-Rust 1.98.0 is pinned. The DSP has no third-party dependencies. Offline analysis uses `hound` for WAV decoding and `serde`/`serde_json` for reports; its FFT is implemented and tested in Rust. These dependencies stay outside the audio plugin. Cargo.lock records exact versions. The plugin uses the public Rust SDK from a sibling `rackforge` checkout through an explicit Cargo path. For this prototype use RackForge revision `7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1`. A local path dependency is not a reproducible distribution pin: before external releases, replace it with an exact published version or Git revision and regenerate Cargo.lock.
+Rust 1.98.0 is pinned. The DSP has no third-party dependencies. Offline analysis uses `hound` for WAV decoding and `serde`/`serde_json` for reports; its FFT is implemented and tested in Rust. The plugin also uses serde JSON for control-side declarative editor documents, but never in rendering or parameter automation. Cargo.lock records exact versions. The plugin uses the public Rust SDK and `rackforge-program-api` from a sibling `rackforge` checkout through explicit Cargo paths. For this prototype use RackForge revision `7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1`. A local path dependency is not a reproducible distribution pin: before external releases, replace it with an exact published version or Git revision and regenerate Cargo.lock.
 
 On this Windows GNU setup, put `C:/msys64/ucrt64/bin` on the current shell's PATH so Rust can find the linker and dlltool. No machine-wide environment changes are needed.
 
@@ -16,6 +16,8 @@ cargo build --locked --release --target wasm32-unknown-unknown -p rf-rhodes-plug
 ```
 
 The PowerShell line only configures the shell; every build tool, renderer and test in the project is Rust.
+
+Version 0.1.2 adds the `rf-rhodes-ui` Rust WebAssembly PLAY panel. Install the matching generator with `cargo install wasm-bindgen-cli --version 0.2.127 --locked`. `cargo run --locked --release -p rf-rhodes-lab -- build-ui` builds it and generates the browser bindings. Packaging and audition invoke this step automatically. Run `cargo clippy --locked -p rf-rhodes-ui --target wasm32-unknown-unknown -- -D warnings` as well as native workspace Clippy, since browser code is target-gated. HTML/CSS are static assets; generated JavaScript contains the browser ABI glue and startup call, while UI behavior remains Rust.
 
 When disk space is limited, set `$env:CARGO_INCREMENTAL = '0'` in the build shell to avoid regenerating incremental compilation caches. This changes only that shell's builds and may increase rebuild time; normal dependencies and release artifacts still occupy space in `target`.
 
@@ -78,7 +80,7 @@ To compare transfer laws under identical production mechanics and filtering:
 cargo run --locked --release -p rf-rhodes-lab -- render-pickup-pair --output renders/g3-pair.wav --note 55 --velocity 0.9 --sample-rate 44100 --seconds 3 --hold 2.8
 ```
 
-See [Mechanical pickup pairs](PICKUP-PAIR.md) for the companion WAV/report names, duration constraints and reference experiment. The alternative remains an offline research path.
+See [Mechanical pickup pairs](PICKUP-PAIR.md) for the companion WAV/report names, duration constraints and reference experiment. Version 0.1.2 also exposes the alternative in the real-time [Pickup Lab UI](PICKUP-LAB-UI.md).
 
 For a bounded pickup-geometry experiment against an explicitly selected held-note region:
 

@@ -1,6 +1,6 @@
 # Physical model ledger
 
-Status: research prototype 0.1.1. All constants are provisional unless explicitly marked as measured. No real-instrument calibration has been performed.
+Status: research prototype 0.1.2. The default mechanical profile is unchanged from 0.1.1; the plugin adds three matched pickup paths and a [laboratory UI](PICKUP-LAB-UI.md). All constants are provisional unless explicitly marked as measured. No real-instrument calibration has been performed.
 
 ## Signal path
 
@@ -73,7 +73,7 @@ The analytical gradient is multiplied by tip velocity, with an arbitrary electri
 
 Conversion occurs separately for every key, before summation. This keeps pickup intermodulation within that key; a nonlinear amplifier across the mix would be a separate circuit. Gabrielli and colleagues specifically analyze attack modes and their pickup intermodulation. Their abstract was consulted; full modal tables remain to be obtained. [JASA 2020](https://iris.univpm.it/handle/11566/286030).
 
-`MagneticPickup` now owns this unchanged production transfer and exposes an explicitly experimental point-pole field proxy to the offline laboratory. [Isolated pickup transfer](PICKUP-TRANSFER.md) defines its additional assumptions and ideal-band aliasing diagnostic. The experimental law is not selected by the voice engine or plugin.
+`MagneticPickup` owns the original transfer and an explicitly experimental point-pole field proxy. [Isolated pickup transfer](PICKUP-TRANSFER.md) defines its additional assumptions and ideal-band aliasing diagnostic. Version 0.1.2 exposes both laws through the three matched laboratory paths; the original `Voice` and raw renderer remain unchanged. Selecting a candidate is an audition choice, not a claim that its field model has been physically identified.
 
 ## Antialiasing, output and numerical limits
 
@@ -89,4 +89,4 @@ The engine supports 44.1–192 kHz. Profiles are immutable during rendering and 
 
 Events are sample-positioned. Equal-time order is parameter events, MIDI 1.0 events, then MIDI 2.0 events, preserving order within each list. Seven-bit-origin wide events recover their original velocity; native wide notes use 16-bit resolution. Release velocity, pitch bend and expression beyond sustain are not implemented yet.
 
-Saved plugin state contains a magic header, schema version and output gain. It represents instrument settings, not a recording of currently vibrating keys. Physical profiles are compiled into this research version and must acquire their own versioned state before becoming user-editable plugin controls.
+Saved plugin state contains a magic header, schema version, output gain, two pickup selections and the active comparison side. It represents instrument settings, not a recording of currently vibrating keys. Mechanical profiles are compiled into this research version and must acquire their own versioned state before becoming user-editable plugin controls. See [Pickup Lab UI](PICKUP-LAB-UI.md) for the binary format and host compatibility limits.

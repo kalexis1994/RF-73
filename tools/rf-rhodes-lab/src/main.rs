@@ -12,6 +12,7 @@ mod pickup_sweep;
 mod pickup_transfer;
 mod tone_comparison;
 mod wav;
+mod web_ui;
 use rf_rhodes_dsp::{Engine, FIRST_NOTE, LAST_NOTE, Profile};
 use std::{
     error::Error,
@@ -21,13 +22,14 @@ use std::{
     time::Instant,
 };
 
-const HELP: &str = "RF-Rhodes research laboratory 0.1.1
+const HELP: &str = "RF-Rhodes research laboratory 0.1.2
 Usage:
   rf-rhodes-lab render --output PATH.wav [options]
   rf-rhodes-lab demo --output PATH.wav
-  rf-rhodes-lab stress [--sample-rate HZ]
+  rf-rhodes-lab stress [--sample-rate HZ] [--laboratory]
   rf-rhodes-lab inspect PATH.wav
   rf-rhodes-lab package
+  rf-rhodes-lab build-ui
   rf-rhodes-lab audition [--prepare-only]
 Render options:
   --note N          MIDI 28..100 (default 57 / A3)
@@ -42,6 +44,7 @@ WAV is mono IEEE float, without normalization or clipping. Existing files are
 never overwritten. Every render writes a JSON report. Parameters are uncalibrated.
 Demo: three A3 intensities and a sustained E-minor chord, ten seconds.
 Stress: 73 keys, 128-frame blocks, three seconds. No audio device is opened.
+--laboratory measures the three-path pickup engine with frequent interrupted fades.
 ";
 
 #[derive(Debug)]
@@ -56,6 +59,7 @@ struct Options {
     gap_mm: f64,
     offset_mm: f64,
     trace: bool,
+    laboratory: bool,
 }
 
 impl Options {
@@ -77,6 +81,7 @@ impl Options {
             gap_mm: 1.5,
             offset_mm: 0.5,
             trace: false,
+            laboratory: false,
         };
         let mut seen = std::collections::BTreeSet::new();
         let mut i = 1;
@@ -84,6 +89,14 @@ impl Options {
             let flag = args[i].as_str();
             if !seen.insert(flag) {
                 return Err(format!("duplicate option: {flag}"));
+            }
+            if flag == "--laboratory" {
+                if command != "stress" {
+                    return Err("--laboratory is a stress option".into());
+                }
+                o.laboratory = true;
+                i += 1;
+                continue;
             }
             if flag == "--trace" {
                 if command != "render" {
@@ -223,6 +236,12 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "converge" {
         return convergence::run(&args);
+    }
+    if args[0] == "build-ui" {
+        if args.len() != 1 {
+            return Err("build-ui takes no arguments".into());
+        }
+        return web_ui::build();
     }
     if args[0] == "package" {
         if args.len() != 1 {
@@ -368,7 +387,15 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
 }
 
 fn stress(o: &Options) -> Result<(), Box<dyn Error>> {
-    let mut engine = Engine::new(o.rate as f64, o.profile())?;
+    let mut engine = if o.laboratory {
+        Engine::new_laboratory(o.rate as f64)?
+    } else {
+        Engine::new(o.rate as f64, o.profile())?
+    };
+    if o.laboratory {
+        engine.set_gain(0.1);
+        engine.reset();
+    }
     engine.note_on(0, 57, 0.5);
     for _ in 0..2048 {
         std::hint::black_box(engine.next_sample());
@@ -379,6 +406,9 @@ fn stress(o: &Options) -> Result<(), Box<dyn Error>> {
     let mut peak = 0.0_f32;
     for block in 0..blocks {
         let start = Instant::now();
+        if o.laboratory && block % 3 == 0 {
+            engine.set_pickup((block / 3) % 3);
+        }
         if block % 188 == 0 {
             engine.control_change(0, 64, 1.0);
             for note in FIRST_NOTE..=LAST_NOTE {
@@ -396,7 +426,7 @@ fn stress(o: &Options) -> Result<(), Box<dyn Error>> {
     let p99 = times[(times.len() * 99 / 100).min(times.len() - 1)];
     let misses = times.iter().filter(|t| **t > deadline).count();
     println!(
-        "{{\"sample_rate\":{},\"keys\":73,\"block_frames\":128,\"blocks\":{},\"worst_ms\":{:.6},\"p99_ms\":{:.6},\"deadline_ms\":{:.6},\"deadline_misses\":{},\"peak\":{:.6},\"faults\":{}}}",
+        "{{\"sample_rate\":{},\"keys\":73,\"block_frames\":128,\"blocks\":{},\"worst_ms\":{:.6},\"p99_ms\":{:.6},\"deadline_ms\":{:.6},\"deadline_misses\":{},\"peak\":{:.6},\"faults\":{},\"laboratory\":{}}}",
         o.rate,
         blocks,
         worst * 1000.0,
@@ -404,7 +434,8 @@ fn stress(o: &Options) -> Result<(), Box<dyn Error>> {
         deadline * 1000.0,
         misses,
         peak,
-        engine.faults()
+        engine.faults(),
+        o.laboratory
     );
     if engine.faults() != 0 {
         return Err("numerical fault during stress run".into());

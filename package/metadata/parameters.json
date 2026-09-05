@@ -1,10 +1,26 @@
 {
   "schema_version": 1,
-  "pages": [{ "id": "output", "name": "Output", "order": 0 }],
+  "pages": [{ "id": "comparison", "name": "Pickup Comparison", "order": 0 }, { "id": "output", "name": "Output", "order": 1 }],
   "parameters": [{
     "index": 0, "id": "gain", "name": "Output Gain", "page": "output", "order": 0,
-    "kind": { "type": "float", "minimum": 0.0, "maximum": 2.0, "default": 0.7, "step": 0.01, "unit": "x" },
+    "kind": { "type": "float", "minimum": 0.0, "maximum": 2.0, "default": 0.1, "step": 0.01, "unit": "x" },
     "flags": { "automatable": true, "modulatable": false, "read_only": false, "advanced": false },
     "suggested_control": "knob"
+  }, {
+    "index": 1, "id": "pickup-a", "name": "Pickup A", "page": "comparison", "order": 0,
+    "kind": { "type": "enum", "default": 0, "choices": [
+      { "value": 0, "name": "Current" }, { "value": 1, "name": "Close Original" }, { "value": 2, "name": "Close Point Pole" }
+    ] },
+    "flags": { "automatable": true }, "suggested_control": "list"
+  }, {
+    "index": 2, "id": "pickup-b", "name": "Pickup B", "page": "comparison", "order": 1,
+    "kind": { "type": "enum", "default": 2, "choices": [
+      { "value": 0, "name": "Current" }, { "value": 1, "name": "Close Original" }, { "value": 2, "name": "Close Point Pole" }
+    ] },
+    "flags": { "automatable": true }, "suggested_control": "list"
+  }, {
+    "index": 3, "id": "listen-b", "name": "Listen to B", "page": "comparison", "order": 2,
+    "kind": { "type": "boolean", "default": false },
+    "flags": { "automatable": true }, "suggested_control": "toggle"
   }]
 }

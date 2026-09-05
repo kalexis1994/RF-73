@@ -4,7 +4,7 @@ A Rust physical-model electric piano research project for RackForge.
 
 The first working prototype includes a nonlinear hammer-contact solver, a three-mode resonator per key, a geometry-dependent magnetic pickup, sustain and sample-accurate MIDI. It renders audio offline and compiles to a portable RackForge WASM plugin.
 
-Version 0.1.1 adds measured numerical convergence and contact-only refinement for upper-register accuracy. The physical profile remains provisional.
+Version 0.1.2 adds a Rust pickup laboratory editor in RackForge: three continuously filtered variants, fixed level matching, smooth A/B selection and complete saved settings. The physical profile remains provisional.
 
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
@@ -34,15 +34,17 @@ Requires Rust 1.98 and a sibling RackForge checkout for its public SDK. See [Dev
 ## What is here
 
 - `rf-rhodes-dsp`: safe Rust DSP with bounded contact integration, 73 fixed key states, per-key pickups and 4x antialias filtering.
-- `rf-rhodes-plugin`: RackForge adapter with MIDI 1.0/2.0, output gain, program and versioned state.
+- `rf-rhodes-plugin`: RackForge adapter with MIDI 1.0/2.0, matched A/B, declarative program editing and versioned state.
+- `rf-rhodes-ui`: Rust WebAssembly PLAY panel with A/B controls, host synchronization and day/stage styling.
 - `rf-rhodes-analysis`: offline WAV input, FFT spectra, harmonic and independent partial tracks, qualified decay estimates and aligned comparisons.
 - `rf-rhodes-lab`: Rust WAV renderer, physical CSV traces, measurement commands, JSON reports and timing diagnostics.
 - Tests for mechanical passivity, repeated strikes, dampers, MIDI ownership, block invariance, malformed input and file integrity.
 
-The audio path uses no explicit allocation, locks or I/O. The laboratory does not open an audio device. No samples, reverb, amplifier or normalization hide the direct model output.
+The rendering and parameter-automation paths use no allocation, locks or I/O. The offline laboratory does not open an audio device. No samples, reverb, amplifier, compressor or limiter hide the direct model output. The plugin applies documented, fixed pickup level compensation.
 
 ## Read next
 
+- [Pickup Lab UI](docs/PICKUP-LAB-UI.md): controls, A/B, saving, transition and gain policy.
 - [Physical model ledger](docs/MODEL.md): equations, constants and known approximations.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.

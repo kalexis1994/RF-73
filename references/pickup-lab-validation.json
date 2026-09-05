@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-05",
+  "plugin_version": "0.1.2",
+  "state_version": 2,
+  "rust_tests_passed": 110,
+  "test_scope": "109-test workspace run plus the subsequently added installed-UI integrity test",
+  "strict_clippy": { "native_workspace": true, "wasm_ui": true },
+  "native_stress": [
+    {"sample_rate":48000,"keys":73,"block_frames":128,"blocks":1125,"worst_ms":2.420800,"p99_ms":0.993000,"deadline_ms":2.666667,"deadline_misses":0,"peak":2.436854,"faults":0,"laboratory":true},
+    {"sample_rate":192000,"keys":73,"block_frames":128,"blocks":4500,"worst_ms":5.231300,"p99_ms":1.185100,"deadline_ms":0.666667,"deadline_misses":1289,"peak":2.437227,"faults":0,"laboratory":true}
+  ],
+  "native_stress_scope": "Three seconds; all 73 keys restruck every 188 blocks; pickup changes every three blocks. Same block cadence means different physical strike cadence across rates. Observed local timing, not device qualification.",
+  "wasm_stress": {
+    "sample_rate": 48000,
+    "note_on_events": 73,
+    "distinct_pitches": 60,
+    "block_frames": 128,
+    "blocks": 1125,
+    "maximum_fuel": 18481867,
+    "peak": 1.510890,
+    "elapsed_to_audio_duration_ratio": 0.474,
+    "result": "PLUGIN_STRESS_OK",
+    "scope": "RackForge stress command; notes 36..95 with repeated events, velocity 100/127, no pickup switching. This differs from the native 73-key workload."
+  },
+  "audition": {
+    "run": "0.1.2-1788579391438077200-17052",
+    "archive_bytes": 237223,
+    "archive_sha256": "6e26ce4eb3287739d8b4541f7b2c08834b30b9a97c08b364cfb43e1a1a0a964c",
+    "installed_dsp_and_ui_bytes_verified": true,
+    "desktop_startup_confirmed": true,
+    "audio_backend": "WASAPI",
+    "sample_rate": 48000,
+    "host_api_play_surface_confirmed": true,
+    "served_assets": [
+      {"asset":"play.html","status":200,"content_type":"text/html","bytes":3125},
+      {"asset":"style.css","status":200,"content_type":"text/css","bytes":4717},
+      {"asset":"app.js","status":200,"content_type":"text/javascript","bytes":18605},
+      {"asset":"app_bg.wasm","status":200,"content_type":"application/wasm","bytes":199008}
+    ],
+    "final_visual_interaction_verified": false,
+    "listening_judgement_performed": false
+  }
+}

@@ -1,11 +1,13 @@
 //! Provisional Rhodes research engine. Physical plausibility is not calibration.
 //! Construction prepares all memory; rendering uses fixed-size state only.
 mod filter;
+mod laboratory;
 mod model;
 mod pickup;
 mod voice;
 
 pub use filter::Decimator as ProductionDecimator;
+pub use laboratory::{PICKUP_LEVEL_MATCH, PICKUP_NAMES};
 pub use model::{ModelError, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
 pub use pickup::MagneticPickup;
 pub use voice::{Probe, Voice};
@@ -23,6 +25,7 @@ pub struct Engine {
     sustained: [u16; KEY_COUNT],
     pedals: u16,
     decimator: filter::Decimator,
+    laboratory: Option<laboratory::Laboratory>,
     gain: f64,
     target_gain: f64,
     gain_step: f64,
@@ -41,11 +44,27 @@ impl Engine {
             sustained: [0; KEY_COUNT],
             pedals: 0,
             decimator: filter::Decimator::new(),
+            laboratory: None,
             gain: 0.7,
             target_gain: 0.7,
             gain_step: 1.0 - (-1.0 / (0.005 * sample_rate)).exp(),
             faults: 0,
         })
+    }
+
+    /// Three continuously filtered pickups on one mechanical instrument.
+    /// Fixed level matching is tied to the documented default/close geometries.
+    pub fn new_laboratory(sample_rate: f64) -> Result<Self, ModelError> {
+        let mut engine = Self::new(sample_rate, Profile::default())?;
+        engine.laboratory = Some(laboratory::Laboratory::new(sample_rate));
+        Ok(engine)
+    }
+
+    /// Select a matched pickup with a 20 ms linear crossfade. No voice resets.
+    pub fn set_pickup(&mut self, index: usize) -> bool {
+        self.laboratory
+            .as_mut()
+            .is_some_and(|lab| lab.select(index))
     }
 
     pub fn set_gain(&mut self, gain: f64) -> bool {
@@ -152,18 +171,33 @@ impl Engine {
     pub fn next_sample(&mut self) -> f32 {
         for _ in 0..OVERSAMPLE {
             let mut sum = 0.0;
+            let mut close = [0.0; 2];
             for voice in &mut self.voices {
                 sum += voice.tick();
+                if let Some(lab) = &self.laboratory
+                    && voice.is_active()
+                {
+                    let (q, v) = voice.tip();
+                    close[0] += lab.pickup.voltage(q, v);
+                    close[1] += lab.pickup.research_point_pole_voltage(q, v);
+                }
             }
-            if !sum.is_finite() {
+            if !sum.is_finite() || close.iter().any(|value| !value.is_finite()) {
                 self.reset();
                 self.faults = self.faults.saturating_add(1);
                 return 0.0;
             }
             self.decimator.push(sum);
+            if let Some(lab) = &mut self.laboratory {
+                lab.push(close);
+            }
         }
         self.gain += self.gain_step * (self.target_gain - self.gain);
-        (self.decimator.output() * self.gain * 0.12) as f32
+        let mut signal = self.decimator.output();
+        if let Some(lab) = &mut self.laboratory {
+            signal = lab.mix(signal);
+        }
+        (signal * self.gain * 0.12) as f32
     }
 
     pub fn probe(&self, note: u8) -> Option<Probe> {
@@ -183,6 +217,9 @@ impl Engine {
         self.sustained.fill(0);
         self.pedals = 0;
         self.decimator.clear();
+        if let Some(lab) = &mut self.laboratory {
+            lab.reset();
+        }
         self.gain = self.target_gain;
     }
 }

@@ -1,9 +1,9 @@
 [workspace]
 resolver = "3"
-members = ["crates/rf-rhodes-dsp", "crates/rf-rhodes-plugin", "crates/rf-rhodes-analysis", "tools/rf-rhodes-lab"]
+members = ["crates/rf-rhodes-dsp", "crates/rf-rhodes-plugin", "crates/rf-rhodes-analysis", "crates/rf-rhodes-ui", "tools/rf-rhodes-lab"]
 
 [workspace.package]
-version = "0.1.1"
+version = "0.1.2"
 edition = "2024"
 rust-version = "1.98"
 publish = false

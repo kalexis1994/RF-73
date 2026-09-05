@@ -1,35 +1,46 @@
 //! RackForge adapter. Device access and persistence remain host responsibilities.
+mod program;
+mod settings;
 use rackforge_plugin_sdk::{
     MIDI_FAMILY_CONTROL, MIDI_FAMILY_NOTE, MIDI2_FLAG_ORIGIN_7BIT, MIDI2_KIND_CONTROL_CHANGE,
     MIDI2_KIND_NOTE_OFF, MIDI2_KIND_NOTE_ON, MidiEvent, MidiEvent2, ParameterEvent, Processor,
     export_processor,
 };
-use rf_rhodes_dsp::{Engine, Profile};
+use rf_rhodes_dsp::Engine;
+pub use settings::{DEFAULT_GAIN, Settings};
+use std::collections::BTreeMap;
 
 pub const MAX_FRAMES: u32 = 4096;
 pub const MAX_EVENTS: usize = 256;
-pub const STATE_VERSION: u32 = 1;
+pub const STATE_VERSION: u32 = 2;
+pub const STATE_BYTES: usize = 20;
 pub const PARAMETER_GAIN: u32 = 0;
+pub const PARAMETER_A: u32 = 1;
+pub const PARAMETER_B: u32 = 2;
+pub const PARAMETER_LISTEN_B: u32 = 3;
 
+#[derive(Default)]
 pub struct RhodesProcessor {
     engine: Option<Box<Engine>>,
-    gain: f64,
+    settings: Settings,
+    programs: BTreeMap<String, rackforge_program_api::ProgramDocument>,
     maximum_frames: u32,
     channels: u32,
 }
 
-impl Default for RhodesProcessor {
-    fn default() -> Self {
-        Self {
-            engine: None,
-            gain: 0.7,
-            maximum_frames: 0,
-            channels: 0,
-        }
-    }
-}
-
 impl RhodesProcessor {
+    fn apply_settings(&mut self, settings: Settings) -> bool {
+        if !settings.valid() {
+            return false;
+        }
+        self.settings = settings;
+        if let Some(engine) = &mut self.engine {
+            engine.set_gain(settings.gain);
+            engine.set_pickup(settings.selected());
+        }
+        true
+    }
+
     fn midi1(&mut self, event: &MidiEvent) {
         let Some(engine) = &mut self.engine else {
             return;
@@ -84,10 +95,11 @@ impl Processor for RhodesProcessor {
         if frames == 0 || frames > MAX_FRAMES || inputs != 0 || !(1..=2).contains(&outputs) {
             return false;
         }
-        let Ok(mut engine) = Engine::new(rate, Profile::default()) else {
+        let Ok(mut engine) = Engine::new_laboratory(rate) else {
             return false;
         };
-        engine.set_gain(self.gain);
+        engine.set_gain(self.settings.gain);
+        engine.set_pickup(self.settings.selected());
         engine.reset();
         self.engine = Some(Box::new(engine));
         self.maximum_frames = frames;
@@ -96,18 +108,14 @@ impl Processor for RhodesProcessor {
     }
 
     fn set_parameter(&mut self, index: u32, value: f64) -> bool {
-        if index != PARAMETER_GAIN || !value.is_finite() || !(0.0..=2.0).contains(&value) {
+        let Some(settings) = self.settings.with_parameter(index, value) else {
             return false;
-        }
-        self.gain = value;
-        if let Some(engine) = &mut self.engine {
-            engine.set_gain(value);
-        }
-        true
+        };
+        self.apply_settings(settings)
     }
 
     fn get_parameter(&self, index: u32) -> Option<f64> {
-        (index == PARAMETER_GAIN).then_some(self.gain)
+        self.settings.parameter(index)
     }
 
     fn reset(&mut self) {
@@ -117,30 +125,90 @@ impl Processor for RhodesProcessor {
     }
 
     fn load_preset(&mut self, id: &str) -> bool {
-        if id != "research-direct" {
-            return false;
+        if id == "research-direct" {
+            return self.apply_settings(Settings::default());
         }
-        self.set_parameter(PARAMETER_GAIN, 0.7)
+        let Some(settings) = id
+            .strip_prefix("custom.")
+            .and_then(|id| self.programs.get(id))
+            .and_then(program::settings)
+        else {
+            return false;
+        };
+        self.apply_settings(settings)
     }
 
     fn save_state(&self, destination: &mut [u8]) -> Option<usize> {
-        let bytes = destination.get_mut(..16)?;
+        let bytes = destination.get_mut(..STATE_BYTES)?;
         bytes[..4].copy_from_slice(b"RFRH");
         bytes[4..8].copy_from_slice(&STATE_VERSION.to_le_bytes());
-        bytes[8..16].copy_from_slice(&self.gain.to_le_bytes());
-        Some(16)
+        bytes[8..16].copy_from_slice(&self.settings.gain.to_le_bytes());
+        bytes[16..20].copy_from_slice(&[
+            self.settings.a,
+            self.settings.b,
+            u8::from(self.settings.listen_b),
+            0,
+        ]);
+        Some(STATE_BYTES)
     }
 
     fn load_state(&mut self, state: &[u8]) -> bool {
-        if state.len() != 16 || &state[..4] != b"RFRH" {
+        if ![16, STATE_BYTES].contains(&state.len()) || &state[..4] != b"RFRH" {
             return false;
         }
         let version = u32::from_le_bytes(state[4..8].try_into().expect("validated state length"));
-        if version != STATE_VERSION {
-            return false;
-        }
         let gain = f64::from_le_bytes(state[8..16].try_into().expect("validated state length"));
-        self.set_parameter(PARAMETER_GAIN, gain)
+        let settings = match (version, state.len()) {
+            (1, 16) => Settings {
+                gain,
+                ..Settings::default()
+            },
+            (STATE_VERSION, STATE_BYTES) if state[18] <= 1 && state[19] == 0 => Settings {
+                gain,
+                a: state[16],
+                b: state[17],
+                listen_b: state[18] == 1,
+            },
+            _ => return false,
+        };
+        self.apply_settings(settings)
+    }
+
+    fn program_editing_capabilities(&self) -> u32 {
+        rackforge_plugin_sdk::PROGRAM_EDIT_BASIC
+            | rackforge_plugin_sdk::PROGRAM_EDIT_PREVIEW
+            | rackforge_plugin_sdk::PROGRAM_EDIT_DECLARATIVE
+    }
+
+    fn write_program_catalog(&mut self, destination: &mut [u8]) -> Option<usize> {
+        program::catalog(&self.programs, destination)
+    }
+
+    fn begin_program_edit(&mut self, request: &[u8], destination: &mut [u8]) -> Option<usize> {
+        program::begin(self, request, destination)
+    }
+
+    fn prepare_program_save(&mut self, document: &[u8], destination: &mut [u8]) -> Option<usize> {
+        program::prepare(document, destination)
+    }
+
+    fn install_program(&mut self, prepared: &[u8]) -> bool {
+        program::install(self, prepared)
+    }
+
+    fn preview_program(&mut self, prepared: &[u8]) -> bool {
+        let Some(document) = program::validated_prepared(prepared) else {
+            return false;
+        };
+        self.apply_settings(program::settings(&document).expect("validated program"))
+    }
+
+    fn program_editor_view(&mut self, document: &[u8], destination: &mut [u8]) -> Option<usize> {
+        program::view(document, destination)
+    }
+
+    fn apply_program_edit(&mut self, request: &[u8], destination: &mut [u8]) -> Option<usize> {
+        program::edit(request, destination)
     }
 
     fn process(
@@ -193,9 +261,9 @@ impl Processor for RhodesProcessor {
                     || (matches!(e.kind, MIDI2_KIND_NOTE_ON | MIDI2_KIND_NOTE_OFF)
                         && e.value > 65535)
             })
-            || parameters.iter().any(|e| {
-                e.index != PARAMETER_GAIN || !e.value.is_finite() || !(0.0..=2.0).contains(&e.value)
-            })
+            || parameters
+                .iter()
+                .any(|e| self.settings.with_parameter(e.index, e.value).is_none())
         {
             return;
         }

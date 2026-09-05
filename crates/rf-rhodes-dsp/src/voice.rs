@@ -307,7 +307,7 @@ impl Voice {
             .sum()
     }
 
-    fn tip(&self) -> (f64, f64) {
+    pub(crate) fn tip(&self) -> (f64, f64) {
         let mut q = 0.0;
         let mut v = 0.0;
         for (mode, weight) in self.modes.iter().zip(PICKUP_WEIGHTS) {

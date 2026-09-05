@@ -221,6 +221,7 @@ mod tests {
             for note in [28, 55, 100] {
                 for (gap, offset, velocity) in [(1.5, 0.5, 0.2), (0.5, 0.25, 0.9)] {
                     let options = super::super::Options {
+                        laboratory: false,
                         command: "render".into(),
                         output: None,
                         note,

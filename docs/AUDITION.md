@@ -12,9 +12,9 @@ Once the laboratory is built, `target/release/rf-rhodes-lab.exe audition` runs t
 
 1. Acquires an exclusive workflow lock and checks that RackForge is closed.
 2. Rebuilds the plugin's release WASM and the sibling RackForge core/store tools with Cargo.lock.
-3. Creates a uniquely named test-run directory, validates metadata, smoke-tests the plugin in RackForge and creates its `.rfplugin` archive.
+3. Builds the Rust PLAY UI and generated bindings, creates a uniquely named test-run directory, validates metadata, smoke-tests the plugin in RackForge and creates its `.rfplugin` archive. This requires wasm-bindgen-cli 0.2.127.
 4. Installs and enables the package through `rackforge-store`, restricted to the marked development library. Same-version replacement is supported here; normal release archives remain untouched.
-5. Checks installed version metadata and compares installed WASM bytes with the freshly built component.
+5. Checks installed version metadata and compares installed DSP WASM and all four UI assets with the freshly built package.
 6. Selects the Rhodes instance in a backed-up session checkpoint, preserving existing master controls and Rhodes program selection.
 7. Opens the native RackForge window and records its process ID and startup log.
 

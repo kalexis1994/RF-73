@@ -39,6 +39,12 @@ jobs:
         run: cargo build --locked --release --workspace
       - name: Build portable plugin
         run: cargo build --locked --release --target wasm32-unknown-unknown -p rf-rhodes-plugin
+      - name: Check Rust PLAY surface lints
+        run: cargo clippy --locked -p rf-rhodes-ui --target wasm32-unknown-unknown -- -D warnings
+      - name: Install matching browser binding generator
+        run: cargo install wasm-bindgen-cli --version 0.2.127 --locked
+      - name: Build Rust PLAY surface
+        run: cargo run --locked --release -p rf-rhodes-lab -- build-ui
       - name: Render a research reference
         run: cargo run --locked --release -p rf-rhodes-lab -- render --output renders/ci.wav --seconds 0.2 --hold 0.1
       - name: Verify the reference file

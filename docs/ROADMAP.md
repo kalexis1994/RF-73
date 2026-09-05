@@ -20,9 +20,29 @@ All application code, analysis tools and tests are Rust. Documentation, identifi
 - Contact-only subdivision that reduces the measured soft-treble integration error without raising the continuous pickup processing rate.
 - Regression coverage for refined passivity, unchanged A3 behavior, treble accuracy, filter integrity and CLI reports.
 
+## Implemented in 0.1.2
+
+- Three real-time pickup paths sharing one mechanical engine and fixed performance-level compensation.
+- Continuous FIR histories and interruptible 20 ms A/B fades, preserving held notes and pedal.
+- Rust declarative program editor, host control pages, live preview and complete configuration snapshots.
+- A separate Rust WebAssembly PLAY panel with A/B selectors, gain, host synchronization and responsive day/stage styling; browser bindings are generated.
+- Bounded custom program editing, schema-1 processor migration and explicit host-version compatibility limits.
+- A 0.100x starting gain and documented sample-headroom limits, with no limiter.
+- A native stress mode for simultaneous pickup processing and repeated interrupted fades.
+
+See [Pickup Lab UI](PICKUP-LAB-UI.md). Human listening feedback now guides the next modeling experiments; final visual design remains later work.
+
+## Physical-model ambition and next implementation gate
+
+The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
+
+The next mechanical milestone is an explicit passive tine/tonebar assembly with mounting compliance, replacing the present three-mode ideal-cantilever approximation only after isolated tests establish its behavior. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, with independent convergence and energy accounting before real-time integration.
+
+Subsequent work covers hammer-tip material/history and strike geometry, action/repetition, geometry-based magnetic conversion, continuous dampers and release response. Extend identified behavior across the keyboard and velocities before adding optional electronics or spending time on final visual styling. A complete physical-field simulation of every part is not required for real-time fidelity; every reduction must have a documented assumption and a measurable validity range. The current five processed G3 layers do not identify all these physical parameters.
+
 ## Next milestone: a calibrated A3
 
-Implemented research tooling after 0.1.1: independent spectral peak tracking, local/global background estimates, resolution and capacity flags, contiguous association, and qualified per-track decay with explicit rejection reasons. Single-note analysis now uses schema 2. The production instrument profile is still 0.1.1.
+Implemented research tooling after 0.1.1: independent spectral peak tracking, local/global background estimates, resolution and capacity flags, contiguous association, and qualified per-track decay with explicit rejection reasons. Single-note analysis now uses schema 2. The mechanical profile remains unchanged in 0.1.2; its plugin now offers the three matched pickup paths.
 
 Independent tracking now supports 32/128/512/1024 ms observations with reported sample counts and FFT grids. Long observations use the full requested duration, including at 192 kHz. The default remains 128 ms, and harmonic summaries retain their original window.
 
@@ -42,7 +62,7 @@ The [isolated pickup experiment](PICKUP-TRANSFER.md) compares the current law wi
 
 The [pickup convergence matrix](PICKUP-CONVERGENCE.md) now covers three register anchors, two intensities and two geometries, with treble checks at all output rates and 256x reference confirmations. The tested frozen-trajectory residuals are much smaller than the remaining contact/trajectory differences. Candidate gain/headroom and level-matched listening comparisons are the next release gates; no whole-keyboard or perceptual qualification is claimed.
 
-The [listening study](PICKUP-LISTENING.md) now supplies three versions of one performance with fixed global RMS matching and controlled sample peaks. The full keyboard and repeated chords have been measured at 44.1/192 kHz. Listening artifacts are ready; human assessment and a deliberate plugin gain/headroom policy remain outstanding. Large raw stress peaks in both the current and candidate models prevent treating the listening gain as a universal output bound.
+The [listening study](PICKUP-LISTENING.md) now supplies three versions of one performance with fixed global RMS matching and controlled sample peaks. The full keyboard and repeated chords have been measured at 44.1/192 kHz. Listening artifacts are ready; human assessment remains outstanding. Version 0.1.2 implements a documented starting gain and fixed compensation policy. Large raw stress peaks in both the current and candidate models prevent treating the listening gain as a universal output bound.
 
 1. Obtain dry recordings from a documented instrument at multiple intensities.
 2. Evaluate independent tracking across the available observation lengths on those recordings, refine background qualification, and distinguish observed spectral peaks from identified mechanical modes.

@@ -4,10 +4,10 @@ schema_version = 1
 id = "org.rackforge.rhodes"
 name = "RF-Rhodes Research"
 vendor = "RackForge"
-version = "0.1.1"
-description = "Uncalibrated physical-model research prototype: hammer, modal tine and magnetic pickup"
+version = "0.1.2"
+description = "Physical-model pickup laboratory: three matched variants, smooth A/B and a portable Rust editor"
 kind = "instrument"
-state_version = 1
+state_version = 2
 capabilities = ["audio_output", "midi_input", "presets", "state"]
 ui_layouts = ["little@1"]
 
@@ -21,3 +21,10 @@ path = "component.wasm"
 runtime_descriptor = "metadata/runtime.json"
 parameter_schema = "metadata/parameters.json"
 preset_catalog = "metadata/presets.json"
+
+[web_ui]
+api_version = 1
+
+[[web_ui.surfaces]]
+kind = "play"
+entry = "web/play.html"

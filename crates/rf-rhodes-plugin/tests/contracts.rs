@@ -1,7 +1,7 @@
 use rackforge_plugin_sdk::{
     MIDI2_FLAG_ORIGIN_7BIT, MIDI2_KIND_NOTE_ON, MidiEvent, MidiEvent2, ParameterEvent, Processor,
 };
-use rf_rhodes_plugin::RhodesProcessor;
+use rf_rhodes_plugin::{DEFAULT_GAIN, RhodesProcessor, STATE_BYTES};
 
 fn prepared() -> RhodesProcessor {
     let mut plugin = RhodesProcessor::default();
@@ -31,15 +31,24 @@ fn render(block: usize, note: u8) -> Vec<f32> {
                 length: 3,
             })
             .collect();
-        let parameters: Vec<_> = if (start..start + frames).contains(&1234) {
-            vec![ParameterEvent {
-                frame: (1234 - start) as u32,
-                index: 0,
-                value: 0.3,
-            }]
-        } else {
-            vec![]
-        };
+        // Includes interrupted fades, silent-slot edits and simultaneous MIDI/parameters.
+        let parameters: Vec<_> = [
+            (230, 3, 1.0),
+            (477, 3, 0.0),
+            (510, 1, 1.0),
+            (800, 2, 0.0),
+            (997, 3, 1.0),
+            (1234, 0, 0.3),
+            (2100, 3, 0.0),
+        ]
+        .into_iter()
+        .filter(|(t, _, _)| (start..start + frames).contains(t))
+        .map(|(t, index, value)| ParameterEvent {
+            frame: (t - start) as u32,
+            index,
+            value,
+        })
+        .collect();
         let mut out = vec![0.0; frames * 2];
         plugin.process(&[], &mut out, &midi, &parameters, frames as u32, 0, 2);
         result.extend(out);
@@ -63,18 +72,22 @@ fn block_size_does_not_change_sound_or_event_timing() {
 fn state_is_versioned_and_rejected_atomically() {
     let mut plugin = prepared();
     plugin.set_parameter(0, 0.4);
-    let mut state = [0; 16];
-    assert_eq!(plugin.save_state(&mut state), Some(16));
+    plugin.set_parameter(1, 1.0);
+    plugin.set_parameter(3, 1.0);
+    let mut state = [0; STATE_BYTES];
+    assert_eq!(plugin.save_state(&mut state), Some(STATE_BYTES));
     plugin.set_parameter(0, 0.8);
     assert!(plugin.load_state(&state));
     assert_eq!(plugin.get_parameter(0), Some(0.4));
-    for len in 0..16 {
+    assert_eq!(plugin.get_parameter(1), Some(1.0));
+    assert_eq!(plugin.get_parameter(3), Some(1.0));
+    for len in 0..STATE_BYTES {
         assert!(!plugin.load_state(&state[..len]));
     }
-    state[8..].copy_from_slice(&f64::NAN.to_le_bytes());
+    state[8..16].copy_from_slice(&f64::NAN.to_le_bytes());
     assert!(!plugin.load_state(&state));
     assert_eq!(plugin.get_parameter(0), Some(0.4));
-    state[4] = 2;
+    state[4] = 3;
     assert!(!plugin.load_state(&state));
     assert!(!plugin.load_preset("unknown"));
 }
@@ -97,7 +110,7 @@ fn malformed_blocks_are_silent_and_do_not_apply_partial_edits() {
     ];
     plugin.process(&[], &mut out, &[], &parameters, 64, 0, 2);
     assert_eq!(out, [0.0; 128]);
-    assert_eq!(plugin.get_parameter(0), Some(0.7));
+    assert_eq!(plugin.get_parameter(0), Some(DEFAULT_GAIN));
     plugin.process(
         &[],
         &mut out,

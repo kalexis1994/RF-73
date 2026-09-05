@@ -36,6 +36,7 @@ pub(crate) fn build_to(output: &Path) -> Result<(), Box<dyn Error>> {
     if output.exists() {
         return Err(format!("refusing to overwrite {}", output.display()).into());
     }
+    super::web_ui::build()?;
     for file in [&store, &core, &component] {
         if !file.is_file() {
             return Err(format!("build the required artifact first: {}", file.display()).into());

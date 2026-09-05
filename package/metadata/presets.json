@@ -2,8 +2,8 @@
   "schema_version": 1,
   "banks": [{ "id": "research", "name": "Research", "order": 0 }],
   "presets": [{
-    "id": "research-direct", "name": "Research Direct", "bank": "research",
+    "id": "research-direct", "name": "Pickup Lab", "bank": "research", "editable": true,
     "category": "Electric Piano", "order": 0, "tags": ["default", "uncalibrated"],
-    "description": "Provisional direct signal. No amplifier, modulation or reverb."
+    "description": "Current versus Close Point Pole. Fixed level matching, 0.100x output gain. No limiter, amplifier or reverb."
   }]
 }

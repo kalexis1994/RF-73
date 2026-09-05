@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" data-lighting="stage">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RF-Rhodes Pickup Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header><div><p class="eyebrow">RF-RHODES <span>RESEARCH / 0.1.2</span></p><h1>Pickup Lab</h1>
+      <p class="intro">One instrument. Three pickup models. Play, compare, refine.</p></div>
+      <p class="connection" id="status" role="status">Loading the Rust interface...</p></header>
+    <section class="comparison" aria-label="Pickup comparison">
+      <div class="slot"><label for="pickup-a"><span class="letter">A</span> Reference</label>
+        <select id="pickup-a" disabled data-rackforge-parameter-index="1"><option value="0">Current</option><option value="1">Close Original</option><option value="2">Close Point Pole</option></select>
+        <p>Choose the sound to compare against.</p></div>
+      <div class="slot"><label for="pickup-b"><span class="letter">B</span> Candidate</label>
+        <select id="pickup-b" disabled data-rackforge-parameter-index="2"><option value="0">Current</option><option value="1">Close Original</option><option value="2" selected>Close Point Pole</option></select>
+        <p>Explore geometry and pickup response.</p></div>
+      <div class="listen"><p class="eyebrow">LISTENING TO</p><p id="now-playing">A / Current</p>
+        <div class="switch" data-rackforge-parameter-index="3" role="group" aria-label="Listen to pickup"><button id="listen-a" aria-pressed="true" disabled>Listen to A</button><button id="listen-b" aria-pressed="false" disabled>Listen to B</button></div>
+        <p class="hint">Switch while holding a note. Replay a phrase to compare attacks.</p></div>
+    </section>
+    <section class="output" aria-label="Output">
+      <div><h2>Output gain</h2><p>Shared by A and B.</p></div>
+      <input id="gain" aria-label="Output gain slider" type="range" min="0" max="2" step="0.01" value="0.1" disabled data-rackforge-parameter-index="0">
+      <div class="gain-value"><label for="gain-number" class="sr-only">Output gain multiplier</label><input id="gain-number" type="number" min="0" max="2" step="0.01" value="0.1" disabled><span>x</span><output id="gain-db">-20.0 dB</output></div>
+      <p class="headroom">Start at <strong>0.100x</strong>. Watch RackForge's output meter when playing dense chords. No limiter.</p>
+    </section>
+    <footer><div><h2>A controlled comparison</h2><p>Fixed level matching preserves velocity dynamics. Pickup changes fade over 20 ms without resetting held notes or pedal.</p></div>
+      <div><h2>Keep your experiment</h2><p>Use RackForge PRESETS to save both pickups, the selected side and output gain. Restore any saved comparison from the host.</p></div>
+      <p class="research-note">UNCALIBRATED MODEL <span>Current: 1.5 / 0.5 mm &nbsp; · &nbsp; Close: 0.5 / 0.25 mm gap / offset</span></p></footer>
+  </main>
+  <noscript>This interface requires WebAssembly and the RackForge host.</noscript>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
