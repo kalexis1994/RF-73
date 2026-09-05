@@ -71,6 +71,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Hammer free recovery](docs/MEMORY-FREE-MOTION.md): conservative clearance bounds and error-controlled longer free intervals.
 - [Moving modal free recovery](docs/MEMORY-MODAL-FREE.md): moving-port contact exclusion, transactional propagation and coupled validation.
 - [Direct material roots](docs/MEMORY-MATERIAL-SOLVE.md): checked quadratic branches inside the stateful contact solver.
+- [Adaptive contact](docs/MEMORY-ADAPTIVE-CONTACT.md): continuous compression bounds, step doubling and retained fine references.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

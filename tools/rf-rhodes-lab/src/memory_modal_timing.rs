@@ -5,12 +5,14 @@ use std::{error::Error, hint::black_box, io::Write, path::Path, time::Instant};
 pub const HELP: &str = "Stateful modal kernel timing:
   memory-modal-timing --output REPORT.json
   memory-modal-free-timing --output REPORT.json
+  memory-modal-adaptive-timing --output REPORT.json
 Measures native mechanics with returned diagnostics, excluding preparation.
 Free timing compares adaptive and uniform paths at the same fine base step.
 Four provisional profiles, three repetitions each; no audio or realtime qualification.
 ";
 pub fn run_free(args: &[String]) -> Result<(), Box<dyn Error>> {
     use crate::memory_modal_check::free_controller::Controller;
+    let contact = args[0] == "memory-modal-adaptive-timing";
     if args.len() != 3
         || args[1] != "--output"
         || Path::new(&args[2]).extension().is_none_or(|s| s != "json")
@@ -46,9 +48,16 @@ pub fn run_free(args: &[String]) -> Result<(), Box<dyn Error>> {
                     )?;
                     if adaptive {
                         v.prepare_free_steps(12)?;
+                        if contact {
+                            v.prepare_contact_steps(12)?;
+                        }
                     }
                     let preparation_seconds = prep.elapsed().as_secs_f64();
-                    let mut controller = Controller::default();
+                    let mut controller = if adaptive && contact {
+                        Controller::with_contact()
+                    } else {
+                        Controller::default()
+                    };
                     let start = Instant::now();
                     for frame in 0..384 {
                         if frame == 96 {
@@ -90,6 +99,7 @@ pub fn run_free(args: &[String]) -> Result<(), Box<dyn Error>> {
                     }
                     runs.push(json!({"repetition":repetition,"adaptive":adaptive,"elapsed_seconds":seconds,
                         "preparation_seconds":preparation_seconds,"free_operator_reserved_bytes":v.free_operator_bytes(),
+                        "contact_operator_reserved_bytes":v.contact_operator_bytes(),
                         "final_relative_energy_residual":residual,"final_position":q.position,"final_velocity":q.velocity,
                         "final_core_velocity_m_s":q.hammer.core_velocity_m_s,"final_tip_velocity_m_s":q.hammer.tip_velocity_m_s,
                         "controller":if adaptive {controller.report(h)} else {serde_json::Value::Null}}));
@@ -105,7 +115,7 @@ pub fn run_free(args: &[String]) -> Result<(), Box<dyn Error>> {
     }
     serde_json::to_writer_pretty(
         &mut file,
-        &json!({"schema_version":1,"experiment":"memory-modal-free-native-timing-v1",
+        &json!({"schema_version":1,"experiment":if contact {"memory-modal-adaptive-native-timing-v1"} else {"memory-modal-free-native-timing-v1"},
         "status":"pass","step_seconds":h,"uniform_steps_per_take":384*16672,"simulated_seconds":0.008,
         "voice_inline_bytes":std::mem::size_of::<MemoryModalAssembly>(),
         "scope":"Same fine base step and 8 ms event protocol for both paths. Three paired repetitions per provisional profile with alternating order. Preparation is measured separately; execution consumes returned probes and includes adaptive control and rejections. No per-step audit inside timing; final energy checked and separate trajectory audit required. Heap payload excludes allocator overhead. No pickup, mixing, host, WASM or realtime qualification. Timing has no machine-dependent pass threshold.","cases":cases}),

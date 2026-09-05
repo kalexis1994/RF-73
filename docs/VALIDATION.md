@@ -722,3 +722,37 @@ are discarded. Remaining adaptive cost is 26–59 seconds per simulated second;
 this remains an offline prototype. Existing CI audits exercise the changed
 solver, but remote CI was not executed locally. No dependencies or listening
 package were introduced, and no audio device or Desktop was used.
+
+## Adaptive compressed contact: accuracy passes, runtime remains experimental
+
+Date: 2026-09-05. The [contact experiment](MEMORY-ADAPTIVE-CONTACT.md) combines
+a whole-interval compression certificate with prepared midpoint/material
+operators and step doubling. It commits two half steps only after state and
+independent work/energy checks, preserving memory and restoring the original
+fixed-step preparation. Rejections are transactional. Output mean contact force
+includes both accepted reactions.
+
+All 170 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. Three additions check preparation/history, boundary/accuracy rejection,
+analytic Maxwell extension, independent half-step agreement and the subsequent
+base tick. The prior free-only modal report remains byte-identical, and all
+12 uniform reference rows match the retained material-solver report exactly.
+
+The [loose 1e-8 trial](../references/memory-modal-adaptive-preliminary-1e-8.json)
+failed 4 of 12 trajectory comparisons despite good energy accounting. The
+[1e-10 trial](../references/memory-modal-adaptive-intermediate-1e-10.json) passed
+with only a small velocity-error margin (0.9854% against 1%). The selected
+[1e-11 audit](../references/memory-modal-adaptive-validation.json) passes all
+12 cases/24 takes with maximum kinetic velocity RMSE 0.03909%, pickup velocity
+RMSE 0.004859% and mean-force RMSE 0.007111%. Relative combined energy and
+structural/hammer work residuals are at most `9.118e-11`, `9.420e-11` and
+`7.939e-11`. Global gates are unchanged; all experiments are retained.
+
+The [timing control](../references/memory-modal-contact-control-timing.json) and
+[adaptive timing](../references/memory-modal-adaptive-timing.json) show that the
+strict path is slower in three of four profiles, with control/adaptive median
+ratios of 0.927x, 0.534x, 1.352x and 0.824x. Fewer intervals do not compensate
+consistently for three solves and local checks. Adaptive cost remains 41–51
+seconds per simulated second. This is an explicitly selected offline experiment;
+the existing contact path and audible plugin are unchanged. CI includes its
+audit; remote CI and GUI/audio tests were not run.

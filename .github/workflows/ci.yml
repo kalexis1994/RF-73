@@ -75,3 +75,5 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-free-check --output renders/ci-memory-free.json
       - name: Audit certified moving modal free recovery
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-free-check --output renders/ci-memory-modal-free.json
+      - name: Audit error-controlled modal contact
+        run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-adaptive-check --output renders/ci-memory-modal-adaptive.json

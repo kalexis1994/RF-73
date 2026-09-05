@@ -75,6 +75,16 @@ pub struct HammerMemory {
     mean_force: f64,
 }
 impl HammerMemory {
+    /// Copy ramp coefficients prepared for the same profile; retain memory and all ledgers.
+    pub(crate) fn use_preparation(&mut self, prepared: &Self) {
+        self.decay = prepared.decay;
+        self.mean_old = prepared.mean_old;
+        self.mean_delta = prepared.mean_delta;
+        self.heat_scale = prepared.heat_scale;
+        self.heat_old = prepared.heat_old;
+        self.heat_shift = prepared.heat_shift;
+        self.heat_delta = prepared.heat_delta;
+    }
     pub fn new(step_seconds: f64, p: HammerMemoryProfile) -> Result<Self, ModelError> {
         p.validate()?;
         if !step_seconds.is_finite() || !(1e-9..=0.1).contains(&step_seconds) {
@@ -303,6 +313,23 @@ fn cubic_gradient(a: f64, b: f64) -> f64 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn changing_ramp_preparation_preserves_history_and_matches_maxwell_extension() {
+        let p = HammerMemoryProfile::default();
+        let mut material = HammerMemory::new(1e-9, p).unwrap();
+        for (h, x) in [(1e-8, 1e-5), (1e-4, -2e-5), (0.001, 3e-5), (1e-9, 2.9e-5)] {
+            let before = material.probe();
+            material.use_preparation(&HammerMemory::new(h, p).unwrap());
+            assert_eq!(before, material.probe());
+            let r = h / p.relaxation_seconds;
+            let expected = (-r).exp() * before.branch_extension_m
+                - (-r).exp_m1() / r * (x - before.displacement_m);
+            let after = material.advance_to(x).unwrap();
+            assert!((after.branch_extension_m - expected).abs() < 1e-18);
+            assert!(after.last_step_heat_j >= 0.0);
+            assert!(after.balance_residual_j.abs() < 1e-12 * after.absolute_work_j);
+        }
+    }
 
     #[test]
     fn direct_material_roots_cover_signed_loading_unloading_and_linear_limits() {

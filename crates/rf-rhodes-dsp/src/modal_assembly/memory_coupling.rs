@@ -3,6 +3,18 @@ use super::{Matrix, Midpoint, ModalAssemblyProfile, N, Operators, Vector, apply,
 use crate::{MemoryHammer, MemoryHammerProbe, MemoryHammerProfile, ModelError, TineGeometry};
 mod free_motion;
 use free_motion::FreeBank;
+mod contact_motion;
+use contact_motion::ContactBank;
+pub use contact_motion::{MemoryContactStatus, MemoryContactStep};
+
+#[derive(Clone)]
+struct Motion {
+    q: Vector,
+    v: Vector,
+    hammer: MemoryHammer,
+    heat: f64,
+    structural_energy: f64,
+}
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub struct MemoryModalProbe {
@@ -19,9 +31,9 @@ pub struct MemoryModalProbe {
     pub structural_work_residual_j: f64,
 }
 
-/// Offline midpoint contact model with optional certified free propagation.
+/// Offline midpoint model with optional certified free and adaptive contact intervals.
 /// No pickup voltage, action or plugin integration. Construction prepares fixed matrices.
-/// Each tick advances one fixed interval, not an audio frame; free steps need separate preparation.
+/// Each tick advances one fixed interval, not an audio frame; longer steps need separate preparation.
 pub struct MemoryModalAssembly {
     op: Operators,
     steps: [Midpoint; 2],
@@ -33,6 +45,7 @@ pub struct MemoryModalAssembly {
     heat: f64,
     structural_energy: f64,
     free: Option<FreeBank>,
+    contact: Option<ContactBank>,
 }
 impl MemoryModalAssembly {
     /// Only structural/damper fields of `structure` are used. Legacy scalar-hammer
@@ -63,6 +76,7 @@ impl MemoryModalAssembly {
             heat: 0.0,
             structural_energy: 0.0,
             free: None,
+            contact: None,
         })
     }
     pub fn set_damped(&mut self, damped: bool) {
@@ -79,33 +93,32 @@ impl MemoryModalAssembly {
         self.advance::<true>()
     }
     fn advance<const FAST: bool>(&mut self) -> Result<MemoryModalProbe, ModelError> {
-        let step = &self.steps[usize::from(self.damped)];
-        let fv = step.free_velocity(self.q, self.v);
-        let fq: Vector = core::array::from_fn(|i| self.q[i] + 0.5 * self.h * (self.v[i] + fv[i]));
-        let compliance = 0.5 * self.h * dot(self.op.hammer, step.response);
-        let mut hammer = self.hammer.clone();
-        let hp = hammer.advance_against::<FAST>(dot(self.op.hammer, fq), compliance)?;
-        let v: Vector = core::array::from_fn(|i| fv[i] + step.response[i] * hp.contact_force_n);
-        let q: Vector =
-            core::array::from_fn(|i| fq[i] + 0.5 * self.h * step.response[i] * hp.contact_force_n);
-        let mid = core::array::from_fn(|i| 0.5 * (self.v[i] + v[i]));
-        let loss = self.h * dot(mid, apply(&self.op.c[usize::from(self.damped)], mid));
-        let heat = self.heat + loss;
-        let structure = mechanical(&self.op.m, &self.op.k, q, v);
-        let energy = structure + hp.mechanical_energy_j;
-        if !q.iter().chain(v.iter()).all(|x| x.is_finite())
-            || !heat.is_finite()
-            || !energy.is_finite()
-            || loss < 0.0
-        {
-            return Err(ModelError("invalid coupled memory hammer step"));
+        let (motion, probe) = advance_motion::<FAST>(
+            &self.motion(),
+            &self.op,
+            &self.steps[usize::from(self.damped)],
+            self.h,
+            self.damped,
+            None,
+        )?;
+        self.commit_motion(motion);
+        Ok(probe)
+    }
+    fn motion(&self) -> Motion {
+        Motion {
+            q: self.q,
+            v: self.v,
+            hammer: self.hammer.clone(),
+            heat: self.heat,
+            structural_energy: self.structural_energy,
         }
-        self.q = q;
-        self.v = v;
-        self.heat = heat;
-        self.hammer = hammer;
-        self.structural_energy = structure;
-        Ok(make_probe(&self.op, q, v, heat, hp, structure))
+    }
+    fn commit_motion(&mut self, motion: Motion) {
+        self.q = motion.q;
+        self.v = motion.v;
+        self.hammer = motion.hammer;
+        self.heat = motion.heat;
+        self.structural_energy = motion.structural_energy;
     }
     /// Current snapshot using the structural energy of the last committed step.
     pub fn probe(&self) -> MemoryModalProbe {
@@ -118,6 +131,48 @@ impl MemoryModalAssembly {
             self.structural_energy,
         )
     }
+}
+fn advance_motion<const FAST: bool>(
+    motion: &Motion,
+    op: &Operators,
+    step: &Midpoint,
+    h: f64,
+    damped: bool,
+    prepared: Option<&crate::HammerMemory>,
+) -> Result<(Motion, MemoryModalProbe), ModelError> {
+    let fv = step.free_velocity(motion.q, motion.v);
+    let fq: Vector = core::array::from_fn(|i| motion.q[i] + 0.5 * h * (motion.v[i] + fv[i]));
+    let compliance = 0.5 * h * dot(op.hammer, step.response);
+    let mut hammer = motion.hammer.clone();
+    if let Some(prepared) = prepared {
+        hammer.use_interval(h, prepared);
+    }
+    let hp = hammer.advance_against::<FAST>(dot(op.hammer, fq), compliance)?;
+    let v: Vector = core::array::from_fn(|i| fv[i] + step.response[i] * hp.contact_force_n);
+    let q: Vector =
+        core::array::from_fn(|i| fq[i] + 0.5 * h * step.response[i] * hp.contact_force_n);
+    let mid = core::array::from_fn(|i| 0.5 * (motion.v[i] + v[i]));
+    let loss = h * dot(mid, apply(&op.c[usize::from(damped)], mid));
+    let heat = motion.heat + loss;
+    let structure = mechanical(&op.m, &op.k, q, v);
+    let energy = structure + hp.mechanical_energy_j;
+    if !q.iter().chain(v.iter()).all(|x| x.is_finite())
+        || !heat.is_finite()
+        || !energy.is_finite()
+        || loss < 0.0
+    {
+        return Err(ModelError("invalid coupled memory hammer step"));
+    }
+    Ok((
+        Motion {
+            q,
+            v,
+            heat,
+            hammer,
+            structural_energy: structure,
+        },
+        make_probe(op, q, v, heat, hp, structure),
+    ))
 }
 fn make_probe(
     op: &Operators,

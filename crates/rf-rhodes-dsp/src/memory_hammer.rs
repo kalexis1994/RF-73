@@ -81,6 +81,16 @@ pub struct MemoryHammer {
     surface_work: f64,
 }
 impl MemoryHammer {
+    pub(crate) fn prepare_interval(&self, h: f64) -> Result<HammerMemory, ModelError> {
+        HammerMemory::new(h, self.p.material)
+    }
+    pub(crate) fn use_interval(&mut self, h: f64, prepared: &HammerMemory) {
+        self.h = h;
+        self.material.use_preparation(prepared);
+    }
+    pub(crate) fn profile(&self) -> MemoryHammerProfile {
+        self.p
+    }
     pub(crate) fn inverse_tip_mass(&self) -> f64 {
         1.0 / self.p.tip_mass_kg
     }
