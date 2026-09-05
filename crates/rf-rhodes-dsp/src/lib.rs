@@ -6,6 +6,7 @@ mod hammer_memory;
 mod laboratory;
 mod memory_hammer;
 mod modal_assembly;
+pub use modal_assembly::{MemoryModalAssembly, MemoryModalProbe};
 mod model;
 mod pickup;
 mod tine;

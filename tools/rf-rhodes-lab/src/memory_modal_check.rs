@@ -1,0 +1,210 @@
+use rf_rhodes_dsp::{
+    HammerMemoryProfile, MemoryHammerProfile, MemoryModalAssembly, MemoryModalProbe,
+    ModalAssemblyProfile, TineGeometry,
+};
+use serde_json::json;
+use std::{error::Error, io::Write, path::Path};
+
+pub const HELP: &str = "Stateful multimode hammer:
+  memory-modal-check --output REPORT.json [--coarse]
+Audits reciprocal hammer/tine work, free recovery, reimpact and damper changes.
+12 uncalibrated cases, 2.5 ns candidate steps and twofold finer reference.
+--coarse reproduces the preliminary 10/2.5 ns experiment, which can fail accuracy.
+No audio device, pickup voltage or plugin integration.
+";
+struct Take {
+    states: Vec<MemoryModalProbe>,
+    forces: Vec<f64>,
+    report: serde_json::Value,
+    pass: bool,
+    mass: [[f64; 9]; 9],
+}
+fn state(q: MemoryModalProbe) -> serde_json::Value {
+    json!({"position":q.position,"velocity":q.velocity,"pickup_velocity_m_s":q.pickup_velocity_m_s,
+        "core_position_m":q.hammer.core_position_m,"tip_position_m":q.hammer.tip_position_m,
+        "core_velocity_m_s":q.hammer.core_velocity_m_s,"tip_velocity_m_s":q.hammer.tip_velocity_m_s,
+        "material_deformation_m":q.hammer.material.displacement_m,"viscous_deformation_m":q.hammer.material.viscous_deformation_m,
+        "branch_extension_m":q.hammer.material.branch_extension_m,"material_energy_j":q.hammer.material.stored_energy_j,
+        "contact_energy_j":q.hammer.surface_energy_j,"structural_energy_j":q.structural_energy_j,
+        "mechanical_energy_j":q.mechanical_energy_j,"structural_heat_j":q.structural_heat_j,
+        "material_heat_j":q.hammer.material.dissipated_energy_j,"hammer_to_structure_work_j":q.hammer.surface_work_j,
+        "impulse_work_j":q.hammer.external_work_j,"balance_residual_j":q.balance_residual_j})
+}
+fn take(length: f64, speed: f64, tau: f64, substeps: usize) -> Result<Take, Box<dyn Error>> {
+    let h = 1.0 / (48000.0 * substeps as f64);
+    let mut v = MemoryModalAssembly::new(
+        h,
+        TineGeometry {
+            length_m: length,
+            ..TineGeometry::default()
+        },
+        ModalAssemblyProfile::default(),
+        MemoryHammerProfile {
+            material: HammerMemoryProfile {
+                relaxation_seconds: tau,
+                ..HammerMemoryProfile::default()
+            },
+            ..MemoryHammerProfile::default()
+        },
+        0.0,
+        speed,
+    )?;
+    let mut states = Vec::new();
+    let mut forces = Vec::new();
+    let mut events = Vec::new();
+    let mut balance = 0.0_f64;
+    let mut port_balance = 0.0_f64;
+    let mut hammer_balance = 0.0_f64;
+    let mut positive = 0.0_f64;
+    let mut free_heat = 0.0;
+    let mut reimpact = false;
+    let mut pass = true;
+    let mut peaks = [0.0_f64; 9];
+    for frame in 0..384 {
+        if [96, 192, 288].contains(&frame) {
+            let before = v.probe();
+            if frame == 96 {
+                v.apply_core_impulse(2.5 * 0.004 * speed)?;
+            } else {
+                v.set_damped(frame == 192);
+            }
+            let after = v.probe();
+            pass &= before.hammer.material == after.hammer.material;
+            if frame != 96 {
+                pass &= before == after;
+            }
+            events.push(
+                json!({"event":match frame {96=>"core_impulse",192=>"damper_on",_=>"damper_off"},
+                "time_seconds":frame as f64/48000.0,"before":state(before),"after":state(after)}),
+            );
+        }
+        let mut force = 0.0;
+        for _ in 0..substeps {
+            let before = v.probe();
+            let q = v.tick()?;
+            let scale = q.hammer.initial_energy_j + q.hammer.absolute_impulse_work_j;
+            balance = balance.max(q.balance_residual_j.abs() / scale);
+            port_balance = port_balance.max(q.structural_work_residual_j.abs() / scale);
+            hammer_balance = hammer_balance.max(q.hammer.balance_residual_j.abs() / scale);
+            positive = positive.max((q.mechanical_energy_j - before.mechanical_energy_j) / scale);
+            if q.hammer.contact_force_n == 0.0 && before.hammer.contact_force_n == 0.0 {
+                free_heat += q.hammer.material.last_step_heat_j;
+            }
+            reimpact |= frame >= 96 && q.hammer.contact_force_n > 0.0;
+            pass &= q.balance_residual_j.is_finite()
+                && q.structural_work_residual_j.is_finite()
+                && q.hammer.balance_residual_j.is_finite()
+                && q.hammer.contact_force_n.is_finite()
+                && q.hammer.contact_force_n >= 0.0
+                && q.hammer.material.last_step_heat_j >= 0.0
+                && q.structural_heat_j >= before.structural_heat_j;
+            for (peak, x) in peaks.iter_mut().zip(q.position) {
+                *peak = peak.max(x.abs());
+            }
+            force += q.hammer.contact_force_n / substeps as f64;
+        }
+        states.push(v.probe());
+        forces.push(force);
+    }
+    pass &= balance < 1e-8
+        && port_balance < 1e-8
+        && hammer_balance < 1e-8
+        && positive < 1e-10
+        && free_heat > 0.0
+        && reimpact
+        && peaks.iter().all(|x| *x > 0.0);
+    Ok(Take {
+        states,
+        forces,
+        mass: v.mass_matrix(),
+        pass,
+        report: json!({"substeps":substeps,"step_seconds":h,"maximum_relative_energy_residual":balance,
+            "maximum_relative_structural_work_residual":port_balance,"maximum_relative_hammer_work_residual":hammer_balance,
+            "maximum_positive_relative_energy_step":positive,"force_free_material_heat_j":free_heat,
+            "reimpact_after_impulse":reimpact,"coordinate_absolute_peaks":peaks,"events":events,
+            "final_state":state(v.probe()),"passed":pass}),
+    })
+}
+pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
+    if !matches!(args.len(), 3 | 4)
+        || args[1] != "--output"
+        || Path::new(&args[2]).extension().is_none_or(|s| s != "json")
+    {
+        return Err(HELP.into());
+    }
+    let coarse = args.len() == 4;
+    if coarse && args[3] != "--coarse" {
+        return Err(HELP.into());
+    }
+    let mut file = crate::new_file(Path::new(&args[2]))?;
+    let mut cases = Vec::new();
+    let mut pass = true;
+    for length in [0.05, 0.075, 0.12] {
+        for speed in [0.2, 0.8] {
+            for tau in [0.001, 0.01] {
+                let a = take(length, speed, tau, if coarse { 2084 } else { 8336 })?;
+                let b = take(length, speed, tau, if coarse { 8336 } else { 16672 })?;
+                let mut kinetic_error = 0.0;
+                let mut pickup_error = 0.0;
+                let mut pickup_power = 0.0;
+                for (a, b) in a.states.iter().zip(&b.states) {
+                    pickup_error += (a.pickup_velocity_m_s - b.pickup_velocity_m_s).powi(2);
+                    pickup_power += b.pickup_velocity_m_s.powi(2);
+                    kinetic_error += 0.0038
+                        * (a.hammer.core_velocity_m_s - b.hammer.core_velocity_m_s).powi(2)
+                        + 0.0002 * (a.hammer.tip_velocity_m_s - b.hammer.tip_velocity_m_s).powi(2);
+                }
+                for (qa, qb) in a.states.iter().zip(&b.states) {
+                    let dv: [f64; 9] = core::array::from_fn(|i| qa.velocity[i] - qb.velocity[i]);
+                    kinetic_error += (0..9)
+                        .map(|i| dv[i] * (0..9).map(|j| a.mass[i][j] * dv[j]).sum::<f64>())
+                        .sum::<f64>();
+                }
+                let velocity_error =
+                    (kinetic_error / (a.states.len() as f64 * 0.004 * speed * speed)).sqrt();
+                let pickup_error = (pickup_error / pickup_power).sqrt();
+                let force_error = (a
+                    .forces
+                    .iter()
+                    .zip(&b.forces)
+                    .map(|(a, b)| (a - b).powi(2))
+                    .sum::<f64>()
+                    / b.forces.iter().map(|f| f * f).sum::<f64>())
+                .sqrt();
+                let passed = a.pass
+                    && b.pass
+                    && velocity_error.is_finite()
+                    && velocity_error < 0.01
+                    && pickup_error.is_finite()
+                    && pickup_error < 0.01
+                    && force_error.is_finite()
+                    && force_error < 0.02;
+                pass &= passed;
+                cases.push(json!({"tine_length_m":length,"launch_speed_m_s":speed,"relaxation_seconds":tau,
+                    "mass_matrix":a.mass,"kinetic_metric_velocity_rmse_over_launch_speed":velocity_error,
+                    "pickup_velocity_relative_rmse":pickup_error,"output_mean_force_relative_rmse":force_error,
+                    "candidate":a.report,"reference":b.report,"passed":passed}));
+            }
+        }
+    }
+    serde_json::to_writer_pretty(
+        &mut file,
+        &json!({"schema_version":1,"experiment":"memory-modal-coupling-v1",
+        "status":if pass{"pass"}else{"fail"},"calibrated":false,"plugin_integrated":false,
+        "observation_rate_hz":48000,"duration_seconds":0.008,
+        "coarse":coarse,
+        "protocol":"Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Memory and all coordinates persist. Default 8336 versus 16672 uniform microsteps per output frame; coarse 2084 versus 8336.",
+        "scope":"Nine reciprocal structural coordinates plus two hammer masses and one material memory state. Provisional default profiles except case-specific length, launch speed and relaxation time. Surface coefficient 1e12 N/m2; core/tip masses 3.8/0.2 g. No action, pickup voltage, calibration or realtime qualification.",
+        "gates":{"energy_and_each_port_work_residual":1e-8,"positive_energy_step":1e-10,
+            "kinetic_velocity_rmse":0.01,"pickup_velocity_rmse":0.01,"mean_force_rmse":0.02},"cases":cases}),
+    )?;
+    writeln!(file)?;
+    if !pass {
+        return Err("stateful modal hammer audit failed; see report".into());
+    }
+    println!(
+        "Stateful modal hammer audit passed: 12 cases, 24 takes. Report: {}",
+        args[2]
+    );
+    Ok(())
+}

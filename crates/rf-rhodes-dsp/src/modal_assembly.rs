@@ -4,6 +4,8 @@ use crate::{ModelError, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN, TineGeometry, TineMode
 use core::f64::consts::TAU;
 mod contact;
 mod dissipative_contact;
+mod memory_coupling;
+pub use memory_coupling::{MemoryModalAssembly, MemoryModalProbe};
 mod numerics;
 use numerics::{Free, Midpoint, apply, dot};
 const N: usize = 9;

@@ -66,6 +66,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Dissipative hammer](docs/DISSIPATIVE-HAMMER.md): rate-dependent contact loss, nonadhesive unloading and independent material heat.
 - [Hammer material memory](docs/HAMMER-MEMORY.md): internal deformation, relaxation and repeated loading in an isolated material coupon.
 - [Memory hammer impacts](docs/MEMORY-HAMMER.md): two inertial masses, nonadhesive surface contact, free recovery and impulse-driven reimpact.
+- [Stateful modal hammer](docs/MEMORY-MODAL-COUPLING.md): reciprocal memory-hammer/tine coupling, persistent recovery and independent port work.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

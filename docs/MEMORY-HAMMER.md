@@ -155,10 +155,10 @@ for this coupling.
 
 ## Next integration gate
 
-Connect this stateful hammer to the reciprocal nine-coordinate tine assembly,
-with the material and contact work included in one global ledger. Validate its
-contact/free-flight transitions, repeated strikes and damper interactions against
-a refined reference. Efficient free motion and event handling need investigation
+The [stateful modal coupling](MEMORY-MODAL-COUPLING.md) now connects this hammer
+to the reciprocal nine-coordinate tine assembly, with independent material,
+structural and transferred-work ledgers. Its moving-surface port generalizes the
+fixed-wall boundary without changing this experiment. Efficient free motion and event handling need investigation
 before polyphonic or WASM timing qualification. The fixed wall does not establish
 how a moving tine will respond, and the impulse driver is not a key/action model.
 

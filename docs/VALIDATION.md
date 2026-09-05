@@ -546,3 +546,39 @@ reaction/tangent refactor. Rejection of an existing impact report preserves its 
 CI includes the new impact audit; the remote workflow was not executed locally.
 This milestone produces no new listening package, audio-device access or Desktop
 interaction. Plugin mechanics and version 0.1.2 remain unchanged.
+
+## Memory hammer coupled to the moving tine
+
+Date: 2026-09-05. The [stateful modal connection](MEMORY-MODAL-COUPLING.md) adds
+the full reciprocal structural compliance to the hammer's implicit contact
+solve. Eleven inertial coordinates and the material memory persist through
+separation, externally driven reimpact and damper changes. Signed port work
+links the independent hammer and structural energy ledgers.
+
+All 156 workspace tests passed. Four additions exercise coupled energy/port
+balance and all-coordinate response, free recovery/reimpact, pure-bisection
+agreement, invalid/atomic updates, disconnected motion and passive damper
+switching, and total linear momentum with an ungrounded translation support.
+Strict workspace Clippy, formatting and release WASM plugin compilation passed.
+
+The [coupled audit](../references/memory-modal-validation.json) passes twelve
+cases / 24 takes over three tine lengths, two launch speeds and two relaxation
+times. Observations at 48 kHz cover 8 ms with a core impulse at 2 ms, damper on
+at 4 ms and off at 6 ms. Candidate/reference subdivisions are 8336/16672, about
+2.5/1.25 ns. Maximum global energy residual is `9.512e-10` relative to initial
+energy plus absolute impulse work; structural and hammer work residuals are
+`9.507e-10` and `3.513e-12`. Kinetic-metric velocity RMSE is at most 0.7693%,
+pickup-port velocity RMSE 0.09629%, and output mean-contact-force RMSE 0.1406%.
+
+The [coarse pilot](../references/memory-modal-resolution-pilot.json) records two
+accuracy failures at 2084/8336 subdivisions despite passing energy checks.
+Refinement preserves the physical coefficients and error gates. The very small
+reference timestep is an offline numerical requirement for this experiment,
+not a realtime implementation or proof of calibrated Rhodes behavior.
+
+The existing 48-take fixed-wall report is byte-identical after generalizing the
+surface port. Attempting to overwrite the new coupled report is rejected with
+its SHA256 preserved. CI includes the new audit; remote CI was not run during
+this validation. No new dependencies, listening package, audio-device access or
+Desktop interaction were introduced. Plugin version 0.1.2 and its audible
+mechanics remain unchanged. Accuracy per unit cost is the next numerical gate.

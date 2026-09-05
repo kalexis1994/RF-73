@@ -130,8 +130,9 @@ Output paths must be new, and the audit does not open an audio device.
 The [two-mass hammer](MEMORY-HAMMER.md) now connects this material to a separate
 tip inertia and a nonadhesive fixed surface, retaining stored energy during
 separation and free recovery. It does not clip the coupon's signed force or erase
-z at separation. Coupling to the moving tine assembly and resolving the measured
-temporal accuracy/cost tradeoff remain gates before replacing the rate-loss
+z at separation. The [moving tine connection](MEMORY-MODAL-COUPLING.md) now
+extends this to the full modal assembly. Resolving the measured temporal
+accuracy/cost tradeoff remains a gate before replacing the rate-loss
 experiment. A spectrum of relaxation times and material measurements are later
 identification gates.
 The current audible engine and package version 0.1.2 remain unchanged.

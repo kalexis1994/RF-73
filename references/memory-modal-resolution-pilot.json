@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "experiment": "memory-modal-resolution-pilot",
+  "status": "fail",
+  "source_sha256": "A40126353365C568DB5951C75E33EB1D03CFA6C4F49FFB1ED4691441647B53C7",
+  "protocol": "Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Memory and all coordinates persist. 2084 versus 8336 uniform microsteps per output frame.",
+  "description": "Preliminary 2084/8336 substep run; reproduce with memory-modal-check --output NEW.json --coarse. All energy/work gates passed; two cases failed accuracy.",
+  "cases": [
+    {
+      "tine_length_m": 0.05,
+      "launch_speed_m_s": 0.2,
+      "relaxation_seconds": 0.001,
+      "passed": true,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 1.1090252292687788E-05,
+      "pickup_velocity_relative_rmse": 1.3732171773573587E-05,
+      "output_mean_force_relative_rmse": 3.758628410250506E-06,
+      "candidate_energy_residual": 3.125955640129773E-11,
+      "reference_energy_residual": 1.246066333588399E-10
+    },
+    {
+      "tine_length_m": 0.05,
+      "launch_speed_m_s": 0.2,
+      "relaxation_seconds": 0.01,
+      "passed": true,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 0.00035727344284205965,
+      "pickup_velocity_relative_rmse": 4.01155776161753E-05,
+      "output_mean_force_relative_rmse": 2.1874600509948314E-05,
+      "candidate_energy_residual": 3.2518564643471514E-11,
+      "reference_energy_residual": 1.2984265447645907E-10
+    },
+    {
+      "tine_length_m": 0.05,
+      "launch_speed_m_s": 0.8,
+      "relaxation_seconds": 0.001,
+      "passed": true,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 0.00010852218106176611,
+      "pickup_velocity_relative_rmse": 9.841164894695096E-05,
+      "output_mean_force_relative_rmse": 0.00011355463883380318,
+      "candidate_energy_residual": 2.8918013801598487E-11,
+      "reference_energy_residual": 1.357844319015115E-10
+    },
+    {
+      "tine_length_m": 0.05,
+      "launch_speed_m_s": 0.8,
+      "relaxation_seconds": 0.01,
+      "passed": true,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 0.00032248899647708456,
+      "pickup_velocity_relative_rmse": 0.00020816506712304474,
+      "output_mean_force_relative_rmse": 0.00037022256798123303,
+      "candidate_energy_residual": 2.8453710170923673E-11,
+      "reference_energy_residual": 1.3339222955540358E-10
+    },
+    {
+      "tine_length_m": 0.075,
+      "launch_speed_m_s": 0.2,
+      "relaxation_seconds": 0.001,
+      "passed": true,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 0.0005407760447758033,
+      "pickup_velocity_relative_rmse": 0.0005705589476629007,
+      "output_mean_force_relative_rmse": 0.0008104777479403108,
+      "candidate_energy_residual": 2.244970456530329E-11,
+      "reference_energy_residual": 2.4521869523904107E-10
+    },
+    {
+      "tine_length_m": 0.075,
+      "launch_speed_m_s": 0.2,
+      "relaxation_seconds": 0.01,
+      "passed": true,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 2.321143521821514E-05,
+      "pickup_velocity_relative_rmse": 1.365855975900114E-05,
+      "output_mean_force_relative_rmse": 4.122596395663632E-05,
+      "candidate_energy_residual": 2.0622965830222448E-11,
+      "reference_energy_residual": 2.3867974766406777E-10
+    },
+    {
+      "tine_length_m": 0.075,
+      "launch_speed_m_s": 0.8,
+      "relaxation_seconds": 0.001,
+      "passed": false,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 0.06434847150788646,
+      "pickup_velocity_relative_rmse": 0.028231630727820027,
+      "output_mean_force_relative_rmse": 0.028695233138024193,
+      "candidate_energy_residual": 2.2608906368403477E-11,
+      "reference_energy_residual": 2.459018390592687E-10
+    },
+    {
+      "tine_length_m": 0.075,
+      "launch_speed_m_s": 0.8,
+      "relaxation_seconds": 0.01,
+      "passed": true,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 0.0056335766785483785,
+      "pickup_velocity_relative_rmse": 0.0008289845776579082,
+      "output_mean_force_relative_rmse": 0.0013037069938401486,
+      "candidate_energy_residual": 2.457815789530953E-11,
+      "reference_energy_residual": 2.4874563251916746E-10
+    },
+    {
+      "tine_length_m": 0.12,
+      "launch_speed_m_s": 0.2,
+      "relaxation_seconds": 0.001,
+      "passed": true,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 0.0027609995232515928,
+      "pickup_velocity_relative_rmse": 0.0003554387601844014,
+      "output_mean_force_relative_rmse": 0.0012768187013506413,
+      "candidate_energy_residual": 8.155053407609071E-11,
+      "reference_energy_residual": 5.700494001602712E-10
+    },
+    {
+      "tine_length_m": 0.12,
+      "launch_speed_m_s": 0.2,
+      "relaxation_seconds": 0.01,
+      "passed": true,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 0.0027302775110800187,
+      "pickup_velocity_relative_rmse": 0.00015138131699211872,
+      "output_mean_force_relative_rmse": 0.0007827039789636377,
+      "candidate_energy_residual": 8.193195739536696E-11,
+      "reference_energy_residual": 5.793117286351545E-10
+    },
+    {
+      "tine_length_m": 0.12,
+      "launch_speed_m_s": 0.8,
+      "relaxation_seconds": 0.001,
+      "passed": false,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 0.016899203251563348,
+      "pickup_velocity_relative_rmse": 0.0017899272553882457,
+      "output_mean_force_relative_rmse": 0.007471800548477879,
+      "candidate_energy_residual": 7.400189246841357E-11,
+      "reference_energy_residual": 5.29004359750682E-10
+    },
+    {
+      "tine_length_m": 0.12,
+      "launch_speed_m_s": 0.8,
+      "relaxation_seconds": 0.01,
+      "passed": true,
+      "kinetic_metric_velocity_rmse_over_launch_speed": 0.0008794628440276324,
+      "pickup_velocity_relative_rmse": 4.18413477512642E-05,
+      "output_mean_force_relative_rmse": 9.833263045192644E-05,
+      "candidate_energy_residual": 7.949630785461908E-11,
+      "reference_energy_residual": 5.663650513113105E-10
+    }
+  ]
+}

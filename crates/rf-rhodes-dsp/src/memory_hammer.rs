@@ -1,4 +1,4 @@
-//! Two-mass material-memory hammer against a fixed elastic penalty surface.
+//! Two-mass material-memory hammer with a fixed-wall API and internal moving port.
 use crate::voice::contact_gradient;
 use crate::{HammerMemory, HammerMemoryProbe, HammerMemoryProfile, ModelError};
 
@@ -51,12 +51,16 @@ pub struct MemoryHammerProbe {
     pub external_work_j: f64,
     pub absolute_impulse_work_j: f64,
     pub surface_impulse_n_s: f64,
+    /// Work delivered to the moving surface; zero for the fixed-wall experiment.
+    pub surface_work_j: f64,
     pub applied_impulse_n_s: f64,
     pub balance_residual_j: f64,
 }
 
 /// Offline impact model. Both masses and material remain alive after separation.
-/// The wall is stationary at position zero. No tine, action, pickup or plugin integration.
+/// Public tick uses a stationary wall at zero; the modal wrapper uses an internal
+/// reciprocal moving port. No action, pickup voltage or plugin integration.
+#[derive(Clone)]
 pub struct MemoryHammer {
     p: MemoryHammerProfile,
     h: f64,
@@ -71,6 +75,8 @@ pub struct MemoryHammer {
     absolute_work: f64,
     impulse: f64,
     applied_impulse: f64,
+    surface_position: f64,
+    surface_work: f64,
 }
 impl MemoryHammer {
     pub fn new(
@@ -105,6 +111,8 @@ impl MemoryHammer {
             absolute_work: 0.0,
             impulse: 0.0,
             applied_impulse: 0.0,
+            surface_position: 0.0,
+            surface_work: 0.0,
         })
     }
 
@@ -134,6 +142,19 @@ impl MemoryHammer {
     }
 
     fn advance<const FAST: bool>(&mut self) -> Result<MemoryHammerProbe, ModelError> {
+        self.advance_against::<FAST>(0.0, 0.0)
+    }
+
+    /// Internal reciprocal port: surface endpoint = free_position + compliance*N.
+    /// The caller must apply the same N to its prepared mechanical response.
+    pub(crate) fn advance_against<const FAST: bool>(
+        &mut self,
+        surface_free: f64,
+        compliance: f64,
+    ) -> Result<MemoryHammerProbe, ModelError> {
+        if !surface_free.is_finite() || !compliance.is_finite() || compliance < 0.0 {
+            return Err(ModelError("invalid moving surface response"));
+        }
         let ac = self.h * self.h / (2.0 * self.p.core_mass_kg);
         let at = self.h * self.h / (2.0 * self.p.tip_mass_kg);
         let free_core = self.core + self.h * self.vc;
@@ -149,14 +170,18 @@ impl MemoryHammer {
             (force, at * slope / (1.0 + (ac + at) * slope))
         };
         let open_force = material_force(0.0).0;
-        let open_tip = free_tip + at * open_force;
-        let upper = contact_gradient(self.p.surface_stiffness_n_m2, self.tip, open_tip);
+        let old_gap = self.tip - self.surface_position;
+        let open_tip = free_tip + at * open_force - surface_free;
+        let upper = contact_gradient(self.p.surface_stiffness_n_m2, old_gap, open_tip);
         let normal = root::<FAST>(0.0, upper, |normal| {
             let (force, derivative) = material_force(normal);
-            let tip = free_tip + at * (force - normal);
-            let reaction = contact_gradient(self.p.surface_stiffness_n_m2, self.tip, tip);
-            let slope = contact_slope(self.p.surface_stiffness_n_m2, self.tip, tip, reaction);
-            (normal - reaction, 1.0 + slope * at * (1.0 - derivative))
+            let gap = free_tip + at * (force - normal) - surface_free - compliance * normal;
+            let reaction = contact_gradient(self.p.surface_stiffness_n_m2, old_gap, gap);
+            let slope = contact_slope(self.p.surface_stiffness_n_m2, old_gap, gap, reaction);
+            (
+                normal - reaction,
+                1.0 + slope * (at * (1.0 - derivative) + compliance),
+            )
         });
         let force = material_force(normal).0;
         let core = free_core - ac * force;
@@ -164,7 +189,9 @@ impl MemoryHammer {
         let vc = self.vc - self.h * force / self.p.core_mass_kg;
         let vt = self.vt + self.h * (force - normal) / self.p.tip_mass_kg;
         let impulse = self.impulse + self.h * normal;
-        if ![core, tip, vc, vt, normal, impulse]
+        let surface = surface_free + compliance * normal;
+        let surface_work = self.surface_work + normal * (surface - self.surface_position);
+        if ![core, tip, vc, vt, normal, impulse, surface, surface_work]
             .iter()
             .all(|v| v.is_finite())
             || normal < 0.0
@@ -181,12 +208,16 @@ impl MemoryHammer {
         self.material = material;
         self.force = normal;
         self.impulse = impulse;
+        self.surface_position = surface;
+        self.surface_work = surface_work;
         Ok(self.probe())
     }
 
     pub fn probe(&self) -> MemoryHammerProbe {
         let material = self.material.probe();
-        let surface = self.p.surface_stiffness_n_m2 * self.tip.max(0.0).powi(3) / 3.0;
+        let surface = self.p.surface_stiffness_n_m2
+            * (self.tip - self.surface_position).max(0.0).powi(3)
+            / 3.0;
         let energy = 0.5
             * (self.p.core_mass_kg * self.vc * self.vc + self.p.tip_mass_kg * self.vt * self.vt)
             + material.stored_energy_j
@@ -205,7 +236,9 @@ impl MemoryHammer {
             absolute_impulse_work_j: self.absolute_work,
             surface_impulse_n_s: self.impulse,
             applied_impulse_n_s: self.applied_impulse,
-            balance_residual_j: energy + material.dissipated_energy_j - self.initial - self.work,
+            surface_work_j: self.surface_work,
+            balance_residual_j: energy + material.dissipated_energy_j - self.initial - self.work
+                + self.surface_work,
         }
     }
 }
