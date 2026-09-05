@@ -71,7 +71,10 @@ and -R0. Moreover dF/dN=at K/(1+(ac+at)K)<1, so t1 decreases with N. The outer
 residual is also monotone with derivative at least one; its bracket runs from
 zero to the wall reaction evaluated at the open-contact tip endpoint.
 
-Each root search has at most 12 safeguarded Newton iterations followed by at
+The [direct material branch](MEMORY-MATERIAL-SOLVE.md) now attempts a checked
+quadratic solution when the inner root retains the old deformation's sign.
+Other cases retain the original solve. Each iterative root search has at most
+12 safeguarded Newton iterations followed by at
 most 64 bisections. A zero residual or floating-point stagnation terminates it
 earlier. There is no open-ended iteration, attractive-contact clipping, memory
 reset on separation, or deletion of an escaped hammer. The fixed-size stepping

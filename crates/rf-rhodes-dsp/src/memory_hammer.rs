@@ -164,12 +164,20 @@ impl MemoryHammer {
         let at = self.h * self.h / (2.0 * self.p.tip_mass_kg);
         let free_core = self.core + self.h * self.vc;
         let free_tip = self.tip + self.h * self.vt;
+        let zero_force = self.material.response_at(0.0).0;
         let material_force = |normal: f64| {
             let rhs = free_core - free_tip + at * normal;
-            let r0 = (ac + at) * self.material.response_at(0.0).0 - rhs;
-            let x = root::<FAST>(0.0_f64.min(-r0), 0.0_f64.max(-r0), |x| {
-                let (force, slope) = self.material.response_at(x);
-                (x + (ac + at) * force - rhs, 1.0 + (ac + at) * slope)
+            let r0 = (ac + at) * zero_force - rhs;
+            let direct = if FAST {
+                self.material.same_sign_response_root(ac + at, rhs, r0)
+            } else {
+                None
+            };
+            let x = direct.unwrap_or_else(|| {
+                root::<FAST>(0.0_f64.min(-r0), 0.0_f64.max(-r0), |x| {
+                    let (force, slope) = self.material.response_at(x);
+                    (x + (ac + at) * force - rhs, 1.0 + (ac + at) * slope)
+                })
             });
             let (force, slope) = self.material.response_at(x);
             (force, at * slope / (1.0 + (ac + at) * slope))

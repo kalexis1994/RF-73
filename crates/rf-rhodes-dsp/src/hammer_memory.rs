@@ -181,6 +181,46 @@ impl HammerMemory {
         )
     }
 
+    /// Solve x + compliance * mean_force(x) = rhs when the root stays on
+    /// the old deformation's side of zero. Crossing ramps retain the caller's solver.
+    /// r0 is the original residual at zero, computed by the caller for its bracket.
+    pub(crate) fn same_sign_response_root(
+        &self,
+        compliance: f64,
+        rhs: f64,
+        r0: f64,
+    ) -> Option<f64> {
+        if !compliance.is_finite()
+            || compliance < 0.0
+            || !rhs.is_finite()
+            || !r0.is_finite()
+            || (self.x > 0.0 && r0 > 0.0)
+            || (self.x < 0.0 && r0 < 0.0)
+        {
+            return None;
+        }
+        // With y=|x|, A*y^2+B*y=|r0|. B>=1; the conjugate form
+        // avoids subtracting nearly equal roots and includes the linear limit.
+        let a = compliance * self.p.equilibrium_cubic_n_m2 / 3.0;
+        let b = 1.0
+            + compliance
+                * (self.p.equilibrium_cubic_n_m2 * self.x.abs() / 3.0
+                    + 0.5 * self.p.equilibrium_stiffness_n_m
+                    + self.p.memory_stiffness_n_m * self.mean_delta);
+        let y = 2.0 * r0.abs() / (b + (b * b + 4.0 * a * r0.abs()).sqrt());
+        let x = if r0 > 0.0 { -y } else { y };
+        let force = self.response_at(x).0;
+        let residual = x + compliance * force - rhs;
+        let scale = x.abs() + (compliance * force).abs() + rhs.abs();
+        (x.is_finite()
+            && residual.is_finite()
+            && scale.is_finite()
+            && x >= 0.0_f64.min(-r0)
+            && x <= 0.0_f64.max(-r0)
+            && residual.abs() <= 8.0 * f64::EPSILON * scale)
+            .then_some(x)
+    }
+
     /// Internal free-motion quadrature; not a prescribed linear ramp.
     pub(crate) fn commit_free_motion(
         &mut self,
@@ -263,6 +303,84 @@ fn cubic_gradient(a: f64, b: f64) -> f64 {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn direct_material_roots_cover_signed_loading_unloading_and_linear_limits() {
+        let mut accepted = 0;
+        let mut attempted = 0;
+        for h in [1e-9, 1e-6, 0.001] {
+            for tau in [1e-6, 0.001, 1.0] {
+                for cubic in [0.0, 4e10, 1e12] {
+                    for linear in [0.0, 1e8] {
+                        for memory in [1.0, 1e8] {
+                            let p = HammerMemoryProfile {
+                                equilibrium_stiffness_n_m: linear,
+                                equilibrium_cubic_n_m2: cubic,
+                                memory_stiffness_n_m: memory,
+                                relaxation_seconds: tau,
+                            };
+                            for old in [-0.001, -1e-7, 0.0, 1e-7, 0.001] {
+                                let mut material = HammerMemory::new(h, p).unwrap();
+                                material.advance_to(-0.5 * old).unwrap();
+                                material.advance_to(old).unwrap();
+                                for target in if old == 0.0 {
+                                    [-1e-5, 1e-5]
+                                } else {
+                                    [0.2 * old, 2.0 * old]
+                                } {
+                                    for compliance in [0.0, 1e-16, 0.05] {
+                                        let rhs =
+                                            target + compliance * material.response_at(target).0;
+                                        let r0 = compliance * material.response_at(0.0).0 - rhs;
+                                        let before = material.probe();
+                                        attempted += 1;
+                                        if let Some(x) =
+                                            material.same_sign_response_root(compliance, rhs, r0)
+                                        {
+                                            accepted += 1;
+                                            assert!(
+                                                (x - target).abs() < 1e-12 * target.abs(),
+                                                "{p:?} {old} {target} {compliance} {x}"
+                                            );
+                                        }
+                                        assert_eq!(before, material.probe());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        assert!(accepted * 10 > attempted * 9, "{accepted}/{attempted}");
+    }
+
+    #[test]
+    fn crossing_material_roots_and_invalid_trials_request_the_original_solver() {
+        for old in [-0.001, 0.001] {
+            let mut material = HammerMemory::new(1e-6, HammerMemoryProfile::default()).unwrap();
+            material.advance_to(old).unwrap();
+            let before = material.probe();
+            let target = -old;
+            let compliance = 0.001;
+            let rhs = target + compliance * material.response_at(target).0;
+            let r0 = compliance * material.response_at(0.0).0 - rhs;
+            assert!(
+                material
+                    .same_sign_response_root(compliance, rhs, r0)
+                    .is_none()
+            );
+            for (c, rhs, r0) in [
+                (f64::NAN, 0.0, 0.0),
+                (-1.0, 0.0, 0.0),
+                (0.0, f64::INFINITY, 0.0),
+                (0.0, 0.0, f64::NAN),
+            ] {
+                assert!(material.same_sign_response_root(c, rhs, r0).is_none());
+            }
+            assert_eq!(before, material.probe());
+        }
+    }
 
     #[test]
     fn ramp_composes_and_independent_heat_closes_energy_across_time_scales() {

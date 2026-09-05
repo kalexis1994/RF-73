@@ -692,3 +692,33 @@ CI now includes the coupled free audit; remote CI was not executed locally.
 No dependencies, audio-device access, Desktop interaction or listening package
 were introduced. Physical calibration, longer/wider numerical qualification and
 remaining contact cost are still open before integration into the audible plugin.
+
+## Checked quadratic material roots within contact
+
+Date: 2026-09-05. The [direct material solver](MEMORY-MATERIAL-SOLVE.md) replaces
+repeated inner iterations with a stable quadratic root when deformation retains
+its sign. The original residual and monotone bracket must accept the candidate;
+crossings and rejected trials retain safeguarded Newton/bisection. The constitutive
+law, contact response, heat integration and time resolution are unchanged.
+
+All 167 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. Two added tests cover 3,240 signed/history/profile/target trials, linear
+limits, crossings and nonfinite inputs. Existing tests still compare coupled
+motion with the independent bisection path and check energy and momentum.
+
+The new [coupled](../references/memory-modal-material-solve-validation.json) and
+[fixed-wall](../references/memory-material-solve-wall-validation.json) reports
+pass all 36 cases/72 takes with unchanged gates. Coupled candidate relative global
+energy residual is at most `1.166e-10`, kinetic velocity RMSE 0.006220%, pickup
+velocity RMSE 0.000772% and mean-force RMSE 0.001312%. Retained modal event/final
+checkpoints differ by at most `3.854e-8` in launch-speed-normalized kinetic metric;
+root arithmetic changes are not described as byte-identical trajectories.
+
+The retained [before](../references/memory-modal-material-solve-before-timing.json)
+and [after](../references/memory-modal-material-solve-after-timing.json) native
+batches show 1.208x–1.269x adaptive median speedups (17–21% less execution time)
+over four profiles, with three repetitions per path/profile. No measurements
+are discarded. Remaining adaptive cost is 26–59 seconds per simulated second;
+this remains an offline prototype. Existing CI audits exercise the changed
+solver, but remote CI was not executed locally. No dependencies or listening
+package were introduced, and no audio device or Desktop was used.

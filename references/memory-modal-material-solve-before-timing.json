@@ -1,0 +1,940 @@
+{
+  "cases": [
+    {
+      "adaptive_median_seconds": 0.3356674,
+      "adaptive_median_seconds_per_simulated_second": 41.958425,
+      "launch_speed_m_s": 0.2,
+      "median_speedup": 5.87657484760212,
+      "runs": [
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 1.8699227999999999,
+          "final_core_velocity_m_s": -0.20643754849599538,
+          "final_position": [
+            0.000033368057750022886,
+            0.0019772002471214055,
+            -0.00022102189563798447,
+            4.699952175960173e-6,
+            5.590810770829371e-7,
+            -7.766109515061927e-7,
+            -6.503158696149603e-8,
+            -4.161365411112275e-8,
+            -2.2354019233799334e-6
+          ],
+          "final_relative_energy_residual": 8.369632043021983e-10,
+          "final_tip_velocity_m_s": -0.10803447409073098,
+          "final_velocity": [
+            -0.05014243347299133,
+            0.7377337971814785,
+            0.22516092356320694,
+            0.07041198130410052,
+            0.06510481892618629,
+            0.016604460062125518,
+            0.001938769886349859,
+            0.03080397208071114,
+            0.008448783875979185
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0325384,
+          "repetition": 0
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 28211,
+            "accuracy_rejections": 601,
+            "fixed_ticks": 684740,
+            "maximum_free_interval_seconds": 6.397952655150352e-7,
+            "uncertified_clearance_rejections": 764,
+            "uniform_ticks_replaced": 5717308,
+            "uniform_to_accepted_interval_ratio": 8.979646567576173
+          },
+          "elapsed_seconds": 0.3349118,
+          "final_core_velocity_m_s": -0.2064375468886774,
+          "final_position": [
+            0.000033368057845740144,
+            0.0019772002616438955,
+            -0.0002210218958962029,
+            4.6999521767363e-6,
+            5.590811600531528e-7,
+            -7.766108865239234e-7,
+            -6.503158477575717e-8,
+            -4.161275007552599e-8,
+            -2.2354020564083106e-6
+          ],
+          "final_relative_energy_residual": 8.104344541043191e-11,
+          "final_tip_velocity_m_s": -0.10803451138583897,
+          "final_velocity": [
+            -0.05014243334527841,
+            0.737733802140888,
+            0.22516092347578712,
+            0.07041197989523988,
+            0.06510481829523497,
+            0.01660448867718492,
+            0.0019387848696774315,
+            0.030804021920838195,
+            0.008448783618557354
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.035073,
+          "repetition": 0
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 28211,
+            "accuracy_rejections": 601,
+            "fixed_ticks": 684740,
+            "maximum_free_interval_seconds": 6.397952655150352e-7,
+            "uncertified_clearance_rejections": 764,
+            "uniform_ticks_replaced": 5717308,
+            "uniform_to_accepted_interval_ratio": 8.979646567576173
+          },
+          "elapsed_seconds": 0.3356674,
+          "final_core_velocity_m_s": -0.2064375468886774,
+          "final_position": [
+            0.000033368057845740144,
+            0.0019772002616438955,
+            -0.0002210218958962029,
+            4.6999521767363e-6,
+            5.590811600531528e-7,
+            -7.766108865239234e-7,
+            -6.503158477575717e-8,
+            -4.161275007552599e-8,
+            -2.2354020564083106e-6
+          ],
+          "final_relative_energy_residual": 8.104344541043191e-11,
+          "final_tip_velocity_m_s": -0.10803451138583897,
+          "final_velocity": [
+            -0.05014243334527841,
+            0.737733802140888,
+            0.22516092347578712,
+            0.07041197989523988,
+            0.06510481829523497,
+            0.01660448867718492,
+            0.0019387848696774315,
+            0.030804021920838195,
+            0.008448783618557354
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.0347463,
+          "repetition": 1
+        },
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 1.9732328,
+          "final_core_velocity_m_s": -0.20643754849599538,
+          "final_position": [
+            0.000033368057750022886,
+            0.0019772002471214055,
+            -0.00022102189563798447,
+            4.699952175960173e-6,
+            5.590810770829371e-7,
+            -7.766109515061927e-7,
+            -6.503158696149603e-8,
+            -4.161365411112275e-8,
+            -2.2354019233799334e-6
+          ],
+          "final_relative_energy_residual": 8.369632043021983e-10,
+          "final_tip_velocity_m_s": -0.10803447409073098,
+          "final_velocity": [
+            -0.05014243347299133,
+            0.7377337971814785,
+            0.22516092356320694,
+            0.07041198130410052,
+            0.06510481892618629,
+            0.016604460062125518,
+            0.001938769886349859,
+            0.03080397208071114,
+            0.008448783875979185
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0328635,
+          "repetition": 1
+        },
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 1.9725746,
+          "final_core_velocity_m_s": -0.20643754849599538,
+          "final_position": [
+            0.000033368057750022886,
+            0.0019772002471214055,
+            -0.00022102189563798447,
+            4.699952175960173e-6,
+            5.590810770829371e-7,
+            -7.766109515061927e-7,
+            -6.503158696149603e-8,
+            -4.161365411112275e-8,
+            -2.2354019233799334e-6
+          ],
+          "final_relative_energy_residual": 8.369632043021983e-10,
+          "final_tip_velocity_m_s": -0.10803447409073098,
+          "final_velocity": [
+            -0.05014243347299133,
+            0.7377337971814785,
+            0.22516092356320694,
+            0.07041198130410052,
+            0.06510481892618629,
+            0.016604460062125518,
+            0.001938769886349859,
+            0.03080397208071114,
+            0.008448783875979185
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0350274,
+          "repetition": 2
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 28211,
+            "accuracy_rejections": 601,
+            "fixed_ticks": 684740,
+            "maximum_free_interval_seconds": 6.397952655150352e-7,
+            "uncertified_clearance_rejections": 764,
+            "uniform_ticks_replaced": 5717308,
+            "uniform_to_accepted_interval_ratio": 8.979646567576173
+          },
+          "elapsed_seconds": 0.3520028,
+          "final_core_velocity_m_s": -0.2064375468886774,
+          "final_position": [
+            0.000033368057845740144,
+            0.0019772002616438955,
+            -0.0002210218958962029,
+            4.6999521767363e-6,
+            5.590811600531528e-7,
+            -7.766108865239234e-7,
+            -6.503158477575717e-8,
+            -4.161275007552599e-8,
+            -2.2354020564083106e-6
+          ],
+          "final_relative_energy_residual": 8.104344541043191e-11,
+          "final_tip_velocity_m_s": -0.10803451138583897,
+          "final_velocity": [
+            -0.05014243334527841,
+            0.737733802140888,
+            0.22516092347578712,
+            0.07041197989523988,
+            0.06510481829523497,
+            0.01660448867718492,
+            0.0019387848696774315,
+            0.030804021920838195,
+            0.008448783618557354
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.0385771,
+          "repetition": 2
+        }
+      ],
+      "tine_length_m": 0.05,
+      "uniform_median_seconds": 1.9725746
+    },
+    {
+      "adaptive_median_seconds": 0.2651358,
+      "adaptive_median_seconds_per_simulated_second": 33.141974999999995,
+      "launch_speed_m_s": 0.8,
+      "median_speedup": 7.419846357979572,
+      "runs": [
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 1.9393148,
+          "final_core_velocity_m_s": -0.8151615359130898,
+          "final_position": [
+            0.00013481050791878965,
+            0.007973214304105528,
+            -0.0009058410366953951,
+            0.00001186036974155735,
+            -5.257828312193041e-7,
+            -4.582981490809938e-6,
+            1.2836847888027403e-7,
+            -6.422710427169324e-7,
+            -0.000015285769038672452
+          ],
+          "final_relative_energy_residual": 9.45192397878762e-10,
+          "final_tip_velocity_m_s": -0.7120098765341828,
+          "final_velocity": [
+            -0.20071934349670795,
+            3.045572572061616,
+            0.8722664197087345,
+            0.1603975642678849,
+            0.6663015723700441,
+            0.26524868416046077,
+            0.16611440647848064,
+            0.006181762349635877,
+            0.02531973492347006
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0351825,
+          "repetition": 0
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 26498,
+            "accuracy_rejections": 621,
+            "fixed_ticks": 482385,
+            "maximum_free_interval_seconds": 6.397952655150352e-7,
+            "uncertified_clearance_rejections": 2477,
+            "uniform_ticks_replaced": 5919663,
+            "uniform_to_accepted_interval_ratio": 12.580589251360331
+          },
+          "elapsed_seconds": 0.2861465,
+          "final_core_velocity_m_s": -0.8151614487406288,
+          "final_position": [
+            0.0001348105061982519,
+            0.007973214339509366,
+            -0.0009058410323165354,
+            0.000011860367047398277,
+            -5.257793436438213e-7,
+            -4.5829801234392925e-6,
+            1.2837113692653604e-7,
+            -6.422705488191544e-7,
+            -0.000015285769095837574
+          ],
+          "final_relative_energy_residual": 4.682160275648475e-11,
+          "final_tip_velocity_m_s": -0.7120111642008184,
+          "final_velocity": [
+            -0.20071933985129395,
+            3.045572596431001,
+            0.8722664148789783,
+            0.1603976347909473,
+            0.6663016256296399,
+            0.26524904454926146,
+            0.16611447626327752,
+            0.0061826663338339655,
+            0.025319729836879058
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.0363387,
+          "repetition": 0
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 26498,
+            "accuracy_rejections": 621,
+            "fixed_ticks": 482385,
+            "maximum_free_interval_seconds": 6.397952655150352e-7,
+            "uncertified_clearance_rejections": 2477,
+            "uniform_ticks_replaced": 5919663,
+            "uniform_to_accepted_interval_ratio": 12.580589251360331
+          },
+          "elapsed_seconds": 0.2651358,
+          "final_core_velocity_m_s": -0.8151614487406288,
+          "final_position": [
+            0.0001348105061982519,
+            0.007973214339509366,
+            -0.0009058410323165354,
+            0.000011860367047398277,
+            -5.257793436438213e-7,
+            -4.5829801234392925e-6,
+            1.2837113692653604e-7,
+            -6.422705488191544e-7,
+            -0.000015285769095837574
+          ],
+          "final_relative_energy_residual": 4.682160275648475e-11,
+          "final_tip_velocity_m_s": -0.7120111642008184,
+          "final_velocity": [
+            -0.20071933985129395,
+            3.045572596431001,
+            0.8722664148789783,
+            0.1603976347909473,
+            0.6663016256296399,
+            0.26524904454926146,
+            0.16611447626327752,
+            0.0061826663338339655,
+            0.025319729836879058
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.0410105,
+          "repetition": 1
+        },
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 1.9958946,
+          "final_core_velocity_m_s": -0.8151615359130898,
+          "final_position": [
+            0.00013481050791878965,
+            0.007973214304105528,
+            -0.0009058410366953951,
+            0.00001186036974155735,
+            -5.257828312193041e-7,
+            -4.582981490809938e-6,
+            1.2836847888027403e-7,
+            -6.422710427169324e-7,
+            -0.000015285769038672452
+          ],
+          "final_relative_energy_residual": 9.45192397878762e-10,
+          "final_tip_velocity_m_s": -0.7120098765341828,
+          "final_velocity": [
+            -0.20071934349670795,
+            3.045572572061616,
+            0.8722664197087345,
+            0.1603975642678849,
+            0.6663015723700441,
+            0.26524868416046077,
+            0.16611440647848064,
+            0.006181762349635877,
+            0.02531973492347006
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0407324,
+          "repetition": 1
+        },
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 1.9672669,
+          "final_core_velocity_m_s": -0.8151615359130898,
+          "final_position": [
+            0.00013481050791878965,
+            0.007973214304105528,
+            -0.0009058410366953951,
+            0.00001186036974155735,
+            -5.257828312193041e-7,
+            -4.582981490809938e-6,
+            1.2836847888027403e-7,
+            -6.422710427169324e-7,
+            -0.000015285769038672452
+          ],
+          "final_relative_energy_residual": 9.45192397878762e-10,
+          "final_tip_velocity_m_s": -0.7120098765341828,
+          "final_velocity": [
+            -0.20071934349670795,
+            3.045572572061616,
+            0.8722664197087345,
+            0.1603975642678849,
+            0.6663015723700441,
+            0.26524868416046077,
+            0.16611440647848064,
+            0.006181762349635877,
+            0.02531973492347006
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0371232,
+          "repetition": 2
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 26498,
+            "accuracy_rejections": 621,
+            "fixed_ticks": 482385,
+            "maximum_free_interval_seconds": 6.397952655150352e-7,
+            "uncertified_clearance_rejections": 2477,
+            "uniform_ticks_replaced": 5919663,
+            "uniform_to_accepted_interval_ratio": 12.580589251360331
+          },
+          "elapsed_seconds": 0.2552189,
+          "final_core_velocity_m_s": -0.8151614487406288,
+          "final_position": [
+            0.0001348105061982519,
+            0.007973214339509366,
+            -0.0009058410323165354,
+            0.000011860367047398277,
+            -5.257793436438213e-7,
+            -4.5829801234392925e-6,
+            1.2837113692653604e-7,
+            -6.422705488191544e-7,
+            -0.000015285769095837574
+          ],
+          "final_relative_energy_residual": 4.682160275648475e-11,
+          "final_tip_velocity_m_s": -0.7120111642008184,
+          "final_velocity": [
+            -0.20071933985129395,
+            3.045572596431001,
+            0.8722664148789783,
+            0.1603976347909473,
+            0.6663016256296399,
+            0.26524904454926146,
+            0.16611447626327752,
+            0.0061826663338339655,
+            0.025319729836879058
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.039544,
+          "repetition": 2
+        }
+      ],
+      "tine_length_m": 0.05,
+      "uniform_median_seconds": 1.9672669
+    },
+    {
+      "adaptive_median_seconds": 0.5715054,
+      "adaptive_median_seconds_per_simulated_second": 71.438175,
+      "launch_speed_m_s": 0.2,
+      "median_speedup": 3.605304516807715,
+      "runs": [
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 2.0592016,
+          "final_core_velocity_m_s": -0.24463814818880109,
+          "final_position": [
+            0.00004740004425127684,
+            0.0032390593368792943,
+            0.0003364275148255128,
+            -1.8858914067106405e-6,
+            -7.819712124083617e-6,
+            -2.162434989567931e-6,
+            -2.3650880553183747e-6,
+            -5.740234452099388e-7,
+            0.000012966658721524144
+          ],
+          "final_relative_energy_residual": 4.905603855421932e-10,
+          "final_tip_velocity_m_s": -0.16730418749641465,
+          "final_velocity": [
+            -0.03701423642196112,
+            1.0343529790931287,
+            -0.29234945183120276,
+            0.27349554421553973,
+            -0.05291910971621119,
+            0.061997254835012346,
+            0.011273083328358737,
+            0.012435940037921063,
+            0.0074107261161657535
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0339743,
+          "repetition": 0
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 25974,
+            "accuracy_rejections": 389,
+            "fixed_ticks": 1113050,
+            "maximum_free_interval_seconds": 1.2795905310300704e-6,
+            "uncertified_clearance_rejections": 7096,
+            "uniform_ticks_replaced": 5288998,
+            "uniform_to_accepted_interval_ratio": 5.620643638764416
+          },
+          "elapsed_seconds": 0.5660271,
+          "final_core_velocity_m_s": -0.24463821296410362,
+          "final_position": [
+            0.000047400046738645886,
+            0.003239059349139867,
+            0.0003364275266970784,
+            -1.8858818463190382e-6,
+            -7.819706066326243e-6,
+            -2.1624382315290412e-6,
+            -2.365089263838699e-6,
+            -5.740232592746208e-7,
+            0.00001296666048932119
+          ],
+          "final_relative_energy_residual": 8.4086708741745e-11,
+          "final_tip_velocity_m_s": -0.1673033604494552,
+          "final_velocity": [
+            -0.03701423710267061,
+            1.0343530309187448,
+            -0.2923494603806172,
+            0.2734955164163195,
+            -0.05291913991433664,
+            0.061997240184399914,
+            0.011273022805709364,
+            0.012435904571251686,
+            0.0074107231362486045
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.0374851,
+          "repetition": 0
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 25974,
+            "accuracy_rejections": 389,
+            "fixed_ticks": 1113050,
+            "maximum_free_interval_seconds": 1.2795905310300704e-6,
+            "uncertified_clearance_rejections": 7096,
+            "uniform_ticks_replaced": 5288998,
+            "uniform_to_accepted_interval_ratio": 5.620643638764416
+          },
+          "elapsed_seconds": 0.5715054,
+          "final_core_velocity_m_s": -0.24463821296410362,
+          "final_position": [
+            0.000047400046738645886,
+            0.003239059349139867,
+            0.0003364275266970784,
+            -1.8858818463190382e-6,
+            -7.819706066326243e-6,
+            -2.1624382315290412e-6,
+            -2.365089263838699e-6,
+            -5.740232592746208e-7,
+            0.00001296666048932119
+          ],
+          "final_relative_energy_residual": 8.4086708741745e-11,
+          "final_tip_velocity_m_s": -0.1673033604494552,
+          "final_velocity": [
+            -0.03701423710267061,
+            1.0343530309187448,
+            -0.2923494603806172,
+            0.2734955164163195,
+            -0.05291913991433664,
+            0.061997240184399914,
+            0.011273022805709364,
+            0.012435904571251686,
+            0.0074107231362486045
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.0376737,
+          "repetition": 1
+        },
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 2.060451,
+          "final_core_velocity_m_s": -0.24463814818880109,
+          "final_position": [
+            0.00004740004425127684,
+            0.0032390593368792943,
+            0.0003364275148255128,
+            -1.8858914067106405e-6,
+            -7.819712124083617e-6,
+            -2.162434989567931e-6,
+            -2.3650880553183747e-6,
+            -5.740234452099388e-7,
+            0.000012966658721524144
+          ],
+          "final_relative_energy_residual": 4.905603855421932e-10,
+          "final_tip_velocity_m_s": -0.16730418749641465,
+          "final_velocity": [
+            -0.03701423642196112,
+            1.0343529790931287,
+            -0.29234945183120276,
+            0.27349554421553973,
+            -0.05291910971621119,
+            0.061997254835012346,
+            0.011273083328358737,
+            0.012435940037921063,
+            0.0074107261161657535
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0435298,
+          "repetition": 1
+        },
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 2.067965,
+          "final_core_velocity_m_s": -0.24463814818880109,
+          "final_position": [
+            0.00004740004425127684,
+            0.0032390593368792943,
+            0.0003364275148255128,
+            -1.8858914067106405e-6,
+            -7.819712124083617e-6,
+            -2.162434989567931e-6,
+            -2.3650880553183747e-6,
+            -5.740234452099388e-7,
+            0.000012966658721524144
+          ],
+          "final_relative_energy_residual": 4.905603855421932e-10,
+          "final_tip_velocity_m_s": -0.16730418749641465,
+          "final_velocity": [
+            -0.03701423642196112,
+            1.0343529790931287,
+            -0.29234945183120276,
+            0.27349554421553973,
+            -0.05291910971621119,
+            0.061997254835012346,
+            0.011273083328358737,
+            0.012435940037921063,
+            0.0074107261161657535
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0394945,
+          "repetition": 2
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 25974,
+            "accuracy_rejections": 389,
+            "fixed_ticks": 1113050,
+            "maximum_free_interval_seconds": 1.2795905310300704e-6,
+            "uncertified_clearance_rejections": 7096,
+            "uniform_ticks_replaced": 5288998,
+            "uniform_to_accepted_interval_ratio": 5.620643638764416
+          },
+          "elapsed_seconds": 0.5772809,
+          "final_core_velocity_m_s": -0.24463821296410362,
+          "final_position": [
+            0.000047400046738645886,
+            0.003239059349139867,
+            0.0003364275266970784,
+            -1.8858818463190382e-6,
+            -7.819706066326243e-6,
+            -2.1624382315290412e-6,
+            -2.365089263838699e-6,
+            -5.740232592746208e-7,
+            0.00001296666048932119
+          ],
+          "final_relative_energy_residual": 8.4086708741745e-11,
+          "final_tip_velocity_m_s": -0.1673033604494552,
+          "final_velocity": [
+            -0.03701423710267061,
+            1.0343530309187448,
+            -0.2923494603806172,
+            0.2734955164163195,
+            -0.05291913991433664,
+            0.061997240184399914,
+            0.011273022805709364,
+            0.012435904571251686,
+            0.0074107231362486045
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.0388353,
+          "repetition": 2
+        }
+      ],
+      "tine_length_m": 0.12,
+      "uniform_median_seconds": 2.060451
+    },
+    {
+      "adaptive_median_seconds": 0.3635461,
+      "adaptive_median_seconds_per_simulated_second": 45.443262499999996,
+      "launch_speed_m_s": 0.8,
+      "median_speedup": 5.490117759480848,
+      "runs": [
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 1.9959109000000002,
+          "final_core_velocity_m_s": -0.9064953689566264,
+          "final_position": [
+            0.00018093287427337236,
+            0.012896666017944758,
+            0.0012935587564607443,
+            0.000019231474018535777,
+            -0.00002029190668712287,
+            -1.2707534258865582e-6,
+            -1.928200452790563e-6,
+            2.456994775570994e-6,
+            0.00005347977585441636
+          ],
+          "final_relative_energy_residual": 4.6538887048434844e-10,
+          "final_tip_velocity_m_s": -0.8830583647230147,
+          "final_velocity": [
+            -0.1433232363619411,
+            3.904286647626959,
+            -1.1409294464074886,
+            1.2713563608879512,
+            -0.2323385831507466,
+            0.37568976952377026,
+            0.06111074587202194,
+            0.3015688270438054,
+            0.042554459938011
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0345695,
+          "repetition": 0
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 26042,
+            "accuracy_rejections": 481,
+            "fixed_ticks": 682990,
+            "maximum_free_interval_seconds": 1.2795905310300704e-6,
+            "uncertified_clearance_rejections": 5595,
+            "uniform_ticks_replaced": 5719058,
+            "uniform_to_accepted_interval_ratio": 9.029279355515689
+          },
+          "elapsed_seconds": 0.3562299,
+          "final_core_velocity_m_s": -0.9064784232110609,
+          "final_position": [
+            0.00018093275314021162,
+            0.012896665700005973,
+            0.0012935581162085111,
+            0.00001923099525344399,
+            -0.000020292204550157646,
+            -1.2705612701518864e-6,
+            -1.928075701608672e-6,
+            2.4568918143532694e-6,
+            0.0000534796905359089
+          ],
+          "final_relative_energy_residual": 3.648615344209716e-11,
+          "final_tip_velocity_m_s": -0.8833613043709001,
+          "final_velocity": [
+            -0.14332320269793222,
+            3.904283778642011,
+            -1.1409289997661998,
+            1.271358049053174,
+            -0.23233884849385267,
+            0.3756891923623151,
+            0.0611144335782506,
+            0.3015700585659836,
+            0.04255462148681219
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.0367846,
+          "repetition": 0
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 26042,
+            "accuracy_rejections": 481,
+            "fixed_ticks": 682990,
+            "maximum_free_interval_seconds": 1.2795905310300704e-6,
+            "uncertified_clearance_rejections": 5595,
+            "uniform_ticks_replaced": 5719058,
+            "uniform_to_accepted_interval_ratio": 9.029279355515689
+          },
+          "elapsed_seconds": 0.3635461,
+          "final_core_velocity_m_s": -0.9064784232110609,
+          "final_position": [
+            0.00018093275314021162,
+            0.012896665700005973,
+            0.0012935581162085111,
+            0.00001923099525344399,
+            -0.000020292204550157646,
+            -1.2705612701518864e-6,
+            -1.928075701608672e-6,
+            2.4568918143532694e-6,
+            0.0000534796905359089
+          ],
+          "final_relative_energy_residual": 3.648615344209716e-11,
+          "final_tip_velocity_m_s": -0.8833613043709001,
+          "final_velocity": [
+            -0.14332320269793222,
+            3.904283778642011,
+            -1.1409289997661998,
+            1.271358049053174,
+            -0.23233884849385267,
+            0.3756891923623151,
+            0.0611144335782506,
+            0.3015700585659836,
+            0.04255462148681219
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.037044,
+          "repetition": 1
+        },
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 1.984009,
+          "final_core_velocity_m_s": -0.9064953689566264,
+          "final_position": [
+            0.00018093287427337236,
+            0.012896666017944758,
+            0.0012935587564607443,
+            0.000019231474018535777,
+            -0.00002029190668712287,
+            -1.2707534258865582e-6,
+            -1.928200452790563e-6,
+            2.456994775570994e-6,
+            0.00005347977585441636
+          ],
+          "final_relative_energy_residual": 4.6538887048434844e-10,
+          "final_tip_velocity_m_s": -0.8830583647230147,
+          "final_velocity": [
+            -0.1433232363619411,
+            3.904286647626959,
+            -1.1409294464074886,
+            1.2713563608879512,
+            -0.2323385831507466,
+            0.37568976952377026,
+            0.06111074587202194,
+            0.3015688270438054,
+            0.042554459938011
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.0355055,
+          "repetition": 1
+        },
+        {
+          "adaptive": false,
+          "controller": null,
+          "elapsed_seconds": 2.0053846,
+          "final_core_velocity_m_s": -0.9064953689566264,
+          "final_position": [
+            0.00018093287427337236,
+            0.012896666017944758,
+            0.0012935587564607443,
+            0.000019231474018535777,
+            -0.00002029190668712287,
+            -1.2707534258865582e-6,
+            -1.928200452790563e-6,
+            2.456994775570994e-6,
+            0.00005347977585441636
+          ],
+          "final_relative_energy_residual": 4.6538887048434844e-10,
+          "final_tip_velocity_m_s": -0.8830583647230147,
+          "final_velocity": [
+            -0.1433232363619411,
+            3.904286647626959,
+            -1.1409294464074886,
+            1.2713563608879512,
+            -0.2323385831507466,
+            0.37568976952377026,
+            0.06111074587202194,
+            0.3015688270438054,
+            0.042554459938011
+          ],
+          "free_operator_reserved_bytes": 0,
+          "preparation_seconds": 0.034273,
+          "repetition": 2
+        },
+        {
+          "adaptive": true,
+          "controller": {
+            "accepted_free_intervals": 26042,
+            "accuracy_rejections": 481,
+            "fixed_ticks": 682990,
+            "maximum_free_interval_seconds": 1.2795905310300704e-6,
+            "uncertified_clearance_rejections": 5595,
+            "uniform_ticks_replaced": 5719058,
+            "uniform_to_accepted_interval_ratio": 9.029279355515689
+          },
+          "elapsed_seconds": 0.3643476,
+          "final_core_velocity_m_s": -0.9064784232110609,
+          "final_position": [
+            0.00018093275314021162,
+            0.012896665700005973,
+            0.0012935581162085111,
+            0.00001923099525344399,
+            -0.000020292204550157646,
+            -1.2705612701518864e-6,
+            -1.928075701608672e-6,
+            2.4568918143532694e-6,
+            0.0000534796905359089
+          ],
+          "final_relative_energy_residual": 3.648615344209716e-11,
+          "final_tip_velocity_m_s": -0.8833613043709001,
+          "final_velocity": [
+            -0.14332320269793222,
+            3.904283778642011,
+            -1.1409289997661998,
+            1.271358049053174,
+            -0.23233884849385267,
+            0.3756891923623151,
+            0.0611144335782506,
+            0.3015700585659836,
+            0.04255462148681219
+          ],
+          "free_operator_reserved_bytes": 102960,
+          "preparation_seconds": 0.0395804,
+          "repetition": 2
+        }
+      ],
+      "tine_length_m": 0.12,
+      "uniform_median_seconds": 1.9959109000000002
+    }
+  ],
+  "experiment": "memory-modal-free-native-timing-v1",
+  "schema_version": 1,
+  "scope": "Same fine base step and 8 ms event protocol for both paths. Three paired repetitions per provisional profile with alternating order. Preparation is measured separately; execution consumes returned probes and includes adaptive control and rejections. No per-step audit inside timing; final energy checked and separate trajectory audit required. Heap payload excludes allocator overhead. No pickup, mixing, host, WASM or realtime qualification. Timing has no machine-dependent pass threshold.",
+  "simulated_seconds": 0.008,
+  "status": "pass",
+  "step_seconds": 1.249600127959053e-9,
+  "uniform_steps_per_take": 6402048,
+  "voice_inline_bytes": 5992
+}

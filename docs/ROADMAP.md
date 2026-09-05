@@ -86,7 +86,9 @@ hammer intervals with a whole-interval clearance certificate and local state/wor
 checks. It is validated against the fixed-wall reference. The
 [moving modal integration](MEMORY-MODAL-FREE.md) now adds a full-mass port-speed
 bound, prepared structural propagation and a coupled fine-reference audit.
-Reducing remaining contact cost and qualifying longer trajectories and wider
+The [direct material root](MEMORY-MATERIAL-SOLVE.md) now avoids iterative inner
+solves on checked same-sign deformation branches. Reducing remaining contact
+cost and qualifying longer trajectories and wider
 profiles remain gates before realtime integration.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
