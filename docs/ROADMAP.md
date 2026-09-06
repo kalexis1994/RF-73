@@ -175,6 +175,15 @@ large divergence is not reproduced over these short collisions with equal
 history. Full repetition remains unqualified. Move the shared checkpoint back
 to the late impulse and isolate intervening free/material recovery next.
 
+The [shared-impulse study](MEMORY-MODAL-APPROACH.md) now passes every force-free
+approach prefix and seven of eight complete 48 ms continuations. The second
+impulse at 120 mm / 10 ms relaxation still fails kinetic trajectory gates;
+even the two uniform midpoint grids diverge after contact. At the final endpoint
+the difference is concentrated in the hammer, while pickup/force gates pass.
+Next isolate post-separation material recovery from one identical state to
+distinguish inherited impact differences from free-propagation error. Full
+repetition and reference convergence remain unqualified.
+
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 
 The current mechanical work builds on the explicit tine/tonebar assembly with mounting compliance. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing plugin engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, and qualify numerical accuracy and performance before real-time integration.

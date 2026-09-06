@@ -85,6 +85,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Contact damping cost](docs/MODAL-CONTACT-DAMPING-COST.md): exact diagonal damping products with a dense reference and unchanged reciprocal heat.
 - [Late reimpact study](docs/MEMORY-MODAL-REIMPACT.md): repeated-excitation accuracy failures despite passing energy/work checks; qualification remains open.
 - [Shared late-impact checkpoints](docs/MEMORY-MODAL-CHECKPOINT.md): local collisions pass when all physical history starts equal; full repetition remains unqualified.
+- [Shared impulse approach](docs/MEMORY-MODAL-APPROACH.md): pre-contact motion passes; one post-impact recovery still exposes reference-grid sensitivity.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

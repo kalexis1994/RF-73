@@ -220,6 +220,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", memory_modal_check::REFINEMENT_HELP);
         print!("{}", memory_modal_check::TAIL_HELP);
         print!("{}", memory_modal_check::CHECKPOINT_HELP);
+        print!("{}", memory_modal_check::APPROACH_HELP);
         print!("{}", memory_modal_check::TAIL_TIMING_HELP);
         print!("{}", memory_modal_timing::HELP);
         print!("{}", modal_timing::HELP);
@@ -255,6 +256,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "memory-modal-checkpoint-check" {
         return memory_modal_check::run_checkpoint(&args);
+    }
+    if args[0] == "memory-modal-approach-check" {
+        return memory_modal_check::run_approach(&args);
     }
     if matches!(
         args[0].as_str(),

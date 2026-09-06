@@ -1129,3 +1129,35 @@ inherited differences and longer amplification remain unresolved. Next isolate
 the approach from an identical checkpoint at the late impulse. No equations,
 coefficients or tolerances changed, and no realtime timing, remote CI or
 GUI/audio qualification was performed.
+
+## Shared late-impulse approach and post-impact recovery
+
+Date: 2026-09-06. The [shared-impulse approach study](MEMORY-MODAL-APPROACH.md)
+restarts six integrators from identical donor states before the 32/80 ms core
+impulses. Each continuation spans 48 ms with original absolute events. A common
+force-free prefix excludes the earliest contact-containing frame across all
+paths, so the approach comparison never includes an impact in only one path.
+
+All 48 take-level energy/work/heat/force and contact/separation checks pass, as
+do all eight common prefixes. Seven of eight full checkpoint cases pass. The
+second 120 mm / 10 ms case fails five pairings with the finer midpoint grid,
+including the uniform-grid pair; the retained report has failure status and
+the command exits nonzero. Default/capped RK4 remains within all trajectory
+gates. Default/finer-midpoint section kinetic RMSE reaches 10.228% of launch
+speed, and the two midpoint grids reach 5.880%. Pickup and force gates pass.
+The failing kinetic section starts at 92 ms, after contact force has ceased.
+
+All checkpoint snapshots match their earlier donor event states; all 48 initial
+states match their checkpoints. The original local 8 ms checkpoint report is
+byte-identical after shared-helper changes. All 194 workspace tests, strict
+Clippy, formatting and release lab compilation pass. CLI help, invalid options
+and failed-report overwrite protection pass. A new regression covers contact
+frame exclusion, missing/empty prefixes, invalid bounds and separation of
+prefix trajectory gates from later failures. No DSP/plugin changes or new
+timing, remote CI or GUI/audio qualification are included.
+
+The new exploratory failure is not installed as a passing CI gate. The next
+experiment must use identical post-separation state to distinguish inherited
+collision differences from free hammer/material propagation error. No tolerance
+or physical coefficient changes, and no full-repetition or reference-convergence
+claim is made.

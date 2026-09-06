@@ -123,3 +123,8 @@ CLI help, invalid-option rejection and overwrite preservation pass. CI includes
 the new passing checkpoint qualification; the known failing full-repetition
 experiment remains separate. No physical equation or acceptance tolerance
 changes; no remote CI, GUI/audio or realtime timing qualification was performed.
+
+Follow-up: the [shared-impulse approach study](MEMORY-MODAL-APPROACH.md) passes
+all pre-contact prefixes but retains one failure during post-impact recovery,
+including disagreement between the two uniform midpoint grids. Its next
+checkpoint should be after separation.

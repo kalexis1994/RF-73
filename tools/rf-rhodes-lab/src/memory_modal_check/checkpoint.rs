@@ -14,7 +14,7 @@ No physical calibration, audio device or realtime claim.
 const BASE: usize = 16672;
 const FRAMES: usize = 384;
 type IntegrationPath = (&'static str, usize, bool, Option<(u32, u32)>);
-const PATHS: [IntegrationPath; 6] = [
+pub(super) const PATHS: [IntegrationPath; 6] = [
     ("rk4_default", BASE, true, None),
     ("rk4_contact_2", BASE, true, Some((2, 12))),
     ("rk4_free_8", BASE, true, Some((12, 8))),
@@ -22,7 +22,7 @@ const PATHS: [IntegrationPath; 6] = [
     ("uniform_16672", BASE, false, None),
     ("uniform_20832", 20832, false, None),
 ];
-const PAIRS: [(usize, usize); 8] = [
+pub(super) const PAIRS: [(usize, usize); 8] = [
     (0, 1),
     (0, 2),
     (0, 3),
@@ -33,11 +33,11 @@ const PAIRS: [(usize, usize); 8] = [
     (4, 5),
 ];
 
-struct Saved {
-    frame: usize,
-    checkpoint: MemoryModalCheckpoint,
-    probe: MemoryModalProbe,
-    first_contact_seconds: f64,
+pub(super) struct Saved {
+    pub frame: usize,
+    pub checkpoint: MemoryModalCheckpoint,
+    pub probe: MemoryModalProbe,
+    pub first_contact_seconds: f64,
 }
 fn event(voice: &mut MemoryModalAssembly, frame: usize) -> Result<(), Box<dyn Error>> {
     if let Some(event) = diagnostic_event(frame, 0.8, true) {
@@ -55,7 +55,7 @@ fn event(voice: &mut MemoryModalAssembly, frame: usize) -> Result<(), Box<dyn Er
     }
     Ok(())
 }
-fn donor(length: f64, tau: f64) -> Result<Vec<Saved>, Box<dyn Error>> {
+pub(super) fn donor(length: f64, tau: f64, at_impulse: bool) -> Result<Vec<Saved>, Box<dyn Error>> {
     let mut voice = MemoryModalAssembly::new(
         1.0 / (48000.0 * BASE as f64),
         TineGeometry {
@@ -78,10 +78,16 @@ fn donor(length: f64, tau: f64) -> Result<Vec<Saved>, Box<dyn Error>> {
     let mut controller = Controller::with_rk4_contact();
     let mut observed = LateReimpacts::default();
     let mut saved = Vec::new();
+    let mut pending = None;
     for frame in 0..6144 {
         let index = usize::from(frame >= 3840);
-        let start = (frame >= 1536 && observed.contacts[index].is_none())
-            .then(|| (voice.checkpoint(), voice.probe()));
+        if if at_impulse {
+            frame == 1536 || frame == 3840
+        } else {
+            frame >= 1536 && observed.contacts[index].is_none()
+        } {
+            pending = Some((frame, voice.checkpoint(), voice.probe()));
+        }
         event(&mut voice, frame)?;
         let mut remaining = BASE;
         while remaining > 0 {
@@ -93,8 +99,8 @@ fn donor(length: f64, tau: f64) -> Result<Vec<Saved>, Box<dyn Error>> {
                 q,
             );
         }
-        if let (Some((checkpoint, probe)), Some(first_contact_seconds)) =
-            (start, observed.contacts[index])
+        if let Some(first_contact_seconds) = observed.contacts[index]
+            && let Some((frame, checkpoint, probe)) = pending.take()
         {
             if probe.hammer.surface_energy_j != 0.0 || probe.hammer.contact_force_n != 0.0 {
                 return Err("donor checkpoint is not before a separated late impact".into());
@@ -113,12 +119,16 @@ fn donor(length: f64, tau: f64) -> Result<Vec<Saved>, Box<dyn Error>> {
     Err("donor did not expose both late impacts".into())
 }
 
-fn continuation(
+pub(super) fn continuation(
     saved: &Saved,
     substeps: usize,
     adaptive: bool,
     limits: Option<(u32, u32)>,
+    frames: usize,
 ) -> Result<Take, Box<dyn Error>> {
+    if !matches!(frames, 384 | 2304) || saved.frame + frames > 6144 {
+        return Err("checkpoint continuation outside its bounded observation domain".into());
+    }
     let h = 1.0 / (48000.0 * substeps as f64);
     let mut v = saved.checkpoint.restart(h)?;
     if v.probe() != saved.probe {
@@ -141,9 +151,10 @@ fn continuation(
     let mut residuals = [0.0_f64; 3];
     let mut positive = 0.0_f64;
     let mut first_contact = None;
+    let mut first_contact_frame = None;
     let mut separated_after_contact = false;
     let mut pass = true;
-    for frame in saved.frame..saved.frame + FRAMES {
+    for frame in saved.frame..saved.frame + frames {
         event(&mut v, frame)?;
         let mut remaining = substeps;
         let mut force = 0.0;
@@ -172,6 +183,7 @@ fn continuation(
                 && q.hammer.material.last_step_heat_j >= 0.0
                 && q.structural_heat_j >= before.structural_heat_j;
             if q.hammer.contact_force_n > 0.0 {
+                first_contact_frame.get_or_insert(frame);
                 first_contact.get_or_insert(
                     (frame as f64 + (substeps - remaining) as f64 / substeps as f64) / 48000.0,
                 );
@@ -194,7 +206,7 @@ fn continuation(
         && positive < 1e-10
         && first_contact.is_some()
         && separated_after_contact;
-    Ok(Take {
+    let mut take = Take {
         states,
         forces,
         mass: v.mass_matrix(),
@@ -204,19 +216,33 @@ fn continuation(
             "maximum_positive_relative_energy_step":positive,"first_contact_seconds":first_contact,
             "separated_after_contact":separated_after_contact,
             "controller":if adaptive {controller.report(h)} else {Value::Null}}),
-    })
+    };
+    if frames != FRAMES {
+        take.report["first_contact_frame"] = json!(first_contact_frame);
+        take.report["observation_frames"] = json!(frames);
+    }
+    Ok(take)
 }
 fn comparison(a: &Take, b: &Take, start_frame: usize) -> Result<Value, Box<dyn Error>> {
-    if a.states.len() != FRAMES
-        || b.states.len() != FRAMES
-        || a.forces.len() != FRAMES
-        || b.forces.len() != FRAMES
+    comparison_frames(a, b, start_frame, FRAMES)
+}
+pub(super) fn comparison_frames(
+    a: &Take,
+    b: &Take,
+    start_frame: usize,
+    frames: usize,
+) -> Result<Value, Box<dyn Error>> {
+    if !matches!(frames, 384 | 2304)
+        || a.states.len() != frames
+        || b.states.len() != frames
+        || a.forces.len() != frames
+        || b.forces.len() != frames
     {
-        return Err("checkpoint comparison requires complete 8 ms trajectories".into());
+        return Err("checkpoint comparison requires complete bounded trajectories".into());
     }
     let whole = refinement::compare(a, b, 0.8)?;
     let mut sections = Vec::new();
-    for start in (0..FRAMES).step_by(96) {
+    for start in (0..frames).step_by(96) {
         let slice = |t: &Take| Take {
             states: t.states[start..start + 96].to_vec(),
             forces: t.forces[start..start + 96].to_vec(),
@@ -245,10 +271,10 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let mut cases = Vec::new();
     for length in [0.075, 0.12] {
         for tau in [0.001, 0.01] {
-            for (index, saved) in donor(length, tau)?.into_iter().enumerate() {
+            for (index, saved) in donor(length, tau, false)?.into_iter().enumerate() {
                 let mut takes = Vec::new();
                 for (_, substeps, adaptive, limits) in PATHS {
-                    takes.push(continuation(&saved, substeps, adaptive, limits)?);
+                    takes.push(continuation(&saved, substeps, adaptive, limits, FRAMES)?);
                 }
                 let mut pairs = Vec::new();
                 for (a, b) in PAIRS {
