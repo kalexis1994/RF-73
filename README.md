@@ -78,6 +78,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Fourth-order hammer contact](docs/MEMORY-CONTACT-RK4.md): certified fixed-wall RK4 contact with independent heat, work and impulse integration.
 - [Coupled fourth-order contact](docs/MEMORY-MODAL-RK4.md): moving tine/tonebar integration with reciprocal work checks and native timing.
 - [Coupled resolution study](docs/MEMORY-MODAL-REFINEMENT.md): separate contact/free interval caps, implicit-reference sensitivity and 32 ms trajectories.
+- [Incremental modal midpoint](docs/MODAL-MIDPOINT-INCREMENTS.md): preserve force-free velocity and reduce reference drift without changing the discrete equations.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

@@ -54,7 +54,7 @@ pub(super) fn inverse(a: Matrix) -> Result<Matrix, ModelError> {
 
 pub(super) struct Midpoint {
     from_q: Matrix,
-    from_v: Matrix,
+    delta_from_v: Matrix,
     pub response: Vector,
 }
 impl Midpoint {
@@ -63,20 +63,24 @@ impl Midpoint {
             core::array::from_fn(|j| m[i][j] + 0.5 * h * c[i][j] + 0.25 * h * h * k[i][j])
         });
         let inv = inverse(a)?;
-        let r = core::array::from_fn(|i| {
-            core::array::from_fn(|j| m[i][j] - 0.5 * h * c[i][j] - 0.25 * h * h * k[i][j])
+        // Solve for the increment: A * delta_v = -h*K*q - (h*C + h*h*K/2)*v.
+        // Preparing A^-1 * (M - h*C/2 - h*h*K/4) instead repeatedly applies
+        // a rounded near-identity matrix, causing O(epsilon) drift per tiny tick
+        // even when K=C=0. Form the small RHS directly, never by subtracting I.
+        let delta = core::array::from_fn(|i| {
+            core::array::from_fn(|j| -h * c[i][j] - 0.5 * h * h * k[i][j])
         });
         let ik = multiply(inv, k);
         Ok(Self {
             from_q: ik.map(|r| r.map(|v| -h * v)),
-            from_v: multiply(inv, r),
+            delta_from_v: multiply(inv, delta),
             response: apply(&inv, b).map(|v| h * v),
         })
     }
     pub fn free_velocity(&self, q: Vector, v: Vector) -> Vector {
         let a = apply(&self.from_q, q);
-        let b = apply(&self.from_v, v);
-        core::array::from_fn(|i| a[i] + b[i])
+        let b = apply(&self.delta_from_v, v);
+        core::array::from_fn(|i| v[i] + (a[i] + b[i]))
     }
 }
 
@@ -262,4 +266,82 @@ fn exp(g: StateMatrix, h: f64) -> StateMatrix {
         }
     }
     sum
+}
+
+#[cfg(test)]
+mod midpoint_tests {
+    use super::*;
+
+    fn dense_mass() -> Matrix {
+        let l: Matrix = core::array::from_fn(|i| {
+            core::array::from_fn(|j| {
+                if i == j {
+                    0.1 + i as f64 * 0.013
+                } else if j < i {
+                    0.017 * ((i + j + 1) as f64).sin()
+                } else {
+                    0.0
+                }
+            })
+        });
+        multiply(l, transpose(l))
+    }
+
+    #[test]
+    fn midpoint_preserves_force_free_velocity_with_dense_inertia_exactly() {
+        let m = dense_mass();
+        let zero = [[0.0; N]; N];
+        let initial = core::array::from_fn(|i| 0.02 * (i as f64 + 0.7));
+        for h in [1e-9, 1e-7, 1e-4] {
+            let step = Midpoint::prepare(m, zero, zero, [0.0; N], h).unwrap();
+            let mut q = [0.0; N];
+            let mut v = initial;
+            for _ in 0..10000 {
+                v = step.free_velocity(q, v);
+                q = core::array::from_fn(|i| q[i] + h * v[i]);
+            }
+            assert_eq!(v, initial, "unforced dense mass must not drift at h={h}");
+        }
+    }
+
+    #[test]
+    fn midpoint_closes_forced_damped_equations_and_independent_work() {
+        let m = dense_mass();
+        let k: Matrix = core::array::from_fn(|i| {
+            core::array::from_fn(|j| if i == j { 100.0 * (i + 1) as f64 } else { 0.0 })
+        });
+        let b: Vector = core::array::from_fn(|i| ((i + 1) as f64).cos());
+        let q: Vector = core::array::from_fn(|i| 1e-4 * ((i + 1) as f64).sin());
+        let v: Vector = core::array::from_fn(|i| 0.01 * (i + 1) as f64);
+        for damping in [0.0, 0.2, 10.0] {
+            let c = core::array::from_fn(|i| {
+                core::array::from_fn(|j| damping * (f64::from(i == j) + b[i] * b[j]))
+            });
+            for h in [1e-9, 1e-7, 1e-5, 1e-3] {
+                let step = Midpoint::prepare(m, k, c, b, h).unwrap();
+                for force in [-3.0, 0.0, 3.0] {
+                    let free = step.free_velocity(q, v);
+                    let next_v = core::array::from_fn(|i| free[i] + step.response[i] * force);
+                    let mid_v = core::array::from_fn(|i| 0.5 * (v[i] + next_v[i]));
+                    let next_q = core::array::from_fn(|i| q[i] + h * mid_v[i]);
+                    let mid_q = core::array::from_fn(|i| 0.5 * (q[i] + next_q[i]));
+                    let momentum = apply(&m, core::array::from_fn(|i| next_v[i] - v[i]));
+                    let elastic = apply(&k, mid_q);
+                    let drag = apply(&c, mid_v);
+                    let scale = apply(&m, v).iter().map(|x| x.abs()).sum::<f64>()
+                        + h * force.abs() * b.iter().map(|x| x.abs()).sum::<f64>();
+                    for i in 0..N {
+                        let residual = momentum[i] - h * (b[i] * force - elastic[i] - drag[i]);
+                        assert!(residual.abs() < 5e-14 * scale, "momentum: {residual}");
+                    }
+                    let energy = |q, v| 0.5 * (dot(q, apply(&k, q)) + dot(v, apply(&m, v)));
+                    let loss = h * dot(mid_v, drag);
+                    let work = h * force * dot(b, mid_v);
+                    let residual = energy(next_q, next_v) + loss - energy(q, v) - work;
+                    assert!(loss >= 0.0);
+                    assert!(residual.abs() < 5e-14 * (energy(q, v) + work.abs()));
+                }
+            }
+        }
+    }
 }

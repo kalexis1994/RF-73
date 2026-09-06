@@ -118,6 +118,9 @@ is at most 8.997e-11 and positive energy increment at most 6.777e-16. The
 structural ledger's proximity to the 1e-8 gate is an open numerical issue;
 smaller reference steps are not automatically a stronger energy check. Its
 origin must be investigated before extending this reference much further.
+The subsequent [incremental midpoint correction](MODAL-MIDPOINT-INCREMENTS.md)
+investigates prepared near-identity matrix roundoff and reruns this protocol.
+The report above remains the retained pre-correction evidence.
 
 ## Regression and remaining work
 

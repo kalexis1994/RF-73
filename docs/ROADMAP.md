@@ -122,8 +122,13 @@ implicit-reference refinements. This points to reference sensitivity as a
 substantial contributor to the earlier difference, without establishing an
 exact continuous solution. Some late-window differences grow, and the finest
 uniform path's structural work residual reaches 7.327e-9 against a 1e-8 gate.
-Reference-ledger drift, longer/wider validation, further cost reduction and
-polyphonic host qualification remain open.
+The [incremental midpoint correction](MODAL-MIDPOINT-INCREMENTS.md) now removes
+repeated multiplication by a rounded near-identity matrix. Force-free velocity
+is preserved exactly in the new dense-inertia test; the finest uniform path's
+32 ms structural residual falls to 2.654e-13 with the same discrete equations.
+All 276 affected regression takes pass. Trajectory differences remain measurable,
+so longer/wider validation, further cost reduction and polyphonic host
+qualification remain open.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

@@ -938,3 +938,31 @@ pass. The default RK4 control is byte-identical to its prior report and all
 24 default/reference take reports match. CI includes the new study on both
 native runners; remote CI and GUI/audio testing were not run. The audible
 plugin remains unchanged, and no new performance or calibration claim is made.
+
+## Incremental midpoint and structural roundoff drift
+
+Date: 2026-09-05. The [incremental midpoint correction](MODAL-MIDPOINT-INCREMENTS.md)
+forms small velocity increments directly, avoiding repeated multiplication by
+a rounded near-identity matrix. It preserves the same implicit equations,
+contact force/compliance and independent heat/work formulas. A dense-inertia
+force-free test fails with the previous form and passes exactly with the new
+form. A second test checks forced/damped midpoint momentum and energy/work
+identities across step sizes and force signs.
+
+The repeated 96-take resolution study passes all 112 pair comparisons. The
+finest uniform reference's maximum 32 ms structural-work residual decreases
+from 7.327e-9 to 2.654e-13, about 27,600 times smaller; its combined energy
+residual decreases to 7.135e-12. No heat/work summation or acceptance tolerance
+was changed. Default RK4 versus the old uniform grid still differs by up to
+0.2595% in the 8 ms velocity metric, so energy closure must not be confused with
+trajectory accuracy or instrument calibration.
+
+The shared operator additionally passes 108 dissipative modal hammer takes and
+24 takes each for adaptive contact, economical contact and certified free
+motion: 276 audited takes in total. All 184 workspace tests, strict Clippy,
+formatting and release WASM compilation pass. Uniform reference reports agree
+between the three stateful audits and the corresponding resolution-study
+paths. Existing reports remain preserved as pre-correction evidence; new reports
+are not expected to match them byte for byte. Existing CI covers these checks;
+remote CI, timing and GUI/audio tests were not run. The audible plugin engine
+remains unchanged.
