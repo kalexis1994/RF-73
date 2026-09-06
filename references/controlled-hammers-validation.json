@@ -1,0 +1,3538 @@
+{
+  "schema_version": 1,
+  "experiment": "controlled-modal-hammers-validation-v1",
+  "date": "2026-09-06",
+  "base_commit": "bdabae3",
+  "source_sha256": [
+    {
+      "path": "tools/rf-rhodes-lab/src/memory_modal_check/hammer_comparison.rs",
+      "sha256": "fdd2e8b443be93399171c1e2010dff6ba89d963efc2e841bb76db054db14e663"
+    },
+    {
+      "path": "tools/rf-rhodes-lab/src/memory_modal_check/audio.rs",
+      "sha256": "81e02579a801001e7c8339b6d26a40dcb860d0555c5b462dcab71849703771d7"
+    },
+    {
+      "path": "tools/rf-rhodes-lab/src/memory_modal_check.rs",
+      "sha256": "63fbc3c4af0098ce0b60e1837bb087c51530999272d97bb8bee2aeb6c083a46c"
+    },
+    {
+      "path": "tools/rf-rhodes-lab/src/main.rs",
+      "sha256": "a4300f8d7ac948de97eeb171f66e912b6ec1d77cd8941400b30973a0f3d47aaf"
+    }
+  ],
+  "sample_rate_hz": 48000,
+  "frames": 72000,
+  "damper_frame": 43200,
+  "fixed_gain": 0.084,
+  "workspace_tests_passed": 201,
+  "checks": [
+    "workspace tests",
+    "strict Clippy",
+    "formatting",
+    "release lab build",
+    "all nine WAVs inspected",
+    "all three memory WAVs byte-identical to prior previews",
+    "gain-10 rejection retains failed report and no WAVs"
+  ],
+  "remote_ci_run": false,
+  "host_or_listening_test_performed": false,
+  "studies": [
+    {
+      "case": "soft",
+      "passed": true,
+      "full_report": "renders/hammer-comparison-75mm-soft.json",
+      "full_report_sha256": "de0add346b32fb86d8627877b61c06601838d8a822f66af357de06f3d65023a5",
+      "configuration": {
+        "fixed_output_gain": 0.084,
+        "geometry": {
+          "density_kg_m3": 7850.0,
+          "diameter_m": 0.0015,
+          "hammer_position": 0.2,
+          "length_m": 0.075,
+          "pickup_position": 0.98,
+          "tuning_mass_kg": 0.0001,
+          "tuning_position": 0.85,
+          "young_modulus_pa": 200000000000.0
+        },
+        "hammer": {
+          "core_mass_kg": 0.0038,
+          "equilibrium_cubic_n_m2": 40000000000.0,
+          "equilibrium_stiffness_n_m": 0.0,
+          "initial_gap_m": 0.0,
+          "launch_speed_m_s": 0.2,
+          "memory_stiffness_n_m": 200000.0,
+          "relaxation_seconds": 0.001,
+          "surface_stiffness_n_m2": 1000000000000.0,
+          "tip_mass_kg": 0.0002
+        },
+        "pickup_gap_m": 0.0015,
+        "pickup_offset_m": 0.0005,
+        "structure": {
+          "damper_n_s_m": 0.2,
+          "damper_position": 0.8,
+          "rotation_damping_n_m_s_rad": 0.002,
+          "rotation_stiffness_n_m_rad": 3.9478417604357436,
+          "support_inertia_kg_m2": 1E-05,
+          "support_mass_kg": 0.03,
+          "tine_decay_seconds": [
+            5.0,
+            0.16,
+            0.055,
+            0.035,
+            0.025,
+            0.02
+          ],
+          "tonebar_arm_m": 0.08,
+          "tonebar_decay_seconds": 8.0,
+          "tonebar_frequency_hz": 190.0,
+          "tonebar_mass_kg": 0.015,
+          "translation_damping_n_s_m": 5.0,
+          "translation_stiffness_n_m": 7579.856180036627
+        }
+      },
+      "launch_energy_j": 8E-05,
+      "candidates": [
+        {
+          "model": "two-mass-memory",
+          "wav": "renders/hammer-comparison-75mm-soft.wav",
+          "wav_sha256": "4bf9f02bf8589f257469a6ed20547c83b40576b8b2f5f43a7110acb9959404b9",
+          "inspection": {
+            "sample_rate": 48000,
+            "frames": 72000,
+            "peak": 0.174707562,
+            "rms": 0.016422098,
+            "finite": true
+          },
+          "qualification_passed": true,
+          "primary": {
+            "base_step_seconds": 2.5431315104166666E-09,
+            "base_ticks_per_output_frame": 8192,
+            "controller": {
+              "accepted_free_intervals": 4607810,
+              "accuracy_rejections": 0,
+              "contact": {
+                "accepted_intervals": 15046,
+                "accepted_rk4_half_steps": 30092,
+                "accuracy_rejections": 36,
+                "boundary_rejections": 1881,
+                "integrator": "coupled-rk4-step-doubling",
+                "local_energy_defect_limit": 1E-13,
+                "maximum_accepted_energy_defect": 9.996382576932895E-14,
+                "maximum_accepted_state_error": 2.900346222765836E-12,
+                "maximum_interval_seconds": 8.138020833333333E-08,
+                "state_error_limit": 1E-11,
+                "uniform_ticks_replaced": 260060
+              },
+              "fixed_ticks": 563,
+              "maximum_free_interval_seconds": 3.255208333333333E-07,
+              "uncertified_clearance_rejections": 1917,
+              "uniform_ticks_replaced": 589563377,
+              "uniform_to_accepted_interval_ratio": 127.5731228339893
+            },
+            "final_state": {
+              "balance_residual_j": 4.3964398094287205E-16,
+              "branch_extension_m": -2.251952506401841E-12,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.188968562473306,
+              "core_velocity_m_s": -0.12606059761911997,
+              "hammer_to_structure_work_j": 4.580559667331578E-05,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 3.3555547784835937E-09,
+              "material_energy_j": 5.042764726679148E-16,
+              "material_heat_j": 2.411854838775425E-06,
+              "mechanical_energy_j": 3.178254848803589E-05,
+              "pickup_velocity_m_s": -3.866618475078015E-09,
+              "position": [
+                -3.3591399346454095E-11,
+                -4.849202976266681E-09,
+                -1.2801003955973246E-11,
+                5.550823086157351E-14,
+                -5.3369602657215496E-15,
+                -3.4679852761515023E-16,
+                -3.716958620402064E-16,
+                4.029705339827307E-17,
+                -1.0011081897378247E-11
+              ],
+              "structural_energy_j": 5.1799433535188987E-17,
+              "structural_heat_j": 4.5805596673628345E-05,
+              "tip_position_m": -0.1889685658288608,
+              "tip_velocity_m_s": -0.1260605953702199,
+              "velocity": [
+                -2.2347180459525423E-10,
+                6.206402175303986E-09,
+                -4.222577547655213E-09,
+                -3.9148009414294944E-12,
+                7.950395713090448E-12,
+                3.564303565307805E-12,
+                8.503407052090055E-13,
+                5.251801215914852E-15,
+                2.5167328887872436E-10
+              ],
+              "viscous_deformation_m": 3.3578067309899955E-09
+            },
+            "first_contact": {
+              "contact_material_heat_j": 5.8968022459079446E-09,
+              "hammer_energy_j": 7.592857905186544E-05,
+              "impulse_n_s": 3.763642507496089E-05,
+              "outgoing_hammer_com_velocity_m_s": 0.1905908937312601,
+              "peak_interval_mean_force_n": 3.1124684958125037,
+              "separation_seconds": 2.635955810546875E-05,
+              "structural_energy_j": 4.036121897848798E-06,
+              "structural_heat_j": 2.9402248049024107E-08
+            },
+            "first_separation_seconds": 2.635955810546875E-05,
+            "force_positive_episode_count": 13,
+            "force_positive_intervals_seconds": 0.0006621526082357588,
+            "initial_state": {
+              "balance_residual_j": 0.0,
+              "branch_extension_m": 0.0,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.0,
+              "core_velocity_m_s": 0.2,
+              "hammer_to_structure_work_j": 0.0,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 0.0,
+              "material_energy_j": 0.0,
+              "material_heat_j": 0.0,
+              "mechanical_energy_j": 8E-05,
+              "pickup_velocity_m_s": 0.0,
+              "position": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "structural_energy_j": 0.0,
+              "structural_heat_j": 0.0,
+              "tip_position_m": -0.0,
+              "tip_velocity_m_s": 0.2,
+              "velocity": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "viscous_deformation_m": 0.0
+            },
+            "last_observed_separation": {
+              "contact_material_heat_j": 1.940311479575603E-06,
+              "hammer_energy_j": 3.225409184717847E-05,
+              "impulse_n_s": 0.0013042423900266925,
+              "outgoing_hammer_com_velocity_m_s": -0.12606059750667467,
+              "peak_interval_mean_force_n": 6.684438990413312,
+              "separation_seconds": 0.0008609339396158855,
+              "structural_energy_j": 4.094327202616705E-05,
+              "structural_heat_j": 4.86232464711908E-06
+            },
+            "maximum_positive_relative_energy_step": 5.082197683525802E-16,
+            "maximum_relative_energy_and_port_residuals": [
+              8.787119794816112E-12,
+              7.65709313988415E-12,
+              1.275208102091349E-12
+            ],
+            "passed": true,
+            "peak_interval_mean_force_n": 6.684438990413312,
+            "pickup_peak_displacement_m": 0.00030958778592452354,
+            "pickup_peak_velocity_m_s": 0.7087180700350566,
+            "total_contact_impulse_n_s": 0.0013042423900266925
+          },
+          "refined": {
+            "base_step_seconds": 1.2715657552083333E-09,
+            "base_ticks_per_output_frame": 16384,
+            "controller": {
+              "accepted_free_intervals": 36848896,
+              "accuracy_rejections": 0,
+              "contact": {
+                "accepted_intervals": 130482,
+                "accepted_rk4_half_steps": 260964,
+                "accuracy_rejections": 0,
+                "boundary_rejections": 872,
+                "integrator": "coupled-rk4-step-doubling",
+                "local_energy_defect_limit": 1E-13,
+                "maximum_accepted_energy_defect": 1.8634724839594607E-15,
+                "maximum_accepted_state_error": 3.5259587630957924E-15,
+                "maximum_interval_seconds": 5.086263020833333E-09,
+                "state_error_limit": 1E-11,
+                "uniform_ticks_replaced": 520416
+              },
+              "diagnostic_maximum_contact_level": 2,
+              "diagnostic_maximum_free_level": 5,
+              "fixed_ticks": 561,
+              "maximum_free_interval_seconds": 4.0690104166666665E-08,
+              "uncertified_clearance_rejections": 1543,
+              "uniform_ticks_replaced": 1179127023,
+              "uniform_to_accepted_interval_ratio": 31.89967403677978
+            },
+            "final_state": {
+              "balance_residual_j": 3.053777391549828E-15,
+              "branch_extension_m": -2.259182596332212E-12,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.18896856231588852,
+              "core_velocity_m_s": -0.1260605976198745,
+              "hammer_to_structure_work_j": 4.580559667321045E-05,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 3.360937111951401E-09,
+              "material_energy_j": 5.067077734020232E-16,
+              "material_heat_j": 2.411854837774398E-06,
+              "mechanical_energy_j": 3.1782548488236595E-05,
+              "pickup_velocity_m_s": -3.866618512720397E-09,
+              "position": [
+                -3.3591399378617004E-11,
+                -4.849202981019373E-09,
+                -1.2801003957781482E-11,
+                5.550823092464495E-14,
+                -5.336960291049745E-15,
+                -3.467985369691653E-16,
+                -3.7169586455420796E-16,
+                4.0297053424300487E-17,
+                -1.0011081907799942E-11
+              ],
+              "structural_energy_j": 5.179943363637597E-17,
+              "structural_heat_j": 4.580559667704279E-05,
+              "tip_position_m": -0.18896856567682563,
+              "tip_velocity_m_s": -0.12606059536374808,
+              "velocity": [
+                -2.2347180780145046E-10,
+                6.206401776217824E-09,
+                -4.222577552913128E-09,
+                -3.914800948891383E-12,
+                7.950395723885808E-12,
+                3.5643035712715905E-12,
+                8.503407083571164E-13,
+                5.251801038346049E-15,
+                2.5167328841113896E-10
+              ],
+              "viscous_deformation_m": 3.363196294547733E-09
+            },
+            "first_contact": {
+              "contact_material_heat_j": 5.893784291215347E-09,
+              "hammer_energy_j": 7.592858206982189E-05,
+              "impulse_n_s": 3.7636425074888994E-05,
+              "outgoing_hammer_com_velocity_m_s": 0.1905908937312772,
+              "peak_interval_mean_force_n": 3.1125011558478453,
+              "separation_seconds": 2.635701497395833E-05,
+              "structural_energy_j": 4.0361264836318E-06,
+              "structural_heat_j": 2.9397662254625728E-08
+            },
+            "first_separation_seconds": 2.635701497395833E-05,
+            "force_positive_episode_count": 13,
+            "force_positive_intervals_seconds": 0.0006621373494454975,
+            "initial_state": {
+              "balance_residual_j": 0.0,
+              "branch_extension_m": 0.0,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.0,
+              "core_velocity_m_s": 0.2,
+              "hammer_to_structure_work_j": 0.0,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 0.0,
+              "material_energy_j": 0.0,
+              "material_heat_j": 0.0,
+              "mechanical_energy_j": 8E-05,
+              "pickup_velocity_m_s": 0.0,
+              "position": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "structural_energy_j": 0.0,
+              "structural_heat_j": 0.0,
+              "tip_position_m": -0.0,
+              "tip_velocity_m_s": 0.2,
+              "velocity": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "viscous_deformation_m": 0.0
+            },
+            "last_observed_separation": {
+              "contact_material_heat_j": 1.9403102856789437E-06,
+              "hammer_energy_j": 3.2254093041107194E-05,
+              "impulse_n_s": 0.001304242390028247,
+              "outgoing_hammer_com_velocity_m_s": -0.12606059750706872,
+              "peak_interval_mean_force_n": 6.684462562494118,
+              "separation_seconds": 0.0008609326680501302,
+              "structural_energy_j": 4.0943278158062885E-05,
+              "structural_heat_j": 4.862318515129417E-06
+            },
+            "maximum_positive_relative_energy_step": 3.388131789017201E-16,
+            "maximum_relative_energy_and_port_residuals": [
+              8.004444410894192E-11,
+              7.543285793091062E-11,
+              1.037945703235947E-11
+            ],
+            "passed": true,
+            "peak_interval_mean_force_n": 6.684462562494118,
+            "pickup_peak_displacement_m": 0.00030958778592795277,
+            "pickup_peak_velocity_m_s": 0.7087180700273578,
+            "total_contact_impulse_n_s": 0.001304242390028247
+          },
+          "audio_refinement": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 5.1151090787515685E-12,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.01642209778247098,
+                "relative_rmse": 3.1147720263920596E-10,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 8.484641477286104E-13,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.043179134169958146,
+                "relative_rmse": 1.9649864779338926E-11,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 6.7058059071269156E-12,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.019925418190182457,
+                "relative_rmse": 3.365453032464314E-10,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 5.647947712368714E-13,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0006462604140593951,
+                "relative_rmse": 8.739430095821456E-10,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "frozen_trajectory_sampling": [
+            {
+              "candidate_factor": 16,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 7.666461469883303E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.01642209777877363,
+                    "relative_rmse": 4.668381331764193E-09,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 2.0862007272741738E-11,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.04317913416965058,
+                    "relative_rmse": 4.831501991395896E-10,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 7.973230773160885E-14,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.019925418184953622,
+                    "relative_rmse": 4.001537483003368E-12,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 1.211215784186655E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.0006462604135063376,
+                    "relative_rmse": 1.874191516102784E-07,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            },
+            {
+              "candidate_factor": 32,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 1.531636845617068E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.01642209777877363,
+                    "relative_rmse": 9.326682049091098E-10,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 1.5614706875444282E-12,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.04317913416965058,
+                    "relative_rmse": 3.6162621543299556E-11,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 4.737547069549637E-15,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.019925418184953622,
+                    "relative_rmse": 2.377639969999287E-13,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 2.421461929095089E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.0006462604135063376,
+                    "relative_rmse": 3.746882647441228E-08,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            }
+          ],
+          "mechanical_refinement_passed": true,
+          "first_contact_refinement": null,
+          "levels": {
+            "passed": true,
+            "peak": 0.1747075612835841,
+            "rms": 0.01642209777877363
+          },
+          "attack_spectrum": {
+            "band_edges_hz": [
+              0,
+              1000,
+              5000,
+              20000,
+              24000
+            ],
+            "bin_spacing_hz": 31.25,
+            "window": "periodic Hann, first 32 ms including common FIR delay",
+            "windowed_mean_square_by_band": [
+              0.0005050732562057132,
+              0.00014953409754758752,
+              1.6300990624917452E-07,
+              2.2351543844568183E-14
+            ]
+          }
+        },
+        {
+          "model": "elastic",
+          "wav": "renders\\hammer-comparison-75mm-soft-elastic.wav",
+          "wav_sha256": "23d0e0a32d795a2dc6259251c411cd6d9c126bf5df6be3adad64b70c94b1fc09",
+          "inspection": {
+            "sample_rate": 48000,
+            "frames": 72000,
+            "peak": 0.172202349,
+            "rms": 0.016563047,
+            "finite": true
+          },
+          "qualification_passed": true,
+          "primary": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 0.0,
+              "escaped_hammer_energy_j": 3.323805953314034E-05,
+              "structural_energy_j": 5.046973188524878E-17,
+              "total_heat_j": 4.67619404654487E-05
+            },
+            "first_contact": {
+              "contact_material_heat_j": 0.0,
+              "hammer_energy_j": 3.323805953314034E-05,
+              "impulse_n_s": 0.0013156592637247296,
+              "outgoing_hammer_com_velocity_m_s": -0.12891481593118237,
+              "peak_interval_mean_force_n": 3.67301671623718,
+              "separation_seconds": 0.0008549804687500001,
+              "structural_energy_j": 4.199637723098378E-05,
+              "structural_heat_j": 4.765563235876179E-06
+            },
+            "initial_energy_j": 8.000000000000002E-05,
+            "maximum_observed_positive_energy_increment": 3.3881317890172004E-16,
+            "maximum_relative_balance_residual": 1.7006388701792937E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 3.67301671623718,
+            "step_seconds": 8.138020833333333E-08,
+            "total_contact_impulse_n_s": 0.0013156592637247296,
+            "uniform_steps_per_output_frame": 256
+          },
+          "refined": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 0.0,
+              "escaped_hammer_energy_j": 3.323801641682878E-05,
+              "structural_energy_j": 5.046986635414777E-17,
+              "total_heat_j": 4.6761983580902585E-05
+            },
+            "first_contact": {
+              "contact_material_heat_j": 0.0,
+              "hammer_energy_j": 3.323801641682878E-05,
+              "impulse_n_s": 0.001315658929268776,
+              "outgoing_hammer_com_velocity_m_s": -0.12891473231719397,
+              "peak_interval_mean_force_n": 3.6730209396594073,
+              "separation_seconds": 0.0008549804687500001,
+              "structural_energy_j": 4.199641799611365E-05,
+              "structural_heat_j": 4.765565587056711E-06
+            },
+            "initial_energy_j": 8.000000000000002E-05,
+            "maximum_observed_positive_energy_increment": 3.3881317890172004E-16,
+            "maximum_relative_balance_residual": 2.7727284715190613E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 3.6730209396594073,
+            "step_seconds": 4.0690104166666665E-08,
+            "total_contact_impulse_n_s": 0.001315658929268776,
+            "uniform_steps_per_output_frame": 512
+          },
+          "audio_refinement": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 1.0581315680693219E-07,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.016563043947946065,
+                "relative_rmse": 6.388509089239831E-06,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 7.226381888520169E-07,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.04351347329819739,
+                "relative_rmse": 1.66072283841785E-05,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 9.831451220906289E-09,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.020099320770268107,
+                "relative_rmse": 4.891434558052057E-07,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 4.951677179504676E-10,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0006521018982384681,
+                "relative_rmse": 7.5934101601003E-07,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "frozen_trajectory_sampling": [
+            {
+              "candidate_factor": 16,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 7.750775174969899E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.016563047242365767,
+                    "relative_rmse": 4.679558695663555E-09,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 1.5978735887278573E-12,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.04351347530221157,
+                    "relative_rmse": 3.6721350745492987E-11,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 7.865226383551473E-14,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.020099325298220398,
+                    "relative_rmse": 3.913179306694371E-12,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 1.2254992384015206E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.0006521020576346407,
+                    "relative_rmse": 1.8793058909317882E-07,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            },
+            {
+              "candidate_factor": 32,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 1.5495276957441214E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.016563047242365767,
+                    "relative_rmse": 9.35532980779445E-10,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 9.36200497667393E-14,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.04351347530221157,
+                    "relative_rmse": 2.1515185610095608E-12,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 4.6759622646158594E-15,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.020099325298220398,
+                    "relative_rmse": 2.326427477160077E-13,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 2.4500173895042092E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.0006521020576346407,
+                    "relative_rmse": 3.757107282242166E-08,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            }
+          ],
+          "mechanical_refinement_passed": true,
+          "first_contact_refinement": [
+            {
+              "absolute_difference": 0.0,
+              "observable": "separation_seconds",
+              "passed": true,
+              "reference": 0.0008549804687500001
+            },
+            {
+              "absolute_difference": 3.3445595360066804E-10,
+              "observable": "impulse_n_s",
+              "passed": true,
+              "reference": 0.001315658929268776
+            },
+            {
+              "absolute_difference": 4.223422227500606E-06,
+              "observable": "peak_interval_mean_force_n",
+              "passed": true,
+              "reference": 3.6730209396594073
+            },
+            {
+              "absolute_difference": 8.361398839973333E-08,
+              "observable": "outgoing_hammer_com_velocity_m_s",
+              "passed": true,
+              "reference": -0.12891473231719397
+            },
+            {
+              "absolute_difference": 4.076512987171181E-11,
+              "observable": "structural_energy_j",
+              "passed": true,
+              "reference": 4.199641799611365E-05
+            },
+            {
+              "absolute_difference": 0.0,
+              "observable": "contact_material_heat_j",
+              "passed": true,
+              "reference": 0.0
+            }
+          ],
+          "levels": {
+            "passed": true,
+            "peak": 0.17220234934761422,
+            "rms": 0.016563047242365767
+          },
+          "attack_spectrum": {
+            "band_edges_hz": [
+              0,
+              1000,
+              5000,
+              20000,
+              24000
+            ],
+            "bin_spacing_hz": 31.25,
+            "window": "periodic Hann, first 32 ms including common FIR delay",
+            "windowed_mean_square_by_band": [
+              0.0005143191498261214,
+              0.00014464540455747863,
+              5.263149192602393E-08,
+              9.959202331277224E-17
+            ]
+          }
+        },
+        {
+          "model": "rate",
+          "wav": "renders\\hammer-comparison-75mm-soft-rate.wav",
+          "wav_sha256": "f958a4c16dde32331f79907e7b1851909bb8d98b91f432e29575f529adbed90b",
+          "inspection": {
+            "sample_rate": 48000,
+            "frames": 72000,
+            "peak": 0.164518148,
+            "rms": 0.016438838,
+            "finite": true
+          },
+          "qualification_passed": true,
+          "primary": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 2.5048525937966275E-06,
+              "escaped_hammer_energy_j": 3.197159841150616E-05,
+              "structural_energy_j": 5.067710118417516E-17,
+              "total_heat_j": 4.8028401587162025E-05
+            },
+            "first_contact": {
+              "contact_material_heat_j": 2.5048525937966275E-06,
+              "hammer_energy_j": 3.197159841150616E-05,
+              "impulse_n_s": 0.0013057398415114725,
+              "outgoing_hammer_com_velocity_m_s": -0.1264349603778681,
+              "peak_interval_mean_force_n": 3.1669539069804937,
+              "separation_seconds": 0.0008653157552083333,
+              "structural_energy_j": 4.102787745913176E-05,
+              "structural_heat_j": 4.495671535565741E-06
+            },
+            "initial_energy_j": 8.000000000000002E-05,
+            "maximum_observed_positive_energy_increment": 0.0,
+            "maximum_relative_balance_residual": 1.60143437139687E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 3.1669539069804937,
+            "step_seconds": 8.138020833333333E-08,
+            "total_contact_impulse_n_s": 0.0013057398415114725,
+            "uniform_steps_per_output_frame": 256
+          },
+          "refined": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 2.5048542886235307E-06,
+              "escaped_hammer_energy_j": 3.1971593219300264E-05,
+              "structural_energy_j": 5.067722474750574E-17,
+              "total_heat_j": 4.802840677844334E-05
+            },
+            "first_contact": {
+              "contact_material_heat_j": 2.5048542886235307E-06,
+              "hammer_energy_j": 3.1971593219300264E-05,
+              "impulse_n_s": 0.0013057398004452459,
+              "outgoing_hammer_com_velocity_m_s": -0.12643495011131145,
+              "peak_interval_mean_force_n": 3.1669519958968926,
+              "separation_seconds": 0.0008653157552083333,
+              "structural_energy_j": 4.102788066216922E-05,
+              "structural_heat_j": 4.495671829908163E-06
+            },
+            "initial_energy_j": 8.000000000000002E-05,
+            "maximum_observed_positive_energy_increment": 0.0,
+            "maximum_relative_balance_residual": 2.7571600059485273E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 3.1669519958968926,
+            "step_seconds": 4.0690104166666665E-08,
+            "total_contact_impulse_n_s": 0.0013057398004452459,
+            "uniform_steps_per_output_frame": 512
+          },
+          "audio_refinement": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 3.042819585716316E-08,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.016438838020199,
+                "relative_rmse": 1.8509943233077017E-06,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 2.038786642472892E-07,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.04305487116504944,
+                "relative_rmse": 4.735321665827939E-06,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 8.215113896989093E-09,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.01995912946461352,
+                "relative_rmse": 4.1159680393646703E-07,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 4.176831556917405E-10,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0006475163693588838,
+                "relative_rmse": 6.450542031938053E-07,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "frozen_trajectory_sampling": [
+            {
+              "candidate_factor": 16,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 7.687890214878855E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.016438838482394944,
+                    "relative_rmse": 4.676662662700984E-09,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 1.6578994775440177E-12,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.04305487285479708,
+                    "relative_rmse": 3.8506662953930845E-11,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 7.791738337899024E-14,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.019959129987462243,
+                    "relative_rmse": 3.9038466820916406E-12,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 1.2155557828617498E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.000647516397097292,
+                    "relative_rmse": 1.8772586892175763E-07,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            },
+            {
+              "candidate_factor": 32,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 1.5369551977150435E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.016438838482394944,
+                    "relative_rmse": 9.349536461234986E-10,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 9.760896733665648E-14,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.04305487285479708,
+                    "relative_rmse": 2.267082930794931E-12,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 4.6317557099970955E-15,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.019959129987462243,
+                    "relative_rmse": 2.3206200435122333E-13,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 2.430138433868235E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.000647516397097292,
+                    "relative_rmse": 3.7530145101531645E-08,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            }
+          ],
+          "mechanical_refinement_passed": true,
+          "first_contact_refinement": [
+            {
+              "absolute_difference": 0.0,
+              "observable": "separation_seconds",
+              "passed": true,
+              "reference": 0.0008653157552083333
+            },
+            {
+              "absolute_difference": 4.1066226591154886E-11,
+              "observable": "impulse_n_s",
+              "passed": true,
+              "reference": 0.0013057398004452459
+            },
+            {
+              "absolute_difference": 1.911083601147112E-06,
+              "observable": "peak_interval_mean_force_n",
+              "passed": true,
+              "reference": 3.1669519958968926
+            },
+            {
+              "absolute_difference": 1.0266556660365467E-08,
+              "observable": "outgoing_hammer_com_velocity_m_s",
+              "passed": true,
+              "reference": -0.12643495011131145
+            },
+            {
+              "absolute_difference": 3.2030374582043067E-12,
+              "observable": "structural_energy_j",
+              "passed": true,
+              "reference": 4.102788066216922E-05
+            },
+            {
+              "absolute_difference": 1.6948269032132483E-12,
+              "observable": "contact_material_heat_j",
+              "passed": true,
+              "reference": 2.5048542886235307E-06
+            }
+          ],
+          "levels": {
+            "passed": true,
+            "peak": 0.16451815272438974,
+            "rms": 0.016438838482394944
+          },
+          "attack_spectrum": {
+            "band_edges_hz": [
+              0,
+              1000,
+              5000,
+              20000,
+              24000
+            ],
+            "bin_spacing_hz": 31.25,
+            "window": "periodic Hann, first 32 ms including common FIR delay",
+            "windowed_mean_square_by_band": [
+              0.0005069640840865472,
+              0.0001409691913495325,
+              8.682748843077025E-08,
+              8.06910440596525E-18
+            ]
+          }
+        }
+      ],
+      "cross_model_differences": [
+        {
+          "audio_difference": {
+            "sections": [
+              {
+                "difference_rms": 0.000752278794025301,
+                "end_seconds": 1.5,
+                "reference_rms": 0.016563047242365767,
+                "relative_rmse": 0.045419105736840854,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.004989110070902363,
+                "end_seconds": 0.032,
+                "reference_rms": 0.04351347530221157,
+                "relative_rmse": 0.11465666753234006,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.0002455384077524969,
+                "end_seconds": 0.9,
+                "reference_rms": 0.020099325298220398,
+                "relative_rmse": 0.012216251247709146,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 7.649740750999013E-06,
+                "end_seconds": 1.5,
+                "reference_rms": 0.0006521020576346407,
+                "relative_rmse": 0.011730894974855308,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "candidate": "two-mass-memory",
+          "reference": "elastic"
+        },
+        {
+          "audio_difference": {
+            "sections": [
+              {
+                "difference_rms": 0.0005603842114508845,
+                "end_seconds": 1.5,
+                "reference_rms": 0.016438838482394944,
+                "relative_rmse": 0.03408903932300472,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.0037845515177028113,
+                "end_seconds": 0.032,
+                "reference_rms": 0.04305487285479708,
+                "relative_rmse": 0.0879006548333389,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.00012100363962047207,
+                "end_seconds": 0.9,
+                "reference_rms": 0.019959129987462243,
+                "relative_rmse": 0.006062570848352765,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 3.1564866747507036E-06,
+                "end_seconds": 1.5,
+                "reference_rms": 0.000647516397097292,
+                "relative_rmse": 0.00487475944841043,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "candidate": "two-mass-memory",
+          "reference": "rate"
+        },
+        {
+          "audio_difference": {
+            "sections": [
+              {
+                "difference_rms": 0.00046435709657207064,
+                "end_seconds": 1.5,
+                "reference_rms": 0.016438838482394944,
+                "relative_rmse": 0.02824756122942448,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.003063040461519311,
+                "end_seconds": 0.032,
+                "reference_rms": 0.04305487285479708,
+                "relative_rmse": 0.07114271297117612,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.00016347051925461113,
+                "end_seconds": 0.9,
+                "reference_rms": 0.019959129987462243,
+                "relative_rmse": 0.00819026276983509,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 5.017277283302646E-06,
+                "end_seconds": 1.5,
+                "reference_rms": 0.000647516397097292,
+                "relative_rmse": 0.007748494564453138,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "candidate": "elastic",
+          "reference": "rate"
+        }
+      ]
+    },
+    {
+      "case": "medium",
+      "passed": true,
+      "full_report": "renders/hammer-comparison-75mm-medium.json",
+      "full_report_sha256": "71a08742d9cbd43d5112b2b6e185c621d16f5befd30780598bdf49c9d3de08e5",
+      "configuration": {
+        "fixed_output_gain": 0.084,
+        "geometry": {
+          "density_kg_m3": 7850.0,
+          "diameter_m": 0.0015,
+          "hammer_position": 0.2,
+          "length_m": 0.075,
+          "pickup_position": 0.98,
+          "tuning_mass_kg": 0.0001,
+          "tuning_position": 0.85,
+          "young_modulus_pa": 200000000000.0
+        },
+        "hammer": {
+          "core_mass_kg": 0.0038,
+          "equilibrium_cubic_n_m2": 40000000000.0,
+          "equilibrium_stiffness_n_m": 0.0,
+          "initial_gap_m": 0.0,
+          "launch_speed_m_s": 0.4,
+          "memory_stiffness_n_m": 200000.0,
+          "relaxation_seconds": 0.001,
+          "surface_stiffness_n_m2": 1000000000000.0,
+          "tip_mass_kg": 0.0002
+        },
+        "pickup_gap_m": 0.0015,
+        "pickup_offset_m": 0.0005,
+        "structure": {
+          "damper_n_s_m": 0.2,
+          "damper_position": 0.8,
+          "rotation_damping_n_m_s_rad": 0.002,
+          "rotation_stiffness_n_m_rad": 3.9478417604357436,
+          "support_inertia_kg_m2": 1E-05,
+          "support_mass_kg": 0.03,
+          "tine_decay_seconds": [
+            5.0,
+            0.16,
+            0.055,
+            0.035,
+            0.025,
+            0.02
+          ],
+          "tonebar_arm_m": 0.08,
+          "tonebar_decay_seconds": 8.0,
+          "tonebar_frequency_hz": 190.0,
+          "tonebar_mass_kg": 0.015,
+          "translation_damping_n_s_m": 5.0,
+          "translation_stiffness_n_m": 7579.856180036627
+        }
+      },
+      "launch_energy_j": 0.00032,
+      "candidates": [
+        {
+          "model": "two-mass-memory",
+          "wav": "renders/hammer-comparison-75mm-medium.wav",
+          "wav_sha256": "ab6f396b6b383485cc65e328066a06a0f4aabcb4d9a501b8d18e980dad644dd5",
+          "inspection": {
+            "sample_rate": 48000,
+            "frames": 72000,
+            "peak": 0.358247459,
+            "rms": 0.032810877,
+            "finite": true
+          },
+          "qualification_passed": true,
+          "primary": {
+            "base_step_seconds": 2.5431315104166666E-09,
+            "base_ticks_per_output_frame": 8192,
+            "controller": {
+              "accepted_free_intervals": 4609187,
+              "accuracy_rejections": 5,
+              "contact": {
+                "accepted_intervals": 14143,
+                "accepted_rk4_half_steps": 28286,
+                "accuracy_rejections": 33,
+                "boundary_rejections": 1971,
+                "integrator": "coupled-rk4-step-doubling",
+                "local_energy_defect_limit": 1E-13,
+                "maximum_accepted_energy_defect": 9.988156265741055E-14,
+                "maximum_accepted_state_error": 4.784667171612295E-12,
+                "maximum_interval_seconds": 8.138020833333333E-08,
+                "state_error_limit": 1E-11,
+                "uniform_ticks_replaced": 189617
+              },
+              "fixed_ticks": 760,
+              "maximum_free_interval_seconds": 3.255208333333333E-07,
+              "uncertified_clearance_rejections": 2434,
+              "uniform_ticks_replaced": 589633623,
+              "uniform_to_accepted_interval_ratio": 127.55461074503307
+            },
+            "final_state": {
+              "balance_residual_j": 2.1836373854944302E-15,
+              "branch_extension_m": -2.2557473824251194E-12,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.38134817447105485,
+              "core_velocity_m_s": -0.25439286729967914,
+              "hammer_to_structure_work_j": 0.00018489810383615914,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 3.3583809622150795E-09,
+              "material_energy_j": 5.055521403101623E-16,
+              "material_heat_j": 5.670434412516077E-06,
+              "mechanical_energy_j": 0.00012943146175201244,
+              "pickup_velocity_m_s": -6.175361473002599E-09,
+              "position": [
+                -6.869023642094859E-11,
+                -9.911059806212817E-09,
+                -2.6709691489896044E-11,
+                1.1295529947848184E-13,
+                -9.884199052792404E-15,
+                -2.494957838818268E-16,
+                -6.501614026531097E-16,
+                8.304476628503442E-17,
+                -2.0430399124344266E-11
+              ],
+              "structural_energy_j": 2.1644662269837992E-16,
+              "structural_heat_j": 0.00018489810383765513,
+              "tip_position_m": -0.3813481778294358,
+              "tip_velocity_m_s": -0.2543928650469851,
+              "velocity": [
+                -3.128350781206696E-10,
+                3.3346938927246095E-08,
+                -8.563393580967552E-09,
+                -8.226558020067657E-12,
+                1.624896145791267E-11,
+                7.275973100619633E-12,
+                1.7370710174723414E-12,
+                1.0546706310385753E-14,
+                5.563412326671633E-10
+              ],
+              "viscous_deformation_m": 3.3606367095975048E-09
+            },
+            "first_contact": {
+              "contact_material_heat_j": 1.0315989377566942E-08,
+              "hammer_energy_j": 0.00030387471729728807,
+              "impulse_n_s": 7.415705943241701E-05,
+              "outgoing_hammer_com_velocity_m_s": 0.3814607351418955,
+              "peak_interval_mean_force_n": 7.819143426681762,
+              "separation_seconds": 2.0355224609374998E-05,
+              "structural_energy_j": 1.6018029015500595E-05,
+              "structural_heat_j": 9.693769782883748E-08
+            },
+            "first_separation_seconds": 2.0355224609374998E-05,
+            "force_positive_episode_count": 22,
+            "force_positive_intervals_seconds": 0.0004832865397135004,
+            "initial_state": {
+              "balance_residual_j": 0.0,
+              "branch_extension_m": 0.0,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.0,
+              "core_velocity_m_s": 0.4,
+              "hammer_to_structure_work_j": 0.0,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 0.0,
+              "material_energy_j": 0.0,
+              "material_heat_j": 0.0,
+              "mechanical_energy_j": 0.00032,
+              "pickup_velocity_m_s": 0.0,
+              "position": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "structural_energy_j": 0.0,
+              "structural_heat_j": 0.0,
+              "tip_position_m": -0.0,
+              "tip_velocity_m_s": 0.4,
+              "velocity": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "viscous_deformation_m": 0.0
+            },
+            "last_observed_separation": {
+              "contact_material_heat_j": 4.6358318850999E-06,
+              "hammer_energy_j": 0.00013046606427915885,
+              "impulse_n_s": 0.002617571468748172,
+              "outgoing_hammer_com_velocity_m_s": -0.2543928671870452,
+              "peak_interval_mean_force_n": 17.679935973637278,
+              "separation_seconds": 0.0008289642333984375,
+              "structural_energy_j": 0.00016527981654159655,
+              "structural_heat_j": 1.9618287294622904E-05
+            },
+            "maximum_positive_relative_energy_step": 3.388131789017201E-16,
+            "maximum_relative_energy_and_port_residuals": [
+              9.59451160013891E-12,
+              8.153877963448797E-12,
+              1.7924064196848247E-12
+            ],
+            "passed": true,
+            "peak_interval_mean_force_n": 17.679935973637278,
+            "pickup_peak_displacement_m": 0.0006190361364168763,
+            "pickup_peak_velocity_m_s": 1.411971306773594,
+            "total_contact_impulse_n_s": 0.002617571468748172
+          },
+          "refined": {
+            "base_step_seconds": 1.2715657552083333E-09,
+            "base_ticks_per_output_frame": 16384,
+            "controller": {
+              "accepted_free_intervals": 36853726,
+              "accuracy_rejections": 0,
+              "contact": {
+                "accepted_intervals": 95410,
+                "accepted_rk4_half_steps": 190820,
+                "accuracy_rejections": 0,
+                "boundary_rejections": 1162,
+                "integrator": "coupled-rk4-step-doubling",
+                "local_energy_defect_limit": 1E-13,
+                "maximum_accepted_energy_defect": 2.075574517715128E-15,
+                "maximum_accepted_state_error": 4.528835547784414E-15,
+                "maximum_interval_seconds": 5.086263020833333E-09,
+                "state_error_limit": 1E-11,
+                "uniform_ticks_replaced": 379632
+              },
+              "diagnostic_maximum_contact_level": 2,
+              "diagnostic_maximum_free_level": 5,
+              "fixed_ticks": 761,
+              "maximum_free_interval_seconds": 4.0690104166666665E-08,
+              "uncertified_clearance_rejections": 2113,
+              "uniform_ticks_replaced": 1179267607,
+              "uniform_to_accepted_interval_ratio": 31.92560996854741
+            },
+            "final_state": {
+              "balance_residual_j": 1.422934036224288E-14,
+              "branch_extension_m": -2.293695299605131E-12,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.38134817449135716,
+              "core_velocity_m_s": -0.2543928673009672,
+              "hammer_to_structure_work_j": 0.00018489810383644315,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 3.3865119042353342E-09,
+              "material_energy_j": 5.183672512531208E-16,
+              "material_heat_j": 5.670434410663721E-06,
+              "mechanical_energy_j": 0.0001294314617513945,
+              "pickup_velocity_m_s": -6.175361545627297E-09,
+              "position": [
+                -6.869023648866609E-11,
+                -9.911059816198803E-09,
+                -2.6709691495717244E-11,
+                1.1295529961217048E-13,
+                -9.884199102127511E-15,
+                -2.4949580180811705E-16,
+                -6.501614075283964E-16,
+                8.304476634319499E-17,
+                -2.0430399146106018E-11
+              ],
+              "structural_energy_j": 2.1644662313093267E-16,
+              "structural_heat_j": 0.00018489810385217113,
+              "tip_position_m": -0.38134817787786907,
+              "tip_velocity_m_s": -0.25439286501011443,
+              "velocity": [
+                -3.1283508433518036E-10,
+                3.334693816926671E-08,
+                -8.563393592011862E-09,
+                -8.226558010598173E-12,
+                1.624896147909502E-11,
+                7.27597311280427E-12,
+                1.7370710239027707E-12,
+                1.0546705945124885E-14,
+                5.563412316210725E-10
+              ],
+              "viscous_deformation_m": 3.3888055995349395E-09
+            },
+            "first_contact": {
+              "contact_material_heat_j": 1.0308951115246733E-08,
+              "hammer_energy_j": 0.00030387472433556276,
+              "impulse_n_s": 7.41570594323606E-05,
+              "outgoing_hammer_com_velocity_m_s": 0.3814607351419115,
+              "peak_interval_mean_force_n": 7.819355107903398,
+              "separation_seconds": 2.035268147786458E-05,
+              "structural_energy_j": 1.60180522984685E-05,
+              "structural_heat_j": 9.691441485604308E-08
+            },
+            "first_separation_seconds": 2.035268147786458E-05,
+            "force_positive_episode_count": 22,
+            "force_positive_intervals_seconds": 0.00048325983683317924,
+            "initial_state": {
+              "balance_residual_j": 0.0,
+              "branch_extension_m": 0.0,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.0,
+              "core_velocity_m_s": 0.4,
+              "hammer_to_structure_work_j": 0.0,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 0.0,
+              "material_energy_j": 0.0,
+              "material_heat_j": 0.0,
+              "mechanical_energy_j": 0.00032,
+              "pickup_velocity_m_s": 0.0,
+              "position": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "structural_energy_j": 0.0,
+              "structural_heat_j": 0.0,
+              "tip_position_m": -0.0,
+              "tip_velocity_m_s": 0.4,
+              "velocity": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "viscous_deformation_m": 0.0
+            },
+            "last_observed_separation": {
+              "contact_material_heat_j": 4.635830777455678E-06,
+              "hammer_energy_j": 0.00013046606538610612,
+              "impulse_n_s": 0.0026175714687456768,
+              "outgoing_hammer_com_velocity_m_s": -0.2543928671864236,
+              "peak_interval_mean_force_n": 17.6800256420718,
+              "separation_seconds": 0.0008289629618326822,
+              "structural_energy_j": 0.00016527984232514768,
+              "structural_heat_j": 1.9618261511191456E-05
+            },
+            "maximum_positive_relative_energy_step": 3.388131789017201E-16,
+            "maximum_relative_energy_and_port_residuals": [
+              7.77327217892955E-11,
+              7.67241596589998E-11,
+              5.359855083635761E-12
+            ],
+            "passed": true,
+            "peak_interval_mean_force_n": 17.6800256420718,
+            "pickup_peak_displacement_m": 0.0006190361364216513,
+            "pickup_peak_velocity_m_s": 1.4119713067767612,
+            "total_contact_impulse_n_s": 0.0026175714687456768
+          },
+          "audio_refinement": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 1.040701579201634E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.03281087730076008,
+                "relative_rmse": 3.1718188138100335E-10,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 8.34218350363215E-12,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.08681811414696938,
+                "relative_rmse": 9.608805242544372E-11,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.3555285890368788E-11,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.039766753278469825,
+                "relative_rmse": 3.4086981643803885E-10,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 1.1110719516274788E-12,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0012803744905308162,
+                "relative_rmse": 8.677710777936945E-10,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "frozen_trajectory_sampling": [
+            {
+              "candidate_factor": 16,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 1.5147397686798198E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.032810877293379365,
+                    "relative_rmse": 4.616578079079484E-09,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 1.3822210301214846E-10,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.0868181141465911,
+                    "relative_rmse": 1.5920882913761809E-09,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 1.6624898148856233E-13,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.039766753268001165,
+                    "relative_rmse": 4.1806023330131085E-12,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 2.373645344174768E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.0012803744894436429,
+                    "relative_rmse": 1.8538680391907688E-07,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            },
+            {
+              "candidate_factor": 32,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 3.004071509827749E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.032810877293379365,
+                    "relative_rmse": 9.155718339886986E-10,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 8.91401210167027E-12,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.0868181141465911,
+                    "relative_rmse": 1.0267456497176491E-10,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 9.87750783846139E-15,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.039766753268001165,
+                    "relative_rmse": 2.483860769797733E-13,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 4.745390839473075E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.0012803744894436429,
+                    "relative_rmse": 3.706252255568662E-08,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            }
+          ],
+          "mechanical_refinement_passed": true,
+          "first_contact_refinement": null,
+          "levels": {
+            "passed": true,
+            "peak": 0.3582474507379239,
+            "rms": 0.032810877293379365
+          },
+          "attack_spectrum": {
+            "band_edges_hz": [
+              0,
+              1000,
+              5000,
+              20000,
+              24000
+            ],
+            "bin_spacing_hz": 31.25,
+            "window": "periodic Hann, first 32 ms including common FIR delay",
+            "windowed_mean_square_by_band": [
+              0.002075527814836001,
+              0.0005654730712200977,
+              1.6224190142578028E-06,
+              1.6234146231559558E-13
+            ]
+          }
+        },
+        {
+          "model": "elastic",
+          "wav": "renders\\hammer-comparison-75mm-medium-elastic.wav",
+          "wav_sha256": "42598d775aa1ba89badd5de22d1cc385a0ce13a67fbe3a3f2b28111a3db8983a",
+          "inspection": {
+            "sample_rate": 48000,
+            "frames": 72000,
+            "peak": 0.38696903,
+            "rms": 0.03279095,
+            "finite": true
+          },
+          "qualification_passed": true,
+          "primary": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 0.0,
+              "escaped_hammer_energy_j": 0.00012755841005056894,
+              "structural_energy_j": 2.1393991152518283E-16,
+              "total_heat_j": 0.00019244158994433352
+            },
+            "first_contact": {
+              "contact_material_heat_j": 0.0,
+              "hammer_energy_j": 0.00012755841005056894,
+              "impulse_n_s": 0.0026101818056194514,
+              "outgoing_hammer_com_velocity_m_s": -0.25254545140486284,
+              "peak_interval_mean_force_n": 8.316353743888993,
+              "separation_seconds": 0.0008449707031250001,
+              "structural_energy_j": 0.0001721809784570158,
+              "structural_heat_j": 2.0260611492411617E-05
+            },
+            "initial_energy_j": 0.0003200000000000001,
+            "maximum_observed_positive_energy_increment": 3.3881317890172004E-16,
+            "maximum_relative_balance_residual": 1.526150083044908E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 8.316353743888993,
+            "step_seconds": 8.138020833333333E-08,
+            "total_contact_impulse_n_s": 0.0026101818056194514,
+            "uniform_steps_per_output_frame": 256
+          },
+          "refined": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 0.0,
+              "escaped_hammer_energy_j": 0.000127558342171464,
+              "structural_energy_j": 2.1394040933874423E-16,
+              "total_heat_j": 0.0001924416578193419
+            },
+            "first_contact": {
+              "contact_material_heat_j": 0.0,
+              "hammer_energy_j": 0.000127558342171464,
+              "impulse_n_s": 0.002610181536839631,
+              "outgoing_hammer_com_velocity_m_s": -0.2525453842099077,
+              "peak_interval_mean_force_n": 8.316373857789092,
+              "separation_seconds": 0.0008449707031250001,
+              "structural_energy_j": 0.0001721810214811385,
+              "structural_heat_j": 2.026063634739542E-05
+            },
+            "initial_energy_j": 0.0003200000000000001,
+            "maximum_observed_positive_energy_increment": 3.3881317890172004E-16,
+            "maximum_relative_balance_residual": 2.806321798207167E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 8.316373857789092,
+            "step_seconds": 4.0690104166666665E-08,
+            "total_contact_impulse_n_s": 0.002610181536839631,
+            "uniform_steps_per_output_frame": 512
+          },
+          "audio_refinement": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 3.775770232417226E-07,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.03279094702823385,
+                "relative_rmse": 1.151467272099885E-05,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 2.5835182253548118E-06,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.08750290264468638,
+                "relative_rmse": 2.9524943142119826E-05,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.7308772008304073E-08,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.039682979267848945,
+                "relative_rmse": 4.361762228454354E-07,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 8.563699450224083E-10,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0012778492425506319,
+                "relative_rmse": 6.701650840384456E-07,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "frozen_trajectory_sampling": [
+            {
+              "candidate_factor": 16,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 1.4992209418183815E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.032790949764373585,
+                    "relative_rmse": 4.5720570846265674E-09,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 3.7443386544098366E-12,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.08750290268298362,
+                    "relative_rmse": 4.279102223585989E-11,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 1.6424532556674161E-13,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.03968298316837426,
+                    "relative_rmse": 4.138935948183416E-12,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 2.370459850882448E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.001277849400055838,
+                    "relative_rmse": 1.8550385129725508E-07,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            },
+            {
+              "candidate_factor": 32,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 2.9972227281715306E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.032790949764373585,
+                    "relative_rmse": 9.140396205991954E-10,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 2.1855071112142787E-13,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.08750290268298362,
+                    "relative_rmse": 2.4976395573209786E-12,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 9.760639621035135E-15,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.03968298316837426,
+                    "relative_rmse": 2.4596536957972386E-13,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 4.7390224047872604E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.001277849400055838,
+                    "relative_rmse": 3.708592268056142E-08,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            }
+          ],
+          "mechanical_refinement_passed": true,
+          "first_contact_refinement": [
+            {
+              "absolute_difference": 0.0,
+              "observable": "separation_seconds",
+              "passed": true,
+              "reference": 0.0008449707031250001
+            },
+            {
+              "absolute_difference": 2.687798204489833E-10,
+              "observable": "impulse_n_s",
+              "passed": true,
+              "reference": 0.002610181536839631
+            },
+            {
+              "absolute_difference": 2.0113900099261173E-05,
+              "observable": "peak_interval_mean_force_n",
+              "passed": true,
+              "reference": 8.316373857789092
+            },
+            {
+              "absolute_difference": 6.719495515561391E-08,
+              "observable": "outgoing_hammer_com_velocity_m_s",
+              "passed": true,
+              "reference": -0.2525453842099077
+            },
+            {
+              "absolute_difference": 4.302412270310203E-11,
+              "observable": "structural_energy_j",
+              "passed": true,
+              "reference": 0.0001721810214811385
+            },
+            {
+              "absolute_difference": 0.0,
+              "observable": "contact_material_heat_j",
+              "passed": true,
+              "reference": 0.0
+            }
+          ],
+          "levels": {
+            "passed": true,
+            "peak": 0.38696903408967315,
+            "rms": 0.032790949764373585
+          },
+          "attack_spectrum": {
+            "band_edges_hz": [
+              0,
+              1000,
+              5000,
+              20000,
+              24000
+            ],
+            "bin_spacing_hz": 31.25,
+            "window": "periodic Hann, first 32 ms including common FIR delay",
+            "windowed_mean_square_by_band": [
+              0.0020667257159813373,
+              0.0005593493346740551,
+              2.522302734898132E-06,
+              4.5752520368610816E-14
+            ]
+          }
+        },
+        {
+          "model": "rate",
+          "wav": "renders\\hammer-comparison-75mm-medium-rate.wav",
+          "wav_sha256": "129a6970673644e29f6f238c879caa6a39524ede4b1238d676e3863547c88eb6",
+          "inspection": {
+            "sample_rate": 48000,
+            "frames": 72000,
+            "peak": 0.351646066,
+            "rms": 0.032621354,
+            "finite": true
+          },
+          "qualification_passed": true,
+          "primary": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 1.324639253963908E-05,
+              "escaped_hammer_energy_j": 0.00012525908721188316,
+              "structural_energy_j": 2.1388021643095335E-16,
+              "total_heat_j": 0.00019474091278308165
+            },
+            "first_contact": {
+              "contact_material_heat_j": 1.324639253963908E-05,
+              "hammer_energy_j": 0.00012525908721188316,
+              "impulse_n_s": 0.0026010358123938746,
+              "outgoing_hammer_com_velocity_m_s": -0.2502589530984686,
+              "peak_interval_mean_force_n": 6.3957272222502395,
+              "separation_seconds": 0.0008409830729166667,
+              "structural_energy_j": 0.00016342387311772075,
+              "structural_heat_j": 1.807064713075491E-05
+            },
+            "initial_energy_j": 0.0003200000000000001,
+            "maximum_observed_positive_energy_increment": 0.0,
+            "maximum_relative_balance_residual": 1.506685265917004E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 6.3957272222502395,
+            "step_seconds": 8.138020833333333E-08,
+            "total_contact_impulse_n_s": 0.0026010358123938746,
+            "uniform_steps_per_output_frame": 256
+          },
+          "refined": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 1.3246402584199225E-05,
+              "escaped_hammer_energy_j": 0.00012525903817872295,
+              "structural_energy_j": 2.1388073205134858E-16,
+              "total_heat_j": 0.00019474096181214886
+            },
+            "first_contact": {
+              "contact_material_heat_j": 1.3246402584199225E-05,
+              "hammer_energy_j": 0.00012525903817872295,
+              "impulse_n_s": 0.0026010356164641603,
+              "outgoing_hammer_com_velocity_m_s": -0.25025890411604,
+              "peak_interval_mean_force_n": 6.395715091379242,
+              "separation_seconds": 0.0008409830729166667,
+              "structural_energy_j": 0.00016342391022233557,
+              "structural_heat_j": 1.807064901474036E-05
+            },
+            "initial_energy_j": 0.0003200000000000001,
+            "maximum_observed_positive_energy_increment": 0.0,
+            "maximum_relative_balance_residual": 2.7857558382478325E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 6.395715091379242,
+            "step_seconds": 4.0690104166666665E-08,
+            "total_contact_impulse_n_s": 0.0026010356164641603,
+            "uniform_steps_per_output_frame": 512
+          },
+          "audio_refinement": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 6.792784674161183E-08,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.03262135236352735,
+                "relative_rmse": 2.0823124064457632E-06,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 4.570774615983128E-07,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.08614445836825199,
+                "relative_rmse": 5.305941557428909E-06,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.6468865376189983E-08,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.03955087637799722,
+                "relative_rmse": 4.163969773714514E-07,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 8.492490283139877E-10,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0012736016305862085,
+                "relative_rmse": 6.66808998919936E-07,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "frozen_trajectory_sampling": [
+            {
+              "candidate_factor": 16,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 1.4935777873944098E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.03262135418360632,
+                    "relative_rmse": 4.578527853221369E-09,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 4.822346468514914E-12,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.08614445838921318,
+                    "relative_rmse": 5.597976420870686E-11,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 1.6261329170015176E-13,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.039550878968017934,
+                    "relative_rmse": 4.111496278796886E-12,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 2.361526765730142E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.0012736017438544943,
+                    "relative_rmse": 1.8542113161553117E-07,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            },
+            {
+              "candidate_factor": 32,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 2.9859288528601696E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.03262135418360632,
+                    "relative_rmse": 9.153295218997166E-10,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 2.8308572795247596E-13,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.08614445838921318,
+                    "relative_rmse": 3.286174563585431E-12,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 9.665075992992976E-15,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.039550878968017934,
+                    "relative_rmse": 2.443707003530429E-13,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 4.7211633835800135E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.0012736017438544943,
+                    "relative_rmse": 3.706938535818615E-08,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            }
+          ],
+          "mechanical_refinement_passed": true,
+          "first_contact_refinement": [
+            {
+              "absolute_difference": 0.0,
+              "observable": "separation_seconds",
+              "passed": true,
+              "reference": 0.0008409830729166667
+            },
+            {
+              "absolute_difference": 1.9592971429310824E-10,
+              "observable": "impulse_n_s",
+              "passed": true,
+              "reference": 0.0026010356164641603
+            },
+            {
+              "absolute_difference": 1.2130870997495435E-05,
+              "observable": "peak_interval_mean_force_n",
+              "passed": true,
+              "reference": 6.395715091379242
+            },
+            {
+              "absolute_difference": 4.898242855766455E-08,
+              "observable": "outgoing_hammer_com_velocity_m_s",
+              "passed": true,
+              "reference": -0.25025890411604
+            },
+            {
+              "absolute_difference": 3.710461481793402E-11,
+              "observable": "structural_energy_j",
+              "passed": true,
+              "reference": 0.00016342391022233557
+            },
+            {
+              "absolute_difference": 1.0044560144170699E-11,
+              "observable": "contact_material_heat_j",
+              "passed": true,
+              "reference": 1.3246402584199225E-05
+            }
+          ],
+          "levels": {
+            "passed": true,
+            "peak": 0.35164607529460995,
+            "rms": 0.03262135418360632
+          },
+          "attack_spectrum": {
+            "band_edges_hz": [
+              0,
+              1000,
+              5000,
+              20000,
+              24000
+            ],
+            "bin_spacing_hz": 31.25,
+            "window": "periodic Hann, first 32 ms including common FIR delay",
+            "windowed_mean_square_by_band": [
+              0.0020526212711719557,
+              0.0005376398826595716,
+              6.575497170642643E-07,
+              4.741111345536714E-17
+            ]
+          }
+        }
+      ],
+      "cross_model_differences": [
+        {
+          "audio_difference": {
+            "sections": [
+              {
+                "difference_rms": 0.0017501049004493051,
+                "end_seconds": 1.5,
+                "reference_rms": 0.032790949764373585,
+                "relative_rmse": 0.05337158310524886,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.011962327237614414,
+                "end_seconds": 0.032,
+                "reference_rms": 0.08750290268298362,
+                "relative_rmse": 0.13670777620889926,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.00013225434461524863,
+                "end_seconds": 0.9,
+                "reference_rms": 0.03968298316837426,
+                "relative_rmse": 0.0033327722377648776,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 3.0654155448678276E-06,
+                "end_seconds": 1.5,
+                "reference_rms": 0.001277849400055838,
+                "relative_rmse": 0.002398886398298484,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "candidate": "two-mass-memory",
+          "reference": "elastic"
+        },
+        {
+          "audio_difference": {
+            "sections": [
+              {
+                "difference_rms": 0.0012373052980032286,
+                "end_seconds": 1.5,
+                "reference_rms": 0.03262135418360632,
+                "relative_rmse": 0.03792930517351206,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.008367199149198434,
+                "end_seconds": 0.032,
+                "reference_rms": 0.08614445838921318,
+                "relative_rmse": 0.09712985960622345,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.00025408704913024844,
+                "end_seconds": 0.9,
+                "reference_rms": 0.039550878968017934,
+                "relative_rmse": 0.0064243085301773206,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 6.786144752843415E-06,
+                "end_seconds": 1.5,
+                "reference_rms": 0.0012736017438544943,
+                "relative_rmse": 0.005328309878334082,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "candidate": "two-mass-memory",
+          "reference": "rate"
+        },
+        {
+          "audio_difference": {
+            "sections": [
+              {
+                "difference_rms": 0.0012106490131575448,
+                "end_seconds": 1.5,
+                "reference_rms": 0.03262135418360632,
+                "relative_rmse": 0.03711216298206129,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.008250502748077733,
+                "end_seconds": 0.032,
+                "reference_rms": 0.08614445838921318,
+                "relative_rmse": 0.09577520019686889,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.000152660624622831,
+                "end_seconds": 0.9,
+                "reference_rms": 0.039550878968017934,
+                "relative_rmse": 0.0038598541576352094,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 4.494322109578013E-06,
+                "end_seconds": 1.5,
+                "reference_rms": 0.0012736017438544943,
+                "relative_rmse": 0.003528828482894632,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "candidate": "elastic",
+          "reference": "rate"
+        }
+      ]
+    },
+    {
+      "case": "strong",
+      "passed": true,
+      "full_report": "renders/hammer-comparison-75mm-strong.json",
+      "full_report_sha256": "c9e21f9ae44743f5f8f2b78d41cdf02a94b12fec56b90d77c2d14ad7f64267a4",
+      "configuration": {
+        "fixed_output_gain": 0.084,
+        "geometry": {
+          "density_kg_m3": 7850.0,
+          "diameter_m": 0.0015,
+          "hammer_position": 0.2,
+          "length_m": 0.075,
+          "pickup_position": 0.98,
+          "tuning_mass_kg": 0.0001,
+          "tuning_position": 0.85,
+          "young_modulus_pa": 200000000000.0
+        },
+        "hammer": {
+          "core_mass_kg": 0.0038,
+          "equilibrium_cubic_n_m2": 40000000000.0,
+          "equilibrium_stiffness_n_m": 0.0,
+          "initial_gap_m": 0.0,
+          "launch_speed_m_s": 0.8,
+          "memory_stiffness_n_m": 200000.0,
+          "relaxation_seconds": 0.001,
+          "surface_stiffness_n_m2": 1000000000000.0,
+          "tip_mass_kg": 0.0002
+        },
+        "pickup_gap_m": 0.0015,
+        "pickup_offset_m": 0.0005,
+        "structure": {
+          "damper_n_s_m": 0.2,
+          "damper_position": 0.8,
+          "rotation_damping_n_m_s_rad": 0.002,
+          "rotation_stiffness_n_m_rad": 3.9478417604357436,
+          "support_inertia_kg_m2": 1E-05,
+          "support_mass_kg": 0.03,
+          "tine_decay_seconds": [
+            5.0,
+            0.16,
+            0.055,
+            0.035,
+            0.025,
+            0.02
+          ],
+          "tonebar_arm_m": 0.08,
+          "tonebar_decay_seconds": 8.0,
+          "tonebar_frequency_hz": 190.0,
+          "tonebar_mass_kg": 0.015,
+          "translation_damping_n_s_m": 5.0,
+          "translation_stiffness_n_m": 7579.856180036627
+        }
+      },
+      "launch_energy_j": 0.00128,
+      "candidates": [
+        {
+          "model": "two-mass-memory",
+          "wav": "renders/hammer-comparison-75mm-strong.wav",
+          "wav_sha256": "cbf3406d07549d9fbdbf44728f1d732ac232db622580c26e6303661231ba8390",
+          "inspection": {
+            "sample_rate": 48000,
+            "frames": 72000,
+            "peak": 0.754084826,
+            "rms": 0.064956214,
+            "finite": true
+          },
+          "qualification_passed": true,
+          "primary": {
+            "base_step_seconds": 2.5431315104166666E-09,
+            "base_ticks_per_output_frame": 8192,
+            "controller": {
+              "accepted_free_intervals": 4609763,
+              "accuracy_rejections": 148,
+              "contact": {
+                "accepted_intervals": 15311,
+                "accepted_rk4_half_steps": 30622,
+                "accuracy_rejections": 48,
+                "boundary_rejections": 1848,
+                "integrator": "coupled-rk4-step-doubling",
+                "local_energy_defect_limit": 1E-13,
+                "maximum_accepted_energy_defect": 9.998351266790771E-14,
+                "maximum_accepted_state_error": 1.0301216092731991E-12,
+                "maximum_interval_seconds": 8.138020833333333E-08,
+                "state_error_limit": 1E-11,
+                "uniform_ticks_replaced": 159083
+              },
+              "fixed_ticks": 722,
+              "maximum_free_interval_seconds": 3.255208333333333E-07,
+              "uncertified_clearance_rejections": 2167,
+              "uniform_ticks_replaced": 589664195,
+              "uniform_to_accepted_interval_ratio": 127.50756842714205
+            },
+            "final_state": {
+              "balance_residual_j": 6.632281529528328E-15,
+              "branch_extension_m": -2.2267664642196756E-12,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.7571063495909918,
+              "core_velocity_m_s": -0.5050519914589899,
+              "hammer_to_structure_work_j": 0.000750546274885583,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 3.3367375529280707E-09,
+              "material_energy_j": 4.958375415564746E-16,
+              "material_heat_j": 1.929869718527614E-05,
+              "mechanical_energy_j": 0.0005101550279301546,
+              "pickup_velocity_m_s": -8.968672160375659E-09,
+              "position": [
+                -1.3968585275139848E-10,
+                -2.014447696768988E-08,
+                -5.5421238050330345E-11,
+                2.2855698776400205E-13,
+                -1.7966477624472956E-14,
+                4.455533251625745E-16,
+                -1.0942908554041511E-15,
+                1.7020821701331952E-16,
+                -4.146144721697088E-11
+              ],
+              "structural_energy_j": 8.946838999889532E-16,
+              "structural_heat_j": 0.0007505462748912016,
+              "tip_position_m": -0.7571063529277293,
+              "tip_velocity_m_s": -0.5050519892352666,
+              "velocity": [
+                -3.3736263968705093E-10,
+                1.1063372596875212E-07,
+                -1.72664793986382E-08,
+                -1.7187938867009026E-11,
+                3.3025421820792576E-11,
+                1.4770053255554193E-11,
+                3.5287721573287247E-12,
+                2.104815958323002E-14,
+                1.2178029546842053E-09
+              ],
+              "viscous_deformation_m": 3.3389643193922903E-09
+            },
+            "first_contact": {
+              "contact_material_heat_j": 1.9176866019605644E-08,
+              "hammer_energy_j": 0.0012158736486023397,
+              "impulse_n_s": 0.0001469744694460174,
+              "outgoing_hammer_com_velocity_m_s": 0.7632563826384958,
+              "peak_interval_mean_force_n": 19.66574454001332,
+              "separation_seconds": 1.5917460123697915E-05,
+              "structural_energy_j": 6.37911488269517E-05,
+              "structural_heat_j": 3.1602570469200976E-07
+            },
+            "first_separation_seconds": 1.5917460123697915E-05,
+            "force_positive_episode_count": 24,
+            "force_positive_intervals_seconds": 0.000405588785807307,
+            "initial_state": {
+              "balance_residual_j": 0.0,
+              "branch_extension_m": 0.0,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.0,
+              "core_velocity_m_s": 0.8,
+              "hammer_to_structure_work_j": 0.0,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 0.0,
+              "material_energy_j": 0.0,
+              "material_heat_j": 0.0,
+              "mechanical_energy_j": 0.00128,
+              "pickup_velocity_m_s": 0.0,
+              "position": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "structural_energy_j": 0.0,
+              "structural_heat_j": 0.0,
+              "tip_position_m": -0.0,
+              "tip_velocity_m_s": 0.8,
+              "velocity": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "viscous_deformation_m": 0.0
+            },
+            "last_observed_separation": {
+              "contact_material_heat_j": 1.0674175882920985E-05,
+              "hammer_energy_j": 0.000518779549232948,
+              "impulse_n_s": 0.0052202079653912515,
+              "outgoing_hammer_com_velocity_m_s": -0.5050519913478038,
+              "peak_interval_mean_force_n": 44.02232055327555,
+              "separation_seconds": 0.0008323440551757812,
+              "structural_energy_j": 0.0006686830334036967,
+              "structural_heat_j": 8.186324148183436E-05
+            },
+            "maximum_positive_relative_energy_step": 5.082197683525802E-16,
+            "maximum_relative_energy_and_port_residuals": [
+              8.911294824883592E-12,
+              7.8887566509582E-12,
+              1.7589486182682799E-12
+            ],
+            "passed": true,
+            "peak_interval_mean_force_n": 44.02232055327555,
+            "pickup_peak_displacement_m": 0.001235057763383444,
+            "pickup_peak_velocity_m_s": 2.8828702778120667,
+            "total_contact_impulse_n_s": 0.0052202079653912515
+          },
+          "refined": {
+            "base_step_seconds": 1.2715657552083333E-09,
+            "base_ticks_per_output_frame": 16384,
+            "controller": {
+              "accepted_free_intervals": 36855566,
+              "accuracy_rejections": 0,
+              "contact": {
+                "accepted_intervals": 80117,
+                "accepted_rk4_half_steps": 160234,
+                "accuracy_rejections": 0,
+                "boundary_rejections": 1110,
+                "integrator": "coupled-rk4-step-doubling",
+                "local_energy_defect_limit": 1E-13,
+                "maximum_accepted_energy_defect": 3.105546212253773E-15,
+                "maximum_accepted_state_error": 5.6400606694645515E-15,
+                "maximum_interval_seconds": 5.086263020833333E-09,
+                "state_error_limit": 1E-11,
+                "uniform_ticks_replaced": 318541
+              },
+              "diagnostic_maximum_contact_level": 2,
+              "diagnostic_maximum_free_level": 5,
+              "fixed_ticks": 722,
+              "maximum_free_interval_seconds": 4.0690104166666665E-08,
+              "uncertified_clearance_rejections": 1969,
+              "uniform_ticks_replaced": 1179328737,
+              "uniform_to_accepted_interval_ratio": 31.937271642976626
+            },
+            "final_state": {
+              "balance_residual_j": 5.780272094302319E-14,
+              "branch_extension_m": -2.727392073571071E-12,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.7571063486541935,
+              "core_velocity_m_s": -0.5050519914858479,
+              "hammer_to_structure_work_j": 0.0007505462748808972,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 3.6928250457535228E-09,
+              "material_energy_j": 6.721958092507035E-16,
+              "material_heat_j": 1.9298697180579378E-05,
+              "mechanical_energy_j": 0.0005101550279337139,
+              "pickup_velocity_m_s": -8.968672305206912E-09,
+              "position": [
+                -1.396858528901331E-10,
+                -2.0144476988147952E-08,
+                -5.542123806341722E-11,
+                2.285569880307044E-13,
+                -1.7966477723228907E-14,
+                4.455532894591394E-16,
+                -1.0942908651324207E-15,
+                1.7020821713156008E-16,
+                -4.1461447261540706E-11
+              ],
+              "structural_energy_j": 8.94683901781801E-16,
+              "structural_heat_j": 0.0007505462749435095,
+              "tip_position_m": -0.7571063523470185,
+              "tip_velocity_m_s": -0.5050519887584558,
+              "velocity": [
+                -3.3736265203329947E-10,
+                1.1063372445935878E-07,
+                -1.7266479420843996E-08,
+                -1.7187938887589034E-11,
+                3.3025421864746446E-11,
+                1.4770053280788235E-11,
+                3.528772170540379E-12,
+                2.1048158852967582E-14,
+                1.2178029529142036E-09
+              ],
+              "viscous_deformation_m": 3.695552437827094E-09
+            },
+            "first_contact": {
+              "contact_material_heat_j": 1.9168367836928577E-08,
+              "hammer_energy_j": 0.0012158736571005544,
+              "impulse_n_s": 0.00014697446944590456,
+              "outgoing_hammer_com_velocity_m_s": 0.7632563826385236,
+              "peak_interval_mean_force_n": 19.665933101261473,
+              "separation_seconds": 1.591618855794271E-05,
+              "structural_energy_j": 6.379120251997747E-05,
+              "structural_heat_j": 3.1597201163084127E-07
+            },
+            "first_separation_seconds": 1.591618855794271E-05,
+            "force_positive_episode_count": 24,
+            "force_positive_intervals_seconds": 0.00040556081136107995,
+            "initial_state": {
+              "balance_residual_j": 0.0,
+              "branch_extension_m": 0.0,
+              "contact_energy_j": 0.0,
+              "core_position_m": -0.0,
+              "core_velocity_m_s": 0.8,
+              "hammer_to_structure_work_j": 0.0,
+              "impulse_work_j": 0.0,
+              "material_deformation_m": 0.0,
+              "material_energy_j": 0.0,
+              "material_heat_j": 0.0,
+              "mechanical_energy_j": 0.00128,
+              "pickup_velocity_m_s": 0.0,
+              "position": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "structural_energy_j": 0.0,
+              "structural_heat_j": 0.0,
+              "tip_position_m": -0.0,
+              "tip_velocity_m_s": 0.8,
+              "velocity": [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+              ],
+              "viscous_deformation_m": 0.0
+            },
+            "last_observed_separation": {
+              "contact_material_heat_j": 1.067414483048267E-05,
+              "hammer_energy_j": 0.0005187795802884968,
+              "impulse_n_s": 0.005220207965397925,
+              "outgoing_hammer_com_velocity_m_s": -0.5050519913494796,
+              "peak_interval_mean_force_n": 44.02280608573998,
+              "separation_seconds": 0.0008323415120442708,
+              "structural_energy_j": 0.0006686832416936168,
+              "structural_heat_j": 8.186303318683049E-05
+            },
+            "maximum_positive_relative_energy_step": 5.082197683525802E-16,
+            "maximum_relative_energy_and_port_residuals": [
+              7.202947954884284E-11,
+              7.538830399788504E-11,
+              4.456579148683776E-12
+            ],
+            "passed": true,
+            "peak_interval_mean_force_n": 44.02280608573998,
+            "pickup_peak_displacement_m": 0.0012350577633966136,
+            "pickup_peak_velocity_m_s": 2.882870277764318,
+            "total_contact_impulse_n_s": 0.005220207965397925
+          },
+          "audio_refinement": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 2.0945099105707786E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.06495621356294086,
+                "relative_rmse": 3.224495080122325E-10,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 6.72842267756385E-12,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.17431530395878436,
+                "relative_rmse": 3.859915064689179E-11,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 2.7447492944808677E-11,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.07852991240294613,
+                "relative_rmse": 3.4951640852433903E-10,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 2.112015259323845E-12,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0024859589591742183,
+                "relative_rmse": 8.495776857174709E-10,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "frozen_trajectory_sampling": [
+            {
+              "candidate_factor": 16,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 3.1340625081067267E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.06495621354842752,
+                    "relative_rmse": 4.82488485227076E-09,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 8.943311953299858E-10,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.17431530395743788,
+                    "relative_rmse": 5.130537451538692E-09,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 4.248003144564007E-13,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.07852991238235611,
+                    "relative_rmse": 5.409407722092959E-12,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 4.504452524142153E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.002485958957121706,
+                    "relative_rmse": 1.8119577200733435E-07,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            },
+            {
+              "candidate_factor": 32,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 5.732800494592957E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.06495621354842752,
+                    "relative_rmse": 8.825638351470286E-10,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 4.472925884757105E-11,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.17431530395743788,
+                    "relative_rmse": 2.565997237884086E-10,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 2.5181543196340124E-14,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.07852991238235611,
+                    "relative_rmse": 3.2066180175692955E-13,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 9.005301276755023E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.002485958957121706,
+                    "relative_rmse": 3.622465789693304E-08,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            }
+          ],
+          "mechanical_refinement_passed": true,
+          "first_contact_refinement": null,
+          "levels": {
+            "passed": true,
+            "peak": 0.7540848505716006,
+            "rms": 0.06495621354842752
+          },
+          "attack_spectrum": {
+            "band_edges_hz": [
+              0,
+              1000,
+              5000,
+              20000,
+              24000
+            ],
+            "bin_spacing_hz": 31.25,
+            "window": "periodic Hann, first 32 ms including common FIR delay",
+            "windowed_mean_square_by_band": [
+              0.00830666669954147,
+              0.002067768752406344,
+              1.3913784774560503E-05,
+              1.3232311920908882E-13
+            ]
+          }
+        },
+        {
+          "model": "elastic",
+          "wav": "renders\\hammer-comparison-75mm-strong-elastic.wav",
+          "wav_sha256": "e71fa47107a45015fb614c2161a4e433a6e5dbcf3ad4829081114cdbc066c51f",
+          "inspection": {
+            "sample_rate": 48000,
+            "frames": 72000,
+            "peak": 0.819038212,
+            "rms": 0.065287995,
+            "finite": true
+          },
+          "qualification_passed": true,
+          "primary": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 0.0,
+              "escaped_hammer_energy_j": 0.0005276178156566216,
+              "structural_energy_j": 8.834533850331328E-16,
+              "total_heat_j": 0.0007523821843242858
+            },
+            "first_contact": {
+              "contact_material_heat_j": 0.0,
+              "hammer_energy_j": 0.0005276178156566216,
+              "impulse_n_s": 0.0052544932526666565,
+              "outgoing_hammer_com_velocity_m_s": -0.5136233131666641,
+              "peak_interval_mean_force_n": 18.929330463042668,
+              "separation_seconds": 0.0008173828125,
+              "structural_energy_j": 0.000669026906714143,
+              "structural_heat_j": 8.335527762921735E-05
+            },
+            "initial_energy_j": 0.0012800000000000003,
+            "maximum_observed_positive_energy_increment": 1.6940658945086002E-16,
+            "maximum_relative_balance_residual": 1.4226087755725422E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 18.929330463042668,
+            "step_seconds": 8.138020833333333E-08,
+            "total_contact_impulse_n_s": 0.0052544932526666565,
+            "uniform_steps_per_output_frame": 256
+          },
+          "refined": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 0.0,
+              "escaped_hammer_energy_j": 0.0005276197371225866,
+              "structural_energy_j": 8.83455207422248E-16,
+              "total_heat_j": 0.0007523802628431129
+            },
+            "first_contact": {
+              "contact_material_heat_j": 0.0,
+              "hammer_energy_j": 0.0005276197371225866,
+              "impulse_n_s": 0.005254496993665527,
+              "outgoing_hammer_com_velocity_m_s": -0.5136242484163815,
+              "peak_interval_mean_force_n": 18.929394310207655,
+              "separation_seconds": 0.0008173828125,
+              "structural_energy_j": 0.0006690249572607104,
+              "structural_heat_j": 8.335530561669037E-05
+            },
+            "initial_energy_j": 0.0012800000000000003,
+            "maximum_observed_positive_energy_increment": 1.6940658945086002E-16,
+            "maximum_relative_balance_residual": 2.610724950027204E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 18.929394310207655,
+            "step_seconds": 4.0690104166666665E-08,
+            "total_contact_impulse_n_s": 0.005254496993665527,
+            "uniform_steps_per_output_frame": 512
+          },
+          "audio_refinement": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 6.907445748612333E-07,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.06528802938880043,
+                "relative_rmse": 1.0579957479613012E-05,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 4.712717588650893E-06,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.1739588016431181,
+                "relative_rmse": 2.7090998237152606E-05,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 7.573782912373117E-08,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.0790326020116898,
+                "relative_rmse": 9.583112183568082E-07,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 2.015528992525811E-09,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.002502268942984342,
+                "relative_rmse": 8.054805612229603E-07,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "frozen_trajectory_sampling": [
+            {
+              "candidate_factor": 16,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 2.874771716710748E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.065287994668275,
+                    "relative_rmse": 4.403216443263906E-09,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 1.0394287735895077E-11,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.17395883253220912,
+                    "relative_rmse": 5.975142270496978E-11,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 4.2343120589902943E-13,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.0790325499730134,
+                    "relative_rmse": 5.357681183811164E-12,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 4.5453469504879343E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.0025022673888584605,
+                    "relative_rmse": 1.8164913033381021E-07,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            },
+            {
+              "candidate_factor": 32,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 5.747171534223844E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.065287994668275,
+                    "relative_rmse": 8.802799907433107E-10,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 7.890544139038928E-13,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.17395883253220912,
+                    "relative_rmse": 4.5358686444265275E-12,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 2.5101449031518202E-14,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.0790325499730134,
+                    "relative_rmse": 3.1760899831891275E-13,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 9.08705730351079E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.0025022673888584605,
+                    "relative_rmse": 3.631529285787609E-08,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            }
+          ],
+          "mechanical_refinement_passed": true,
+          "first_contact_refinement": [
+            {
+              "absolute_difference": 0.0,
+              "observable": "separation_seconds",
+              "passed": true,
+              "reference": 0.0008173828125
+            },
+            {
+              "absolute_difference": 3.7409988700581875E-09,
+              "observable": "impulse_n_s",
+              "passed": true,
+              "reference": 0.005254496993665527
+            },
+            {
+              "absolute_difference": 6.384716498786247E-05,
+              "observable": "peak_interval_mean_force_n",
+              "passed": true,
+              "reference": 18.929394310207655
+            },
+            {
+              "absolute_difference": 9.352497174486274E-07,
+              "observable": "outgoing_hammer_com_velocity_m_s",
+              "passed": true,
+              "reference": -0.5136242484163815
+            },
+            {
+              "absolute_difference": 1.949453432557348E-09,
+              "observable": "structural_energy_j",
+              "passed": true,
+              "reference": 0.0006690249572607104
+            },
+            {
+              "absolute_difference": 0.0,
+              "observable": "contact_material_heat_j",
+              "passed": true,
+              "reference": 0.0
+            }
+          ],
+          "levels": {
+            "passed": true,
+            "peak": 0.8190382023990821,
+            "rms": 0.065287994668275
+          },
+          "attack_spectrum": {
+            "band_edges_hz": [
+              0,
+              1000,
+              5000,
+              20000,
+              24000
+            ],
+            "bin_spacing_hz": 31.25,
+            "window": "periodic Hann, first 32 ms including common FIR delay",
+            "windowed_mean_square_by_band": [
+              0.0084171232792017,
+              0.0019494682193086314,
+              2.6246028523184933E-06,
+              1.429385726861391E-13
+            ]
+          }
+        },
+        {
+          "model": "rate",
+          "wav": "renders\\hammer-comparison-75mm-strong-rate.wav",
+          "wav_sha256": "8db9bf3d3c0617b6ba4cc6e6da2a441d4ac4b164d153d505e37da919357c8445",
+          "inspection": {
+            "sample_rate": 48000,
+            "frames": 72000,
+            "peak": 0.765975893,
+            "rms": 0.064442683,
+            "finite": true
+          },
+          "qualification_passed": true,
+          "primary": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 6.366704660924271E-05,
+              "escaped_hammer_energy_j": 0.0004902043323057839,
+              "structural_energy_j": 8.886061625564915E-16,
+              "total_heat_j": 0.0007897956676761362
+            },
+            "first_contact": {
+              "contact_material_heat_j": 6.366704660924271E-05,
+              "hammer_energy_j": 0.0004902043323057839,
+              "impulse_n_s": 0.0051803117578922385,
+              "outgoing_hammer_com_velocity_m_s": -0.49507793947305956,
+              "peak_interval_mean_force_n": 12.64762902068491,
+              "separation_seconds": 0.0008234049479166666,
+              "structural_energy_j": 0.0006536519070498971,
+              "structural_heat_j": 7.247671403507124E-05
+            },
+            "initial_energy_j": 0.0012800000000000003,
+            "maximum_observed_positive_energy_increment": 0.0,
+            "maximum_relative_balance_residual": 1.3430893224843085E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 12.64762902068491,
+            "step_seconds": 8.138020833333333E-08,
+            "total_contact_impulse_n_s": 0.0051803117578922385,
+            "uniform_steps_per_output_frame": 256
+          },
+          "refined": {
+            "audit_cadence": "Every contact integration step, then every 64x observation after hammer escape",
+            "final": {
+              "contact_limit_steps": 0,
+              "contact_limited_heat_j": 0.0,
+              "contact_material_heat_j": 6.366706512815008E-05,
+              "escaped_hammer_energy_j": 0.0004902040661643651,
+              "structural_energy_j": 8.886082725164905E-16,
+              "total_heat_j": 0.0007897959338009202
+            },
+            "first_contact": {
+              "contact_material_heat_j": 6.366706512815008E-05,
+              "hammer_energy_j": 0.0004902040661643651,
+              "impulse_n_s": 0.0051803112203173286,
+              "outgoing_hammer_com_velocity_m_s": -0.4950778050793321,
+              "peak_interval_mean_force_n": 12.647605145064754,
+              "separation_seconds": 0.0008233642578125,
+              "structural_energy_j": 0.0006536557632909608,
+              "structural_heat_j": 7.247310541653047E-05
+            },
+            "initial_energy_j": 0.0012800000000000003,
+            "maximum_observed_positive_energy_increment": 0.0,
+            "maximum_relative_balance_residual": 2.642691973456581E-11,
+            "passed": true,
+            "peak_interval_mean_force_n": 12.647605145064754,
+            "step_seconds": 4.0690104166666665E-08,
+            "total_contact_impulse_n_s": 0.0051803112203173286,
+            "uniform_steps_per_output_frame": 512
+          },
+          "audio_refinement": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 1.8448249030697877E-07,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.06444267786424933,
+                "relative_rmse": 2.8627378070104E-06,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.2501576129925713E-06,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.17170004748651985,
+                "relative_rmse": 7.281055720678943E-06,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 3.4553086271223106E-08,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.07800979026029109,
+                "relative_rmse": 4.429326903191467E-07,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 1.7103222630426837E-09,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.002470266818033071,
+                "relative_rmse": 6.923633716638404E-07,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "frozen_trajectory_sampling": [
+            {
+              "candidate_factor": 16,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 2.8299623543757274E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.06444268257633441,
+                    "relative_rmse": 4.391440953786409E-09,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 2.2792271445515864E-11,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.17170004144878595,
+                    "relative_rmse": 1.327447055527605E-10,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 4.1440318484773615E-13,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.07800979747020487,
+                    "relative_rmse": 5.312194086980082E-12,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 4.474250984647464E-10,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.002470267129375167,
+                    "relative_rmse": 1.811241760634684E-07,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            },
+            {
+              "candidate_factor": 32,
+              "comparison": {
+                "passed": true,
+                "sections": [
+                  {
+                    "difference_rms": 5.657299640198395E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.06444268257633441,
+                    "relative_rmse": 8.778808413968714E-10,
+                    "section": "whole",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 1.3381070505334214E-12,
+                    "end_seconds": 0.032,
+                    "passed": true,
+                    "reference_rms": 0.17170004144878595,
+                    "relative_rmse": 7.793283212063445E-12,
+                    "section": "attack",
+                    "start_seconds": 0.0
+                  },
+                  {
+                    "difference_rms": 2.4567872330092287E-14,
+                    "end_seconds": 0.9,
+                    "passed": true,
+                    "reference_rms": 0.07800979747020487,
+                    "relative_rmse": 3.1493316386926605E-13,
+                    "section": "body",
+                    "start_seconds": 0.032
+                  },
+                  {
+                    "difference_rms": 8.944922267190915E-11,
+                    "end_seconds": 1.5,
+                    "passed": true,
+                    "reference_rms": 0.002470267129375167,
+                    "relative_rmse": 3.6210344058836485E-08,
+                    "section": "release",
+                    "start_seconds": 0.9
+                  }
+                ]
+              },
+              "reference_factor": 64
+            }
+          ],
+          "mechanical_refinement_passed": true,
+          "first_contact_refinement": [
+            {
+              "absolute_difference": 4.0690104166607975E-08,
+              "observable": "separation_seconds",
+              "passed": true,
+              "reference": 0.0008233642578125
+            },
+            {
+              "absolute_difference": 5.375749099340021E-10,
+              "observable": "impulse_n_s",
+              "passed": true,
+              "reference": 0.0051803112203173286
+            },
+            {
+              "absolute_difference": 2.3875620156488253E-05,
+              "observable": "peak_interval_mean_force_n",
+              "passed": true,
+              "reference": 12.647605145064754
+            },
+            {
+              "absolute_difference": 1.343937274800311E-07,
+              "observable": "outgoing_hammer_com_velocity_m_s",
+              "passed": true,
+              "reference": -0.4950778050793321
+            },
+            {
+              "absolute_difference": 3.85624106366729E-09,
+              "observable": "structural_energy_j",
+              "passed": true,
+              "reference": 0.0006536557632909608
+            },
+            {
+              "absolute_difference": 1.8518907368421204E-11,
+              "observable": "contact_material_heat_j",
+              "passed": true,
+              "reference": 6.366706512815008E-05
+            }
+          ],
+          "levels": {
+            "passed": true,
+            "peak": 0.7659758953022898,
+            "rms": 0.06444268257633441
+          },
+          "attack_spectrum": {
+            "band_edges_hz": [
+              0,
+              1000,
+              5000,
+              20000,
+              24000
+            ],
+            "bin_spacing_hz": 31.25,
+            "window": "periodic Hann, first 32 ms including common FIR delay",
+            "windowed_mean_square_by_band": [
+              0.008192346337879988,
+              0.0019107716081449525,
+              4.09584900458245E-06,
+              1.1997703398352925E-15
+            ]
+          }
+        }
+      ],
+      "cross_model_differences": [
+        {
+          "audio_difference": {
+            "sections": [
+              {
+                "difference_rms": 0.0032833255773169695,
+                "end_seconds": 1.5,
+                "reference_rms": 0.065287994668275,
+                "relative_rmse": 0.05028988245081474,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.022126629663279936,
+                "end_seconds": 0.032,
+                "reference_rms": 0.17395883253220912,
+                "relative_rmse": 0.12719463186316282,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.0007614635015627078,
+                "end_seconds": 0.9,
+                "reference_rms": 0.0790325499730134,
+                "relative_rmse": 0.00963480871897362,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 2.0126155077135446E-05,
+                "end_seconds": 1.5,
+                "reference_rms": 0.0025022673888584605,
+                "relative_rmse": 0.008043167235743356,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "candidate": "two-mass-memory",
+          "reference": "elastic"
+        },
+        {
+          "audio_difference": {
+            "sections": [
+              {
+                "difference_rms": 0.0030191465112945543,
+                "end_seconds": 1.5,
+                "reference_rms": 0.06444268257633441,
+                "relative_rmse": 0.04685010602589797,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.02036026525840612,
+                "end_seconds": 0.032,
+                "reference_rms": 0.17170004144878595,
+                "relative_rmse": 0.11858043298422326,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.000685112881926719,
+                "end_seconds": 0.9,
+                "reference_rms": 0.07800979747020487,
+                "relative_rmse": 0.00878239534192345,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 1.6025744778066466E-05,
+                "end_seconds": 1.5,
+                "reference_rms": 0.002470267129375167,
+                "relative_rmse": 0.006487454165380098,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "candidate": "two-mass-memory",
+          "reference": "rate"
+        },
+        {
+          "audio_difference": {
+            "sections": [
+              {
+                "difference_rms": 0.003117629285725993,
+                "end_seconds": 1.5,
+                "reference_rms": 0.06444268257633441,
+                "relative_rmse": 0.0483783287890454,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.020196605350221646,
+                "end_seconds": 0.032,
+                "reference_rms": 0.17170004144878595,
+                "relative_rmse": 0.11762725960812195,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 0.0013258250494504618,
+                "end_seconds": 0.9,
+                "reference_rms": 0.07800979747020487,
+                "relative_rmse": 0.01699562224804966,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 3.5258798046831906E-05,
+                "end_seconds": 1.5,
+                "reference_rms": 0.002470267129375167,
+                "relative_rmse": 0.01427327337499338,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "candidate": "elastic",
+          "reference": "rate"
+        }
+      ]
+    }
+  ],
+  "scope": "Three single strikes, one 75 mm geometry, three uncalibrated hammer hypotheses. Independent numerical qualification is not physical calibration. No cross-model fidelity threshold or winner. Complete reports and WAVs retained locally; medium full report tracked. Executable source hashes identify the uncommitted continuation on the base commit."
+}

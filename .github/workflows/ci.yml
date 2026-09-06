@@ -101,3 +101,5 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- render-memory-modal --output renders/ci-memory-modal.wav --seconds 0.25 --hold 0.15
       - name: Inspect the physical assembly preview
         run: cargo run --locked --release -p rf-rhodes-lab -- inspect renders/ci-memory-modal.wav
+      - name: Qualify equal-launch hammer alternatives
+        run: cargo run --locked --release -p rf-rhodes-lab -- compare-modal-hammers --output renders/ci-hammer-comparison.wav --seconds 0.25 --hold 0.15

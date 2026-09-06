@@ -1211,3 +1211,31 @@ error hidden by whole-file averaging. The standalone CI workflow includes a
 short render; remote CI was not run. The tracked summary and full medium receipt
 are linked in the preview document. No new listening, realism, tuning, repetition
 or realtime qualification is claimed, and DSP equations/gates remain unchanged.
+
+## Controlled hammer alternatives
+
+Date: 2026-09-06. The [equal-launch comparison](CONTROLLED-HAMMERS.md) qualifies
+elastic, rate-dependent and two-mass memory hammers on the same 75 mm modal
+structure, pickup and gain at 0.2/0.4/0.8 m/s. All nine 1.5-second WAVs pass
+independent inspection. Single-mass 256/512x midpoint paths pass their energy,
+heat, escape-momentum and separate 2 ms mechanical/contact refinement checks.
+The memory paths retain their existing energy/work and mechanical gates.
+Every candidate passes frozen 16/32/64x pickup and 64x integration audio checks.
+
+Maximum relative audio integration RMSE is 2.953e-5; sampling RMSE is 1.880e-7.
+Maximum single-mass balance residual is 2.807e-11 of launch energy. Memory
+energy/work residuals remain below 8.005e-11. Peak output is -1.734 dBFS.
+The memory renderer's new contact diagnostics preserve all three previous WAVs
+byte for byte. Its 13/22/24 force-positive episodes are reported separately from
+the first separation; both integration paths reproduce those episode counts.
+The simple models remove the hammer at separation, a documented action-boundary
+difference. These are numerical results for provisional coefficients, not a
+comparison of fitted physical fidelity or repeated-key performance.
+
+All 201 workspace tests, strict Clippy, formatting and release laboratory build
+pass. Spectral Parseval/gain checks and protection of all four CLI destinations
+are covered. A short pilot passes; a gain-10 negative control retains failure
+and creates none of the three WAVs. CI includes the new short comparison, but
+remote CI and host/listening tests were not run. Tracked summary/full medium
+receipts and local audio links are in the comparison document. No DSP equations,
+plugin engine, calibrated parameters or repeated-excitation status changed.

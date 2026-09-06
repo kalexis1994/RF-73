@@ -40,6 +40,13 @@ a controlled comparison of hammer models and measured modal calibration.
 The two-mass memory hammer remains a research hypothesis; its additional state
 and numerical cost need demonstrated physical or acoustic value before adoption.
 
+The [controlled hammer comparison](CONTROLLED-HAMMERS.md) now renders elastic,
+rate-dependent and memory candidates through the same structural and output
+configuration. It preserves launch energy and raw gain, qualifies each candidate
+independently, and records contact, attack-band and envelope observables.
+The comparison remains uncalibrated; fitting against shared training data and
+held-out observations is the next step before selecting a hammer model.
+
 Implemented first gate: the offline [passive common-support assembly](COUPLED-ASSEMBLY.md)
 has reciprocal tine/tonebar coupling, nonlinear hammer contact and explicit
 stored/dissipated/escaped energy accounting. Analytic mechanics tests and the

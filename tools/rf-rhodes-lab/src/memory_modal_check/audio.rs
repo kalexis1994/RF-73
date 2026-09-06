@@ -15,20 +15,20 @@ length 75 or 120 mm; fixed output gain 0.001..10. No inferred MIDI pitch.
 Writes PATH.json and a 64x-filtered WAV only when all preview gates pass.
 No normalization/clipping, repeated-strike qualification or device/host launch.
 ";
-const RATE: usize = 48000;
-const OBS: usize = 64;
-const FACTORS: [usize; 3] = [16, 32, OBS];
+pub(super) const RATE: usize = 48000;
+pub(super) const OBS: usize = 64;
+pub(super) const FACTORS: [usize; 3] = [16, 32, OBS];
 
-struct Options {
-    output: PathBuf,
-    frames: usize,
-    release: usize,
-    speed: f64,
-    length: f64,
-    gain: f64,
+pub(super) struct Options {
+    pub(super) output: PathBuf,
+    pub(super) frames: usize,
+    pub(super) release: usize,
+    pub(super) speed: f64,
+    pub(super) length: f64,
+    pub(super) gain: f64,
 }
 impl Options {
-    fn parse(args: &[String]) -> Result<Self, Box<dyn Error>> {
+    pub(super) fn parse(args: &[String]) -> Result<Self, Box<dyn Error>> {
         let mut output = PathBuf::new();
         let (mut seconds, mut hold, mut speed, mut length, mut gain) =
             (1.5_f64, 0.9_f64, 0.4_f64, 75.0_f64, 0.084_f64);
@@ -75,12 +75,12 @@ impl Options {
     }
 }
 
-struct Render {
-    take: Take,
-    signals: Vec<Vec<f64>>,
+pub(super) struct Render {
+    pub(super) take: Take,
+    pub(super) signals: Vec<Vec<f64>>,
 }
 
-fn render(o: &Options, refined: bool) -> Result<Render, Box<dyn Error>> {
+pub(super) fn render(o: &Options, refined: bool) -> Result<Render, Box<dyn Error>> {
     let ticks = if refined { 16384 } else { 8192 };
     let h = 1.0 / (RATE * ticks) as f64;
     let mut v = MemoryModalAssembly::new(
@@ -120,6 +120,14 @@ fn render(o: &Options, refined: bool) -> Result<Render, Box<dyn Error>> {
     let mut velocity_peak = 0.0_f64;
     let mut saw_contact = false;
     let mut separation = None;
+    let mut first_contact = Value::Null;
+    let mut last_contact = Value::Null;
+    let mut pending_separation = false;
+    let mut force_was_positive = false;
+    let mut force_episodes = 0_u64;
+    let mut force_positive_seconds = 0.0;
+    let mut impulse = 0.0;
+    let mut peak_mean_force = 0.0_f64;
     let mut pass = true;
     for frame in 0..o.frames {
         if frame == o.release {
@@ -158,16 +166,36 @@ fn render(o: &Options, refined: bool) -> Result<Render, Box<dyn Error>> {
                 let force = c.mean_force().unwrap_or(q.hammer.contact_force_n);
                 pass &= force.is_finite() && force >= 0.0;
                 frame_force += force * n as f64 / ticks as f64;
+                impulse += force * n as f64 * h;
+                peak_mean_force = peak_mean_force.max(force);
+                if force > 0.0 {
+                    force_episodes += u64::from(!force_was_positive);
+                    force_positive_seconds += n as f64 * h;
+                    pending_separation = true;
+                }
+                force_was_positive = force > 0.0;
                 saw_contact |= force > 0.0;
-                if saw_contact
-                    && force == 0.0
-                    && q.hammer.surface_energy_j == 0.0
-                    && separation.is_none()
-                {
-                    separation = Some(
+                if pending_separation && force == 0.0 && q.hammer.surface_energy_j == 0.0 {
+                    pending_separation = false;
+                    let time = Some(
                         frame as f64 / RATE as f64
                             + ((sample * ticks / OBS) - remaining) as f64 * h,
                     );
+                    let hammer = MemoryHammerProfile::default();
+                    let com_velocity = (hammer.core_mass_kg * q.hammer.core_velocity_m_s
+                        + hammer.tip_mass_kg * q.hammer.tip_velocity_m_s)
+                        / (hammer.core_mass_kg + hammer.tip_mass_kg);
+                    last_contact = json!({"separation_seconds":time,
+                        "impulse_n_s":impulse,"peak_interval_mean_force_n":peak_mean_force,
+                        "outgoing_hammer_com_velocity_m_s":com_velocity,
+                        "structural_energy_j":q.structural_energy_j,
+                        "structural_heat_j":q.structural_heat_j,
+                        "contact_material_heat_j":q.hammer.material.dissipated_energy_j,
+                        "hammer_energy_j":q.hammer.mechanical_energy_j});
+                    if separation.is_none() {
+                        separation = time;
+                        first_contact = last_contact.clone();
+                    }
                 }
             }
             let q = v.probe();
@@ -213,6 +241,10 @@ fn render(o: &Options, refined: bool) -> Result<Render, Box<dyn Error>> {
             pass,
             report: json!({"passed":pass,"base_ticks_per_output_frame":ticks,"base_step_seconds":h,
             "initial_state":state(initial),"final_state":state(v.probe()),"first_separation_seconds":separation,
+            "first_contact":first_contact,"total_contact_impulse_n_s":impulse,
+            "last_observed_separation":last_contact,"force_positive_episode_count":force_episodes,
+            "force_positive_intervals_seconds":force_positive_seconds,
+            "peak_interval_mean_force_n":peak_mean_force,
             "maximum_relative_energy_and_port_residuals":residuals,"maximum_positive_relative_energy_step":positive,
             "pickup_peak_displacement_m":displacement_peak,"pickup_peak_velocity_m_s":velocity_peak,
             "controller":c.report(h)}),
@@ -230,7 +262,7 @@ fn audio_error(a: &[f64], b: &[f64]) -> Value {
     json!({"passed":rmse.is_some_and(|r| r.is_finite() && r<0.01),"relative_rmse":rmse,
         "reference_rms":(power/b.len() as f64).sqrt(),"difference_rms":(error/a.len() as f64).sqrt()})
 }
-fn audio_sections(a: &[f64], b: &[f64], release: usize) -> Value {
+pub(super) fn audio_sections(a: &[f64], b: &[f64], release: usize) -> Value {
     let ranges = [
         ("whole", 0, a.len()),
         ("attack", 0, 1536),
@@ -249,7 +281,7 @@ fn audio_sections(a: &[f64], b: &[f64], release: usize) -> Value {
         .collect();
     json!({"passed":rows.iter().all(|r| r["passed"]==true),"sections":rows})
 }
-fn mechanics_sections(a: &Take, b: &Take, speed: f64) -> Result<Value, Box<dyn Error>> {
+pub(super) fn mechanics_sections(a: &Take, b: &Take, speed: f64) -> Result<Value, Box<dyn Error>> {
     let mut whole = refinement::compare(a, b, speed)?;
     whole.as_object_mut().unwrap().remove("two_ms_windows");
     let mut sections = Vec::new();
@@ -274,7 +306,7 @@ fn mechanics_sections(a: &Take, b: &Take, speed: f64) -> Result<Value, Box<dyn E
     )
 }
 
-fn configuration(o: &Options) -> Value {
+pub(super) fn configuration(o: &Options) -> Value {
     let g = TineGeometry {
         length_m: o.length,
         ..TineGeometry::default()

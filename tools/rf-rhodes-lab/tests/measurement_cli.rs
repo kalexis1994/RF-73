@@ -56,6 +56,46 @@ impl Drop for Scratch {
 }
 
 #[test]
+fn hammer_comparison_preserves_every_destination_and_rejects_invalid_work() {
+    for name in [
+        "study.wav",
+        "study-elastic.wav",
+        "study-rate.wav",
+        "study.json",
+    ] {
+        let scratch = Scratch::new();
+        fs::write(scratch.0.join(name), b"preserve existing output").unwrap();
+        assert!(
+            !scratch
+                .run(&["compare-modal-hammers", "--output", "study.wav"])
+                .status
+                .success()
+        );
+        assert_eq!(
+            fs::read(scratch.0.join(name)).unwrap(),
+            b"preserve existing output"
+        );
+        assert_eq!(fs::read_dir(&scratch.0).unwrap().count(), 1);
+    }
+    let scratch = Scratch::new();
+    for tail in [["--seconds", "NaN"], ["--speed", "2"], ["--note", "57"]] {
+        assert!(
+            !scratch
+                .run(&[
+                    "compare-modal-hammers",
+                    "--output",
+                    "study.wav",
+                    tail[0],
+                    tail[1]
+                ])
+                .status
+                .success()
+        );
+        assert_eq!(fs::read_dir(&scratch.0).unwrap().count(), 0);
+    }
+}
+
+#[test]
 fn modal_audio_rejects_invalid_options_and_preserves_both_output_paths() {
     let scratch = Scratch::new();
     for args in [

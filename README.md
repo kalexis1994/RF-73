@@ -59,6 +59,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 ## Read next
 
 - [Physical-model direction review](docs/RESEARCH-DIRECTION-2026-09-06.md): literature evidence, current assumptions and the next audible/calibration experiments.
+- [Controlled hammer comparison](docs/CONTROLLED-HAMMERS.md): equal-launch elastic, rate-dependent and memory candidates with independently qualified offline audio.
 - [First physical-assembly WAVs](docs/MEMORY-MODAL-AUDIO.md): four offline previews with sampling, integration and headroom checks.
 
 - [Pickup Lab UI](docs/PICKUP-LAB-UI.md): controls, A/B, saving, transition and gain policy.

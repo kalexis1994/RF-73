@@ -101,7 +101,8 @@ The original repetition failure remains open, and the plugin still uses its
 previous engine. This does not establish realtime performance, physical tuning,
 neoprene parameters, pickup loading or Rhodes realism.
 
-Next compare the elastic/rate-dependent hammer with the memory hammer on the
-same structural configuration and output chain. Preserve launch energy,
-gain and geometry, then compare contact and audio observables before fitting
-each candidate. Calibration against held-out reference notes/intensities follows.
+The [controlled hammer comparison](CONTROLLED-HAMMERS.md) now compares the
+elastic/rate-dependent hammer with the memory hammer on the same structural
+configuration and output chain. It preserves launch energy, gain and geometry
+and records contact and audio observables. Shared-data fitting and calibration
+against held-out reference notes/intensities follow.
