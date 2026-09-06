@@ -1335,3 +1335,28 @@ Cleanup after verification removed 342 regenerable debug files (about 101.4 MiB)
 and the temporary exploratory analysis. The release tools/cache remain bounded
 at about 67 MiB. Existing audio, packaged plugin and numeric receipts are
 preserved; the detailed seven-report observation set totals 325178 bytes.
+
+## Fixed-pitch geometry sensitivity
+
+Date: 2026-09-06. [Fixed-pitch geometry](FIXED-PITCH-GEOMETRY.md) records nine
+uniform-tine/point-mass cases at 68/70/72 mm and 0.08/0.10/0.12 g. Eight regain
+G3 within 0.0001 cent; 68 mm/0.08 g remains unreachable at the outward limit.
+Branch checks pass using the pairwise average actual physical inertia.
+Using initial spring inertia at remote positions had caused false ambiguity;
+all-mode orthogonality at 0.50/0.75/0.95 L validates the local metric without
+relaxing the 0.98/0.05 gates. The preserved baseline's fitted center, nine
+coupled frequencies and hammer/pickup weights match exactly.
+
+Solved rank-5 frequencies span 1182.461..1390.271 Hz at constant fundamental,
+with materially different linear port residues. No cell reaches or is fitted
+to the exploratory 1425 Hz family. All trials, unreachable status and explicit
+shared parameters are retained in the 145388-byte numerical receipt.
+
+All 63 laboratory unit/CLI tests, strict workspace Clippy and formatting pass.
+Four new regressions bring the workspace to 222 tests; unaffected DSP,
+analysis, plugin and UI tests were not rerun for this laboratory-only change.
+No nonlinear audio, listening, measured-geometry or remote-CI claim is made.
+
+After verification, Cargo removed 342 regenerable debug files (101.4 MiB).
+Release artifacts remain at about 67 MiB. No new audio files were generated;
+all existing WAVs, packaged plugin and numeric receipts are preserved.

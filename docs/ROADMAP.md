@@ -295,3 +295,13 @@ audible but do not align with accepted reference peaks under the declared
 windows. A post-hoc 1425 Hz family in layers 3/4/5 is a candidate for further
 identification, not a new calibration target. Next examine tine/mass geometry
 sensitivity at fixed coupled pitch before fitting modal weights or losses.
+
+
+The [fixed-pitch geometry study](FIXED-PITCH-GEOMETRY.md) retains nine length/mass
+cases: eight retune, one is unreachable. Local physical inertia resolves false
+ambiguity in the wider spring search without changing acceptance thresholds.
+Solved higher-mode frequencies and port residues vary substantially at the
+same G3 fundamental; none of the grid's rank-5 modes reaches the exploratory
+1425 Hz family. No new sound is selected. Additional modal/spatial evidence is
+needed before adopting geometry, with nonlinear/audio qualification reserved
+for a justified candidate. The existing tuned WAV pair remains the baseline.
