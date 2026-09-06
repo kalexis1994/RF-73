@@ -282,6 +282,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         "memory-modal-tail-timing"
             | "memory-modal-stiffness-timing"
             | "memory-modal-trial-reuse-timing"
+            | "memory-modal-damping-timing"
     ) {
         return memory_modal_check::run_tail_timing(&args);
     }

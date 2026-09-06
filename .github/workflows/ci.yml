@@ -91,5 +91,7 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-stiffness-timing --output renders/ci-memory-modal-stiffness.json
       - name: Verify paired reused and recomputed contact trials
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-trial-reuse-timing --output renders/ci-memory-modal-trial-reuse.json
+      - name: Verify paired diagonal and dense contact damping
+        run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-damping-timing --output renders/ci-memory-modal-damping.json
       - name: Inspect contact resolution without committing trials
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-contact-resolution --output renders/ci-memory-contact-resolution.json

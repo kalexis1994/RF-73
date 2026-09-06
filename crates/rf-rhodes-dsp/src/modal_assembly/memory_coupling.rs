@@ -99,6 +99,11 @@ impl MemoryModalAssembly {
     pub fn use_dense_stiffness_reference(&mut self) {
         self.op.diagonal_stiffness = false;
     }
+    /// Offline diagnostic: use dense damping products in coupled RK4 contact.
+    /// Changes no state, damping coefficients, heat quadratures or prepared steps.
+    pub fn use_dense_contact_damping_reference(&mut self) {
+        self.op.diagonal_damping = [false; 2];
+    }
     pub fn tick(&mut self) -> Result<MemoryModalProbe, ModelError> {
         self.advance::<true>()
     }

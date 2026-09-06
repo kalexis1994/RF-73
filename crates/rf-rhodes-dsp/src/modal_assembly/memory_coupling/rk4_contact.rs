@@ -110,21 +110,21 @@ impl MemoryModalAssembly {
             work: 0.0,
         };
         let p = self.hammer.profile();
-        let c = &self.op.c[usize::from(self.damped)];
+        let damped = self.damped;
         let trial = || -> Option<(State, State, State)> {
-            let (coarse, initial_rhs) = rk4(y, h, p, &self.op, c, bank, None)?;
-            // The full and first half step share exactly y, p, op and c.
+            let (coarse, initial_rhs) = rk4(y, h, p, &self.op, damped, bank, None)?;
+            // The full and first half step share exactly y, p, op and damper state.
             let (half, _) = rk4(
                 y,
                 0.5 * h,
                 p,
                 &self.op,
-                c,
+                damped,
                 bank,
                 bank.reuse_trials.then_some(initial_rhs),
             )?;
             // Classical RK4 is not FSAL: the second half starts with a fresh RHS.
-            let (fine, _) = rk4(half, 0.5 * h, p, &self.op, c, bank, None)?;
+            let (fine, _) = rk4(half, 0.5 * h, p, &self.op, damped, bank, None)?;
             Some((coarse, half, fine))
         };
         let Some((coarse, half, fine)) = trial() else {
@@ -241,11 +241,11 @@ fn energies(y: State, p: MemoryHammerProfile, op: &Operators) -> [f64; 4] {
     let structural = mechanical(op, y.q, y.v);
     [hammer + structural, material, surface, structural]
 }
-fn rhs(y: State, p: MemoryHammerProfile, op: &Operators, c: &Matrix, bank: &RkContact) -> State {
+fn rhs(y: State, p: MemoryHammerProfile, op: &Operators, damped: bool, bank: &RkContact) -> State {
     let velocity = dot(op.hammer, y.v);
     let hammer = MemoryHammer::contact_rhs(y.hammer, p, dot(op.hammer, y.q), velocity);
     let elastic = op.stiffness_force(y.q);
-    let damping = apply(c, y.v);
+    let damping = op.damping_force(y.v, damped);
     let force = core::array::from_fn(|i| op.hammer[i] * hammer[8] - elastic[i] - damping[i]);
     State {
         q: y.v,
@@ -269,7 +269,7 @@ fn rk4(
     h: f64,
     p: MemoryHammerProfile,
     op: &Operators,
-    c: &Matrix,
+    damped: bool,
     bank: &RkContact,
     initial_rhs: Option<State>,
 ) -> Option<(State, State)> {
@@ -285,22 +285,22 @@ fn rk4(
     if !valid(y) {
         return None;
     }
-    let a = initial_rhs.unwrap_or_else(|| rhs(y, p, op, c, bank));
+    let a = initial_rhs.unwrap_or_else(|| rhs(y, p, op, damped, bank));
     let yb = add(y, a, 0.5 * h);
     if !valid(yb) {
         return None;
     }
-    let b = rhs(yb, p, op, c, bank);
+    let b = rhs(yb, p, op, damped, bank);
     let yc = add(y, b, 0.5 * h);
     if !valid(yc) {
         return None;
     }
-    let cc = rhs(yc, p, op, c, bank);
+    let cc = rhs(yc, p, op, damped, bank);
     let yd = add(y, cc, h);
     if !valid(yd) {
         return None;
     }
-    let d = rhs(yd, p, op, c, bank);
+    let d = rhs(yd, p, op, damped, bank);
     let sum = |a: f64, b: f64, c: f64, d: f64| a + 2.0 * b + 2.0 * c + d;
     let delta = State {
         q: core::array::from_fn(|i| sum(a.q[i], b.q[i], cc.q[i], d.q[i])),
@@ -339,13 +339,24 @@ mod tests {
     use super::*;
     #[test]
     fn trial_reuse_matches_recomputation_through_acceptance_rejection_and_events() {
+        assert_trial_reference(false);
+    }
+    #[test]
+    fn diagonal_damping_matches_dense_trials_through_acceptance_rejection_and_events() {
+        assert_trial_reference(true);
+    }
+    fn assert_trial_reference(dense_damping: bool) {
         let mut fast = voice();
         let mut reference = voice();
         assert!(reference.use_recomputed_contact_trial_reference().is_err());
         fast.prepare_rk4_contact().unwrap();
         reference.prepare_rk4_contact().unwrap();
         let before = reference.probe();
-        reference.use_recomputed_contact_trial_reference().unwrap();
+        if dense_damping {
+            reference.use_dense_contact_damping_reference();
+        } else {
+            reference.use_recomputed_contact_trial_reference().unwrap();
+        }
         assert_eq!(reference.probe(), before);
         assert_eq!(
             fast.try_rk4_contact_step(0).unwrap().contact.status,
@@ -521,7 +532,7 @@ mod tests {
                     256e-9 / steps as f64,
                     p,
                     &v.op,
-                    &v.op.c[0],
+                    false,
                     v.rk_contact.as_ref().unwrap(),
                     None,
                 )

@@ -82,6 +82,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Longer modal tails](docs/MEMORY-MODAL-TAIL.md): 128 ms trajectories with separately gated attack and tail accuracy.
 - [Modal stiffness cost](docs/MODAL-STIFFNESS-COST.md): section timing and exact diagonal stiffness products with a dense reference path.
 - [Contact trial reuse](docs/MODAL-CONTACT-TRIAL-REUSE.md): share identical starting derivatives and state energies while retaining every acceptance check.
+- [Contact damping cost](docs/MODAL-CONTACT-DAMPING-COST.md): exact diagonal damping products with a dense reference and unchanged reciprocal heat.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.

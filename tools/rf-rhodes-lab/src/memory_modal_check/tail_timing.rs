@@ -6,20 +6,61 @@ pub const HELP: &str = "Stateful modal tail timing:
   memory-modal-tail-timing --output REPORT.json
   memory-modal-stiffness-timing --output REPORT.json
   memory-modal-trial-reuse-timing --output REPORT.json
+  memory-modal-damping-timing --output REPORT.json
 Four 128 ms profiles, default/capped RK4, three alternating-order repetitions.
 Stiffness timing instead pairs diagonal/dense arithmetic in the default controller.
 Trial-reuse timing pairs reused/recomputed contact trials in the default controller.
+Damping timing pairs diagonal/dense contact damping in the default controller.
 Measures preparation and 0-8, 8-32, 32-64, 64-128 ms execution separately.
 Final-state checks do not replace memory-modal-tail-check. No realtime claim.
 ";
 const SECTIONS: [(usize, usize); 4] = [(0, 384), (384, 1536), (1536, 3072), (3072, 6144)];
 
+#[derive(Clone, Copy, PartialEq)]
+enum Comparison {
+    Controller,
+    Stiffness,
+    TrialReuse,
+    Damping,
+}
+impl Comparison {
+    fn experiment(self) -> &'static str {
+        match self {
+            Self::Controller => "memory-modal-tail-native-timing-v1",
+            Self::Stiffness => "memory-modal-stiffness-native-timing-v1",
+            Self::TrialReuse => "memory-modal-trial-reuse-native-timing-v1",
+            Self::Damping => "memory-modal-damping-native-timing-v1",
+        }
+    }
+    fn paths(self) -> [&'static str; 2] {
+        match self {
+            Self::Controller => ["rk4_default", "rk4_contact_2_free_8"],
+            Self::Stiffness => ["diagonal_stiffness", "dense_stiffness"],
+            Self::TrialReuse => ["reused_contact_trial", "recomputed_contact_trial"],
+            Self::Damping => ["diagonal_contact_damping", "dense_contact_damping"],
+        }
+    }
+    fn description(self) -> &'static str {
+        match self {
+            Self::Controller => "Default versus capped RK4 controller.",
+            Self::Stiffness => {
+                "Default RK4 controller in both paths; alternate diagonal and forced dense stiffness within this executable. All section states/controller reports must match exactly across both paths and every repetition."
+            }
+            Self::TrialReuse => {
+                "Default RK4 controller and diagonal stiffness in both paths; alternate shared initial RHS/energy reuse and recomputed contact trials within this executable. All section states/controller reports must match exactly across both paths and every repetition."
+            }
+            Self::Damping => {
+                "Default RK4 controller, diagonal stiffness and trial reuse in both paths; alternate exact-diagonal and forced dense contact damping within this executable. Coupled damper matrices stay dense. All section states/controller reports must match exactly across both paths and every repetition."
+            }
+        }
+    }
+}
+
 fn measured(
     length: f64,
     tau: f64,
-    capped: bool,
-    dense: bool,
-    recomputed: bool,
+    comparison: Comparison,
+    variant: bool,
 ) -> Result<serde_json::Value, Box<dyn Error>> {
     let h = 1.0 / (48000.0 * 16672.0);
     let prep = Instant::now();
@@ -40,15 +81,18 @@ fn measured(
         0.0,
         0.8,
     )?;
-    if dense {
+    if comparison == Comparison::Stiffness && variant {
         voice.use_dense_stiffness_reference();
+    }
+    if comparison == Comparison::Damping && variant {
+        voice.use_dense_contact_damping_reference();
     }
     voice.prepare_free_steps(12)?;
     voice.prepare_rk4_contact()?;
-    if recomputed {
+    if comparison == Comparison::TrialReuse && variant {
         voice.use_recomputed_contact_trial_reference()?;
     }
-    let mut controller = if capped {
+    let mut controller = if comparison == Comparison::Controller && variant {
         Controller::with_rk4_limits(2, 8)?
     } else {
         Controller::with_rk4_contact()
@@ -97,15 +141,18 @@ fn measured(
             "elapsed_seconds":elapsed,"seconds_per_simulated_second":elapsed/((end-start) as f64/48000.0),
             "final_state":state(probe),"cumulative_controller":controller.report(h)}));
     }
-    Ok(
-        json!({"path":if capped {"rk4_contact_2_free_8"} else {"rk4_default"},
+    Ok(json!({"path":comparison.paths()[usize::from(variant)],
         "elapsed_seconds":total,"preparation_seconds":preparation_seconds,"sections":sections,
-        "free_operator_reserved_bytes":voice.free_operator_bytes(),"rk4_contact_operator_reserved_bytes":voice.rk4_contact_operator_bytes()}),
-    )
+        "free_operator_reserved_bytes":voice.free_operator_bytes(),"rk4_contact_operator_reserved_bytes":voice.rk4_contact_operator_bytes()}))
 }
 pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
-    let stiffness = args[0] == "memory-modal-stiffness-timing";
-    let reuse = args[0] == "memory-modal-trial-reuse-timing";
+    let comparison = match args.first().map(String::as_str) {
+        Some("memory-modal-tail-timing") => Comparison::Controller,
+        Some("memory-modal-stiffness-timing") => Comparison::Stiffness,
+        Some("memory-modal-trial-reuse-timing") => Comparison::TrialReuse,
+        Some("memory-modal-damping-timing") => Comparison::Damping,
+        _ => return Err(HELP.into()),
+    };
     if args.len() != 3
         || args[1] != "--output"
         || Path::new(&args[2]).extension().is_none_or(|x| x != "json")
@@ -123,32 +170,12 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                 } else {
                     [true, false]
                 } {
-                    let mut row = measured(
-                        length,
-                        tau,
-                        !stiffness && !reuse && variant,
-                        stiffness && variant,
-                        reuse && variant,
-                    )?;
-                    if stiffness {
-                        row["path"] = json!(if variant {
-                            "dense_stiffness"
-                        } else {
-                            "diagonal_stiffness"
-                        });
-                    }
-                    if reuse {
-                        row["path"] = json!(if variant {
-                            "recomputed_contact_trial"
-                        } else {
-                            "reused_contact_trial"
-                        });
-                    }
+                    let mut row = measured(length, tau, comparison, variant)?;
                     row["repetition"] = json!(repetition);
                     runs.push(row);
                 }
             }
-            if stiffness || reuse {
+            if comparison != Comparison::Controller {
                 let expected = &runs[0]["sections"];
                 for run in &runs[1..] {
                     for i in 0..SECTIONS.len() {
@@ -166,10 +193,10 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     }
     serde_json::to_writer_pretty(
         &mut file,
-        &json!({"schema_version":1,"experiment":if reuse {"memory-modal-trial-reuse-native-timing-v1"} else if stiffness {"memory-modal-stiffness-native-timing-v1"} else {"memory-modal-tail-native-timing-v1"},
+        &json!({"schema_version":1,"experiment":comparison.experiment(),
         "status":"pass","duration_seconds":0.128,"step_seconds":1.0/(48000.0*16672.0),
         "voice_inline_bytes":std::mem::size_of::<MemoryModalAssembly>(),"cases":cases,
-        "comparison":if reuse {"Default RK4 controller and diagonal stiffness in both paths; alternate shared initial RHS/energy reuse and recomputed contact trials within this executable. All section states/controller reports must match exactly across both paths and every repetition."} else if stiffness {"Default RK4 controller in both paths; alternate diagonal and forced dense stiffness within this executable. All section states/controller reports must match exactly across both paths and every repetition."} else {"Default versus capped RK4 controller."},
+        "comparison":comparison.description(),
         "scope":"Four strong-strike 128 ms profiles; three repetitions per compared path, alternating order. Same impulse at 2 ms and damper on/off at 4/6 ms. Timed regions include controller/rejections and consumed probes. Preparation, JSON and section-end energy/work checks are outside execution timers. Sections remain one continuous trajectory; reported controller counts are cumulative. No per-step audit inside timing: compare final states/counts with the independent tail audit. Section timers and intervening diagnostics can affect cache/load. Observations are not confidence intervals or universal speedups. No pickup voltage, mixing, polyphony, host, WASM deadlines or realtime qualification. No machine-dependent timing pass threshold."}),
     )?;
     writeln!(file)?;

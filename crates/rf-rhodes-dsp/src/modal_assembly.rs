@@ -132,6 +132,7 @@ struct Operators {
     m: Matrix,
     k: Matrix,
     diagonal_stiffness: bool,
+    diagonal_damping: [bool; 2],
     c: [Matrix; 2],
     hammer: Vector,
     pickup: Vector,
@@ -185,6 +186,7 @@ impl Operators {
         Ok(Self {
             m,
             diagonal_stiffness: is_diagonal(&k),
+            diagonal_damping: [is_diagonal(&c), is_diagonal(&damped)],
             k,
             c: [c, damped],
             hammer,
@@ -197,6 +199,15 @@ impl Operators {
             core::array::from_fn(|i| 0.0 + self.k[i][i] * q[i])
         } else {
             apply(&self.k, q)
+        }
+    }
+    fn damping_force(&self, v: Vector, damped: bool) -> Vector {
+        let index = usize::from(damped);
+        if self.diagonal_damping[index] {
+            // Match the dense row's +0 accumulator for finite inputs.
+            core::array::from_fn(|i| 0.0 + self.c[index][i][i] * v[i])
+        } else {
+            apply(&self.c[index], v)
         }
     }
 }
@@ -459,6 +470,47 @@ impl ModalAssembly {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn damping_products_preserve_dense_arithmetic_and_nonzero_coupling() {
+        for length in [0.05, 0.075, 0.12] {
+            for damper in [0.0, 0.2] {
+                let mut op = Operators::prepare(
+                    TineGeometry {
+                        length_m: length,
+                        ..TineGeometry::default()
+                    },
+                    ModalAssemblyProfile {
+                        damper_n_s_m: damper,
+                        ..ModalAssemblyProfile::default()
+                    },
+                )
+                .unwrap();
+                assert_eq!(op.diagonal_damping, [true, damper == 0.0]);
+                for damped in [false, true] {
+                    for scale in [0.0, -0.0, 1e-100, -1e-5, 1e100] {
+                        let v = core::array::from_fn(|i| scale * (i as f64 - 4.0));
+                        assert_eq!(
+                            op.damping_force(v, damped).map(f64::to_bits),
+                            apply(&op.c[usize::from(damped)], v).map(f64::to_bits)
+                        );
+                    }
+                }
+                // Keep even arbitrarily small off-diagonal damping, in either state.
+                for damped in [false, true] {
+                    let index = usize::from(damped);
+                    op.c[index] = [[0.0; N]; N];
+                    op.c[index][0][1] = 1e-300;
+                    op.c[index][1][0] = 1e-300;
+                    op.diagonal_damping[index] = is_diagonal(&op.c[index]);
+                    assert!(!op.diagonal_damping[index]);
+                    let mut v = [0.0; N];
+                    v[1] = 2.0;
+                    assert_eq!(op.damping_force(v, damped), apply(&op.c[index], v));
+                    assert_eq!(op.damping_force(v, damped)[0], 2e-300);
+                }
+            }
+        }
+    }
     #[test]
     fn prepared_stiffness_preserves_dense_products_and_retains_off_diagonal_coupling() {
         for length in [0.05, 0.075, 0.12] {

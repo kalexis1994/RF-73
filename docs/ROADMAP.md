@@ -152,6 +152,13 @@ three profiles and remain essentially tied in the fourth. The attack still costs
 48.32–58.08 ms per assembly, so further contact-cost work and broader physical
 qualification remain necessary before realtime integration.
 
+The [contact damping cost study](MODAL-CONTACT-DAMPING-COST.md) now skips zero
+off-diagonal damping products in coupled RK4, keeping the full product for any
+coupled damper matrix. Paired total medians improve by 2.36–7.60% with identical
+section states and counters. The first 8 ms still costs 45.09–49.52 ms for one
+assembly. Broader gesture coverage, physical calibration and substantial further
+cost reduction remain necessary before integration with the audible engine.
+
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 
 The current mechanical work builds on the explicit tine/tonebar assembly with mounting compliance. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing plugin engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, and qualify numerical accuracy and performance before real-time integration.

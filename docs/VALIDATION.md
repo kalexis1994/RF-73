@@ -1044,3 +1044,28 @@ audits ran concurrently with timing; three repetitions do not establish a
 universal improvement or host deadline qualification. The inline voice remains
 6040 bytes and the prepared RK4 payload grows from 656 to 664 bytes. Remote CI
 and GUI/audio tests were not run; the audible plugin engine is unchanged.
+
+## Exact diagonal contact damping
+
+Date: 2026-09-06. The [contact damping study](MODAL-CONTACT-DAMPING-COST.md)
+classifies both damping matrices independently and uses a diagonal product only
+when every off-diagonal entry is exactly zero. Engaged coupled damper matrices
+retain dense arithmetic. Acceleration and the reciprocal heat quadrature use
+the same damping vector; equations, coefficients and acceptance checks are
+unchanged. Only coupled RK4 uses this optimization.
+
+All 189 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. New regressions cover signed zero, finite scale extremes, tiny nonzero
+coupling, both damper states, accepted/rejected trials and subsequent fixed
+ticks. Both repeated audits (36 takes) are byte-identical to their earlier
+reports. All 24 paired timing runs also match the preceding timing report's
+states and counters at every section. CLI help, invalid options and overwrite
+preservation pass; CI enforces paired identity without a speed threshold.
+
+The measured 128 ms total medians decrease by 7.60%, 2.36%, 6.44% and 2.70%
+across the four profiles. Attack execution still costs 45.09–49.52 ms for 8 ms
+of one assembly's motion. No builds, tests or audits ran concurrently with the
+timing batch. Memory remains 6040 inline bytes plus 102960/664 bytes of prepared
+free/RK4 payloads. These observations do not qualify realtime operation or
+physical realism. Remote CI and GUI/audio testing were not run; the audible
+plugin engine remains unchanged.
