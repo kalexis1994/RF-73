@@ -1616,3 +1616,41 @@ relaxing rejection thresholds or assuming unknown release boundaries.
 Cleanup removed 342 regenerable debug files (101.5 MiB). Release artifacts
 occupy 152.2 MiB. Existing source audio, listening WAVs, numeric receipts and
 the packaged plugin are preserved; this stage adds no permanent WAV files.
+
+## Pinned G3 source envelopes
+
+Date: 2026-09-06. [Source envelopes](SOURCE-ENVELOPES.md) fixes a five-take G3
+pilot before temporal observation, using the prior pitch anchors and unique
+attack-128 peaks in 1410..1440/1605..1635 Hz bands. The prior register receipt
+and every WAV are Git-blob verified on exactly the bytes read. Native 44.1 kHz,
+file offsets 0.1..1.5 s and unchanged 128/256 ms envelope gates are retained.
+
+The report contains 15 component slots, four missing selections and 22 envelope
+measurements. Four individual measurements qualify; only the layer-3 fundamental
+passes both windows and prior-selection checks, with descriptive mean amplitude
+decay 0.329510 /s. Layers 4/5 miss the existing minimum drop in the longer window.
+All twelve higher-family measurements reject for margin, amplitude, slope and
+phase instability; nine also fail frequency offset. All five mixing-rate
+relations are withheld. No rejected provisional rate becomes a model parameter.
+
+Post-observation inspection shows initial contiguous above-margin support for
+the upper family shorter than the existing 0.4 s fit requirement in every
+take/window. This is a detectability diagnostic, not a fitted physical lifetime
+or a selected shorter interval. The fixed-interval receipt remains unchanged;
+short-transient estimation needs independent synthetic validation with nearby
+harmonics and uncertain carriers before further source fitting.
+
+All 150 affected analysis/laboratory release tests, strict workspace Clippy and
+formatting pass. Four new unit tests and one CLI regression bring the workspace
+total to 265; unchanged DSP/plugin/UI suites were not rerun. Tests cover strict
+manifests, identity matching, missing/ambiguous/capped selection, cross-window
+withholding/agreement, retained missing components, evidence/audio-byte mismatch
+and output preservation. The 417084-byte receipt reproduces byte-for-byte with
+SHA-256 `fbf55a24583080668c55dae63c9cd8733cf66c1ab7f01d326fae0b50b9dccf4d`.
+No source download, production DSP change, listening or natural-loss fit is
+claimed. Temporary CLI renders are removed by the test harness.
+
+Cleanup removed 342 regenerable debug files (101.5 MiB) and the duplicate
+reproduction receipt after its hash check. Release artifacts occupy 152.6 MiB.
+Source recordings, listening WAVs, retained numeric receipts and the packaged
+plugin are preserved; no permanent WAV was added.

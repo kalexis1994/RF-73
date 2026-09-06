@@ -26,6 +26,7 @@ mod pickup_sweep;
 mod pickup_transfer;
 mod pitch_reference;
 mod register_families;
+mod source_envelope;
 mod tine_modes;
 mod tone_comparison;
 mod wav;
@@ -207,6 +208,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{HELP}");
         print!("{}", analysis::HELP);
         print!("{}", component_envelope::HELP);
+        print!("{}", source_envelope::HELP);
         print!("{}", partial_comparison::HELP);
         print!("{}", pickup_sweep::HELP);
         print!("{}", pickup_set::HELP);
@@ -262,6 +264,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if matches!(args[0].as_str(), "component-envelope" | "validate-envelope") {
         return component_envelope::run(&args);
+    }
+    if args[0] == "observe-source-envelopes" {
+        return source_envelope::run(&args);
     }
     if args[0] == "inspect" {
         if args.len() != 2 {

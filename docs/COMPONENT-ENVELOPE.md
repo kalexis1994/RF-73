@@ -138,3 +138,9 @@ release boundaries must remain visible; do not relax gates to force a decay
 fit. Compare qualified envelope observations with the pickup mixing predictions
 before selecting mechanical losses. No physical parameter or audible baseline
 has changed in this stage.
+
+The subsequent [G3 source pilot](SOURCE-ENVELOPES.md) retains all five takes and
+finds one fundamental with qualified cross-window agreement. All available
+1425/1620 Hz family envelopes reject over the fixed interval; their rate relation
+is withheld. Limited initial detectability motivates independent validation of
+a short-transient estimator before further source fitting.

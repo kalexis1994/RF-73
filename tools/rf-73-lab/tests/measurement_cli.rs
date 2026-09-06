@@ -10,6 +10,116 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn source_envelopes_keep_missing_components_and_verify_receipt_and_audio_bytes() {
+    let scratch = Scratch::new();
+    let hash = |name: &str| {
+        let out = Command::new("git")
+            .current_dir(&scratch.0)
+            .args(["hash-object", "--no-filters", "--", name])
+            .output()
+            .unwrap();
+        assert!(out.status.success());
+        String::from_utf8(out.stdout).unwrap().trim().to_string()
+    };
+    let mut takes = Vec::new();
+    let mut inputs = Vec::new();
+    let mut original = Vec::new();
+    for (index, velocity) in ["0.3", "0.6", "0.9"].into_iter().enumerate() {
+        let file = format!("source-{index}.wav");
+        scratch.success(&[
+            "render",
+            "--output",
+            &file,
+            "--note",
+            "55",
+            "--velocity",
+            velocity,
+            "--seconds",
+            "2",
+            "--hold",
+            "1.5",
+        ]);
+        original.push(fs::read(scratch.0.join(&file)).unwrap());
+        takes.push(serde_json::json!({"id":format!("take-{index}"),"file":file,"git_blob_sha1":hash(&file)}));
+        inputs.push(serde_json::json!({"id":format!("take-{index}"),"pitch_anchor":{"qualified":true,"frequency_hz":196.0},
+            "observation_windows":[{"label":"attack_128_ms","observed_samples":6144,"capacity_limited":false,"accepted_peaks":[]}]}));
+    }
+    let receipt = serde_json::json!({"schema_version":1,"experiment":"cross-note-spectral-hypotheses-v1",
+        "manifest":{"groups":[{"note":55,"takes":takes}]},"groups":[{"note":55,"inputs":inputs}]});
+    fs::write(
+        scratch.0.join("evidence.json"),
+        serde_json::to_vec(&receipt).unwrap(),
+    )
+    .unwrap();
+    let mut manifest: serde_json::Value = serde_json::from_str(include_str!(
+        "../../../references/source-envelope.manifest.json"
+    ))
+    .unwrap();
+    manifest["evidence_file"] = serde_json::json!("evidence.json");
+    manifest["evidence_git_blob_sha1"] = serde_json::json!(hash("evidence.json"));
+    fs::write(
+        scratch.0.join("manifest.json"),
+        serde_json::to_vec(&manifest).unwrap(),
+    )
+    .unwrap();
+    let args = [
+        "observe-source-envelopes",
+        "manifest.json",
+        "--output",
+        "result.json",
+    ];
+    scratch.success(&args);
+    let result = scratch.json("result.json");
+    assert_eq!(result["takes"].as_array().unwrap().len(), 3);
+    for take in result["takes"].as_array().unwrap() {
+        let obs = &take["observation"];
+        assert_eq!(
+            obs["conditional_weak_mixing_relation"]["amplitude_decay_sum_residual_per_second"],
+            serde_json::Value::Null
+        );
+        for c in &obs["components"].as_array().unwrap()[1..] {
+            assert_eq!(c["selected_frequency_hz"], serde_json::Value::Null);
+            assert_eq!(c["selection_rejections"][0], "missing_prior_peak");
+            assert!(c["measurements"].as_array().unwrap().is_empty());
+        }
+    }
+    let saved = fs::read(scratch.0.join("result.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("result.json")).unwrap());
+    for (i, bytes) in original.iter().enumerate() {
+        assert_eq!(
+            *bytes,
+            fs::read(scratch.0.join(format!("source-{i}.wav"))).unwrap()
+        );
+    }
+    fs::write(scratch.0.join("source-0.wav"), b"changed source").unwrap();
+    let invalid = [
+        "observe-source-envelopes",
+        "manifest.json",
+        "--output",
+        "bad.json",
+    ];
+    let out = scratch.run(&invalid);
+    assert!(!out.status.success());
+    assert!(String::from_utf8_lossy(&out.stderr).contains("blob mismatch"));
+    assert!(!scratch.0.join("bad.json").exists());
+    fs::write(scratch.0.join("source-0.wav"), &original[0]).unwrap();
+    fs::write(scratch.0.join("evidence.json"), b"changed evidence").unwrap();
+    let out = scratch.run(&invalid);
+    assert!(!out.status.success());
+    assert!(String::from_utf8_lossy(&out.stderr).contains("evidence blob mismatch"));
+    assert!(!scratch.0.join("bad.json").exists());
+    manifest["unknown"] = serde_json::json!(true);
+    fs::write(
+        scratch.0.join("manifest.json"),
+        serde_json::to_vec(&manifest).unwrap(),
+    )
+    .unwrap();
+    assert!(!scratch.run(&invalid).status.success());
+    assert!(!scratch.0.join("bad.json").exists());
+}
+
+#[test]
 fn component_envelope_roundtrip_validation_and_output_protection() {
     let scratch = Scratch::new();
     scratch.success(&["validate-envelope", "--output", "validation.json"]);

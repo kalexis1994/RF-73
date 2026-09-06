@@ -368,3 +368,11 @@ reasons. All 18 synthetic expectations pass across two window lengths. Native-ra
 gain, PCM and an undeclared-neighbor limitation are tested. Next observe a bounded
 set of pinned source families with declared intervals/neighbors and retain failed
 gates; qualified envelope slopes alone still do not identify mechanical losses.
+
+The [pinned G3 source-envelope pilot](SOURCE-ENVELOPES.md) now retains all five
+takes, 15 component slots and 22 measurements. One fundamental has conditional
+cross-window agreement; every available higher-family envelope rejects, so all
+mixing-rate comparisons are withheld. Upper-family initial detectability is too
+short for the present support requirement. Next validate short-transient
+estimation with uncertain carriers and neighboring harmonics before revisiting
+the sources. No rejection threshold, mechanical loss or audible baseline changed.

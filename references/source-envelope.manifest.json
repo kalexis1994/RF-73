@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "evidence_file": "references/register-families-validation.json",
+  "evidence_git_blob_sha1": "73274fe7d48e9ac7cd8f5041f9910d1392656ba4",
+  "note": 55,
+  "lower_family_band_hz": [1410.0, 1440.0],
+  "upper_family_band_hz": [1605.0, 1635.0],
+  "start_seconds": 0.1,
+  "end_seconds": 1.5,
+  "selection": "Freeze the previously observed G3 fundamental-offset pair before temporal-envelope inspection. Retain all five takes. Use qualified per-take pitch anchors and unique attack-128 peaks inside the two fixed bands, without frequency refinement, interval search or gate relaxation. Native 128/256 ms windows, quarter-window hops. Reused processed recordings; this is descriptive evidence, not a blind validation set or a known uninterrupted sustain.",
+  "path_base": "repository_working_directory"
+}
