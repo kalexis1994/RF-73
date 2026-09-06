@@ -26,7 +26,7 @@ fn kinetic(a: MemoryModalProbe, b: MemoryModalProbe, mass: [[f64; 9]; 9]) -> f64
             .map(|i| dv[i] * (0..9).map(|j| mass[i][j] * dv[j]).sum::<f64>())
             .sum::<f64>()
 }
-fn compare(a: &Take, b: &Take, speed: f64) -> Result<Value, Box<dyn Error>> {
+pub(super) fn compare(a: &Take, b: &Take, speed: f64) -> Result<Value, Box<dyn Error>> {
     if a.states.is_empty()
         || a.states.len() != b.states.len()
         || a.forces.len() != a.states.len()

@@ -8,6 +8,8 @@ pub(crate) mod free_controller;
 use free_controller::Controller;
 mod refinement;
 pub(crate) use refinement::{HELP as REFINEMENT_HELP, run as run_refinement};
+mod tail;
+pub(crate) use tail::{HELP as TAIL_HELP, run as run_tail};
 
 pub const HELP: &str = "Stateful multimode hammer:
   memory-modal-check --output REPORT.json [--coarse]
@@ -90,7 +92,7 @@ fn take_configured(
     mode: ContactMode,
     config: TakeConfig,
 ) -> Result<Take, Box<dyn Error>> {
-    if !(384..=1536).contains(&config.frames)
+    if !(384..=6144).contains(&config.frames)
         || (config.rk4_limits.is_some() && (!adaptive || mode != ContactMode::Rk4))
     {
         return Err("invalid modal diagnostic configuration".into());

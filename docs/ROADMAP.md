@@ -130,6 +130,14 @@ All 276 affected regression takes pass. Trajectory differences remain measurable
 so longer/wider validation, further cost reduction and polyphonic host
 qualification remain open.
 
+The [128 ms tail study](MEMORY-MODAL-TAIL.md) now passes twelve trajectories
+across four selected strong-strike profiles, with separate attack and tail
+accuracy gates. Default RK4/reference velocity RMSE reaches 0.1665% in the
+attack and at most 0.02316% in 64–128 ms; some individual profiles still grow
+before decaying. Structural reference drift remains controlled, while the
+reference hammer-work residual grows to 4.562e-10. Wider gesture/profile
+coverage, longer-path native cost and reference-ledger monitoring are next.
+
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 
 The current mechanical work builds on the explicit tine/tonebar assembly with mounting compliance. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing plugin engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, and qualify numerical accuracy and performance before real-time integration.

@@ -966,3 +966,27 @@ paths. Existing reports remain preserved as pre-correction evidence; new reports
 are not expected to match them byte for byte. Existing CI covers these checks;
 remote CI, timing and GUI/audio tests were not run. The audible plugin engine
 remains unchanged.
+
+## Stateful modal tails through 128 ms
+
+Date: 2026-09-05. The [tail study](MEMORY-MODAL-TAIL.md) extends four strong
+75/120 mm profiles at 1/10 ms relaxation to 128 ms. Default RK4, capped RK4 and
+the finest uniform incremental reference retain the original impulse/damper
+protocol. All twelve takes, twelve whole-record comparisons and 48 separate
+0–8, 8–32, 32–64 and 64–128 ms comparisons pass without tolerance changes.
+
+Maximum default/reference section kinetic velocity RMSE / launch speed is
+0.1665%, 0.07094%, 0.04776% and 0.02316%, respectively. Whole-record RMSE is at
+most 0.05194%; a lower whole-record number does not certify every tail section.
+A new synthetic regression proves that a failing final section cannot be hidden
+by a passing whole-record average. The uniform reference's structural residual
+stays below 5.381e-13, while hammer-work residual grows to 4.562e-10 and remains
+below the existing 1e-8 gate. Its duration dependence remains to be investigated.
+
+All 185 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. CLI help, invalid/missing arguments and overwrite preservation pass. All
+24 candidate/reference control reports and eight overlapping attack comparisons
+match the previous study exactly; adaptive interval counts cover every base tick.
+CI includes the new command on both native runners. Remote CI, timing and
+GUI/audio testing were not run. The audible plugin and all DSP equations remain
+unchanged; this is selected numerical qualification, not calibrated realism.
