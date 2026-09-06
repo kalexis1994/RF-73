@@ -131,3 +131,9 @@ harmonics and compare both widths, retaining conditioning, residuals and rejecte
 fits. Synthetic success does not justify trimming a recording until a desired
 rate appears. The earlier full-interval source pilot and audible baseline remain
 unchanged; no geometry, mechanical loss or pickup law is selected here.
+
+The subsequent [frozen short-source pilot](SHORT-SOURCE-ENVELOPES.md) now retains
+all five G3 takes. None of its 18 measured envelopes qualify; all twelve
+higher-family observations fail margin and stability. Synthetic success did not
+transfer to this broadband three-carrier source protocol. Next test rejection
+of strong distant components and observation bias before revisiting the sources.

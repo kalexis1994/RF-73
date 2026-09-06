@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "evidence_file": "references/register-families-validation.json",
+  "evidence_git_blob_sha1": "73274fe7d48e9ac7cd8f5041f9910d1392656ba4",
+  "note": 55,
+  "lower_family_band_hz": [1410.0, 1440.0],
+  "upper_family_band_hz": [1605.0, 1635.0],
+  "start_seconds": 0.02,
+  "end_seconds": 0.18,
+  "selection": "Frozen before the first short source run: all five pinned G3 takes, prior fundamental and the same lower/upper bands as the full-interval pilot. Use the two nearest other attack-128 peaks by absolute frequency distance, ties by prior index, without amplitude ranking or harmonic snapping. Fixed 32/64 ms windows and 8 ms hop; no interval/carrier search. Omitted peaks, missing families and prior reliability flags are retained.",
+  "path_base": "repository_working_directory"
+}

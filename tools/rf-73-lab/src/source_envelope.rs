@@ -1,4 +1,5 @@
 //! Pinned source-family envelope observations; failed gates are evidence too.
+pub mod short;
 use rf_73_analysis::{AudioClip, ComponentEnvelope, EnvelopeOptions, measure_component_envelope};
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
@@ -35,6 +36,9 @@ struct Manifest {
 }
 impl Manifest {
     fn validate(&self) -> Result<(), Box<dyn Error>> {
+        self.validate_interval(0.8, 3.0)
+    }
+    fn validate_interval(&self, minimum: f64, maximum: f64) -> Result<(), Box<dyn Error>> {
         let valid_band = |b: [f64; 2]| {
             b.iter().all(|x| x.is_finite())
                 && b[0] >= 100.0
@@ -52,8 +56,8 @@ impl Manifest {
             || !self.start_seconds.is_finite()
             || !self.end_seconds.is_finite()
             || self.start_seconds < 0.0
-            || self.end_seconds - self.start_seconds < 0.8
-            || self.end_seconds - self.start_seconds > 3.0
+            || self.end_seconds - self.start_seconds < minimum
+            || self.end_seconds - self.start_seconds > maximum
             || self.end_seconds > 60.0
             || self.selection.trim().is_empty()
             || self.path_base != "repository_working_directory"
@@ -290,7 +294,7 @@ fn consensus(
     }
 }
 
-fn observe(clip: &AudioClip, input: &Input, m: &Manifest) -> Result<Value, Box<dyn Error>> {
+fn attack_window<'a>(clip: &AudioClip, input: &'a Input) -> Result<&'a Window, Box<dyn Error>> {
     let windows: Vec<_> = input
         .observation_windows
         .iter()
@@ -316,6 +320,11 @@ fn observe(clip: &AudioClip, input: &Input, m: &Manifest) -> Result<Value, Box<d
     {
         return Err("invalid source peak window or pitch anchor".into());
     }
+    Ok(window)
+}
+
+fn observe(clip: &AudioClip, input: &Input, m: &Manifest) -> Result<Value, Box<dyn Error>> {
+    let window = attack_window(clip, input)?;
     let mut components = Vec::new();
     let mut rates = Vec::new();
     let mut frequencies = Vec::new();
@@ -416,7 +425,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    fn input(peaks: Vec<f64>) -> Input {
+    pub(super) fn input(peaks: Vec<f64>) -> Input {
         Input {
             id: "test".into(),
             pitch_anchor: Anchor {

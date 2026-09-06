@@ -210,6 +210,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", analysis::HELP);
         print!("{}", component_envelope::HELP);
         print!("{}", source_envelope::HELP);
+        print!("{}", source_envelope::short::HELP);
         print!("{}", short_envelope::HELP);
         print!("{}", partial_comparison::HELP);
         print!("{}", pickup_sweep::HELP);
@@ -269,6 +270,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "observe-source-envelopes" {
         return source_envelope::run(&args);
+    }
+    if args[0] == "observe-short-source-envelopes" {
+        return source_envelope::short::run(&args);
     }
     if matches!(
         args[0].as_str(),

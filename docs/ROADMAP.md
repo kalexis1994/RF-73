@@ -383,3 +383,10 @@ with quadratic local envelopes and rejects ill-conditioned combinations. Synthet
 18 final expectations pass. Next freeze short source intervals and nuisance
 harmonics, compare both widths and retain failures before adopting physical
 losses. Earlier source/Hann gates and the audible baseline are unchanged.
+
+The [short G3 source pilot](SHORT-SOURCE-ENVELOPES.md) now fixes 20..180 ms,
+32/64 ms windows and the two nearest prior nuisance peaks. All five takes and
+15 slots are retained; four families are missing and two fundamental selections
+are unsupported. None of 18 measurements qualifies. Next validate a frequency-
+selective observation stage against strong distant components, including its
+transient/decay bias, before repeating source inference. No losses were fitted.

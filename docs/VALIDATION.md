@@ -1696,3 +1696,37 @@ Cleanup removed 342 regenerable debug files (101.5 MiB). Release artifacts
 occupy 160.8 MiB after full compatibility testing. Both numeric expectation
 receipts are retained; temporary CLI WAVs are removed by the test harness.
 Existing source recordings, listening WAVs and the packaged plugin are preserved.
+
+## Pinned short-source envelope pilot (2026-09-06)
+
+After commit `18d5bd2`, the [short source protocol](SHORT-SOURCE-ENVELOPES.md)
+was frozen before observing the pinned G3 WAVs: 0.02..0.18 s, 32/64 ms windows,
+8 ms hop, and the two nearest other prior attack peaks without frequency search.
+The new `observe-short-source-envelopes` command shares bounded receipt/audio
+verification and prior selection with the existing long pilot. Its shorter
+interval bounds are separate; neither estimator's gates changed.
+
+The 202258-byte `references/short-source-envelope-validation.json` retains all
+five takes and 15 slots. Four families are missing. Two fundamental selections
+contain a nuisance frequency below the 32 ms estimator support and are retained
+without replacement. All remaining 18 observations reject; twelve belong to
+the higher families. No cross-window rate is accepted and no loss is calibrated.
+The original long source receipt is byte-identical, SHA-256
+`fbf55a24583080668c55dae63c9cd8733cf66c1ab7f01d326fae0b50b9dccf4d`.
+
+All 159 release tests in `rf-73-analysis` and `rf-73-lab` pass, including the
+existing 18-case short synthetic study. Three new unit tests check deterministic
+nuisance selection, unsupported/duplicate carriers, reliability failures,
+separate strict manifest support, and withholding on cross-window failure.
+The added CLI regression verifies actual WAV measurements, retained missing
+families, pinned-byte failures and output/source preservation. Strict Clippy for
+both packages/all targets, formatting and whitespace checks pass. No production
+DSP or plugin code changed; no new host, listening or full-workspace test is
+claimed in this stage.
+
+The next controlled study must test strong distant components and transient bias
+before a frequency-selective estimator is applied to the recordings. Broadband
+three-carrier failure is retained as evidence, without relaxing thresholds.
+Release cache remains 160.9 MiB. Temporary test WAVs are removed by their harness;
+debug build cache is cleaned after Clippy. Source recordings, listening assets,
+numeric receipts and the existing packaged plugin are preserved.
