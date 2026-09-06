@@ -1654,3 +1654,45 @@ Cleanup removed 342 regenerable debug files (101.5 MiB) and the duplicate
 reproduction receipt after its hash check. Release artifacts occupy 152.6 MiB.
 Source recordings, listening WAVs, retained numeric receipts and the packaged
 plugin are preserved; no permanent WAV was added.
+
+## Joint short-transient envelope qualification
+
+Date: 2026-09-06. [Short envelopes](SHORT-ENVELOPE.md) fits quadratic local
+complex envelopes for one target and up to two nuisance carriers, using
+reorthogonalized QR. Fixed 32/64 ms synthetic observations recover an 8 /s target
+beside a ten-times-stronger neighbor, with noise and with +2 Hz detuning. The
+method has explicit conditioning, regression-margin, support, phase and rate
+stability gates. The preceding Hann estimator and source-pilot gates are unchanged.
+
+All 18 final study expectations pass. Maximum accepted rate error is
+0.016548 /s and carrier error is 0.001603 Hz, below declared 0.1 /s and 0.02 Hz
+limits. Near-coincident carriers withhold coefficients; omitted-neighbor,
+low-margin, changing-decay and stationary probes reject. This is conditional
+synthetic coverage, not calibration of source recordings or mechanical losses.
+
+Both receipts are retained: the initial 129947-byte report had 17/18 expected
+outcomes because an omitted neighbor was expected to reject specifically on
+carrier offset at 32 ms. It already rejected on margin and multiple instability
+gates. The corrected expectation requires margin rejection at both widths;
+the final receipt is 129911 bytes. All numerical measurements are unchanged.
+No waveform or acceptance threshold was adjusted to obtain the final result.
+
+All 270 workspace release tests pass, including DSP, plugin and UI. Four new
+analysis tests and one CLI regression cover known polynomial coefficients,
+three-carrier QR orthogonality, independently checked noise propagation, native
+rates/phase/offset, ill-conditioning, invalid/support/silent inputs, full study
+and source/output preservation. Strict workspace Clippy and formatting pass.
+Clippy's allocation check prompted explicit capacity reservation for all six
+carrier columns; the focused estimator tests were rechecked afterward.
+
+The sibling RackForge workspace is now 0.1.15; Cargo.lock was synchronized
+offline for only `rackforge-plugin-sdk` and `rackforge-program-api`. No remote
+package changed. Full workspace verification covers this local dependency
+transition, but no packaged release, host audition or listening result is claimed.
+Next freeze short source intervals and nuisance harmonics before applying this
+estimator to the recordings. No physical equation, preset or source WAV changed.
+
+Cleanup removed 342 regenerable debug files (101.5 MiB). Release artifacts
+occupy 160.8 MiB after full compatibility testing. Both numeric expectation
+receipts are retained; temporary CLI WAVs are removed by the test harness.
+Existing source recordings, listening WAVs and the packaged plugin are preserved.

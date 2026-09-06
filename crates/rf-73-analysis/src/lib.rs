@@ -6,6 +6,7 @@ mod measurement;
 mod modal_observation;
 mod partial_comparison;
 mod pitch_anchor;
+mod short_envelope;
 mod spectrum;
 mod tone_comparison;
 mod tracking;
@@ -23,6 +24,10 @@ pub use partial_comparison::{
     compare_partials,
 };
 pub use pitch_anchor::{PitchAnchor, PitchWindow, pitch_anchor};
+pub use short_envelope::{
+    ShortEnvelope, ShortEnvelopeFit, ShortEnvelopeOptions, ShortEnvelopePoint,
+    measure_short_envelope,
+};
 pub use spectrum::coherent_coefficients;
 pub use tone_comparison::{
     HarmonicBalance, ToneComparison, ToneComparisonOptions, ToneWindow, compare_tone,

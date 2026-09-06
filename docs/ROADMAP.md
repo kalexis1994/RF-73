@@ -376,3 +376,10 @@ mixing-rate comparisons are withheld. Upper-family initial detectability is too
 short for the present support requirement. Next validate short-transient
 estimation with uncertain carriers and neighboring harmonics before revisiting
 the sources. No rejection threshold, mechanical loss or audible baseline changed.
+
+The [joint short-envelope estimator](SHORT-ENVELOPE.md) now fits declared carriers
+with quadratic local envelopes and rejects ill-conditioned combinations. Synthetic
+32/64 ms probes cover strong neighbors, noise, detuning and short support; all
+18 final expectations pass. Next freeze short source intervals and nuisance
+harmonics, compare both widths and retain failures before adopting physical
+losses. Earlier source/Hann gates and the audible baseline are unchanged.

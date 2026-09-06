@@ -10,6 +10,103 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn short_envelope_study_and_wav_observations_preserve_outputs_and_sources() {
+    let scratch = Scratch::new();
+    scratch.success(&["validate-short-envelope", "--output", "study.json"]);
+    let report = scratch.json("study.json");
+    assert_eq!(report["all_expectations_passed"], true);
+    assert_eq!(report["cases"].as_array().unwrap().len(), 18);
+    scratch.success(&[
+        "render",
+        "--output",
+        "source.wav",
+        "--seconds",
+        "0.25",
+        "--hold",
+        "0.2",
+    ]);
+    let original = fs::read(scratch.0.join("source.wav")).unwrap();
+    let args = [
+        "short-envelope",
+        "source.wav",
+        "--output",
+        "observation.json",
+        "--frequencies-hz",
+        "1620,1568",
+        "--start",
+        "0.02",
+        "--end",
+        "0.18",
+    ];
+    scratch.success(&args);
+    let observation = scratch.json("observation.json");
+    assert_eq!(
+        observation["measurement"]["method"],
+        "joint-quadratic-carrier-envelope-v1"
+    );
+    assert!(
+        !observation["measurement"]["points"]
+            .as_array()
+            .unwrap()
+            .is_empty()
+    );
+    let before = fs::read(scratch.0.join("observation.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(
+        before,
+        fs::read(scratch.0.join("observation.json")).unwrap()
+    );
+    for args in [
+        vec![
+            "validate-short-envelope",
+            "--output",
+            "bad.json",
+            "--unknown",
+            "1",
+        ],
+        vec![
+            "validate-short-envelope",
+            "--output",
+            "bad.json",
+            "--output",
+            "other.json",
+        ],
+        vec!["short-envelope", "source.wav", "--output", "bad.json"],
+        vec![
+            "short-envelope",
+            "source.wav",
+            "--output",
+            "bad.json",
+            "--frequencies-hz",
+            "1620,1620",
+            "--start",
+            "0.02",
+            "--end",
+            "0.18",
+        ],
+        vec![
+            "short-envelope",
+            "source.wav",
+            "--output",
+            "bad.json",
+            "--frequencies-hz",
+            "NaN",
+            "--start",
+            "0.02",
+            "--end",
+            "0.18",
+        ],
+        vec!["validate-short-envelope", "--output", "bad.wav"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        for name in ["bad.json", "other.json", "bad.wav"] {
+            assert!(!scratch.0.join(name).exists());
+        }
+    }
+    assert_eq!(original, fs::read(scratch.0.join("source.wav")).unwrap());
+}
+
+#[test]
 fn source_envelopes_keep_missing_components_and_verify_receipt_and_audio_bytes() {
     let scratch = Scratch::new();
     let hash = |name: &str| {

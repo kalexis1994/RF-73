@@ -1,0 +1,3345 @@
+{
+  "all_expectations_passed": true,
+  "cases": [
+    {
+      "expectation_passed": true,
+      "expected_rejection": null,
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.032,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.6666242787770014,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.032
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -32.95839830647823,
+            "center_seconds": 0.03598958333333333,
+            "coefficient": [
+              0.016762467001331254,
+              0.015001031510339585
+            ],
+            "regression_margin_db": 110.88394555726114,
+            "residual_rms": 8.374383146534686e-7,
+            "unwrapped_phase_radians": 0.7300001973503003
+          },
+          {
+            "amplitude_dbfs": -33.51429576340884,
+            "center_seconds": 0.04398958333333333,
+            "coefficient": [
+              0.015723279355139973,
+              0.014071038980284122
+            ],
+            "regression_margin_db": 110.84710544988424,
+            "residual_rms": 7.888600439888741e-7,
+            "unwrapped_phase_radians": 0.7300000235961166
+          },
+          {
+            "amplitude_dbfs": -34.070192428939656,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.014748517495208746,
+              0.013198702653281564
+            ],
+            "regression_margin_db": 110.81004750953622,
+            "residual_rms": 7.431184143872131e-7,
+            "unwrapped_phase_radians": 0.7299998424876835
+          },
+          {
+            "amplitude_dbfs": -34.626088370188135,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.013834186510425676,
+              0.012380448507756592
+            ],
+            "regression_margin_db": 110.78184000379585,
+            "residual_rms": 6.993162200153193e-7,
+            "unwrapped_phase_radians": 0.7299996988287849
+          },
+          {
+            "amplitude_dbfs": -35.1819838334498,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.01297653913339479,
+              0.011612923649806605
+            ],
+            "regression_margin_db": 110.76924303370924,
+            "residual_rms": 6.569142408371784e-7,
+            "unwrapped_phase_radians": 0.7299996281587733
+          },
+          {
+            "amplitude_dbfs": -35.73787918326748,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.012172060592014762,
+              0.0108929826739966
+            ],
+            "regression_margin_db": 110.77523618827948,
+            "residual_rms": 6.157639387718681e-7,
+            "unwrapped_phase_radians": 0.7299996479605286
+          },
+          {
+            "amplitude_dbfs": -36.29377481224833,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.011417454332371348,
+              0.010217674949619504
+            ],
+            "regression_margin_db": 110.7984048837411,
+            "residual_rms": 5.760511332392824e-7,
+            "unwrapped_phase_radians": 0.7299997533351039
+          },
+          {
+            "amplitude_dbfs": -36.84967104393789,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.010709628534876276,
+              0.009584232730196124
+            ],
+            "regression_margin_db": 110.83322902346602,
+            "residual_rms": 5.381768554114602e-7,
+            "unwrapped_phase_radians": 0.7299999182144346
+          },
+          {
+            "amplitude_dbfs": -37.40556805277971,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.010045683375023099,
+              0.008990059987399771
+            ],
+            "regression_margin_db": 110.8712560104786,
+            "residual_rms": 5.026073287668695e-7,
+            "unwrapped_phase_radians": 0.7300001018093911
+          },
+          {
+            "amplitude_dbfs": -37.96146582096058,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.009422899004562182,
+              0.00843272188552648
+            ],
+            "regression_margin_db": 110.90303966391264,
+            "residual_rms": 4.697261581508992e-7,
+            "unwrapped_phase_radians": 0.730000258701407
+          },
+          {
+            "amplitude_dbfs": -38.51736414281727,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.008838724244185523,
+              0.007909934834631054
+            ],
+            "regression_margin_db": 110.9205090453419,
+            "residual_rms": 4.3972014319037564e-7,
+            "unwrapped_phase_radians": 0.7300003500770984
+          },
+          {
+            "amplitude_dbfs": -39.073262675714545,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.008290765982917066,
+              0.007419557084459545
+            ],
+            "regression_margin_db": 110.91915915914974,
+            "residual_rms": 4.125237228202362e-7,
+            "unwrapped_phase_radians": 0.7300003533315325
+          },
+          {
+            "amplitude_dbfs": -39.62916102480822,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.007776779273711691,
+              0.006959579841703069
+            ],
+            "regression_margin_db": 110.89933984907705,
+            "residual_rms": 3.8783319360410383e-7,
+            "unwrapped_phase_radians": 0.7300002676597721
+          },
+          {
+            "amplitude_dbfs": -40.18505884072434,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.0072946581021540065,
+              0.006528118906421786
+            ],
+            "regression_margin_db": 110.86615403500318,
+            "residual_rms": 3.6518201138608273e-7,
+            "unwrapped_phase_radians": 0.7300001142554309
+          },
+          {
+            "amplitude_dbfs": -40.74095590598993,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.006842426790241453,
+              0.00612340682777391
+            ],
+            "regression_margin_db": 110.82800546632254,
+            "residual_rms": 3.440503084298384e-7,
+            "unwrapped_phase_radians": 0.7299999310689196
+          },
+          {
+            "amplitude_dbfs": -41.29685218883316,
+            "center_seconds": 0.15598958333333332,
+            "coefficient": [
+              0.0064182319843707055,
+              0.005743785575063696
+            ],
+            "regression_margin_db": 110.79433963028423,
+            "residual_rms": 3.239742022768999e-7,
+            "unwrapped_phase_radians": 0.729999763418395
+          },
+          {
+            "amplitude_dbfs": -41.85274785104347,
+            "center_seconds": 0.16398958333333333,
+            "coefficient": [
+              0.0060203351690494645,
+              0.005387699710177174
+            ],
+            "regression_margin_db": 110.77330379803216,
+            "residual_rms": 3.046263295416354e-7,
+            "unwrapped_phase_radians": 0.7299996527779746
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 8.000000246951407,
+          "amplitude_residual_rms_db": 2.2613008620906035e-6,
+          "carrier_offset_hz": 1.2867394133042848e-7,
+          "early_decay_per_second": 7.999985855278464,
+          "fitted_drop_db": 8.89435126393766,
+          "late_decay_per_second": 8.000010020528476,
+          "phase_residual_rms_radians": 2.47792906175824e-7
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "clean",
+      "qualified_carrier_error_hz": 1.2867394133042848e-7,
+      "qualified_decay_error_per_second": 2.4695140687924777e-7
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": null,
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.064,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.6666355145415808,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.064
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -34.07030672677017,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.014748314252667781,
+              0.013198539216583354
+            ],
+            "regression_margin_db": 95.75726368241548,
+            "residual_rms": 5.952660557045891e-6,
+            "unwrapped_phase_radians": 0.7300005370891913
+          },
+          {
+            "amplitude_dbfs": -34.62620691141584,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.013833982669515733,
+              0.012380296351140966
+            ],
+            "regression_margin_db": 95.7405886504074,
+            "residual_rms": 5.594352921869259e-6,
+            "unwrapped_phase_radians": 0.7300009136037362
+          },
+          {
+            "amplitude_dbfs": -35.182108269840825,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.012976336562101324,
+              0.01161277590544347
+            ],
+            "regression_margin_db": 95.73233181467616,
+            "residual_rms": 5.2525190282666656e-6,
+            "unwrapped_phase_radians": 0.7300010634098242
+          },
+          {
+            "amplitude_dbfs": -35.73800970820485,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.012171863504059277,
+              0.010892834825302662
+            ],
+            "regression_margin_db": 95.73448652764384,
+            "residual_rms": 4.9256644916317334e-6,
+            "unwrapped_phase_radians": 0.7300009494472146
+          },
+          {
+            "amplitude_dbfs": -36.29391011288869,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.011417267833486006,
+              0.010217525455059436
+            ],
+            "regression_margin_db": 95.74653365069054,
+            "residual_rms": 4.613892275349419e-6,
+            "unwrapped_phase_radians": 0.7300005999081831
+          },
+          {
+            "amplitude_dbfs": -36.84980862598999,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.010709457144348254,
+              0.009584082880207633
+            ],
+            "regression_margin_db": 95.76555728836615,
+            "residual_rms": 4.31838484309767e-6,
+            "unwrapped_phase_radians": 0.7300001012641779
+          },
+          {
+            "amplitude_dbfs": -37.40570485755969,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.010045529873554533,
+              0.008989913119719584
+            ],
+            "regression_margin_db": 95.7869070629632,
+            "residual_rms": 4.04072265506856e-6,
+            "unwrapped_phase_radians": 0.7299995768731353
+          },
+          {
+            "amplitude_dbfs": -37.9615989820723,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.009422763840380217,
+              0.008432582220528263
+            ],
+            "regression_margin_db": 95.80529661693026,
+            "residual_rms": 3.78220320814627e-6,
+            "unwrapped_phase_radians": 0.7299991564630783
+          },
+          {
+            "amplitude_dbfs": -38.51749169526223,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.008838605569824064,
+              0.007909806250527736
+            ],
+            "regression_margin_db": 95.81611502447905,
+            "residual_rms": 3.543311246086474e-6,
+            "unwrapped_phase_radians": 0.729998944037519
+          },
+          {
+            "amplitude_dbfs": -39.07338404200546,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.008290660237656115,
+              0.0074194421280117575
+            ],
+            "regression_margin_db": 95.81662468689564,
+            "residual_rms": 3.323450404115018e-6,
+            "unwrapped_phase_radians": 0.7299989921476633
+          },
+          {
+            "amplitude_dbfs": -39.62927715782914,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.007776682108192377,
+              0.006959479179032141
+            ],
+            "regression_margin_db": 95.80669620380745,
+            "residual_rms": 3.120979891711011e-6,
+            "unwrapped_phase_radians": 0.7299992888915492
+          },
+          {
+            "amplitude_dbfs": -40.18517198799765,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.007294565385451365,
+              0.006528031290155785
+            ],
+            "regression_margin_db": 95.78884351682984,
+            "residual_rms": 2.933518715992187e-6,
+            "unwrapped_phase_radians": 0.7299997608581519
+          },
+          {
+            "amplitude_dbfs": -40.74106905366979,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.006842335451460201,
+              0.006123329525824391
+            ],
+            "regression_margin_db": 95.76754762469356,
+            "residual_rms": 2.758409911835903e-6,
+            "unwrapped_phase_radians": 0.7300002912896693
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 7.999992797645857,
+          "amplitude_residual_rms_db": 6.363651180189136e-6,
+          "carrier_offset_hz": -2.6742664335964154e-6,
+          "early_decay_per_second": 8.000052527564542,
+          "fitted_drop_db": 6.670757236384039,
+          "late_decay_per_second": 7.999953656021636,
+          "phase_residual_rms_radians": 5.479798208444122e-7
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "clean",
+      "qualified_carrier_error_hz": 2.6742664335964154e-6,
+      "qualified_decay_error_per_second": 7.202354143309719e-6
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": null,
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.032,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.18921318142144528,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0,
+            1568.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.032
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -32.958380688472985,
+            "center_seconds": 0.03598958333333333,
+            "coefficient": [
+              0.016764103011695224,
+              0.014999271625514501
+            ],
+            "regression_margin_db": 118.9441759367802,
+            "residual_rms": 1.280173302385386e-7,
+            "unwrapped_phase_radians": 0.7298933978568004
+          },
+          {
+            "amplitude_dbfs": -33.51427295177204,
+            "center_seconds": 0.04398958333333333,
+            "coefficient": [
+              0.015724735352391,
+              0.014069494955249052
+            ],
+            "regression_margin_db": 118.49782967331323,
+            "residual_rms": 1.2641292079057675e-7,
+            "unwrapped_phase_radians": 0.7298994781337642
+          },
+          {
+            "amplitude_dbfs": -34.07014762697805,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.014749980134561523,
+              0.013197221189710291
+            ],
+            "regression_margin_db": 118.84030647246975,
+            "residual_rms": 1.1399187367215578e-7,
+            "unwrapped_phase_radians": 0.7298947836542373
+          },
+          {
+            "amplitude_dbfs": -34.626092683382915,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.013835431727777712,
+              0.012379043107825331
+            ],
+            "regression_margin_db": 118.53898390433622,
+            "residual_rms": 1.1069876296427835e-7,
+            "unwrapped_phase_radians": 0.7298985588385638
+          },
+          {
+            "amplitude_dbfs": -35.18193719504839,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.012977782679181758,
+              0.01161167416440265
+            ],
+            "regression_margin_db": 118.55965989352158,
+            "residual_rms": 1.0358973992324788e-7,
+            "unwrapped_phase_radians": 0.7298985400235698
+          },
+          {
+            "amplitude_dbfs": -35.73789189335622,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.012173180585229334,
+              0.010891695192507697
+            ],
+            "regression_margin_db": 118.77277829434195,
+            "residual_rms": 9.481195195202065e-8,
+            "unwrapped_phase_radians": 0.7298951887205698
+          },
+          {
+            "amplitude_dbfs": -36.293759596322346,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.011418481314751221,
+              0.01021656751435079
+            ],
+            "regression_margin_db": 118.3645107053348,
+            "residual_rms": 9.321441579580244e-8,
+            "unwrapped_phase_radians": 0.7299011952011174
+          },
+          {
+            "amplitude_dbfs": -36.8496598946407,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.010710668283645364,
+              0.009583098432594453
+            ],
+            "regression_margin_db": 118.96551318936622,
+            "residual_rms": 8.159018971135315e-8,
+            "unwrapped_phase_radians": 0.7298928609404913
+          },
+          {
+            "amplitude_dbfs": -37.40559188924085,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.010046559255316114,
+              0.008989025681826648
+            ],
+            "regression_margin_db": 118.46443127953789,
+            "residual_rms": 8.107658333289366e-8,
+            "unwrapped_phase_radians": 0.72989960174854
+          },
+          {
+            "amplitude_dbfs": -37.96142063885138,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.009423839173183488,
+              0.008431769852437866
+            ],
+            "regression_margin_db": 118.8608730956119,
+            "residual_rms": 7.265774423226185e-8,
+            "unwrapped_phase_radians": 0.7298945750772283
+          },
+          {
+            "amplitude_dbfs": -38.51739457651325,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.00883953072039005,
+              0.007908971241387088
+            ],
+            "regression_margin_db": 118.83681302761993,
+            "residual_rms": 6.83417691232256e-8,
+            "unwrapped_phase_radians": 0.7298944708447577
+          },
+          {
+            "amplitude_dbfs": -39.0732119484495,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.00829156484571834,
+              0.007418761770413036
+            ],
+            "regression_margin_db": 118.53060284732948,
+            "residual_rms": 6.640577618954473e-8,
+            "unwrapped_phase_radians": 0.7298992042986603
+          },
+          {
+            "amplitude_dbfs": -39.629150854895585,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.007777551732816519,
+              0.006958734908999592
+            ],
+            "regression_margin_db": 119.15638663925235,
+            "residual_rms": 5.7958845018648684e-8,
+            "unwrapped_phase_radians": 0.7298905771995718
+          },
+          {
+            "amplitude_dbfs": -40.185044044195095,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.007295311586940321,
+              0.006527413624365003
+            ],
+            "regression_margin_db": 118.32312084052829,
+            "residual_rms": 5.983955468174317e-8,
+            "unwrapped_phase_radians": 0.7299019095012476
+          },
+          {
+            "amplitude_dbfs": -40.74089095049529,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.006843135685313676,
+              0.006122717584599337
+            ],
+            "regression_margin_db": 119.01685392617715,
+            "residual_rms": 5.182142525565966e-8,
+            "unwrapped_phase_radians": 0.7298925137618459
+          },
+          {
+            "amplitude_dbfs": -41.29688120898774,
+            "center_seconds": 0.15598958333333332,
+            "coefficient": [
+              0.00641878929274812,
+              0.005743119608853771
+            ],
+            "regression_margin_db": 118.48895698902834,
+            "residual_rms": 5.1654086710282384e-8,
+            "unwrapped_phase_radians": 0.7298989959700446
+          },
+          {
+            "amplitude_dbfs": -41.852670454822956,
+            "center_seconds": 0.16398958333333333,
+            "coefficient": [
+              0.006020928099674041,
+              0.005387145047279986
+            ],
+            "regression_margin_db": 118.4926355060682,
+            "residual_rms": 4.8431876825851995e-8,
+            "unwrapped_phase_radians": 0.7298995523344955
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 7.99998899346622,
+          "amplitude_residual_rms_db": 0.00003083252362842282,
+          "carrier_offset_hz": 8.511423450989515e-7,
+          "early_decay_per_second": 8.00002094983882,
+          "fitted_drop_db": 8.894338752381769,
+          "late_decay_per_second": 7.99992914904353,
+          "phase_residual_rms_radians": 3.3008054157966324e-6
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "strong_neighbor",
+      "qualified_carrier_error_hz": 8.511423450989515e-7,
+      "qualified_decay_error_per_second": 0.00001100653378038885
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": null,
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.064,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.5704935180812075,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0,
+            1568.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.064
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -34.07031882962242,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.01474871184112554,
+              0.013198053574407134
+            ],
+            "regression_margin_db": 96.75591745438052,
+            "residual_rms": 5.123466122425992e-6,
+            "unwrapped_phase_radians": 0.729968855809231
+          },
+          {
+            "amplitude_dbfs": -34.626168648339835,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.013834486724941213,
+              0.012379855727126753
+            ],
+            "regression_margin_db": 96.61862505244953,
+            "residual_rms": 4.882429691777428e-6,
+            "unwrapped_phase_radians": 0.7299651211852307
+          },
+          {
+            "amplitude_dbfs": -35.18211415723418,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.01297674511406891,
+              0.011612301665314241
+            ],
+            "regression_margin_db": 96.61080430627878,
+            "residual_rms": 4.583843270308351e-6,
+            "unwrapped_phase_radians": 0.7299651240153398
+          },
+          {
+            "amplitude_dbfs": -35.73795396237034,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.012172299033407207,
+              0.010892505345070363
+            ],
+            "regression_margin_db": 96.75604538051445,
+            "residual_rms": 4.228396609790362e-6,
+            "unwrapped_phase_radians": 0.7299681375457205
+          },
+          {
+            "amplitude_dbfs": -36.29387839036657,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.011417695860121417,
+              0.010217131063811656
+            ],
+            "regression_margin_db": 96.51061724382504,
+            "residual_rms": 4.0799129913988135e-6,
+            "unwrapped_phase_radians": 0.7299627888670992
+          },
+          {
+            "amplitude_dbfs": -36.849769105050115,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.010709788844919934,
+              0.009583810279456744
+            ],
+            "regression_margin_db": 96.83825965576334,
+            "residual_rms": 3.6853118621560588e-6,
+            "unwrapped_phase_radians": 0.7299705756810004
+          },
+          {
+            "amplitude_dbfs": -37.405635841260676,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.010045923611334176,
+              0.008989633760985228
+            ],
+            "regression_margin_db": 96.57033837283718,
+            "residual_rms": 3.5651431481127352e-6,
+            "unwrapped_phase_radians": 0.7299646575844894
+          },
+          {
+            "amplitude_dbfs": -37.96159432565092,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.009423019922830086,
+              0.008432306224869315
+            ],
+            "regression_margin_db": 96.74979111550624,
+            "residual_rms": 3.2757172750066254e-6,
+            "unwrapped_phase_radians": 0.7299693868112347
+          },
+          {
+            "amplitude_dbfs": -38.517423934791346,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.008838905697581013,
+              0.007909609628086102
+            ],
+            "regression_margin_db": 96.767502924151,
+            "residual_rms": 3.066403769685824e-6,
+            "unwrapped_phase_radians": 0.7299697173267865
+          },
+          {
+            "amplitude_dbfs": -39.07339391181044,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.00829090129775394,
+              0.007419153794601212
+            ],
+            "regression_margin_db": 96.55988099515147,
+            "residual_rms": 2.9458588760401565e-6,
+            "unwrapped_phase_radians": 0.7299652314144263
+          },
+          {
+            "amplitude_dbfs": -39.629256095856235,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.007776882001905023,
+              0.0069592937551991845
+            ],
+            "regression_margin_db": 96.91947437313024,
+            "residual_rms": 2.6511796629815213e-6,
+            "unwrapped_phase_radians": 0.7299732756518162
+          },
+          {
+            "amplitude_dbfs": -40.185155210117045,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.007294823026820921,
+              0.006527771740437418
+            ],
+            "regression_margin_db": 96.46630095377739,
+            "residual_rms": 2.620009553393144e-6,
+            "unwrapped_phase_radians": 0.7299624516622227
+          },
+          {
+            "amplitude_dbfs": -40.74110121694354,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.006842488605611496,
+              0.006123107396388591
+            ],
+            "regression_margin_db": 96.83287489119834,
+            "residual_rms": 2.3560086341187245e-6,
+            "unwrapped_phase_radians": 0.7299711413988486
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 8.000014908359992,
+          "amplitude_residual_rms_db": 0.000027081258422549334,
+          "carrier_offset_hz": 4.035946834754349e-6,
+          "early_decay_per_second": 7.999929121122206,
+          "fitted_drop_db": 6.670775673301427,
+          "late_decay_per_second": 8.000121207274,
+          "phase_residual_rms_radians": 3.1797028267707234e-6
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "strong_neighbor",
+      "qualified_carrier_error_hz": 4.035946834754349e-6,
+      "qualified_decay_error_per_second": 0.000014908359991849807
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": null,
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.032,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.18921318142144528,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0,
+            1568.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.032
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -32.95629349712804,
+            "center_seconds": 0.03598958333333333,
+            "coefficient": [
+              0.016761078031262828,
+              0.015010756393189542
+            ],
+            "regression_margin_db": 56.293004955257686,
+            "residual_rms": 0.0001737527450343456,
+            "unwrapped_phase_radians": 0.7303634392172723
+          },
+          {
+            "amplitude_dbfs": -33.50531619200263,
+            "center_seconds": 0.04398958333333333,
+            "coefficient": [
+              0.015741341048994252,
+              0.014083583491497678
+            ],
+            "regression_margin_db": 55.78079785724337,
+            "residual_rms": 0.00017301784350958038,
+            "unwrapped_phase_radians": 0.7298723390809418
+          },
+          {
+            "amplitude_dbfs": -34.0675904394119,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.014756279176305086,
+              0.013198920760012167
+            ],
+            "regression_margin_db": 55.19205105177977,
+            "residual_rms": 0.0001735459657769293,
+            "unwrapped_phase_radians": 0.7297466092961731
+          },
+          {
+            "amplitude_dbfs": -34.62300760244175,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.013849149886566684,
+              0.012373594807822328
+            ],
+            "regression_margin_db": 54.727328034960536,
+            "residual_rms": 0.0001717433046583226,
+            "unwrapped_phase_radians": 0.7291873933603021
+          },
+          {
+            "amplitude_dbfs": -35.17005119006417,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.012980228200295634,
+              0.011644680939453646
+            ],
+            "regression_margin_db": 54.26743827995154,
+            "residual_rms": 0.0001700286566693527,
+            "unwrapped_phase_radians": 0.7312156259395146
+          },
+          {
+            "amplitude_dbfs": -35.74716227544814,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.01214262471998314,
+              0.010899682664971948
+            ],
+            "regression_margin_db": 53.61125460008126,
+            "residual_rms": 0.0001715835912428469,
+            "unwrapped_phase_radians": 0.731508654826968
+          },
+          {
+            "amplitude_dbfs": -36.309969826820904,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.01140393746810646,
+              0.010189973455949927
+            ],
+            "regression_margin_db": 53.13166723556135,
+            "residual_rms": 0.00016994748579997294,
+            "unwrapped_phase_radians": 0.7292393904467889
+          },
+          {
+            "amplitude_dbfs": -36.83510147450937,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.010717465381648075,
+              0.009611643942340852
+            ],
+            "regression_margin_db": 52.488260774440825,
+            "residual_rms": 0.00017227746977633548,
+            "unwrapped_phase_radians": 0.7310557583915949
+          },
+          {
+            "amplitude_dbfs": -37.42097846879189,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.010024816463174557,
+              0.008977541930148273
+            ],
+            "regression_margin_db": 51.79770862959268,
+            "residual_rms": 0.00017436617560556635,
+            "unwrapped_phase_radians": 0.7303409910676284
+          },
+          {
+            "amplitude_dbfs": -37.9816031487081,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.009377949739682031,
+              0.008438967215049047
+            ],
+            "regression_margin_db": 51.29813159901816,
+            "residual_rms": 0.00017314496214134516,
+            "unwrapped_phase_radians": 0.7327451348244383
+          },
+          {
+            "amplitude_dbfs": -38.536272765116394,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.008819654678040084,
+              0.007892565591452252
+            ],
+            "regression_margin_db": 50.69201723368526,
+            "residual_rms": 0.00017417350728575354,
+            "unwrapped_phase_radians": 0.7299812387687932
+          },
+          {
+            "amplitude_dbfs": -39.06512843868218,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.008306529180725433,
+              0.007417564808358142
+            ],
+            "regression_margin_db": 50.31552440902634,
+            "residual_rms": 0.00017114489714884122,
+            "unwrapped_phase_radians": 0.7289231083084595
+          },
+          {
+            "amplitude_dbfs": -39.6302124506689,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.007775231215951051,
+              0.006959415357008336
+            ],
+            "regression_margin_db": 49.869873545227094,
+            "residual_rms": 0.00016880771736760245,
+            "unwrapped_phase_radians": 0.7300874540241846
+          },
+          {
+            "amplitude_dbfs": -40.1949526760318,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.007288677809571713,
+              0.00651808922352826
+            ],
+            "regression_margin_db": 49.29477503851683,
+            "residual_rms": 0.00016900914761035443,
+            "unwrapped_phase_radians": 0.729643623408911
+          },
+          {
+            "amplitude_dbfs": -40.777520471512204,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.006794910821680723,
+              0.006118595399661202
+            ],
+            "regression_margin_db": 48.73458636236962,
+            "residual_rms": 0.00016857425749297717,
+            "unwrapped_phase_radians": 0.7330732509725677
+          },
+          {
+            "amplitude_dbfs": -41.308177008993646,
+            "center_seconds": 0.15598958333333332,
+            "coefficient": [
+              0.006414462025787755,
+              0.005731165374820204
+            ],
+            "regression_margin_db": 47.99156457011739,
+            "residual_rms": 0.00017274660391505733,
+            "unwrapped_phase_radians": 0.7291987503789703
+          },
+          {
+            "amplitude_dbfs": -41.84905787559191,
+            "center_seconds": 0.16398958333333333,
+            "coefficient": [
+              0.006022344774768995,
+              0.005390601888262941
+            ],
+            "regression_margin_db": 47.365466397582864,
+            "residual_rms": 0.0001744497628841894,
+            "unwrapped_phase_radians": 0.7301014136617692
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 8.01654796659374,
+          "amplitude_residual_rms_db": 0.012120799825399885,
+          "carrier_offset_hz": 0.0003088220672710785,
+          "early_decay_per_second": 8.011194335620502,
+          "fitted_drop_db": 8.91274891725925,
+          "late_decay_per_second": 7.9881375248552935,
+          "phase_residual_rms_radians": 0.0011617039032449277
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "strong_neighbor_with_noise",
+      "qualified_carrier_error_hz": 0.0003088220672710785,
+      "qualified_decay_error_per_second": 0.01654796659373936
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": null,
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.064,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.5704935180812075,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0,
+            1568.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.064
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -34.064897896488525,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.014751499317417992,
+              0.013213464150989533
+            ],
+            "regression_margin_db": 66.2289326776044,
+            "residual_rms": 0.00017225988557209243,
+            "unwrapped_phase_radians": 0.7304548697733642
+          },
+          {
+            "amplitude_dbfs": -34.626456580524014,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.01382428610129258,
+              0.012390323448770398
+            ],
+            "regression_margin_db": 65.64236082592934,
+            "residual_rms": 0.00017275666547751718,
+            "unwrapped_phase_radians": 0.73075172728133
+          },
+          {
+            "amplitude_dbfs": -35.18282514481881,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.012968096416562472,
+              0.011619823542998856
+            ],
+            "regression_margin_db": 65.11689672338554,
+            "residual_rms": 0.00017214308814443826,
+            "unwrapped_phase_radians": 0.7306182569905735
+          },
+          {
+            "amplitude_dbfs": -35.73917854765171,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.012164112244119014,
+              0.010898196511588408
+            ],
+            "regression_margin_db": 64.5308915506694,
+            "residual_rms": 0.00017273175205193117,
+            "unwrapped_phase_radians": 0.7305620832905149
+          },
+          {
+            "amplitude_dbfs": -36.297131433699974,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.011408994751436596,
+              0.010218248896994193
+            ],
+            "regression_margin_db": 63.974803084677035,
+            "residual_rms": 0.0001726946792827168,
+            "unwrapped_phase_radians": 0.7303960156883758
+          },
+          {
+            "amplitude_dbfs": -36.85560565417835,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.010698614701311305,
+              0.009581818312506379
+            ],
+            "regression_margin_db": 63.410422569370056,
+            "residual_rms": 0.00017281214940966742,
+            "unwrapped_phase_radians": 0.7303860459834288
+          },
+          {
+            "amplitude_dbfs": -37.41265622413164,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.010036913204090891,
+              0.008983369819686973
+            ],
+            "regression_margin_db": 62.86910543566443,
+            "residual_rms": 0.0001724994044831461,
+            "unwrapped_phase_radians": 0.7300641865080184
+          },
+          {
+            "amplitude_dbfs": -37.96441993390238,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.009415372760089536,
+              0.008434681384531278
+            ],
+            "regression_margin_db": 62.3432575132976,
+            "residual_rms": 0.00017198549105196188,
+            "unwrapped_phase_radians": 0.7305128154630776
+          },
+          {
+            "amplitude_dbfs": -38.52004963708155,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.00883352926600144,
+              0.007910240584614429
+            ],
+            "regression_margin_db": 61.78662696203497,
+            "residual_rms": 0.00017200530954767566,
+            "unwrapped_phase_radians": 0.7303117288949048
+          },
+          {
+            "amplitude_dbfs": -39.07233509087107,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.008292564307292428,
+              0.007419329270683156
+            ],
+            "regression_margin_db": 61.2630883398034,
+            "residual_rms": 0.00017143698154148545,
+            "unwrapped_phase_radians": 0.7298773198921196
+          },
+          {
+            "amplitude_dbfs": -39.62686365257407,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.0077804675367620525,
+              0.006959597832059114
+            ],
+            "regression_margin_db": 60.6931143426887,
+            "residual_rms": 0.00017174210567098334,
+            "unwrapped_phase_radians": 0.7297659351413746
+          },
+          {
+            "amplitude_dbfs": -40.18476441926868,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.007297149171030925,
+              0.006525832052459504
+            ],
+            "regression_margin_db": 60.116519431803056,
+            "residual_rms": 0.00017211213444938441,
+            "unwrapped_phase_radians": 0.7296563465958608
+          },
+          {
+            "amplitude_dbfs": -40.74648064562278,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.006839039161324382,
+              0.006118436773711733
+            ],
+            "regression_margin_db": 59.57318860231454,
+            "residual_rms": 0.00017174821049851683,
+            "unwrapped_phase_radians": 0.7298425230945251
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 8.003010086902146,
+          "amplitude_residual_rms_db": 0.0032485273337622507,
+          "carrier_offset_hz": -0.0016020830833002207,
+          "early_decay_per_second": 8.026941874479576,
+          "fitted_drop_db": 6.673273189166717,
+          "late_decay_per_second": 7.991705563878786,
+          "phase_residual_rms_radians": 0.00017212638665012217
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "strong_neighbor_with_noise",
+      "qualified_carrier_error_hz": 0.0016020830833002207,
+      "qualified_decay_error_per_second": 0.003010086902145659
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": null,
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.032,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.18921318142144528,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0,
+            1568.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.032
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -32.959181183227734,
+            "center_seconds": 0.03598958333333333,
+            "coefficient": [
+              0.008507015252793508,
+              0.020821881049185975
+            ],
+            "regression_margin_db": 101.87676519930096,
+            "residual_rms": 9.13270181413191e-7,
+            "unwrapped_phase_radians": 1.182931356590156
+          },
+          {
+            "amplitude_dbfs": -33.51507161520661,
+            "center_seconds": 0.04398958333333333,
+            "coefficient": [
+              0.005979078547544043,
+              0.02023330774447071
+            ],
+            "regression_margin_db": 101.92413478994791,
+            "residual_rms": 8.519934909928968e-7,
+            "unwrapped_phase_radians": 1.2834668819486321
+          },
+          {
+            "amplitude_dbfs": -34.07099405256609,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.0036754500399842163,
+              0.019445906740018264
+            ],
+            "regression_margin_db": 101.85919790987282,
+            "residual_rms": 8.051689135197232e-7,
+            "unwrapped_phase_radians": 1.383991092105079
+          },
+          {
+            "amplitude_dbfs": -34.62692214090717,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.0015994605562511133,
+              0.01849420950198459
+            ],
+            "regression_margin_db": 101.91126174859166,
+            "residual_rms": 7.507362776223399e-7,
+            "unwrapped_phase_radians": 1.4845265887953314
+          },
+          {
+            "amplitude_dbfs": -35.18279169606889,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              -0.0002481952311555024,
+              0.017410702401588544
+            ],
+            "regression_margin_db": 101.83133170735495,
+            "residual_rms": 7.107067283294505e-7,
+            "unwrapped_phase_radians": 1.5850506868549754
+          },
+          {
+            "amplitude_dbfs": -35.738750027795966,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              -0.0018706693239104212,
+              0.01622538845252805
+            ],
+            "regression_margin_db": 101.84668554828471,
+            "residual_rms": 6.654643864070576e-7,
+            "unwrapped_phase_radians": 1.6855822527613586
+          },
+          {
+            "amplitude_dbfs": -36.294581595161205,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              -0.0032732848311796316,
+              0.014966667778348087
+            ],
+            "regression_margin_db": 101.80595897403828,
+            "residual_rms": 6.271473170388887e-7,
+            "unwrapped_phase_radians": 1.7861110654346763
+          },
+          {
+            "amplitude_dbfs": -36.85053441783189,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              -0.004463709158174111,
+              0.013659718237016042
+            ],
+            "regression_margin_db": 101.75641580269001,
+            "residual_rms": 5.916284991820737e-7,
+            "unwrapped_phase_radians": 1.886636434269339
+          },
+          {
+            "amplitude_dbfs": -37.40637233480209,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              -0.005451858177769033,
+              0.012328038051784477
+            ],
+            "regression_margin_db": 101.7854841143201,
+            "residual_rms": 5.531001480077178e-7,
+            "unwrapped_phase_radians": 1.987171991540972
+          },
+          {
+            "amplitude_dbfs": -37.9622747385765,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              -0.006248495774566261,
+              0.010992194687029687
+            ],
+            "regression_margin_db": 101.6830934639759,
+            "residual_rms": 5.2496238607313e-7,
+            "unwrapped_phase_radians": 2.087692986354976
+          },
+          {
+            "amplitude_dbfs": -38.51816452874744,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              -0.00686641922282682,
+              0.009670391730387161
+            ],
+            "regression_margin_db": 101.76404254231167,
+            "residual_rms": 4.878499261555498e-7,
+            "unwrapped_phase_radians": 2.188232543578568
+          },
+          {
+            "amplitude_dbfs": -39.073995229139285,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              -0.007318569665600605,
+              0.008378799902658038
+            ],
+            "regression_margin_db": 101.6642182563516,
+            "residual_rms": 4.6289865923087995e-7,
+            "unwrapped_phase_radians": 2.288755012103729
+          },
+          {
+            "amplitude_dbfs": -39.62994904006489,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              -0.007618968171809344,
+              0.007130610849279984
+            ],
+            "regression_margin_db": 101.73818111522196,
+            "residual_rms": 4.3051678596350967e-7,
+            "unwrapped_phase_radians": 2.3892923150539236
+          },
+          {
+            "amplitude_dbfs": -40.18573455529846,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              -0.007781918493189273,
+              0.0059376097181616065
+            ],
+            "regression_margin_db": 101.71208459502544,
+            "residual_rms": 4.0504720493032954e-7,
+            "unwrapped_phase_radians": 2.4898228482310323
+          },
+          {
+            "amplitude_dbfs": -40.74171547373191,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              -0.007821506195520356,
+              0.00480876400551813
+            ],
+            "regression_margin_db": 101.71702212240683,
+            "residual_rms": 3.797167169924698e-7,
+            "unwrapped_phase_radians": 2.5903523525922836
+          },
+          {
+            "amplitude_dbfs": -41.29752406679594,
+            "center_seconds": 0.15598958333333332,
+            "coefficient": [
+              -0.007752382372484238,
+              0.0037515151838450568
+            ],
+            "regression_margin_db": 101.80426524732101,
+            "residual_rms": 3.5262015454189443e-7,
+            "unwrapped_phase_radians": 2.690893447396455
+          },
+          {
+            "amplitude_dbfs": -41.8534655390858,
+            "center_seconds": 0.16398958333333333,
+            "coefficient": [
+              -0.007588159831387071,
+              0.0027714235650587045
+            ],
+            "regression_margin_db": 101.72154632890047,
+            "residual_rms": 3.3392274646347427e-7,
+            "unwrapped_phase_radians": 2.7914148585521747
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 7.999899598602979,
+          "amplitude_residual_rms_db": 0.00004119984841057331,
+          "carrier_offset_hz": 1.9999831018731555,
+          "early_decay_per_second": 8.00014002743205,
+          "fitted_drop_db": 8.89423936372048,
+          "late_decay_per_second": 7.999795119756471,
+          "phase_residual_rms_radians": 4.503737744763245e-6
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "detuned_target",
+      "qualified_carrier_error_hz": 0.000016898126844466788,
+      "qualified_decay_error_per_second": 0.0001004013970211659
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": null,
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.064,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.5704935180812075,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0,
+            1568.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.064
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -34.069510771249284,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.0036874485780640357,
+              0.019447075151311183
+            ],
+            "regression_margin_db": 80.54934007592516,
+            "residual_rms": 0.00003310801480528875,
+            "unwrapped_phase_radians": 1.383406417978799
+          },
+          {
+            "amplitude_dbfs": -34.625371800806406,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.0016107144242710949,
+              0.018496558950780114
+            ],
+            "regression_margin_db": 80.57934017796333,
+            "residual_rms": 0.00003094853417045253,
+            "unwrapped_phase_radians": 1.4839336096842564
+          },
+          {
+            "amplitude_dbfs": -35.18129030343317,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              -0.0002381591629258984,
+              0.017413852936654064
+            ],
+            "regression_margin_db": 80.54034557877243,
+            "residual_rms": 0.000029160427662011163,
+            "unwrapped_phase_radians": 1.5844718939812354
+          },
+          {
+            "amplitude_dbfs": -35.737127670893045,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              -0.001861617623684443,
+              0.016229500449441984
+            ],
+            "regression_margin_db": 80.55049391442729,
+            "residual_rms": 0.00002732087497083586,
+            "unwrapped_phase_radians": 1.6850029711768437
+          },
+          {
+            "amplitude_dbfs": -36.29308555166868,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              -0.003265256302764052,
+              0.014971122443654361
+            ],
+            "regression_margin_db": 80.53835729683323,
+            "residual_rms": 0.000025662770533008708,
+            "unwrapped_phase_radians": 1.7855371004181873
+          },
+          {
+            "amplitude_dbfs": -36.8489331832233,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              -0.00445684532368782,
+              0.013664746112669247
+            ],
+            "regression_margin_db": 80.51274519608953,
+            "residual_rms": 0.000024143029449332322,
+            "unwrapped_phase_radians": 1.8860738554955372
+          },
+          {
+            "amplitude_dbfs": -37.40488930819801,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              -0.0054457553139834955,
+              0.012333251290575177
+            ],
+            "regression_margin_db": 80.53982967098221,
+            "residual_rms": 0.000022575622487130398,
+            "unwrapped_phase_radians": 1.98660160841865
+          },
+          {
+            "amplitude_dbfs": -37.96078795227609,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              -0.006243507630034874,
+              0.010997517754105747
+            ],
+            "regression_margin_db": 80.48570211396061,
+            "residual_rms": 0.000021308416634950224,
+            "unwrapped_phase_radians": 2.0871420661135724
+          },
+          {
+            "amplitude_dbfs": -38.51669842950856,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              -0.006862094582309278,
+              0.009675915501696056
+            ],
+            "regression_margin_db": 80.53677333597497,
+            "residual_rms": 0.000019870193428676045,
+            "unwrapped_phase_radians": 2.187665689695672
+          },
+          {
+            "amplitude_dbfs": -39.07266567243705,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              -0.007315073640484102,
+              0.008384112538382749
+            ],
+            "regression_margin_db": 80.48582170032915,
+            "residual_rms": 0.000018747843280730674,
+            "unwrapped_phase_radians": 2.2882042704116046
+          },
+          {
+            "amplitude_dbfs": -39.628516405687975,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              -0.007616209219025935,
+              0.007136075376855354
+            ],
+            "regression_margin_db": 80.52460600627525,
+            "residual_rms": 0.00001750731567104981,
+            "unwrapped_phase_radians": 2.388729411579771
+          },
+          {
+            "amplitude_dbfs": -40.18452507173008,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              -0.007779658673286896,
+              0.005942816058635994
+            ],
+            "regression_margin_db": 80.5158024577853,
+            "residual_rms": 0.000016438391013234277,
+            "unwrapped_phase_radians": 2.489260028178667
+          },
+          {
+            "amplitude_dbfs": -40.74034727796669,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              -0.007820041485133345,
+              0.0048139052337468425
+            ],
+            "regression_margin_db": 80.50864960772662,
+            "residual_rms": 0.00001543212878008163,
+            "unwrapped_phase_radians": 2.5897918773977437
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 8.000169359334308,
+          "amplitude_residual_rms_db": 0.000038881006012949784,
+          "carrier_offset_hz": 2.000029359687306,
+          "early_decay_per_second": 7.999875779913713,
+          "fitted_drop_db": 6.670904461536697,
+          "late_decay_per_second": 8.00028365637293,
+          "phase_residual_rms_radians": 3.80743316898603e-6
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "detuned_target",
+      "qualified_carrier_error_hz": 0.000029359687306218518,
+      "qualified_decay_error_per_second": 0.0001693593343077282
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": "low_regression_margin",
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.032,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.6666242787770014,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.032
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -27.481525637889934,
+            "center_seconds": 0.03598958333333333,
+            "coefficient": [
+              0.03402109642820056,
+              0.025068408519426717
+            ],
+            "regression_margin_db": 9.153053367417307,
+            "residual_rms": 0.19201761443890958,
+            "unwrapped_phase_radians": 0.635031158949217
+          },
+          {
+            "amplitude_dbfs": -43.58743317339397,
+            "center_seconds": 0.04398958333333333,
+            "coefficient": [
+              0.0056055030032026295,
+              -0.0035151690243368384
+            ],
+            "regression_margin_db": -6.881260822911267,
+            "residual_rms": 0.19044141628751712,
+            "unwrapped_phase_radians": -0.5601026364698889
+          },
+          {
+            "amplitude_dbfs": -28.673725641686282,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.014995228140245728,
+              0.033649544358718426
+            ],
+            "regression_margin_db": 8.103611236561028,
+            "residual_rms": 0.18888748157255736,
+            "unwrapped_phase_radians": 1.151582886988301
+          },
+          {
+            "amplitude_dbfs": -32.34954014471498,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.023473492540745412,
+              -0.0055821147711079405
+            ],
+            "regression_margin_db": 4.498097874612386,
+            "residual_rms": 0.18736484975629272,
+            "unwrapped_phase_radians": -0.23346853091017739
+          },
+          {
+            "amplitude_dbfs": -32.83157686124315,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              -0.0038875608255574887,
+              0.022492051438827248
+            ],
+            "regression_margin_db": 4.085141438883458,
+            "residual_rms": 0.1858806168907105,
+            "unwrapped_phase_radians": 1.741946907781137
+          },
+          {
+            "amplitude_dbfs": -29.593471790966074,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.03168472508217836,
+              0.00970596885200953
+            ],
+            "regression_margin_db": 7.39135582386663,
+            "residual_rms": 0.18442875706358056,
+            "unwrapped_phase_radians": 0.2972535944360759
+          },
+          {
+            "amplitude_dbfs": -44.741062586778696,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              -0.005518771676003671,
+              0.0017631526130462228
+            ],
+            "regression_margin_db": -7.688793309371587,
+            "residual_rms": 0.18300230346228155,
+            "unwrapped_phase_radians": 2.8323589400533793
+          },
+          {
+            "amplitude_dbfs": -29.78238375275115,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.020616977757987175,
+              0.025026483177378336
+            ],
+            "regression_margin_db": 7.33733166061641,
+            "residual_rms": 0.18158678916380375,
+            "unwrapped_phase_radians": 0.8817068925108025
+          },
+          {
+            "amplitude_dbfs": -37.614570071233054,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.00965693267542814,
+              -0.008941012203732005
+            ],
+            "regression_margin_db": -0.4268016456455367,
+            "residual_rms": 0.18016963505243105,
+            "unwrapped_phase_radians": -0.7469225594936
+          },
+          {
+            "amplitude_dbfs": -32.48436403286535,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.00040728258943273105,
+              0.02375297246003072
+            ],
+            "regression_margin_db": 4.772444746011857,
+            "residual_rms": 0.17874322158228634,
+            "unwrapped_phase_radians": 1.5536514122925507
+          },
+          {
+            "amplitude_dbfs": -32.17513843953567,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.02461265397250293,
+              -0.00048594923308907523
+            ],
+            "regression_margin_db": 5.15191081340117,
+            "residual_rms": 0.17730360155492217,
+            "unwrapped_phase_radians": -0.019741312905066977
+          },
+          {
+            "amplitude_dbfs": -38.57424860489751,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              -0.009818297217331993,
+              0.006516164012211732
+            ],
+            "regression_margin_db": -1.1760717152355344,
+            "residual_rms": 0.17585761367695105,
+            "unwrapped_phase_radians": 2.5556636682366562
+          },
+          {
+            "amplitude_dbfs": -30.81531163433526,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.023243293632414605,
+              0.01698781153915429
+            ],
+            "regression_margin_db": 6.654465354061011,
+            "residual_rms": 0.17441393109405595,
+            "unwrapped_phase_radians": 0.6311446677973191
+          },
+          {
+            "amplitude_dbfs": -39.93129011529551,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              -0.0013500790510822009,
+              -0.009988592074971981
+            ],
+            "regression_margin_db": -2.390110316486349,
+            "residual_rms": 0.17298602935584345,
+            "unwrapped_phase_radians": -1.7051442469987048
+          },
+          {
+            "amplitude_dbfs": -31.837098038148316,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.006400469625804138,
+              0.02478119725979403
+            ],
+            "regression_margin_db": 5.774715518807568,
+            "residual_rms": 0.1715850091787826,
+            "unwrapped_phase_radians": 1.3180407133099612
+          },
+          {
+            "amplitude_dbfs": -34.54699460560859,
+            "center_seconds": 0.15598958333333332,
+            "coefficient": [
+              0.01571630281687615,
+              -0.010197671803263645
+            ],
+            "regression_margin_db": 3.134378036685608,
+            "residual_rms": 0.170216394853798,
+            "unwrapped_phase_radians": -0.5755730190815389
+          },
+          {
+            "amplitude_dbfs": -35.19164557306609,
+            "center_seconds": 0.16398958333333333,
+            "coefficient": [
+              -0.009509716773670645,
+              0.01456509387169334
+            ],
+            "regression_margin_db": 2.558129940817704,
+            "residual_rms": 0.16888117597103514,
+            "unwrapped_phase_radians": 2.1492155491422604
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 1.8247942862559807,
+          "amplitude_residual_rms_db": 4.869936558000211,
+          "carrier_offset_hz": 0.1436156910721467,
+          "early_decay_per_second": 4.302858072981922,
+          "fitted_drop_db": 2.0287951081716615,
+          "late_decay_per_second": -0.677066887705438,
+          "phase_residual_rms_radians": 1.2164679585256224
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "low_regression_margin",
+          "insufficient_decay",
+          "non_exponential_amplitude",
+          "inconsistent_slopes",
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "omitted_strong_neighbor",
+      "qualified_carrier_error_hz": null,
+      "qualified_decay_error_per_second": null
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": "low_regression_margin",
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.064,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.6666355145415808,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.064
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -24.453640631473682,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.019226859814489208,
+              0.05671454553470691
+            ],
+            "regression_margin_db": 15.029514123169001,
+            "residual_rms": 0.19585375429164714,
+            "unwrapped_phase_radians": 1.2439445261777078
+          },
+          {
+            "amplitude_dbfs": -27.58640849786122,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.031623018468922216,
+              -0.02726229265747075
+            ],
+            "regression_margin_db": 11.965359307203299,
+            "residual_rms": 0.19431272772940394,
+            "unwrapped_phase_radians": -0.7114785332593856
+          },
+          {
+            "amplitude_dbfs": -27.35895575479757,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              -0.021959895602624617,
+              0.036806833203812714
+            ],
+            "regression_margin_db": 12.263271377579636,
+            "residual_rms": 0.19274285248320908,
+            "unwrapped_phase_radians": 2.1087308895038452
+          },
+          {
+            "amplitude_dbfs": -25.194723385188475,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.05458359169937382,
+              0.006652417977246614
+            ],
+            "regression_margin_db": 14.49954113815393,
+            "residual_rms": 0.1911509287400015,
+            "unwrapped_phase_radians": 0.12127766884255298
+          },
+          {
+            "amplitude_dbfs": -31.091994834445668,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              -0.026931014726644355,
+              -0.007238764067858325
+            ],
+            "regression_margin_db": 8.675095881175416,
+            "residual_rms": 0.18955493815071778,
+            "unwrapped_phase_radians": -2.8790097563418215
+          },
+          {
+            "amplitude_dbfs": -25.07493932713796,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.03473382789973443,
+              0.04360895005052475
+            ],
+            "regression_margin_db": 14.76480603101686,
+            "residual_rms": 0.1879759856468883,
+            "unwrapped_phase_radians": -5.3849822969936305
+          },
+          {
+            "amplitude_dbfs": -29.695928898802286,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.006576524388592969,
+              -0.03208229342543402
+            ],
+            "regression_margin_db": 10.215324996109242,
+            "residual_rms": 0.18643478398660462,
+            "unwrapped_phase_radians": -7.651793379857009
+          },
+          {
+            "amplitude_dbfs": -26.740367978957185,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              -0.008247183978011795,
+              0.04527875450959399
+            ],
+            "regression_margin_db": 13.240662854569196,
+            "residual_rms": 0.1849430846637246,
+            "unwrapped_phase_radians": -4.5322215919803925
+          },
+          {
+            "amplitude_dbfs": -26.93506769865011,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.04251526633361231,
+              -0.014757037782632671
+            ],
+            "regression_margin_db": 13.11391614732509,
+            "residual_rms": 0.18350184970928723,
+            "unwrapped_phase_radians": -6.617274040878525
+          },
+          {
+            "amplitude_dbfs": -29.491634288944105,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              -0.03202130805473426,
+              0.009940708483116394
+            ],
+            "regression_margin_db": 10.62393098917245,
+            "residual_rms": 0.18210059914894008,
+            "unwrapped_phase_radians": -9.725785391756524
+          },
+          {
+            "amplitude_dbfs": -25.95775637183539,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.04371138959376159,
+              0.02501505692158286
+            ],
+            "regression_margin_db": 14.223900698078552,
+            "residual_rms": 0.1807202360312515,
+            "unwrapped_phase_radians": -12.046584562989555
+          },
+          {
+            "amplitude_dbfs": -30.264492592348304,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              -0.014609106779512984,
+              -0.02697201799171927
+            ],
+            "regression_margin_db": 9.98376175637519,
+            "residual_rms": 0.17933989914359535,
+            "unwrapped_phase_radians": -14.633568588257182
+          },
+          {
+            "amplitude_dbfs": -26.609540424325083,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.009005390208996395,
+              0.0458460887139608
+            ],
+            "regression_margin_db": 13.70668972628491,
+            "residual_rms": 0.17794186213873137,
+            "unwrapped_phase_radians": -17.472716820284433
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 2.132052160971371,
+          "amplitude_residual_rms_db": 1.9577364081692432,
+          "carrier_offset_hz": -30.0270107572993,
+          "early_decay_per_second": 4.711673018767476,
+          "fitted_drop_db": 1.7778018981883585,
+          "late_decay_per_second": -1.6386529394200289,
+          "phase_residual_rms_radians": 1.7768497621964154
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "low_regression_margin",
+          "insufficient_decay",
+          "non_exponential_amplitude",
+          "inconsistent_slopes",
+          "carrier_offset_outside_validated_range",
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "omitted_strong_neighbor",
+      "qualified_carrier_error_hz": null,
+      "qualified_decay_error_per_second": null
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": "ill_conditioned_carriers",
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.032,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 3.2307183464939846e-6,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0,
+            1620.5
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.032
+        },
+        "points": [],
+        "provisional_fit": null,
+        "qualified": false,
+        "rejection_reasons": [
+          "ill_conditioned_carriers"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "unresolved_carriers",
+      "qualified_carrier_error_hz": null,
+      "qualified_decay_error_per_second": null
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": "ill_conditioned_carriers",
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.064,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 5.6347028786102585e-6,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0,
+            1620.5
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.064
+        },
+        "points": [],
+        "provisional_fit": null,
+        "qualified": false,
+        "rejection_reasons": [
+          "ill_conditioned_carriers"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "unresolved_carriers",
+      "qualified_carrier_error_hz": null,
+      "qualified_decay_error_per_second": null
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": "low_regression_margin",
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.032,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.6666242787770014,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.032
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -49.31881155296479,
+            "center_seconds": 0.03598958333333333,
+            "coefficient": [
+              0.002064324450278163,
+              0.002727042215971623
+            ],
+            "regression_margin_db": 8.176698970701644,
+            "residual_rms": 0.017389796265443593,
+            "unwrapped_phase_radians": 0.9228410915745738
+          },
+          {
+            "amplitude_dbfs": -52.459205118528665,
+            "center_seconds": 0.04398958333333333,
+            "coefficient": [
+              0.0007362175109049416,
+              0.002265936603833855
+            ],
+            "regression_margin_db": 5.06872869069193,
+            "residual_rms": 0.017325003446060416,
+            "unwrapped_phase_radians": 1.256649005677815
+          },
+          {
+            "amplitude_dbfs": -55.44189636576557,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.0009911221550284763,
+              0.0013689484687955495
+            ],
+            "regression_margin_db": 2.0702158392775423,
+            "residual_rms": 0.01735659021023886,
+            "unwrapped_phase_radians": 0.9441422551340777
+          },
+          {
+            "amplitude_dbfs": -55.016490655595724,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.0010548452575619592,
+              0.0014274433028503676
+            ],
+            "regression_margin_db": 2.572099199847578,
+            "residual_rms": 0.01720443945890525,
+            "unwrapped_phase_radians": 0.934388482690446
+          },
+          {
+            "amplitude_dbfs": -51.30194931547579,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              -0.000414047341403591,
+              0.002690416438735123
+            ],
+            "regression_margin_db": 6.367951127381536,
+            "residual_rms": 0.01704413627805168,
+            "unwrapped_phase_radians": 1.7234954425114415
+          },
+          {
+            "amplitude_dbfs": -52.814192810220774,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              -0.0012378091968306183,
+              0.0019232213082564984
+            ],
+            "regression_margin_db": 4.775726121103099,
+            "residual_rms": 0.017201807114132432,
+            "unwrapped_phase_radians": 2.1426680710652484
+          },
+          {
+            "amplitude_dbfs": -71.56326373313304,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.0002452923335563834,
+              0.0000979921368794873
+            ],
+            "regression_margin_db": -13.905691716780026,
+            "residual_rms": 0.01706834526345701,
+            "unwrapped_phase_radians": 0.38006770829755565
+          },
+          {
+            "amplitude_dbfs": -58.03695621596062,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.0012529230566669612,
+              -0.000040590691264398413
+            ],
+            "regression_margin_db": -0.4925277939232582,
+            "residual_rms": 0.01729213426767975,
+            "unwrapped_phase_radians": -0.032385467966047354
+          },
+          {
+            "amplitude_dbfs": -56.74218049134231,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              -0.0010558500069146853,
+              0.0010012385257084334
+            ],
+            "regression_margin_db": 0.7244068542627308,
+            "residual_rms": 0.01744779913480542,
+            "unwrapped_phase_radians": 2.382736204767337
+          },
+          {
+            "amplitude_dbfs": -60.79030278904074,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              -0.000688176947675398,
+              0.0006000296253415801
+            ],
+            "regression_margin_db": -3.278378593026225,
+            "residual_rms": 0.017356965903589552,
+            "unwrapped_phase_radians": 2.4245143821856354
+          },
+          {
+            "amplitude_dbfs": -66.14775208147546,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.0004927231131523373,
+              3.2523373909672986e-6
+            ],
+            "regression_margin_db": -8.671253312694386,
+            "residual_rms": 0.017427900897636985,
+            "unwrapped_phase_radians": 0.006600644603129702
+          },
+          {
+            "amplitude_dbfs": -62.52898753625069,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.0006041468723729683,
+              0.00044000791103736893
+            ],
+            "regression_margin_db": -4.9022603930724875,
+            "residual_rms": 0.017129065219888037,
+            "unwrapped_phase_radians": 0.6294762253984292
+          },
+          {
+            "amplitude_dbfs": -53.654824593852155,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.0015232935413222444,
+              0.0014106652527052241
+            ],
+            "regression_margin_db": 4.087877891809335,
+            "residual_rms": 0.01690187540262896,
+            "unwrapped_phase_radians": 0.7470291809288527
+          },
+          {
+            "amplitude_dbfs": -61.8827655004207,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.0007996208867253533,
+              0.00009395725146293908
+            ],
+            "regression_margin_db": -4.143187121818471,
+            "residual_rms": 0.016907955696949563,
+            "unwrapped_phase_radians": 0.11696590794437478
+          },
+          {
+            "amplitude_dbfs": -64.96453850021014,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              -0.0005538455940229828,
+              0.00010988854793145035
+            ],
+            "regression_margin_db": -7.220096430741522,
+            "residual_rms": 0.01689849068489857,
+            "unwrapped_phase_radians": 2.945726330540859
+          },
+          {
+            "amplitude_dbfs": -66.84920900993404,
+            "center_seconds": 0.15598958333333332,
+            "coefficient": [
+              0.00015774701343431268,
+              -0.00042625287797418967
+            ],
+            "regression_margin_db": -9.300398203474076,
+            "residual_rms": 0.017283411883562756,
+            "unwrapped_phase_radians": 5.066837919841566
+          },
+          {
+            "amplitude_dbfs": -67.01719296112023,
+            "center_seconds": 0.16398958333333333,
+            "coefficient": [
+              0.0004451337374203723,
+              0.00002436922671400713
+            ],
+            "regression_margin_db": -9.55270991877344,
+            "residual_rms": 0.01745202667049003,
+            "unwrapped_phase_radians": 6.337876566490468
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 12.848428843394974,
+          "amplitude_residual_rms_db": 4.6372258616118485,
+          "carrier_offset_hz": 3.470715001274249,
+          "early_decay_per_second": 24.833252370605376,
+          "fitted_drop_db": 14.284804474401323,
+          "late_decay_per_second": 13.495096090689803,
+          "phase_residual_rms_radians": 1.4811840297226708
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "low_regression_margin",
+          "non_exponential_amplitude",
+          "inconsistent_slopes",
+          "carrier_offset_outside_validated_range",
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "low_margin",
+      "qualified_carrier_error_hz": null,
+      "qualified_decay_error_per_second": null
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": "low_regression_margin",
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.064,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.6666355145415808,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.064
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -52.335490100697335,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.0010065740127612674,
+              0.002197116676357352
+            ],
+            "regression_margin_db": 8.259731960283778,
+            "residual_rms": 0.017231716288493185,
+            "unwrapped_phase_radians": 1.1411987282732667
+          },
+          {
+            "amplitude_dbfs": -53.63982862938702,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              1.8054034020532038e-6,
+              0.002079736935819585
+            ],
+            "regression_margin_db": 6.930930620349881,
+            "residual_rms": 0.017280315845064786,
+            "unwrapped_phase_radians": 1.5699282348177572
+          },
+          {
+            "amplitude_dbfs": -56.08608224256892,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.00014230133196861292,
+              0.0015627982680647685
+            ],
+            "regression_margin_db": 4.512611954380638,
+            "residual_rms": 0.017224829382547744,
+            "unwrapped_phase_radians": 1.479991261516096
+          },
+          {
+            "amplitude_dbfs": -58.75354152136183,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.000015986031948156745,
+              0.0011542005378543051
+            ],
+            "regression_margin_db": 1.8202861159052077,
+            "residual_rms": 0.01727421245859129,
+            "unwrapped_phase_radians": 1.5569469051944083
+          },
+          {
+            "amplitude_dbfs": -60.062380441717586,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              -0.0002397450780519272,
+              0.0009634631984639367
+            ],
+            "regression_margin_db": 0.5085838138212051,
+            "residual_rms": 0.017279907997009073,
+            "unwrapped_phase_radians": 1.8146798934798314
+          },
+          {
+            "amplitude_dbfs": -64.12502600658388,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              -0.0002556600536464239,
+              0.0005669635572831348
+            ],
+            "regression_margin_db": -3.564448263568469,
+            "residual_rms": 0.017300583522510772,
+            "unwrapped_phase_radians": 1.9944221658259504
+          },
+          {
+            "amplitude_dbfs": -71.40493692360374,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              -0.0001699720116152053,
+              0.00020849653823112852
+            ],
+            "regression_margin_db": -10.824620521259662,
+            "residual_rms": 0.0172613126343904,
+            "unwrapped_phase_radians": 2.2547533195367695
+          },
+          {
+            "amplitude_dbfs": -68.1100879012166,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              -0.00005625574503802361,
+              0.000389047050548188
+            ],
+            "regression_margin_db": -7.513685147504701,
+            "residual_rms": 0.017229374101305046,
+            "unwrapped_phase_radians": 1.7143998087777472
+          },
+          {
+            "amplitude_dbfs": -61.123159862868555,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.00007539300461347766,
+              0.0008754624454404287
+            ],
+            "regression_margin_db": -0.5157754857211891,
+            "residual_rms": 0.017207604662685384,
+            "unwrapped_phase_radians": 1.4848903567179406
+          },
+          {
+            "amplitude_dbfs": -60.88119858150808,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.0006993043792548656,
+              0.00057212797892913
+            ],
+            "regression_margin_db": -0.2402185776007679,
+            "residual_rms": 0.017141176958876566,
+            "unwrapped_phase_radians": 0.6857036848677591
+          },
+          {
+            "amplitude_dbfs": -60.372448487845666,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.000852124151529761,
+              0.0004378349352123955
+            ],
+            "regression_margin_db": 0.24870112706931957,
+            "residual_rms": 0.017180355965370427,
+            "unwrapped_phase_radians": 0.4746391382987616
+          },
+          {
+            "amplitude_dbfs": -63.16529388779395,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.0006600692322592365,
+              0.00021628439317875387
+            ],
+            "regression_margin_db": -2.5634318711912476,
+            "residual_rms": 0.01721854848256749,
+            "unwrapped_phase_radians": 0.31664425090008796
+          },
+          {
+            "amplitude_dbfs": -66.89301620580477,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.00039637336255328784,
+              0.0002176936918013693
+            ],
+            "regression_margin_db": -6.278364600868212,
+            "residual_rms": 0.01719321358829934,
+            "unwrapped_phase_radians": 0.5022393461529728
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 13.015895171244024,
+          "amplitude_residual_rms_db": 4.091834059543802,
+          "carrier_offset_hz": -1.9320399847409513,
+          "early_decay_per_second": 33.257056483703934,
+          "fitted_drop_db": 10.853244383812724,
+          "late_decay_per_second": -12.425767621531216,
+          "phase_residual_rms_radians": 0.48086017790068547
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "low_regression_margin",
+          "non_exponential_amplitude",
+          "inconsistent_slopes",
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "low_margin",
+      "qualified_carrier_error_hz": null,
+      "qualified_decay_error_per_second": null
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": "inconsistent_slopes",
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.032,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.6666242787770014,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.032
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -31.707981959193525,
+            "center_seconds": 0.03598958333333333,
+            "coefficient": [
+              0.01935792578855771,
+              0.01732374795921963
+            ],
+            "regression_margin_db": 128.9533682669074,
+            "residual_rms": 1.2078208124024925e-7,
+            "unwrapped_phase_radians": 0.7300000241299349
+          },
+          {
+            "amplitude_dbfs": -31.985930490056496,
+            "center_seconds": 0.04398958333333333,
+            "coefficient": [
+              0.018748278772448185,
+              0.016778163395616937
+            ],
+            "regression_margin_db": 128.91668698203208,
+            "residual_rms": 1.1747329394685818e-7,
+            "unwrapped_phase_radians": 0.7300000023388038
+          },
+          {
+            "amplitude_dbfs": -32.26387892201138,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.018157831836578833,
+              0.016249761342446174
+            ],
+            "regression_margin_db": 128.8795399719086,
+            "residual_rms": 1.1426127751185876e-7,
+            "unwrapped_phase_radians": 0.7299999797796519
+          },
+          {
+            "amplitude_dbfs": -32.54182726407865,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.017585980185124223,
+              0.015738000734222934
+            ],
+            "regression_margin_db": 128.85102281471595,
+            "residual_rms": 1.1102672161130491e-7,
+            "unwrapped_phase_radians": 0.7299999620332502
+          },
+          {
+            "amplitude_dbfs": -32.81977554751584,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.01703213805455695,
+              0.015242357478962193
+            ],
+            "regression_margin_db": 128.83797313442602,
+            "residual_rms": 1.076917876148145e-7,
+            "unwrapped_phase_radians": 0.7299999534898691
+          },
+          {
+            "amplitude_dbfs": -33.08898951413719,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.016512555414163105,
+              0.014776928778628852
+            ],
+            "regression_margin_db": 75.53587221422767,
+            "residual_rms": 0.00004828663415261775,
+            "unwrapped_phase_radians": 0.7299849844021478
+          },
+          {
+            "amplitude_dbfs": -33.34776796269353,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.016028157454075005,
+              0.014342834091884995
+            ],
+            "regression_margin_db": 65.35225726938407,
+            "residual_rms": 0.00015138008979878508,
+            "unwrapped_phase_radians": 0.7299637963512668
+          },
+          {
+            "amplitude_dbfs": -33.970690644279664,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.014918962413911288,
+              0.013350188563013461
+            ],
+            "regression_margin_db": 65.26188733858001,
+            "residual_rms": 0.0001423774206882198,
+            "unwrapped_phase_radians": 0.7299608275002085
+          },
+          {
+            "amplitude_dbfs": -35.09090359568004,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.013113081014764641,
+              0.011735612375825833
+            ],
+            "regression_margin_db": 63.62940936341594,
+            "residual_rms": 0.00015102692228365403,
+            "unwrapped_phase_radians": 0.7300205929823895
+          },
+          {
+            "amplitude_dbfs": -36.3972823341146,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.01128217149968323,
+              0.010096671284640863
+            ],
+            "regression_margin_db": 89.73708146736726,
+            "residual_rms": 6.432085815687454e-6,
+            "unwrapped_phase_radians": 0.730002866523241
+          },
+          {
+            "amplitude_dbfs": -37.648066009041365,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.00976906688798128,
+              0.008742579105815928
+            ],
+            "regression_margin_db": 89.75347429595897,
+            "residual_rms": 5.55895303469694e-6,
+            "unwrapped_phase_radians": 0.7300039733739943
+          },
+          {
+            "amplitude_dbfs": -38.898852390035806,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.008458896726222105,
+              0.0075700771095966604
+            ],
+            "regression_margin_db": 89.75084294673312,
+            "residual_rms": 4.814877621946917e-6,
+            "unwrapped_phase_radians": 0.7300040799064846
+          },
+          {
+            "amplitude_dbfs": -40.149636956578966,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.007324447189824897,
+              0.006554817860929242
+            ],
+            "regression_margin_db": 89.72986925718074,
+            "residual_rms": 4.179214955864071e-6,
+            "unwrapped_phase_radians": 0.7300031597603525
+          },
+          {
+            "amplitude_dbfs": -41.40041563697765,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.006342151120966114,
+              0.005675718664603363
+            ],
+            "regression_margin_db": 89.69594967878771,
+            "residual_rms": 3.6328858697522553e-6,
+            "unwrapped_phase_radians": 0.7300014405634139
+          },
+          {
+            "amplitude_dbfs": -42.65118581568412,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.005491599928529613,
+              0.004914522587850086
+            ],
+            "regression_margin_db": 89.65766302494147,
+            "residual_rms": 3.1595670647173367e-6,
+            "unwrapped_phase_radians": 0.7299993476241822
+          },
+          {
+            "amplitude_dbfs": -43.90194698039248,
+            "center_seconds": 0.15598958333333332,
+            "coefficient": [
+              0.004755121189852521,
+              0.004255419030710434
+            ],
+            "regression_margin_db": 89.62447448959384,
+            "residual_rms": 2.7463061321650987e-6,
+            "unwrapped_phase_radians": 0.729997398713814
+          },
+          {
+            "amplitude_dbfs": -45.152700848786736,
+            "center_seconds": 0.16398958333333333,
+            "coefficient": [
+              0.004117412802763905,
+              0.003684715795932015
+            ],
+            "regression_margin_db": 89.60440428240449,
+            "residual_rms": 2.383497844815259e-6,
+            "unwrapped_phase_radians": 0.7299960759704711
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 12.534516716622853,
+          "amplitude_residual_rms_db": 1.1497656696300702,
+          "carrier_offset_hz": 7.133385538863092e-6,
+          "early_decay_per_second": 4.351856395603647,
+          "fitted_drop_db": 13.93579889498463,
+          "late_decay_per_second": 18.053462988990848,
+          "phase_residual_rms_radians": 0.000013921717269112343
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "non_exponential_amplitude",
+          "inconsistent_slopes"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "changing_decay",
+      "qualified_carrier_error_hz": null,
+      "qualified_decay_error_per_second": null
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": "inconsistent_slopes",
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.064,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.6666355145415808,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.064
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -32.26388535370886,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.018157817055144913,
+              0.01624975080274788
+            ],
+            "regression_margin_db": 113.84568715524368,
+            "residual_rms": 9.132948594075289e-7,
+            "unwrapped_phase_radians": 0.7300000619957138
+          },
+          {
+            "amplitude_dbfs": -32.537213684173565,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.017595395044616546,
+              0.015746282486552535
+            ],
+            "regression_margin_db": 81.04558992127109,
+            "residual_rms": 0.00003863220156534442,
+            "unwrapped_phase_radians": 0.7299954248495717
+          },
+          {
+            "amplitude_dbfs": -32.75768900981939,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.017153904205001222,
+              0.015352163908102678
+            ],
+            "regression_margin_db": 65.00037861989819,
+            "residual_rms": 0.00023888355701064427,
+            "unwrapped_phase_radians": 0.7300270075672537
+          },
+          {
+            "amplitude_dbfs": -33.03267813414965,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.01661943334007012,
+              0.014873623597510505
+            ],
+            "regression_margin_db": 63.17615025061714,
+            "residual_rms": 0.00028552768185031665,
+            "unwrapped_phase_radians": 0.7300200926609985
+          },
+          {
+            "amplitude_dbfs": -33.47161082925351,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.015801233827901703,
+              0.014139804411066662
+            ],
+            "regression_margin_db": 64.5352429428078,
+            "residual_rms": 0.00023213838035799757,
+            "unwrapped_phase_radians": 0.7299649721143631
+          },
+          {
+            "amplitude_dbfs": -34.1396514182368,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.014631800068431074,
+              0.013092735606736877
+            ],
+            "regression_margin_db": 62.40225837894541,
+            "residual_rms": 0.00027478571310557485,
+            "unwrapped_phase_radians": 0.7299423592873864
+          },
+          {
+            "amplitude_dbfs": -35.06734498769414,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.013148958070675346,
+              0.011767192738121149
+            ],
+            "regression_margin_db": 59.095219559658304,
+            "residual_rms": 0.00036137775140154533,
+            "unwrapped_phase_radians": 0.7299982968208223
+          },
+          {
+            "amplitude_dbfs": -36.244926984086774,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.011481080046262146,
+              0.010276153694427765
+            ],
+            "regression_margin_db": 58.79757843678381,
+            "residual_rms": 0.00032656103782369714,
+            "unwrapped_phase_radians": 0.7300741827833042
+          },
+          {
+            "amplitude_dbfs": -37.591542360983986,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.00983239593344957,
+              0.00880016077679985
+            ],
+            "regression_margin_db": 65.01862554768125,
+            "residual_rms": 0.0001366410665346967,
+            "unwrapped_phase_radians": 0.7300551904072154
+          },
+          {
+            "amplitude_dbfs": -38.902041606314704,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.00845590840379929,
+              0.007567167383777197
+            ],
+            "regression_margin_db": 74.53681180781858,
+            "residual_rms": 0.000039277783133862646,
+            "unwrapped_phase_radians": 0.7299886213798663
+          },
+          {
+            "amplitude_dbfs": -40.15276801184213,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.007321876479142958,
+              0.006552378216190306
+            ],
+            "regression_margin_db": 74.52757023849269,
+            "residual_rms": 0.00003404651985647892,
+            "unwrapped_phase_radians": 0.7299926138271391
+          },
+          {
+            "amplitude_dbfs": -41.40351628172718,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.006339904643323733,
+              0.005673673821033819
+            ],
+            "regression_margin_db": 74.51000721335677,
+            "residual_rms": 0.00002954020221196628,
+            "unwrapped_phase_radians": 0.7299984253802791
+          },
+          {
+            "amplitude_dbfs": -42.654291323319384,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.005489610947468469,
+              0.004912794723627354
+            ],
+            "regression_margin_db": 74.4885356353901,
+            "residual_rms": 0.000025641787141637976,
+            "unwrapped_phase_radians": 0.7300046183767672
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 12.984262620824198,
+          "amplitude_residual_rms_db": 0.8410249408432053,
+          "carrier_offset_hz": 0.000013402706400101594,
+          "early_decay_per_second": 5.122022778685875,
+          "fitted_drop_db": 10.826867726988679,
+          "late_decay_per_second": 18.317497821424155,
+          "phase_residual_rms_radians": 0.00003291742146785559
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "non_exponential_amplitude",
+          "inconsistent_slopes"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "changing_decay",
+      "qualified_carrier_error_hz": null,
+      "qualified_decay_error_per_second": null
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": "insufficient_decay",
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.032,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.6666242787770014,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.032
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -30.45757490560675,
+            "center_seconds": 0.03598958333333333,
+            "coefficient": [
+              0.022355232070345392,
+              0.020006089050111725
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 5.5862591261133215e-16,
+            "unwrapped_phase_radians": 0.7300000000000356
+          },
+          {
+            "amplitude_dbfs": -30.457574905606755,
+            "center_seconds": 0.04398958333333333,
+            "coefficient": [
+              0.022355232070345416,
+              0.020006089050111697
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 6.561575392413444e-16,
+            "unwrapped_phase_radians": 0.7300000000000342
+          },
+          {
+            "amplitude_dbfs": -30.45757490560675,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.02235523207034548,
+              0.02000608905011164
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 7.852078581893237e-16,
+            "unwrapped_phase_radians": 0.7300000000000315
+          },
+          {
+            "amplitude_dbfs": -30.457574905606755,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.022355232070346648,
+              0.020006089050110303
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 9.237323336032041e-16,
+            "unwrapped_phase_radians": 0.7299999999999724
+          },
+          {
+            "amplitude_dbfs": -30.45757490560677,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.022355232070347772,
+              0.020006089050108977
+            ],
+            "regression_margin_db": 209.54242509439322,
+            "residual_rms": 1.0255762460093462e-15,
+            "unwrapped_phase_radians": 0.7299999999999143
+          },
+          {
+            "amplitude_dbfs": -30.457574905606755,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.022355232070346703,
+              0.020006089050110244
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.0946324916131643e-15,
+            "unwrapped_phase_radians": 0.7299999999999698
+          },
+          {
+            "amplitude_dbfs": -30.45757490560675,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.022355232070347897,
+              0.020006089050108943
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.1162725879281194e-15,
+            "unwrapped_phase_radians": 0.7299999999999107
+          },
+          {
+            "amplitude_dbfs": -30.45757490560675,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.022355232070346794,
+              0.02000608905011016
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.2418802969511486e-15,
+            "unwrapped_phase_radians": 0.7299999999999658
+          },
+          {
+            "amplitude_dbfs": -30.457574905606766,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.022355232070347918,
+              0.02000608905010886
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.3934114803059301e-15,
+            "unwrapped_phase_radians": 0.7299999999999081
+          },
+          {
+            "amplitude_dbfs": -30.457574905606766,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.02235523207034453,
+              0.020006089050112613
+            ],
+            "regression_margin_db": 209.54242509439322,
+            "residual_rms": 1.521996464101617e-15,
+            "unwrapped_phase_radians": 0.7300000000000768
+          },
+          {
+            "amplitude_dbfs": -30.45757490560674,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.02235523207034576,
+              0.020006089050111392
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.777586381209736e-15,
+            "unwrapped_phase_radians": 0.7300000000000191
+          },
+          {
+            "amplitude_dbfs": -30.457574905606776,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.022355232070346828,
+              0.020006089050110018
+            ],
+            "regression_margin_db": 209.54242509439322,
+            "residual_rms": 1.9517488441688353e-15,
+            "unwrapped_phase_radians": 0.7299999999999613
+          },
+          {
+            "amplitude_dbfs": -30.457574905606748,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.02235523207034351,
+              0.020006089050113852
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 2.1160291011640175e-15,
+            "unwrapped_phase_radians": 0.7300000000001301
+          },
+          {
+            "amplitude_dbfs": -30.457574905606748,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.022355232070344608,
+              0.020006089050112644
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 2.215638424264887e-15,
+            "unwrapped_phase_radians": 0.7300000000000759
+          },
+          {
+            "amplitude_dbfs": -30.457574905606744,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.02235523207034585,
+              0.02000608905011126
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 2.238539206114256e-15,
+            "unwrapped_phase_radians": 0.7300000000000137
+          },
+          {
+            "amplitude_dbfs": -30.45757490560678,
+            "center_seconds": 0.15598958333333332,
+            "coefficient": [
+              0.022355232070342356,
+              0.02000608905011499
+            ],
+            "regression_margin_db": 209.54242509439322,
+            "residual_rms": 2.2249360929370807e-15,
+            "unwrapped_phase_radians": 0.7300000000001843
+          },
+          {
+            "amplitude_dbfs": -30.45757490560675,
+            "center_seconds": 0.16398958333333333,
+            "coefficient": [
+              0.022355232070343553,
+              0.020006089050113782
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 2.204437454311393e-15,
+            "unwrapped_phase_radians": 0.7300000000001274
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 2.3809449383143307e-15,
+          "amplitude_residual_rms_db": 1.2066779329792531e-14,
+          "carrier_offset_hz": 1.6392156140168044e-13,
+          "early_decay_per_second": 1.2173252316193587e-15,
+          "fitted_drop_db": 2.6471199959690035e-15,
+          "late_decay_per_second": -8.5212766213355e-15,
+          "phase_residual_rms_radians": 6.718466143736844e-14
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "insufficient_decay"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "stationary",
+      "qualified_carrier_error_hz": null,
+      "qualified_decay_error_per_second": null
+    },
+    {
+      "expectation_passed": true,
+      "expected_rejection": "insufficient_decay",
+      "measurement": {
+        "actual_hop_seconds": 0.008,
+        "actual_window_seconds": 0.064,
+        "method": "joint-quadratic-carrier-envelope-v1",
+        "minimum_relative_qr_pivot": 0.6666355145415808,
+        "options": {
+          "end_seconds": 0.18,
+          "frequencies_hz": [
+            1620.0
+          ],
+          "hop_seconds": 0.008,
+          "start_seconds": 0.02,
+          "window_seconds": 0.064
+        },
+        "points": [
+          {
+            "amplitude_dbfs": -30.45757490560674,
+            "center_seconds": 0.05198958333333333,
+            "coefficient": [
+              0.022355232070345506,
+              0.020006089050111676
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 8.548714318759374e-16,
+            "unwrapped_phase_radians": 0.7300000000000318
+          },
+          {
+            "amplitude_dbfs": -30.45757490560674,
+            "center_seconds": 0.05998958333333333,
+            "coefficient": [
+              0.022355232070346693,
+              0.02000608905011035
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 9.255485615534926e-16,
+            "unwrapped_phase_radians": 0.7299999999999724
+          },
+          {
+            "amplitude_dbfs": -30.457574905606755,
+            "center_seconds": 0.06798958333333334,
+            "coefficient": [
+              0.022355232070347807,
+              0.02000608905010901
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 9.825104161469383e-16,
+            "unwrapped_phase_radians": 0.7299999999999143
+          },
+          {
+            "amplitude_dbfs": -30.457574905606727,
+            "center_seconds": 0.07598958333333333,
+            "coefficient": [
+              0.02235523207034677,
+              0.020006089050110323
+            ],
+            "regression_margin_db": 209.54242509439328,
+            "residual_rms": 1.1176608302533624e-15,
+            "unwrapped_phase_radians": 0.7299999999999702
+          },
+          {
+            "amplitude_dbfs": -30.457574905606748,
+            "center_seconds": 0.08398958333333334,
+            "coefficient": [
+              0.02235523207034786,
+              0.020006089050109
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.2534826738163333e-15,
+            "unwrapped_phase_radians": 0.7299999999999134
+          },
+          {
+            "amplitude_dbfs": -30.457574905606755,
+            "center_seconds": 0.09198958333333333,
+            "coefficient": [
+              0.022355232070346735,
+              0.020006089050110216
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.3502169400545194e-15,
+            "unwrapped_phase_radians": 0.7299999999999685
+          },
+          {
+            "amplitude_dbfs": -30.457574905606766,
+            "center_seconds": 0.09998958333333334,
+            "coefficient": [
+              0.022355232070347866,
+              0.02000608905010891
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.5095386605463989e-15,
+            "unwrapped_phase_radians": 0.7299999999999107
+          },
+          {
+            "amplitude_dbfs": -30.457574905606766,
+            "center_seconds": 0.10798958333333333,
+            "coefficient": [
+              0.022355232070344493,
+              0.02000608905011268
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.6579616018466253e-15,
+            "unwrapped_phase_radians": 0.7300000000000795
+          },
+          {
+            "amplitude_dbfs": -30.45757490560675,
+            "center_seconds": 0.11598958333333333,
+            "coefficient": [
+              0.022355232070345732,
+              0.02000608905011135
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.8105645415941143e-15,
+            "unwrapped_phase_radians": 0.7300000000000186
+          },
+          {
+            "amplitude_dbfs": -30.45757490560675,
+            "center_seconds": 0.12398958333333333,
+            "coefficient": [
+              0.02235523207034688,
+              0.020006089050110067
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 1.925193026465686e-15,
+            "unwrapped_phase_radians": 0.7299999999999613
+          },
+          {
+            "amplitude_dbfs": -30.45757490560677,
+            "center_seconds": 0.13198958333333333,
+            "coefficient": [
+              0.02235523207034347,
+              0.020006089050113793
+            ],
+            "regression_margin_db": 209.54242509439322,
+            "residual_rms": 2.0260436934114694e-15,
+            "unwrapped_phase_radians": 0.7300000000001297
+          },
+          {
+            "amplitude_dbfs": -30.45757490560675,
+            "center_seconds": 0.13998958333333333,
+            "coefficient": [
+              0.022355232070344667,
+              0.020006089050112547
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 2.106109773146628e-15,
+            "unwrapped_phase_radians": 0.7300000000000719
+          },
+          {
+            "amplitude_dbfs": -30.457574905606744,
+            "center_seconds": 0.14798958333333334,
+            "coefficient": [
+              0.022355232070345885,
+              0.02000608905011124
+            ],
+            "regression_margin_db": 209.54242509439325,
+            "residual_rms": 2.182181770685834e-15,
+            "unwrapped_phase_radians": 0.7300000000000124
+          }
+        ],
+        "provisional_fit": {
+          "amplitude_decay_per_second": 1.7698036059696787e-14,
+          "amplitude_residual_rms_db": 1.0296379808267197e-14,
+          "carrier_offset_hz": 1.680325096136441e-13,
+          "early_decay_per_second": 2.6294225002978093e-14,
+          "fitted_drop_db": 1.4757426050402082e-14,
+          "late_decay_per_second": -3.83457447960097e-14,
+          "phase_residual_rms_radians": 5.793364528442278e-14
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "insufficient_decay"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional local polynomial regression around declared carriers, not an exact exponential model or mode identification. Quadratic complex envelopes plus common DC; unweighted reorthogonalized QR. Relative pivot is a diagnostic, not a condition-number bound. Residual-derived margin assumes the fitted nuisance model; colored noise and undeclared mixtures can evade it. Correlated overlapping windows, no confidence interval or T60. No natural-sustain or physical-loss claim."
+      },
+      "probe": "stationary",
+      "qualified_carrier_error_hz": null,
+      "qualified_decay_error_per_second": null
+    }
+  ],
+  "duration_seconds": 0.25,
+  "experiment": "joint-short-envelope-validation-v1",
+  "protocol": "Nine prescribed temporal mixtures; 32/64 ms windows, 8 ms hop, fixed 0.02..0.18 s interval. Target 1620 Hz, amplitude 0.03, phase 0.73, decay 8 /s; neighbor 1568 Hz, amplitude 0.3, phase -0.4, decay 1 /s. Common DC 0.01. Detuned target +2 Hz; near-coincident neighbor +0.5 Hz. Uniform LCG64 noise seed 0x735eed, amplitude 0.0003 in noise probe; target 0.002 and noise 0.03 in low-margin probe. Changing decay 4 /s before 0.09 s, then 18 /s; stationary decay zero. Successful cases require rate error below 0.1 /s and carrier error below 0.02 Hz. Rejections must include the declared reason.",
+  "sample_rate_hz": 48000,
+  "schema_version": 1,
+  "scope": "Independent synthetic qualification of an approximate quadratic-envelope estimator. No source recording, nonlinear pickup render, damping/geometry fit, T60, listening or statistical noise coverage. Near-coincident declarations must withhold coefficients; omitted mixtures remain a limitation even when some are rejected."
+}

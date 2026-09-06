@@ -124,3 +124,8 @@ support. Simply shortening Hann windows increases overlap risk; simply trimming
 until a fit passes biases selection. Preserve this full-interval pilot and test
 the new method independently before revisiting the source family or adopting
 mechanical loss parameters.
+
+The subsequent [joint short-envelope study](SHORT-ENVELOPE.md) now validates
+local polynomial carrier regression on synthetic transients with strong neighbors,
+noise and detuning. It preserves this source pilot and has not yet applied the
+short method to these recordings.
