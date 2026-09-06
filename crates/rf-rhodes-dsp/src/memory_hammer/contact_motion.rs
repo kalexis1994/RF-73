@@ -156,36 +156,96 @@ fn state_error(a: State, b: State, p: MemoryHammerProfile, scale: f64) -> f64 {
     (metric / (2.0 * scale)).sqrt()
 }
 fn energies(y: State, p: MemoryHammerProfile) -> (f64, f64, f64) {
-    let x = y[0] - y[1];
-    let material = 0.5 * p.material.equilibrium_stiffness_n_m * x * x
-        + p.material.equilibrium_cubic_n_m2 * x.abs().powi(3) / 3.0
-        + 0.5 * p.material.memory_stiffness_n_m * y[4] * y[4];
-    let surface = p.surface_stiffness_n_m2 * y[1].powi(3) / 3.0;
-    (
-        material + surface + 0.5 * (p.core_mass_kg * y[2] * y[2] + p.tip_mass_kg * y[3] * y[3]),
-        material,
-        surface,
-    )
+    MemoryHammer::contact_energies(y, p, 0.0)
+}
+impl MemoryHammer {
+    pub(crate) fn contact_energies(
+        y: State,
+        p: MemoryHammerProfile,
+        surface: f64,
+    ) -> (f64, f64, f64) {
+        let x = y[0] - y[1];
+        let material = 0.5 * p.material.equilibrium_stiffness_n_m * x * x
+            + p.material.equilibrium_cubic_n_m2 * x.abs().powi(3) / 3.0
+            + 0.5 * p.material.memory_stiffness_n_m * y[4] * y[4];
+        let surface = p.surface_stiffness_n_m2 * (y[1] - surface).powi(3) / 3.0;
+        (
+            material + surface + 0.5 * (p.core_mass_kg * y[2] * y[2] + p.tip_mass_kg * y[3] * y[3]),
+            material,
+            surface,
+        )
+    }
+    pub(crate) fn contact_rhs(
+        y: State,
+        p: MemoryHammerProfile,
+        surface: f64,
+        surface_velocity: f64,
+    ) -> State {
+        let x = y[0] - y[1];
+        let w = y[2] - y[3];
+        let force = p.material.equilibrium_stiffness_n_m * x
+            + p.material.equilibrium_cubic_n_m2 * x * x.abs()
+            + p.material.memory_stiffness_n_m * y[4];
+        let gap = y[1] - surface;
+        let normal = p.surface_stiffness_n_m2 * gap * gap;
+        [
+            y[2],
+            y[3],
+            -force / p.core_mass_kg,
+            (force - normal) / p.tip_mass_kg,
+            w - y[4] / p.material.relaxation_seconds,
+            p.material.memory_stiffness_n_m * y[4] * y[4] / p.material.relaxation_seconds,
+            force * w,
+            force,
+            normal,
+            normal * (y[3] - surface_velocity),
+        ]
+    }
+    /// Internal coupled trajectory commit; caller certifies the contact interval
+    /// and independently checks energy, both port works and positive quadratures.
+    pub(crate) fn with_contact_trajectory(
+        &self,
+        y: State,
+        h: f64,
+        surface: f64,
+        port_work: f64,
+    ) -> Result<Self, ModelError> {
+        let mut next = self.clone();
+        next.material
+            .commit_integrated_motion(y[0] - y[1], y[4], y[5], y[6], y[7] / h)?;
+        next.core = y[0];
+        next.tip = y[1];
+        next.vc = y[2];
+        next.vt = y[3];
+        next.force = y[8] / h;
+        next.impulse += y[8];
+        next.surface_position = surface;
+        next.surface_work += port_work;
+        if !y
+            .iter()
+            .chain(
+                [
+                    h,
+                    surface,
+                    port_work,
+                    next.force,
+                    next.impulse,
+                    next.surface_work,
+                ]
+                .iter(),
+            )
+            .all(|x| x.is_finite())
+            || h <= 0.0
+            || y[1] <= surface
+            || y[8] < 0.0
+        {
+            return Err(ModelError("invalid coupled contact trajectory"));
+        }
+        Ok(next)
+    }
 }
 fn rhs(y: State, p: MemoryHammerProfile) -> State {
-    let x = y[0] - y[1];
-    let w = y[2] - y[3];
-    let force = p.material.equilibrium_stiffness_n_m * x
-        + p.material.equilibrium_cubic_n_m2 * x * x.abs()
-        + p.material.memory_stiffness_n_m * y[4];
-    let normal = p.surface_stiffness_n_m2 * y[1] * y[1];
-    [
-        y[2],
-        y[3],
-        -force / p.core_mass_kg,
-        (force - normal) / p.tip_mass_kg,
-        w - y[4] / p.material.relaxation_seconds,
-        p.material.memory_stiffness_n_m * y[4] * y[4] / p.material.relaxation_seconds,
-        force * w,
-        force,
-        normal,
-        normal * y[3],
-    ]
+    MemoryHammer::contact_rhs(y, p, 0.0, 0.0)
 }
 fn rk4(y: State, h: f64, p: MemoryHammerProfile) -> Option<State> {
     let valid =

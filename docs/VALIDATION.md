@@ -871,3 +871,38 @@ attempt evaluates 12 RHS stages plus work/energy checks. The free-only control
 report remains byte-identical to its previous reference, and all 24 uniform
 reference reports match. Timing, moving modal coupling, physical calibration
 and realtime qualification remain open; the audible plugin is unchanged.
+
+## Reciprocal modal RK4 contact and native cost
+
+Date: 2026-09-05. The [coupled RK4 experiment](MEMORY-MODAL-RK4.md) connects
+the two-mass hammer and all nine structural coordinates in common stages.
+Independent quadratures account for material heat/work, structural damping,
+normal impulse, surface-potential work and moving-port work. Compression
+certification, `1e-11` state tolerance, `1e-13` independent defect checks and
+atomic rejection remain mandatory. Base ticks handle unresolved boundaries.
+
+All 180 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. Three new tests verify smooth fourth-order convergence, reciprocal work
+and base-step continuity with both damper states, and ungrounded total momentum
+through an impulse. CLI help, invalid-option handling and overwrite protection
+pass. CI includes the new audit; remote CI and GUI/audio testing were not run.
+
+The 12-case/24-take audit passes the existing global gates. Maximum combined,
+structural and hammer relative work/energy residuals are `8.851e-11`,
+`1.470e-12` and `8.997e-11`. Velocity RMSE / launch speed reaches 0.2612%, pickup
+velocity RMSE 0.03241% and mean-force RMSE 0.04748%. The velocity difference is
+larger than the economical controller's 0.004014%, although below the 1% gate;
+formal order is not a claim of superior accuracy or physical calibration.
+The previous economical and fixed-wall RK4 reports remain byte-identical, and
+all uniform-reference reports match between modal candidates.
+
+Native timing retains three paired repetitions per path/profile, consumes
+diagnostics and excludes preparation/audits. The four coupled medians are
+0.044516, 0.052542, 0.064616 and 0.062828 seconds for 8 ms of motion, versus
+0.281906, 0.201663, 0.384733 and 0.263726 seconds for the previous economical
+binary. Ratios are 6.33x, 3.84x, 5.95x and 4.20x; all 48 timing runs match their
+audited final mechanical states and controller counters. Short sequential
+batches remain sensitive to machine load and do not define a universal speedup.
+Execution still costs 5.6–8.1 seconds per simulated second. The new path remains
+offline pending longer/finer reference validation, further cost reduction,
+polyphonic host qualification and calibration.

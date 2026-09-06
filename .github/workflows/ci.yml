@@ -81,5 +81,7 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-adaptive-check --output renders/ci-memory-modal-adaptive.json
       - name: Audit economical contact scheduling
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-economical-check --output renders/ci-memory-modal-economical.json
+      - name: Audit coupled fourth-order memory contact
+        run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-rk4-check --output renders/ci-memory-modal-rk4.json
       - name: Inspect contact resolution without committing trials
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-contact-resolution --output renders/ci-memory-contact-resolution.json

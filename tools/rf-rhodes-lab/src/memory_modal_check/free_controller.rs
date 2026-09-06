@@ -25,8 +25,18 @@ pub(crate) struct Controller {
     economical: bool,
     retry_ticks: usize,
     deferred_ticks: usize,
+    rk4: bool,
+    maximum_contact_error: f64,
+    maximum_contact_defect: f64,
 }
 impl Controller {
+    pub(crate) fn with_rk4_contact() -> Self {
+        Self {
+            rk4: true,
+            contact_enabled: true,
+            ..Self::default()
+        }
+    }
     pub(crate) fn with_economical_contact() -> Self {
         Self {
             economical: true,
@@ -53,11 +63,16 @@ impl Controller {
         self.mean_force = None;
         let surface_energy = voice.probe().hammer.surface_energy_j;
         let contacting = surface_energy > 0.0;
-        let minimum_level = if self.economical {
+        let minimum_level = if self.rk4 {
+            0
+        } else if self.economical {
             ECONOMICAL_MINIMUM_LEVEL
         } else {
             1
         };
+        if self.rk4 && !contacting {
+            self.contact_level = 0;
+        }
         if self.economical && !contacting {
             self.retry_ticks = 0;
             self.contact_level = minimum_level;
@@ -77,7 +92,23 @@ impl Controller {
                 .max(minimum_level);
             loop {
                 let ticks = 1usize << self.contact_level;
-                let attempt = voice.try_contact_step(self.contact_level)?;
+                let (attempt, energy_growth) = if self.rk4 {
+                    let r = voice.try_rk4_contact_step(self.contact_level)?;
+                    if r.contact.status == MemoryContactStatus::Advanced {
+                        self.maximum_contact_error = self
+                            .maximum_contact_error
+                            .max(r.contact.normalized_state_error.unwrap_or(0.0));
+                        self.maximum_contact_defect = self
+                            .maximum_contact_defect
+                            .max(r.relative_energy_defect.unwrap_or(0.0));
+                    }
+                    (
+                        r.contact,
+                        r.relative_energy_defect.is_some_and(|d| d < 1e-13 / 64.0),
+                    )
+                } else {
+                    (voice.try_contact_step(self.contact_level)?, true)
+                };
                 match attempt.status {
                     MemoryContactStatus::Advanced => {
                         self.contacts += 1;
@@ -85,7 +116,9 @@ impl Controller {
                         self.largest_contact = self.largest_contact.max(ticks);
                         self.mean_force = attempt.mean_contact_force_n;
                         if attempt.normalized_state_error.unwrap_or(1.0)
-                            < MemoryContactStep::STATE_ERROR_LIMIT / 8.0
+                            < MemoryContactStep::STATE_ERROR_LIMIT
+                                / if self.rk4 { 64.0 } else { 8.0 }
+                            && energy_growth
                         {
                             self.contact_level = (self.contact_level + 1).min(12);
                         }
@@ -150,6 +183,19 @@ impl Controller {
                     json!(1usize << ECONOMICAL_MINIMUM_LEVEL);
                 report["contact"]["retry_delay_ticks"] = json!(CONTACT_RETRY_TICKS);
                 report["contact"]["deferred_fixed_ticks"] = json!(self.deferred_ticks);
+            }
+            if self.rk4 {
+                report["contact"]
+                    .as_object_mut()
+                    .unwrap()
+                    .remove("accepted_implicit_half_steps");
+                report["contact"]["integrator"] = json!("coupled-rk4-step-doubling");
+                report["contact"]["accepted_rk4_half_steps"] = json!(2 * self.contacts);
+                report["contact"]["maximum_accepted_state_error"] =
+                    json!(self.maximum_contact_error);
+                report["contact"]["maximum_accepted_energy_defect"] =
+                    json!(self.maximum_contact_defect);
+                report["contact"]["local_energy_defect_limit"] = json!(1e-13);
             }
         }
         report

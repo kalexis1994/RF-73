@@ -264,6 +264,7 @@ fn run() -> Result<(), Box<dyn Error>> {
             | "memory-modal-free-check"
             | "memory-modal-adaptive-check"
             | "memory-modal-economical-check"
+            | "memory-modal-rk4-check"
     ) {
         return memory_modal_check::run(&args);
     }
@@ -275,6 +276,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         "memory-modal-free-timing"
             | "memory-modal-adaptive-timing"
             | "memory-modal-economical-timing"
+            | "memory-modal-rk4-timing"
     ) {
         return memory_modal_timing::run_free(&args);
     }

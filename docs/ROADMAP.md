@@ -109,6 +109,13 @@ integrates the same two-mass/material law with checked RK4 contact intervals,
 independent heat/work/impulse quadratures and original fine ticks at boundaries.
 Its 24-case comparison passes without relaxing global gates. Native timing and
 the full moving modal connection remain the next gates before adoption.
+The [coupled RK4 experiment](MEMORY-MODAL-RK4.md) now advances the hammer and
+all nine structural coordinates in shared stages, with independent reciprocal
+port work and damping quadratures. Its 12-case audit passes; native medians are
+3.84–6.33 times faster than the previous economical controller in four profiles.
+It still costs 5.6–8.1 seconds per simulated second, and its maximum velocity
+difference from the fine reference is 0.2612%. Longer/finer reference validation,
+further cost reduction and polyphonic host qualification remain open.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

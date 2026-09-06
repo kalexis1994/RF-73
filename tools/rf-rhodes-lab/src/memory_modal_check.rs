@@ -12,6 +12,7 @@ pub const HELP: &str = "Stateful multimode hammer:
   memory-modal-free-check --output REPORT.json
   memory-modal-adaptive-check --output REPORT.json
   memory-modal-economical-check --output REPORT.json
+  memory-modal-rk4-check --output REPORT.json
 Audits reciprocal hammer/tine work, free recovery, reimpact and damper changes.
 12 uncalibrated cases; uniform audit uses 2.5 ns steps and twofold finer reference.
 Free audit uses certified longer intervals and 1.25 ns contact/reference steps.
@@ -26,6 +27,13 @@ struct Take {
     pass: bool,
     mass: [[f64; 9]; 9],
 }
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum ContactMode {
+    None,
+    Strict,
+    Economical,
+    Rk4,
+}
 fn state(q: MemoryModalProbe) -> serde_json::Value {
     json!({"position":q.position,"velocity":q.velocity,"pickup_velocity_m_s":q.pickup_velocity_m_s,
         "core_position_m":q.hammer.core_position_m,"tip_position_m":q.hammer.tip_position_m,
@@ -38,7 +46,7 @@ fn state(q: MemoryModalProbe) -> serde_json::Value {
         "impulse_work_j":q.hammer.external_work_j,"balance_residual_j":q.balance_residual_j})
 }
 fn take(length: f64, speed: f64, tau: f64, substeps: usize) -> Result<Take, Box<dyn Error>> {
-    take_impl(length, speed, tau, substeps, false, false, false)
+    take_impl(length, speed, tau, substeps, false, ContactMode::None)
 }
 fn take_impl(
     length: f64,
@@ -46,9 +54,9 @@ fn take_impl(
     tau: f64,
     substeps: usize,
     adaptive: bool,
-    contact: bool,
-    economical: bool,
+    mode: ContactMode,
 ) -> Result<Take, Box<dyn Error>> {
+    let contact = mode != ContactMode::None;
     let h = 1.0 / (48000.0 * substeps as f64);
     let mut v = MemoryModalAssembly::new(
         h,
@@ -67,7 +75,9 @@ fn take_impl(
         0.0,
         speed,
     )?;
-    let mut controller = if economical {
+    let mut controller = if mode == ContactMode::Rk4 {
+        Controller::with_rk4_contact()
+    } else if mode == ContactMode::Economical {
         Controller::with_economical_contact()
     } else if contact {
         Controller::with_contact()
@@ -77,7 +87,9 @@ fn take_impl(
     if adaptive {
         v.prepare_free_steps(12)?;
     }
-    if contact {
+    if mode == ContactMode::Rk4 {
+        v.prepare_rk4_contact()?;
+    } else if contact {
         v.prepare_contact_steps(12)?;
     }
     let mut states = Vec::new();
@@ -182,8 +194,10 @@ fn take_impl(
     Ok(result)
 }
 pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
+    let rk4_protocol = "Initial impact at zero gap; core impulse at 2 ms, damper on at 4 ms, off at 6 ms, finish at 8 ms. Candidate uses certified free recovery and coupled RK4 compressed contact, sharing 16672 base ticks per 48 kHz observation with the uniform implicit reference. Levels 0..12 cannot cross observations or events; uncertified boundaries and rejected minimum intervals use one original tick. Each contact trial checks one whole and two half steps, without extrapolation, using independent material heat/work, structural damping, moving-port work and surface-potential work quadratures. Mean force is integrated normal impulse divided by the whole interval. Interval counts are not measured speedups.";
+    let rk4 = args[0] == "memory-modal-rk4-check";
     let economical = args[0] == "memory-modal-economical-check";
-    let contact = economical || args[0] == "memory-modal-adaptive-check";
+    let contact = rk4 || economical || args[0] == "memory-modal-adaptive-check";
     let adaptive = contact || args[0] == "memory-modal-free-check";
     if !matches!(args.len(), 3 | 4)
         || args[1] != "--output"
@@ -213,8 +227,15 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                         8336
                     },
                     adaptive,
-                    contact,
-                    economical,
+                    if rk4 {
+                        ContactMode::Rk4
+                    } else if economical {
+                        ContactMode::Economical
+                    } else if contact {
+                        ContactMode::Strict
+                    } else {
+                        ContactMode::None
+                    },
                 )?;
                 let b = take(length, speed, tau, if coarse { 8336 } else { 16672 })?;
                 let mut kinetic_error = 0.0;
@@ -262,11 +283,11 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     }
     serde_json::to_writer_pretty(
         &mut file,
-        &json!({"schema_version":1,"experiment":if economical {"memory-modal-economical-v1"} else if contact {"memory-modal-adaptive-v1"} else if adaptive {"memory-modal-free-v1"} else {"memory-modal-coupling-v1"},
+        &json!({"schema_version":1,"experiment":if rk4 {"memory-modal-rk4-v1"} else if economical {"memory-modal-economical-v1"} else if contact {"memory-modal-adaptive-v1"} else if adaptive {"memory-modal-free-v1"} else {"memory-modal-coupling-v1"},
         "status":if pass{"pass"}else{"fail"},"calibrated":false,"plugin_integrated":false,
         "observation_rate_hz":48000,"duration_seconds":0.008,
         "coarse":coarse,
-        "protocol":if contact {"Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Candidate combines certified free recovery with step-doubled compressed contact, using the reported contact state-error limit. Reference uses 16672 uniform steps per 48 kHz frame. Candidate shares that base step and permits dyadic levels through 12. No interval crosses an observation or external event; uncertain contact boundaries and failed smallest attempts use one original fine tick. Accepted contact commits two half steps without extrapolation; mean force averages both reactions. Every accepted interval checks energy and both port work balances. Interval counts are not runtime speedups."} else if adaptive {"Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Candidate uses certified dyadic free intervals and fine implicit contact; reference uses 16672 uniform steps per 48 kHz frame. Candidate uses the same base step, with maximum level 12; intervals cannot cross observation or event boundaries. Every accepted interval checks energy and both port work balances. Counts include rejections separately; interval ratios are not runtime speedups."} else {"Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Memory and all coordinates persist. Default 8336 versus 16672 uniform microsteps per output frame; coarse 2084 versus 8336."},
+        "protocol":if rk4 {rk4_protocol} else if contact {"Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Candidate combines certified free recovery with step-doubled compressed contact, using the reported contact state-error limit. Reference uses 16672 uniform steps per 48 kHz frame. Candidate shares that base step and permits dyadic levels through 12. No interval crosses an observation or external event; uncertain contact boundaries and failed smallest attempts use one original fine tick. Accepted contact commits two half steps without extrapolation; mean force averages both reactions. Every accepted interval checks energy and both port work balances. Interval counts are not runtime speedups."} else if adaptive {"Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Candidate uses certified dyadic free intervals and fine implicit contact; reference uses 16672 uniform steps per 48 kHz frame. Candidate uses the same base step, with maximum level 12; intervals cannot cross observation or event boundaries. Every accepted interval checks energy and both port work balances. Counts include rejections separately; interval ratios are not runtime speedups."} else {"Initial impact at zero gap. Core impulse equal to 2.5 times initial momentum at 2 ms; damper on at 4 ms, off at 6 ms; finish at 8 ms. Memory and all coordinates persist. Default 8336 versus 16672 uniform microsteps per output frame; coarse 2084 versus 8336."},
         "scope":"Nine reciprocal structural coordinates plus two hammer masses and one material memory state. Provisional default profiles except case-specific length, launch speed and relaxation time. Surface coefficient 1e12 N/m2; core/tip masses 3.8/0.2 g. No action, pickup voltage, calibration or realtime qualification.",
         "gates":{"energy_and_each_port_work_residual":1e-8,"positive_energy_step":1e-10,
             "kinetic_velocity_rmse":0.01,"pickup_velocity_rmse":0.01,"mean_force_rmse":0.02},"cases":cases}),

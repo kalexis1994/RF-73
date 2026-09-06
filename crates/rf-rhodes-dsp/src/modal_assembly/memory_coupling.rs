@@ -6,6 +6,9 @@ use free_motion::FreeBank;
 mod contact_motion;
 use contact_motion::ContactBank;
 pub use contact_motion::{MemoryContactInspection, MemoryContactStatus, MemoryContactStep};
+mod rk4_contact;
+pub use rk4_contact::MemoryModalRk4Step;
+use rk4_contact::RkContact;
 
 #[derive(Clone)]
 struct Motion {
@@ -46,6 +49,7 @@ pub struct MemoryModalAssembly {
     structural_energy: f64,
     free: Option<FreeBank>,
     contact: Option<ContactBank>,
+    rk_contact: Option<Box<RkContact>>,
 }
 impl MemoryModalAssembly {
     /// Only structural/damper fields of `structure` are used. Legacy scalar-hammer
@@ -77,6 +81,7 @@ impl MemoryModalAssembly {
             structural_energy: 0.0,
             free: None,
             contact: None,
+            rk_contact: None,
         })
     }
     pub fn set_damped(&mut self, damped: bool) {
