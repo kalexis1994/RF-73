@@ -10,6 +10,50 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn register_evidence_preserves_outputs_and_rejects_changed_source_bytes() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("report.json"), b"preserve").unwrap();
+    assert!(
+        !scratch
+            .run(&[
+                "observe-register",
+                "missing.json",
+                "--output",
+                "report.json"
+            ])
+            .status
+            .success()
+    );
+    assert_eq!(
+        fs::read(scratch.0.join("report.json")).unwrap(),
+        b"preserve"
+    );
+    fs::write(scratch.0.join("bad.json"), b"{}").unwrap();
+    assert!(
+        !scratch
+            .run(&["observe-register", "bad.json", "--output", "new.json"])
+            .status
+            .success()
+    );
+    assert!(!scratch.0.join("new.json").exists());
+    let mut m: serde_json::Value = serde_json::from_str(include_str!(
+        "../../../references/register-families.manifest.json"
+    ))
+    .unwrap();
+    m["groups"][0]["takes"][0]["file"] = serde_json::json!("altered.wav");
+    fs::write(scratch.0.join("altered.wav"), b"changed source bytes").unwrap();
+    fs::write(
+        scratch.0.join("manifest.json"),
+        serde_json::to_vec(&m).unwrap(),
+    )
+    .unwrap();
+    let out = scratch.run(&["observe-register", "manifest.json", "--output", "new.json"]);
+    assert!(!out.status.success());
+    assert!(String::from_utf8_lossy(&out.stderr).contains("blob mismatch"));
+    assert!(!scratch.0.join("new.json").exists());
+}
+
+#[test]
 fn spectral_families_preserve_outputs_and_reject_invalid_or_mismatched_inputs() {
     let scratch = Scratch::new();
     fs::write(scratch.0.join("output.json"), b"preserve").unwrap();

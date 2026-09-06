@@ -200,7 +200,7 @@ fn relations(families: &[Family], fundamentals: &[f64], tolerance: f64) -> Vec<V
     rows
 }
 
-fn summarize(observations: &[ModalObservation], fundamentals: &[f64]) -> Vec<Value> {
+pub(super) fn summarize(observations: &[ModalObservation], fundamentals: &[f64]) -> Vec<Value> {
     (0..3).map(|w| {
         // Conservative common association width across rounded native-rate windows.
         let tolerance=observations.iter().map(|o|o.windows[w].minimum_separation_hz/2.0).fold(0.0_f64,f64::max);

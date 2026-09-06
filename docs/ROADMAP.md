@@ -337,3 +337,11 @@ must not be assumed to represent two independent mechanical modes. Capped,
 harmonic and ambiguous evidence remains explicit. Next test cross-note behavior
 and low-frequency background before assigning structural identity or fitting
 additional geometry. No physical parameter or audible baseline changed.
+
+The [D3/G3/B3 comparison](REGISTER-FAMILIES.md) now retains all fifteen source
+takes, qualified pitch anchors and independent family observations. Neighboring
+notes also show fundamental-offset chains. G3 attack families have no matches
+under the tested fixed-Hz or constant-ratio rules; some body components have
+fixed-frequency correspondences. Neither result identifies modal origin. Next
+test prescribed two-mode motion through linearized/nonlinear pickups, including
+sideband and sampling checks, before further geometry or damping fitting.

@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "reference_note": 55,
+  "provenance": "jlearman/jRhodes3d-wav at a886e6cebf074c995a10634f82ebe4fdb90f5ca6; mono harp-output recordings of one 1977 Mark I Stage 73 with EQ and noise reduction. Unknown gain, strike speed and note-off. Samples retain upstream license, never included in RF-73.",
+  "selection": "Before inspecting neighbor audio: choose the nearest recorded note on each side of G3 (D3/B3), retain all five layers. G3 already explored; new notes are descriptive hypothesis probes, not independent instruments or blind calibration. Freeze existing peak thresholds and examine both fixed-Hz and constant-frequency-ratio correspondences without fitting geometry.",
+  "groups": [
+    {
+      "note": 50,
+      "takes": [
+        {
+          "id": "d3-layer-1",
+          "file": "references/audio/jrhodes-neighbors-a886e6c/A_050__D3_1.wav",
+          "git_blob_sha1": "f83dde45225d7004ecf0ea968642f65315e91d1f"
+        },
+        {
+          "id": "d3-layer-2",
+          "file": "references/audio/jrhodes-neighbors-a886e6c/A_050__D3_2.wav",
+          "git_blob_sha1": "565a6c638129fa849a2ce321baa652d987ef50ba"
+        },
+        {
+          "id": "d3-layer-3",
+          "file": "references/audio/jrhodes-neighbors-a886e6c/A_050__D3_3.wav",
+          "git_blob_sha1": "23434f284f27b3bd0251b570189d884a9d559d68"
+        },
+        {
+          "id": "d3-layer-4",
+          "file": "references/audio/jrhodes-neighbors-a886e6c/A_050__D3_4.wav",
+          "git_blob_sha1": "1c8e17a12c23769f24504e09031c2d887ab6a2db"
+        },
+        {
+          "id": "d3-layer-5",
+          "file": "references/audio/jrhodes-neighbors-a886e6c/A_050__D3_5.wav",
+          "git_blob_sha1": "cce9c449f430b45256f1a340337b5023e57ba4c9"
+        }
+      ]
+    },
+    {
+      "note": 55,
+      "takes": [
+        {
+          "id": "g3-layer-1",
+          "file": "references/audio/jrhodes-g3-a886e6c/A_055__G3_1.wav",
+          "git_blob_sha1": "2a95dbf514bd9b721d4084c6ed5816ad123f2712"
+        },
+        {
+          "id": "g3-layer-2",
+          "file": "references/audio/jrhodes-g3-a886e6c/A_055__G3_2.wav",
+          "git_blob_sha1": "c46d5086be237b50dcb2286e7891aba13cf4f183"
+        },
+        {
+          "id": "g3-layer-3",
+          "file": "references/audio/jrhodes-g3-a886e6c/A_055__G3_3.wav",
+          "git_blob_sha1": "e16318eb5d9cdf0c4c951aaa725d5e6138657c3b"
+        },
+        {
+          "id": "g3-layer-4",
+          "file": "references/audio/jrhodes-g3-a886e6c/A_055__G3_4.wav",
+          "git_blob_sha1": "a3ad5115e19e8d011ed45052122d43718a0a7d52"
+        },
+        {
+          "id": "g3-layer-5",
+          "file": "references/audio/jrhodes-g3-a886e6c/A_055__G3_5.wav",
+          "git_blob_sha1": "c41b60a18683c78f9c77b45e9b5accf0fd2a775c"
+        }
+      ]
+    },
+    {
+      "note": 59,
+      "takes": [
+        {
+          "id": "b3-layer-1",
+          "file": "references/audio/jrhodes-neighbors-a886e6c/A_059__B3_1.wav",
+          "git_blob_sha1": "0a149e2ca3e52f1ecdd415e7f6717209c68b016c"
+        },
+        {
+          "id": "b3-layer-2",
+          "file": "references/audio/jrhodes-neighbors-a886e6c/A_059__B3_2.wav",
+          "git_blob_sha1": "a021d7774572124a1620a6b236864693a49e043e"
+        },
+        {
+          "id": "b3-layer-3",
+          "file": "references/audio/jrhodes-neighbors-a886e6c/A_059__B3_3.wav",
+          "git_blob_sha1": "a82217cf82491cf82363914ee47b611cac1465d6"
+        },
+        {
+          "id": "b3-layer-4",
+          "file": "references/audio/jrhodes-neighbors-a886e6c/A_059__B3_4.wav",
+          "git_blob_sha1": "a2a6f8c42db4b8fe53f5bcc68d85ae88c096a56f"
+        },
+        {
+          "id": "b3-layer-5",
+          "file": "references/audio/jrhodes-neighbors-a886e6c/A_059__B3_5.wav",
+          "git_blob_sha1": "ceed88d07471f06c6f499fc8d988cdbcd2e22eb9"
+        }
+      ]
+    }
+  ]
+}

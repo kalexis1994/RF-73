@@ -22,6 +22,7 @@ mod pickup_set;
 mod pickup_sweep;
 mod pickup_transfer;
 mod pitch_reference;
+mod register_families;
 mod tine_modes;
 mod tone_comparison;
 mod wav;
@@ -211,6 +212,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", tone_comparison::HELP);
         print!("{}", modal_observation::HELP);
         print!("{}", modal_families::HELP);
+        print!("{}", register_families::HELP);
         print!("{}", pickup_transfer::HELP);
         print!("{}", convergence::HELP);
         print!("{}", assembly_check::HELP);
@@ -242,6 +244,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "observe-families" {
         return modal_families::run(&args);
+    }
+    if args[0] == "observe-register" {
+        return register_families::run(&args);
     }
     if args[0] == "inspect" {
         if args.len() != 2 {

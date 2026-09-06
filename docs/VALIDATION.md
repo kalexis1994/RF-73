@@ -1472,3 +1472,33 @@ Cleanup removed 342 regenerable debug files (101.4 MiB). Release artifacts
 remain near 151 MiB. No new WAVs or source downloads were produced; existing
 audio, numeric receipts and the packaged plugin are preserved. Listening,
 cross-note modal identity and natural-decay calibration remain open.
+
+## Neighboring-note spectral hypotheses
+
+Date: 2026-09-06. [D3/G3/B3 families](REGISTER-FAMILIES.md) selects the nearest
+recorded anchors on both sides of G3 before inspecting their audio and retains
+all five layers per note. Ten original mono WAVs total 13955116 bytes; Git blob
+IDs and byte counts match the pinned author revision, and SHA-256 hashes and
+upstream license/README are retained. No resampling or source redistribution in
+the plugin occurs.
+
+All 15 per-take pitch anchors qualify. The existing family detector finds
+fundamental-offset chains in both new notes. G3 attack-128 groups have no
+correspondences under either fixed-Hz or constant-ratio predictions, while some
+body components match fixed frequencies and others match scaled predictions.
+These competing descriptions do not identify mechanical modes or prove hum.
+The 1027206-byte report retains all source observations, limits and matches;
+no geometry, damping, pickup parameter or audible baseline changed.
+
+All 127 affected analysis/laboratory release tests, strict workspace Clippy and
+formatting pass. Four new regressions bring the workspace total to 242;
+unchanged DSP/plugin/UI tests were not rerun. Tests cover hypothesis separation,
+missing/shared candidates, withheld unqualified groups, strict manifests and
+CLI output/source-byte protection. All five G3 anchors and 239 previously
+accepted peaks remain exactly equal. No listening, independent-instrument
+validation or remote-CI result is claimed.
+
+Cleanup removed 342 regenerable debug files (101.5 MiB). Release artifacts
+remain near 152 MiB. New reference audio occupies about 13.3 MiB; no synthetic
+WAVs were generated. Existing listening files, source audio, numeric receipts
+and the packaged plugin are preserved.
