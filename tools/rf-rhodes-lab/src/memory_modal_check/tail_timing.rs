@@ -5,8 +5,10 @@ use std::{hint::black_box, time::Instant};
 pub const HELP: &str = "Stateful modal tail timing:
   memory-modal-tail-timing --output REPORT.json
   memory-modal-stiffness-timing --output REPORT.json
+  memory-modal-trial-reuse-timing --output REPORT.json
 Four 128 ms profiles, default/capped RK4, three alternating-order repetitions.
 Stiffness timing instead pairs diagonal/dense arithmetic in the default controller.
+Trial-reuse timing pairs reused/recomputed contact trials in the default controller.
 Measures preparation and 0-8, 8-32, 32-64, 64-128 ms execution separately.
 Final-state checks do not replace memory-modal-tail-check. No realtime claim.
 ";
@@ -17,6 +19,7 @@ fn measured(
     tau: f64,
     capped: bool,
     dense: bool,
+    recomputed: bool,
 ) -> Result<serde_json::Value, Box<dyn Error>> {
     let h = 1.0 / (48000.0 * 16672.0);
     let prep = Instant::now();
@@ -42,6 +45,9 @@ fn measured(
     }
     voice.prepare_free_steps(12)?;
     voice.prepare_rk4_contact()?;
+    if recomputed {
+        voice.use_recomputed_contact_trial_reference()?;
+    }
     let mut controller = if capped {
         Controller::with_rk4_limits(2, 8)?
     } else {
@@ -99,6 +105,7 @@ fn measured(
 }
 pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let stiffness = args[0] == "memory-modal-stiffness-timing";
+    let reuse = args[0] == "memory-modal-trial-reuse-timing";
     if args.len() != 3
         || args[1] != "--output"
         || Path::new(&args[2]).extension().is_none_or(|x| x != "json")
@@ -116,8 +123,13 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                 } else {
                     [true, false]
                 } {
-                    let mut row =
-                        measured(length, tau, !stiffness && variant, stiffness && variant)?;
+                    let mut row = measured(
+                        length,
+                        tau,
+                        !stiffness && !reuse && variant,
+                        stiffness && variant,
+                        reuse && variant,
+                    )?;
                     if stiffness {
                         row["path"] = json!(if variant {
                             "dense_stiffness"
@@ -125,19 +137,24 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                             "diagonal_stiffness"
                         });
                     }
+                    if reuse {
+                        row["path"] = json!(if variant {
+                            "recomputed_contact_trial"
+                        } else {
+                            "reused_contact_trial"
+                        });
+                    }
                     row["repetition"] = json!(repetition);
                     runs.push(row);
                 }
             }
-            if stiffness {
+            if stiffness || reuse {
                 let expected = &runs[0]["sections"];
                 for run in &runs[1..] {
                     for i in 0..SECTIONS.len() {
                         for key in ["final_state", "cumulative_controller"] {
                             if run["sections"][i][key] != expected[i][key] {
-                                return Err(
-                                    "paired stiffness timing changed state or controller".into()
-                                );
+                                return Err("paired timing changed state or controller".into());
                             }
                         }
                     }
@@ -149,10 +166,10 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     }
     serde_json::to_writer_pretty(
         &mut file,
-        &json!({"schema_version":1,"experiment":if stiffness {"memory-modal-stiffness-native-timing-v1"} else {"memory-modal-tail-native-timing-v1"},
+        &json!({"schema_version":1,"experiment":if reuse {"memory-modal-trial-reuse-native-timing-v1"} else if stiffness {"memory-modal-stiffness-native-timing-v1"} else {"memory-modal-tail-native-timing-v1"},
         "status":"pass","duration_seconds":0.128,"step_seconds":1.0/(48000.0*16672.0),
         "voice_inline_bytes":std::mem::size_of::<MemoryModalAssembly>(),"cases":cases,
-        "comparison":if stiffness {"Default RK4 controller in both paths; alternate diagonal and forced dense stiffness within this executable. All section states/controller reports must match exactly across both paths and every repetition."} else {"Default versus capped RK4 controller."},
+        "comparison":if reuse {"Default RK4 controller and diagonal stiffness in both paths; alternate shared initial RHS/energy reuse and recomputed contact trials within this executable. All section states/controller reports must match exactly across both paths and every repetition."} else if stiffness {"Default RK4 controller in both paths; alternate diagonal and forced dense stiffness within this executable. All section states/controller reports must match exactly across both paths and every repetition."} else {"Default versus capped RK4 controller."},
         "scope":"Four strong-strike 128 ms profiles; three repetitions per compared path, alternating order. Same impulse at 2 ms and damper on/off at 4/6 ms. Timed regions include controller/rejections and consumed probes. Preparation, JSON and section-end energy/work checks are outside execution timers. Sections remain one continuous trajectory; reported controller counts are cumulative. No per-step audit inside timing: compare final states/counts with the independent tail audit. Section timers and intervening diagnostics can affect cache/load. Observations are not confidence intervals or universal speedups. No pickup voltage, mixing, polyphony, host, WASM deadlines or realtime qualification. No machine-dependent timing pass threshold."}),
     )?;
     writeln!(file)?;

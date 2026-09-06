@@ -279,7 +279,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if matches!(
         args[0].as_str(),
-        "memory-modal-tail-timing" | "memory-modal-stiffness-timing"
+        "memory-modal-tail-timing"
+            | "memory-modal-stiffness-timing"
+            | "memory-modal-trial-reuse-timing"
     ) {
         return memory_modal_check::run_tail_timing(&args);
     }

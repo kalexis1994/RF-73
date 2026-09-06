@@ -1017,3 +1017,30 @@ overwrite protection pass. The inline stateful voice grows by eight bytes;
 prepared heap payloads are unchanged. CI checks paired arithmetic identity
 without a timing threshold. Remote CI and GUI/audio testing were not run;
 the audible plugin engine remains unchanged.
+
+## Shared coupled contact trial calculations
+
+Date: 2026-09-05. The [contact trial reuse study](MODAL-CONTACT-TRIAL-REUSE.md)
+shares the identical initial derivative of the full and first half RK4 steps,
+reducing a complete trial from twelve to eleven RHS evaluations. Local endpoint
+energy reuse reduces six energy-vector evaluations to four and supplies the
+accepted structural-energy cache. Every original stage, passivity and work
+check remains active; no physical coefficient or acceptance tolerance changes.
+
+All 187 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. A new regression compares accepted and rejected levels, impulses, both
+damper states and subsequent fixed ticks against independent recomputation.
+The repeated 128 ms tail and coupled RK4 audits cover 36 takes and are
+byte-identical to the preceding reports. All 24 paired timing runs preserve
+every section state and controller report; their final states and counters also
+match the prior independent tail audit. CLI help, invalid options and overwrite
+preservation pass. CI checks paired equivalence without a timing threshold.
+
+Observed total median reductions are 6.19%, 2.63%, 5.68% and -0.19% across the
+four profiles. The first 8 ms improves in every profile but still requires
+48.32–58.08 ms of native execution for one assembly. The fourth total is
+essentially unchanged, with more variable later sections. No builds, tests or
+audits ran concurrently with timing; three repetitions do not establish a
+universal improvement or host deadline qualification. The inline voice remains
+6040 bytes and the prepared RK4 payload grows from 656 to 664 bytes. Remote CI
+and GUI/audio tests were not run; the audible plugin engine is unchanged.

@@ -144,6 +144,14 @@ reports remain byte-identical. The first 8 ms still costs 51.68–55.76 ms for o
 assembly. Coupled attack cost, material/free recovery cost, broader physical
 coverage and host qualification remain open.
 
+The [contact trial reuse study](MODAL-CONTACT-TRIAL-REUSE.md) removes repeated
+initial derivatives and endpoint energies while preserving every acceptance
+check. Both repeated trajectory reports are byte-identical. In 24 paired timing
+runs, the first 8 ms is faster in all four profiles; total medians improve in
+three profiles and remain essentially tied in the fourth. The attack still costs
+48.32–58.08 ms per assembly, so further contact-cost work and broader physical
+qualification remain necessary before realtime integration.
+
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 
 The current mechanical work builds on the explicit tine/tonebar assembly with mounting compliance. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing plugin engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, and qualify numerical accuracy and performance before real-time integration.

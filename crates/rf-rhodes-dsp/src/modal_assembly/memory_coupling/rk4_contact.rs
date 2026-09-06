@@ -5,6 +5,7 @@ use crate::modal_assembly::numerics::inverse;
 pub(super) struct RkContact {
     inverse_mass: Matrix,
     inverse_relative_mass: f64,
+    reuse_trials: bool,
 }
 #[derive(Debug, Clone, Copy)]
 pub struct MemoryModalRk4Step {
@@ -46,7 +47,18 @@ impl MemoryModalAssembly {
         self.rk_contact = Some(Box::new(RkContact {
             inverse_mass: inv,
             inverse_relative_mass: relative,
+            reuse_trials: true,
         }));
+        Ok(())
+    }
+    /// Offline paired reference: recompute shared RK4 trial derivatives and energies.
+    /// Requires preparation; changes no physical state, coefficients or tolerances.
+    pub fn use_recomputed_contact_trial_reference(&mut self) -> Result<(), ModelError> {
+        let bank = self
+            .rk_contact
+            .as_mut()
+            .ok_or(ModelError("RK4 contact has not been prepared"))?;
+        bank.reuse_trials = false;
         Ok(())
     }
     /// Prepared payload only, excluding the allocator and inline optional pointer.
@@ -100,9 +112,19 @@ impl MemoryModalAssembly {
         let p = self.hammer.profile();
         let c = &self.op.c[usize::from(self.damped)];
         let trial = || -> Option<(State, State, State)> {
-            let coarse = rk4(y, h, p, &self.op, c, bank)?;
-            let half = rk4(y, 0.5 * h, p, &self.op, c, bank)?;
-            let fine = rk4(half, 0.5 * h, p, &self.op, c, bank)?;
+            let (coarse, initial_rhs) = rk4(y, h, p, &self.op, c, bank, None)?;
+            // The full and first half step share exactly y, p, op and c.
+            let (half, _) = rk4(
+                y,
+                0.5 * h,
+                p,
+                &self.op,
+                c,
+                bank,
+                bank.reuse_trials.then_some(initial_rhs),
+            )?;
+            // Classical RK4 is not FSAL: the second half starts with a fresh RHS.
+            let (fine, _) = rk4(half, 0.5 * h, p, &self.op, c, bank, None)?;
             Some((coarse, half, fine))
         };
         let Some((coarse, half, fine)) = trial() else {
@@ -110,11 +132,23 @@ impl MemoryModalAssembly {
         };
         let scale = (hp.initial_energy_j + hp.absolute_impulse_work_j).max(1e-30);
         let error = state_error(coarse, fine, p, &self.op, scale);
+        let cached = bank.reuse_trials.then(|| {
+            [
+                energies(y, p, &self.op),
+                energies(coarse, p, &self.op),
+                energies(half, p, &self.op),
+                energies(fine, p, &self.op),
+            ]
+        });
         let mut defect = 0.0_f64;
         let mut passive = true;
-        for (a, b) in [(y, coarse), (y, half), (half, fine)] {
-            let ea = energies(a, p, &self.op);
-            let eb = energies(b, p, &self.op);
+        for (a, b, ai, bi) in [(y, coarse, 0, 1), (y, half, 0, 2), (half, fine, 2, 3)] {
+            let ea = cached
+                .as_ref()
+                .map_or_else(|| energies(a, p, &self.op), |e| e[ai]);
+            let eb = cached
+                .as_ref()
+                .map_or_else(|| energies(b, p, &self.op), |e| e[bi]);
             let heat = b.hammer[5] - a.hammer[5];
             let structural_heat = b.heat - a.heat;
             let port = b.work - a.work;
@@ -162,7 +196,9 @@ impl MemoryModalAssembly {
             v: fine.v,
             hammer,
             heat: self.heat + fine.heat,
-            structural_energy: mechanical(&self.op, fine.q, fine.v),
+            structural_energy: cached
+                .as_ref()
+                .map_or_else(|| mechanical(&self.op, fine.q, fine.v), |e| e[3][3]),
         };
         let after = make_probe(
             &self.op,
@@ -235,7 +271,8 @@ fn rk4(
     op: &Operators,
     c: &Matrix,
     bank: &RkContact,
-) -> Option<State> {
+    initial_rhs: Option<State>,
+) -> Option<(State, State)> {
     let valid = |s: State| {
         s.q.iter()
             .chain(s.v.iter())
@@ -248,7 +285,7 @@ fn rk4(
     if !valid(y) {
         return None;
     }
-    let a = rhs(y, p, op, c, bank);
+    let a = initial_rhs.unwrap_or_else(|| rhs(y, p, op, c, bank));
     let yb = add(y, a, 0.5 * h);
     if !valid(yb) {
         return None;
@@ -273,7 +310,7 @@ fn rk4(
         work: sum(a.work, b.work, cc.work, d.work),
     };
     let end = add(y, delta, h / 6.0);
-    valid(end).then_some(end)
+    valid(end).then_some((end, a))
 }
 fn state_error(a: State, b: State, p: MemoryHammerProfile, op: &Operators, scale: f64) -> f64 {
     let dq = core::array::from_fn(|i| a.q[i] - b.q[i]);
@@ -300,6 +337,56 @@ fn state_error(a: State, b: State, p: MemoryHammerProfile, op: &Operators, scale
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn trial_reuse_matches_recomputation_through_acceptance_rejection_and_events() {
+        let mut fast = voice();
+        let mut reference = voice();
+        assert!(reference.use_recomputed_contact_trial_reference().is_err());
+        fast.prepare_rk4_contact().unwrap();
+        reference.prepare_rk4_contact().unwrap();
+        let before = reference.probe();
+        reference.use_recomputed_contact_trial_reference().unwrap();
+        assert_eq!(reference.probe(), before);
+        assert_eq!(
+            fast.try_rk4_contact_step(0).unwrap().contact.status,
+            MemoryContactStatus::BoundaryRequired
+        );
+        for _ in 0..2000 {
+            assert_eq!(fast.tick().unwrap(), reference.tick().unwrap());
+        }
+        let mut accepted = 0;
+        let mut rejected = 0;
+        for damped in [false, true] {
+            fast.set_damped(damped);
+            reference.set_damped(damped);
+            fast.apply_core_impulse(0.0001).unwrap();
+            reference.apply_core_impulse(0.0001).unwrap();
+            for level in 0..=12 {
+                let before = fast.probe();
+                let a = fast.try_rk4_contact_step(level).unwrap();
+                let b = reference.try_rk4_contact_step(level).unwrap();
+                assert_eq!(a.contact.status, b.contact.status);
+                assert_eq!(
+                    a.contact.normalized_state_error,
+                    b.contact.normalized_state_error
+                );
+                assert_eq!(
+                    a.contact.mean_contact_force_n,
+                    b.contact.mean_contact_force_n
+                );
+                assert_eq!(a.relative_energy_defect, b.relative_energy_defect);
+                assert_eq!(fast.probe(), reference.probe());
+                if a.contact.status == MemoryContactStatus::Advanced {
+                    accepted += 1;
+                } else {
+                    rejected += 1;
+                    assert_eq!(fast.probe(), before);
+                }
+                assert_eq!(fast.tick().unwrap(), reference.tick().unwrap());
+            }
+        }
+        assert!(accepted > 0 && rejected > 0);
+    }
     fn voice() -> MemoryModalAssembly {
         MemoryModalAssembly::new(
             1e-9,
@@ -436,8 +523,10 @@ mod tests {
                     &v.op,
                     &v.op.c[0],
                     v.rk_contact.as_ref().unwrap(),
+                    None,
                 )
-                .unwrap();
+                .unwrap()
+                .0;
             }
             state
         };

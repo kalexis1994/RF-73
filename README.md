@@ -81,6 +81,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Incremental modal midpoint](docs/MODAL-MIDPOINT-INCREMENTS.md): preserve force-free velocity and reduce reference drift without changing the discrete equations.
 - [Longer modal tails](docs/MEMORY-MODAL-TAIL.md): 128 ms trajectories with separately gated attack and tail accuracy.
 - [Modal stiffness cost](docs/MODAL-STIFFNESS-COST.md): section timing and exact diagonal stiffness products with a dense reference path.
+- [Contact trial reuse](docs/MODAL-CONTACT-TRIAL-REUSE.md): share identical starting derivatives and state energies while retaining every acceptance check.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.
