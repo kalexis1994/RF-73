@@ -159,6 +159,14 @@ section states and counters. The first 8 ms still costs 45.09–49.52 ms for one
 assembly. Broader gesture coverage, physical calibration and substantial further
 cost reduction remain necessary before integration with the audible engine.
 
+The [late reimpact study](MEMORY-MODAL-REIMPACT.md) exposes a new numerical
+qualification failure: additional 32/80 ms impulses preserve energy/work in
+all twelve takes but fail trajectory comparisons in all four profiles. Default
+and capped RK4 also diverge in three profiles. Prior tail qualification does not
+cover these repeated impacts. Isolating a late collision from an identical full
+preimpact checkpoint is now the priority before further performance work or
+real-time integration; the root cause remains unresolved.
+
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 
 The current mechanical work builds on the explicit tine/tonebar assembly with mounting compliance. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing plugin engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, and qualify numerical accuracy and performance before real-time integration.

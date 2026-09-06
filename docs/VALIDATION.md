@@ -1069,3 +1069,31 @@ timing batch. Memory remains 6040 inline bytes plus 102960/664 bytes of prepared
 free/RK4 payloads. These observations do not qualify realtime operation or
 physical realism. Remote CI and GUI/audio testing were not run; the audible
 plugin engine remains unchanged.
+
+## Late repeated-excitation qualification failure
+
+Date: 2026-09-06. The [late reimpact study](MEMORY-MODAL-REIMPACT.md) adds
+0.008 Ns core impulses at 32/80 ms and damper cycles at 40/56 and 96/112 ms,
+retaining all earlier events and the full evolving physical/material state.
+Twelve takes compare default RK4, capped RK4 and a uniform midpoint reference
+over 128 ms. Each take must observe separation followed by contact in both
+late epochs; each trajectory pair retains whole-record and four section gates.
+
+The experiment fails all four profile qualifications. All twelve takes pass
+their individual work/energy and reimpact gates, but default/capped RK4 fails
+trajectory agreement in three profiles and every profile fails against the
+uniform reference. Default/capped final-section kinetic velocity RMSE reaches
+37.359% of initial launch speed; default/uniform reaches 60.204%. Energy closure
+does not establish trajectory convergence. The cause remains unresolved, and
+all thresholds are preserved. The retained report records failure and the CLI
+exits unsuccessfully; this experiment is not presented as passing CI coverage.
+
+All 191 workspace tests, strict Clippy, formatting and the release laboratory
+build pass. Two new tests enforce the event schedule and independent separation
+requirements for both late epochs. The original 24-take short audit is
+byte-identical to its earlier report; all 24 unchanged pair/section comparisons
+before 32 ms match the prior tail study exactly. CLI help, invalid options and
+failed-report overwrite protection pass. No DSP/plugin changes, new timing,
+remote CI or GUI/audio qualification are included. The next investigation must
+separate inherited trajectory differences from local late-impact integration
+by using an identical complete preimpact checkpoint.

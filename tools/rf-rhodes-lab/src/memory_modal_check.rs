@@ -76,12 +76,14 @@ fn take_impl(
 struct TakeConfig {
     frames: usize,
     rk4_limits: Option<(u32, u32)>,
+    late_reimpacts: bool,
 }
 impl Default for TakeConfig {
     fn default() -> Self {
         Self {
             frames: 384,
             rk4_limits: None,
+            late_reimpacts: false,
         }
     }
 }
@@ -96,6 +98,7 @@ fn take_configured(
 ) -> Result<Take, Box<dyn Error>> {
     if !(384..=6144).contains(&config.frames)
         || (config.rk4_limits.is_some() && (!adaptive || mode != ContactMode::Rk4))
+        || (config.late_reimpacts && config.frames != 6144)
     {
         return Err("invalid modal diagnostic configuration".into());
     }
@@ -146,23 +149,24 @@ fn take_configured(
     let mut positive = 0.0_f64;
     let mut free_heat = 0.0;
     let mut reimpact = false;
+    let mut late = LateReimpacts::default();
     let mut pass = true;
     let mut peaks = [0.0_f64; 9];
     for frame in 0..config.frames {
-        if [96, 192, 288].contains(&frame) {
+        let event = diagnostic_event(frame, speed, config.late_reimpacts);
+        if let Some(event) = event {
             let before = v.probe();
-            if frame == 96 {
-                v.apply_core_impulse(2.5 * 0.004 * speed)?;
-            } else {
-                v.set_damped(frame == 192);
+            match event {
+                DiagnosticEvent::Impulse(impulse) => v.apply_core_impulse(impulse)?,
+                DiagnosticEvent::Damper(damped) => v.set_damped(damped),
             }
             let after = v.probe();
             pass &= before.hammer.material == after.hammer.material;
-            if frame != 96 {
+            if matches!(event, DiagnosticEvent::Damper(_)) {
                 pass &= before == after;
             }
             events.push(
-                json!({"event":match frame {96=>"core_impulse",192=>"damper_on",_=>"damper_off"},
+                json!({"event":match event {DiagnosticEvent::Impulse(_)=>"core_impulse",DiagnosticEvent::Damper(true)=>"damper_on",DiagnosticEvent::Damper(false)=>"damper_off"},
                 "time_seconds":frame as f64/48000.0,"before":state(before),"after":state(after)}),
             );
         }
@@ -187,6 +191,13 @@ fn take_configured(
                 free_heat += q.hammer.material.last_step_heat_j;
             }
             reimpact |= frame >= 96 && q.hammer.contact_force_n > 0.0;
+            if config.late_reimpacts && frame >= 1536 {
+                late.observe(
+                    frame,
+                    (frame as f64 + (substeps - remaining) as f64 / substeps as f64) / 48000.0,
+                    q,
+                );
+            }
             pass &= q.balance_residual_j.is_finite()
                 && q.structural_work_residual_j.is_finite()
                 && q.hammer.balance_residual_j.is_finite()
@@ -240,7 +251,47 @@ fn take_configured(
             > 0;
         result.report["passed"] = json!(result.pass);
     }
+    if config.late_reimpacts {
+        result.pass &= late.contacts.iter().all(Option::is_some);
+        result.report["late_reimpact_first_contact_seconds"] = json!(late.contacts);
+        result.report["late_reimpact_observed_separation"] = json!(late.separated);
+        result.report["passed"] = json!(result.pass);
+    }
     Ok(result)
+}
+#[derive(Default)]
+struct LateReimpacts {
+    separated: [bool; 2],
+    contacts: [Option<f64>; 2],
+}
+impl LateReimpacts {
+    fn observe(&mut self, frame: usize, end_seconds: f64, q: MemoryModalProbe) {
+        if !(1536..6144).contains(&frame) {
+            return;
+        }
+        let index = usize::from(frame >= 3840);
+        self.separated[index] |=
+            q.hammer.surface_energy_j == 0.0 && q.hammer.contact_force_n == 0.0;
+        if self.separated[index] && q.hammer.contact_force_n > 0.0 {
+            self.contacts[index].get_or_insert(end_seconds);
+        }
+    }
+}
+#[derive(Debug, Clone, Copy, PartialEq)]
+enum DiagnosticEvent {
+    Impulse(f64),
+    Damper(bool),
+}
+fn diagnostic_event(frame: usize, speed: f64, late: bool) -> Option<DiagnosticEvent> {
+    match frame {
+        96 => Some(DiagnosticEvent::Impulse(2.5 * 0.004 * speed)),
+        192 => Some(DiagnosticEvent::Damper(true)),
+        288 => Some(DiagnosticEvent::Damper(false)),
+        1536 | 3840 if late => Some(DiagnosticEvent::Impulse(0.008)),
+        1920 | 4608 if late => Some(DiagnosticEvent::Damper(true)),
+        2688 | 5376 if late => Some(DiagnosticEvent::Damper(false)),
+        _ => None,
+    }
 }
 pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let rk4_protocol = "Initial impact at zero gap; core impulse at 2 ms, damper on at 4 ms, off at 6 ms, finish at 8 ms. Candidate uses certified free recovery and coupled RK4 compressed contact, sharing 16672 base ticks per 48 kHz observation with the uniform implicit reference. Levels 0..12 cannot cross observations or events; uncertified boundaries and rejected minimum intervals use one original tick. Each contact trial checks one whole and two half steps, without extrapolation, using independent material heat/work, structural damping, moving-port work and surface-potential work quadratures. Mean force is integrated normal impulse divided by the whole interval. Interval counts are not measured speedups.";

@@ -274,7 +274,10 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "memory-modal-rk4-refinement" {
         return memory_modal_check::run_refinement(&args);
     }
-    if args[0] == "memory-modal-tail-check" {
+    if matches!(
+        args[0].as_str(),
+        "memory-modal-tail-check" | "memory-modal-reimpact-check"
+    ) {
         return memory_modal_check::run_tail(&args);
     }
     if matches!(

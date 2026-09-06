@@ -132,6 +132,7 @@ fn study_case(length: f64, speed: f64, tau: f64, frames: usize) -> Result<Value,
             TakeConfig {
                 frames,
                 rk4_limits: limits,
+                ..TakeConfig::default()
             },
         )?);
     }
