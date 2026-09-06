@@ -86,6 +86,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Late reimpact study](docs/MEMORY-MODAL-REIMPACT.md): repeated-excitation accuracy failures despite passing energy/work checks; qualification remains open.
 - [Shared late-impact checkpoints](docs/MEMORY-MODAL-CHECKPOINT.md): local collisions pass when all physical history starts equal; full repetition remains unqualified.
 - [Shared impulse approach](docs/MEMORY-MODAL-APPROACH.md): pre-contact motion passes; one post-impact recovery still exposes reference-grid sensitivity.
+- [Shared post-separation recovery](docs/MEMORY-MODAL-RECOVERY.md): identical-state recovery passes; next integrate a selected-strike offline audio preview.
 - [Roadmap](docs/ROADMAP.md): implemented work and next milestones.
 - [Measurement protocol](docs/MEASUREMENTS.md): reference recordings and evaluation.
 - [Analysis laboratory](docs/ANALYSIS.md): commands, metric definitions and interpretation limits.
@@ -106,4 +107,4 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Development](docs/DEVELOPMENT.md): commands, integration and output formats.
 - [Validation results](docs/VALIDATION.md): tests, native/WASM timing and remaining limitations.
 
-The next milestone is a calibrated A3: compare multiple intensities and decay phases against documented direct recordings, then extend validated parameters across the keyboard. All project code, tools, tests and documentation are in English; executable project code is Rust.
+The next audible milestone for the new physical assembly is a selected-strike offline WAV with qualified pickup sampling and output headroom. The existing 0.1.2 plugin remains the audible baseline. Calibration still targets A3: compare multiple intensities and decay phases against documented direct recordings, then extend validated parameters across the keyboard. All project code, tools, tests and documentation are in English; executable project code is Rust.

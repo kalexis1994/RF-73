@@ -184,13 +184,29 @@ Next isolate post-separation material recovery from one identical state to
 distinguish inherited impact differences from free-propagation error. Full
 repetition and reference convergence remain unqualified.
 
+The [shared post-separation study](MEMORY-MODAL-RECOVERY.md) passes all 20
+continuations from identical 96 ms states. Default/finest-midpoint section
+kinetic RMSE stays below 0.000017105% of launch across 32 ms of recovery.
+The earlier divergence is not reproduced by this selected free propagation;
+history accumulated before 96 ms remains under investigation. Full repeated
+excitation is still unqualified.
+
+Prioritize an offline single-strike audio preview of the new physical assembly
+as the next integration milestone. Connect modal pickup motion to magnetic
+conversion, qualify oversampling/decimation and explicit gain/headroom, and
+render attack, decay and damper release with numerical receipts. This supports
+listening before realtime optimization is complete. Keep the existing plugin
+as an audible baseline and retain the known repetition failure separately.
+Realtime use additionally needs CPU reduction, note lifecycle, bounded
+polyphony and host validation; no calendar estimate is established.
+
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 
 The current mechanical work builds on the explicit tine/tonebar assembly with mounting compliance. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing plugin engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, and qualify numerical accuracy and performance before real-time integration.
 
 Subsequent work covers hammer-tip material/history and strike geometry, action/repetition, geometry-based magnetic conversion, continuous dampers and release response. Extend identified behavior across the keyboard and velocities before adding optional electronics or spending time on final visual styling. A complete physical-field simulation of every part is not required for real-time fidelity; every reduction must have a documented assumption and a measurable validity range. The current five processed G3 layers do not identify all these physical parameters.
 
-## Next milestone: a calibrated A3
+## Calibration milestone: a calibrated A3
 
 Implemented research tooling after 0.1.1: independent spectral peak tracking, local/global background estimates, resolution and capacity flags, contiguous association, and qualified per-track decay with explicit rejection reasons. Single-note analysis now uses schema 2. The mechanical profile remains unchanged in 0.1.2; its plugin now offers the three matched pickup paths.
 

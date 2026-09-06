@@ -16,6 +16,8 @@ mod checkpoint;
 pub(crate) use checkpoint::{HELP as CHECKPOINT_HELP, run as run_checkpoint};
 mod approach;
 pub(crate) use approach::{HELP as APPROACH_HELP, run as run_approach};
+mod recovery;
+pub(crate) use recovery::{HELP as RECOVERY_HELP, run as run_recovery};
 
 pub const HELP: &str = "Stateful multimode hammer:
   memory-modal-check --output REPORT.json [--coarse]

@@ -121,6 +121,10 @@ from the collision from error generated during subsequent free motion. Neither
 the finest supported grid nor energy closure alone establishes convergence.
 The full earlier repeated-excitation failure remains unresolved.
 
+Follow-up: the [identical-state post-separation study](MEMORY-MODAL-RECOVERY.md)
+passes all selected 96–128 ms recoveries. It narrows the investigation without
+changing this experiment's retained failure or establishing its root cause.
+
 Overwrite protection preserves this failed report. The new exploratory command
 is not a required passing CI qualification; its prefix regression runs in the
 workspace suite, and the earlier local checkpoint qualification remains in CI.

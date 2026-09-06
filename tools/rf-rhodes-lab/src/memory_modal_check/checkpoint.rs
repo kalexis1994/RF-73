@@ -39,7 +39,7 @@ pub(super) struct Saved {
     pub probe: MemoryModalProbe,
     pub first_contact_seconds: f64,
 }
-fn event(voice: &mut MemoryModalAssembly, frame: usize) -> Result<(), Box<dyn Error>> {
+pub(super) fn event(voice: &mut MemoryModalAssembly, frame: usize) -> Result<(), Box<dyn Error>> {
     if let Some(event) = diagnostic_event(frame, 0.8, true) {
         let before = voice.probe();
         match event {
@@ -232,7 +232,7 @@ pub(super) fn comparison_frames(
     start_frame: usize,
     frames: usize,
 ) -> Result<Value, Box<dyn Error>> {
-    if !matches!(frames, 384 | 2304)
+    if !matches!(frames, 384 | 1536 | 2304)
         || a.states.len() != frames
         || b.states.len() != frames
         || a.forces.len() != frames
