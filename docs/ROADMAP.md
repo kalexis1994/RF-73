@@ -398,3 +398,11 @@ the original 66-case study remains failed (63 expectations pass). The existing
 two-window criterion gives the intended result for these 33 pairs. Next test
 paired temporal-event coverage before freezing a filtered source protocol.
 No gate was relaxed and no physical parameter or source recording changed.
+
+The [paired temporal-event study](BAND-EVENTS.md) retains 162 pairs across three
+sample rates. Both windows accept 53 of 96 event-containing intervals, including
+early release rates near 40 /s and late release rates near 8 /s. Pair agreement
+does not identify natural sustain; every result states that limit explicitly.
+Next use controlled mechanical excitation/damper timing to test loss recovery.
+The processed bank remains conditional timbral evidence, not a natural-loss target
+without independent state and mode information. No estimator gate or DSP changed.

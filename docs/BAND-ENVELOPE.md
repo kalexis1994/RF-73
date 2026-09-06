@@ -138,3 +138,8 @@ Only then freeze a new source protocol with explicit filter support and carrier
 coverage. The original failed G3 broadband pilot stays unchanged; no mechanical
 loss, spring geometry, pickup parameter, source WAV or audible baseline is fitted
 or changed in this stage.
+
+The subsequent [paired temporal-event coverage study](BAND-EVENTS.md) now shows
+that agreement also accepts some in-interval events: 53 of 96 tested pairs.
+The earlier 33-pair outcome does not generalize to all attack/release timings.
+Natural mechanical sustain remains unidentified, including for qualified pairs.

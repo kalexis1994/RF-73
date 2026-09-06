@@ -1769,3 +1769,37 @@ The release cache is 161.1 MiB; debug cache was cleaned after Clippy. The study
 creates no WAV assets, and temporary test outputs are removed by the harness.
 Source/listening files and the packaged plugin remain preserved. No host,
 listening or full-workspace test is claimed for this analysis-only stage.
+
+## Paired temporal-event coverage (2026-09-06)
+
+After commit `8cf538a`, the fixed [event coverage study](BAND-EVENTS.md) moved
+onset, release proxies and continuous rate changes through a predeclared grid.
+`study-band-events` retains 162 pairs / 324 measurements at 44.1/48/96 kHz with
+unchanged FIR, intervals, carriers, window gates and paired rate tolerance.
+Compact diagnostics occupy 713026 bytes in `references/band-events-validation.json`,
+SHA-256 `20f4ebb2a520f11977c3b4fbdeddd92ab2eee7c6d4d5023401de4d994185e41b`.
+No synthetic WAV assets are generated.
+
+The six steady/absent controls pass. Event outcomes were declared descriptive
+before the first run, not required to reject. Of 96 pairs whose event lies in
+the measurement interval, 53 qualify: onset 3/24, release 15/24, loss increase
+19/24 and loss decrease 16/24. At 48 kHz, release at 0.02 s yields a qualified
+40.051857 /s mean; at 0.164 s it yields 7.985943 /s. Agreement therefore does
+not establish uninterrupted natural sustain. Every case explicitly reports
+`not_identified_by_measurement` for that status. No natural loss is inferred or
+written to a model, and the previous failed individual-window study is retained.
+
+All 167 release tests in analysis/laboratory pass. Three new unit tests cover
+sample-index event timing and amplitude continuity, paired withholding on failed
+windows/missing fits/disagreement, and exact source equality over filter support
+for events outside it. The CLI regression retains all rates/event times and
+qualification outcomes, checks the separate natural-sustain status and protects
+existing outputs. Strict Clippy for both packages/all targets, formatting and
+whitespace checks pass. No production DSP or analysis estimator changed; no
+host, listening or full-workspace test is claimed.
+
+Next test loss recovery on controlled mechanical trajectories with known
+excitation and damper state. The source bank's unknown event history remains a
+limit on physical calibration, not a reason to tighten gates until it disappears.
+Debug cache is cleaned after Clippy; release artifacts are reused. Source audio,
+listening assets, numeric receipts and the existing packaged plugin are preserved.

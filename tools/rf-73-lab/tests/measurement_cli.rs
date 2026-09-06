@@ -10,6 +10,60 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn band_event_grid_retains_all_outcomes_without_identifying_natural_sustain() {
+    let scratch = Scratch::new();
+    let args = ["study-band-events", "--output", "events.json"];
+    scratch.success(&args);
+    let report = scratch.json("events.json");
+    assert_eq!(report["controls_passed"], true);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 162);
+    for rate in [44100, 48000, 96000] {
+        for event in ["onset", "release", "loss_increase", "loss_decrease"] {
+            let matching: Vec<_> = cases
+                .iter()
+                .filter(|c| c["sample_rate_hz"] == rate && c["event"] == event)
+                .collect();
+            assert_eq!(matching.len(), 13);
+            assert_eq!(matching.first().unwrap()["requested_event_seconds"], 0.0);
+            assert_eq!(matching.last().unwrap()["requested_event_seconds"], 0.204);
+        }
+    }
+    for case in cases {
+        assert_eq!(case["measurements"].as_array().unwrap().len(), 2);
+        assert_eq!(
+            case["natural_sustain_status"],
+            "not_identified_by_measurement"
+        );
+        assert_eq!(
+            case["accepted_event_in_measurement_interval"],
+            case["paired_qualified"] == true
+                && case["ground_truth_region"] == "measurement_interval"
+        );
+        if case["paired_qualified"] == true {
+            assert!(case["paired_rejections"].as_array().unwrap().is_empty());
+            for m in case["measurements"].as_array().unwrap() {
+                assert_eq!(m["qualified"], true);
+            }
+        } else {
+            assert!(case["conditional_amplitude_decay_per_second"].is_null());
+        }
+    }
+    let saved = fs::read(scratch.0.join("events.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("events.json")).unwrap());
+    for args in [
+        vec!["study-band-events"],
+        vec!["study-band-events", "--output", "bad.wav"],
+        vec!["study-band-events", "--output", "bad.json", "--time", "0.1"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn band_envelope_study_retains_onset_false_acceptance_and_requires_both_windows() {
     let scratch = Scratch::new();
     let args = ["validate-band-envelope", "--output", "study.json"];
