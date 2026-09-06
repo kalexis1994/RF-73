@@ -345,3 +345,11 @@ under the tested fixed-Hz or constant-ratio rules; some body components have
 fixed-frequency correspondences. Neither result identifies modal origin. Next
 test prescribed two-mode motion through linearized/nonlinear pickups, including
 sideband and sampling checks, before further geometry or damping fitting.
+
+The [controlled pickup mixing study](PICKUP-MIXING.md) now demonstrates
+fundamental-spaced sidebands in both existing nonlinear laws, absent from the
+linearized and independently transduced controls. Weak-motion coefficients match
+an analytic expansion; all eight probes pass full ideal-band sampling refinement.
+This establishes a mechanism, not recorded modal identity. Next test independent
+modal decay envelopes and predicted sideband decay/phase relations before using
+the source families to fit geometry or losses. No DSP or audible baseline changed.

@@ -46,3 +46,7 @@ Complex differences preserve phase. Every tested density reports its NRMSE; the 
 Reference harmonics include up to 12 raw peak amplitudes and their dB ratios to H1. Ratios are null when H1 or the component is below `1e-10 * reference band RMS`. In particular, a centered pickup driven by this symmetric trajectory has only even harmonics and an absent fundamental. There is no best-law ranking or reference-audio score.
 
 This diagnoses aliasing introduced by internally sampling a smooth periodic transfer in a shared ideal output band. It excludes production decimator stopband leakage, attack transients, multiple mechanical modes, two-plane trajectories and real-time CPU budgets. A small residual here does not qualify the complete instrument's antialiasing. See [validation results](VALIDATION.md) and the preceding [G3 residual pilot](G3-RESIDUAL-PILOT.md).
+
+The later [two-mode mixing experiment](PICKUP-MIXING.md) adds prescribed dual-mode
+motion, independent-mode and linearized controls, and full common-band FFT
+refinement. It tests cross interaction without changing either pickup law.

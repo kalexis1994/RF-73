@@ -1502,3 +1502,37 @@ Cleanup removed 342 regenerable debug files (101.5 MiB). Release artifacts
 remain near 152 MiB. New reference audio occupies about 13.3 MiB; no synthetic
 WAVs were generated. Existing listening files, source audio, numeric receipts
 and the packaged plugin are preserved.
+
+## Controlled two-mode pickup mixing
+
+Date: 2026-09-06. [Pickup mixing](PICKUP-MIXING.md) adds analytic two-mode
+motion with combined nonlinear, independently transduced and equilibrium-linear
+controls for both existing pickup laws. A coherent FFT retains phase, DC and
+every bin through 20159.1796875 Hz across seven sampling densities. The
+73064-byte receipt retains all eight fixed probes and finite-reference residuals.
+
+Both laws produce fundamental-spaced cross components absent in the controls.
+For production, the upper first sideband rises from -44.75 dB relative to the
+output fundamental at 0.005 mm primary motion to -10.60 dB at 0.25 mm. These
+are prescribed amplitudes, not calibrated source velocities. Centered geometry
+has zero linear response but nonzero nonlinear output. Neither observation
+identifies the recorded families or justifies a structural parameter fit.
+
+All eight cases pass 32x versus 64x full-band NRMSE below `1e-8` for all three
+paths. The numerical-only stress case exposes base-rate residuals of
+`2.43895e-4` (production) and `1.48946e-3` (point-pole); both fall below the
+reporting floor at 2x. This is finite ideal-band refinement, not a production
+decimator or complete instrument antialias qualification.
+
+All 133 affected analysis/laboratory release tests, strict workspace Clippy and
+formatting pass. Six new tests bring the workspace total to 248; unchanged
+DSP/plugin/UI suites were not rerun. New checks cover an independent quadratic
+mixing expansion including phase, zero-parent and centered controls, stress
+refinement, FFT normalization/invalid inputs, and CLI output protection. The
+eight-case command also completes successfully. No DSP equation, preset,
+mechanical geometry or existing audio file changed. No listening result is
+claimed. Independent modal envelopes and sideband decay/phase remain next.
+
+Cleanup removed 342 regenerable debug files (101.5 MiB); release artifacts
+occupy 151.8 MiB. No source downloads or WAVs were produced. Existing source
+recordings, listening files, numeric receipts and the packaged plugin remain.

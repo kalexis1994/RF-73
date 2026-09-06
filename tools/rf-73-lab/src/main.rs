@@ -17,6 +17,7 @@ mod package;
 mod partial_comparison;
 mod pickup_convergence;
 mod pickup_listening;
+mod pickup_mixing;
 mod pickup_pair;
 mod pickup_set;
 mod pickup_sweep;
@@ -214,6 +215,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", modal_families::HELP);
         print!("{}", register_families::HELP);
         print!("{}", pickup_transfer::HELP);
+        print!("{}", pickup_mixing::HELP);
         print!("{}", convergence::HELP);
         print!("{}", assembly_check::HELP);
         print!("{}", tine_modes::HELP);
@@ -247,6 +249,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "observe-register" {
         return register_families::run(&args);
+    }
+    if args[0] == "pickup-mixing" {
+        return pickup_mixing::run(&args);
     }
     if args[0] == "inspect" {
         if args.len() != 2 {

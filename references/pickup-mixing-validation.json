@@ -1,0 +1,1995 @@
+{
+  "all_reference_refinements_passed": true,
+  "cases": [
+    {
+      "combined_dc": -3.1192053852153926e-20,
+      "combined_ideal_band_rms": 0.021896966574090147,
+      "gap_mm": 1.5,
+      "independent_ideal_band_rms": 0.021897065010587125,
+      "interaction_ideal_band_rms": 0.00009013976314479912,
+      "law": "production",
+      "linear_ideal_band_rms": 0.02189708980020302,
+      "lines": [
+        {
+          "combined_amplitude": 0.01755028145622357,
+          "combined_coefficient": [
+            1.429384962258783e-16,
+            0.01755028145622357
+          ],
+          "frequency_hz": 196.2890625,
+          "independent_amplitude": 0.017550294618778273,
+          "interaction_amplitude": 1.3162554702433882e-8,
+          "interaction_coefficient": [
+            -9.158574613487044e-20,
+            -1.3162554702433882e-8
+          ],
+          "label": "f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.01755045915314955,
+          "relative_to_combined_f1_db": 0.0
+        },
+        {
+          "combined_amplitude": 0.025513164616922775,
+          "combined_coefficient": [
+            1.520277966509329e-15,
+            0.025513164616922775
+          ],
+          "frequency_hz": 1426.7578125,
+          "independent_amplitude": 0.02551364299233494,
+          "interaction_amplitude": 4.783754121648331e-7,
+          "interaction_coefficient": [
+            -6.170798240967694e-20,
+            -4.783754121648331e-7
+          ],
+          "label": "f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.025513652559951888,
+          "relative_to_combined_f1_db": 3.249604910575179
+        },
+        {
+          "combined_amplitude": 0.00006142652103524497,
+          "combined_coefficient": [
+            6.946977195714508e-19,
+            0.00006142652103524497
+          ],
+          "frequency_hz": 392.578125,
+          "independent_amplitude": 0.0000614265302501108,
+          "interaction_amplitude": 9.214865835985818e-12,
+          "interaction_coefficient": [
+            -9.298648938177742e-21,
+            -9.214865835985818e-12
+          ],
+          "label": "2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 4.569773286854002e-19,
+          "relative_to_combined_f1_db": -49.118563329398626
+        },
+        {
+          "combined_amplitude": 0.000017859488920773807,
+          "combined_coefficient": [
+            2.371104703869328e-18,
+            0.000017859488920773807
+          ],
+          "frequency_hz": 2853.515625,
+          "independent_amplitude": 0.000017859555898988665,
+          "interaction_amplitude": 6.697821485802946e-11,
+          "interaction_coefficient": [
+            -7.893282002147508e-21,
+            -6.697821485802946e-11
+          ],
+          "label": "2*f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.0711848868029665e-18,
+          "relative_to_combined_f1_db": -59.84830118062531
+        },
+        {
+          "combined_amplitude": 0.00007701231237085371,
+          "combined_coefficient": [
+            4.068521689202103e-18,
+            0.00007701231237085371
+          ],
+          "frequency_hz": 1230.46875,
+          "independent_amplitude": 6.568038442052109e-18,
+          "interaction_amplitude": 0.00007701231237086028,
+          "interaction_coefficient": [
+            3.93284131295602e-18,
+            0.00007701231237086028
+          ],
+          "label": "f2-f1",
+          "leading_quadratic_imaginary_coefficient": 0.00007701246255262642,
+          "linear_amplitude": 6.567740645644175e-18,
+          "relative_to_combined_f1_db": -47.154478439768454
+        },
+        {
+          "combined_amplitude": 0.00010158290727014252,
+          "combined_coefficient": [
+            7.71030138080652e-18,
+            0.00010158290727014252
+          ],
+          "frequency_hz": 1623.046875,
+          "independent_amplitude": 5.997065343835045e-18,
+          "interaction_amplitude": 0.00010158290727013659,
+          "interaction_coefficient": [
+            6.892823956478569e-18,
+            0.00010158290727013659
+          ],
+          "label": "f2+f1",
+          "leading_quadratic_imaginary_coefficient": 0.00010158310536703581,
+          "linear_amplitude": 5.982838270192139e-18,
+          "relative_to_combined_f1_db": -44.74926895315647
+        },
+        {
+          "combined_amplitude": 1.7337362759745318e-7,
+          "combined_coefficient": [
+            8.583737401884386e-20,
+            -1.7337362759745318e-7
+          ],
+          "frequency_hz": 1034.1796875,
+          "independent_amplitude": 2.5408847306538298e-18,
+          "interaction_amplitude": 1.733736275949143e-7,
+          "interaction_coefficient": [
+            -1.4886630081841946e-20,
+            -1.733736275949143e-7
+          ],
+          "label": "f2-2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 2.54125757165697e-18,
+          "relative_to_combined_f1_db": -100.10602098838055
+        },
+        {
+          "combined_amplitude": 3.0500006440469287e-7,
+          "combined_coefficient": [
+            3.7081418660029166e-19,
+            -3.0500006440469287e-7
+          ],
+          "frequency_hz": 1819.3359375,
+          "independent_amplitude": 4.4250022037726924e-18,
+          "interaction_amplitude": 3.0500006440909924e-7,
+          "interaction_coefficient": [
+            -3.47642761940231e-20,
+            -3.0500006440909924e-7
+          ],
+          "label": "f2+2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 4.424829379389593e-18,
+          "relative_to_combined_f1_db": -95.19968309286048
+        },
+        {
+          "combined_amplitude": 3.277858590506276e-11,
+          "combined_coefficient": [
+            1.998759498870404e-19,
+            -3.277858590506276e-11
+          ],
+          "frequency_hz": 837.890625,
+          "independent_amplitude": 1.4108809478005277e-18,
+          "interaction_amplitude": 3.2778584506928907e-11,
+          "interaction_coefficient": [
+            1.0649195692789878e-20,
+            -3.2778584506928907e-11
+          ],
+          "label": "f2-3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.41616790501171e-18,
+          "relative_to_combined_f1_db": -174.5738774375268
+        },
+        {
+          "combined_amplitude": 7.885197629718332e-11,
+          "combined_coefficient": [
+            1.376435260919769e-19,
+            -7.885197629718332e-11
+          ],
+          "frequency_hz": 2015.625,
+          "independent_amplitude": 3.1619991501247665e-18,
+          "interaction_amplitude": 7.88519794560772e-11,
+          "interaction_coefficient": [
+            -2.456568287292138e-21,
+            -7.88519794560772e-11
+          ],
+          "label": "f2+3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 3.1649051695974366e-18,
+          "relative_to_combined_f1_db": -166.94943006013946
+        }
+      ],
+      "offset_mm": 0.5,
+      "primary_amplitude_mm": 0.005,
+      "probe": "small_motion",
+      "reference_refinement_passed": true,
+      "sampling_residuals": [
+        {
+          "combined_band_nrmse": 9.536545372659765e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 9.536444270290376e-14,
+          "linear_band_nrmse": 9.536226167591142e-14,
+          "oversampling": 1
+        },
+        {
+          "combined_band_nrmse": 3.404119933980511e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 3.4039595276164094e-14,
+          "linear_band_nrmse": 3.403796571350063e-14,
+          "oversampling": 2
+        },
+        {
+          "combined_band_nrmse": 2.3493920432634936e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 2.3472846902920368e-14,
+          "linear_band_nrmse": 2.3508910397142512e-14,
+          "oversampling": 4
+        },
+        {
+          "combined_band_nrmse": 2.067330469359744e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 2.067947855843607e-14,
+          "linear_band_nrmse": 2.0790557075363473e-14,
+          "oversampling": 8
+        },
+        {
+          "combined_band_nrmse": 1.6482820755934056e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.6484030209071143e-14,
+          "linear_band_nrmse": 1.6504960805149588e-14,
+          "oversampling": 16
+        },
+        {
+          "combined_band_nrmse": 1.9259036762848868e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.9263254329811968e-14,
+          "linear_band_nrmse": 1.9319063503320557e-14,
+          "oversampling": 32
+        },
+        {
+          "combined_band_nrmse": 0.0,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 0.0,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 64
+        }
+      ],
+      "secondary_amplitude_mm": 0.0010000000000000002
+    },
+    {
+      "combined_dc": 1.038881511705818e-18,
+      "combined_ideal_band_rms": 1.0817135871986574,
+      "gap_mm": 1.5,
+      "independent_ideal_band_rms": 1.092047764575233,
+      "interaction_ideal_band_rms": 0.23008267233729318,
+      "law": "production",
+      "linear_ideal_band_rms": 1.094854490010151,
+      "lines": [
+        {
+          "combined_amplitude": 0.8557639080726125,
+          "combined_coefficient": [
+            6.9760309700315676e-15,
+            0.8557639080726125
+          ],
+          "frequency_hz": 196.2890625,
+          "independent_amplitude": 0.8573211158344805,
+          "interaction_amplitude": 0.0015572077618679625,
+          "interaction_coefficient": [
+            -1.720352253353854e-17,
+            -0.0015572077618679625
+          ],
+          "label": "f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.8775229576574775,
+          "relative_to_combined_f1_db": 0.0
+        },
+        {
+          "combined_amplitude": 1.2163994330289207,
+          "combined_coefficient": [
+            7.250548852537863e-14,
+            1.2163994330289207
+          ],
+          "frequency_hz": 1426.7578125,
+          "independent_amplitude": 1.2744875351869684,
+          "interaction_amplitude": 0.058088102158047716,
+          "interaction_coefficient": [
+            -3.4510507385052386e-15,
+            -0.058088102158047716
+          ],
+          "label": "f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.2756826279975944,
+          "relative_to_combined_f1_db": 3.054444858468299
+        },
+        {
+          "combined_amplitude": 0.15297637807582348,
+          "combined_coefficient": [
+            2.4814129379934223e-15,
+            0.15297637807582348
+          ],
+          "frequency_hz": 392.578125,
+          "independent_amplitude": 0.15304666664514083,
+          "interaction_amplitude": 0.00007028856931734495,
+          "interaction_coefficient": [
+            7.218495667467461e-19,
+            -0.00007028856931734495
+          ],
+          "label": "2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 2.3004032722120393e-17,
+          "relative_to_combined_f1_db": -14.9545918385407
+        },
+        {
+          "combined_amplitude": 0.044153381400940356,
+          "combined_coefficient": [
+            5.19069578302694e-15,
+            0.044153381400940356
+          ],
+          "frequency_hz": 2853.515625,
+          "independent_amplitude": 0.04464329160502285,
+          "interaction_amplitude": 0.0004899102040824971,
+          "interaction_coefficient": [
+            -5.896485645711956e-17,
+            -0.0004899102040824971
+          ],
+          "label": "2*f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 5.332087778409098e-17,
+          "relative_to_combined_f1_db": -25.747799946700603
+        },
+        {
+          "combined_amplitude": 0.19148182215168047,
+          "combined_coefficient": [
+            9.790848028857665e-15,
+            0.19148182215168047
+          ],
+          "frequency_hz": 1230.46875,
+          "independent_amplitude": 3.2542313174508047e-16,
+          "interaction_amplitude": 0.1914818221516808,
+          "interaction_coefficient": [
+            9.785804446867297e-15,
+            0.1914818221516808
+          ],
+          "label": "f2-f1",
+          "leading_quadratic_imaginary_coefficient": 0.19253115638156604,
+          "linear_amplitude": 3.2843167430013684e-16,
+          "relative_to_combined_f1_db": -13.004528290428336
+        },
+        {
+          "combined_amplitude": 0.252573641600079,
+          "combined_coefficient": [
+            1.7173466117618528e-14,
+            0.252573641600079
+          ],
+          "frequency_hz": 1623.046875,
+          "independent_amplitude": 3.026983879959328e-16,
+          "interaction_amplitude": 0.2525736416000787,
+          "interaction_coefficient": [
+            1.7126772391845995e-14,
+            0.2525736416000787
+          ],
+          "label": "f2+f1",
+          "leading_quadratic_imaginary_coefficient": 0.25395776341758947,
+          "linear_amplitude": 2.991161948639678e-16,
+          "relative_to_combined_f1_db": -10.599318803817571
+        },
+        {
+          "combined_amplitude": 0.02086314530254981,
+          "combined_coefficient": [
+            -8.970826201563336e-16,
+            -0.02086314530254981
+          ],
+          "frequency_hz": 1034.1796875,
+          "independent_amplitude": 1.2550905928466188e-16,
+          "interaction_amplitude": 0.020863145302549686,
+          "interaction_coefficient": [
+            -8.951056895566511e-16,
+            -0.020863145302549686
+          ],
+          "label": "f2-2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.2744090090102607e-16,
+          "relative_to_combined_f1_db": -32.259483667686276
+        },
+        {
+          "combined_amplitude": 0.03670258706199274,
+          "combined_coefficient": [
+            -2.7300063347861984e-15,
+            -0.03670258706199274
+          ],
+          "frequency_hz": 1819.3359375,
+          "independent_amplitude": 2.1992667851302824e-16,
+          "interaction_amplitude": 0.036702587061992954,
+          "interaction_coefficient": [
+            -2.7546927438262094e-15,
+            -0.036702587061992954
+          ],
+          "label": "f2+2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 2.216212042202215e-16,
+          "relative_to_combined_f1_db": -27.353145771911123
+        },
+        {
+          "combined_amplitude": 0.00024077639104858137,
+          "combined_coefficient": [
+            2.6030225055876618e-18,
+            -0.00024077639104858137
+          ],
+          "frequency_hz": 837.890625,
+          "independent_amplitude": 6.541352102688665e-17,
+          "interaction_amplitude": 0.0002407763910485166,
+          "interaction_coefficient": [
+            -6.535603305810331e-18,
+            -0.0002407763910485166
+          ],
+          "label": "f2-3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 7.078768159775701e-17,
+          "relative_to_combined_f1_db": -71.0148013102476
+        },
+        {
+          "combined_amplitude": 0.0005792103393052813,
+          "combined_coefficient": [
+            -4.183458170994887e-17,
+            -0.0005792103393052813
+          ],
+          "frequency_hz": 2015.625,
+          "independent_amplitude": 1.5912680820043903e-16,
+          "interaction_amplitude": 0.0005792103393054403,
+          "interaction_coefficient": [
+            -4.643171487897803e-17,
+            -0.0005792103393054403
+          ],
+          "label": "f2+3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.5798147195126787e-16,
+          "relative_to_combined_f1_db": -63.39035320812418
+        }
+      ],
+      "offset_mm": 0.5,
+      "primary_amplitude_mm": 0.25,
+      "probe": "larger_motion",
+      "reference_refinement_passed": true,
+      "sampling_residuals": [
+        {
+          "combined_band_nrmse": 9.574141132804327e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 9.669084244587161e-14,
+          "linear_band_nrmse": 9.6514860871324e-14,
+          "oversampling": 1
+        },
+        {
+          "combined_band_nrmse": 3.4258216195338914e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 3.4506913529224393e-14,
+          "linear_band_nrmse": 3.44522085721319e-14,
+          "oversampling": 2
+        },
+        {
+          "combined_band_nrmse": 2.3559970058625172e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 2.380196963679928e-14,
+          "linear_band_nrmse": 2.3782463147919165e-14,
+          "oversampling": 4
+        },
+        {
+          "combined_band_nrmse": 2.0932490663556408e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 2.09635860803994e-14,
+          "linear_band_nrmse": 2.1004113545571137e-14,
+          "oversampling": 8
+        },
+        {
+          "combined_band_nrmse": 1.6560213735032515e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.67116500378758e-14,
+          "linear_band_nrmse": 1.668376289416344e-14,
+          "oversampling": 16
+        },
+        {
+          "combined_band_nrmse": 1.938919031885742e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.9553894936432454e-14,
+          "linear_band_nrmse": 1.9522458602573265e-14,
+          "oversampling": 32
+        },
+        {
+          "combined_band_nrmse": 0.0,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 0.0,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 64
+        }
+      ],
+      "secondary_amplitude_mm": 0.05
+    },
+    {
+      "combined_dc": 4.036668745283635e-18,
+      "combined_ideal_band_rms": 0.40908840807313906,
+      "gap_mm": 1.5,
+      "independent_ideal_band_rms": 0.1856506462076399,
+      "interaction_ideal_band_rms": 0.3652024950732757,
+      "law": "production",
+      "linear_ideal_band_rms": 0.0,
+      "lines": [
+        {
+          "combined_amplitude": 3.1205293002109106e-17,
+          "combined_coefficient": [
+            -1.0692070939569161e-18,
+            -3.118697015642449e-17
+          ],
+          "frequency_hz": 196.2890625,
+          "independent_amplitude": 2.430423528850192e-17,
+          "interaction_amplitude": 8.96844257312116e-18,
+          "interaction_coefficient": [
+            -5.279083425685988e-18,
+            -7.250120024663013e-18
+          ],
+          "label": "f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 7.578983198214686e-17,
+          "combined_coefficient": [
+            1.6162585944196582e-17,
+            -7.404640063823839e-17
+          ],
+          "frequency_hz": 1426.7578125,
+          "independent_amplitude": 1.228501484550779e-18,
+          "interaction_amplitude": 7.572275411658728e-17,
+          "interaction_coefficient": [
+            1.494828282046634e-17,
+            -7.423263656721677e-17
+          ],
+          "label": "f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.25109671045940896,
+          "combined_coefficient": [
+            4.098370545208285e-15,
+            0.25109671045940896
+          ],
+          "frequency_hz": 392.578125,
+          "independent_amplitude": 0.25170241976886465,
+          "interaction_amplitude": 0.0006057093094556931,
+          "interaction_coefficient": [
+            -9.236004458184355e-18,
+            -0.0006057093094556931
+          ],
+          "label": "2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.07017878601959834,
+          "combined_coefficient": [
+            8.228170047374186e-15,
+            0.07017878601959834
+          ],
+          "frequency_hz": 2853.515625,
+          "independent_amplitude": 0.07464266430737788,
+          "interaction_amplitude": 0.004463878287779541,
+          "interaction_coefficient": [
+            -5.245694201996022e-16,
+            -0.004463878287779541
+          ],
+          "label": "2*f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.31198325014491984,
+          "combined_coefficient": [
+            1.5943390372286267e-14,
+            0.31198325014491984
+          ],
+          "frequency_hz": 1230.46875,
+          "independent_amplitude": 6.297411329732941e-18,
+          "interaction_amplitude": 0.31198325014491984,
+          "interaction_coefficient": [
+            1.594450520699232e-14,
+            0.31198325014491984
+          ],
+          "label": "f2-f1",
+          "leading_quadratic_imaginary_coefficient": 0.3221359654559846,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.4115207632864018,
+          "combined_coefficient": [
+            2.791835103762553e-14,
+            0.4115207632864018
+          ],
+          "frequency_hz": 1623.046875,
+          "independent_amplitude": 1.01582920436305e-17,
+          "interaction_amplitude": 0.4115207632864018,
+          "interaction_coefficient": [
+            2.7910181274963215e-14,
+            0.4115207632864018
+          ],
+          "label": "f2+f1",
+          "leading_quadratic_imaginary_coefficient": 0.42491267824432255,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 9.816558270830232e-17,
+          "combined_coefficient": [
+            3.3153203776469953e-18,
+            -9.810958301437277e-17
+          ],
+          "frequency_hz": 1034.1796875,
+          "independent_amplitude": 5.99998159203949e-18,
+          "interaction_amplitude": 1.0407173206994122e-16,
+          "interaction_coefficient": [
+            4.602258037861896e-18,
+            -1.0396992178986462e-16
+          ],
+          "label": "f2-2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 1.516836778641189e-16,
+          "combined_coefficient": [
+            1.3023110231224988e-17,
+            1.511235809868571e-16
+          ],
+          "frequency_hz": 1819.3359375,
+          "independent_amplitude": 2.495729921528088e-18,
+          "interaction_amplitude": 1.5304300229357548e-16,
+          "interaction_coefficient": [
+            1.1043971815220123e-17,
+            1.5264400164295999e-16
+          ],
+          "label": "f2+2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.0021818098414119157,
+          "combined_coefficient": [
+            -7.479559959968744e-17,
+            -0.0021818098414119157
+          ],
+          "frequency_hz": 837.890625,
+          "independent_amplitude": 1.2145563254441795e-17,
+          "interaction_amplitude": 0.002181809841411928,
+          "interaction_coefficient": [
+            -7.292668171840916e-17,
+            -0.002181809841411928
+          ],
+          "label": "f2-3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.005248549548571216,
+          "combined_coefficient": [
+            -4.3634442384906017e-16,
+            -0.005248549548571216
+          ],
+          "frequency_hz": 2015.625,
+          "independent_amplitude": 4.276795874511011e-18,
+          "interaction_amplitude": 0.005248549548571218,
+          "interaction_coefficient": [
+            -4.326296529388953e-16,
+            -0.005248549548571218
+          ],
+          "label": "f2+3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        }
+      ],
+      "offset_mm": 0.0,
+      "primary_amplitude_mm": 0.25,
+      "probe": "centered_control",
+      "reference_refinement_passed": true,
+      "sampling_residuals": [
+        {
+          "combined_band_nrmse": 1.0998470187487685e-13,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 3.186159441651762e-14,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 1
+        },
+        {
+          "combined_band_nrmse": 3.95510312290502e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.2098115014861963e-14,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 2
+        },
+        {
+          "combined_band_nrmse": 2.6995898597915856e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 8.278067288314177e-15,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 4
+        },
+        {
+          "combined_band_nrmse": 2.3750345066589195e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 6.7558773582839594e-15,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 8
+        },
+        {
+          "combined_band_nrmse": 1.864416028162968e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 5.180009494423691e-15,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 16
+        },
+        {
+          "combined_band_nrmse": 2.1916762294292085e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 6.0579651057258595e-15,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 32
+        },
+        {
+          "combined_band_nrmse": 0.0,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 0.0,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 64
+        }
+      ],
+      "secondary_amplitude_mm": 0.05
+    },
+    {
+      "combined_dc": 1.872761327251315e-15,
+      "combined_ideal_band_rms": 22.954497724874162,
+      "gap_mm": 0.5,
+      "independent_ideal_band_rms": 37.369493443325965,
+      "interaction_ideal_band_rms": 40.73107519997641,
+      "law": "production",
+      "linear_ideal_band_rms": 49.5474581951179,
+      "lines": [
+        {
+          "combined_amplitude": 0.7081858587917105,
+          "combined_coefficient": [
+            5.900468117166319e-15,
+            0.7081858587917105
+          ],
+          "frequency_hz": 196.2890625,
+          "independent_amplitude": 0.7011021688283053,
+          "interaction_amplitude": 0.007083689963405138,
+          "interaction_coefficient": [
+            3.190912113905051e-15,
+            0.007083689963405138
+          ],
+          "label": "f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 39.7121557764146,
+          "relative_to_combined_f1_db": 0.0
+        },
+        {
+          "combined_amplitude": 0.2629912740124849,
+          "combined_coefficient": [
+            -1.7216441888865798e-14,
+            -0.2629912740124849
+          ],
+          "frequency_hz": 1426.7578125,
+          "independent_amplitude": 27.23853772266696,
+          "interaction_amplitude": 27.501528996679443,
+          "interaction_coefficient": [
+            -1.6392533685525052e-12,
+            -27.501528996679443
+          ],
+          "label": "f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 57.73080556153441,
+          "relative_to_combined_f1_db": -8.604118229614615
+        },
+        {
+          "combined_amplitude": 9.140441562918571,
+          "combined_coefficient": [
+            1.4534083390905643e-13,
+            9.140441562918571
+          ],
+          "frequency_hz": 392.578125,
+          "independent_amplitude": 9.565399974140117,
+          "interaction_amplitude": 0.4249584112215459,
+          "interaction_coefficient": [
+            -1.0199259119597104e-14,
+            -0.4249584112215459
+          ],
+          "label": "2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.039259852994333e-15,
+          "relative_to_combined_f1_db": 22.216398520462878
+        },
+        {
+          "combined_amplitude": 0.3161162870771967,
+          "combined_coefficient": [
+            -3.560214099549985e-14,
+            -0.3161162870771967
+          ],
+          "frequency_hz": 2853.515625,
+          "independent_amplitude": 31.653048136718322,
+          "interaction_amplitude": 31.96916442379552,
+          "interaction_coefficient": [
+            -3.745333775253442e-12,
+            -31.96916442379552
+          ],
+          "label": "2*f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 2.4045524042063317e-15,
+          "relative_to_combined_f1_db": -7.006007562047478
+        },
+        {
+          "combined_amplitude": 5.312944510715106,
+          "combined_coefficient": [
+            2.706407092168764e-13,
+            5.312944510715106
+          ],
+          "frequency_hz": 1230.46875,
+          "independent_amplitude": 1.0595282769108042e-14,
+          "interaction_amplitude": 5.312944510715115,
+          "interaction_coefficient": [
+            2.6648427467810187e-13,
+            5.312944510715115
+          ],
+          "label": "f2-f1",
+          "leading_quadratic_imaginary_coefficient": 119.49209857500277,
+          "linear_amplitude": 1.4861128401549457e-14,
+          "relative_to_combined_f1_db": 17.503760593326213
+        },
+        {
+          "combined_amplitude": 7.008026806991004,
+          "combined_coefficient": [
+            4.755316036547517e-13,
+            7.008026806991004
+          ],
+          "frequency_hz": 1623.046875,
+          "independent_amplitude": 2.2958906263343015e-14,
+          "interaction_amplitude": 7.008026806991026,
+          "interaction_coefficient": [
+            4.796006807567432e-13,
+            7.008026806991026
+          ],
+          "label": "f2+f1",
+          "leading_quadratic_imaginary_coefficient": 157.6157681203608,
+          "linear_amplitude": 1.3536693901829396e-14,
+          "relative_to_combined_f1_db": 19.908970079936953
+        },
+        {
+          "combined_amplitude": 0.9331288826923214,
+          "combined_coefficient": [
+            -3.871823328873534e-14,
+            -0.9331288826923214
+          ],
+          "frequency_hz": 1034.1796875,
+          "independent_amplitude": 4.4210804771999946e-15,
+          "interaction_amplitude": 0.9331288826923186,
+          "interaction_coefficient": [
+            -3.5304833894835084e-14,
+            -0.9331288826923186
+          ],
+          "label": "f2-2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 5.776717072494739e-15,
+          "relative_to_combined_f1_db": 2.395887634461892
+        },
+        {
+          "combined_amplitude": 1.6415666746513855,
+          "combined_coefficient": [
+            -1.2199957103044576e-13,
+            -1.6415666746513855
+          ],
+          "frequency_hz": 1819.3359375,
+          "independent_amplitude": 9.709346582837182e-15,
+          "interaction_amplitude": 1.6415666746513942,
+          "interaction_coefficient": [
+            -1.2645698471418873e-13,
+            -1.6415666746513942
+          ],
+          "label": "f2+2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 9.993739048424609e-15,
+          "relative_to_combined_f1_db": 7.302225530237157
+        },
+        {
+          "combined_amplitude": 4.36722006099059,
+          "combined_coefficient": [
+            -1.5112411117272612e-13,
+            -4.36722006099059
+          ],
+          "frequency_hz": 837.890625,
+          "independent_amplitude": 1.0956650144932487e-14,
+          "interaction_amplitude": 4.367220060990579,
+          "interaction_coefficient": [
+            -1.50348544501131e-13,
+            -4.367220060990579
+          ],
+          "label": "f2-3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 3.207971928732789e-15,
+          "relative_to_combined_f1_db": 15.801156516560535
+        },
+        {
+          "combined_amplitude": 10.505760146718774,
+          "combined_coefficient": [
+            -8.759312846752779e-13,
+            -10.505760146718774
+          ],
+          "frequency_hz": 2015.625,
+          "independent_amplitude": 1.5837138765616244e-14,
+          "interaction_amplitude": 10.50576014671879,
+          "interaction_coefficient": [
+            -8.731344286511195e-13,
+            -10.50576014671879
+          ],
+          "label": "f2+3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 7.155066429111282e-15,
+          "relative_to_combined_f1_db": 23.425604618690027
+        }
+      ],
+      "offset_mm": 0.25,
+      "primary_amplitude_mm": 3.0,
+      "probe": "numerical_stress_only",
+      "reference_refinement_passed": true,
+      "sampling_residuals": [
+        {
+          "combined_band_nrmse": 0.00024389493813158262,
+          "combined_error_db_above_floor": -72.25594426140346,
+          "independent_band_nrmse": 3.155932324880615e-6,
+          "linear_band_nrmse": 2.0586285307815663e-13,
+          "oversampling": 1
+        },
+        {
+          "combined_band_nrmse": 2.735791519146858e-11,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.4608429134224566e-13,
+          "linear_band_nrmse": 7.347002863517809e-14,
+          "oversampling": 2
+        },
+        {
+          "combined_band_nrmse": 6.415063538880546e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 9.902744753279563e-14,
+          "linear_band_nrmse": 5.067476768302266e-14,
+          "oversampling": 4
+        },
+        {
+          "combined_band_nrmse": 4.838977778858483e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 8.165308277030252e-14,
+          "linear_band_nrmse": 4.4627493582462876e-14,
+          "oversampling": 8
+        },
+        {
+          "combined_band_nrmse": 3.149351048129286e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 6.443798018768101e-14,
+          "linear_band_nrmse": 3.5590001476865745e-14,
+          "oversampling": 16
+        },
+        {
+          "combined_band_nrmse": 3.916910992053365e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 7.357477746567203e-14,
+          "linear_band_nrmse": 4.1610664075283526e-14,
+          "oversampling": 32
+        },
+        {
+          "combined_band_nrmse": 0.0,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 0.0,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 64
+        }
+      ],
+      "secondary_amplitude_mm": 0.6000000000000001
+    },
+    {
+      "combined_dc": -8.534395310672811e-20,
+      "combined_ideal_band_rms": 0.05912099074378167,
+      "gap_mm": 1.5,
+      "independent_ideal_band_rms": 0.05912191077035835,
+      "interaction_ideal_band_rms": 0.0001738497489166405,
+      "law": "point_pole",
+      "linear_ideal_band_rms": 0.05912214246054816,
+      "lines": [
+        {
+          "combined_amplitude": 0.04738550404964835,
+          "combined_coefficient": [
+            3.862719307775607e-16,
+            0.04738550404964835
+          ],
+          "frequency_hz": 196.2890625,
+          "independent_amplitude": 0.047385558542345926,
+          "interaction_amplitude": 5.449269757651365e-8,
+          "interaction_coefficient": [
+            -1.7854334218888956e-19,
+            -5.449269757651365e-8
+          ],
+          "label": "f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.04738623971350378,
+          "relative_to_combined_f1_db": 0.0
+        },
+        {
+          "combined_amplitude": 0.06888484183309812,
+          "combined_coefficient": [
+            4.104639776898136e-15,
+            0.06888484183309812
+          ],
+          "frequency_hz": 1426.7578125,
+          "independent_amplitude": 0.06888682230193856,
+          "interaction_amplitude": 1.980468840437344e-6,
+          "interaction_coefficient": [
+            -1.2709932553259723e-19,
+            -1.980468840437344e-6
+          ],
+          "label": "f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0688868619118701,
+          "relative_to_combined_f1_db": 3.2495632178008593
+        },
+        {
+          "combined_amplitude": 0.00011846622948647428,
+          "combined_coefficient": [
+            1.1285383559312372e-18,
+            0.00011846622948647428
+          ],
+          "frequency_hz": 392.578125,
+          "independent_amplitude": 0.00011846616196957896,
+          "interaction_amplitude": 6.75168953270756e-11,
+          "interaction_coefficient": [
+            4.189850783422436e-21,
+            6.75168953270756e-11
+          ],
+          "label": "2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.2294668636464732e-18,
+          "relative_to_combined_f1_db": -52.04101877215652
+        },
+        {
+          "combined_amplitude": 0.000034443928271702854,
+          "combined_coefficient": [
+            4.788636532104276e-18,
+            0.000034443928271702854
+          ],
+          "frequency_hz": 2853.515625,
+          "independent_amplitude": 0.00003444343750017842,
+          "interaction_amplitude": 4.907715244327373e-10,
+          "interaction_coefficient": [
+            -1.942457889192344e-20,
+            4.907715244327373e-10
+          ],
+          "label": "2*f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 2.8958269786101224e-18,
+          "relative_to_combined_f1_db": -62.77065657022412
+        },
+        {
+          "combined_amplitude": 0.00014852513541350703,
+          "combined_coefficient": [
+            7.944615215639787e-18,
+            0.00014852513541350703
+          ],
+          "frequency_hz": 1230.46875,
+          "independent_amplitude": 1.774073848533713e-17,
+          "interaction_amplitude": 0.00014852513541352476,
+          "interaction_coefficient": [
+            7.580221358756098e-18,
+            0.00014852513541352476
+          ],
+          "label": "f2-f1",
+          "leading_quadratic_imaginary_coefficient": 0.00014852403492292239,
+          "linear_amplitude": 1.7738705632535084e-17,
+          "relative_to_combined_f1_db": -50.0769109532694
+        },
+        {
+          "combined_amplitude": 0.00019591172623595468,
+          "combined_coefficient": [
+            1.5523172753802955e-17,
+            0.00019591172623595468
+          ],
+          "frequency_hz": 1623.046875,
+          "independent_amplitude": 1.6193727937998136e-17,
+          "interaction_amplitude": 0.00019591172623593863,
+          "interaction_coefficient": [
+            1.329668624570243e-17,
+            0.00019591172623593863
+          ],
+          "label": "f2+f1",
+          "leading_quadratic_imaginary_coefficient": 0.0001959102746364262,
+          "linear_amplitude": 1.6161415794162335e-17,
+          "relative_to_combined_f1_db": -47.671701466656906
+        },
+        {
+          "combined_amplitude": 7.177642732924454e-7,
+          "combined_coefficient": [
+            -7.240576229204255e-20,
+            -7.177642732924454e-7
+          ],
+          "frequency_hz": 1034.1796875,
+          "independent_amplitude": 6.860314011640343e-18,
+          "interaction_amplitude": 7.17764273285585e-7,
+          "interaction_coefficient": [
+            -5.042188479515032e-20,
+            -7.17764273285585e-7
+          ],
+          "label": "f2-2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 6.8873269783742506e-18,
+          "relative_to_combined_f1_db": -96.39327334269888
+        },
+        {
+          "combined_amplitude": 1.262695789535676e-6,
+          "combined_coefficient": [
+            1.1781192777928151e-18,
+            -1.262695789535676e-6
+          ],
+          "frequency_hz": 1819.3359375,
+          "independent_amplitude": 1.1969485937937615e-17,
+          "interaction_amplitude": 1.2626957895475777e-6,
+          "interaction_coefficient": [
+            -9.521042379288435e-20,
+            -1.2626957895475777e-6
+          ],
+          "label": "f2+2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.1966763408383493e-17,
+          "relative_to_combined_f1_db": -91.48693544708965
+        },
+        {
+          "combined_amplitude": 2.4017849200717825e-10,
+          "combined_coefficient": [
+            5.541146751649049e-19,
+            2.4017849200717825e-10
+          ],
+          "frequency_hz": 837.890625,
+          "independent_amplitude": 3.825450499864541e-18,
+          "interaction_amplitude": 2.401784957992237e-10,
+          "interaction_coefficient": [
+            4.9671925477745495e-20,
+            2.401784957992237e-10
+          ],
+          "label": "f2-3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 3.817055782552483e-18,
+          "relative_to_combined_f1_db": -165.90222781893172
+        },
+        {
+          "combined_amplitude": 5.77772054470309e-10,
+          "combined_coefficient": [
+            3.5105722579735134e-19,
+            5.77772054470309e-10
+          ],
+          "frequency_hz": 2015.625,
+          "independent_amplitude": 8.549512603864132e-18,
+          "interaction_amplitude": 5.777720459287332e-10,
+          "interaction_coefficient": [
+            -1.7248582470695425e-20,
+            5.777720459287332e-10
+          ],
+          "label": "f2+3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 8.55248109721694e-18,
+          "relative_to_combined_f1_db": -158.27777944990294
+        }
+      ],
+      "offset_mm": 0.5,
+      "primary_amplitude_mm": 0.005,
+      "probe": "small_motion",
+      "reference_refinement_passed": true,
+      "sampling_residuals": [
+        {
+          "combined_band_nrmse": 9.537412105670409e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 9.537180997443454e-14,
+          "linear_band_nrmse": 9.536379174074886e-14,
+          "oversampling": 1
+        },
+        {
+          "combined_band_nrmse": 3.4041139836551765e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 3.40438666760231e-14,
+          "linear_band_nrmse": 3.403458591384295e-14,
+          "oversampling": 2
+        },
+        {
+          "combined_band_nrmse": 2.352293968926738e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 2.3492826466382514e-14,
+          "linear_band_nrmse": 2.3465560522927527e-14,
+          "oversampling": 4
+        },
+        {
+          "combined_band_nrmse": 2.077804067601801e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 2.0781085088889965e-14,
+          "linear_band_nrmse": 2.0604573757164072e-14,
+          "oversampling": 8
+        },
+        {
+          "combined_band_nrmse": 1.649267158308458e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.6491843038391567e-14,
+          "linear_band_nrmse": 1.647581522612804e-14,
+          "oversampling": 16
+        },
+        {
+          "combined_band_nrmse": 1.9371633785698308e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.9280550127777685e-14,
+          "linear_band_nrmse": 1.9191288532618635e-14,
+          "oversampling": 32
+        },
+        {
+          "combined_band_nrmse": 0.0,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 0.0,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 64
+        }
+      ],
+      "secondary_amplitude_mm": 0.0010000000000000002
+    },
+    {
+      "combined_dc": 1.0812027787025267e-18,
+      "combined_ideal_band_rms": 2.825667528955169,
+      "gap_mm": 1.5,
+      "independent_ideal_band_rms": 2.929094119129157,
+      "interaction_ideal_band_rms": 0.49042776579011155,
+      "law": "point_pole",
+      "linear_ideal_band_rms": 2.9561071230274076,
+      "lines": [
+        {
+          "combined_amplitude": 2.2796681578743367,
+          "combined_coefficient": [
+            1.856835369233805e-14,
+            2.2796681578743367
+          ],
+          "frequency_hz": 196.2890625,
+          "independent_amplitude": 2.2860294516983437,
+          "interaction_amplitude": 0.006361293824006964,
+          "interaction_coefficient": [
+            -6.61345230436448e-17,
+            -0.006361293824006964
+          ],
+          "label": "f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 2.369311985675189,
+          "relative_to_combined_f1_db": 0.0
+        },
+        {
+          "combined_amplitude": 3.2005673507319194,
+          "combined_coefficient": [
+            1.907507192392614e-13,
+            3.2005673507319194
+          ],
+          "frequency_hz": 1426.7578125,
+          "independent_amplitude": 3.4393962391923556,
+          "interaction_amplitude": 0.23882888846043615,
+          "interaction_coefficient": [
+            -1.4196321208480922e-14,
+            -0.23882888846043615
+          ],
+          "label": "f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 3.4443430955935046,
+          "relative_to_combined_f1_db": 2.9471067509711206
+        },
+        {
+          "combined_amplitude": 0.29959037412706946,
+          "combined_coefficient": [
+            4.846768998430879e-15,
+            0.29959037412706946
+          ],
+          "frequency_hz": 392.578125,
+          "independent_amplitude": 0.2992921595929742,
+          "interaction_amplitude": 0.00029821453409523135,
+          "interaction_coefficient": [
+            5.761720332501721e-18,
+            0.00029821453409523135
+          ],
+          "label": "2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 6.219399868224254e-17,
+          "relative_to_combined_f1_db": -17.626875555595973
+        },
+        {
+          "combined_amplitude": 0.08852183309295666,
+          "combined_coefficient": [
+            1.0414709319323125e-14,
+            0.08852183309295666
+          ],
+          "frequency_hz": 2853.515625,
+          "independent_amplitude": 0.08614929185658379,
+          "interaction_amplitude": 0.0023725412363728715,
+          "interaction_coefficient": [
+            2.7485439973585793e-16,
+            0.0023725412363728715
+          ],
+          "label": "2*f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.4403128315794356e-16,
+          "relative_to_combined_f1_db": -28.216424689316657
+        },
+        {
+          "combined_amplitude": 0.37711020557866204,
+          "combined_coefficient": [
+            1.9283697869391478e-14,
+            0.37711020557866204
+          ],
+          "frequency_hz": 1230.46875,
+          "independent_amplitude": 8.836353388144828e-16,
+          "interaction_amplitude": 0.3771102055786629,
+          "interaction_coefficient": [
+            1.926911245755182e-14,
+            0.3771102055786629
+          ],
+          "label": "f2-f1",
+          "leading_quadratic_imaginary_coefficient": 0.3713100873073059,
+          "linear_amplitude": 8.867472238613931e-16,
+          "relative_to_combined_f1_db": -15.628066948043724
+        },
+        {
+          "combined_amplitude": 0.4974263187871033,
+          "combined_coefficient": [
+            3.384962646339664e-14,
+            0.4974263187871033
+          ],
+          "frequency_hz": 1623.046875,
+          "independent_amplitude": 8.127381030856706e-16,
+          "interaction_amplitude": 0.49742631878710253,
+          "interaction_coefficient": [
+            3.372875442404034e-14,
+            0.49742631878710253
+          ],
+          "label": "f2+f1",
+          "leading_quadratic_imaginary_coefficient": 0.4897756865910654,
+          "linear_amplitude": 8.079936500679652e-16,
+          "relative_to_combined_f1_db": -13.222857461432948
+        },
+        {
+          "combined_amplitude": 0.08558943511415879,
+          "combined_coefficient": [
+            -3.664169806248176e-15,
+            -0.08558943511415879
+          ],
+          "frequency_hz": 1034.1796875,
+          "independent_amplitude": 3.456303131165762e-16,
+          "interaction_amplitude": 0.08558943511415844,
+          "interaction_coefficient": [
+            -3.67906374527867e-15,
+            -0.08558943511415844
+          ],
+          "label": "f2-2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 3.450840867426774e-16,
+          "relative_to_combined_f1_db": -28.509029460700003
+        },
+        {
+          "combined_amplitude": 0.15056951616400283,
+          "combined_coefficient": [
+            -1.125814445965288e-14,
+            -0.15056951616400283
+          ],
+          "frequency_hz": 1819.3359375,
+          "independent_amplitude": 5.908116052389588e-16,
+          "interaction_amplitude": 0.1505695161640034,
+          "interaction_coefficient": [
+            -1.1313411342469364e-14,
+            -0.1505695161640034
+          ],
+          "label": "f2+2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 5.970376520153897e-16,
+          "relative_to_combined_f1_db": -23.602691564924783
+        },
+        {
+          "combined_amplitude": 0.0011512402509408631,
+          "combined_coefficient": [
+            6.911815311998318e-17,
+            0.0011512402509408631
+          ],
+          "frequency_hz": 837.890625,
+          "independent_amplitude": 1.845340229361325e-16,
+          "interaction_amplitude": 0.001151240250941046,
+          "interaction_coefficient": [
+            4.4406355127679116e-17,
+            0.001151240250941046
+          ],
+          "label": "f2-3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.912568934909969e-16,
+          "relative_to_combined_f1_db": -65.93411335239705
+        },
+        {
+          "combined_amplitude": 0.002769417107159434,
+          "combined_coefficient": [
+            2.4524402014706767e-16,
+            0.002769417107159434
+          ],
+          "frequency_hz": 2015.625,
+          "independent_amplitude": 4.2819785105948297e-16,
+          "interaction_amplitude": 0.0027694171071590058,
+          "interaction_coefficient": [
+            2.298344704961071e-16,
+            0.0027694171071590058
+          ],
+          "label": "f2+3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 4.2664992663203785e-16,
+          "relative_to_combined_f1_db": -58.30966525026456
+        }
+      ],
+      "offset_mm": 0.5,
+      "primary_amplitude_mm": 0.25,
+      "probe": "larger_motion",
+      "reference_refinement_passed": true,
+      "sampling_residuals": [
+        {
+          "combined_band_nrmse": 9.501491566203187e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 9.975629685198618e-14,
+          "linear_band_nrmse": 9.977285997847872e-14,
+          "oversampling": 1
+        },
+        {
+          "combined_band_nrmse": 3.399690112564497e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 3.55851562933999e-14,
+          "linear_band_nrmse": 3.561221457800098e-14,
+          "oversampling": 2
+        },
+        {
+          "combined_band_nrmse": 2.3366623308118904e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 2.4537373771395466e-14,
+          "linear_band_nrmse": 2.4557142566949967e-14,
+          "oversampling": 4
+        },
+        {
+          "combined_band_nrmse": 2.0696941114557767e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 2.1621122179706714e-14,
+          "linear_band_nrmse": 2.166934998702777e-14,
+          "oversampling": 8
+        },
+        {
+          "combined_band_nrmse": 1.643654489958781e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.7245536899936574e-14,
+          "linear_band_nrmse": 1.724575355560813e-14,
+          "oversampling": 16
+        },
+        {
+          "combined_band_nrmse": 1.9229287458297414e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 2.0149920380200374e-14,
+          "linear_band_nrmse": 2.01448293782178e-14,
+          "oversampling": 32
+        },
+        {
+          "combined_band_nrmse": 0.0,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 0.0,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 64
+        }
+      ],
+      "secondary_amplitude_mm": 0.05
+    },
+    {
+      "combined_dc": 1.2014861903318714e-17,
+      "combined_ideal_band_rms": 1.2026131322984583,
+      "gap_mm": 1.5,
+      "independent_ideal_band_rms": 0.5500242602457619,
+      "interaction_ideal_band_rms": 1.0727831342301506,
+      "law": "point_pole",
+      "linear_ideal_band_rms": 0.0,
+      "lines": [
+        {
+          "combined_amplitude": 9.200557829415136e-17,
+          "combined_coefficient": [
+            -3.547389630344937e-18,
+            -9.193716584739676e-17
+          ],
+          "frequency_hz": 196.2890625,
+          "independent_amplitude": 7.228657079226192e-17,
+          "interaction_amplitude": 2.6336164534703427e-17,
+          "interaction_coefficient": [
+            -1.619760936731294e-17,
+            -2.0766102503428675e-17
+          ],
+          "label": "f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 2.2210443510834343e-16,
+          "combined_coefficient": [
+            4.720815916083075e-17,
+            -2.1702942151570603e-16
+          ],
+          "frequency_hz": 1426.7578125,
+          "independent_amplitude": 3.525091277974002e-18,
+          "interaction_amplitude": 2.2141528716094183e-16,
+          "interaction_coefficient": [
+            4.3683231315266234e-17,
+            -2.170633656111028e-16
+          ],
+          "label": "f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.7418922701915169,
+          "combined_coefficient": [
+            1.2108822719277475e-14,
+            0.7418922701915169
+          ],
+          "frequency_hz": 392.578125,
+          "independent_amplitude": 0.7448506860021455,
+          "interaction_amplitude": 0.002958415810628612,
+          "interaction_coefficient": [
+            -4.329769693950383e-17,
+            -0.002958415810628612
+          ],
+          "label": "2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.20187870857714335,
+          "combined_coefficient": [
+            2.36714852525799e-14,
+            0.20187870857714335
+          ],
+          "frequency_hz": 2853.515625,
+          "independent_amplitude": 0.22380370068090844,
+          "interaction_amplitude": 0.021924992103765084,
+          "interaction_coefficient": [
+            -2.5732976542362965e-15,
+            -0.021924992103765084
+          ],
+          "label": "2*f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.9162583514247221,
+          "combined_coefficient": [
+            4.683886464849555e-14,
+            0.9162583514247221
+          ],
+          "frequency_hz": 1230.46875,
+          "independent_amplitude": 1.8042874156140073e-17,
+          "interaction_amplitude": 0.9162583514247221,
+          "interaction_coefficient": [
+            4.68426717429436e-14,
+            0.9162583514247221
+          ],
+          "label": "f2-f1",
+          "leading_quadratic_imaginary_coefficient": 0.966407896367954,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 1.2085883968792983,
+          "combined_coefficient": [
+            8.199838491171489e-14,
+            1.2085883968792983
+          ],
+          "frequency_hz": 1623.046875,
+          "independent_amplitude": 2.999465091108731e-17,
+          "interaction_amplitude": 1.2085883968792983,
+          "interaction_coefficient": [
+            8.197398779833231e-14,
+            1.2085883968792983
+          ],
+          "label": "f2+f1",
+          "leading_quadratic_imaginary_coefficient": 1.274738034732968,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 2.882631983572697e-16,
+          "combined_coefficient": [
+            9.466983632455211e-18,
+            -2.881077016465638e-16
+          ],
+          "frequency_hz": 1034.1796875,
+          "independent_amplitude": 1.6881485062690878e-17,
+          "interaction_amplitude": 3.0481212053435187e-16,
+          "interaction_coefficient": [
+            1.3436635356378982e-17,
+            -3.045158216824669e-16
+          ],
+          "label": "f2-2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 4.496186010518934e-16,
+          "combined_coefficient": [
+            3.794055403639443e-17,
+            4.480149559682948e-16
+          ],
+          "frequency_hz": 1819.3359375,
+          "independent_amplitude": 7.763688934687536e-18,
+          "interaction_amplitude": 4.540153927923033e-16,
+          "interaction_coefficient": [
+            3.190093555372815e-17,
+            4.528932624837185e-16
+          ],
+          "label": "f2+2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.010710265338243145,
+          "combined_coefficient": [
+            -3.700944774856899e-16,
+            -0.010710265338243145
+          ],
+          "frequency_hz": 837.890625,
+          "independent_amplitude": 3.344636746413695e-17,
+          "interaction_amplitude": 0.010710265338243178,
+          "interaction_coefficient": [
+            -3.645907465207817e-16,
+            -0.010710265338243178
+          ],
+          "label": "f2-3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        },
+        {
+          "combined_amplitude": 0.02576455438010921,
+          "combined_coefficient": [
+            -2.1444448747083886e-15,
+            -0.02576455438010921
+          ],
+          "frequency_hz": 2015.625,
+          "independent_amplitude": 1.2493642390139272e-17,
+          "interaction_amplitude": 0.025764554380109217,
+          "interaction_coefficient": [
+            -2.1335285547752047e-15,
+            -0.025764554380109217
+          ],
+          "label": "f2+3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 0.0,
+          "relative_to_combined_f1_db": null
+        }
+      ],
+      "offset_mm": 0.0,
+      "primary_amplitude_mm": 0.25,
+      "probe": "centered_control",
+      "reference_refinement_passed": true,
+      "sampling_residuals": [
+        {
+          "combined_band_nrmse": 1.0976075818492618e-13,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 3.241255842154077e-14,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 1
+        },
+        {
+          "combined_band_nrmse": 3.9471123480097283e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.2300682392294432e-14,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 2
+        },
+        {
+          "combined_band_nrmse": 2.6947048751116785e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 8.423579957091848e-15,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 4
+        },
+        {
+          "combined_band_nrmse": 2.3660686749037073e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 6.847023225437424e-15,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 8
+        },
+        {
+          "combined_band_nrmse": 1.860863208239459e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 5.279801938665866e-15,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 16
+        },
+        {
+          "combined_band_nrmse": 2.1885901263781015e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 6.165709344333707e-15,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 32
+        },
+        {
+          "combined_band_nrmse": 0.0,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 0.0,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 64
+        }
+      ],
+      "secondary_amplitude_mm": 0.05
+    },
+    {
+      "combined_dc": 6.637012365046391e-15,
+      "combined_ideal_band_rms": 38.49823106420582,
+      "gap_mm": 0.5,
+      "independent_ideal_band_rms": 74.72859226214244,
+      "interaction_ideal_band_rms": 82.34197059202947,
+      "law": "point_pole",
+      "linear_ideal_band_rms": 118.91389966828295,
+      "lines": [
+        {
+          "combined_amplitude": 0.35755780307802876,
+          "combined_coefficient": [
+            3.793965508796801e-15,
+            0.35755780307802876
+          ],
+          "frequency_hz": 196.2890625,
+          "independent_amplitude": 0.3457177875890822,
+          "interaction_amplitude": 0.011840015488946531,
+          "interaction_coefficient": [
+            1.889298496608739e-14,
+            0.011840015488946531
+          ],
+          "label": "f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 95.30917386339502,
+          "relative_to_combined_f1_db": 0.0
+        },
+        {
+          "combined_amplitude": 0.28066189965938076,
+          "combined_coefficient": [
+            -2.620163659320763e-14,
+            -0.28066189965938076
+          ],
+          "frequency_hz": 1426.7578125,
+          "independent_amplitude": 44.826115997504104,
+          "interaction_amplitude": 45.10677789716348,
+          "interaction_coefficient": [
+            -2.6867336406565413e-12,
+            -45.10677789716348
+          ],
+          "label": "f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 138.55393334768257,
+          "relative_to_combined_f1_db": -2.103255995958681
+        },
+        {
+          "combined_amplitude": 6.745860707376295,
+          "combined_coefficient": [
+            9.67208327138597e-14,
+            6.745860707376295
+          ],
+          "frequency_hz": 392.578125,
+          "independent_amplitude": 7.006999282309063,
+          "interaction_amplitude": 0.26113857493276793,
+          "interaction_coefficient": [
+            -1.766932218049848e-14,
+            -0.26113857493276793
+          ],
+          "label": "2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 2.471272324801449e-15,
+          "relative_to_combined_f1_db": 25.513822183336053
+        },
+        {
+          "combined_amplitude": 0.3389585771956741,
+          "combined_coefficient": [
+            -3.4012835959360416e-14,
+            -0.3389585771956741
+          ],
+          "frequency_hz": 2853.515625,
+          "independent_amplitude": 53.905814226667744,
+          "interaction_amplitude": 54.24477280386342,
+          "interaction_coefficient": [
+            -6.351470312346183e-12,
+            -54.24477280386342
+          ],
+          "label": "2*f2",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 5.778778696746183e-15,
+          "relative_to_combined_f1_db": -0.4639926438065205
+        },
+        {
+          "combined_amplitude": 2.665849939195499,
+          "combined_coefficient": [
+            1.329888536941237e-13,
+            2.665849939195499
+          ],
+          "frequency_hz": 1230.46875,
+          "independent_amplitude": 6.953524753534494e-14,
+          "interaction_amplitude": 2.66584993919556,
+          "interaction_coefficient": [
+            9.981697769308222e-14,
+            2.66584993919556
+          ],
+          "label": "f2-f1",
+          "leading_quadratic_imaginary_coefficient": 0.0,
+          "linear_amplitude": 3.567850570944049e-14,
+          "relative_to_combined_f1_db": 17.44978878216501
+        },
+        {
+          "combined_amplitude": 3.516383015034137,
+          "combined_coefficient": [
+            2.401456778009402e-13,
+            3.516383015034137
+          ],
+          "frequency_hz": 1623.046875,
+          "independent_amplitude": 1.226949472764933e-13,
+          "interaction_amplitude": 3.5163830150342528,
+          "interaction_coefficient": [
+            2.7997335725319786e-13,
+            3.5163830150342528
+          ],
+          "label": "f2+f1",
+          "leading_quadratic_imaginary_coefficient": 0.0,
+          "linear_amplitude": 3.24753155562471e-14,
+          "relative_to_combined_f1_db": 19.85499826877578
+        },
+        {
+          "combined_amplitude": 0.5738880551041732,
+          "combined_coefficient": [
+            -1.608854242631397e-14,
+            -0.5738880551041732
+          ],
+          "frequency_hz": 1034.1796875,
+          "independent_amplitude": 4.878035009791693e-15,
+          "interaction_amplitude": 0.5738880551041758,
+          "interaction_coefficient": [
+            -1.2015291329402841e-14,
+            -0.5738880551041758
+          ],
+          "label": "f2-2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.3877640128021466e-14,
+          "relative_to_combined_f1_db": 4.109618504805895
+        },
+        {
+          "combined_amplitude": 1.0095877683277474,
+          "combined_coefficient": [
+            -6.7547973387786e-14,
+            -1.0095877683277474
+          ],
+          "frequency_hz": 1819.3359375,
+          "independent_amplitude": 2.9475030957862966e-14,
+          "interaction_amplitude": 1.0095877683277703,
+          "interaction_coefficient": [
+            -8.621712775729867e-14,
+            -1.0095877683277703
+          ],
+          "label": "f2+2*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 2.4053380824737693e-14,
+          "relative_to_combined_f1_db": 9.015956400581128
+        },
+        {
+          "combined_amplitude": 4.055841597307653,
+          "combined_coefficient": [
+            -1.3706971681886187e-13,
+            -4.055841597307653
+          ],
+          "frequency_hz": 837.890625,
+          "independent_amplitude": 2.7617853243454275e-14,
+          "interaction_amplitude": 4.055841597307627,
+          "interaction_coefficient": [
+            -1.267834857382365e-13,
+            -4.055841597307627
+          ],
+          "label": "f2-3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 7.694439317343592e-15,
+          "relative_to_combined_f1_db": 21.0946944977964
+        },
+        {
+          "combined_amplitude": 9.756709856460542,
+          "combined_coefficient": [
+            -8.146322582132278e-13,
+            -9.756709856460542
+          ],
+          "frequency_hz": 2015.625,
+          "independent_amplitude": 3.598087926435759e-14,
+          "interaction_amplitude": 9.756709856460578,
+          "interaction_coefficient": [
+            -8.106894959892502e-13,
+            -9.756709856460578
+          ],
+          "label": "f2+3*f1",
+          "leading_quadratic_imaginary_coefficient": null,
+          "linear_amplitude": 1.7167115492219092e-14,
+          "relative_to_combined_f1_db": 28.719142599925924
+        }
+      ],
+      "offset_mm": 0.25,
+      "primary_amplitude_mm": 3.0,
+      "probe": "numerical_stress_only",
+      "reference_refinement_passed": true,
+      "sampling_residuals": [
+        {
+          "combined_band_nrmse": 0.0014894551016516712,
+          "combined_error_db_above_floor": -56.53945167373625,
+          "independent_band_nrmse": 0.00002478089473061623,
+          "linear_band_nrmse": 2.945895909636307e-13,
+          "oversampling": 1
+        },
+        {
+          "combined_band_nrmse": 4.2010611210034113e-10,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 2.3423530716867266e-13,
+          "linear_band_nrmse": 1.0512021534211281e-13,
+          "oversampling": 2
+        },
+        {
+          "combined_band_nrmse": 1.0450750954292833e-13,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.5496526757833652e-13,
+          "linear_band_nrmse": 7.251488704439017e-14,
+          "oversampling": 4
+        },
+        {
+          "combined_band_nrmse": 8.144537967300877e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.2781537268613504e-13,
+          "linear_band_nrmse": 6.39562468417893e-14,
+          "oversampling": 8
+        },
+        {
+          "combined_band_nrmse": 5.788943168690335e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.0102420225465393e-13,
+          "linear_band_nrmse": 5.095091061964908e-14,
+          "oversampling": 16
+        },
+        {
+          "combined_band_nrmse": 5.883250116748121e-14,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 1.1393185639703376e-13,
+          "linear_band_nrmse": 5.959190279841494e-14,
+          "oversampling": 32
+        },
+        {
+          "combined_band_nrmse": 0.0,
+          "combined_error_db_above_floor": null,
+          "independent_band_nrmse": 0.0,
+          "linear_band_nrmse": 0.0,
+          "oversampling": 64
+        }
+      ],
+      "secondary_amplitude_mm": 0.6000000000000001
+    }
+  ],
+  "duration_seconds": 0.3413333333333333,
+  "experiment": "coherent-two-mode-pickup-mixing-v1",
+  "frequency_grid_hz": 2.9296875,
+  "ideal_band_limit_hz": 20159.1796875,
+  "numerical_reporting_floor_db": -160,
+  "parent_frequencies_hz": [
+    196.2890625,
+    1426.7578125
+  ],
+  "period_frames": 16384,
+  "protocol": "x=a*cos(w1*t)+b*cos(w2*t), exact derivative, zero phases. Combined nonlinear versus sum of two independent nonlinear voltages and equilibrium-linearized control; identical trajectory and raw gain. Coherent unwindowed complex FFT over the complete period. DC plus every bin through floor(0.42*period_frames) is retained. Parseval residuals of all paths normalized by combined nonlinear reference band power. Finite 64x reference, 32x agreement required below 1e-8. No output normalization or fitting.",
+  "sample_rate_hz": 48000.0,
+  "schema_version": 1,
+  "scope": "Mechanism experiment, not measured modal identity. Parent frequencies are coherent probes near G3/1425 Hz, not fitted source resonances. Single displacement coordinate and existing flux proxies; no mechanics, production FIR, transients, circuit, second polarization or real-time timing. Ideal-band refinement diagnoses internally sampled nonlinear aliasing, not complete instrument anti-alias performance. A generated sideband does not prove the recorded family's origin; numerical stress is not an inferred instrument trajectory."
+}

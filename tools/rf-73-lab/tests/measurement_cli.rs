@@ -1264,3 +1264,26 @@ fn spring_tuning_preflights_every_output_and_rejects_invalid_reference() {
     assert!(!scratch.0.join("pair-before.wav").exists());
     assert!(!scratch.0.join("pair.json").exists());
 }
+
+#[test]
+fn pickup_mixing_rejects_invalid_arguments_and_preserves_existing_output() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("existing.json"), b"preserve").unwrap();
+    let result = scratch.run(&["pickup-mixing", "--output", "existing.json"]);
+    assert!(!result.status.success());
+    assert!(String::from_utf8_lossy(&result.stderr).contains("new .json file"));
+    assert_eq!(
+        fs::read(scratch.0.join("existing.json")).unwrap(),
+        b"preserve"
+    );
+    for args in [
+        vec!["pickup-mixing"],
+        vec!["pickup-mixing", "--unknown", "bad.json"],
+        vec!["pickup-mixing", "--output", "bad.json", "--unknown"],
+        vec!["pickup-mixing", "--output", "bad.wav"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}

@@ -180,6 +180,34 @@ impl Spectrum {
     }
 }
 
+/// Unwindowed coherent peak coefficients: DC has 1/N scaling, others 2/N.
+/// Caller must provide complete periodic motion; arbitrary captures need windowing.
+pub fn coherent_coefficients(
+    mut samples: Vec<f64>,
+    last: usize,
+) -> Result<Vec<[f64; 2]>, crate::AudioError> {
+    let count = samples.len();
+    if !(16..=1_048_576).contains(&count)
+        || !count.is_power_of_two()
+        || last >= count / 2
+        || samples.iter().any(|x| !x.is_finite())
+    {
+        return Err(crate::AudioError("coherent spectrum needs 16..1048576 power-of-two finite samples and bins below Nyquist".into()));
+    }
+    let mut im = vec![0.0; count];
+    fft(&mut samples, &mut im);
+    Ok((0..=last)
+        .map(|k| {
+            let scale = if k == 0 {
+                1.0 / count as f64
+            } else {
+                2.0 / count as f64
+            };
+            [samples[k] * scale, im[k] * scale]
+        })
+        .collect())
+}
+
 /// In-place radix-2 FFT. Its output is tested against a direct DFT.
 fn fft(re: &mut [f64], im: &mut [f64]) {
     let n = re.len();
@@ -220,6 +248,39 @@ fn fft(re: &mut [f64], im: &mut [f64]) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn coherent_coefficients_preserve_dc_phase_and_parseval_without_a_window() {
+        let samples: Vec<_> = (0..1024)
+            .map(|i| {
+                let t = TAU * i as f64 / 1024.0;
+                0.3 + 0.4 * (17.0 * t).cos() + 0.2 * (91.0 * t).sin()
+            })
+            .collect();
+        let actual_power = samples.iter().map(|v| v * v).sum::<f64>() / 1024.0;
+        let c = coherent_coefficients(samples, 511).unwrap();
+        assert!((c[0][0] - 0.3).abs() < 1e-12);
+        assert!((c[17][0] - 0.4).abs() < 1e-12);
+        assert!((c[91][1] + 0.2).abs() < 1e-12);
+        let power = c[0][0].powi(2)
+            + 0.5
+                * c[1..]
+                    .iter()
+                    .map(|v| v[0] * v[0] + v[1] * v[1])
+                    .sum::<f64>();
+        assert!((power - actual_power).abs() < 1e-12);
+    }
+    #[test]
+    fn coherent_coefficients_reject_invalid_lengths_values_and_nyquist() {
+        for samples in [
+            Vec::new(),
+            vec![0.0; 17],
+            vec![f64::NAN; 16],
+            vec![0.0; 1_048_577],
+        ] {
+            assert!(coherent_coefficients(samples, 0).is_err());
+        }
+        assert!(coherent_coefficients(vec![0.0; 16], 8).is_err());
+    }
     #[test]
     fn fft_matches_direct_dft() {
         let input: Vec<_> = (0..32)

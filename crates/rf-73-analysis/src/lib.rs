@@ -18,6 +18,7 @@ pub use partial_comparison::{
     compare_partials,
 };
 pub use pitch_anchor::{PitchAnchor, PitchWindow, pitch_anchor};
+pub use spectrum::coherent_coefficients;
 pub use tone_comparison::{
     HarmonicBalance, ToneComparison, ToneComparisonOptions, ToneWindow, compare_tone,
 };
