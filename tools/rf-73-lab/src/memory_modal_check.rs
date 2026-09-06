@@ -20,6 +20,8 @@ mod recovery;
 pub(crate) use recovery::{HELP as RECOVERY_HELP, run as run_recovery};
 mod audio;
 pub(crate) use audio::{HELP as AUDIO_HELP, run as render_audio};
+mod tuning;
+pub(crate) use tuning::{HELP as TUNING_HELP, run as tune_pitch};
 mod hammer_comparison;
 pub(crate) use hammer_comparison::{HELP as HAMMER_COMPARISON_HELP, run as compare_hammers};
 

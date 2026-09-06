@@ -10,7 +10,9 @@ pub use memory_coupling::{
     MemoryModalCheckpoint, MemoryModalProbe, MemoryModalRk4Step,
 };
 mod numerics;
+mod spectrum;
 use numerics::{Free, Midpoint, apply, dot};
+pub use spectrum::{ModalSpectrum, StructuralMode};
 const N: usize = 9;
 type Vector = [f64; N];
 type Matrix = [[f64; N]; N];

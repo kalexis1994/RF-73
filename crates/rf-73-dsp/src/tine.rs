@@ -143,7 +143,7 @@ impl TineModes {
                 }
             }
         }
-        let (values, vectors) = eigen(&k, &m, n)?;
+        let (values, vectors) = eigen(&k, &m, n, TINE_MODE_COUNT)?;
         let mass = geometry.beam_mass_kg();
         let rigidity = geometry.bending_rigidity_n_m2();
         let tuning_x = geometry.tuning_position * geometry.length_m;
@@ -308,7 +308,24 @@ fn apply(a: &[f64], x: &[f64], n: usize) -> Vec<f64> {
 
 /// Bounded dense generalized symmetric eigensolve, independent of render solvers.
 /// Cholesky mass whitening, cyclic Jacobi, then back-transform the eigenvectors.
-fn eigen(k: &[f64], m: &[f64], n: usize) -> Result<(Vec<f64>, Vec<Vec<f64>>), ModelError> {
+pub(crate) fn eigen(
+    k: &[f64],
+    m: &[f64],
+    n: usize,
+    count: usize,
+) -> Result<(Vec<f64>, Vec<Vec<f64>>), ModelError> {
+    if n == 0
+        || n > MAX_DOFS
+        || count == 0
+        || count > n
+        || k.len() != n * n
+        || m.len() != n * n
+        || !k.iter().chain(m).all(|x| x.is_finite())
+    {
+        return Err(ModelError(
+            "invalid generalized eigenproblem dimensions or values",
+        ));
+    }
     let mut l = vec![0.0; n * n];
     for i in 0..n {
         for j in 0..=i {
@@ -397,7 +414,7 @@ fn eigen(k: &[f64], m: &[f64], n: usize) -> Result<(Vec<f64>, Vec<Vec<f64>>), Mo
     order.sort_by(|&i, &j| a[i * n + i].total_cmp(&a[j * n + j]));
     let mut values = Vec::new();
     let mut vectors = Vec::new();
-    for &index in order.iter().take(TINE_MODE_COUNT) {
+    for &index in order.iter().take(count) {
         values.push(a[index * n + index]);
         vectors.push(
             (0..n)

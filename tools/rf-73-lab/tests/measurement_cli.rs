@@ -1075,3 +1075,23 @@ fn comparison_rate_mismatch_fails_without_creating_a_report() {
     assert!(String::from_utf8_lossy(&result.stderr).contains("equal sample rates"));
     assert!(!scratch.0.join("bad.json").exists());
 }
+
+#[test]
+fn spring_tuning_preflights_every_output_and_rejects_invalid_reference() {
+    let scratch = Scratch::new();
+    for file in ["pair.wav", "pair-before.wav", "pair.json"] {
+        fs::write(scratch.0.join(file), b"preserve").unwrap();
+        let out = scratch.run(&["tune-modal-pitch", "missing.json", "--output", "pair.wav"]);
+        assert!(!out.status.success());
+        assert!(String::from_utf8_lossy(&out.stderr).contains("refusing to overwrite"));
+        assert_eq!(fs::read(scratch.0.join(file)).unwrap(), b"preserve");
+        fs::remove_file(scratch.0.join(file)).unwrap();
+    }
+    fs::write(scratch.0.join("invalid.json"), b"{}").unwrap();
+    let out = scratch.run(&["tune-modal-pitch", "invalid.json", "--output", "pair.wav"]);
+    assert!(!out.status.success());
+    assert!(String::from_utf8_lossy(&out.stderr).contains("qualified G3"));
+    assert!(!scratch.0.join("pair.wav").exists());
+    assert!(!scratch.0.join("pair-before.wav").exists());
+    assert!(!scratch.0.join("pair.json").exists());
+}

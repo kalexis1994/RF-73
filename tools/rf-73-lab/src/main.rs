@@ -226,6 +226,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", memory_modal_check::AUDIO_HELP);
         print!("{}", memory_modal_check::HAMMER_COMPARISON_HELP);
         print!("{}", pitch_reference::HELP);
+        print!("{}", memory_modal_check::TUNING_HELP);
         print!("{}", memory_modal_check::TAIL_TIMING_HELP);
         print!("{}", memory_modal_timing::HELP);
         print!("{}", modal_timing::HELP);
@@ -246,6 +247,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "prepare-pitch-reference" {
         return pitch_reference::run(&args);
+    }
+    if args[0] == "tune-modal-pitch" {
+        return memory_modal_check::tune_pitch(&args);
     }
     if args[0] == "assembly-check" {
         return assembly_check::run(&args);

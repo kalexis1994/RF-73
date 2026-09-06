@@ -1,0 +1,1060 @@
+{
+  "schema_version": 1,
+  "experiment": "coupled-spring-pitch-v1",
+  "passed": true,
+  "frozen_reference_file": "references/g3-pitch-reference-validation.json",
+  "baseline_structure": {
+    "coupled_modes_by_frequency_rank": [
+      {
+        "first_tine_projection": 0.019106334176164957,
+        "frequency_hz": 28.975092105916683,
+        "hammer_weight": 1.8292873709261093,
+        "pickup_weight": 6.725270705636947,
+        "ratio_to_selected": 0.150259025593006,
+        "relative_eigen_residual": 8.567983419012666e-13
+      },
+      {
+        "first_tine_projection": 0.0029476215505809217,
+        "frequency_hz": 80.68564683414851,
+        "hammer_weight": 4.577523160376464,
+        "pickup_weight": 1.0277420133946236,
+        "ratio_to_selected": 0.4184196077211057,
+        "relative_eigen_residual": 5.5377628461052146e-14
+      },
+      {
+        "first_tine_projection": 0.9761121605335898,
+        "frequency_hz": 192.83428726870014,
+        "hammer_weight": 3.307215229171923,
+        "pickup_weight": 55.14699977723445,
+        "ratio_to_selected": 1.0,
+        "relative_eigen_residual": 5.178955647521513e-15
+      },
+      {
+        "first_tine_projection": 0.0018328062999016471,
+        "frequency_hz": 643.1373455710511,
+        "hammer_weight": -4.040658987202473,
+        "pickup_weight": 6.423725825586839,
+        "ratio_to_selected": 3.3351814901822276,
+        "relative_eigen_residual": 2.2647840446530236e-15
+      },
+      {
+        "first_tine_projection": 1.0754771548815456e-06,
+        "frequency_hz": 1344.3125330456035,
+        "hammer_weight": -18.76904952832619,
+        "pickup_weight": 52.05847618774915,
+        "ratio_to_selected": 6.971335606786591,
+        "relative_eigen_residual": 1.688980992115541e-16
+      },
+      {
+        "first_tine_projection": 1.9091610422398832e-09,
+        "frequency_hz": 3789.615898438699,
+        "hammer_weight": 38.20125353673638,
+        "pickup_weight": 57.08634947551504,
+        "ratio_to_selected": 19.6521892040815,
+        "relative_eigen_residual": 3.1627860693691053e-16
+      },
+      {
+        "first_tine_projection": 4.926090592180418e-11,
+        "frequency_hz": 7194.373548130106,
+        "hammer_weight": -46.13756217485195,
+        "pickup_weight": 60.13993524969478,
+        "ratio_to_selected": 37.308580595448184,
+        "relative_eigen_residual": 2.1767577789687063e-17
+      },
+      {
+        "first_tine_projection": 3.745082792243388e-12,
+        "frequency_hz": 11576.104586460107,
+        "hammer_weight": 42.99537744937414,
+        "pickup_weight": 51.127612345490576,
+        "ratio_to_selected": 60.03136034791195,
+        "relative_eigen_residual": 2.720828789681035e-17
+      },
+      {
+        "first_tine_projection": 4.4082206617747654e-13,
+        "frequency_hz": 17421.844421678612,
+        "hammer_weight": -25.634951263497033,
+        "pickup_weight": 37.84544100999123,
+        "ratio_to_selected": 90.34619656307582,
+        "relative_eigen_residual": 9.954312386070802e-17
+      }
+    ],
+    "fixed_root_fundamental_hz": 192.5930730313952,
+    "fixed_root_tine_modes": [
+      {
+        "frequency_hz": 192.5930730313952,
+        "ordinal": 1,
+        "ratio_to_first": 1.0
+      },
+      {
+        "frequency_hz": 1336.2272469045688,
+        "ordinal": 2,
+        "ratio_to_first": 6.938085705121629
+      },
+      {
+        "frequency_hz": 3784.7544895053907,
+        "ordinal": 3,
+        "ratio_to_first": 19.65156082684462
+      },
+      {
+        "frequency_hz": 7190.265406461854,
+        "ordinal": 4,
+        "ratio_to_first": 37.33397724688544
+      },
+      {
+        "frequency_hz": 11572.032529093292,
+        "ordinal": 5,
+        "ratio_to_first": 60.08540362823381
+      },
+      {
+        "frequency_hz": 17417.54745839994,
+        "ordinal": 6,
+        "ratio_to_first": 90.43704004640213
+      }
+    ],
+    "length_m": 0.07,
+    "maximum_mass_orthogonality_error": 1.3322676295501878e-15,
+    "selected_frequency_hz": 192.83428726870014,
+    "selected_mode_index": 2,
+    "shape_mac_from_previous": 1.0,
+    "spring_center_from_root_mm": 59.5,
+    "spring_position_fraction": 0.85
+  },
+  "tuned_structure": {
+    "coupled_modes_by_frequency_rank": [
+      {
+        "first_tine_projection": 0.01872485466558548,
+        "frequency_hz": 28.98072073479944,
+        "hammer_weight": 1.8294646195208568,
+        "pickup_weight": 6.721418538677624,
+        "ratio_to_selected": 0.14757008930718812,
+        "relative_eigen_residual": 9.98329515950322e-13
+      },
+      {
+        "first_tine_projection": 0.003109171038245419,
+        "frequency_hz": 80.68229308054542,
+        "hammer_weight": 4.577499985642745,
+        "pickup_weight": 1.0300573355088674,
+        "ratio_to_selected": 0.4108349583282788,
+        "relative_eigen_residual": 6.444803078620311e-14
+      },
+      {
+        "first_tine_projection": 0.9762179349705868,
+        "frequency_hz": 196.3861434987137,
+        "hammer_weight": 3.3972165249461397,
+        "pickup_weight": 56.09341987530806,
+        "ratio_to_selected": 1.0,
+        "relative_eigen_residual": 5.975774273019013e-15
+      },
+      {
+        "first_tine_projection": 0.0019470074871669536,
+        "frequency_hz": 643.3685438380531,
+        "hammer_weight": -3.9901287123487372,
+        "pickup_weight": 6.741475558358682,
+        "ratio_to_selected": 3.2760383822205212,
+        "relative_eigen_residual": 5.074514888925063e-15
+      },
+      {
+        "first_tine_projection": 1.0295364828055072e-06,
+        "frequency_hz": 1361.883962703348,
+        "hammer_weight": -18.792394932896173,
+        "pickup_weight": 56.878854727892325,
+        "ratio_to_selected": 6.934725324509813,
+        "relative_eigen_residual": 3.292411863014527e-16
+      },
+      {
+        "first_tine_projection": 2.2314306522211224e-09,
+        "frequency_hz": 3686.393419561209,
+        "hammer_weight": 36.47649393086193,
+        "pickup_weight": 61.29029602003887,
+        "ratio_to_selected": 18.771148279029955,
+        "relative_eigen_residual": 9.002364091183016e-17
+      },
+      {
+        "first_tine_projection": 6.600080194535419e-11,
+        "frequency_hz": 6961.230074455194,
+        "hammer_weight": -46.956387535483934,
+        "pickup_weight": 52.33438628247382,
+        "ratio_to_selected": 35.44664582967784,
+        "relative_eigen_residual": 2.705252096628269e-16
+      },
+      {
+        "first_tine_projection": 4.112617111781923e-12,
+        "frequency_hz": 11756.828091918878,
+        "hammer_weight": 45.003138287963964,
+        "pickup_weight": 39.19952488798342,
+        "ratio_to_selected": 59.86587384662342,
+        "relative_eigen_residual": 2.0694242054101774e-16
+      },
+      {
+        "first_tine_projection": 3.883308376901869e-13,
+        "frequency_hz": 18196.671416733123,
+        "hammer_weight": -23.04661759137685,
+        "pickup_weight": 35.93664091037751,
+        "ratio_to_selected": 92.65761368165117,
+        "relative_eigen_residual": 9.241534222530862e-17
+      }
+    ],
+    "fixed_root_fundamental_hz": 196.1991933118848,
+    "fixed_root_tine_modes": [
+      {
+        "frequency_hz": 196.1991933118848,
+        "ordinal": 1,
+        "ratio_to_first": 1.0
+      },
+      {
+        "frequency_hz": 1354.0033554924642,
+        "ordinal": 2,
+        "ratio_to_first": 6.9011667817619164
+      },
+      {
+        "frequency_hz": 3681.812613168175,
+        "ordinal": 3,
+        "ratio_to_first": 18.765686805426576
+      },
+      {
+        "frequency_hz": 6956.919470885537,
+        "ordinal": 4,
+        "ratio_to_first": 35.458450941878155
+      },
+      {
+        "frequency_hz": 11752.286285377693,
+        "ordinal": 5,
+        "ratio_to_first": 59.89976863307417
+      },
+      {
+        "frequency_hz": 18192.214142394638,
+        "ordinal": 6,
+        "ratio_to_first": 92.7231852247001
+      }
+    ],
+    "length_m": 0.07,
+    "maximum_mass_orthogonality_error": 3.774758283725532e-15,
+    "selected_frequency_hz": 196.3861434987137,
+    "selected_mode_index": 2,
+    "shape_mac_from_previous": 0.9999818931494252,
+    "spring_center_from_root_mm": 55.74082183837891,
+    "spring_position_fraction": 0.7962974548339845
+  },
+  "old_75mm_blank_inward_endpoint": {
+    "coupled_modes_by_frequency_rank": [
+      {
+        "first_tine_projection": 0.018993957430826214,
+        "frequency_hz": 28.974718350943984,
+        "hammer_weight": 1.9174731853759162,
+        "pickup_weight": 7.172191664648471,
+        "ratio_to_selected": 0.15365770147175187,
+        "relative_eigen_residual": 1.2637833011963923e-12
+      },
+      {
+        "first_tine_projection": 0.0022938346460073325,
+        "frequency_hz": 80.56926155670342,
+        "hammer_weight": 4.499647150178908,
+        "pickup_weight": 0.6618523628836922,
+        "ratio_to_selected": 0.42727205801039614,
+        "relative_eigen_residual": 7.604259172884379e-14
+      },
+      {
+        "first_tine_projection": 0.9770531729967895,
+        "frequency_hz": 188.56665219784406,
+        "hammer_weight": 3.672107307121464,
+        "pickup_weight": 59.73274590375301,
+        "ratio_to_selected": 1.0,
+        "relative_eigen_residual": 9.02366174752174e-15
+      },
+      {
+        "first_tine_projection": 0.0016569420897124235,
+        "frequency_hz": 642.1048488974687,
+        "hammer_weight": -4.3696264790851265,
+        "pickup_weight": 7.677116032118183,
+        "ratio_to_selected": 3.40518772229022,
+        "relative_eigen_residual": 5.584435563917008e-15
+      },
+      {
+        "first_tine_projection": 2.0892597697225637e-06,
+        "frequency_hz": 1188.3446315501087,
+        "hammer_weight": -17.970360039301685,
+        "pickup_weight": 55.756603873759154,
+        "ratio_to_selected": 6.3019872161876105,
+        "relative_eigen_residual": 3.427594196373613e-16
+      },
+      {
+        "first_tine_projection": 3.492767394015944e-09,
+        "frequency_hz": 3309.0296841740223,
+        "hammer_weight": 37.29293183477965,
+        "pickup_weight": 52.23872513205321,
+        "ratio_to_selected": 17.548329174886074,
+        "relative_eigen_residual": 1.2437373189084203e-16
+      },
+      {
+        "first_tine_projection": 7.865497526606327e-11,
+        "frequency_hz": 6479.261217643407,
+        "hammer_weight": -46.69568311449942,
+        "pickup_weight": 48.35899072887526,
+        "ratio_to_selected": 34.3605889064911,
+        "relative_eigen_residual": 9.981431228644904e-17
+      },
+      {
+        "first_tine_projection": 4.919341230352421e-12,
+        "frequency_hz": 10707.727527900708,
+        "hammer_weight": 40.92787349664124,
+        "pickup_weight": 44.485211048862666,
+        "ratio_to_selected": 56.7848418747243,
+        "relative_eigen_residual": 6.8577507238045505e-18
+      },
+      {
+        "first_tine_projection": 5.531882963063212e-13,
+        "frequency_hz": 15993.440303391353,
+        "hammer_weight": -20.93462308308282,
+        "pickup_weight": 40.59422122547839,
+        "ratio_to_selected": 84.81584690070777,
+        "relative_eigen_residual": 3.8985621801636126e-16
+      }
+    ],
+    "fixed_root_fundamental_hz": 188.30410803671285,
+    "fixed_root_tine_modes": [
+      {
+        "frequency_hz": 188.30410803671285,
+        "ordinal": 1,
+        "ratio_to_first": 1.0
+      },
+      {
+        "frequency_hz": 1180.081724338957,
+        "ordinal": 2,
+        "ratio_to_first": 6.266893147699579
+      },
+      {
+        "frequency_hz": 3304.26345246271,
+        "ordinal": 3,
+        "ratio_to_first": 17.547484688005277
+      },
+      {
+        "frequency_hz": 6475.040482754504,
+        "ordinal": 4,
+        "ratio_to_first": 34.38608190901546
+      },
+      {
+        "frequency_hz": 10703.717059471692,
+        "ordinal": 5,
+        "ratio_to_first": 56.84271666226652
+      },
+      {
+        "frequency_hz": 15989.532298020802,
+        "ordinal": 6,
+        "ratio_to_first": 84.9133482255384
+      }
+    ],
+    "length_m": 0.075,
+    "maximum_mass_orthogonality_error": 2.886579864025407e-15,
+    "selected_frequency_hz": 188.56665219784406,
+    "selected_mode_index": 2,
+    "shape_mac_from_previous": 1.0,
+    "spring_center_from_root_mm": 0.0,
+    "spring_position_fraction": 0.0
+  },
+  "fixed_root_tine_ratio_changes": [
+    {
+      "after_hz": 196.1991933118848,
+      "after_ratio": 1.0,
+      "before_hz": 192.5930730313952,
+      "before_ratio": 1.0,
+      "ordinal": 1,
+      "ratio_change_percent": 0.0
+    },
+    {
+      "after_hz": 1354.0033554924642,
+      "after_ratio": 6.9011667817619164,
+      "before_hz": 1336.2272469045688,
+      "before_ratio": 6.938085705121629,
+      "ordinal": 2,
+      "ratio_change_percent": -0.5321197363194696
+    },
+    {
+      "after_hz": 3681.812613168175,
+      "after_ratio": 18.765686805426576,
+      "before_hz": 3784.7544895053907,
+      "before_ratio": 19.65156082684462,
+      "ordinal": 3,
+      "ratio_change_percent": -4.5079066707409465
+    },
+    {
+      "after_hz": 6956.919470885537,
+      "after_ratio": 35.458450941878155,
+      "before_hz": 7190.265406461854,
+      "before_ratio": 37.33397724688544,
+      "ordinal": 4,
+      "ratio_change_percent": -5.023644527891147
+    },
+    {
+      "after_hz": 11752.286285377693,
+      "after_ratio": 59.89976863307417,
+      "before_hz": 11572.032529093292,
+      "before_ratio": 60.08540362823381,
+      "ordinal": 5,
+      "ratio_change_percent": -0.3089518983815487
+    },
+    {
+      "after_hz": 18192.214142394638,
+      "after_ratio": 92.7231852247001,
+      "before_hz": 17417.54745839994,
+      "before_ratio": 90.43704004640213,
+      "ordinal": 6,
+      "ratio_change_percent": 2.5278858940153137
+    }
+  ],
+  "output_pitch_error_cents": -0.06666694978602182,
+  "scope": "Only spring position varies within the 70 mm listening pair. Length is an explicit provisional coarse choice; other geometry, hammer, root/tonebar, losses and pickup are fixed. Point-mass center is not measured coil geometry. Modal ratios describe mechanical resonances, not every nonlinear pickup partial. Raw attack-band power and envelopes are descriptive, not timbre acceptance gates. The reused processed G3 frequency target does not identify geometry, natural decay or velocity. No keyboard scale, realtime/plugin change or listening claim.",
+  "full_report": {
+    "file": "renders/g3-spring-tuned.json",
+    "bytes": 1229425,
+    "sha256": "9a84290e95ee9caa73e88708a3ed7d645b8ec6c9c3498639e973fd56ab325bd8"
+  },
+  "frozen_reference_sha256": "d6518033909e60659b9aaf201eb24d1717446a7e013736bb3beaec87a620a020",
+  "structural_fit": {
+    "bounds_mm": [
+      35.0,
+      59.5
+    ],
+    "fixed_tine_length_mm": 70.0,
+    "fixed_tuning_mass_g": 0.1,
+    "parameter": "spring center from fixed root",
+    "passed": true,
+    "scope": "Provisional fixed blank and point-mass spring, not identified instrument geometry or timbre",
+    "selected_spring_center_mm": 55.74082183837892,
+    "selected_spring_position_fraction": 0.7962974548339845,
+    "target_hz": 196.38614697959488,
+    "tracking_metric": "Physical displacement fields, exact four-point per-element Gauss integration, fixed reference inertia with spring at 0.85 L; MAC >= 0.98, runner-up <= 0.05",
+    "undamped_error_cents": -3.068556605133987e-05
+  },
+  "structural_evaluation_count": 19,
+  "minimum_step_mac": 0.9999958597482219,
+  "listening_performed": false,
+  "before": {
+    "file": "renders/g3-spring-tuned-before.wav",
+    "bytes": 384058,
+    "sha256": "9f7beb49b60751d76e16e27fe1123641493814e5c29f86541ab4a75ff74be8aa",
+    "written_f32_pitch_anchor": {
+      "frequency_hz": 192.82743138981823,
+      "observation_resolution_hz": 1.953125,
+      "qualified": true,
+      "rejection_reasons": [],
+      "search_band_hz": [
+        155.56349186104043,
+        246.94165062806204
+      ],
+      "temporal_span_cents": 0.00015011396755878776,
+      "windows": [
+        {
+          "amplitude_dbfs": -26.46199693502563,
+          "competing_peak_frequency_hz": null,
+          "end_seconds": 0.762,
+          "frequency_hz": 192.82744176261156,
+          "margin_above_band_background_db": 65.74955196449639,
+          "rejection_reasons": [],
+          "start_seconds": 0.25
+        },
+        {
+          "amplitude_dbfs": -33.83371701925863,
+          "competing_peak_frequency_hz": null,
+          "end_seconds": 1.274,
+          "frequency_hz": 192.82742736414923,
+          "margin_above_band_background_db": 76.32327652748991,
+          "rejection_reasons": [],
+          "start_seconds": 0.762
+        },
+        {
+          "amplitude_dbfs": -41.269959707266366,
+          "competing_peak_frequency_hz": null,
+          "end_seconds": 1.786,
+          "frequency_hz": 192.8274250426937,
+          "margin_above_band_background_db": 76.48693295815117,
+          "rejection_reasons": [],
+          "start_seconds": 1.274
+        }
+      ]
+    },
+    "numerical_audio_qualification": {
+      "configuration": {
+        "fixed_output_gain": 0.084,
+        "geometry": {
+          "density_kg_m3": 7850.0,
+          "diameter_m": 0.0015,
+          "hammer_position": 0.2,
+          "length_m": 0.07,
+          "pickup_position": 0.98,
+          "tuning_mass_kg": 0.0001,
+          "tuning_position": 0.85,
+          "young_modulus_pa": 200000000000.0
+        },
+        "hammer": {
+          "core_mass_kg": 0.0038,
+          "equilibrium_cubic_n_m2": 40000000000.0,
+          "equilibrium_stiffness_n_m": 0.0,
+          "initial_gap_m": 0.0,
+          "launch_speed_m_s": 0.4,
+          "memory_stiffness_n_m": 200000.0,
+          "relaxation_seconds": 0.001,
+          "surface_stiffness_n_m2": 1000000000000.0,
+          "tip_mass_kg": 0.0002
+        },
+        "pickup_gap_m": 0.0015,
+        "pickup_offset_m": 0.0005,
+        "structure": {
+          "damper_n_s_m": 0.2,
+          "damper_position": 0.8,
+          "rotation_damping_n_m_s_rad": 0.002,
+          "rotation_stiffness_n_m_rad": 3.9478417604357436,
+          "support_inertia_kg_m2": 1e-05,
+          "support_mass_kg": 0.03,
+          "tine_decay_seconds": [
+            5.0,
+            0.16,
+            0.055,
+            0.035,
+            0.025,
+            0.02
+          ],
+          "tonebar_arm_m": 0.08,
+          "tonebar_decay_seconds": 8.0,
+          "tonebar_frequency_hz": 190.0,
+          "tonebar_mass_kg": 0.015,
+          "translation_damping_n_s_m": 5.0,
+          "translation_stiffness_n_m": 7579.856180036627
+        }
+      },
+      "preview_gates_passed": true,
+      "gates": {
+        "audio_relative_rmse_each_section": 0.01,
+        "energy_work_relative": 1e-08,
+        "kinetic_and_pickup_velocity_rmse": 0.01,
+        "mean_force_relative_rmse": 0.02,
+        "positive_energy_step_relative": 1e-10
+      },
+      "levels": {
+        "ceiling_dbfs": -1.0,
+        "gain_normalization_applied": false,
+        "peak": 0.3597873490386396,
+        "peak_dbfs": -8.87908223055441,
+        "rms": 0.03068426804341055
+      },
+      "audio_integration_refinement": {
+        "passed": true,
+        "sections": [
+          {
+            "difference_rms": 2.5073265137333674e-11,
+            "end_seconds": 2.0,
+            "passed": true,
+            "reference_rms": 0.030684268026020464,
+            "relative_rmse": 8.171374697962937e-10,
+            "section": "whole",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 9.051640099696768e-12,
+            "end_seconds": 0.032,
+            "passed": true,
+            "reference_rms": 0.08882845378775664,
+            "relative_rmse": 1.0190023256877145e-10,
+            "section": "attack",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 2.626527853035266e-11,
+            "end_seconds": 1.85,
+            "passed": true,
+            "reference_rms": 0.02994781780988999,
+            "relative_rmse": 8.77034804241356e-10,
+            "section": "body",
+            "start_seconds": 0.032
+          },
+          {
+            "difference_rms": 1.8993166326403496e-12,
+            "end_seconds": 2.0,
+            "passed": true,
+            "reference_rms": 0.0005156033927412118,
+            "relative_rmse": 3.683677530790884e-09,
+            "section": "release",
+            "start_seconds": 1.85
+          }
+        ]
+      },
+      "frozen_trajectory_sampling": [
+        {
+          "candidate_oversampling": 16,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 2.087285947061728e-11,
+                "end_seconds": 2.0,
+                "passed": true,
+                "reference_rms": 0.03068426804341055,
+                "relative_rmse": 6.802462891110002e-10,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.0242994458052562e-10,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.08882845378949944,
+                "relative_rmse": 1.1531208774978591e-09,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.3887618727091185e-13,
+                "end_seconds": 1.85,
+                "passed": true,
+                "reference_rms": 0.029947817829397788,
+                "relative_rmse": 4.637272340243312e-12,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 5.975376520539039e-11,
+                "end_seconds": 2.0,
+                "passed": true,
+                "reference_rms": 0.0005156033946292592,
+                "relative_rmse": 1.1589094607950727e-07,
+                "section": "release",
+                "start_seconds": 1.85
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        },
+        {
+          "candidate_oversampling": 32,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 3.3505887296343156e-12,
+                "end_seconds": 2.0,
+                "passed": true,
+                "reference_rms": 0.03068426804341055,
+                "relative_rmse": 1.0919565442767193e-10,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 5.722086765230624e-12,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.08882845378949944,
+                "relative_rmse": 6.441727308223215e-11,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 8.252368430711067e-15,
+                "end_seconds": 1.85,
+                "passed": true,
+                "reference_rms": 0.029947817829397788,
+                "relative_rmse": 2.7555825528664275e-13,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 1.1945714154530424e-11,
+                "end_seconds": 2.0,
+                "passed": true,
+                "reference_rms": 0.0005156033946292592,
+                "relative_rmse": 2.3168416420376562e-08,
+                "section": "release",
+                "start_seconds": 1.85
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        }
+      ],
+      "primary": {
+        "passed": true,
+        "base_step_seconds": 2.5431315104166666e-09,
+        "maximum_positive_relative_energy_step": 3.388131789017201e-16,
+        "maximum_relative_energy_and_port_residuals": [
+          3.117860516207299e-11,
+          2.9926182246262784e-11,
+          1.4920485365884498e-12
+        ],
+        "force_positive_episode_count": 18,
+        "pickup_peak_displacement_m": 0.0005540907378405527,
+        "pickup_peak_velocity_m_s": 1.4304542636261992
+      },
+      "refined": {
+        "passed": true,
+        "base_step_seconds": 1.2715657552083333e-09,
+        "maximum_positive_relative_energy_step": 3.388131789017201e-16,
+        "maximum_relative_energy_and_port_residuals": [
+          1.0262871417499388e-10,
+          9.639429757331805e-11,
+          6.234416601675826e-12
+        ],
+        "force_positive_episode_count": 18,
+        "pickup_peak_displacement_m": 0.0005540907378377463,
+        "pickup_peak_velocity_m_s": 1.4304542636040325
+      },
+      "mechanical_refinement": {
+        "passed": true,
+        "whole": {
+          "force_reference_squared_sum": 595.2546010589422,
+          "kinetic_velocity_rmse_over_launch_speed": 7.754627028220356e-11,
+          "output_mean_force_relative_rmse": 3.1017417250369435e-10,
+          "passed": true,
+          "peak_kinetic_velocity_error_over_launch_speed": 2.347548087762168e-10,
+          "pickup_reference_squared_sum": 1585.7549446479838,
+          "pickup_velocity_relative_rmse": 8.169274804422619e-10
+        },
+        "two_ms_section_count": 1000,
+        "all_sections_passed": true,
+        "two_ms_maximum_errors": {
+          "kinetic_velocity_rmse_over_launch_speed": 1.1792000498776296e-10,
+          "output_mean_force_relative_rmse": 3.1017417250369435e-10,
+          "peak_kinetic_velocity_error_over_launch_speed": 2.347548087762168e-10,
+          "pickup_velocity_relative_rmse": 4.192575402550959e-09
+        }
+      }
+    },
+    "attack": {
+      "band_edges_hz": [
+        0,
+        1000,
+        5000,
+        20000,
+        24000
+      ],
+      "bin_spacing_hz": 31.25,
+      "window": "periodic Hann, first 32 ms including common FIR delay",
+      "windowed_mean_square_by_band": [
+        0.0023369008287587928,
+        0.000485619092506783,
+        1.9252701294945575e-06,
+        1.965203107355326e-13
+      ]
+    }
+  },
+  "after": {
+    "file": "renders/g3-spring-tuned.wav",
+    "bytes": 384058,
+    "sha256": "fe21c4cefeff5f48e84fd6242f9274f940a8e120f51daea79ee18c45b40fe67f",
+    "written_f32_pitch_anchor": {
+      "frequency_hz": 196.37858462063764,
+      "observation_resolution_hz": 1.953125,
+      "qualified": true,
+      "rejection_reasons": [],
+      "search_band_hz": [
+        155.56349186104043,
+        246.94165062806204
+      ],
+      "temporal_span_cents": 0.000150922610234759,
+      "windows": [
+        {
+          "amplitude_dbfs": -26.20699503234918,
+          "competing_peak_frequency_hz": null,
+          "end_seconds": 0.762,
+          "frequency_hz": 196.37859526605826,
+          "margin_above_band_background_db": 66.43184126901059,
+          "rejection_reasons": [],
+          "start_seconds": 0.25
+        },
+        {
+          "amplitude_dbfs": -33.64649382819377,
+          "competing_peak_frequency_hz": null,
+          "end_seconds": 1.274,
+          "frequency_hz": 196.37858044935896,
+          "margin_above_band_background_db": 75.57661544100948,
+          "rejection_reasons": [],
+          "start_seconds": 0.762
+        },
+        {
+          "amplitude_dbfs": -41.15255507674801,
+          "competing_peak_frequency_hz": null,
+          "end_seconds": 1.786,
+          "frequency_hz": 196.37857814649612,
+          "margin_above_band_background_db": 75.72835224132734,
+          "rejection_reasons": [],
+          "start_seconds": 1.274
+        }
+      ]
+    },
+    "numerical_audio_qualification": {
+      "configuration": {
+        "fixed_output_gain": 0.084,
+        "geometry": {
+          "density_kg_m3": 7850.0,
+          "diameter_m": 0.0015,
+          "hammer_position": 0.2,
+          "length_m": 0.07,
+          "pickup_position": 0.98,
+          "tuning_mass_kg": 0.0001,
+          "tuning_position": 0.7962974548339845,
+          "young_modulus_pa": 200000000000.0
+        },
+        "hammer": {
+          "core_mass_kg": 0.0038,
+          "equilibrium_cubic_n_m2": 40000000000.0,
+          "equilibrium_stiffness_n_m": 0.0,
+          "initial_gap_m": 0.0,
+          "launch_speed_m_s": 0.4,
+          "memory_stiffness_n_m": 200000.0,
+          "relaxation_seconds": 0.001,
+          "surface_stiffness_n_m2": 1000000000000.0,
+          "tip_mass_kg": 0.0002
+        },
+        "pickup_gap_m": 0.0015,
+        "pickup_offset_m": 0.0005,
+        "structure": {
+          "damper_n_s_m": 0.2,
+          "damper_position": 0.8,
+          "rotation_damping_n_m_s_rad": 0.002,
+          "rotation_stiffness_n_m_rad": 3.9478417604357436,
+          "support_inertia_kg_m2": 1e-05,
+          "support_mass_kg": 0.03,
+          "tine_decay_seconds": [
+            5.0,
+            0.16,
+            0.055,
+            0.035,
+            0.025,
+            0.02
+          ],
+          "tonebar_arm_m": 0.08,
+          "tonebar_decay_seconds": 8.0,
+          "tonebar_frequency_hz": 190.0,
+          "tonebar_mass_kg": 0.015,
+          "translation_damping_n_s_m": 5.0,
+          "translation_stiffness_n_m": 7579.856180036627
+        }
+      },
+      "preview_gates_passed": true,
+      "gates": {
+        "audio_relative_rmse_each_section": 0.01,
+        "energy_work_relative": 1e-08,
+        "kinetic_and_pickup_velocity_rmse": 0.01,
+        "mean_force_relative_rmse": 0.02,
+        "positive_energy_step_relative": 1e-10
+      },
+      "levels": {
+        "ceiling_dbfs": -1.0,
+        "gain_normalization_applied": false,
+        "peak": 0.40601199758782863,
+        "peak_dbfs": -7.829222658051938,
+        "rms": 0.031807218099762356
+      },
+      "audio_integration_refinement": {
+        "passed": true,
+        "sections": [
+          {
+            "difference_rms": 2.7393854661108472e-12,
+            "end_seconds": 2.0,
+            "passed": true,
+            "reference_rms": 0.03180721809923225,
+            "relative_rmse": 8.61246481086307e-11,
+            "section": "whole",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 4.813533242400755e-12,
+            "end_seconds": 0.032,
+            "passed": true,
+            "reference_rms": 0.09494833191543425,
+            "relative_rmse": 5.069634342484215e-11,
+            "section": "attack",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 2.8006060536238583e-12,
+            "end_seconds": 1.85,
+            "passed": true,
+            "reference_rms": 0.030891372746822625,
+            "relative_rmse": 9.065981225816255e-11,
+            "section": "body",
+            "start_seconds": 0.032
+          },
+          {
+            "difference_rms": 2.270302853442219e-13,
+            "end_seconds": 2.0,
+            "passed": true,
+            "reference_rms": 0.0004958510432192835,
+            "relative_rmse": 4.578598521649592e-10,
+            "section": "release",
+            "start_seconds": 1.85
+          }
+        ]
+      },
+      "frozen_trajectory_sampling": [
+        {
+          "candidate_oversampling": 16,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 1.2623450657208899e-11,
+                "end_seconds": 2.0,
+                "passed": true,
+                "reference_rms": 0.031807218099762356,
+                "relative_rmse": 3.9687377304157303e-10,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 9.74524726676984e-11,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.09494833191568201,
+                "relative_rmse": 1.0263737203328664e-09,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.53351820903162e-13,
+                "end_seconds": 1.85,
+                "passed": true,
+                "reference_rms": 0.03089137274740969,
+                "relative_rmse": 4.964228108510357e-12,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 9.918587853962362e-12,
+                "end_seconds": 2.0,
+                "passed": true,
+                "reference_rms": 0.0004958510432380785,
+                "relative_rmse": 2.0003160201480182e-08,
+                "section": "release",
+                "start_seconds": 1.85
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        },
+        {
+          "candidate_oversampling": 32,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 8.457448297260702e-13,
+                "end_seconds": 2.0,
+                "passed": true,
+                "reference_rms": 0.031807218099762356,
+                "relative_rmse": 2.658971391567215e-11,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 5.125725252023987e-12,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.09494833191568201,
+                "relative_rmse": 5.3984363375397047e-11,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 9.10215167394623e-15,
+                "end_seconds": 1.85,
+                "passed": true,
+                "reference_rms": 0.03089137274740969,
+                "relative_rmse": 2.9465028143527434e-13,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 1.9827255899221895e-12,
+                "end_seconds": 2.0,
+                "passed": true,
+                "reference_rms": 0.0004958510432380785,
+                "relative_rmse": 3.9986314780630626e-09,
+                "section": "release",
+                "start_seconds": 1.85
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        }
+      ],
+      "primary": {
+        "passed": true,
+        "base_step_seconds": 2.5431315104166666e-09,
+        "maximum_positive_relative_energy_step": 3.388131789017201e-16,
+        "maximum_relative_energy_and_port_residuals": [
+          9.031742909983154e-12,
+          8.080355503627124e-12,
+          1.4340267797015303e-12
+        ],
+        "force_positive_episode_count": 18,
+        "pickup_peak_displacement_m": 0.000568697584309569,
+        "pickup_peak_velocity_m_s": 1.6149177208610788
+      },
+      "refined": {
+        "passed": true,
+        "base_step_seconds": 1.2715657552083333e-09,
+        "maximum_positive_relative_energy_step": 5.082197683525802e-16,
+        "maximum_relative_energy_and_port_residuals": [
+          1.8541042995628282e-11,
+          1.1853209657287226e-11,
+          1.1011258907716452e-11
+        ],
+        "force_positive_episode_count": 18,
+        "pickup_peak_displacement_m": 0.0005686975843084158,
+        "pickup_peak_velocity_m_s": 1.6149177208830343
+      },
+      "mechanical_refinement": {
+        "passed": true,
+        "whole": {
+          "force_reference_squared_sum": 597.6999762844855,
+          "kinetic_velocity_rmse_over_launch_speed": 1.9997992225956656e-11,
+          "output_mean_force_relative_rmse": 1.1282146571865342e-10,
+          "passed": true,
+          "peak_kinetic_velocity_error_over_launch_speed": 1.1670579281940114e-10,
+          "pickup_reference_squared_sum": 1703.6373700317924,
+          "pickup_velocity_relative_rmse": 8.489309990348734e-11
+        },
+        "two_ms_section_count": 1000,
+        "all_sections_passed": true,
+        "two_ms_maximum_errors": {
+          "kinetic_velocity_rmse_over_launch_speed": 6.767195397213022e-11,
+          "output_mean_force_relative_rmse": 1.1282146571865342e-10,
+          "peak_kinetic_velocity_error_over_launch_speed": 1.1670579281940114e-10,
+          "pickup_velocity_relative_rmse": 7.886922118057782e-10
+        }
+      }
+    },
+    "attack": {
+      "band_edges_hz": [
+        0,
+        1000,
+        5000,
+        20000,
+        24000
+      ],
+      "bin_spacing_hz": 31.25,
+      "window": "periodic Hann, first 32 ms including common FIR delay",
+      "windowed_mean_square_by_band": [
+        0.002512992737752544,
+        0.0006389333660625768,
+        3.014717604884447e-06,
+        1.597905016527206e-13
+      ]
+    }
+  },
+  "attack_band_power_change_db": [
+    0.3155095094069119,
+    1.191598151950784,
+    1.9475496426328285,
+    -0.8985648197007028
+  ],
+  "verification": {
+    "workspace_tests_passed": 214,
+    "strict_workspace_clippy_passed": true,
+    "native_release_lab_build_passed": true,
+    "both_wavs_independently_inspected": true,
+    "default_75mm_render_byte_identical": true,
+    "default_75mm_wav_sha256": "0dbd0cd29a7929fe16f9eccfdc05b6b23554d406a4fa0add5f73408ec123be2e",
+    "device_or_host_launched": false,
+    "remote_ci_run": false,
+    "debug_cache_cleaned_mib": 532.1
+  }
+}

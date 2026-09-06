@@ -24,7 +24,10 @@ pub use memory_hammer::{
     MemoryHammer, MemoryHammerContactStatus, MemoryHammerContactStep, MemoryHammerProbe,
     MemoryHammerProfile,
 };
-pub use modal_assembly::{ModalAssembly, ModalAssemblyProfile, ModalIntegration, ModalProbe};
+pub use modal_assembly::{
+    ModalAssembly, ModalAssemblyProfile, ModalIntegration, ModalProbe, ModalSpectrum,
+    StructuralMode,
+};
 pub use model::{ModelError, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
 pub use pickup::MagneticPickup;
 pub use tine::{TINE_MODE_COUNT, TineGeometry, TineMode, TineModes};

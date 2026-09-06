@@ -276,3 +276,14 @@ The [listening study](PICKUP-LISTENING.md) now supplies three versions of one pe
 Initial performance target: keep the plugin below half the block deadline on each target. A 128-frame block at 48 kHz lasts 2.667 ms; 1.333 ms is the provisional plugin budget. A short desktop run does not qualify a stage instrument or establish mobile performance.
 
 The current sound is an audible research result, not a claim of high-fidelity Rhodes reproduction. Hitting numerical tolerances is necessary but does not establish perceptual equivalence.
+
+## Coupled G3 spring-tuning pilot
+
+[Spring-position tuning](SPRING-TUNING.md) now fits the movable 0.1 g tuning
+mass on an explicitly provisional fixed 70 mm blank. A coupled-mode solve
+tracks physical fields as the spring moves; the independently rendered output
+lands within 0.067 cent of the frozen G3 anchor. Both sides of the listening
+pair pass numerical qualification. Fixed-root mode ratios change alongside
+pitch, including a 4.51% change in the third/first ratio. Listening and modal
+weight/timbre identification remain open. This is an offline single-note
+experiment, not keyboard calibration or a realtime plugin change.

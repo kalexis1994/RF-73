@@ -1276,3 +1276,36 @@ builds pass. RackForge CLI validation and smoke pass for `RF-73 Research`.
 The 237215-byte `dist/RF-73-0.1.2.rfplugin` archive is retained; no Desktop launch
 or listening claim is made. Cargo cleanup removed about 736.2 MiB of build cache
 after verification, preserving the package and all reference/experiment assets.
+
+## Coupled spring-position tuning
+
+Date: 2026-09-06. [Spring-position tuning](SPRING-TUNING.md) adds an undamped
+spectrum of the shared nine-coordinate mass/stiffness operators and a bounded
+one-parameter offline fit. The provisional 70 mm blank stays fixed while a
+0.1 g point-mass center moves from 59.5 to 55.740822 mm from the root. The
+float32 output component measures 196.378585 Hz, -0.066667 cent from the frozen
+processed G3 reference. The second/first and third/first fixed-root ratios
+change by -0.532% and -4.508%; pitch-only acceptance cannot establish timbre.
+
+The before/after pair independently passes all original mechanical ledgers,
+2 ms refinement checks, section-wise 16/32/64x sampling and -1 dBFS headroom
+limits. Both 48 kHz mono float WAVs contain 96000 finite samples. Common gain
+and hammer speed are preserved; only spring position differs within the pair.
+The [compact receipt](../references/g3-spring-tuning-validation.json) retains
+modal tables, checks and artifact hashes. The complete 1.2 MB local report is
+`renders/g3-spring-tuned.json`. No listening, hardware-geometry identification,
+whole-keyboard calibration, plugin update or remote CI claim is made.
+
+All 214 workspace tests, strict Clippy and formatting pass; the release lab
+build succeeds. Eight new regressions exercise structural compliance, analytic
+free motion, rigid modes, spring-dependent ratios, spatial branch tracking,
+frozen-target fitting, reference rejection and protection of all CLI outputs.
+Physical-field overlap at the reference geometry reconstructs mass
+orthonormality, avoiding comparisons in a changing modal coordinate basis.
+The prior 75 mm preview re-renders byte-identically after the audio refactor
+(SHA-256 `0dbd0cd29a7929fe16f9eccfdc05b6b23554d406a4fa0add5f73408ec123be2e`).
+
+After verification, Cargo removed 651 regenerable debug files (532.1 MiB).
+The temporary baseline regression WAV/report were removed after the byte check.
+About 55 MiB of release build artifacts remain; reference recordings, the
+new listening pair, validation reports and packaged plugin are preserved.

@@ -124,3 +124,8 @@ After verification, local `target/debug` was cleaned with Cargo: 1565 regenerabl
 files, about 1.2 GiB. The release executable, original references, previous test
 WAVs and qualification reports were preserved. Incremental compilation remains
 disabled for local verification commands to bound future cache growth.
+
+The next [coupled spring-position experiment](SPRING-TUNING.md) uses this frozen
+frequency target without modifying the reference split or receipts. It separates
+an explicit provisional tine length from the movable tuning-mass control and
+retains a before/after pair for evaluating pitch and timbre together.

@@ -40,6 +40,7 @@ fn single(o: &Options, beta: f64, refined: bool) -> Result<Single, Box<dyn Error
         RATE as f64,
         TineGeometry {
             length_m: o.length,
+            tuning_position: o.spring_position,
             ..TineGeometry::default()
         },
         p,
@@ -281,7 +282,7 @@ fn attack_spectrum(signal: &[f64]) -> Value {
         "band_edges_hz":[0,1000,5000,20000,24000],"windowed_mean_square_by_band":power})
 }
 
-fn describe(signal: &[f64]) -> Value {
+pub(super) fn describe(signal: &[f64]) -> Value {
     let envelope: Vec<_> = signal.chunks(480).enumerate().map(|(i,x)|json!({
         "start_seconds":i as f64*0.01,"rms":(x.iter().map(|v|v*v).sum::<f64>()/x.len() as f64).sqrt()})).collect();
     json!({"levels":levels(signal),"attack":attack_spectrum(signal),"ten_ms_envelope":envelope})

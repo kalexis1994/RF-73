@@ -25,6 +25,7 @@ pub(super) struct Options {
     pub(super) release: usize,
     pub(super) speed: f64,
     pub(super) length: f64,
+    pub(super) spring_position: f64,
     pub(super) gain: f64,
 }
 impl Options {
@@ -70,6 +71,7 @@ impl Options {
             release: (hold * RATE as f64).round() as usize,
             speed,
             length: length * 0.001,
+            spring_position: TineGeometry::default().tuning_position,
             gain,
         })
     }
@@ -87,6 +89,7 @@ pub(super) fn render(o: &Options, refined: bool) -> Result<Render, Box<dyn Error
         h,
         TineGeometry {
             length_m: o.length,
+            tuning_position: o.spring_position,
             ..TineGeometry::default()
         },
         ModalAssemblyProfile::default(),
@@ -309,6 +312,7 @@ pub(super) fn mechanics_sections(a: &Take, b: &Take, speed: f64) -> Result<Value
 pub(super) fn configuration(o: &Options) -> Value {
     let g = TineGeometry {
         length_m: o.length,
+        tuning_position: o.spring_position,
         ..TineGeometry::default()
     };
     let p = ModalAssemblyProfile::default();
@@ -337,8 +341,24 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             return Err(format!("refusing to overwrite {}", path.display()).into());
         }
     }
-    let primary = render(&o, false)?;
-    let refined = render(&o, true)?;
+    let (audio, report) = produce(&o)?;
+    crate::analysis::write_report(&report_path, &report)?;
+    if report["preview_gates_passed"] != true {
+        return Err("modal audio preview gates failed; report retained, WAV not written".into());
+    }
+    write_wav(&o, &audio)?;
+    println!(
+        "Physical assembly WAV: {} (peak {}, RMS {})",
+        o.output.display(),
+        report["levels"]["peak"],
+        report["levels"]["rms"]
+    );
+    Ok(())
+}
+
+pub(super) fn produce(o: &Options) -> Result<(Vec<f64>, Value), Box<dyn Error>> {
+    let primary = render(o, false)?;
+    let refined = render(o, true)?;
     let audio = &primary.signals[2];
     let sampling: Vec<_> = [0,1].into_iter().map(|i| json!({"candidate_oversampling":FACTORS[i],
         "reference_oversampling":OBS,"comparison":audio_sections(&primary.signals[i],audio,o.release)})).collect();
@@ -354,7 +374,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         && rms > 1e-8;
     let report = json!({"schema_version":1,"experiment":"memory-modal-audio-v1",
         "status":if pass {"pass"} else {"fail"},"preview_gates_passed":pass,"wav":o.output,
-        "sample_rate_hz":RATE,"frames":o.frames,"damper_frame":o.release,"configuration":configuration(&o),
+        "sample_rate_hz":RATE,"frames":o.frames,"damper_frame":o.release,"configuration":configuration(o),
         "filter":"Blackman FIR sampled from the production physical kernel; cutoff 0.42 output Fs, 31.5 output-sample support, 15.75-sample delay; zero initial history, no delay compensation or extra flush",
         "pickup":"Existing scalar production flux derivative; no magnetic loading or calibrated electrical output stage",
         "written_oversampling":OBS,"primary":primary.take.report,"refined":refined.take.report,
@@ -363,10 +383,10 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         "gates":{"audio_relative_rmse_each_section":0.01,"energy_work_relative":1e-8,"positive_energy_step_relative":1e-10,
             "kinetic_and_pickup_velocity_rmse":0.01,"mean_force_relative_rmse":0.02},
         "scope":"Single uncalibrated strike, nine-coordinate structure and two-mass memory hammer. Original DSP tolerances preserved. Same-trajectory sampling comparisons and a twice-finer base grid with tighter contact/free caps are finite-resolution checks, not an exact solution or an absolute alias bound. No MIDI tuning, repeated-strike qualification, physical realism, polyphony, realtime performance or listening claim. WAV is f32, checks use f64; full failed reports retained, no WAV on failed preview gates."});
-    crate::analysis::write_report(&report_path, &report)?;
-    if !pass {
-        return Err("modal audio preview gates failed; report retained, WAV not written".into());
-    }
+    Ok((audio.clone(), report))
+}
+
+pub(super) fn write_wav(o: &Options, audio: &[f64]) -> Result<(), Box<dyn Error>> {
     let mut wav = crate::wav::FloatWav::new(
         BufWriter::new(crate::new_file(&o.output)?),
         RATE as u32,
@@ -376,12 +396,6 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         wav.sample(sample as f32)?;
     }
     wav.finish()?;
-    println!(
-        "Physical assembly WAV: {} (peak {:.6}, RMS {:.6})",
-        o.output.display(),
-        peak,
-        rms
-    );
     Ok(())
 }
 
