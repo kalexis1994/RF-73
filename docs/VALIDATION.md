@@ -1730,3 +1730,42 @@ three-carrier failure is retained as evidence, without relaxing thresholds.
 Release cache remains 160.9 MiB. Temporary test WAVs are removed by their harness;
 debug build cache is cleaned after Clippy. Source recordings, listening assets,
 numeric receipts and the existing packaged plugin are preserved.
+
+## Frequency-selective short-envelope challenge (2026-09-06)
+
+After commit `c3fbbf3`, a bounded offline FIR front end was added to isolate the
+short target band with real source support on both sides. See
+[Band envelope observation](BAND-ENVELOPE.md) for equations, source references,
+the frozen experiment and limitations. The existing short/Hann estimator gates,
+source recordings, production DSP and physical parameters are unchanged.
+
+`references/band-envelope-validation.json` retains 66 individual observations
+at 44.1/48/96 kHz and their unfiltered control summaries (630544 bytes, SHA-256
+`694e7d8fb2cf61e52febfbee0e04243643845144012ac2f888e43f2bf4baf0f8`).
+All 30 positive observations qualify; maximum rate/carrier errors are
+0.007376 /s and 0.001091 Hz, amplitude/phase biases 0.021395 dB and 0.001776 rad.
+Only six of those unfiltered controls qualify. The source pilot receipt remains
+tracked and unchanged; the new filter was not applied to its recordings.
+
+The original study has 63/66 passing expectations and intentionally exits with
+failure after saving its report. All three 64 ms onset observations qualify
+despite the event inside the interval. Their 32 ms counterparts reject. The
+already-declared paired source criterion yields the intended outcome for all
+33 pairs (15 positive, 18 negative), but does not erase the individual failures
+or establish event detection for other timings. No failed expectation, waveform
+or gate was changed to make the study pass.
+
+All 163 release tests in `rf-73-analysis` and `rf-73-lab` pass. Three added unit
+tests cover FIR response, exact exponential convolution and absolute crop phase,
+real-data halo/clipping protection, invalid support and bounded work. The CLI
+regression explicitly expects the failed study, checks the three retained onset
+false acceptances and all paired outcomes, and verifies report protection and
+argument errors. The initial phase test oracle was corrected to separate FIR
+error from the existing polynomial estimator's approximation, as documented;
+the independently declared study error limits remain unchanged. Strict Clippy
+for both packages/all targets, formatting and whitespace checks pass.
+
+The release cache is 161.1 MiB; debug cache was cleaned after Clippy. The study
+creates no WAV assets, and temporary test outputs are removed by the harness.
+Source/listening files and the packaged plugin remain preserved. No host,
+listening or full-workspace test is claimed for this analysis-only stage.

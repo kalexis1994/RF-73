@@ -99,3 +99,9 @@ source protocol before it can inform physical loss calibration.
 
 Production DSP, spring geometry, pickup law, presets and the audible baseline
 are unchanged. This stage includes no playback or host test.
+
+The subsequent [frequency-selective synthetic study](BAND-ENVELOPE.md) now
+isolates a weak target with the prescribed strong distant interference. It also
+retains three onset cases that evade the 64 ms gates, so individual-window
+qualification remains insufficient. These source recordings have not been
+reprocessed with the filter or used to choose its coefficients.

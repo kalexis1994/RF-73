@@ -2,6 +2,7 @@
 mod analysis;
 mod assembly_check;
 mod audition;
+mod band_envelope;
 mod component_envelope;
 mod convergence;
 mod hammer_memory;
@@ -210,6 +211,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", analysis::HELP);
         print!("{}", component_envelope::HELP);
         print!("{}", source_envelope::HELP);
+        print!("{}", band_envelope::HELP);
         print!("{}", source_envelope::short::HELP);
         print!("{}", short_envelope::HELP);
         print!("{}", partial_comparison::HELP);
@@ -270,6 +272,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "observe-source-envelopes" {
         return source_envelope::run(&args);
+    }
+    if args[0] == "validate-band-envelope" {
+        return band_envelope::run(&args);
     }
     if args[0] == "observe-short-source-envelopes" {
         return source_envelope::short::run(&args);

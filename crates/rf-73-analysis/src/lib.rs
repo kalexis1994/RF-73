@@ -1,5 +1,6 @@
 //! Offline measurements. No dependency from the realtime DSP to this crate.
 mod audio;
+mod band_envelope;
 mod compare;
 mod component_envelope;
 mod measurement;
@@ -12,6 +13,7 @@ mod tone_comparison;
 mod tracking;
 
 pub use audio::{AudioClip, AudioError, AudioMetadata};
+pub use band_envelope::{BandEnvelope, BandEnvelopeFilter, measure_band_envelope};
 pub use compare::{Comparison, compare};
 pub use component_envelope::{
     ComponentEnvelope, ComponentEnvelopeFit, ComponentEnvelopePoint, EnvelopeOptions,

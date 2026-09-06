@@ -390,3 +390,11 @@ The [short G3 source pilot](SHORT-SOURCE-ENVELOPES.md) now fixes 20..180 ms,
 are unsupported. None of 18 measurements qualifies. Next validate a frequency-
 selective observation stage against strong distant components, including its
 transient/decay bias, before repeating source inference. No losses were fitted.
+
+The [band-isolated short-envelope study](BAND-ENVELOPE.md) now recovers a weak
+target beside a 300-times-stronger distant fundamental. All 30 positive cases
+pass, but three 64 ms onset observations evade the individual-window gates;
+the original 66-case study remains failed (63 expectations pass). The existing
+two-window criterion gives the intended result for these 33 pairs. Next test
+paired temporal-event coverage before freezing a filtered source protocol.
+No gate was relaxed and no physical parameter or source recording changed.

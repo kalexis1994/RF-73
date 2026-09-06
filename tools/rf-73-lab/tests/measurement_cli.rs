@@ -10,6 +10,72 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn band_envelope_study_retains_onset_false_acceptance_and_requires_both_windows() {
+    let scratch = Scratch::new();
+    let args = ["validate-band-envelope", "--output", "study.json"];
+    let out = scratch.run(&args);
+    // The original per-window onset expectation fails: this is retained evidence,
+    // not a reason to relax a gate or silently mark the study as fully validated.
+    assert!(!out.status.success());
+    assert!(String::from_utf8_lossy(&out.stderr).contains("retained failed expectations"));
+    let report = scratch.json("study.json");
+    assert_eq!(report["all_expectations_passed"], false);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 66);
+    let failures: Vec<_> = cases
+        .iter()
+        .filter(|c| c["expectation_passed"] != true)
+        .collect();
+    assert_eq!(failures.len(), 3);
+    for failure in failures {
+        assert_eq!(failure["probe"], "onset_inside_interval");
+        assert_eq!(
+            failure["filtered"]["measurement"]["options"]["window_seconds"],
+            0.064
+        );
+        assert_eq!(failure["filtered"]["measurement"]["qualified"], true);
+    }
+    // Apply the already-declared source pilot agreement criterion descriptively.
+    // This does not erase the failed individual-window expectations above.
+    for [a, b] in cases.as_chunks::<2>().0 {
+        assert_eq!(a["probe"], b["probe"]);
+        assert_eq!(a["sample_rate_hz"], b["sample_rate_hz"]);
+        let ma = &a["filtered"]["measurement"];
+        let mb = &b["filtered"]["measurement"];
+        let rates = ma["provisional_fit"]["amplitude_decay_per_second"]
+            .as_f64()
+            .zip(mb["provisional_fit"]["amplitude_decay_per_second"].as_f64());
+        let pair_qualified = ma["qualified"] == true
+            && mb["qualified"] == true
+            && rates
+                .is_some_and(|(x, y)| (x - y).abs() <= 0.5_f64.max(0.15 * x.abs().max(y.abs())));
+        assert_eq!(
+            pair_qualified,
+            a["expected_rejection"].is_null(),
+            "{}",
+            a["probe"]
+        );
+    }
+    let original = fs::read(scratch.0.join("study.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(original, fs::read(scratch.0.join("study.json")).unwrap());
+    for args in [
+        vec!["validate-band-envelope"],
+        vec![
+            "validate-band-envelope",
+            "--output",
+            "bad.json",
+            "--unknown",
+        ],
+        vec!["validate-band-envelope", "--output", "bad.wav"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn short_envelope_study_and_wav_observations_preserve_outputs_and_sources() {
     let scratch = Scratch::new();
     scratch.success(&["validate-short-envelope", "--output", "study.json"]);
