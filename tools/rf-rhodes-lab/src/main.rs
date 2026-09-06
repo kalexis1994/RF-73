@@ -217,6 +217,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", memory_free_check::HELP);
         print!("{}", memory_contact_resolution::HELP);
         print!("{}", memory_modal_check::HELP);
+        print!("{}", memory_modal_check::REFINEMENT_HELP);
         print!("{}", memory_modal_timing::HELP);
         print!("{}", modal_timing::HELP);
         return Ok(());
@@ -267,6 +268,9 @@ fn run() -> Result<(), Box<dyn Error>> {
             | "memory-modal-rk4-check"
     ) {
         return memory_modal_check::run(&args);
+    }
+    if args[0] == "memory-modal-rk4-refinement" {
+        return memory_modal_check::run_refinement(&args);
     }
     if args[0] == "memory-modal-timing" {
         return memory_modal_timing::run(&args);

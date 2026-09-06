@@ -906,3 +906,35 @@ batches remain sensitive to machine load and do not define a universal speedup.
 Execution still costs 5.6–8.1 seconds per simulated second. The new path remains
 offline pending longer/finer reference validation, further cost reduction,
 polyphonic host qualification and calibration.
+
+## Coupled RK4 resolution and longer trajectories
+
+Date: 2026-09-05. The [resolution study](MEMORY-MODAL-REFINEMENT.md) adds
+independent laboratory contact/free caps and three implicit-reference grids.
+Twelve original 8 ms profiles and four selected strong-strike 32 ms profiles
+produce 96 takes and 112 pair comparisons. All pass existing global energy,
+port-work and whole-record accuracy gates; no DSP tolerance or coefficient changes.
+
+In the 8 ms matrix, maximum kinetic velocity RMSE / launch speed is 0.0001941%
+for contact refinement, 0.0002981% for additional free refinement and 0.0001040%
+for both caps versus the default. The old versus finest uniform reference
+differs by 0.09511%; capped RK4 versus finest reference differs by 0.1661%.
+This supports reference sensitivity as a substantial contributor to the
+previous 0.2612% difference, without asserting an exact continuous solution.
+The finest implicit step is about 1.000064 ns; unequal adjacent refinements
+do not establish convergence order.
+
+The largest local peak across all pairs is 1.9691%, between the coarser uniform
+paths, despite passing the whole-record 1% gate. Two-millisecond windows expose
+late growth in both extended 10 ms material-relaxation profiles. The finest
+uniform path's structural-work residual reaches 7.327e-9 against a 1e-8 gate;
+reference-ledger drift remains to be explained before extending it further.
+
+All 182 workspace tests, strict Clippy, formatting and release WASM compilation
+pass. The two new tests check diagnostic caps against explicit accepted steps,
+including short remainders and events, and known metric normalization/silence
+and window localization. CLI help, invalid arguments and overwrite protection
+pass. The default RK4 control is byte-identical to its prior report and all
+24 default/reference take reports match. CI includes the new study on both
+native runners; remote CI and GUI/audio testing were not run. The audible
+plugin remains unchanged, and no new performance or calibration claim is made.

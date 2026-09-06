@@ -114,8 +114,16 @@ all nine structural coordinates in shared stages, with independent reciprocal
 port work and damping quadratures. Its 12-case audit passes; native medians are
 3.84–6.33 times faster than the previous economical controller in four profiles.
 It still costs 5.6–8.1 seconds per simulated second, and its maximum velocity
-difference from the fine reference is 0.2612%. Longer/finer reference validation,
-further cost reduction and polyphonic host qualification remain open.
+difference from the fine reference is 0.2612%.
+The [resolution study](MEMORY-MODAL-REFINEMENT.md) now separately refines contact,
+free motion and the implicit reference, with 96 audited takes including four
+32 ms profiles. RK4 interval refinements agree much more closely than the
+implicit-reference refinements. This points to reference sensitivity as a
+substantial contributor to the earlier difference, without establishing an
+exact continuous solution. Some late-window differences grow, and the finest
+uniform path's structural work residual reaches 7.327e-9 against a 1e-8 gate.
+Reference-ledger drift, longer/wider validation, further cost reduction and
+polyphonic host qualification remain open.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

@@ -6,6 +6,8 @@ use serde_json::json;
 use std::{error::Error, io::Write, path::Path};
 pub(crate) mod free_controller;
 use free_controller::Controller;
+mod refinement;
+pub(crate) use refinement::{HELP as REFINEMENT_HELP, run as run_refinement};
 
 pub const HELP: &str = "Stateful multimode hammer:
   memory-modal-check --output REPORT.json [--coarse]
@@ -56,6 +58,43 @@ fn take_impl(
     adaptive: bool,
     mode: ContactMode,
 ) -> Result<Take, Box<dyn Error>> {
+    take_configured(
+        length,
+        speed,
+        tau,
+        substeps,
+        adaptive,
+        mode,
+        TakeConfig::default(),
+    )
+}
+#[derive(Clone, Copy)]
+struct TakeConfig {
+    frames: usize,
+    rk4_limits: Option<(u32, u32)>,
+}
+impl Default for TakeConfig {
+    fn default() -> Self {
+        Self {
+            frames: 384,
+            rk4_limits: None,
+        }
+    }
+}
+fn take_configured(
+    length: f64,
+    speed: f64,
+    tau: f64,
+    substeps: usize,
+    adaptive: bool,
+    mode: ContactMode,
+    config: TakeConfig,
+) -> Result<Take, Box<dyn Error>> {
+    if !(384..=1536).contains(&config.frames)
+        || (config.rk4_limits.is_some() && (!adaptive || mode != ContactMode::Rk4))
+    {
+        return Err("invalid modal diagnostic configuration".into());
+    }
     let contact = mode != ContactMode::None;
     let h = 1.0 / (48000.0 * substeps as f64);
     let mut v = MemoryModalAssembly::new(
@@ -75,7 +114,9 @@ fn take_impl(
         0.0,
         speed,
     )?;
-    let mut controller = if mode == ContactMode::Rk4 {
+    let mut controller = if let Some((contact, free)) = config.rk4_limits {
+        Controller::with_rk4_limits(contact, free)?
+    } else if mode == ContactMode::Rk4 {
         Controller::with_rk4_contact()
     } else if mode == ContactMode::Economical {
         Controller::with_economical_contact()
@@ -103,7 +144,7 @@ fn take_impl(
     let mut reimpact = false;
     let mut pass = true;
     let mut peaks = [0.0_f64; 9];
-    for frame in 0..384 {
+    for frame in 0..config.frames {
         if [96, 192, 288].contains(&frame) {
             let before = v.probe();
             if frame == 96 {
@@ -183,6 +224,10 @@ fn take_impl(
             .unwrap_or(0)
             > 0;
         result.report["passed"] = json!(result.pass);
+    }
+    if config.frames != 384 || config.rk4_limits.is_some() {
+        result.report["observation_frames"] = json!(config.frames);
+        result.report["duration_seconds"] = json!(config.frames as f64 / 48000.0);
     }
     if contact {
         result.pass &= result.report["free_controller"]["contact"]["accepted_intervals"]

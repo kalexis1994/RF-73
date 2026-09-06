@@ -111,6 +111,9 @@ previous economical controller (maximum 0.004014%). Higher formal order does
 not establish that this candidate is closer to a real instrument or more
 accurate than every comparison path. Longer trajectories and finer independent
 reference work remain necessary before adoption; no tolerances were relaxed.
+The subsequent [resolution study](MEMORY-MODAL-REFINEMENT.md) separates contact,
+free-motion and implicit-reference sensitivity and extends four profiles to
+32 ms. Its results qualify this comparison further without changing the DSP.
 
 There are 311,813 accepted contact intervals, replacing 9,149,014 base ticks;
 only 12,133 original fixed ticks remain. Accepted contact intervals reach about

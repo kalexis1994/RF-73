@@ -28,8 +28,19 @@ pub(crate) struct Controller {
     rk4: bool,
     maximum_contact_error: f64,
     maximum_contact_defect: f64,
+    rk4_limits: Option<(u32, u32)>,
 }
 impl Controller {
+    /// Diagnostic caps only; preserve all DSP acceptance tolerances and event bounds.
+    pub(crate) fn with_rk4_limits(contact: u32, free: u32) -> Result<Self, ModelError> {
+        if contact > 12 || free > 12 {
+            return Err(ModelError("RK4 diagnostic levels must be within 0..12"));
+        }
+        Ok(Self {
+            rk4_limits: Some((contact, free)),
+            ..Self::with_rk4_contact()
+        })
+    }
     pub(crate) fn with_rk4_contact() -> Self {
         Self {
             rk4: true,
@@ -89,6 +100,7 @@ impl Controller {
             self.contact_level = self
                 .contact_level
                 .min(usize::BITS - 1 - remaining.leading_zeros())
+                .min(self.rk4_limits.map_or(12, |x| x.0))
                 .max(minimum_level);
             loop {
                 let ticks = 1usize << self.contact_level;
@@ -120,7 +132,8 @@ impl Controller {
                                 / if self.rk4 { 64.0 } else { 8.0 }
                             && energy_growth
                         {
-                            self.contact_level = (self.contact_level + 1).min(12);
+                            self.contact_level =
+                                (self.contact_level + 1).min(self.rk4_limits.map_or(12, |x| x.0));
                         }
                         return Ok(ticks);
                     }
@@ -138,6 +151,7 @@ impl Controller {
         }
         if surface_energy == 0.0 {
             self.level = self.level.min(usize::BITS - 1 - remaining.leading_zeros());
+            self.level = self.level.min(self.rk4_limits.map_or(12, |x| x.1));
             loop {
                 let ticks = 1usize << self.level;
                 let attempt = voice.try_free_step(self.level)?;
@@ -149,7 +163,7 @@ impl Controller {
                         if attempt.normalized_state_error.unwrap_or(1.0) < 1e-10 / 64.0
                             && attempt.relative_energy_defect.unwrap_or(1.0) < 1e-13 / 64.0
                         {
-                            self.level = (self.level + 1).min(12);
+                            self.level = (self.level + 1).min(self.rk4_limits.map_or(12, |x| x.1));
                         }
                         return Ok(ticks);
                     }
@@ -173,6 +187,10 @@ impl Controller {
             "uncertified_clearance_rejections":self.clearance,
             "maximum_free_interval_seconds":self.largest as f64*h,
             "uniform_to_accepted_interval_ratio":(self.fixed+self.replaced+self.contact_ticks) as f64/(self.fixed+self.free+self.contacts) as f64});
+        if let Some((contact, free)) = self.rk4_limits {
+            report["diagnostic_maximum_contact_level"] = json!(contact);
+            report["diagnostic_maximum_free_level"] = json!(free);
+        }
         if self.contact_enabled {
             report["contact"] = json!({"state_error_limit":MemoryContactStep::STATE_ERROR_LIMIT,"accepted_intervals":self.contacts,"uniform_ticks_replaced":self.contact_ticks,
                 "accuracy_rejections":self.contact_accuracy,"boundary_rejections":self.contact_boundary,
@@ -223,6 +241,62 @@ mod tests {
         }
         assert!(v.probe().hammer.surface_energy_j > 0.0);
         v
+    }
+    #[test]
+    fn diagnostic_caps_bound_both_regimes_without_skipping_state_updates() {
+        assert!(Controller::with_rk4_limits(13, 0).is_err());
+        assert!(Controller::with_rk4_limits(0, 13).is_err());
+        let mut v = compressed_voice();
+        let mut reference = compressed_voice();
+        v.prepare_rk4_contact().unwrap();
+        reference.prepare_rk4_contact().unwrap();
+        let mut controller = Controller::with_rk4_limits(2, 3).unwrap();
+        for i in 0..40 {
+            if i == 20 {
+                v.apply_core_impulse(0.001).unwrap();
+                reference.apply_core_impulse(0.001).unwrap();
+                v.set_damped(true);
+                reference.set_damped(true);
+            }
+            let ticks = controller
+                .advance(&mut v, if i % 3 == 0 { 3 } else { 32 })
+                .unwrap();
+            assert!(ticks <= 4 && ticks.is_power_of_two());
+            let attempt = reference
+                .try_rk4_contact_step(ticks.trailing_zeros())
+                .unwrap();
+            assert_eq!(attempt.contact.status, MemoryContactStatus::Advanced);
+            assert_eq!(v.probe(), reference.probe());
+        }
+        let flight = || {
+            let mut v = MemoryModalAssembly::new(
+                1e-9,
+                TineGeometry::default(),
+                ModalAssemblyProfile::default(),
+                MemoryHammerProfile::default(),
+                0.01,
+                0.2,
+            )
+            .unwrap();
+            v.prepare_free_steps(12).unwrap();
+            v
+        };
+        let mut v = flight();
+        let mut reference = flight();
+        let mut controller = Controller::with_rk4_limits(2, 3).unwrap();
+        for i in 0..40 {
+            let remaining = if i % 3 == 0 { 5 } else { 32 };
+            let ticks = controller.advance(&mut v, remaining).unwrap();
+            assert!(ticks <= 8 && ticks <= remaining && ticks.is_power_of_two());
+            assert_eq!(
+                reference
+                    .try_free_step(ticks.trailing_zeros())
+                    .unwrap()
+                    .status,
+                MemoryFreeStatus::Advanced
+            );
+            assert_eq!(v.probe(), reference.probe());
+        }
     }
     #[test]
     fn short_frame_remainders_use_original_ticks_without_contact_trials() {
