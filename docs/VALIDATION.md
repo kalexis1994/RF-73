@@ -1188,3 +1188,26 @@ equal history. Its origin before the 96 ms checkpoint remains unresolved;
 the earlier repeated-excitation and approach failure reports remain valid.
 The next audible milestone is a selected-strike offline render with qualified
 pickup sampling and gain/headroom, before realtime engine integration.
+
+## First offline memory-modal audio
+
+Date: 2026-09-06. [Four selected previews](MEMORY-MODAL-AUDIO.md) now connect
+the new structure and memory hammer to the existing scalar magnetic conversion
+and a common FIR. The 75 mm tine uses 0.2/0.4/0.8 m/s launch speeds; the 120 mm
+tine uses 0.4 m/s. Every take lasts 1.5 seconds with damper engagement at 0.9 s.
+All files retain fixed gain 0.084 and pass independent WAV inspection.
+
+Primary 8192-tick and refined/capped 16384-tick trajectories pass energy/work
+and every 2 ms mechanical comparison. Frozen 16/32/64x observation and the two
+64x integration outputs pass whole/attack/body/release audio gates. Maximum
+relative sampling and integration audio RMSE are 1.875e-7 and 1.347e-9. Maximum
+relative ledger residual is 8.005e-11. The strongest output peaks at -2.452 dBFS.
+A gain-10 negative control retains failure status and creates no WAV.
+
+All 199 workspace tests, strict Clippy, formatting and the release laboratory
+build pass. CLI regressions protect both outputs and reject invalid/bounded
+options. New audio tests reject silence/nonfinite samples and detect attack
+error hidden by whole-file averaging. The standalone CI workflow includes a
+short render; remote CI was not run. The tracked summary and full medium receipt
+are linked in the preview document. No new listening, realism, tuning, repetition
+or realtime qualification is claimed, and DSP equations/gates remain unchanged.

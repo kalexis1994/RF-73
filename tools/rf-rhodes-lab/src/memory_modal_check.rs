@@ -18,6 +18,8 @@ mod approach;
 pub(crate) use approach::{HELP as APPROACH_HELP, run as run_approach};
 mod recovery;
 pub(crate) use recovery::{HELP as RECOVERY_HELP, run as run_recovery};
+mod audio;
+pub(crate) use audio::{HELP as AUDIO_HELP, run as render_audio};
 
 pub const HELP: &str = "Stateful multimode hammer:
   memory-modal-check --output REPORT.json [--coarse]

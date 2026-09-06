@@ -56,6 +56,53 @@ impl Drop for Scratch {
 }
 
 #[test]
+fn modal_audio_rejects_invalid_options_and_preserves_both_output_paths() {
+    let scratch = Scratch::new();
+    for args in [
+        vec![
+            "render-memory-modal",
+            "--output",
+            "preview.wav",
+            "--seconds",
+            "NaN",
+        ],
+        vec![
+            "render-memory-modal",
+            "--output",
+            "preview.wav",
+            "--hold",
+            "2",
+        ],
+        vec![
+            "render-memory-modal",
+            "--output",
+            "preview.wav",
+            "--note",
+            "57",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert!(!scratch.0.join("preview.wav").exists());
+    assert!(!scratch.0.join("preview.json").exists());
+    for (name, other) in [("a.wav", "a.json"), ("b.json", "b.wav")] {
+        fs::write(scratch.0.join(name), b"preserve existing output").unwrap();
+        let wav = if name.ends_with("wav") { name } else { other };
+        assert!(
+            !scratch
+                .run(&["render-memory-modal", "--output", wav])
+                .status
+                .success()
+        );
+        assert_eq!(
+            fs::read(scratch.0.join(name)).unwrap(),
+            b"preserve existing output"
+        );
+        assert!(!scratch.0.join(other).exists());
+    }
+}
+
+#[test]
 fn listening_wavs_match_global_rms_stay_below_ceiling_and_preserve_outputs() {
     let scratch = Scratch::new();
     let args = ["pickup-listening", "--output", "study"];

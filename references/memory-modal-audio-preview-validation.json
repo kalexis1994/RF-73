@@ -1,0 +1,863 @@
+{
+  "schema_version": 1,
+  "experiment": "memory-modal-audio-preview-validation-v1",
+  "date": "2026-09-06",
+  "status": "pass",
+  "sample_rate_hz": 48000,
+  "hold_seconds": 0.9,
+  "seconds": 1.5,
+  "workspace_tests": 199,
+  "cases": [
+    {
+      "case": "75mm-soft",
+      "status": "pass",
+      "wav": "renders/memory-modal-preview-75mm-soft.wav",
+      "report": "renders/memory-modal-preview-75mm-soft.json",
+      "frames": 72000,
+      "wav_sha256": "4bf9f02bf8589f257469a6ed20547c83b40576b8b2f5f43a7110acb9959404b9",
+      "report_sha256": "e952cd46b8f67310fbed2d17fb9f6b35993e3cf9c0b1e1be4e8dc3ca1975c767",
+      "configuration": {
+        "fixed_output_gain": 0.084,
+        "geometry": {
+          "density_kg_m3": 7850.0,
+          "diameter_m": 0.0015,
+          "hammer_position": 0.2,
+          "length_m": 0.075,
+          "pickup_position": 0.98,
+          "tuning_mass_kg": 0.0001,
+          "tuning_position": 0.85,
+          "young_modulus_pa": 200000000000.0
+        },
+        "hammer": {
+          "core_mass_kg": 0.0038,
+          "equilibrium_cubic_n_m2": 40000000000.0,
+          "equilibrium_stiffness_n_m": 0.0,
+          "initial_gap_m": 0.0,
+          "launch_speed_m_s": 0.2,
+          "memory_stiffness_n_m": 200000.0,
+          "relaxation_seconds": 0.001,
+          "surface_stiffness_n_m2": 1000000000000.0,
+          "tip_mass_kg": 0.0002
+        },
+        "pickup_gap_m": 0.0015,
+        "pickup_offset_m": 0.0005,
+        "structure": {
+          "damper_n_s_m": 0.2,
+          "damper_position": 0.8,
+          "rotation_damping_n_m_s_rad": 0.002,
+          "rotation_stiffness_n_m_rad": 3.9478417604357436,
+          "support_inertia_kg_m2": 1E-05,
+          "support_mass_kg": 0.03,
+          "tine_decay_seconds": [
+            5.0,
+            0.16,
+            0.055,
+            0.035,
+            0.025,
+            0.02
+          ],
+          "tonebar_arm_m": 0.08,
+          "tonebar_decay_seconds": 8.0,
+          "tonebar_frequency_hz": 190.0,
+          "tonebar_mass_kg": 0.015,
+          "translation_damping_n_s_m": 5.0,
+          "translation_stiffness_n_m": 7579.856180036627
+        }
+      },
+      "levels": {
+        "ceiling_dbfs": -1.0,
+        "gain_normalization_applied": false,
+        "peak": 0.1747075612835841,
+        "peak_dbfs": -15.153765969869227,
+        "rms": 0.01642209777877363
+      },
+      "last_10ms_rms": 1.507316549499616E-08,
+      "primary_energy_residuals": [
+        8.787119794816112E-12,
+        7.65709313988415E-12,
+        1.275208102091349E-12
+      ],
+      "refined_energy_residuals": [
+        8.004444410894192E-11,
+        7.543285793091062E-11,
+        1.037945703235947E-11
+      ],
+      "maximum_section_kinetic_error": 5.782867541974386E-11,
+      "maximum_section_pickup_error": 4.381888003391115E-09,
+      "maximum_section_force_error": 7.887237373509816E-11,
+      "sampling": [
+        {
+          "candidate_oversampling": 16,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 7.666461469883303E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.01642209777877363,
+                "relative_rmse": 4.668381331764193E-09,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 2.0862007272741738E-11,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.04317913416965058,
+                "relative_rmse": 4.831501991395896E-10,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 7.973230773160885E-14,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.019925418184953622,
+                "relative_rmse": 4.001537483003368E-12,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 1.211215784186655E-10,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0006462604135063376,
+                "relative_rmse": 1.874191516102784E-07,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        },
+        {
+          "candidate_oversampling": 32,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 1.531636845617068E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.01642209777877363,
+                "relative_rmse": 9.326682049091098E-10,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.5614706875444282E-12,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.04317913416965058,
+                "relative_rmse": 3.6162621543299556E-11,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 4.737547069549637E-15,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.019925418184953622,
+                "relative_rmse": 2.377639969999287E-13,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 2.421461929095089E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0006462604135063376,
+                "relative_rmse": 3.746882647441228E-08,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        }
+      ],
+      "audio_integration": {
+        "passed": true,
+        "sections": [
+          {
+            "difference_rms": 5.1151090787515685E-12,
+            "end_seconds": 1.5,
+            "passed": true,
+            "reference_rms": 0.01642209778247098,
+            "relative_rmse": 3.1147720263920596E-10,
+            "section": "whole",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 8.484641477286104E-13,
+            "end_seconds": 0.032,
+            "passed": true,
+            "reference_rms": 0.043179134169958146,
+            "relative_rmse": 1.9649864779338926E-11,
+            "section": "attack",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 6.7058059071269156E-12,
+            "end_seconds": 0.9,
+            "passed": true,
+            "reference_rms": 0.019925418190182457,
+            "relative_rmse": 3.365453032464314E-10,
+            "section": "body",
+            "start_seconds": 0.032
+          },
+          {
+            "difference_rms": 5.647947712368714E-13,
+            "end_seconds": 1.5,
+            "passed": true,
+            "reference_rms": 0.0006462604140593951,
+            "relative_rmse": 8.739430095821456E-10,
+            "section": "release",
+            "start_seconds": 0.9
+          }
+        ]
+      }
+    },
+    {
+      "case": "75mm-medium",
+      "status": "pass",
+      "wav": "renders/memory-modal-preview-75mm-medium.wav",
+      "report": "renders/memory-modal-preview-75mm-medium.json",
+      "frames": 72000,
+      "wav_sha256": "ab6f396b6b383485cc65e328066a06a0f4aabcb4d9a501b8d18e980dad644dd5",
+      "report_sha256": "3341d92a413785243e4ca78734a29a88d7582970e18e6e5fc65dae4e391a5215",
+      "configuration": {
+        "fixed_output_gain": 0.084,
+        "geometry": {
+          "density_kg_m3": 7850.0,
+          "diameter_m": 0.0015,
+          "hammer_position": 0.2,
+          "length_m": 0.075,
+          "pickup_position": 0.98,
+          "tuning_mass_kg": 0.0001,
+          "tuning_position": 0.85,
+          "young_modulus_pa": 200000000000.0
+        },
+        "hammer": {
+          "core_mass_kg": 0.0038,
+          "equilibrium_cubic_n_m2": 40000000000.0,
+          "equilibrium_stiffness_n_m": 0.0,
+          "initial_gap_m": 0.0,
+          "launch_speed_m_s": 0.4,
+          "memory_stiffness_n_m": 200000.0,
+          "relaxation_seconds": 0.001,
+          "surface_stiffness_n_m2": 1000000000000.0,
+          "tip_mass_kg": 0.0002
+        },
+        "pickup_gap_m": 0.0015,
+        "pickup_offset_m": 0.0005,
+        "structure": {
+          "damper_n_s_m": 0.2,
+          "damper_position": 0.8,
+          "rotation_damping_n_m_s_rad": 0.002,
+          "rotation_stiffness_n_m_rad": 3.9478417604357436,
+          "support_inertia_kg_m2": 1E-05,
+          "support_mass_kg": 0.03,
+          "tine_decay_seconds": [
+            5.0,
+            0.16,
+            0.055,
+            0.035,
+            0.025,
+            0.02
+          ],
+          "tonebar_arm_m": 0.08,
+          "tonebar_decay_seconds": 8.0,
+          "tonebar_frequency_hz": 190.0,
+          "tonebar_mass_kg": 0.015,
+          "translation_damping_n_s_m": 5.0,
+          "translation_stiffness_n_m": 7579.856180036627
+        }
+      },
+      "levels": {
+        "ceiling_dbfs": -1.0,
+        "gain_normalization_applied": false,
+        "peak": 0.3582474507379239,
+        "peak_dbfs": -8.916337826533736,
+        "rms": 0.032810877293379365
+      },
+      "last_10ms_rms": 3.066277451094875E-08,
+      "primary_energy_residuals": [
+        9.59451160013891E-12,
+        8.153877963448797E-12,
+        1.7924064196848247E-12
+      ],
+      "refined_energy_residuals": [
+        7.77327217892955E-11,
+        7.67241596589998E-11,
+        5.359855083635761E-12
+      ],
+      "maximum_section_kinetic_error": 1.1195823280770436E-10,
+      "maximum_section_pickup_error": 4.119082666070607E-09,
+      "maximum_section_force_error": 4.152457331158405E-10,
+      "sampling": [
+        {
+          "candidate_oversampling": 16,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 1.5147397686798198E-10,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.032810877293379365,
+                "relative_rmse": 4.616578079079484E-09,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.3822210301214846E-10,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.0868181141465911,
+                "relative_rmse": 1.5920882913761809E-09,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.6624898148856233E-13,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.039766753268001165,
+                "relative_rmse": 4.1806023330131085E-12,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 2.373645344174768E-10,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0012803744894436429,
+                "relative_rmse": 1.8538680391907688E-07,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        },
+        {
+          "candidate_oversampling": 32,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 3.004071509827749E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.032810877293379365,
+                "relative_rmse": 9.155718339886986E-10,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 8.91401210167027E-12,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.0868181141465911,
+                "relative_rmse": 1.0267456497176491E-10,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 9.87750783846139E-15,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.039766753268001165,
+                "relative_rmse": 2.483860769797733E-13,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 4.745390839473075E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0012803744894436429,
+                "relative_rmse": 3.706252255568662E-08,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        }
+      ],
+      "audio_integration": {
+        "passed": true,
+        "sections": [
+          {
+            "difference_rms": 1.040701579201634E-11,
+            "end_seconds": 1.5,
+            "passed": true,
+            "reference_rms": 0.03281087730076008,
+            "relative_rmse": 3.1718188138100335E-10,
+            "section": "whole",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 8.34218350363215E-12,
+            "end_seconds": 0.032,
+            "passed": true,
+            "reference_rms": 0.08681811414696938,
+            "relative_rmse": 9.608805242544372E-11,
+            "section": "attack",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 1.3555285890368788E-11,
+            "end_seconds": 0.9,
+            "passed": true,
+            "reference_rms": 0.039766753278469825,
+            "relative_rmse": 3.4086981643803885E-10,
+            "section": "body",
+            "start_seconds": 0.032
+          },
+          {
+            "difference_rms": 1.1110719516274788E-12,
+            "end_seconds": 1.5,
+            "passed": true,
+            "reference_rms": 0.0012803744905308162,
+            "relative_rmse": 8.677710777936945E-10,
+            "section": "release",
+            "start_seconds": 0.9
+          }
+        ]
+      }
+    },
+    {
+      "case": "75mm-strong",
+      "status": "pass",
+      "wav": "renders/memory-modal-preview-75mm-strong.wav",
+      "report": "renders/memory-modal-preview-75mm-strong.json",
+      "frames": 72000,
+      "wav_sha256": "cbf3406d07549d9fbdbf44728f1d732ac232db622580c26e6303661231ba8390",
+      "report_sha256": "5d9c5d7b05f04c38cb2e12027e638b3647461966e882dfa1840fd54a7354fc0d",
+      "configuration": {
+        "fixed_output_gain": 0.084,
+        "geometry": {
+          "density_kg_m3": 7850.0,
+          "diameter_m": 0.0015,
+          "hammer_position": 0.2,
+          "length_m": 0.075,
+          "pickup_position": 0.98,
+          "tuning_mass_kg": 0.0001,
+          "tuning_position": 0.85,
+          "young_modulus_pa": 200000000000.0
+        },
+        "hammer": {
+          "core_mass_kg": 0.0038,
+          "equilibrium_cubic_n_m2": 40000000000.0,
+          "equilibrium_stiffness_n_m": 0.0,
+          "initial_gap_m": 0.0,
+          "launch_speed_m_s": 0.8,
+          "memory_stiffness_n_m": 200000.0,
+          "relaxation_seconds": 0.001,
+          "surface_stiffness_n_m2": 1000000000000.0,
+          "tip_mass_kg": 0.0002
+        },
+        "pickup_gap_m": 0.0015,
+        "pickup_offset_m": 0.0005,
+        "structure": {
+          "damper_n_s_m": 0.2,
+          "damper_position": 0.8,
+          "rotation_damping_n_m_s_rad": 0.002,
+          "rotation_stiffness_n_m_rad": 3.9478417604357436,
+          "support_inertia_kg_m2": 1E-05,
+          "support_mass_kg": 0.03,
+          "tine_decay_seconds": [
+            5.0,
+            0.16,
+            0.055,
+            0.035,
+            0.025,
+            0.02
+          ],
+          "tonebar_arm_m": 0.08,
+          "tonebar_decay_seconds": 8.0,
+          "tonebar_frequency_hz": 190.0,
+          "tonebar_mass_kg": 0.015,
+          "translation_damping_n_s_m": 5.0,
+          "translation_stiffness_n_m": 7579.856180036627
+        }
+      },
+      "levels": {
+        "ceiling_dbfs": -1.0,
+        "gain_normalization_applied": false,
+        "peak": 0.7540848505716006,
+        "peak_dbfs": -2.451595680436269,
+        "rms": 0.06495621354842752
+      },
+      "last_10ms_rms": 6.202670535453344E-08,
+      "primary_energy_residuals": [
+        8.911294824883592E-12,
+        7.8887566509582E-12,
+        1.7589486182682799E-12
+      ],
+      "refined_energy_residuals": [
+        7.202947954884284E-11,
+        7.538830399788504E-11,
+        4.456579148683776E-12
+      ],
+      "maximum_section_kinetic_error": 1.3641173944788736E-10,
+      "maximum_section_pickup_error": 4.009412437200151E-09,
+      "maximum_section_force_error": 1.056835625875377E-10,
+      "sampling": [
+        {
+          "candidate_oversampling": 16,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 3.1340625081067267E-10,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.06495621354842752,
+                "relative_rmse": 4.82488485227076E-09,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 8.943311953299858E-10,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.17431530395743788,
+                "relative_rmse": 5.130537451538692E-09,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 4.248003144564007E-13,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.07852991238235611,
+                "relative_rmse": 5.409407722092959E-12,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 4.504452524142153E-10,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.002485958957121706,
+                "relative_rmse": 1.8119577200733435E-07,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        },
+        {
+          "candidate_oversampling": 32,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 5.732800494592957E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.06495621354842752,
+                "relative_rmse": 8.825638351470286E-10,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 4.472925884757105E-11,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.17431530395743788,
+                "relative_rmse": 2.565997237884086E-10,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 2.5181543196340124E-14,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.07852991238235611,
+                "relative_rmse": 3.2066180175692955E-13,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 9.005301276755023E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.002485958957121706,
+                "relative_rmse": 3.622465789693304E-08,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        }
+      ],
+      "audio_integration": {
+        "passed": true,
+        "sections": [
+          {
+            "difference_rms": 2.0945099105707786E-11,
+            "end_seconds": 1.5,
+            "passed": true,
+            "reference_rms": 0.06495621356294086,
+            "relative_rmse": 3.224495080122325E-10,
+            "section": "whole",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 6.72842267756385E-12,
+            "end_seconds": 0.032,
+            "passed": true,
+            "reference_rms": 0.17431530395878436,
+            "relative_rmse": 3.859915064689179E-11,
+            "section": "attack",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 2.7447492944808677E-11,
+            "end_seconds": 0.9,
+            "passed": true,
+            "reference_rms": 0.07852991240294613,
+            "relative_rmse": 3.4951640852433903E-10,
+            "section": "body",
+            "start_seconds": 0.032
+          },
+          {
+            "difference_rms": 2.112015259323845E-12,
+            "end_seconds": 1.5,
+            "passed": true,
+            "reference_rms": 0.0024859589591742183,
+            "relative_rmse": 8.495776857174709E-10,
+            "section": "release",
+            "start_seconds": 0.9
+          }
+        ]
+      }
+    },
+    {
+      "case": "120mm-medium",
+      "status": "pass",
+      "wav": "renders/memory-modal-preview-120mm-medium.wav",
+      "report": "renders/memory-modal-preview-120mm-medium.json",
+      "frames": 72000,
+      "wav_sha256": "0839c55267cbd7b1004e84e2e5e9af7be18c88ec8f53d67a8dd891cc8b80725b",
+      "report_sha256": "4f8f03479f31e6bea112380c0804842304d935a7024d8fb23dd88b0e8c2a3c9a",
+      "configuration": {
+        "fixed_output_gain": 0.084,
+        "geometry": {
+          "density_kg_m3": 7850.0,
+          "diameter_m": 0.0015,
+          "hammer_position": 0.2,
+          "length_m": 0.12,
+          "pickup_position": 0.98,
+          "tuning_mass_kg": 0.0001,
+          "tuning_position": 0.85,
+          "young_modulus_pa": 200000000000.0
+        },
+        "hammer": {
+          "core_mass_kg": 0.0038,
+          "equilibrium_cubic_n_m2": 40000000000.0,
+          "equilibrium_stiffness_n_m": 0.0,
+          "initial_gap_m": 0.0,
+          "launch_speed_m_s": 0.4,
+          "memory_stiffness_n_m": 200000.0,
+          "relaxation_seconds": 0.001,
+          "surface_stiffness_n_m2": 1000000000000.0,
+          "tip_mass_kg": 0.0002
+        },
+        "pickup_gap_m": 0.0015,
+        "pickup_offset_m": 0.0005,
+        "structure": {
+          "damper_n_s_m": 0.2,
+          "damper_position": 0.8,
+          "rotation_damping_n_m_s_rad": 0.002,
+          "rotation_stiffness_n_m_rad": 3.9478417604357436,
+          "support_inertia_kg_m2": 1E-05,
+          "support_mass_kg": 0.03,
+          "tine_decay_seconds": [
+            5.0,
+            0.16,
+            0.055,
+            0.035,
+            0.025,
+            0.02
+          ],
+          "tonebar_arm_m": 0.08,
+          "tonebar_decay_seconds": 8.0,
+          "tonebar_frequency_hz": 190.0,
+          "tonebar_mass_kg": 0.015,
+          "translation_damping_n_s_m": 5.0,
+          "translation_stiffness_n_m": 7579.856180036627
+        }
+      },
+      "levels": {
+        "ceiling_dbfs": -1.0,
+        "gain_normalization_applied": false,
+        "peak": 0.38853581118651215,
+        "peak_dbfs": -8.211378925475897,
+        "rms": 0.01716604758582555
+      },
+      "last_10ms_rms": 3.0772827196183753E-09,
+      "primary_energy_residuals": [
+        3.460468402712718E-12,
+        5.0353567615426384E-12,
+        2.1309654887023688E-12
+      ],
+      "refined_energy_residuals": [
+        5.730381176082682E-11,
+        6.254559045161534E-11,
+        1.5644867942376378E-11
+      ],
+      "maximum_section_kinetic_error": 1.3171222580162381E-09,
+      "maximum_section_pickup_error": 2.0364593256643816E-09,
+      "maximum_section_force_error": 6.1059235229919515E-09,
+      "sampling": [
+        {
+          "candidate_oversampling": 16,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 2.280534905519857E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.01716604758582555,
+                "relative_rmse": 1.328514845434166E-09,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 1.1736123944200607E-10,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.0828911699646141,
+                "relative_rmse": 1.415847303061437E-09,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 4.734710435795535E-14,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.01599508591594059,
+                "relative_rmse": 2.9601031596066362E-12,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 2.378258591592393E-11,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0003366089649128079,
+                "relative_rmse": 7.065345369540098E-08,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        },
+        {
+          "candidate_oversampling": 32,
+          "comparison": {
+            "passed": true,
+            "sections": [
+              {
+                "difference_rms": 3.1437241203777263E-12,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.01716604758582555,
+                "relative_rmse": 1.8313616484283667E-10,
+                "section": "whole",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 6.2721828122255005E-12,
+                "end_seconds": 0.032,
+                "passed": true,
+                "reference_rms": 0.0828911699646141,
+                "relative_rmse": 7.566768348067797E-11,
+                "section": "attack",
+                "start_seconds": 0.0
+              },
+              {
+                "difference_rms": 2.8054642253219275E-15,
+                "end_seconds": 0.9,
+                "passed": true,
+                "reference_rms": 0.01599508591594059,
+                "relative_rmse": 1.7539538331119694E-13,
+                "section": "body",
+                "start_seconds": 0.032
+              },
+              {
+                "difference_rms": 4.754928375643805E-12,
+                "end_seconds": 1.5,
+                "passed": true,
+                "reference_rms": 0.0003366089649128079,
+                "relative_rmse": 1.4125970699786552E-08,
+                "section": "release",
+                "start_seconds": 0.9
+              }
+            ]
+          },
+          "reference_oversampling": 64
+        }
+      ],
+      "audio_integration": {
+        "passed": true,
+        "sections": [
+          {
+            "difference_rms": 1.0618738004082055E-11,
+            "end_seconds": 1.5,
+            "passed": true,
+            "reference_rms": 0.017166047588717176,
+            "relative_rmse": 6.185895704414506E-10,
+            "section": "whole",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 5.901123980318877E-11,
+            "end_seconds": 0.032,
+            "passed": true,
+            "reference_rms": 0.08289116995741627,
+            "relative_rmse": 7.119122559556663E-10,
+            "section": "attack",
+            "start_seconds": 0.0
+          },
+          {
+            "difference_rms": 8.144628558779884E-12,
+            "end_seconds": 0.9,
+            "passed": true,
+            "reference_rms": 0.015995085922672642,
+            "relative_rmse": 5.091956741060748E-10,
+            "section": "body",
+            "start_seconds": 0.032
+          },
+          {
+            "difference_rms": 4.5312234293622985E-13,
+            "end_seconds": 1.5,
+            "passed": true,
+            "reference_rms": 0.00033660896535793087,
+            "relative_rmse": 1.3461386640560962E-09,
+            "section": "release",
+            "start_seconds": 0.9
+          }
+        ]
+      }
+    }
+  ],
+  "negative_control": {
+    "gain": 10,
+    "report": "renders/memory-modal-headroom-rejection.json",
+    "wav_created": false,
+    "status": "fail"
+  },
+  "scope": "Four selected single-strike offline previews. No listening, tuning, absolute aliasing, repetition or realtime qualification."
+}

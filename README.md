@@ -58,6 +58,9 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 
 ## Read next
 
+- [Physical-model direction review](docs/RESEARCH-DIRECTION-2026-09-06.md): literature evidence, current assumptions and the next audible/calibration experiments.
+- [First physical-assembly WAVs](docs/MEMORY-MODAL-AUDIO.md): four offline previews with sampling, integration and headroom checks.
+
 - [Pickup Lab UI](docs/PICKUP-LAB-UI.md): controls, A/B, saving, transition and gain policy.
 - [Physical model ledger](docs/MODEL.md): equations, constants and known approximations.
 - [Coupled assembly](docs/COUPLED-ASSEMBLY.md): mechanical reduction, energy balance, analytic tests and convergence limits.
@@ -107,4 +110,4 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Development](docs/DEVELOPMENT.md): commands, integration and output formats.
 - [Validation results](docs/VALIDATION.md): tests, native/WASM timing and remaining limitations.
 
-The next audible milestone for the new physical assembly is a selected-strike offline WAV with qualified pickup sampling and output headroom. The existing 0.1.2 plugin remains the audible baseline. Calibration still targets A3: compare multiple intensities and decay phases against documented direct recordings, then extend validated parameters across the keyboard. All project code, tools, tests and documentation are in English; executable project code is Rust.
+The new physical assembly now has selected-strike offline WAV previews with checked pickup sampling and output headroom. Next compare the hammer alternatives on that output chain, then calibrate modal behavior. The existing 0.1.2 plugin remains the playable baseline. Calibration still targets A3: compare multiple intensities and decay phases against documented direct recordings, then extend validated parameters across the keyboard. All project code, tools, tests and documentation are in English; executable project code is Rust.

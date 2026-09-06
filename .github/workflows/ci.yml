@@ -97,3 +97,7 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-checkpoint-check --output renders/ci-memory-modal-checkpoint.json
       - name: Inspect contact resolution without committing trials
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-contact-resolution --output renders/ci-memory-contact-resolution.json
+      - name: Render a qualified physical assembly preview
+        run: cargo run --locked --release -p rf-rhodes-lab -- render-memory-modal --output renders/ci-memory-modal.wav --seconds 0.25 --hold 0.15
+      - name: Inspect the physical assembly preview
+        run: cargo run --locked --release -p rf-rhodes-lab -- inspect renders/ci-memory-modal.wav

@@ -34,6 +34,12 @@ See [Pickup Lab UI](PICKUP-LAB-UI.md). Human listening feedback now guides the n
 
 ## Physical-model ambition and next implementation gate
 
+The [2026-09-06 direction review](RESEARCH-DIRECTION-2026-09-06.md) supports
+the coupled modal architecture while prioritizing an offline audible reference,
+a controlled comparison of hammer models and measured modal calibration.
+The two-mass memory hammer remains a research hypothesis; its additional state
+and numerical cost need demonstrated physical or acoustic value before adoption.
+
 Implemented first gate: the offline [passive common-support assembly](COUPLED-ASSEMBLY.md)
 has reciprocal tine/tonebar coupling, nonlinear hammer contact and explicit
 stored/dissipated/escaped energy accounting. Analytic mechanics tests and the
@@ -199,6 +205,13 @@ listening before realtime optimization is complete. Keep the existing plugin
 as an audible baseline and retain the known repetition failure separately.
 Realtime use additionally needs CPU reduction, note lifecycle, bounded
 polyphony and host validation; no calendar estimate is established.
+
+The [first physical-assembly WAV milestone](MEMORY-MODAL-AUDIO.md) is now
+implemented. Four selected 1.5-second previews pass independent mechanical
+ledgers, section-wise refinement, shared-trajectory 16/32/64x pickup sampling
+and output headroom checks. These are uncalibrated single strikes with a binary
+damper, not tuned keyboard notes or a realtime plugin update. Next compare
+hammer alternatives on the same audible chain, followed by modal calibration.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

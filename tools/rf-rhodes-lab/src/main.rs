@@ -222,6 +222,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", memory_modal_check::CHECKPOINT_HELP);
         print!("{}", memory_modal_check::APPROACH_HELP);
         print!("{}", memory_modal_check::RECOVERY_HELP);
+        print!("{}", memory_modal_check::AUDIO_HELP);
         print!("{}", memory_modal_check::TAIL_TIMING_HELP);
         print!("{}", memory_modal_timing::HELP);
         print!("{}", modal_timing::HELP);
@@ -233,6 +234,9 @@ fn run() -> Result<(), Box<dyn Error>> {
         }
         println!("{}", wav::inspect(File::open(&args[1])?)?);
         return Ok(());
+    }
+    if args[0] == "render-memory-modal" {
+        return memory_modal_check::render_audio(&args);
     }
     if args[0] == "assembly-check" {
         return assembly_check::run(&args);
