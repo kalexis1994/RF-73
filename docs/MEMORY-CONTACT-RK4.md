@@ -75,8 +75,8 @@ implicit tick. The public modal contact method still uses its previous solver.
 ## Laboratory controller and reproduction
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-contact-check --output renders/contact-rk4.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-free-check --output renders/contact-rk4-free-control.json
+cargo run --locked --release -p rf-73-lab -- memory-contact-check --output renders/contact-rk4.json
+cargo run --locked --release -p rf-73-lab -- memory-free-check --output renders/contact-rk4-free-control.json
 ```
 
 Output paths must be new. The contact experiment is explicitly selected by its

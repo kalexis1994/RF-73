@@ -6,7 +6,7 @@ from identical complete physical state, removing differences inherited before
 that checkpoint.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-recovery-check --output renders/modal-recovery.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-recovery-check --output renders/modal-recovery.json
 ```
 
 ## Protocol

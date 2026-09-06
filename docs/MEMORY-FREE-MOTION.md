@@ -102,7 +102,7 @@ Maxwell hammer. The latter checks relative velocity and branch extension over
 20,000 free intervals against the continuous solution.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-free-check --output renders/memory-free.json
+cargo run --locked --release -p rf-73-lab -- memory-free-check --output renders/memory-free.json
 ```
 
 The audit retains the original 24 fixed-wall cases: rates 44.1/192 kHz,

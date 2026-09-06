@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "note": 55,
+  "source": "https://github.com/jlearman/jRhodes3d-wav",
+  "source_revision": "a886e6cebf074c995a10634f82ebe4fdb90f5ca6",
+  "instrument": "1977 Rhodes Mark I Stage 73",
+  "processing": "Harp output; treble boost, low-mid scoop and CoolEdit 96 noise reduction; mono version",
+  "capture_gain": "Unknown; raw distributed sample levels are not a calibrated strike-intensity curve",
+  "prior_exposure": "All five layers were inspected in the earlier G3 pilots. Training/validation is a new fixed protocol split, not blind independent data.",
+  "takes": [
+    {
+      "id": "g3-layer-1",
+      "file": "audio/jrhodes-g3-a886e6c/A_055__G3_1.wav",
+      "git_blob_sha1": "2a95dbf514bd9b721d4084c6ed5816ad123f2712",
+      "role": "training"
+    },
+    {
+      "id": "g3-layer-2",
+      "file": "audio/jrhodes-g3-a886e6c/A_055__G3_2.wav",
+      "git_blob_sha1": "c46d5086be237b50dcb2286e7891aba13cf4f183",
+      "role": "validation"
+    },
+    {
+      "id": "g3-layer-3",
+      "file": "audio/jrhodes-g3-a886e6c/A_055__G3_3.wav",
+      "git_blob_sha1": "e16318eb5d9cdf0c4c951aaa725d5e6138657c3b",
+      "role": "training"
+    },
+    {
+      "id": "g3-layer-4",
+      "file": "audio/jrhodes-g3-a886e6c/A_055__G3_4.wav",
+      "git_blob_sha1": "a3ad5115e19e8d011ed45052122d43718a0a7d52",
+      "role": "validation"
+    },
+    {
+      "id": "g3-layer-5",
+      "file": "audio/jrhodes-g3-a886e6c/A_055__G3_5.wav",
+      "git_blob_sha1": "c41b60a18683c78f9c77b45e9b5accf0fd2a775c",
+      "role": "training"
+    }
+  ]
+}

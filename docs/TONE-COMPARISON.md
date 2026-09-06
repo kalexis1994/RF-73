@@ -3,7 +3,7 @@
 `compare-tone` compares short spectral observations without requiring a strike-velocity mapping or declaring an uninterrupted sustain boundary. It is useful for processed sample-bank references whose physical capture metadata is incomplete. It does not estimate decay, align onsets or rank candidates.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- compare-tone REFERENCE.wav CANDIDATE.wav --note 55 --output renders/tone.json --reference-start 0 --candidate-start 0
+cargo run --locked --release -p rf-73-lab -- compare-tone REFERENCE.wav CANDIDATE.wav --note 55 --output renders/tone.json --reference-start 0 --candidate-start 0
 ```
 
 `--note` and a new `.json` output are required. Inputs retain their samples and must have equal rates; multichannel inputs require `--reference-channel` and/or `--candidate-channel`. The existing WAV limits apply. Anchors default to file start and must be finite, nonnegative positions inside their recordings. Choose corresponding note ages; edited sample starts do not establish the time of physical hammer contact.

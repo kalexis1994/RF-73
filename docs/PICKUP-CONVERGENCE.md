@@ -5,8 +5,8 @@
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- converge-pickup --output renders/g3-pickup-convergence.json --note 55 --velocity 0.9 --gap-mm 0.5 --offset-mm 0.25
-cargo run --locked --release -p rf-rhodes-lab -- converge-pickup --output renders/treble-pickup-convergence.json --note 100 --velocity 0.2 --sample-rate 48000 --gap-mm 0.5 --offset-mm 0.25 --reference-steps 256
+cargo run --locked --release -p rf-73-lab -- converge-pickup --output renders/g3-pickup-convergence.json --note 55 --velocity 0.9 --gap-mm 0.5 --offset-mm 0.25
+cargo run --locked --release -p rf-73-lab -- converge-pickup --output renders/treble-pickup-convergence.json --note 100 --velocity 0.2 --sample-rate 48000 --gap-mm 0.5 --offset-mm 0.25 --reference-steps 256
 ```
 
 Defaults are MIDI 55, velocity 0.9, 44.1 kHz, 0.1 seconds, gap 1.5 mm, offset 0.5 mm and a 128x reference. Supported output rates are 44.1/48/96/192 kHz, notes 28..100, velocities 0.01..1 and durations 0.05..0.25 seconds. Geometry uses the validated profile limits. `--reference-steps` accepts 128 or 256. Every take is a single strike held throughout; the command writes a new JSON report and refuses existing files. There is no reference recording or audio export.

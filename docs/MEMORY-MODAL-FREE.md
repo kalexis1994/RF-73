@@ -56,8 +56,8 @@ integration, not an unconditional passivity or global-error proof.
 ## Coupled audit
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-free-check --output renders/memory-modal-free.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-free-timing --output renders/memory-modal-free-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-free-check --output renders/memory-modal-free.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-free-timing --output renders/memory-modal-free-timing.json
 ```
 
 Both commands refuse existing output files. The audit shares the original

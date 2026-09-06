@@ -17,4 +17,4 @@ See [September research review](RESEARCH-2026-09.md) for paper findings, open Ru
 
 Outstanding: select an actual reference instrument; acquire direct recordings; read the full JASA modal study; quantify tonebar/mount contributions; calibrate the contact and pickup models; evaluate higher-rate reference renders.
 
-RackForge integration was inspected at revision `7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1` (workspace 0.1.14). Relevant local sources are its public plugin SDK, `docs/PLUGIN_ABI.md`, `docs/PLUGIN_DEVELOPMENT.md`, and Concert Grand's model and laboratory. RF-Rhodes shares the public SDK contract; the handwritten DSP is independent.
+RackForge integration was inspected at revision `7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1` (workspace 0.1.14). Relevant local sources are its public plugin SDK, `docs/PLUGIN_ABI.md`, `docs/PLUGIN_DEVELOPMENT.md`, and Concert Grand's model and laboratory. RF-73 shares the public SDK contract; the handwritten DSP is independent.

@@ -13,7 +13,7 @@ coefficients, controller choices and tolerances are unchanged.
 ## Protocol
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-reimpact-check --output renders/modal-reimpact.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-reimpact-check --output renders/modal-reimpact.json
 ```
 
 Four profiles combine 75/120 mm tines with 1/10 ms material relaxation at an

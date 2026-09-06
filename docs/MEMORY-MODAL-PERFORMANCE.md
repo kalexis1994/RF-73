@@ -35,7 +35,7 @@ atomic rejection of invalid impulses and excessive material travel.
 ## Reproducible timing workload
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-timing --output renders/memory-modal-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-timing --output renders/memory-modal-timing.json
 ```
 
 The native single-voice workload uses four combinations of tine length

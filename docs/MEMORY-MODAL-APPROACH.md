@@ -7,7 +7,7 @@ to each late external impulse so the comparison includes the intervening
 material recovery and motion toward the tine.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-approach-check --output renders/modal-approach.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-approach-check --output renders/modal-approach.json
 ```
 
 ## Protocol

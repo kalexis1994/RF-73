@@ -42,7 +42,7 @@ usage or polyphonic memory.
 ## Paired timing
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-trial-reuse-timing --output renders/trial-reuse-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-trial-reuse-timing --output renders/trial-reuse-timing.json
 ```
 
 The command uses the same four 128 ms strong-strike profiles, default controller

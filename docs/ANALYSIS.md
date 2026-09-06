@@ -5,10 +5,10 @@ This offline Rust tool measures rendered or recorded isolated notes. It does not
 ## Inputs and commands
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
-cargo run --locked --release -p rf-rhodes-lab -- analyze renders/a3.wav --output renders/a3-attack.json --note 57 --partial-window-ms 32
-cargo run --locked --release -p rf-rhodes-lab -- analyze references/audio/a3.wav --output renders/a3-sustain.json --note 57 --partial-window-ms 1024 --sustain-end 5
-cargo run --locked --release -p rf-rhodes-lab -- compare references/audio/a3.wav renders/a3.wav --output renders/comparison.json --align-ms 20
+cargo run --locked --release -p rf-73-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
+cargo run --locked --release -p rf-73-lab -- analyze renders/a3.wav --output renders/a3-attack.json --note 57 --partial-window-ms 32
+cargo run --locked --release -p rf-73-lab -- analyze references/audio/a3.wav --output renders/a3-sustain.json --note 57 --partial-window-ms 1024 --sustain-end 5
+cargo run --locked --release -p rf-73-lab -- compare references/audio/a3.wav renders/a3.wav --output renders/comparison.json --align-ms 20
 ```
 
 Input supports PCM 8/16/24/32-bit and IEEE float32 WAV, 8–192 kHz, 1–8 channels, up to 60 seconds and 12 million frames. At least 128 samples are required. Multichannel input requires explicit zero-based selection: `--channel`, or `--reference-channel` and `--candidate-channel`. No implicit downmixing or resampling occurs. Float headroom is preserved; nonfinite or absurdly large samples (absolute value above 1,000,000) are rejected. Reports use create-new writes and never replace an existing file.

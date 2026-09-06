@@ -70,8 +70,8 @@ reference diagnostics are checked against the retained pre-change report.
 ## Controller and validation
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-adaptive-check --output renders/modal-adaptive.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-adaptive-timing --output renders/modal-adaptive-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-adaptive-check --output renders/modal-adaptive.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-adaptive-timing --output renders/modal-adaptive-timing.json
 ```
 
 The laboratory combines the existing certified free-motion controller with

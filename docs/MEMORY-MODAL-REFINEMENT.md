@@ -9,7 +9,7 @@ only: the DSP equations, coefficients, tolerances and audible plugin are unchang
 ## Reproduction and protocol
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-rk4-refinement --output renders/modal-refinement.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-rk4-refinement --output renders/modal-refinement.json
 ```
 
 The command requires a new JSON output path. It audits all twelve original

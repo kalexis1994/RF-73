@@ -29,7 +29,7 @@ there is no state-dependent cache to invalidate.
 ## Qualification protocol
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-damping-timing --output renders/contact-damping-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-damping-timing --output renders/contact-damping-timing.json
 ```
 
 The existing timing protocol compares four strong-strike profiles for 128 ms,

@@ -27,10 +27,10 @@ release builds. Keep compilation and other audits outside timing runs. Every
 output path must be new.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-economical-timing --output renders/force-reuse-timing.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-economical-check --output renders/force-reuse-economical.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-adaptive-check --output renders/force-reuse-strict.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-free-check --output renders/force-reuse-wall.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-economical-timing --output renders/force-reuse-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-economical-check --output renders/force-reuse-economical.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-adaptive-check --output renders/force-reuse-strict.json
+cargo run --locked --release -p rf-73-lab -- memory-free-check --output renders/force-reuse-wall.json
 ```
 
 ## Trajectory regression

@@ -1,0 +1,15 @@
+[package]
+name = "rf-73-lab"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+rf-73-dsp.workspace = true
+rf-73-analysis.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[lints]
+workspace = true

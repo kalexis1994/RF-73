@@ -47,6 +47,12 @@ independently, and records contact, attack-band and envelope observables.
 The comparison remains uncalibrated; fitting against shared training data and
 held-out observations is the next step before selecting a hammer model.
 
+The [frequency-reference pilot](PITCH-REFERENCE.md) freezes a 196.386147 Hz G3
+target from declared training layers and evaluates separate validation layers.
+The broad-band diagnostic measures the provisional 75 mm assembly at
+169.570540 Hz. One-parameter tuning of the coupled resonator is next; a single
+output frequency does not identify the physical geometry or material.
+
 Implemented first gate: the offline [passive common-support assembly](COUPLED-ASSEMBLY.md)
 has reciprocal tine/tonebar coupling, nonlinear hammer contact and explicit
 stored/dissipated/escaped energy accounting. Analytic mechanics tests and the

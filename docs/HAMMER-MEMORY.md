@@ -105,7 +105,7 @@ Five unit tests cover:
 - Invalid-input rejection without mutation and explicit reset of memory/ledgers.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- hammer-memory-check --output renders/hammer-memory.json
+cargo run --locked --release -p rf-73-lab -- hammer-memory-check --output renders/hammer-memory.json
 ```
 
 The [tracked audit](../references/hammer-memory-validation.json) has 36 cases and

@@ -1,6 +1,6 @@
 # Rhodes model research: September 2026
 
-Research date: 2026-09-04. Baseline: RF-Rhodes 0.1.1, revision `f74e102`.
+Research date: 2026-09-04. Baseline: RF-73 0.1.1, revision `f74e102`.
 
 ## Decision
 
@@ -48,7 +48,7 @@ The conference abstract describes an augmented physical Rhodes with controlled e
 
 ## Projects worth inspecting
 
-| Project | What was checked | Use for RF-Rhodes |
+| Project | What was checked | Use for RF-73 |
 | --- | --- | --- |
 | [Phosphor](https://github.com/joshjetson/phosphor) | Rust Rhodes source introduction, modal constants and parameter definitions at `523f74a0227f7d3604a25ec0f1bc89732d4be11d`; repository metadata reports MIT | Concrete comparison for bounded modal storage, voicing controls and parameter provenance. Its six-resonator design includes a close partner mode and ideal beam overtones. This source inspection does not validate its acoustic accuracy. |
 | [OpenWurli](https://github.com/hal0zer0/openwurli) | README, documented signal chain and GPL-3.0 declaration | Rust implementation and circuit/calibration workflow reference. Its Wurlitzer capacitive pickup is a different transducer. Author claims of physical accuracy were not independently tested. |
@@ -79,7 +79,7 @@ These are conclusions from the local implementation, not claims made by the pape
 
 ### A. Reference manifest and inharmonic analysis
 
-Extend `rf-rhodes-analysis` with local peak detection, cross-frame association, noise-floor qualification and per-track decay fits. Preserve harmonic summaries as separate outputs. Report frequency, amplitude, time span, fit interval and uncertainty/rejection reasons. A spectral peak alone is not proof of a mechanical mode: pickup mixing can create additional components.
+Extend `rf-73-analysis` with local peak detection, cross-frame association, noise-floor qualification and per-track decay fits. Preserve harmonic summaries as separate outputs. Report frequency, amplitude, time span, fit interval and uncertainty/rejection reasons. A spectral peak alone is not proof of a mechanical mode: pickup mixing can create additional components.
 
 Use deterministic synthetic cases with a noninteger partial, nearby tones, a short attack-only component and a decaying component entering noise. Report unresolved peaks when window resolution is insufficient; avoid manufacturing precision through zero padding. These tests validate measurement behavior, not Rhodes fidelity.
 
@@ -111,4 +111,4 @@ Require a report with baseline/candidate/reference spectra, attack and decay err
 - An untreated, documented recording set; the available sample library does not meet this criterion.
 - Reproduction and license inspection of the author simulation before any code reuse.
 
-No paper or project examined establishes perceptual equivalence for RF-Rhodes. The immediate deliverable is a better measurement path followed by a controlled physical change.
+No paper or project examined establishes perceptual equivalence for RF-73. The immediate deliverable is a better measurement path followed by a controlled physical change.

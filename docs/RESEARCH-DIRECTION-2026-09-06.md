@@ -1,6 +1,6 @@
 # Physical-model direction review
 
-Research date: 2026-09-06. Reviewed RF-Rhodes revision `4b08629` and its
+Research date: 2026-09-06. Reviewed RF-73 revision `4b08629` and its
 retained laboratory results. This is an engineering assessment, not an acoustic
 validation or an implementation change.
 
@@ -68,7 +68,7 @@ a damper and MPE control. The discussion identifies tuning errors, overly
 persistent overtones and a nonphysical pickup producing an excessively harsh
 result. The practical lesson is to validate tuning, losses and pickup output
 together. This is a master's project with preliminary evaluation, not evidence
-of perceptual equivalence or a source of validated RF-Rhodes constants. The
+of perceptual equivalence or a source of validated RF-73 constants. The
 repository landing page labels its own abstract AI-generated; this review relies
 on the thesis itself. [Full thesis, especially chapters 3, 6 and 7](https://projekter.aau.dk/projekter/files/719175589/Master_Thesis_Real_time_physical_model_of_the_Rhodes_Electric_Piano_Tobias_Sonderbo.pdf).
 
@@ -106,7 +106,7 @@ Simulation of Nonlinear Physical Systems.** Full PDF retrieved; objectives,
 trajectory reconstruction and filtering sections inspected. It explicitly
 separates accurate dynamics, power balance and an observation operator that
 reduces aliasing. Its demonstration is a nonlinear LC oscillator, not our
-hammer. For RF-Rhodes this motivates separate qualification of integration,
+hammer. For RF-73 this motivates separate qualification of integration,
 magnetic conversion and output filtering. A passive mechanical solver alone
 does not provide an alias-free WAV. [Conference paper](https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_52.pdf).
 
@@ -136,7 +136,7 @@ repository declares GPL-3.0; no source was incorporated.
 
 ## Audit of the current implementation
 
-These findings are from the local source and retained RF-Rhodes reports. They
+These findings are from the local source and retained RF-73 reports. They
 are engineering judgments, distinct from the publications' results.
 
 | Area | Assessment | Required evidence or next action |

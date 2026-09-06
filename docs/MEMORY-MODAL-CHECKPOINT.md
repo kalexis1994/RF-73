@@ -26,7 +26,7 @@ not a callback operation or plugin preset format.
 ## Experiment
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-checkpoint-check --output renders/modal-checkpoint.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-checkpoint-check --output renders/modal-checkpoint.json
 ```
 
 A default-RK4 donor follows the earlier repeated-excitation protocol for each

@@ -44,7 +44,7 @@ accuracy over every accepted parameter combination.
 ## Reproducible native experiment
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- modal-timing --output renders/modal-timing.json
+cargo run --locked --release -p rf-73-lab -- modal-timing --output renders/modal-timing.json
 ```
 
 The command refuses existing output paths. It prepares 1/8/32/73 independent

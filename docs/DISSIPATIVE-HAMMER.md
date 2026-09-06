@@ -16,7 +16,7 @@ The indexed section text was consulted for this change; direct retrieval of that
 PDF timed out. Bilbao and Torin's [DAFx 2014 collision paper, sections 2.3–2.4](https://dafx.de/paper-archive/2014/dafx14_stefan_bilbao_numerical_simulation_of_s.pdf)
 discusses dissipative contact and energy balance in musical-instrument mechanics.
 That full paper was accessible. Neither source supplies identified material
-coefficients for the illustrative RF-Rhodes geometry.
+coefficients for the illustrative RF-73 geometry.
 
 Here the continuous target, with compression x and velocity v, is
 `F = k max(x,0)^2 max(0,1 + beta v)`. Before nonadhesive projection, the rate
@@ -97,7 +97,7 @@ strikes and damper changes, checking state error, passive energy, heat subsets,
 reset and invalid-parameter rejection.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- modal-hammer-check --output renders/modal-hammer.json
+cargo run --locked --release -p rf-73-lab -- modal-hammer-check --output renders/modal-hammer.json
 ```
 
 The [tracked report](../references/modal-hammer-validation.json) contains 36

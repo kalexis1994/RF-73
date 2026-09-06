@@ -111,8 +111,8 @@ Four added unit tests cover:
 ## Reproducible temporal audit
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-check --output renders/memory-modal.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-check --output renders/memory-modal-coarse.json --coarse
+cargo run --locked --release -p rf-73-lab -- memory-modal-check --output renders/memory-modal.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-check --output renders/memory-modal-coarse.json --coarse
 ```
 
 Twelve cases combine tine lengths 50/75/120 mm, launch speeds 0.2/0.8 m/s and

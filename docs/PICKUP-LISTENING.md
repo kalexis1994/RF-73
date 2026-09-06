@@ -5,8 +5,8 @@
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- pickup-listening --output renders/pickup-listening
-cargo run --locked --release -p rf-rhodes-lab -- pickup-listening --output renders/pickup-listening-192k --sample-rate 192000 --measure-only
+cargo run --locked --release -p rf-73-lab -- pickup-listening --output renders/pickup-listening
+cargo run --locked --release -p rf-73-lab -- pickup-listening --output renders/pickup-listening-192k --sample-rate 192000 --measure-only
 ```
 
 The output directory must not exist. Defaults are 44.1 kHz, candidate gap 0.5 mm/offset 0.25 mm and a -6 dBFS sample ceiling. `--sample-rate` accepts 44.1/48/96/192 kHz. Candidate geometry retains the profile's validated ranges. `--ceiling-dbfs` accepts -24..-1 dBFS. `--measure-only` computes the complete study and writes only `report.json`, avoiding additional WAV storage.

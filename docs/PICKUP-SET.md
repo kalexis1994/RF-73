@@ -7,10 +7,10 @@
 The checked-in [example manifest](../references/pickup-set.synthetic.json) describes generated audio, not a measured Rhodes. From the workspace, generate its three files and run:
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- render --output renders/pickup-set-demo/soft.wav --note 57 --velocity 0.3 --seconds 1.5 --hold 1.4 --gap-mm 2 --offset-mm 0.75
-cargo run --locked --release -p rf-rhodes-lab -- render --output renders/pickup-set-demo/loud.wav --note 57 --velocity 0.7 --seconds 1.5 --hold 1.4 --gap-mm 2 --offset-mm 0.75
-cargo run --locked --release -p rf-rhodes-lab -- render --output renders/pickup-set-demo/held.wav --note 57 --velocity 0.5 --seconds 1.5 --hold 1.4 --gap-mm 2 --offset-mm 0.75
-cargo run --locked --release -p rf-rhodes-lab -- fit-pickup-set references/pickup-set.synthetic.json --output renders/pickup-set-demo/result.json
+cargo run --locked --release -p rf-73-lab -- render --output renders/pickup-set-demo/soft.wav --note 57 --velocity 0.3 --seconds 1.5 --hold 1.4 --gap-mm 2 --offset-mm 0.75
+cargo run --locked --release -p rf-73-lab -- render --output renders/pickup-set-demo/loud.wav --note 57 --velocity 0.7 --seconds 1.5 --hold 1.4 --gap-mm 2 --offset-mm 0.75
+cargo run --locked --release -p rf-73-lab -- render --output renders/pickup-set-demo/held.wav --note 57 --velocity 0.5 --seconds 1.5 --hold 1.4 --gap-mm 2 --offset-mm 0.75
+cargo run --locked --release -p rf-73-lab -- fit-pickup-set references/pickup-set.synthetic.json --output renders/pickup-set-demo/result.json
 ```
 
 Use fresh filenames for another run and update a copy of the manifest accordingly. Paths inside a manifest resolve against its own directory, independently of the shell's current directory. Existing output files are never overwritten.

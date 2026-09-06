@@ -9,8 +9,8 @@ For multiple takes with one shared gain and a separate validation split, use [Pi
 Use fresh output paths:
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- render --output renders/known-pickup.wav --note 57 --velocity 0.7 --seconds 1.5 --hold 1.4 --gap-mm 2 --offset-mm 0.75
-cargo run --locked --release -p rf-rhodes-lab -- sweep-pickup renders/known-pickup.wav --output renders/pickup-sweep.json --note 57 --velocity 0.7 --seconds 1 --reference-start 0.1 --model-start 0.1 --gaps-mm 1.5,2,2.5 --offsets-mm 0.5,0.75,1
+cargo run --locked --release -p rf-73-lab -- render --output renders/known-pickup.wav --note 57 --velocity 0.7 --seconds 1.5 --hold 1.4 --gap-mm 2 --offset-mm 0.75
+cargo run --locked --release -p rf-73-lab -- sweep-pickup renders/known-pickup.wav --output renders/pickup-sweep.json --note 57 --velocity 0.7 --seconds 1 --reference-start 0.1 --model-start 0.1 --gaps-mm 1.5,2,2.5 --offsets-mm 0.5,0.75,1
 ```
 
 The reference contains the known geometry on the search grid. Recovering it tests the implementation, not resemblance to an acoustic instrument. See [Validation results](VALIDATION.md) for the two-intensity experiment.

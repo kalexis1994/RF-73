@@ -5,7 +5,7 @@
 ## Select corresponding regions
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- compare-partials references/audio/a3.wav renders/a3.wav --output renders/a3-partials.json --seconds 2 --reference-start 0.2 --candidate-start 0.2
+cargo run --locked --release -p rf-73-lab -- compare-partials references/audio/a3.wav renders/a3.wav --output renders/a3-partials.json --seconds 2 --reference-start 0.2 --candidate-start 0.2
 ```
 
 Both regions must represent the same note and intended gesture phase, with uninterrupted sustain through the end. Set the start offsets to comparable note ages. `--seconds` is required; starts default to zero. No onset alignment, time warping or resampling is performed. Start offsets and duration are rounded to samples, and the report records actual start/end frames and times. An out-of-file region is rejected rather than cropped or padded.

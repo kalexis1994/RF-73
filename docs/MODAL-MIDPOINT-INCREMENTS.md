@@ -105,11 +105,11 @@ receipts are historical evidence, not byte-identical expectations for this build
 ## Reproduction and wider regression
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-rk4-refinement --output renders/increment-refinement.json
-cargo run --locked --release -p rf-rhodes-lab -- modal-hammer-check --output renders/increment-hammer.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-adaptive-check --output renders/increment-adaptive.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-economical-check --output renders/increment-economical.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-free-check --output renders/increment-free.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-rk4-refinement --output renders/increment-refinement.json
+cargo run --locked --release -p rf-73-lab -- modal-hammer-check --output renders/increment-hammer.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-adaptive-check --output renders/increment-adaptive.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-economical-check --output renders/increment-economical.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-free-check --output renders/increment-free.json
 ```
 
 Output paths must be new. The existing commands and report schemas are unchanged;

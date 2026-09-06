@@ -6,7 +6,7 @@ its material memory remain active through contact and recovery. This is a
 selected-strike listening preview, not a new plugin version or a calibrated note.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- render-memory-modal --output renders/physical-preview.wav
+cargo run --locked --release -p rf-73-lab -- render-memory-modal --output renders/physical-preview.wav
 ```
 
 The default take is 1.5 seconds at 48 kHz, with a 0.4 m/s launch, 75 mm tine

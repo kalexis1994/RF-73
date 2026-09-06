@@ -6,7 +6,7 @@ of the [direction review](RESEARCH-DIRECTION-2026-09-06.md): measure what each
 candidate changes before fitting its parameters or choosing a production model.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- compare-modal-hammers --output renders/hammer-study.wav
+cargo run --locked --release -p rf-73-lab -- compare-modal-hammers --output renders/hammer-study.wav
 ```
 
 The command writes the memory candidate to `hammer-study.wav`, the elastic

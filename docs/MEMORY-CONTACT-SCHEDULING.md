@@ -45,8 +45,8 @@ contact estimate without replacing the estimator or omitting a physical check.
 ## Reproducibility and accuracy
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-economical-check --output renders/contact-scheduling.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-economical-timing --output renders/contact-scheduling-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-economical-check --output renders/contact-scheduling.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-economical-timing --output renders/contact-scheduling-timing.json
 ```
 
 The existing `memory-modal-adaptive-check`/`memory-modal-adaptive-timing` retain

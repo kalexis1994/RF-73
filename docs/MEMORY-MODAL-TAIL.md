@@ -9,7 +9,7 @@ equation, coefficient, integrator tolerance or audible plugin behavior changes.
 ## Protocol and reproduction
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-tail-check --output renders/modal-tail.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-tail-check --output renders/modal-tail.json
 ```
 
 The output path must be a new JSON file. The command retains a completed report

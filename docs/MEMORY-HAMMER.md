@@ -116,8 +116,8 @@ provide displacement/velocity references. Four times finer steps reduce the
 maximum normalized mode error by more than a factor of 14.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-hammer-check --output renders/memory-hammer.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-hammer-check --output renders/memory-hammer-coarse.json --substeps 32
+cargo run --locked --release -p rf-73-lab -- memory-hammer-check --output renders/memory-hammer.json
+cargo run --locked --release -p rf-73-lab -- memory-hammer-check --output renders/memory-hammer-coarse.json --substeps 32
 ```
 
 The audit runs 24 cases / 48 takes: output rates 44.1/192 kHz, relaxation times

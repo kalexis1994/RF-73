@@ -65,9 +65,9 @@ hammer and moving assembly with pure bisection, check passivity at mass/material
 corners, conserve ungrounded momentum and reject excessive travel atomically.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-free-check --output renders/material-solve-modal.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-free-check --output renders/material-solve-wall.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-free-timing --output renders/material-solve-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-free-check --output renders/material-solve-modal.json
+cargo run --locked --release -p rf-73-lab -- memory-free-check --output renders/material-solve-wall.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-free-timing --output renders/material-solve-timing.json
 ```
 
 The new modal and fixed-wall reports retain the previous physical cases,

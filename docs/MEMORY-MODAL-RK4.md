@@ -74,9 +74,9 @@ Intervals stop at observations, impulses and damper transitions. Other
 controllers and the audible plugin retain their previous integration paths.
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-rk4-check --output renders/modal-rk4.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-rk4-timing --output renders/modal-rk4-timing.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-economical-check --output renders/modal-rk4-control.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-rk4-check --output renders/modal-rk4.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-rk4-timing --output renders/modal-rk4-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-economical-check --output renders/modal-rk4-control.json
 ```
 
 Each path is audited over the existing 12 profiles and 8 ms protocol: impact,

@@ -51,9 +51,9 @@ The sweep tools now report `selection_limits`, marking grid edges, supported-pro
 Use fresh output paths. The following reproduces the strong baseline case after the reference WAVs are acquired:
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- render --output renders/g3-baseline.wav --note 55 --velocity 0.9 --sample-rate 44100 --seconds 3 --hold 2.8
-cargo run --locked --release -p rf-rhodes-lab -- compare-tone references/audio/jrhodes-g3-a886e6c/A_055__G3_1.wav renders/g3-baseline.wav --note 55 --output renders/g3-tone.json
-cargo run --locked --release -p rf-rhodes-lab -- sweep-pickup references/audio/jrhodes-g3-a886e6c/A_055__G3_1.wav --output renders/g3-sweep.json --note 55 --velocity 0.9 --seconds 0.6 --gaps-mm 0.5,0.75,1,1.5,2 --offsets-mm 0,0.25,0.5,0.75,1
+cargo run --locked --release -p rf-73-lab -- render --output renders/g3-baseline.wav --note 55 --velocity 0.9 --sample-rate 44100 --seconds 3 --hold 2.8
+cargo run --locked --release -p rf-73-lab -- compare-tone references/audio/jrhodes-g3-a886e6c/A_055__G3_1.wav renders/g3-baseline.wav --note 55 --output renders/g3-tone.json
+cargo run --locked --release -p rf-73-lab -- sweep-pickup references/audio/jrhodes-g3-a886e6c/A_055__G3_1.wav --output renders/g3-sweep.json --note 55 --velocity 0.9 --seconds 0.6 --gaps-mm 0.5,0.75,1,1.5,2 --offsets-mm 0,0.25,0.5,0.75,1
 ```
 
 Render with `--gap-mm 0.5 --offset-mm 0.25` for the exploratory geometry. Repeat model velocities 0.2/0.5/0.9 and source suffixes 1..5 for the full matrix. Generated WAVs, original analyses, the sweep and compact tone reports are under ignored `renders/g3-residual-20260904-224021/`. The original sweep predates the additive `selection_limits` field; its newly generated `loud-pickup-sweep-limits.json` companion verifies that field with otherwise identical results.

@@ -21,9 +21,9 @@ There is no finite pole surface, magnetic loading, measured field map or electri
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- pickup-transfer --output renders/transfer-default.json
-cargo run --locked --release -p rf-rhodes-lab -- pickup-transfer --output renders/transfer-close.json --gap-mm 0.5 --offset-mm 0.25
-cargo run --locked --release -p rf-rhodes-lab -- pickup-transfer --output renders/transfer-treble.json --period-frames 16 --gap-mm 0.5 --offset-mm 0.25 --amplitudes-mm 0.75,3
+cargo run --locked --release -p rf-73-lab -- pickup-transfer --output renders/transfer-default.json
+cargo run --locked --release -p rf-73-lab -- pickup-transfer --output renders/transfer-close.json --gap-mm 0.5 --offset-mm 0.25
+cargo run --locked --release -p rf-73-lab -- pickup-transfer --output renders/transfer-treble.json --period-frames 16 --gap-mm 0.5 --offset-mm 0.25 --amplitudes-mm 0.75,3
 ```
 
 The default sample rate is 44,100 Hz with 225 output frames per cycle: exactly 196 Hz, near G3 but not an exact equal-tempered MIDI note. `--sample-rate` accepts 44,100/48,000/96,000/192,000 Hz; `--period-frames` accepts integers 16..512. Frequency is always sample rate divided by period frames, so changing the rate alone also changes the excitation frequency. Gap/offset use the validated profile limits of 0.5..5 mm and -3..3 mm. `--amplitudes-mm` accepts 1..5 unique finite values in 0.005..3 mm, default 0.05/0.25/0.75. Displacement amplitudes are independent probes, not inferred strike velocities.

@@ -127,7 +127,7 @@ This does not establish a Rhodes tuning scale or measured regulation.
 ## Audit and interpretation
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- modal-assembly-check --output renders/modal-assembly.json
+cargo run --locked --release -p rf-73-lab -- modal-assembly-check --output renders/modal-assembly.json
 ```
 
 The [tracked report](../references/modal-assembly-validation.json) contains 12

@@ -117,8 +117,8 @@ without extending its mass matrix and coordinate system.
 ## Verification and audit
 
 ```text
-cargo test --locked -p rf-rhodes-dsp tine::tests
-cargo run --locked --release -p rf-rhodes-lab -- tine-modes --output renders/tine-modes.json
+cargo test --locked -p rf-73-dsp tine::tests
+cargo run --locked --release -p rf-73-lab -- tine-modes --output renders/tine-modes.json
 ```
 
 The command refuses existing output files and opens no audio device. The

@@ -75,7 +75,7 @@ allocation, locking, matrix factorization or I/O in a tick.
 ## Reproducible audit
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- assembly-refinement --output renders/assembly-refinement.json
+cargo run --locked --release -p rf-73-lab -- assembly-refinement --output renders/assembly-refinement.json
 ```
 
 The command refuses to overwrite existing reports and opens no audio device.

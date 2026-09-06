@@ -1,0 +1,370 @@
+{
+  "candidate": {
+    "anchor": {
+      "frequency_hz": 169.57054042359366,
+      "observation_resolution_hz": 1.953125,
+      "qualified": true,
+      "rejection_reasons": [],
+      "search_band_hz": [
+        155.56349186104043,
+        246.94165062806204
+      ],
+      "temporal_span_cents": 0.0002247349390880204,
+      "windows": [
+        {
+          "amplitude_dbfs": -26.92832673317971,
+          "competing_peak_frequency_hz": null,
+          "end_seconds": 0.762,
+          "frequency_hz": 169.57055409749734,
+          "margin_above_band_background_db": 74.05190154059491,
+          "rejection_reasons": [],
+          "start_seconds": 0.25
+        },
+        {
+          "amplitude_dbfs": -34.16574079697804,
+          "competing_peak_frequency_hz": null,
+          "end_seconds": 1.274,
+          "frequency_hz": 169.5705350880768,
+          "margin_above_band_background_db": 85.32695903930747,
+          "rejection_reasons": [],
+          "start_seconds": 0.762
+        },
+        {
+          "amplitude_dbfs": -41.477178741070816,
+          "competing_peak_frequency_hz": null,
+          "end_seconds": 1.786,
+          "frequency_hz": 169.5705320852075,
+          "margin_above_band_background_db": 84.05712677594852,
+          "rejection_reasons": [],
+          "start_seconds": 1.274
+        }
+      ]
+    },
+    "file": "renders/pitch-reference-default-75mm.wav",
+    "frozen_target_residual": {
+      "consistent_with_5_cent_pilot_limit": false,
+      "frequency_error_cents": -254.1691373241547
+    },
+    "role": "Diagnostic only; never participates in reference target fitting or qualification"
+  },
+  "experiment": "frequency-reference-preparation-v1",
+  "manifest": {
+    "capture_gain": "Unknown; raw distributed sample levels are not a calibrated strike-intensity curve",
+    "instrument": "1977 Rhodes Mark I Stage 73",
+    "note": 55,
+    "prior_exposure": "All five layers were inspected in the earlier G3 pilots. Training/validation is a new fixed protocol split, not blind independent data.",
+    "processing": "Harp output; treble boost, low-mid scoop and CoolEdit 96 noise reduction; mono version",
+    "schema_version": 1,
+    "source": "https://github.com/jlearman/jRhodes3d-wav",
+    "source_revision": "a886e6cebf074c995a10634f82ebe4fdb90f5ca6",
+    "takes": [
+      {
+        "file": "audio/jrhodes-g3-a886e6c/A_055__G3_1.wav",
+        "git_blob_sha1": "2a95dbf514bd9b721d4084c6ed5816ad123f2712",
+        "id": "g3-layer-1",
+        "role": "training"
+      },
+      {
+        "file": "audio/jrhodes-g3-a886e6c/A_055__G3_2.wav",
+        "git_blob_sha1": "c46d5086be237b50dcb2286e7891aba13cf4f183",
+        "id": "g3-layer-2",
+        "role": "validation"
+      },
+      {
+        "file": "audio/jrhodes-g3-a886e6c/A_055__G3_3.wav",
+        "git_blob_sha1": "e16318eb5d9cdf0c4c951aaa725d5e6138657c3b",
+        "id": "g3-layer-3",
+        "role": "training"
+      },
+      {
+        "file": "audio/jrhodes-g3-a886e6c/A_055__G3_4.wav",
+        "git_blob_sha1": "a3ad5115e19e8d011ed45052122d43718a0a7d52",
+        "id": "g3-layer-4",
+        "role": "validation"
+      },
+      {
+        "file": "audio/jrhodes-g3-a886e6c/A_055__G3_5.wav",
+        "git_blob_sha1": "c41b60a18683c78f9c77b45e9b5accf0fd2a775c",
+        "id": "g3-layer-5",
+        "role": "training"
+      }
+    ]
+  },
+  "protocol": {
+    "competitor_margin_db": 20,
+    "maximum_between_take_error_cents": 5,
+    "maximum_temporal_span_cents": 5,
+    "minimum_band_background_margin_db": 24,
+    "search_half_width_cents": 400,
+    "start_seconds": 0.25,
+    "target": "Equal-take arithmetic mean in log frequency; training only",
+    "window_count": 3,
+    "window_seconds": 0.512
+  },
+  "reference_qualification_passed": true,
+  "schema_version": 1,
+  "scope": "Frequency-only target from processed output recordings. Broad-band dominant local peak is not a proven fundamental or structural eigenmode. Unresolved close components can remain hidden. Reciprocal window duration and temporal spread are not confidence intervals. Reused layers are a declared protocol split, not blind independent data. No decay/material/geometry/gain/velocity identification, DSP mutation, WAV generation or listening claim. Git blob identity is verified on the exact decoded bytes; candidate is diagnostic and never fitted.",
+  "takes": [
+    {
+      "anchor": {
+        "frequency_hz": 196.45936360368256,
+        "observation_resolution_hz": 1.9531423003675983,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          155.56349186104043,
+          246.94165062806204
+        ],
+        "temporal_span_cents": 0.6788180866722696,
+        "windows": [
+          {
+            "amplitude_dbfs": -17.0668867781483,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.7619954648526077,
+            "frequency_hz": 196.49035154012714,
+            "margin_above_band_background_db": 75.76357458055179,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -16.718058682756965,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.2739909297052154,
+            "frequency_hz": 196.47442504984338,
+            "margin_above_band_background_db": 77.63588107889029,
+            "rejection_reasons": [],
+            "start_seconds": 0.7619954648526077
+          },
+          {
+            "amplitude_dbfs": -17.42058531889351,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.7859863945578232,
+            "frequency_hz": 196.41332263780203,
+            "margin_above_band_background_db": 79.2755181368896,
+            "rejection_reasons": [],
+            "start_seconds": 1.2739909297052154
+          }
+        ]
+      },
+      "frozen_target_residual": {
+        "consistent_with_5_cent_pilot_limit": true,
+        "frequency_error_cents": 0.645317869906372
+      },
+      "take": {
+        "file": "audio/jrhodes-g3-a886e6c/A_055__G3_1.wav",
+        "git_blob_sha1": "2a95dbf514bd9b721d4084c6ed5816ad123f2712",
+        "id": "g3-layer-1",
+        "role": "training"
+      }
+    },
+    {
+      "anchor": {
+        "frequency_hz": 196.39748177264747,
+        "observation_resolution_hz": 1.9531423003675983,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          155.56349186104043,
+          246.94165062806204
+        ],
+        "temporal_span_cents": 0.9283452561283372,
+        "windows": [
+          {
+            "amplitude_dbfs": -10.858136318668734,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.7619954648526077,
+            "frequency_hz": 196.45344254665446,
+            "margin_above_band_background_db": 78.20041000186475,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -11.937494191844872,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.2739909297052154,
+            "frequency_hz": 196.39089113687783,
+            "margin_above_band_background_db": 79.83103084907665,
+            "rejection_reasons": [],
+            "start_seconds": 0.7619954648526077
+          },
+          {
+            "amplitude_dbfs": -13.336869152415437,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.7859863945578232,
+            "frequency_hz": 196.34812591885841,
+            "margin_above_band_background_db": 78.26077588899678,
+            "rejection_reasons": [],
+            "start_seconds": 1.2739909297052154
+          }
+        ]
+      },
+      "frozen_target_residual": {
+        "consistent_with_5_cent_pilot_limit": true,
+        "frequency_error_cents": 0.0999185212457274
+      },
+      "take": {
+        "file": "audio/jrhodes-g3-a886e6c/A_055__G3_2.wav",
+        "git_blob_sha1": "c46d5086be237b50dcb2286e7891aba13cf4f183",
+        "id": "g3-layer-2",
+        "role": "validation"
+      }
+    },
+    {
+      "anchor": {
+        "frequency_hz": 196.35566237226888,
+        "observation_resolution_hz": 1.9531423003675983,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          155.56349186104043,
+          246.94165062806204
+        ],
+        "temporal_span_cents": 0.3630940831357694,
+        "windows": [
+          {
+            "amplitude_dbfs": -6.54390496514811,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.7619954648526077,
+            "frequency_hz": 196.37889699797185,
+            "margin_above_band_background_db": 77.49103733746747,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -8.015548369266435,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.2739909297052154,
+            "frequency_hz": 196.35037788251705,
+            "margin_above_band_background_db": 77.81182097445361,
+            "rejection_reasons": [],
+            "start_seconds": 0.7619954648526077
+          },
+          {
+            "amplitude_dbfs": -9.496066699229665,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.7859863945578232,
+            "frequency_hz": 196.3377145023009,
+            "margin_above_band_background_db": 77.9592595780272,
+            "rejection_reasons": [],
+            "start_seconds": 1.2739909297052154
+          }
+        ]
+      },
+      "frozen_target_residual": {
+        "consistent_with_5_cent_pilot_limit": true,
+        "frequency_error_cents": -0.2687566692647183
+      },
+      "take": {
+        "file": "audio/jrhodes-g3-a886e6c/A_055__G3_3.wav",
+        "git_blob_sha1": "e16318eb5d9cdf0c4c951aaa725d5e6138657c3b",
+        "id": "g3-layer-3",
+        "role": "training"
+      }
+    },
+    {
+      "anchor": {
+        "frequency_hz": 196.34550086240148,
+        "observation_resolution_hz": 1.9531423003675983,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          155.56349186104043,
+          246.94165062806204
+        ],
+        "temporal_span_cents": 0.03202717459428604,
+        "windows": [
+          {
+            "amplitude_dbfs": -5.610169150597677,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.7619954648526077,
+            "frequency_hz": 196.34769051664586,
+            "margin_above_band_background_db": 77.36272993287488,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -7.004115777822173,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.2739909297052154,
+            "frequency_hz": 196.34475389719705,
+            "margin_above_band_background_db": 78.92838206756981,
+            "rejection_reasons": [],
+            "start_seconds": 0.7619954648526077
+          },
+          {
+            "amplitude_dbfs": -8.355695923023404,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.7859863945578232,
+            "frequency_hz": 196.344058192292,
+            "margin_above_band_background_db": 78.04767318709368,
+            "rejection_reasons": [],
+            "start_seconds": 1.2739909297052154
+          }
+        ]
+      },
+      "frozen_target_residual": {
+        "consistent_with_5_cent_pilot_limit": true,
+        "frequency_error_cents": -0.3583512695525993
+      },
+      "take": {
+        "file": "audio/jrhodes-g3-a886e6c/A_055__G3_4.wav",
+        "git_blob_sha1": "a3ad5115e19e8d011ed45052122d43718a0a7d52",
+        "id": "g3-layer-4",
+        "role": "validation"
+      }
+    },
+    {
+      "anchor": {
+        "frequency_hz": 196.3434356192651,
+        "observation_resolution_hz": 1.9531423003675983,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          155.56349186104043,
+          246.94165062806204
+        ],
+        "temporal_span_cents": 0.013025078459533405,
+        "windows": [
+          {
+            "amplitude_dbfs": -4.701871905561378,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.7619954648526077,
+            "frequency_hz": 196.34271229821093,
+            "margin_above_band_background_db": 77.66319736920367,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -5.945246004725165,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.2739909297052154,
+            "frequency_hz": 196.34340505842763,
+            "margin_above_band_background_db": 78.14336258746637,
+            "rejection_reasons": [],
+            "start_seconds": 0.7619954648526077
+          },
+          {
+            "amplitude_dbfs": -7.163396426410098,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.7859863945578232,
+            "frequency_hz": 196.34418950393845,
+            "margin_above_band_background_db": 77.52625906338783,
+            "rejection_reasons": [],
+            "start_seconds": 1.2739909297052154
+          }
+        ]
+      },
+      "frozen_target_residual": {
+        "consistent_with_5_cent_pilot_limit": true,
+        "frequency_error_cents": -0.376561200646337
+      },
+      "take": {
+        "file": "audio/jrhodes-g3-a886e6c/A_055__G3_5.wav",
+        "git_blob_sha1": "c41b60a18683c78f9c77b45e9b5accf0fd2a775c",
+        "id": "g3-layer-5",
+        "role": "training"
+      }
+    }
+  ],
+  "training_target_hz": 196.38614697959488
+}

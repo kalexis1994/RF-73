@@ -2,7 +2,7 @@
 
 Historical results are retained below. The latest local results are in the component comparison section at the end.
 
-Date: 2026-09-04. RF-Rhodes 0.1.0 research prototype.
+Date: 2026-09-04. RF-73 0.1.0 research prototype.
 
 Environment: Windows, AMD Ryzen 5 5600X, Rust 1.98.0, Windows GNU toolchain. RackForge source revision `7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1`; its host tools were rebuilt before integration validation.
 
@@ -44,7 +44,7 @@ The archive was produced after host validation. Its physical model is unchanged 
 
 Real-instrument timbral fidelity, measured hammer material response, high-order assembly modes, spectral convergence/aliasing bounds, browser execution, Android/Pi timing, actual audio-device latency and long-duration soak behavior.
 
-The initial commit passed hosted CI on Windows and Linux: [run 33915204770](https://github.com/kalexis1994/RF-Rhodes/actions/runs/33915204770).
+The initial commit passed hosted CI on Windows and Linux: [run 33915204770](https://github.com/kalexis1994/RF-73/actions/runs/33915204770).
 
 ## Offline analysis milestone
 
@@ -105,8 +105,8 @@ All six reports have zero dropped track observations. Minimum separation is repo
 Reproduce one case with fresh output names:
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- render --output renders/tracking-a3.wav --note 57 --velocity 0.9 --seconds 3 --hold 2.5
-cargo run --locked --release -p rf-rhodes-lab -- analyze renders/tracking-a3.wav --output renders/tracking-a3-analysis.json --note 57 --sustain-end 2.4
+cargo run --locked --release -p rf-73-lab -- render --output renders/tracking-a3.wav --note 57 --velocity 0.9 --seconds 3 --hold 2.5
+cargo run --locked --release -p rf-73-lab -- analyze renders/tracking-a3.wav --output renders/tracking-a3-analysis.json --note 57 --sustain-end 2.4
 ```
 
 This validates the new measurement path against known signals and current model output. Untreated reference recordings, physical parameter identification and an audible realism improvement remain the next experiment.
@@ -1239,3 +1239,40 @@ and creates none of the three WAVs. CI includes the new short comparison, but
 remote CI and host/listening tests were not run. Tracked summary/full medium
 receipts and local audio links are in the comparison document. No DSP equations,
 plugin engine, calibrated parameters or repeated-excitation status changed.
+
+## Frequency target preparation
+
+Date: 2026-09-06. The [G3 reference preparation](PITCH-REFERENCE.md) verifies
+the five original source blobs, rejects ambiguous/unstable observations and
+fits a frequency-only target from training layers 1/3/5. The target is
+196.386147 Hz; validation layers 2/4 differ by +0.0999/-0.3584 cents. Maximum
+within-take span across three nonoverlapping 512 ms windows is 0.929 cents.
+This declared split reuses previously inspected recordings and is not blind
+physical validation. Unknown capture gain and processing prevent an inferred
+hammer-speed, gain or natural-decay fit.
+
+The provisional 75 mm memory assembly measures 169.570540 Hz, -254.169 cents
+from that target. Its new 2-second diagnostic WAV holds until 1.85 seconds,
+passes the existing numerical/audio qualification and independent WAV inspection,
+and supplies all three observations before damping. The broad-band anchor avoids
+the earlier hinted analyzer selecting a weak component near the expected note.
+An accepted output peak is still not an identified structural eigenmode.
+
+All 103 affected analysis/laboratory tests, workspace-wide strict Clippy,
+formatting and release laboratory build pass. Five new regressions cover broad
+peak selection/gain invariance, ambiguity/silence/short inputs, temporal drift,
+training/validation isolation and CLI blob verification/overwrite protection.
+DSP equations and plugin parameters are unchanged. No remote CI or listening
+claim is made. Cleanup after verification removed 1565 regenerable debug-cache
+files (about 1.2 GiB); release tools, source audio and validation artifacts remain.
+
+## RF-73 rename
+
+Date: 2026-09-06. [Naming and compatibility](RENAMING.md) records the new local
+folder, GitHub repository, Cargo names, UI labels and package filename. Existing
+host/program identity and serialized state remain compatible. All 206 workspace
+tests, strict Clippy, formatting, native release workspace and plugin/UI WASM
+builds pass. RackForge CLI validation and smoke pass for `RF-73 Research`.
+The 237215-byte `dist/RF-73-0.1.2.rfplugin` archive is retained; no Desktop launch
+or listening claim is made. Cargo cleanup removed about 736.2 MiB of build cache
+after verification, preserving the package and all reference/experiment assets.

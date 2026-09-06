@@ -7,8 +7,8 @@ The alternative remains an offline experiment. The plugin uses the original prod
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- render-pickup-pair --output renders/g3-pair.wav --note 55 --velocity 0.9 --sample-rate 44100 --seconds 3 --hold 2.8 --gap-mm 0.5 --offset-mm 0.25
-cargo run --locked --release -p rf-rhodes-lab -- compare-tone references/audio/jrhodes-g3-a886e6c/A_055__G3_1.wav renders/g3-pair-point-pole.wav --note 55 --output renders/g3-pair-reference.json
+cargo run --locked --release -p rf-73-lab -- render-pickup-pair --output renders/g3-pair.wav --note 55 --velocity 0.9 --sample-rate 44100 --seconds 3 --hold 2.8 --gap-mm 0.5 --offset-mm 0.25
+cargo run --locked --release -p rf-73-lab -- compare-tone references/audio/jrhodes-g3-a886e6c/A_055__G3_1.wav renders/g3-pair-point-pole.wav --note 55 --output renders/g3-pair-reference.json
 ```
 
 The first command writes:

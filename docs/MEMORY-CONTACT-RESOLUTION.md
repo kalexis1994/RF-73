@@ -40,7 +40,7 @@ agreement with subsequent committed steps and base ticks.
 ## Reproduction and scope
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-contact-resolution --output renders/contact-resolution.json
+cargo run --locked --release -p rf-73-lab -- memory-contact-resolution --output renders/contact-resolution.json
 ```
 
 The [retained sweep](../references/memory-contact-resolution.json) covers the

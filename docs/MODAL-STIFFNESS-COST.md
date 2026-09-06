@@ -5,8 +5,8 @@ comparison, but not its runtime cost. Two commands now measure the same four
 strong-strike profiles in continuous 0–8, 8–32, 32–64 and 64–128 ms sections:
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-tail-timing --output renders/tail-timing.json
-cargo run --locked --release -p rf-rhodes-lab -- memory-modal-stiffness-timing --output renders/stiffness-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-tail-timing --output renders/tail-timing.json
+cargo run --locked --release -p rf-73-lab -- memory-modal-stiffness-timing --output renders/stiffness-timing.json
 ```
 
 The first compares default and contact/free-capped RK4 controllers. The second

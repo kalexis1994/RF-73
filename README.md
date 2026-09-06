@@ -1,4 +1,6 @@
-# RF-Rhodes
+# RF-73
+
+[Project naming and compatibility](docs/RENAMING.md).
 
 A Rust physical-model electric piano research project for RackForge.
 
@@ -27,31 +29,31 @@ and polyphonic performance work.
 To build, validate, install and open the current instrument in RackForge Desktop on Windows:
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- audition
+cargo run --locked --release -p rf-73-lab -- audition
 ```
 
 The [audition workflow](docs/AUDITION.md) keeps a dedicated test library, retains audio/MIDI preferences and supports repeated builds of the same version.
 
 ```text
 cargo test --locked --workspace
-cargo run --release -p rf-rhodes-lab -- demo --output renders/demo.wav
-cargo run --release -p rf-rhodes-lab -- render --output renders/a3.wav --trace
-cargo run --release -p rf-rhodes-lab -- inspect renders/demo.wav
-cargo run --release -p rf-rhodes-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
-cargo run --release -p rf-rhodes-lab -- compare renders/a3.wav renders/a3.wav --output renders/self-comparison.json
-cargo run --release -p rf-rhodes-lab -- stress
-cargo run --release -p rf-rhodes-lab -- converge --output renders/convergence.json --note 100 --velocity 0.2
+cargo run --release -p rf-73-lab -- demo --output renders/demo.wav
+cargo run --release -p rf-73-lab -- render --output renders/a3.wav --trace
+cargo run --release -p rf-73-lab -- inspect renders/demo.wav
+cargo run --release -p rf-73-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
+cargo run --release -p rf-73-lab -- compare renders/a3.wav renders/a3.wav --output renders/self-comparison.json
+cargo run --release -p rf-73-lab -- stress
+cargo run --release -p rf-73-lab -- converge --output renders/convergence.json --note 100 --velocity 0.2
 ```
 
 Requires Rust 1.98 and a sibling RackForge checkout for its public SDK. See [Development](docs/DEVELOPMENT.md) for Windows linker setup, WASM builds and packaging. Existing audio and report files are never overwritten.
 
 ## What is here
 
-- `rf-rhodes-dsp`: safe Rust DSP with bounded contact integration, 73 fixed key states, per-key pickups and 4x antialias filtering.
-- `rf-rhodes-plugin`: RackForge adapter with MIDI 1.0/2.0, matched A/B, declarative program editing and versioned state.
-- `rf-rhodes-ui`: Rust WebAssembly PLAY panel with A/B controls, host synchronization and day/stage styling.
-- `rf-rhodes-analysis`: offline WAV input, FFT spectra, harmonic and independent partial tracks, qualified decay estimates and aligned comparisons.
-- `rf-rhodes-lab`: Rust WAV renderer, physical CSV traces, measurement commands, JSON reports and timing diagnostics.
+- `rf-73-dsp`: safe Rust DSP with bounded contact integration, 73 fixed key states, per-key pickups and 4x antialias filtering.
+- `rf-73-plugin`: RackForge adapter with MIDI 1.0/2.0, matched A/B, declarative program editing and versioned state.
+- `rf-73-ui`: Rust WebAssembly PLAY panel with A/B controls, host synchronization and day/stage styling.
+- `rf-73-analysis`: offline WAV input, FFT spectra, harmonic and independent partial tracks, qualified decay estimates and aligned comparisons.
+- `rf-73-lab`: Rust WAV renderer, physical CSV traces, measurement commands, JSON reports and timing diagnostics.
 - Tests for mechanical passivity, repeated strikes, dampers, MIDI ownership, block invariance, malformed input and file integrity.
 
 The rendering and parameter-automation paths use no allocation, locks or I/O. The offline laboratory does not open an audio device. No samples, reverb, amplifier, compressor or limiter hide the direct model output. The plugin applies documented, fixed pickup level compensation.
@@ -60,6 +62,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 
 - [Physical-model direction review](docs/RESEARCH-DIRECTION-2026-09-06.md): literature evidence, current assumptions and the next audible/calibration experiments.
 - [Controlled hammer comparison](docs/CONTROLLED-HAMMERS.md): equal-launch elastic, rate-dependent and memory candidates with independently qualified offline audio.
+- [Frequency reference preparation](docs/PITCH-REFERENCE.md): verified G3 sources, training-only pitch target and explicit limits before resonator fitting.
 - [First physical-assembly WAVs](docs/MEMORY-MODAL-AUDIO.md): four offline previews with sampling, integration and headroom checks.
 
 - [Pickup Lab UI](docs/PICKUP-LAB-UI.md): controls, A/B, saving, transition and gain policy.

@@ -21,7 +21,7 @@ The 0.2-radian preparation threshold is an engineering choice supported by this 
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-rhodes-lab -- converge --output renders/treble-convergence.json --note 100 --velocity 0.2 --sample-rate 48000 --seconds 0.25
+cargo run --locked --release -p rf-73-lab -- converge --output renders/treble-convergence.json --note 100 --velocity 0.2 --sample-rate 48000 --seconds 0.25
 ```
 
 Defaults are A3, velocity 0.7, 48 kHz and 250 ms. Every take holds the key throughout and uses the default physical profile. Supported output rates are 44.1/48/96/192 kHz, notes 28–100, velocities 0.01–1 and durations 50–1000 ms. Existing reports are never overwritten.
