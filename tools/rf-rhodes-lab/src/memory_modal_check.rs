@@ -12,6 +12,8 @@ mod tail;
 pub(crate) use tail::{HELP as TAIL_HELP, run as run_tail};
 mod tail_timing;
 pub(crate) use tail_timing::{HELP as TAIL_TIMING_HELP, run as run_tail_timing};
+mod checkpoint;
+pub(crate) use checkpoint::{HELP as CHECKPOINT_HELP, run as run_checkpoint};
 
 pub const HELP: &str = "Stateful multimode hammer:
   memory-modal-check --output REPORT.json [--coarse]

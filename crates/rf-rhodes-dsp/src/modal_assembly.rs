@@ -7,7 +7,7 @@ mod dissipative_contact;
 mod memory_coupling;
 pub use memory_coupling::{
     MemoryContactInspection, MemoryContactStatus, MemoryContactStep, MemoryModalAssembly,
-    MemoryModalProbe, MemoryModalRk4Step,
+    MemoryModalCheckpoint, MemoryModalProbe, MemoryModalRk4Step,
 };
 mod numerics;
 use numerics::{Free, Midpoint, apply, dot};
@@ -128,6 +128,7 @@ pub struct ModalProbe {
     pub balance_residual_j: f64,
 }
 
+#[derive(Clone)]
 struct Operators {
     m: Matrix,
     k: Matrix,

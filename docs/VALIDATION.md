@@ -1097,3 +1097,35 @@ failed-report overwrite protection pass. No DSP/plugin changes, new timing,
 remote CI or GUI/audio qualification are included. The next investigation must
 separate inherited trajectory differences from local late-impact integration
 by using an identical complete preimpact checkpoint.
+
+## Late collisions from identical physical checkpoints
+
+Date: 2026-09-06. The [checkpoint study](MEMORY-MODAL-CHECKPOINT.md) adds an
+opaque physical checkpoint with validated timestep re-preparation. It preserves
+all modal/hammer/material state, damper state and work/heat ledgers while
+starting fresh integration banks and controllers. The same-step restart agrees
+exactly with the original fixed trajectory through signed impulses and damper
+changes; invalid restart steps leave the source and checkpoint unchanged.
+
+Eight donor checkpoints immediately precede the first and second late impacts
+in the four repeated-excitation profiles. Six 8 ms continuations independently
+cap contact/free steps and compare two uniform midpoint grids. All 48 takes,
+64 whole-record pairs and 256 separate 2 ms pairs pass existing gates. Maximum
+default/finer-midpoint section kinetic velocity RMSE is 0.019647% of launch
+speed; default/both-caps reaches 0.00001759%. The two midpoint grids still differ
+by up to 0.011135%, so no exact-reference claim is made.
+
+All donor impact timestamps match the earlier repeated-excitation report;
+initial full probes match before/after each restart and bank preparation.
+Maximum relative combined, structural and hammer ledger residuals are
+7.105e-11, 2.660e-12 and 6.864e-11. The original 24-take short audit remains
+byte-identical. All 193 workspace tests, strict Clippy, formatting, native lab
+build and release WASM compilation pass. CLI help, invalid options and overwrite
+preservation pass. CI now includes the passing local checkpoint command.
+
+The earlier full-repetition qualification remains failed. Large divergence does
+not recur in these short local continuations from equal physical history;
+inherited differences and longer amplification remain unresolved. Next isolate
+the approach from an identical checkpoint at the late impulse. No equations,
+coefficients or tolerances changed, and no realtime timing, remote CI or
+GUI/audio qualification was performed.

@@ -167,6 +167,14 @@ cover these repeated impacts. Isolating a late collision from an identical full
 preimpact checkpoint is now the priority before further performance work or
 real-time integration; the root cause remains unresolved.
 
+The [shared-checkpoint study](MEMORY-MODAL-CHECKPOINT.md) now passes 48 local
+8 ms continuations from eight identical complete preimpact states. Independent
+contact/free caps agree closely; default versus finer midpoint reaches at most
+0.019647% section kinetic velocity RMSE. This localizes the earlier failure:
+large divergence is not reproduced over these short collisions with equal
+history. Full repetition remains unqualified. Move the shared checkpoint back
+to the late impulse and isolate intervening free/material recovery next.
+
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 
 The current mechanical work builds on the explicit tine/tonebar assembly with mounting compliance. Determine which measured modes belong to which assembly motion; introduce orthogonal motion and coupling where the evidence supports it. Preserve the existing plugin engine as an A/B baseline. Fit frequency, decay and coupling against reference observations, and qualify numerical accuracy and performance before real-time integration.

@@ -51,7 +51,54 @@ pub struct MemoryModalAssembly {
     contact: Option<ContactBank>,
     rk_contact: Option<Box<RkContact>>,
 }
+/// Opaque in-memory physical checkpoint for offline integration comparisons.
+/// Includes operators, damper state, all motion/material state and work/heat ledgers.
+/// Excludes prepared integration banks and caller controller history. Not a file format.
+pub struct MemoryModalCheckpoint {
+    op: Operators,
+    motion: Motion,
+    damped: bool,
+}
+impl MemoryModalCheckpoint {
+    /// Prepare a fresh fixed-step integrator from exactly this physical state.
+    /// The 1 ns..1 ms domain is unchanged. Adaptive banks require explicit preparation.
+    /// Failure leaves the checkpoint and source unchanged; this is not a realtime API.
+    pub fn restart(&self, h: f64) -> Result<MemoryModalAssembly, ModelError> {
+        if !h.is_finite() || !(1e-9..=0.001).contains(&h) {
+            return Err(ModelError("checkpoint step must be between 1 ns and 1 ms"));
+        }
+        let prepared = self.motion.hammer.prepare_interval(h)?;
+        let mut hammer = self.motion.hammer.clone();
+        hammer.use_interval(h, &prepared);
+        let steps = [
+            Midpoint::prepare(self.op.m, self.op.k, self.op.c[0], self.op.hammer, h)?,
+            Midpoint::prepare(self.op.m, self.op.k, self.op.c[1], self.op.hammer, h)?,
+        ];
+        Ok(MemoryModalAssembly {
+            op: self.op.clone(),
+            steps,
+            h,
+            q: self.motion.q,
+            v: self.motion.v,
+            hammer,
+            damped: self.damped,
+            heat: self.motion.heat,
+            structural_energy: self.motion.structural_energy,
+            free: None,
+            contact: None,
+            rk_contact: None,
+        })
+    }
+}
 impl MemoryModalAssembly {
+    /// Capture complete physical state without advancing or resetting its history.
+    pub fn checkpoint(&self) -> MemoryModalCheckpoint {
+        MemoryModalCheckpoint {
+            op: self.op.clone(),
+            motion: self.motion(),
+            damped: self.damped,
+        }
+    }
     /// Only structural/damper fields of `structure` are used. Legacy scalar-hammer
     /// mass, stiffness, rate loss and speed fields do not control this experiment.
     pub fn new(
@@ -220,6 +267,51 @@ fn mechanical(op: &Operators, q: Vector, v: Vector) -> f64 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn checkpoint_preserves_full_history_and_damper_and_reprepares_only_the_step() {
+        let mut source = voice(1e-7);
+        for i in 0..10000 {
+            if i == 3000 {
+                source.apply_core_impulse(0.001).unwrap();
+            }
+            if i == 7000 {
+                source.set_damped(true);
+            }
+            source.tick().unwrap();
+        }
+        source.prepare_free_steps(3).unwrap();
+        source.prepare_rk4_contact().unwrap();
+        let before = source.probe();
+        assert!(before.hammer.material.dissipated_energy_j > 0.0);
+        assert!(before.structural_heat_j > 0.0);
+        let saved = source.checkpoint();
+        for h in [f64::NAN, f64::INFINITY, 0.0, 1e-10, 0.002] {
+            assert!(saved.restart(h).is_err());
+            assert_eq!(source.probe(), before);
+        }
+        for h in [1e-9, 1e-7, 1e-5] {
+            let mut restarted = saved.restart(h).unwrap();
+            assert_eq!(restarted.probe(), before);
+            assert!(restarted.try_free_step(0).is_err());
+            assert!(restarted.try_contact_step(0).is_err());
+            assert!(restarted.try_rk4_contact_step(0).is_err());
+            assert_eq!(restarted.probe(), before);
+        }
+        let mut same = saved.restart(1e-7).unwrap();
+        for i in 0..1000 {
+            if i == 300 {
+                source.apply_core_impulse(-0.0001).unwrap();
+                same.apply_core_impulse(-0.0001).unwrap();
+            }
+            if i == 600 {
+                source.set_damped(false);
+                same.set_damped(false);
+            }
+            assert_eq!(source.tick().unwrap(), same.tick().unwrap());
+        }
+        // A checkpoint is independent of subsequent source and sibling evolution.
+        assert_eq!(saved.restart(1e-7).unwrap().probe(), before);
+    }
     #[test]
     fn cached_diagnostics_follow_committed_motion_and_signed_impulse_work() {
         let mut v = voice(2e-6);

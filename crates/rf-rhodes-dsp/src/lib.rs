@@ -9,7 +9,7 @@ pub use memory_hammer::{MemoryFreeStatus, MemoryFreeStep};
 mod modal_assembly;
 pub use modal_assembly::{
     MemoryContactInspection, MemoryContactStatus, MemoryContactStep, MemoryModalAssembly,
-    MemoryModalProbe, MemoryModalRk4Step,
+    MemoryModalCheckpoint, MemoryModalProbe, MemoryModalRk4Step,
 };
 mod model;
 mod pickup;
