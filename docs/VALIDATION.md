@@ -1309,3 +1309,29 @@ After verification, Cargo removed 651 regenerable debug files (532.1 MiB).
 The temporary baseline regression WAV/report were removed after the byte check.
 About 55 MiB of release build artifacts remain; reference recordings, the
 new listening pair, validation reports and packaged plugin are preserved.
+
+## Post-tuning spectral evidence
+
+Date: 2026-09-06. [Post-tuning modal observations](POST-TUNING-MODES.md) introduces
+`observe-modes`: exact pinned-byte decoding, native-rate 32/128 ms attack and
+512 ms body windows, independently detected peaks and explicit harmonic,
+neighbor, capacity and observable-band limitations. All seven fixed inputs
+were analyzed without new audio or parameter fitting. The retained receipt
+preserves every accepted peak, all proposed-mode associations and report hashes.
+
+The tuned model has a prominent 1361.92 Hz short-window component. Reference
+layers 3/4/5 contain separated candidates at 1425.06/1425.27/1425.50 Hz in their
+128 ms windows; no structural identity is asserted. Three reference windows
+hit detector capacity and remain inconclusive. The initial layer-1 window has
+no accepted peaks, which does not imply absent spectral content. This evidence
+motivates a geometry sensitivity study at fixed pitch, not a timbre acceptance.
+
+All 111 affected release tests, strict workspace Clippy and formatting pass.
+Four new regressions bring the workspace total to 218 tests; unaffected DSP,
+plugin and UI tests were not rerun for this analysis-only change. No Desktop,
+listening, remote CI or measured-geometry qualification is claimed.
+
+Cleanup after verification removed 342 regenerable debug files (about 101.4 MiB)
+and the temporary exploratory analysis. The release tools/cache remain bounded
+at about 67 MiB. Existing audio, packaged plugin and numeric receipts are
+preserved; the detailed seven-report observation set totals 325178 bytes.

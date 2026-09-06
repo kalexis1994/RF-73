@@ -8,6 +8,64 @@ use std::{
 
 struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
+
+#[test]
+fn modal_observation_verifies_bytes_keeps_native_windows_and_preserves_output() {
+    let scratch = Scratch::new();
+    scratch.success(&[
+        "render",
+        "--output",
+        "source.wav",
+        "--note",
+        "55",
+        "--seconds",
+        "1",
+        "--hold",
+        "0.9",
+    ]);
+    let hash = Command::new("git")
+        .args(["hash-object", "--", "source.wav"])
+        .current_dir(&scratch.0)
+        .output()
+        .unwrap();
+    assert!(hash.status.success());
+    let hash = String::from_utf8(hash.stdout).unwrap();
+    let args = [
+        "observe-modes",
+        "source.wav",
+        "--blob-sha1",
+        hash.trim(),
+        "--fundamental",
+        "196.4",
+        "--modes",
+        "196.4,1361.9,3686.4",
+        "--output",
+        "observation.json",
+    ];
+    scratch.success(&args);
+    let report = scratch.json("observation.json");
+    assert_eq!(report["git_blob_sha1"], hash.trim());
+    assert_eq!(report["observation"]["sample_rate"], 48000);
+    assert_eq!(
+        report["observation"]["windows"][2]["spectrum"]["observed_samples"],
+        24576
+    );
+    let preserved = fs::read(scratch.0.join("observation.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(
+        fs::read(scratch.0.join("observation.json")).unwrap(),
+        preserved
+    );
+    fs::write(scratch.0.join("source.wav"), b"different bytes").unwrap();
+    let mut mismatch = args;
+    mismatch[9] = "mismatch.json";
+    let result = scratch.run(&mismatch);
+    assert!(!result.status.success());
+    assert!(String::from_utf8_lossy(&result.stderr).contains("blob mismatch"));
+    assert!(!scratch.0.join("mismatch.json").exists());
+    mismatch[2] = "--unknown";
+    assert!(!scratch.run(&mismatch).status.success());
+}
 impl Scratch {
     fn new() -> Self {
         let unique = SystemTime::now()

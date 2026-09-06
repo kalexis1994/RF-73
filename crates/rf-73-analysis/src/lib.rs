@@ -2,6 +2,7 @@
 mod audio;
 mod compare;
 mod measurement;
+mod modal_observation;
 mod partial_comparison;
 mod pitch_anchor;
 mod spectrum;
@@ -11,6 +12,7 @@ mod tracking;
 pub use audio::{AudioClip, AudioError, AudioMetadata};
 pub use compare::{Comparison, compare};
 pub use measurement::{Analysis, AnalysisOptions, analyze};
+pub use modal_observation::{ModalObservation, ModeEvidence, ModeWindow, observe_modes};
 pub use partial_comparison::{
     MatchedPartial, PairedDecayStatus, PartialComparison, PartialComparisonOptions,
     compare_partials,

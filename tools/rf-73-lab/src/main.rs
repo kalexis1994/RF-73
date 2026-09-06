@@ -10,6 +10,7 @@ mod memory_hammer_check;
 mod memory_modal_check;
 mod memory_modal_timing;
 mod modal_assembly_check;
+mod modal_observation;
 mod modal_timing;
 mod package;
 mod partial_comparison;
@@ -207,6 +208,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", pickup_listening::HELP);
         print!("{}", pickup_convergence::HELP);
         print!("{}", tone_comparison::HELP);
+        print!("{}", modal_observation::HELP);
         print!("{}", pickup_transfer::HELP);
         print!("{}", convergence::HELP);
         print!("{}", assembly_check::HELP);
@@ -338,6 +340,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "compare-tone" {
         return tone_comparison::run(&args);
+    }
+    if args[0] == "observe-modes" {
+        return modal_observation::run(&args);
     }
     if args[0] == "pickup-transfer" {
         return pickup_transfer::run(&args);

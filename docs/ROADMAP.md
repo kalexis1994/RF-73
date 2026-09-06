@@ -287,3 +287,11 @@ pair pass numerical qualification. Fixed-root mode ratios change alongside
 pitch, including a 4.51% change in the third/first ratio. Listening and modal
 weight/timbre identification remain open. This is an offline single-note
 experiment, not keyboard calibration or a realtime plugin change.
+
+
+The [post-tuning observations](POST-TUNING-MODES.md) now compare the frozen
+pair and all five source layers at native rates. Higher model components are
+audible but do not align with accepted reference peaks under the declared
+windows. A post-hoc 1425 Hz family in layers 3/4/5 is a candidate for further
+identification, not a new calibration target. Next examine tine/mass geometry
+sensitivity at fixed coupled pitch before fitting modal weights or losses.

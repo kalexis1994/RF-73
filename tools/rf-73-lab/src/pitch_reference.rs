@@ -86,7 +86,7 @@ impl Manifest {
     }
 }
 
-fn verified_audio(path: &Path, expected: &str) -> Result<AudioClip, Box<dyn Error>> {
+pub(crate) fn verified_audio(path: &Path, expected: &str) -> Result<AudioClip, Box<dyn Error>> {
     let mut bytes = Vec::new();
     fs::File::open(path)?
         .take(32_000_001)

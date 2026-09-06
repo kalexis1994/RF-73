@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "experiment": "g3-post-tuning-modal-observations-v1",
+  "structure_receipt": "references/g3-spring-tuning-validation.json",
+  "structure_receipt_sha256": "a7035df6544e9d08eec83dfe406961b9ec1382f6ca2c6861e3b296bf81e9ad8c",
+  "reference_receipt": "references/g3-pitch-reference-validation.json",
+  "reference_receipt_sha256": "d6518033909e60659b9aaf201eb24d1717446a7e013736bb3beaec87a620a020",
+  "scope": "Frozen settings only; all five previously inspected layers retained without ranking or fitting. Each file uses its prior measured pitch and native rate. Reference windows start at distributed file offset zero, not a newly inferred mechanical onset.",
+  "inputs": [
+    {
+      "id": "model-before",
+      "role": "fixed model observation",
+      "file": "renders/g3-spring-tuned-before.wav",
+      "git_blob_sha1": "d48ebffa0e0968626afcbce838676f5628714308",
+      "fundamental_hz": 192.82743138981823,
+      "proposed_modes_hz": [
+        28.975092105916683,
+        80.68564683414851,
+        192.83428726870014,
+        643.1373455710511,
+        1344.3125330456035,
+        3789.615898438699,
+        7194.373548130106,
+        11576.104586460107,
+        17421.844421678612
+      ],
+      "output": "renders/post-tuning-model-before-detailed.json"
+    },
+    {
+      "id": "model-after",
+      "role": "fixed model observation",
+      "file": "renders/g3-spring-tuned.wav",
+      "git_blob_sha1": "8b9650c8ee3fe394ac00c83286df169d76e5ff30",
+      "fundamental_hz": 196.37858462063764,
+      "proposed_modes_hz": [
+        28.98072073479944,
+        80.68229308054542,
+        196.3861434987137,
+        643.3685438380531,
+        1361.883962703348,
+        3686.393419561209,
+        6961.230074455194,
+        11756.828091918878,
+        18196.671416733123
+      ],
+      "output": "renders/post-tuning-model-after-detailed.json"
+    },
+    {
+      "id": "g3-layer-1",
+      "role": "training",
+      "file": "references/audio/jrhodes-g3-a886e6c/A_055__G3_1.wav",
+      "git_blob_sha1": "2a95dbf514bd9b721d4084c6ed5816ad123f2712",
+      "fundamental_hz": 196.45936360368256,
+      "proposed_modes_hz": [
+        28.98072073479944,
+        80.68229308054542,
+        196.3861434987137,
+        643.3685438380531,
+        1361.883962703348,
+        3686.393419561209,
+        6961.230074455194,
+        11756.828091918878,
+        18196.671416733123
+      ],
+      "output": "renders/post-tuning-g3-layer-1-detailed.json"
+    },
+    {
+      "id": "g3-layer-2",
+      "role": "validation",
+      "file": "references/audio/jrhodes-g3-a886e6c/A_055__G3_2.wav",
+      "git_blob_sha1": "c46d5086be237b50dcb2286e7891aba13cf4f183",
+      "fundamental_hz": 196.39748177264747,
+      "proposed_modes_hz": [
+        28.98072073479944,
+        80.68229308054542,
+        196.3861434987137,
+        643.3685438380531,
+        1361.883962703348,
+        3686.393419561209,
+        6961.230074455194,
+        11756.828091918878,
+        18196.671416733123
+      ],
+      "output": "renders/post-tuning-g3-layer-2-detailed.json"
+    },
+    {
+      "id": "g3-layer-3",
+      "role": "training",
+      "file": "references/audio/jrhodes-g3-a886e6c/A_055__G3_3.wav",
+      "git_blob_sha1": "e16318eb5d9cdf0c4c951aaa725d5e6138657c3b",
+      "fundamental_hz": 196.35566237226888,
+      "proposed_modes_hz": [
+        28.98072073479944,
+        80.68229308054542,
+        196.3861434987137,
+        643.3685438380531,
+        1361.883962703348,
+        3686.393419561209,
+        6961.230074455194,
+        11756.828091918878,
+        18196.671416733123
+      ],
+      "output": "renders/post-tuning-g3-layer-3-detailed.json"
+    },
+    {
+      "id": "g3-layer-4",
+      "role": "validation",
+      "file": "references/audio/jrhodes-g3-a886e6c/A_055__G3_4.wav",
+      "git_blob_sha1": "a3ad5115e19e8d011ed45052122d43718a0a7d52",
+      "fundamental_hz": 196.34550086240148,
+      "proposed_modes_hz": [
+        28.98072073479944,
+        80.68229308054542,
+        196.3861434987137,
+        643.3685438380531,
+        1361.883962703348,
+        3686.393419561209,
+        6961.230074455194,
+        11756.828091918878,
+        18196.671416733123
+      ],
+      "output": "renders/post-tuning-g3-layer-4-detailed.json"
+    },
+    {
+      "id": "g3-layer-5",
+      "role": "training",
+      "file": "references/audio/jrhodes-g3-a886e6c/A_055__G3_5.wav",
+      "git_blob_sha1": "c41b60a18683c78f9c77b45e9b5accf0fd2a775c",
+      "fundamental_hz": 196.3434356192651,
+      "proposed_modes_hz": [
+        28.98072073479944,
+        80.68229308054542,
+        196.3861434987137,
+        643.3685438380531,
+        1361.883962703348,
+        3686.393419561209,
+        6961.230074455194,
+        11756.828091918878,
+        18196.671416733123
+      ],
+      "output": "renders/post-tuning-g3-layer-5-detailed.json"
+    }
+  ]
+}
