@@ -10,6 +10,8 @@ mod refinement;
 pub(crate) use refinement::{HELP as REFINEMENT_HELP, run as run_refinement};
 mod tail;
 pub(crate) use tail::{HELP as TAIL_HELP, run as run_tail};
+mod tail_timing;
+pub(crate) use tail_timing::{HELP as TAIL_TIMING_HELP, run as run_tail_timing};
 
 pub const HELP: &str = "Stateful multimode hammer:
   memory-modal-check --output REPORT.json [--coarse]

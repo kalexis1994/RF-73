@@ -212,7 +212,7 @@ fn phase_error_terms(
     let gap_b = qb.tip_position_m - dot(op.hammer, b.q);
     [
         dot(dv, apply(&op.m, dv)),
-        dot(dq, apply(&op.k, dq)),
+        dot(dq, op.stiffness_force(dq)),
         p.core_mass_kg * (qa.core_velocity_m_s - qb.core_velocity_m_s).powi(2),
         p.tip_mass_kg * (qa.tip_velocity_m_s - qb.tip_velocity_m_s).powi(2),
         p.material.memory_stiffness_n_m * (dc * dc + dt * dt + de * de),

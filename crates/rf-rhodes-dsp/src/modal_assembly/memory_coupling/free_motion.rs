@@ -74,7 +74,7 @@ impl MemoryModalAssembly {
             });
         }
         let (q, v, loss) = operators[usize::from(self.damped)].advance(self.q, self.v);
-        let structure = mechanical(&self.op.m, &self.op.k, q, v);
+        let structure = mechanical(&self.op, q, v);
         let scale =
             (before.hammer.initial_energy_j + before.hammer.absolute_impulse_work_j).max(1e-30);
         let defect = (structure + loss - self.structural_energy).abs() / scale;
@@ -168,7 +168,7 @@ mod tests {
         )
         .unwrap();
         v.v[0] = -1.0;
-        v.structural_energy = mechanical(&v.op.m, &v.op.k, v.q, v.v);
+        v.structural_energy = mechanical(&v.op, v.q, v.v);
         v.prepare_free_steps(3).unwrap();
         let before = v.probe();
         assert_eq!(
@@ -189,7 +189,7 @@ mod tests {
         )
         .unwrap();
         v.v[0] = 0.01;
-        v.structural_energy = mechanical(&v.op.m, &v.op.k, v.q, v.v);
+        v.structural_energy = mechanical(&v.op, v.q, v.v);
         v.apply_core_impulse(0.004).unwrap();
         v.prepare_free_steps(9).unwrap();
         let before = v.probe();

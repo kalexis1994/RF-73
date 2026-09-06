@@ -137,6 +137,12 @@ attack and at most 0.02316% in 64–128 ms; some individual profiles still grow
 before decaying. Structural reference drift remains controlled, while the
 reference hammer-work residual grows to 4.562e-10. Wider gesture/profile
 coverage, longer-path native cost and reference-ledger monitoring are next.
+The [stiffness cost study](MODAL-STIFFNESS-COST.md) now times those paths by
+section and skips exactly zero off-diagonal stiffness products. Same-executable
+paired total medians improve by 7.7–11.3% while all three repeated numerical
+reports remain byte-identical. The first 8 ms still costs 51.68–55.76 ms for one
+assembly. Coupled attack cost, material/free recovery cost, broader physical
+coverage and host qualification remain open.
 
 The target remains a sophisticated Rhodes-specific physical model, comparable in development depth to RF Concert Grand. The laboratory UI is a measurement and audition tool, not a declaration that the sound engine is finished. Numerical stability and passing tests do not establish realism.
 

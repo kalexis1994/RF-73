@@ -87,5 +87,7 @@ jobs:
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-rk4-refinement --output renders/ci-memory-modal-rk4-refinement.json
       - name: Qualify modal attack and longer tail sections
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-tail-check --output renders/ci-memory-modal-tail.json
+      - name: Verify paired diagonal and dense stiffness states
+        run: cargo run --locked --release -p rf-rhodes-lab -- memory-modal-stiffness-timing --output renders/ci-memory-modal-stiffness.json
       - name: Inspect contact resolution without committing trials
         run: cargo run --locked --release -p rf-rhodes-lab -- memory-contact-resolution --output renders/ci-memory-contact-resolution.json

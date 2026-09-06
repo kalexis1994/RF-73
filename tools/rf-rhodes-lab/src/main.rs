@@ -219,6 +219,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", memory_modal_check::HELP);
         print!("{}", memory_modal_check::REFINEMENT_HELP);
         print!("{}", memory_modal_check::TAIL_HELP);
+        print!("{}", memory_modal_check::TAIL_TIMING_HELP);
         print!("{}", memory_modal_timing::HELP);
         print!("{}", modal_timing::HELP);
         return Ok(());
@@ -275,6 +276,12 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "memory-modal-tail-check" {
         return memory_modal_check::run_tail(&args);
+    }
+    if matches!(
+        args[0].as_str(),
+        "memory-modal-tail-timing" | "memory-modal-stiffness-timing"
+    ) {
+        return memory_modal_check::run_tail_timing(&args);
     }
     if args[0] == "memory-modal-timing" {
         return memory_modal_timing::run(&args);

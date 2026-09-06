@@ -162,7 +162,7 @@ impl MemoryModalAssembly {
             v: fine.v,
             hammer,
             heat: self.heat + fine.heat,
-            structural_energy: mechanical(&self.op.m, &self.op.k, fine.q, fine.v),
+            structural_energy: mechanical(&self.op, fine.q, fine.v),
         };
         let after = make_probe(
             &self.op,
@@ -202,13 +202,13 @@ impl MemoryModalAssembly {
 fn energies(y: State, p: MemoryHammerProfile, op: &Operators) -> [f64; 4] {
     let (hammer, material, surface) =
         MemoryHammer::contact_energies(y.hammer, p, dot(op.hammer, y.q));
-    let structural = mechanical(&op.m, &op.k, y.q, y.v);
+    let structural = mechanical(op, y.q, y.v);
     [hammer + structural, material, surface, structural]
 }
 fn rhs(y: State, p: MemoryHammerProfile, op: &Operators, c: &Matrix, bank: &RkContact) -> State {
     let velocity = dot(op.hammer, y.v);
     let hammer = MemoryHammer::contact_rhs(y.hammer, p, dot(op.hammer, y.q), velocity);
-    let elastic = apply(&op.k, y.q);
+    let elastic = op.stiffness_force(y.q);
     let damping = apply(c, y.v);
     let force = core::array::from_fn(|i| op.hammer[i] * hammer[8] - elastic[i] - damping[i]);
     State {
@@ -286,7 +286,7 @@ fn state_error(a: State, b: State, p: MemoryHammerProfile, op: &Operators, scale
     let ga = a.hammer[1] - dot(op.hammer, a.q);
     let gb = b.hammer[1] - dot(op.hammer, b.q);
     let metric = dot(dv, apply(&op.m, dv))
-        + dot(dq, apply(&op.k, dq))
+        + dot(dq, op.stiffness_force(dq))
         + p.core_mass_kg * (a.hammer[2] - b.hammer[2]).powi(2)
         + p.tip_mass_kg * (a.hammer[3] - b.hammer[3]).powi(2)
         + p.material.memory_stiffness_n_m * (dc * dc + dt * dt + de * de)

@@ -990,3 +990,30 @@ match the previous study exactly; adaptive interval counts cover every base tick
 CI includes the new command on both native runners. Remote CI, timing and
 GUI/audio testing were not run. The audible plugin and all DSP equations remain
 unchanged; this is selected numerical qualification, not calibrated realism.
+
+## Diagonal stiffness products and native tail cost
+
+Date: 2026-09-05. The [stiffness cost study](MODAL-STIFFNESS-COST.md) adds
+continuous section timing and an explicitly selected dense arithmetic reference.
+Preparation detects exactly diagonal stiffness; nonzero off-diagonal entries
+retain the dense path. Full mass and damping products, energy checks and
+controller tolerances are unchanged. A new test verifies bitwise agreement
+including signed zero and finite scale extremes, plus tiny off-diagonal coupling.
+
+Separate before/after timing batches showed mixed results and remain retained.
+A subsequent same-executable alternating comparison measures total 128 ms
+medians of 0.090120, 0.164085, 0.084557 and 0.149495 seconds for the diagonal path,
+versus 0.099934, 0.177809, 0.095282 and 0.164832 seconds for dense arithmetic.
+Observed reductions are 7.7–11.3%; the first 8 ms still takes 51.68–55.76 ms,
+so aggregate averages do not qualify realtime operation. No builds/tests/audits
+ran concurrently with timing. These short native observations are not universal
+speedups, confidence intervals or host/polyphonic deadline measurements.
+
+All 72 timing runs match the earlier tail audit's final states and counters.
+The repeated tail, RK4 and implicit adaptive audits (60 takes total) are
+byte-identical to their earlier reports. All 186 workspace tests, strict Clippy,
+formatting and release WASM compilation pass. CLI help, invalid options and
+overwrite protection pass. The inline stateful voice grows by eight bytes;
+prepared heap payloads are unchanged. CI checks paired arithmetic identity
+without a timing threshold. Remote CI and GUI/audio testing were not run;
+the audible plugin engine remains unchanged.

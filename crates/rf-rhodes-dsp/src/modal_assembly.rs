@@ -131,6 +131,7 @@ pub struct ModalProbe {
 struct Operators {
     m: Matrix,
     k: Matrix,
+    diagonal_stiffness: bool,
     c: [Matrix; 2],
     hammer: Vector,
     pickup: Vector,
@@ -183,12 +184,28 @@ impl Operators {
         numerics::inverse(m)?;
         Ok(Self {
             m,
+            diagonal_stiffness: is_diagonal(&k),
             k,
             c: [c, damped],
             hammer,
             pickup,
         })
     }
+    fn stiffness_force(&self, q: Vector) -> Vector {
+        if self.diagonal_stiffness {
+            // Preserve the dense row sum's initial +0, including signed-zero inputs.
+            core::array::from_fn(|i| 0.0 + self.k[i][i] * q[i])
+        } else {
+            apply(&self.k, q)
+        }
+    }
+}
+fn is_diagonal(matrix: &Matrix) -> bool {
+    matrix.iter().enumerate().all(|(i, row)| {
+        row.iter()
+            .enumerate()
+            .all(|(j, value)| i == j || *value == 0.0)
+    })
 }
 fn add_outer(a: &mut Matrix, b: Vector, weight: f64) {
     for i in 0..N {
@@ -442,6 +459,37 @@ impl ModalAssembly {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn prepared_stiffness_preserves_dense_products_and_retains_off_diagonal_coupling() {
+        for length in [0.05, 0.075, 0.12] {
+            let mut op = Operators::prepare(
+                TineGeometry {
+                    length_m: length,
+                    ..TineGeometry::default()
+                },
+                ModalAssemblyProfile::default(),
+            )
+            .unwrap();
+            assert!(op.diagonal_stiffness);
+            for scale in [0.0, -0.0, 1e-100, -1e-5, 1e100] {
+                let q = core::array::from_fn(|i| scale * (i as f64 - 4.0));
+                assert_eq!(
+                    op.stiffness_force(q).map(f64::to_bits),
+                    apply(&op.k, q).map(f64::to_bits)
+                );
+            }
+            // Classify after building a coupled matrix, just as preparation does.
+            op.k = [[0.0; N]; N];
+            op.k[0][1] = 1e-300;
+            op.k[1][0] = 1e-300;
+            op.diagonal_stiffness = is_diagonal(&op.k);
+            assert!(!op.diagonal_stiffness, "no approximate sparsity threshold");
+            let mut q = [0.0; N];
+            q[1] = 2.0;
+            assert_eq!(op.stiffness_force(q), apply(&op.k, q));
+            assert_eq!(op.stiffness_force(q)[0], 2e-300);
+        }
+    }
     fn refined() -> ModalIntegration {
         ModalIntegration::Refined {
             contact_substeps: 32,

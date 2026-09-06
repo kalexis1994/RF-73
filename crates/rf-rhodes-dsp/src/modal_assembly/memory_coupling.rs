@@ -94,6 +94,11 @@ impl MemoryModalAssembly {
     pub fn mass_matrix(&self) -> [[f64; 9]; 9] {
         self.op.m
     }
+    /// Offline diagnostic: force the original dense stiffness products for paired timing.
+    /// Only the arithmetic path changes; no state, coefficients or prepared steps change.
+    pub fn use_dense_stiffness_reference(&mut self) {
+        self.op.diagonal_stiffness = false;
+    }
     pub fn tick(&mut self) -> Result<MemoryModalProbe, ModelError> {
         self.advance::<true>()
     }
@@ -159,7 +164,7 @@ fn advance_motion<const FAST: bool>(
     let mid = core::array::from_fn(|i| 0.5 * (motion.v[i] + v[i]));
     let loss = h * dot(mid, apply(&op.c[usize::from(damped)], mid));
     let heat = motion.heat + loss;
-    let structure = mechanical(&op.m, &op.k, q, v);
+    let structure = mechanical(op, q, v);
     let energy = structure + hp.mechanical_energy_j;
     if !q.iter().chain(v.iter()).all(|x| x.is_finite())
         || !heat.is_finite()
@@ -203,8 +208,8 @@ fn make_probe(
         structural_work_residual_j: structure + heat - hammer.surface_work_j,
     }
 }
-fn mechanical(m: &Matrix, k: &Matrix, q: Vector, v: Vector) -> f64 {
-    0.5 * (dot(q, apply(k, q)) + dot(v, apply(m, v)))
+fn mechanical(op: &Operators, q: Vector, v: Vector) -> f64 {
+    0.5 * (dot(q, op.stiffness_force(q)) + dot(v, apply(&op.m, v)))
 }
 
 #[cfg(test)]
@@ -240,7 +245,7 @@ mod tests {
                     v.v,
                     v.heat,
                     v.hammer.probe(),
-                    mechanical(&v.op.m, &v.op.k, v.q, v.v),
+                    mechanical(&v.op, v.q, v.v),
                 )
             };
             assert_eq!(v.probe(), fresh());
