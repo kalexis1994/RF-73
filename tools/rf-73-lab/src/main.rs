@@ -10,6 +10,7 @@ mod memory_hammer_check;
 mod memory_modal_check;
 mod memory_modal_timing;
 mod modal_assembly_check;
+mod modal_families;
 mod modal_observation;
 mod modal_timing;
 mod package;
@@ -209,6 +210,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", pickup_convergence::HELP);
         print!("{}", tone_comparison::HELP);
         print!("{}", modal_observation::HELP);
+        print!("{}", modal_families::HELP);
         print!("{}", pickup_transfer::HELP);
         print!("{}", convergence::HELP);
         print!("{}", assembly_check::HELP);
@@ -237,6 +239,9 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", memory_modal_timing::HELP);
         print!("{}", modal_timing::HELP);
         return Ok(());
+    }
+    if args[0] == "observe-families" {
+        return modal_families::run(&args);
     }
     if args[0] == "inspect" {
         if args.len() != 2 {

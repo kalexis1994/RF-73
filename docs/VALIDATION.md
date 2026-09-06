@@ -1444,3 +1444,31 @@ No localized-transition memory-hammer audio or listening result is claimed.
 Cleanup removed 342 regenerable debug files (101.4 MiB) and the duplicate
 regression WAV/report after the hash check. Release artifacts remain near
 151 MiB; source recordings, listening WAVs, receipts and the package are preserved.
+
+## Cross-take spectral recurrence
+
+Date: 2026-09-06. [Spectral families](SPECTRAL-FAMILIES.md) adds a bounded,
+strict-manifest command using all independently accepted peaks from pinned
+native-rate WAVs. It rejects chained/duplicate components as ambiguous and
+requires three distinct uncapped, unambiguous detections separated from integer
+harmonics. Same-take low-order frequency relations retain their residuals.
+
+Four attack-128 components recur near 886/1425/1620/7108 Hz. In layers 3/4/5,
+the 1425/1620 pair differs by approximately one fundamental, within the declared
+15.624 Hz tolerance. This is a possible sideband relation, not proof of mixing
+or two independent structural modes. Three low-frequency body components also
+recur; processing/background remain possible origins. All capped, missing,
+harmonic and ambiguous cases remain in the 299317-byte report.
+
+All 123 affected analysis/laboratory release tests, strict workspace Clippy
+and formatting pass. Four unit tests and one CLI regression bring the workspace
+total to 238; unchanged DSP/plugin/UI suites were not rerun. A synthetic test
+initially expected a peak 7 Hz from H16 to be isolated at 128 ms; correcting
+that expectation verifies the existing separation limit without changing any
+threshold. All 15 source windows retain their prior peak counts and frequencies
+within 1e-9 Hz. No DSP equation, plugin setting or audio asset was changed.
+
+Cleanup removed 342 regenerable debug files (101.4 MiB). Release artifacts
+remain near 151 MiB. No new WAVs or source downloads were produced; existing
+audio, numeric receipts and the packaged plugin are preserved. Listening,
+cross-note modal identity and natural-decay calibration remain open.

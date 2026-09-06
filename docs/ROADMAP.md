@@ -329,3 +329,11 @@ away from the exploratory family. Analytic moments, static flexibility,
 convergence and coupled energy checks pass. Next constrain modal identity with
 several spectral families and cross-note evidence before selecting more geometry
 or fitting losses. No measured section or new sound has been selected.
+
+[Cross-take spectral families](SPECTRAL-FAMILIES.md) now group all independently
+detected G3 peaks without model proposals. Four attack-128 components recur;
+the 1425/1620 Hz pair has a fundamental-offset relation in layers 3/4/5, so it
+must not be assumed to represent two independent mechanical modes. Capped,
+harmonic and ambiguous evidence remains explicit. Next test cross-note behavior
+and low-frequency background before assigning structural identity or fitting
+additional geometry. No physical parameter or audible baseline changed.
