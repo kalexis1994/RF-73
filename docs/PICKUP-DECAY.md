@@ -148,3 +148,8 @@ synthetic mixtures with known rates, nearby components and noise, then apply
 qualified observations to the pinned source recordings. Decay and phase relations
 should constrain possible explanations before fitting mechanical losses. The
 current tuned listening pair and production model remain unchanged.
+
+The subsequent [temporal envelope study](COMPONENT-ENVELOPE.md) implements
+fixed-carrier complex measurements on audio and validates known-rate mixtures,
+neighbors and noise at two window lengths. It also demonstrates that an
+undeclared unresolved mixture can pass the conditional gates.

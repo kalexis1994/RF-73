@@ -1,6 +1,7 @@
 //! Offline measurements. No dependency from the realtime DSP to this crate.
 mod audio;
 mod compare;
+mod component_envelope;
 mod measurement;
 mod modal_observation;
 mod partial_comparison;
@@ -11,6 +12,10 @@ mod tracking;
 
 pub use audio::{AudioClip, AudioError, AudioMetadata};
 pub use compare::{Comparison, compare};
+pub use component_envelope::{
+    ComponentEnvelope, ComponentEnvelopeFit, ComponentEnvelopePoint, EnvelopeOptions,
+    EnvelopeRejection, measure_component_envelope,
+};
 pub use measurement::{Analysis, AnalysisOptions, analyze};
 pub use modal_observation::{ModalObservation, ModeEvidence, ModeWindow, observe_modes};
 pub use partial_comparison::{

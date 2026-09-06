@@ -361,3 +361,10 @@ all eight probes qualify. Phase quadrature is not a recording estimator. Next
 validate a temporal envelope estimator against synthetic known-rate mixtures,
 nearby components and noise before applying it to the pinned recordings or
 fitting mechanical losses. Production DSP and the audible baseline are unchanged.
+
+The [temporal component-envelope estimator](COMPONENT-ENVELOPE.md) now measures
+complex amplitude and phase in WAVs with bounded work and explicit rejection
+reasons. All 18 synthetic expectations pass across two window lengths. Native-rate,
+gain, PCM and an undeclared-neighbor limitation are tested. Next observe a bounded
+set of pinned source families with declared intervals/neighbors and retain failed
+gates; qualified envelope slopes alone still do not identify mechanical losses.

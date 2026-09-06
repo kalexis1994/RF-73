@@ -1574,3 +1574,45 @@ to source recordings.
 Cleanup removed 342 regenerable debug files (101.5 MiB). Release artifacts
 remain at 151.8 MiB; source audio, listening WAVs, numeric receipts and the
 packaged plugin are preserved.
+
+## Temporal component-envelope qualification
+
+Date: 2026-09-06. [Component envelopes](COMPONENT-ENVELOPE.md) adds bounded
+fixed-carrier Hann demodulation of native WAV samples. Reports retain complex
+coefficients, local guard background, free amplitude/phase fits and explicit
+rejections. Observation bounds and known neighbors come from the caller;
+qualification does not establish natural sustain or mechanical modal identity.
+
+All 18 expectations pass for nine prescribed temporal mixtures measured at
+128/256 ms. Accepted cases include clean exponential decay, deterministic noise,
+a 40 Hz neighbor and a stronger-parent sideband mixture. Maximum accepted
+absolute rate error is 0.000635 /s, below the declared 0.05 /s threshold.
+The 4 Hz known neighbor, insufficient local margin, stationary amplitude,
+changing decay and 2 Hz carrier mismatch are rejected for their declared reasons.
+The 242929-byte receipt retains every provisional fit and rejected observation.
+
+An additional test demonstrates the estimator's identifiability limit: an
+undeclared component 0.05 Hz away can pass, and is rejected when declared.
+This limitation remains explicit in every report. Finite windows bias absolute
+amplitude/phase and overlapping windows are correlated. No confidence interval,
+physical damping fit or T60 extrapolation is claimed.
+
+All 145 affected analysis/laboratory release tests pass. Six new analysis tests
+and one CLI regression bring the workspace total to 260; unchanged DSP/plugin/UI
+suites were not rerun. Coverage includes native 44.1/48/96 kHz rates, carrier
+offset, gain/phase preservation, silence, full scale, short/invalid/bounded input,
+the complete study, PCM16 roundtrip, source bytes and output protection.
+Strict workspace Clippy and formatting pass. A test fixture initially attempted
+to use a transitive WAV dependency; it now encodes its independent PCM16 header
+directly, without adding a dependency. CLI argument chunking was updated for
+strict Clippy and its end-to-end regression rechecked.
+
+No source recording, physical parameter, preset or user-facing audio was changed.
+Synthetic study samples live only in memory; the temporary CLI fixture is removed
+by the test harness. No listening or remote-CI result is claimed. Next apply
+conditional observations to a bounded, byte-verified source-family pilot without
+relaxing rejection thresholds or assuming unknown release boundaries.
+
+Cleanup removed 342 regenerable debug files (101.5 MiB). Release artifacts
+occupy 152.2 MiB. Existing source audio, listening WAVs, numeric receipts and
+the packaged plugin are preserved; this stage adds no permanent WAV files.

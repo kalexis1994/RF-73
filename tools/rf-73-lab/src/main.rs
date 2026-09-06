@@ -2,6 +2,7 @@
 mod analysis;
 mod assembly_check;
 mod audition;
+mod component_envelope;
 mod convergence;
 mod hammer_memory;
 mod memory_contact_resolution;
@@ -205,6 +206,7 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args.is_empty() || matches!(args[0].as_str(), "--help" | "-h") {
         print!("{HELP}");
         print!("{}", analysis::HELP);
+        print!("{}", component_envelope::HELP);
         print!("{}", partial_comparison::HELP);
         print!("{}", pickup_sweep::HELP);
         print!("{}", pickup_set::HELP);
@@ -257,6 +259,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "pickup-decay" {
         return pickup_decay::run(&args);
+    }
+    if matches!(args[0].as_str(), "component-envelope" | "validate-envelope") {
+        return component_envelope::run(&args);
     }
     if args[0] == "inspect" {
         if args.len() != 2 {

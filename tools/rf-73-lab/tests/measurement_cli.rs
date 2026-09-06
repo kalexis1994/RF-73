@@ -10,6 +10,109 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn component_envelope_roundtrip_validation_and_output_protection() {
+    let scratch = Scratch::new();
+    scratch.success(&["validate-envelope", "--output", "validation.json"]);
+    let report = scratch.json("validation.json");
+    assert_eq!(report["all_expectations_passed"], true);
+    assert_eq!(report["cases"].as_array().unwrap().len(), 18);
+    let path = scratch.0.join("source.wav");
+    // Independent PCM16 fixture; the lab writer produces float WAVs.
+    let mut pcm = Vec::from(&b"RIFF"[..]);
+    pcm.extend_from_slice(&(36_u32 + 96000 * 2).to_le_bytes());
+    pcm.extend_from_slice(b"WAVEfmt ");
+    pcm.extend_from_slice(&16_u32.to_le_bytes());
+    pcm.extend_from_slice(&1_u16.to_le_bytes());
+    pcm.extend_from_slice(&1_u16.to_le_bytes());
+    pcm.extend_from_slice(&48000_u32.to_le_bytes());
+    pcm.extend_from_slice(&96000_u32.to_le_bytes());
+    pcm.extend_from_slice(&2_u16.to_le_bytes());
+    pcm.extend_from_slice(&16_u16.to_le_bytes());
+    pcm.extend_from_slice(b"data");
+    pcm.extend_from_slice(&(96000_u32 * 2).to_le_bytes());
+    for i in 0..96000 {
+        let t = i as f64 / 48000.0;
+        let x = 0.2 * (-3.0 * t).exp() * (std::f64::consts::TAU * 1426.7578125 * t + 0.73).cos();
+        pcm.extend_from_slice(&((x * 32767.0).round() as i16).to_le_bytes());
+    }
+    fs::write(&path, pcm).unwrap();
+    let source = fs::read(&path).unwrap();
+    let args = [
+        "component-envelope",
+        "source.wav",
+        "--output",
+        "measurement.json",
+        "--frequency-hz",
+        "1426.7578125",
+        "--start",
+        "0.1",
+        "--end",
+        "1.5",
+    ];
+    scratch.success(&args);
+    let measurement = scratch.json("measurement.json");
+    assert_eq!(measurement["measurement"]["qualified"], true);
+    assert!(
+        (measurement["measurement"]["provisional_fit"]["amplitude_decay_per_second"]
+            .as_f64()
+            .unwrap()
+            - 3.0)
+            .abs()
+            < 0.01
+    );
+    let before = fs::read(scratch.0.join("measurement.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(
+        before,
+        fs::read(scratch.0.join("measurement.json")).unwrap()
+    );
+    for invalid in [
+        vec![
+            "validate-envelope",
+            "--output",
+            "bad.json",
+            "--unknown",
+            "1",
+        ],
+        vec![
+            "validate-envelope",
+            "--output",
+            "bad.json",
+            "--output",
+            "other.json",
+        ],
+        vec!["component-envelope", "source.wav", "--output", "bad.json"],
+        vec![
+            "component-envelope",
+            "source.wav",
+            "--output",
+            "bad.json",
+            "--frequency-hz",
+            "NaN",
+            "--start",
+            "0.1",
+            "--end",
+            "1.5",
+        ],
+        vec![
+            "component-envelope",
+            "source.wav",
+            "--output",
+            "bad.json",
+            "--unknown",
+            "1",
+        ],
+        vec!["validate-envelope", "--output", "bad.wav"],
+    ] {
+        assert!(!scratch.run(&invalid).status.success());
+        for name in ["bad.json", "other.json", "bad.wav"] {
+            assert!(!scratch.0.join(name).exists());
+        }
+    }
+    assert_eq!(source, fs::read(&path).unwrap());
+}
+
+#[test]
 fn register_evidence_preserves_outputs_and_rejects_changed_source_bytes() {
     let scratch = Scratch::new();
     fs::write(scratch.0.join("report.json"), b"preserve").unwrap();
