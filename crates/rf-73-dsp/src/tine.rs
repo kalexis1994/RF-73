@@ -17,9 +17,12 @@ const GAUSS5: [(f64, f64); 5] = [
 pub struct TineGeometry {
     pub length_m: f64,
     pub diameter_m: f64,
-    /// Tip/root diameter ratio; diameter varies linearly along the free length.
+    /// Tip/root diameter ratio; diameter varies linearly up to taper_end_fraction.
     /// One preserves the uniform baseline. No measured manufacturing profile is implied.
     pub tip_diameter_ratio: f64,
+    /// End of the root transition as a fraction of free length; constant section beyond.
+    /// One preserves full-length taper. This is a provisional piecewise-linear profile.
+    pub taper_end_fraction: f64,
     pub young_modulus_pa: f64,
     pub density_kg_m3: f64,
     pub tuning_mass_kg: f64,
@@ -38,6 +41,7 @@ impl Default for TineGeometry {
             length_m: 0.075,
             diameter_m: 0.0015,
             tip_diameter_ratio: 1.0,
+            taper_end_fraction: 1.0,
             young_modulus_pa: 2e11,
             density_kg_m3: 7850.0,
             tuning_mass_kg: 0.0001,
@@ -55,6 +59,7 @@ impl TineGeometry {
             (self.length_m, 0.015, 0.3),
             (self.diameter_m, 0.0003, 0.003),
             (self.tip_diameter_ratio, 0.5, 1.5),
+            (self.taper_end_fraction, 0.05, 1.0),
             (self.diameter_m * self.tip_diameter_ratio, 0.0003, 0.003),
             (self.young_modulus_pa, 1e10, 3e11),
             (self.density_kg_m3, 1000.0, 20000.0),
@@ -131,7 +136,31 @@ impl TineGeometry {
     }
     fn relative_mass_moment(self, order: i32) -> f64 {
         let a = self.tip_diameter_ratio - 1.0;
-        1.0 / (order + 1) as f64 + 2.0 * a / (order + 2) as f64 + a * a / (order + 3) as f64
+        let full =
+            1.0 / (order + 1) as f64 + 2.0 * a / (order + 2) as f64 + a * a / (order + 3) as f64;
+        if self.taper_end_fraction == 1.0 || self.tip_diameter_ratio == 1.0 {
+            return full;
+        }
+        let end_power = self.taper_end_fraction.powi(order + 1);
+        end_power * full + self.tip_diameter_ratio.powi(2) * (1.0 - end_power) / (order + 1) as f64
+    }
+    fn section_ratio(self, s: f64) -> f64 {
+        1.0 + (self.tip_diameter_ratio - 1.0) * (s / self.taper_end_fraction).min(1.0)
+    }
+    // Element-local t and Gauss weight. Split the integration at the section corner,
+    // even when the finite-element nodes do not coincide with that corner.
+    fn section_rule(self, elements: usize, element: usize) -> Vec<(f64, f64)> {
+        let cut = (self.taper_end_fraction * elements as f64 - element as f64).clamp(0.0, 1.0);
+        let mut result = Vec::with_capacity(10);
+        for (a, b) in [(0.0, cut), (cut, 1.0)] {
+            if b <= a {
+                continue;
+            }
+            for (node, weight) in GAUSS5 {
+                result.push((a + 0.5 * (b - a) * (1.0 + node), weight * (b - a)));
+            }
+        }
+        result
     }
     pub fn beam_mass_kg(self) -> f64 {
         self.reference_mass_kg() * self.relative_mass_moment(0)
@@ -158,6 +187,17 @@ impl TineGeometry {
         };
         let mut points = Vec::with_capacity(elements * rule.len());
         for e in 0..elements {
+            if self.tip_diameter_ratio != 1.0 && self.taper_end_fraction != 1.0 {
+                for (t, weight) in self.section_rule(elements, e) {
+                    let s = (e as f64 + t) / elements as f64;
+                    points.push((
+                        s,
+                        self.reference_mass_kg() * weight / (2 * elements) as f64
+                            * self.section_ratio(s).powi(2),
+                    ));
+                }
+                continue;
+            }
             for &(node, weight) in rule {
                 let s = (e as f64 + 0.5 * (1.0 + node)) / elements as f64;
                 let area = (1.0 + (self.tip_diameter_ratio - 1.0) * s).powi(2);
@@ -233,10 +273,9 @@ impl TineModes {
             if geometry.tip_diameter_ratio != 1.0 {
                 local_k = [[0.0; 4]; 4];
                 local_m = [[0.0; 4]; 4];
-                for (node, weight) in GAUSS5 {
-                    let t = 0.5 * (1.0 + node);
+                for (t, weight) in geometry.section_rule(elements, element) {
                     let s = (element as f64 + t) * h;
-                    let d = 1.0 + (geometry.tip_diameter_ratio - 1.0) * s;
+                    let d = geometry.section_ratio(s);
                     let (_, shape) = interpolation(elements, s);
                     // Curvatures with respect to s, multiplied by h^2.
                     let curvature = [
@@ -578,6 +617,140 @@ pub(crate) fn eigen(
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn localized_transition_preserves_exact_mass_moments_and_static_flexibility() {
+        for end in [0.137, 0.25, 0.5, 1.0] {
+            let r = 0.9;
+            let g = TineGeometry {
+                tip_diameter_ratio: r,
+                taper_end_fraction: end,
+                tuning_mass_kg: 0.0,
+                ..TineGeometry::default()
+            };
+            let m0 = g.density_kg_m3 * PI * g.diameter_m.powi(2) * g.length_m / 4.0;
+            // Frustum on [0,end], cylinder on [end,1], with all moments about the root.
+            let exact = [
+                m0 * (end * (1.0 + r + r * r) / 3.0 + r * r * (1.0 - end)),
+                m0 * g.length_m
+                    * (end.powi(2) * (1.0 + 2.0 * r + 3.0 * r * r) / 12.0
+                        + r * r * (1.0 - end.powi(2)) / 2.0),
+                m0 * g.length_m.powi(2)
+                    * (end.powi(3) * (1.0 + 3.0 * r + 6.0 * r * r) / 30.0
+                        + r * r * (1.0 - end.powi(3)) / 3.0),
+            ];
+            for elements in [8, 16, 32, 64] {
+                let q = g.beam_mass_quadrature(elements).unwrap();
+                assert!(q.len() <= 5 * (elements + 1));
+                for order in 0..=2 {
+                    let sum: f64 = q
+                        .iter()
+                        .map(|(s, m)| m * (s * g.length_m).powi(order))
+                        .sum();
+                    assert!((sum / exact[order as usize] - 1.0).abs() < 2e-14);
+                }
+            }
+            let b = TineModes::prepare(g, 64).unwrap();
+            for (value, target) in [
+                b.total_mass_kg,
+                b.first_mass_moment_kg_m,
+                b.second_mass_moment_kg_m2,
+            ]
+            .into_iter()
+            .zip(exact)
+            {
+                assert!((value / target - 1.0).abs() < 2e-14);
+            }
+            // Independent composite midpoint integral of static bending flexibility.
+            let integral: f64 = (0..20000)
+                .map(|i| {
+                    let s = (i as f64 + 0.5) / 20000.0;
+                    let d = if s < end {
+                        1.0 + (r - 1.0) * s / end
+                    } else {
+                        r
+                    };
+                    (1.0 - s).powi(2) / d.powi(4) / 20000.0
+                })
+                .sum();
+            let target = integral * g.length_m.powi(3) / g.bending_rigidity_n_m2();
+            let modal: f64 = b
+                .modes
+                .iter()
+                .map(|m| 1.0 / (m.effective_mass_kg * (TAU * m.frequency_hz).powi(2)))
+                .sum();
+            assert!(
+                modal < target && (modal / target - 1.0).abs() < 0.001,
+                "end {end}: {modal}/{target}"
+            );
+        }
+    }
+    #[test]
+    fn off_mesh_transition_converges_is_continuous_and_uniform_limit_is_exact() {
+        let g = TineGeometry {
+            tip_diameter_ratio: 0.9,
+            taper_end_fraction: 0.137,
+            tuning_span_m: 0.006,
+            ..TineGeometry::default()
+        };
+        let fine = TineModes::prepare(g, 64).unwrap();
+        let medium = TineModes::prepare(g, 32).unwrap();
+        let coarse = TineModes::prepare(g, 16).unwrap();
+        let error = |b: &TineModes| {
+            b.modes
+                .iter()
+                .zip(fine.modes)
+                .map(|(a, b)| (a.frequency_hz / b.frequency_hz - 1.0).abs())
+                .fold(0.0_f64, f64::max)
+        };
+        assert!(
+            error(&medium) < 0.0003 && error(&medium) < error(&coarse),
+            "errors {} / {}",
+            error(&medium),
+            error(&coarse)
+        );
+        let left = TineModes::prepare(
+            TineGeometry {
+                taper_end_fraction: 0.25 - 1e-7,
+                ..g
+            },
+            32,
+        )
+        .unwrap();
+        let right = TineModes::prepare(
+            TineGeometry {
+                taper_end_fraction: 0.25 + 1e-7,
+                ..g
+            },
+            32,
+        )
+        .unwrap();
+        for (a, b) in left.modes.into_iter().zip(right.modes) {
+            assert!((a.frequency_hz / b.frequency_hz - 1.0).abs() < 1e-6);
+        }
+        let a = TineModes::prepare(TineGeometry::default(), 64).unwrap();
+        let b = TineModes::prepare(
+            TineGeometry {
+                taper_end_fraction: 0.137,
+                ..TineGeometry::default()
+            },
+            64,
+        )
+        .unwrap();
+        for (a, b) in a.modes.into_iter().zip(b.modes) {
+            assert_eq!(a.frequency_hz, b.frequency_hz);
+            assert_eq!(a.effective_mass_kg, b.effective_mass_kg);
+        }
+        for end in [0.0, 0.049, 1.001, f64::NAN, f64::INFINITY] {
+            assert!(
+                TineGeometry {
+                    taper_end_fraction: end,
+                    ..g
+                }
+                .validate()
+                .is_err()
+            );
+        }
+    }
     #[test]
     fn tapered_frustum_mass_moments_and_tip_compliance_match_analytic_values() {
         for r in [0.5, 0.9, 1.0, 1.5] {

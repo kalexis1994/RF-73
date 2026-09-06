@@ -15,6 +15,7 @@ fn geometry_study_preserves_outputs_and_rejects_unqualified_reference() {
         "sweep-tuned-geometry",
         "sweep-spring-span",
         "sweep-tine-taper",
+        "sweep-tine-transition",
     ] {
         let scratch = Scratch::new();
         fs::write(scratch.0.join("study.json"), b"preserve").unwrap();

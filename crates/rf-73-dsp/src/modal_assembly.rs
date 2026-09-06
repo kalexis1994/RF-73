@@ -475,12 +475,20 @@ mod tests {
     use super::*;
     #[test]
     fn finite_tuning_span_closes_coupled_contact_and_release_energy_budget() {
-        for taper in [0.9, 1.0, 1.05] {
+        for (taper, end) in [
+            (0.9, 1.0),
+            (1.0, 1.0),
+            (1.05, 1.0),
+            (0.9, 0.137),
+            (0.95, 0.25),
+            (1.05, 0.5),
+        ] {
             let g = TineGeometry {
                 length_m: 0.07,
                 tuning_position: 0.796,
                 tuning_span_m: 0.006,
                 tip_diameter_ratio: taper,
+                taper_end_fraction: end,
                 ..TineGeometry::default()
             };
             let mut v = ModalAssembly::new(

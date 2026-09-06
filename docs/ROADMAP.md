@@ -321,3 +321,11 @@ Full-length narrowing lowers the rank-5 mode away from the exploratory 1425 Hz
 family. No profile is selected. Next distinguish localized section transitions
 from full-length taper, and require multiple modal/spatial observations before
 geometry identification. The uniform structural and audio baselines remain exact.
+
+The [localized transition study](TINE-TRANSITION.md) now separates section ratio
+from the extent of its root transition, integrating exactly across off-mesh
+corners. Four transition endpoints retune to G3; earlier endpoints lower rank 5
+away from the exploratory family. Analytic moments, static flexibility,
+convergence and coupled energy checks pass. Next constrain modal identity with
+several spectral families and cross-note evidence before selecting more geometry
+or fitting losses. No measured section or new sound has been selected.

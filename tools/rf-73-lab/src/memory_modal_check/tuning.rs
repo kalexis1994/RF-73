@@ -24,6 +24,7 @@ pub(super) struct Selected {
     mass: f64,
     span: f64,
     taper: f64,
+    taper_end: f64,
     distributed_fields: usize,
     pub(super) position: f64,
     spectrum: ModalSpectrum,
@@ -37,7 +38,7 @@ impl Selected {
         self.spectrum.modes[self.index]
     }
     pub(super) fn row(&self, mac: f64) -> Value {
-        json!({"length_m":self.length,"tuning_mass_kg":self.mass,"tuning_span_m":self.span,"tip_diameter_ratio":self.taper,"spring_position_fraction":self.position,
+        json!({"length_m":self.length,"tuning_mass_kg":self.mass,"tuning_span_m":self.span,"tip_diameter_ratio":self.taper,"taper_end_fraction":self.taper_end,"spring_position_fraction":self.position,
             "spring_center_from_root_mm":1000.0*self.length*self.position,
             "selected_mode_index":self.index,"selected_frequency_hz":self.mode().frequency_hz,
             "shape_mac_from_previous":mac,"fixed_root_fundamental_hz":self.spectrum.fixed_root_fundamental_hz,
@@ -77,11 +78,22 @@ pub(super) fn spectrum_with_taper(
     taper: f64,
     position: f64,
 ) -> Result<Selected, Box<dyn Error>> {
+    spectrum_with_transition(length, mass, span, taper, 1.0, position)
+}
+pub(super) fn spectrum_with_transition(
+    length: f64,
+    mass: f64,
+    span: f64,
+    taper: f64,
+    taper_end: f64,
+    position: f64,
+) -> Result<Selected, Box<dyn Error>> {
     let g = TineGeometry {
         length_m: length,
         tuning_mass_kg: mass,
         tuning_span_m: span,
         tip_diameter_ratio: taper,
+        taper_end_fraction: taper_end,
         tuning_position: position,
         ..TineGeometry::default()
     };
@@ -131,6 +143,7 @@ pub(super) fn spectrum_with_taper(
         mass,
         span,
         taper,
+        taper_end,
         distributed_fields,
         position,
         spectrum,
@@ -153,7 +166,12 @@ pub(super) fn follow(a: &Selected, position: f64) -> Result<(Selected, f64), Box
 // spring inertia: modes there need not be orthogonal in that obsolete metric.
 // Average the two actual physical inertias for each local comparison instead.
 fn local_mac(a: &Selected, b: &Selected, index: usize) -> Result<f64, Box<dyn Error>> {
-    if a.length != b.length || a.mass != b.mass || a.span != b.span || a.taper != b.taper {
+    if a.length != b.length
+        || a.mass != b.mass
+        || a.span != b.span
+        || a.taper != b.taper
+        || a.taper_end != b.taper_end
+    {
         return Err("local spring metric requires fixed cell geometry and mass".into());
     }
     let product = |x: &[f64], y: &[f64]| x.iter().zip(y).map(|(x, y)| x * y).sum::<f64>();
@@ -176,6 +194,7 @@ fn local_mac(a: &Selected, b: &Selected, index: usize) -> Result<f64, Box<dyn Er
             tuning_mass_kg: a.mass,
             tuning_span_m: a.span,
             tip_diameter_ratio: a.taper,
+            taper_end_fraction: a.taper_end,
             tuning_position: center,
             ..TineGeometry::default()
         };
@@ -197,7 +216,8 @@ fn follow_with_metric(
     position: f64,
     local: bool,
 ) -> Result<(Selected, f64), Box<dyn Error>> {
-    let mut next = spectrum_with_taper(a.length, a.mass, a.span, a.taper, position)?;
+    let mut next =
+        spectrum_with_transition(a.length, a.mass, a.span, a.taper, a.taper_end, position)?;
     let mut scores = Vec::with_capacity(9);
     for i in 0..9 {
         scores.push((
@@ -444,7 +464,14 @@ mod tests {
     use super::*;
     #[test]
     fn local_metric_recovers_orthogonality_after_large_spring_motion() {
-        for taper in [0.9, 1.0, 1.05] {
+        for (taper, end) in [
+            (0.9, 1.0),
+            (1.0, 1.0),
+            (1.05, 1.0),
+            (0.9, 0.137),
+            (0.95, 0.25),
+            (1.05, 0.5),
+        ] {
             for (position, span) in [
                 (0.5, 0.0),
                 (0.75, 0.0),
@@ -453,8 +480,10 @@ mod tests {
                 (0.75, 0.006),
                 (0.95, 0.006),
             ] {
-                let mut a = spectrum_with_taper(0.070, 0.00012, span, taper, position).unwrap();
-                let b = spectrum_with_taper(0.070, 0.00012, span, taper, position).unwrap();
+                let mut a =
+                    spectrum_with_transition(0.070, 0.00012, span, taper, end, position).unwrap();
+                let b =
+                    spectrum_with_transition(0.070, 0.00012, span, taper, end, position).unwrap();
                 for i in 0..9 {
                     a.index = i;
                     for j in 0..9 {

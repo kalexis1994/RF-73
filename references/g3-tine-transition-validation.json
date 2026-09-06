@@ -1,0 +1,2004 @@
+{
+  "cases": [
+    {
+      "initial_structure": {
+        "coupled_modes_by_frequency_rank": [
+          {
+            "first_tine_projection": 0.017928855252746564,
+            "frequency_hz": 28.991947286683423,
+            "hammer_weight": 1.829523466955524,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 12.304918873141375,
+            "pickup_weight": 6.725750773570432,
+            "ratio_to_selected": 0.14856115984468907,
+            "relative_eigen_residual": 8.739593629432878e-13
+          },
+          {
+            "first_tine_projection": 0.002765754466092997,
+            "frequency_hz": 80.69873496868482,
+            "hammer_weight": 4.577606678987251,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 4.670527207720141,
+            "pickup_weight": 1.0202989324442022,
+            "ratio_to_selected": 0.41351819339343343,
+            "relative_eigen_residual": 5.512684975797481e-14
+          },
+          {
+            "first_tine_projection": 0.9774868597147502,
+            "frequency_hz": 195.15159491883747,
+            "hammer_weight": 3.341057043404504,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 191.202539744457,
+            "pickup_weight": 57.228157813679076,
+            "ratio_to_selected": 1.0,
+            "relative_eigen_residual": 5.27882289509503e-15
+          },
+          {
+            "first_tine_projection": 0.0018174025066012064,
+            "frequency_hz": 642.89719879473,
+            "hammer_weight": -4.096662148647664,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -27.461331805486406,
+            "pickup_weight": 6.703343065415237,
+            "ratio_to_selected": 3.294347653485013,
+            "relative_eigen_residual": 4.3259314507215184e-15
+          },
+          {
+            "first_tine_projection": 1.125932472255596e-6,
+            "frequency_hz": 1327.7787522992244,
+            "hammer_weight": -18.745834790029168,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1021.0097971467636,
+            "pickup_weight": 54.465955161934666,
+            "ratio_to_selected": 6.803832440372525,
+            "relative_eigen_residual": 4.781658367496489e-16
+          },
+          {
+            "first_tine_projection": 2.0678917619921602e-9,
+            "frequency_hz": 3711.7944854017715,
+            "hammer_weight": 38.02423005243083,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2307.261808362798,
+            "pickup_weight": 60.67872525443282,
+            "ratio_to_selected": 19.020057135302878,
+            "relative_eigen_residual": 5.20420631272267e-17
+          },
+          {
+            "first_tine_projection": 5.470349294183123e-11,
+            "frequency_hz": 7005.767651915555,
+            "hammer_weight": -46.06792848665834,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -2964.294997626579,
+            "pickup_weight": 64.34617520266977,
+            "ratio_to_selected": 35.89910528186673,
+            "relative_eigen_residual": 2.227401360860852e-16
+          },
+          {
+            "first_tine_projection": 4.244885252085879e-12,
+            "frequency_hz": 11248.687204910026,
+            "hammer_weight": 43.85306885789073,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2360.207192708852,
+            "pickup_weight": 53.82079873035308,
+            "ratio_to_selected": 57.640764911956246,
+            "relative_eigen_residual": 1.5372152442595828e-16
+          },
+          {
+            "first_tine_projection": 4.964353961026179e-13,
+            "frequency_hz": 16963.116647673083,
+            "hammer_weight": -27.316880485095407,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1070.4798975181902,
+            "pickup_weight": 39.18748694977319,
+            "ratio_to_selected": 86.92276716840544,
+            "relative_eigen_residual": 3.1972678318075813e-16
+          }
+        ],
+        "fixed_root_fundamental_hz": 194.96926001767085,
+        "fixed_root_tine_modes": [
+          {
+            "frequency_hz": 194.96926001767085,
+            "ordinal": 1,
+            "ratio_to_first": 1.0
+          },
+          {
+            "frequency_hz": 1319.875417937795,
+            "ordinal": 2,
+            "ratio_to_first": 6.769659062244835
+          },
+          {
+            "frequency_hz": 3707.0580978609273,
+            "ordinal": 3,
+            "ratio_to_first": 19.01355166206684
+          },
+          {
+            "frequency_hz": 7001.780697953163,
+            "ordinal": 4,
+            "ratio_to_first": 35.91222891915661
+          },
+          {
+            "frequency_hz": 11244.691713970939,
+            "ordinal": 5,
+            "ratio_to_first": 57.67417752394294
+          },
+          {
+            "frequency_hz": 16958.875357564524,
+            "ordinal": 6,
+            "ratio_to_first": 86.98230354891572
+          }
+        ],
+        "length_m": 0.07,
+        "maximum_mass_orthogonality_error": 2.4424906541753444e-15,
+        "selected_frequency_hz": 195.15159491883747,
+        "selected_mode_index": 2,
+        "shape_mac_from_previous": 1.0,
+        "spring_center_from_root_mm": 59.5,
+        "spring_position_fraction": 0.85,
+        "taper_end_fraction": 1.0,
+        "tip_diameter_ratio": 0.95,
+        "tuning_mass_kg": 0.0001,
+        "tuning_span_m": 0.0
+      },
+      "minimum_spatial_mac": 0.9999953313793919,
+      "reason": null,
+      "solution": {
+        "coupled_modes_by_frequency_rank": [
+          {
+            "first_tine_projection": 0.01780953231157735,
+            "frequency_hz": 28.99373255951634,
+            "hammer_weight": 1.829579149122061,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 12.302846072093555,
+            "pickup_weight": 6.724413140583275,
+            "ratio_to_selected": 0.14763634181624022,
+            "relative_eigen_residual": 9.455165569653463e-13
+          },
+          {
+            "first_tine_projection": 0.0028195012277259283,
+            "frequency_hz": 80.69774647276395,
+            "hammer_weight": 4.577611946806818,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 4.675022517750945,
+            "pickup_weight": 1.0212797790804606,
+            "ratio_to_selected": 0.4109136365108285,
+            "relative_eigen_residual": 5.988040602096763e-14
+          },
+          {
+            "first_tine_projection": 0.9775135348245507,
+            "frequency_hz": 196.38614857854049,
+            "hammer_weight": 3.372504867393718,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 194.1261747899878,
+            "pickup_weight": 57.56142168002536,
+            "ratio_to_selected": 1.0,
+            "relative_eigen_residual": 4.660865359193744e-15
+          },
+          {
+            "first_tine_projection": 0.0018563319667084961,
+            "frequency_hz": 642.9843991111882,
+            "hammer_weight": -4.07748093373253,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -27.777531488852016,
+            "pickup_weight": 6.81242461713351,
+            "ratio_to_selected": 3.274082229144792,
+            "relative_eigen_residual": 3.6558683432393606e-15
+          },
+          {
+            "first_tine_projection": 1.0974619831871252e-6,
+            "frequency_hz": 1336.3857652927927,
+            "hammer_weight": -18.81708997794754,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1058.9125536648205,
+            "pickup_weight": 56.273980456372385,
+            "ratio_to_selected": 6.80488809911323,
+            "relative_eigen_residual": 9.714808587608721e-17
+          },
+          {
+            "first_tine_projection": 2.1414565379151418e-9,
+            "frequency_hz": 3687.761344942511,
+            "hammer_weight": 37.44454715406581,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2364.8616834432246,
+            "pickup_weight": 63.156370237647344,
+            "ratio_to_selected": 18.77811328158752,
+            "relative_eigen_residual": 2.8324923149012577e-16
+          },
+          {
+            "first_tine_projection": 6.094492664063843e-11,
+            "frequency_hz": 6897.360545736518,
+            "hammer_weight": -45.93039476101178,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -2878.980103417002,
+            "pickup_weight": 62.681370765418215,
+            "ratio_to_selected": 35.12142070945531,
+            "relative_eigen_residual": 1.6850946750093565e-17
+          },
+          {
+            "first_tine_projection": 4.5655445837781176e-12,
+            "frequency_hz": 11234.153609003626,
+            "hammer_weight": 44.81761840903746,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2163.758364344549,
+            "pickup_weight": 48.279191111775546,
+            "ratio_to_selected": 57.20440922293847,
+            "relative_eigen_residual": 4.12383679377369e-16
+          },
+          {
+            "first_tine_projection": 4.874091025653049e-13,
+            "frequency_hz": 17189.819037266236,
+            "hammer_weight": -26.821482726980243,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -965.5904178818025,
+            "pickup_weight": 36.00063530084027,
+            "ratio_to_selected": 87.53071009176358,
+            "relative_eigen_residual": 1.9320942469014847e-16
+          }
+        ],
+        "fixed_root_fundamental_hz": 196.2219624460383,
+        "fixed_root_tine_modes": [
+          {
+            "frequency_hz": 196.2219624460383,
+            "ordinal": 1,
+            "ratio_to_first": 1.0
+          },
+          {
+            "frequency_hz": 1328.543770682473,
+            "ordinal": 2,
+            "ratio_to_first": 6.770617081397435
+          },
+          {
+            "frequency_hz": 3683.1328930459813,
+            "ordinal": 3,
+            "ratio_to_first": 18.770237781404592
+          },
+          {
+            "frequency_hz": 6893.371859610078,
+            "ordinal": 4,
+            "ratio_to_first": 35.130480674434075
+          },
+          {
+            "frequency_hz": 11229.985919793498,
+            "ordinal": 5,
+            "ratio_to_first": 57.231034588606676
+          },
+          {
+            "frequency_hz": 17185.454924346883,
+            "ordinal": 6,
+            "ratio_to_first": 87.58170956053372
+          }
+        ],
+        "length_m": 0.07,
+        "maximum_mass_orthogonality_error": 2.4424906541753444e-15,
+        "selected_frequency_hz": 196.38614857854049,
+        "selected_mode_index": 2,
+        "shape_mac_from_previous": 0.9999999999999987,
+        "spring_center_from_root_mm": 58.333150863647454,
+        "spring_position_fraction": 0.833330726623535,
+        "taper_end_fraction": 1.0,
+        "tip_diameter_ratio": 0.95,
+        "tuning_mass_kg": 0.0001,
+        "tuning_span_m": 0.0
+      },
+      "status": "retuned",
+      "taper_end_fraction": 1.0,
+      "target_hz": 196.38614697959488,
+      "tine_length_mm": 70.0,
+      "tip_diameter_ratio": 0.95,
+      "trials": [
+        {
+          "error_cents": -10.917494878421838,
+          "frequency_hz": 195.15159491883747,
+          "spatial_mac": 1.0,
+          "spring_position_fraction": 0.85
+        },
+        {
+          "error_cents": 5.36793866683429,
+          "frequency_hz": 196.99601530708625,
+          "spatial_mac": 0.9999953313793919,
+          "spring_position_fraction": 0.825
+        },
+        {
+          "error_cents": -2.708721048418652,
+          "frequency_hz": 196.07911780950386,
+          "spatial_mac": 0.9999988108979864,
+          "spring_position_fraction": 0.8374999999999999
+        },
+        {
+          "error_cents": 1.3463071886956768,
+          "frequency_hz": 196.5389275427065,
+          "spatial_mac": 0.999999711002334,
+          "spring_position_fraction": 0.8312499999999999
+        },
+        {
+          "error_cents": -0.6770533711415775,
+          "frequency_hz": 196.30935903375558,
+          "spatial_mac": 0.9999999274078331,
+          "spring_position_fraction": 0.8343749999999999
+        },
+        {
+          "error_cents": 0.3356682158805063,
+          "frequency_hz": 196.42422789574016,
+          "spatial_mac": 0.9999999819807428,
+          "spring_position_fraction": 0.8328125
+        },
+        {
+          "error_cents": -0.17043268282744745,
+          "frequency_hz": 196.36681454418473,
+          "spatial_mac": 0.9999999954899055,
+          "spring_position_fraction": 0.8335937499999999
+        },
+        {
+          "error_cents": 0.08268290454533708,
+          "frequency_hz": 196.39552651138834,
+          "spatial_mac": 0.9999999988744248,
+          "spring_position_fraction": 0.8332031249999999
+        },
+        {
+          "error_cents": -0.04385862460215983,
+          "frequency_hz": 196.3811718480115,
+          "spatial_mac": 0.9999999997185247,
+          "spring_position_fraction": 0.8333984374999999
+        },
+        {
+          "error_cents": 0.019415941421572103,
+          "frequency_hz": 196.3883494797765,
+          "spatial_mac": 0.9999999999296592,
+          "spring_position_fraction": 0.83330078125
+        },
+        {
+          "error_cents": -0.012219974109852188,
+          "frequency_hz": 196.38476078622415,
+          "spatial_mac": 0.9999999999824132,
+          "spring_position_fraction": 0.8333496093749999
+        },
+        {
+          "error_cents": 0.003597898656703974,
+          "frequency_hz": 196.38655511516097,
+          "spatial_mac": 0.9999999999956031,
+          "spring_position_fraction": 0.8333251953124999
+        },
+        {
+          "error_cents": -0.004311087334796241,
+          "frequency_hz": 196.38565794301587,
+          "spatial_mac": 0.9999999999988993,
+          "spring_position_fraction": 0.8333374023437499
+        },
+        {
+          "error_cents": -0.00035632589871727047,
+          "frequency_hz": 196.38610655902716,
+          "spatial_mac": 0.9999999999997256,
+          "spring_position_fraction": 0.833331298828125
+        },
+        {
+          "error_cents": 0.0016207216420379873,
+          "frequency_hz": 196.38633082962244,
+          "spatial_mac": 0.9999999999999303,
+          "spring_position_fraction": 0.8333282470703125
+        },
+        {
+          "error_cents": 0.0006321398633283163,
+          "frequency_hz": 196.3862186877125,
+          "spatial_mac": 0.9999999999999825,
+          "spring_position_fraction": 0.8333297729492187
+        },
+        {
+          "error_cents": 0.00013802153837319672,
+          "frequency_hz": 196.38616263635672,
+          "spatial_mac": 0.9999999999999967,
+          "spring_position_fraction": 0.8333305358886718
+        },
+        {
+          "error_cents": -0.00010924169593304641,
+          "frequency_hz": 196.38613458753554,
+          "spatial_mac": 0.9999999999999989,
+          "spring_position_fraction": 0.8333309173583984
+        },
+        {
+          "error_cents": 0.000014095439571695607,
+          "frequency_hz": 196.38614857854049,
+          "spatial_mac": 0.9999999999999987,
+          "spring_position_fraction": 0.833330726623535
+        }
+      ],
+      "tuning_mass_g": 0.1,
+      "tuning_span_mm": 0.0
+    },
+    {
+      "initial_structure": {
+        "coupled_modes_by_frequency_rank": [
+          {
+            "first_tine_projection": 0.01758811454044037,
+            "frequency_hz": 28.996921577732778,
+            "hammer_weight": 1.82961853666427,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 12.315806895287045,
+            "pickup_weight": 6.731352272884717,
+            "ratio_to_selected": 0.1504158524802674,
+            "relative_eigen_residual": 8.538400256025711e-13
+          },
+          {
+            "first_tine_projection": 0.0026574986853057734,
+            "frequency_hz": 80.70867145356861,
+            "hammer_weight": 4.578168064433107,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 4.715788399240417,
+            "pickup_weight": 1.0300601316663003,
+            "ratio_to_selected": 0.4186604287180868,
+            "relative_eigen_residual": 5.363223394723797e-14
+          },
+          {
+            "first_tine_projection": 0.9780638674643193,
+            "frequency_hz": 192.77836145320384,
+            "hammer_weight": 3.26682257078989,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 189.0257848174318,
+            "pickup_weight": 57.86227464803115,
+            "ratio_to_selected": 1.0,
+            "relative_eigen_residual": 6.508766359346254e-15
+          },
+          {
+            "first_tine_projection": 0.0016893825553081936,
+            "frequency_hz": 642.5773552132721,
+            "hammer_weight": -4.172196856321401,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -27.98971579556164,
+            "pickup_weight": 6.708627794768052,
+            "ratio_to_selected": 3.333244200071983,
+            "relative_eigen_residual": 3.958076799629173e-15
+          },
+          {
+            "first_tine_projection": 1.1346532959312426e-6,
+            "frequency_hz": 1309.010969108514,
+            "hammer_weight": -18.74299334224561,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1020.7302677527164,
+            "pickup_weight": 54.45929842230963,
+            "ratio_to_selected": 6.790238070501865,
+            "relative_eigen_residual": 3.965553719913211e-16
+          },
+          {
+            "first_tine_projection": 2.0424491496223563e-9,
+            "frequency_hz": 3663.0410119951625,
+            "hammer_weight": 38.22689709956626,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2318.3463935666864,
+            "pickup_weight": 60.646993856924674,
+            "ratio_to_selected": 19.001307949618354,
+            "relative_eigen_residual": 2.154327921079807e-16
+          },
+          {
+            "first_tine_projection": 5.420651542242758e-11,
+            "frequency_hz": 6909.657312684797,
+            "hammer_weight": -46.46748147234358,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -2984.4585251242192,
+            "pickup_weight": 64.22681906916998,
+            "ratio_to_selected": 35.84249425401454,
+            "relative_eigen_residual": 1.2920784494665814e-16
+          },
+          {
+            "first_tine_projection": 4.184996583687343e-12,
+            "frequency_hz": 11100.103358911609,
+            "hammer_weight": 44.44855782523393,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2387.3655268531406,
+            "pickup_weight": 53.71075336662121,
+            "ratio_to_selected": 57.57961254176399,
+            "relative_eigen_residual": 3.1424962164564678e-16
+          },
+          {
+            "first_tine_projection": 4.89881554893781e-13,
+            "frequency_hz": 16735.8270023918,
+            "hammer_weight": -28.134351983566113,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1100.0233384777655,
+            "pickup_weight": 39.098939940763984,
+            "ratio_to_selected": 86.81382534965863,
+            "relative_eigen_residual": 1.0940812587151324e-16
+          }
+        ],
+        "fixed_root_fundamental_hz": 192.56142623669524,
+        "fixed_root_tine_modes": [
+          {
+            "frequency_hz": 192.56142623669524,
+            "ordinal": 1,
+            "ratio_to_first": 1.0
+          },
+          {
+            "frequency_hz": 1301.1998590880426,
+            "ordinal": 2,
+            "ratio_to_first": 6.757323543546132
+          },
+          {
+            "frequency_hz": 3658.3900412335056,
+            "ordinal": 3,
+            "ratio_to_first": 18.998561200604303
+          },
+          {
+            "frequency_hz": 6905.728204288126,
+            "ordinal": 4,
+            "ratio_to_first": 35.862469131276846
+          },
+          {
+            "frequency_hz": 11096.16608144732,
+            "ordinal": 5,
+            "ratio_to_first": 57.62403352688085
+          },
+          {
+            "frequency_hz": 16731.640601209314,
+            "ordinal": 6,
+            "ratio_to_first": 86.88988718146952
+          }
+        ],
+        "length_m": 0.07,
+        "maximum_mass_orthogonality_error": 7.327471962526033e-15,
+        "selected_frequency_hz": 192.77836145320384,
+        "selected_mode_index": 2,
+        "shape_mac_from_previous": 1.0,
+        "spring_center_from_root_mm": 59.5,
+        "spring_position_fraction": 0.85,
+        "taper_end_fraction": 0.5,
+        "tip_diameter_ratio": 0.95,
+        "tuning_mass_kg": 0.0001,
+        "tuning_span_m": 0.0
+      },
+      "minimum_spatial_mac": 0.9999951678337516,
+      "reason": null,
+      "solution": {
+        "coupled_modes_by_frequency_rank": [
+          {
+            "first_tine_projection": 0.017241917143107605,
+            "frequency_hz": 29.00205243619119,
+            "hammer_weight": 1.829773595672758,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 12.309426412560935,
+            "pickup_weight": 6.727294809407878,
+            "ratio_to_selected": 0.14767870900316651,
+            "relative_eigen_residual": 9.879546781502147e-13
+          },
+          {
+            "first_tine_projection": 0.0028038818987708037,
+            "frequency_hz": 80.70565737852966,
+            "hammer_weight": 4.578158923990855,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 4.725769107444539,
+            "pickup_weight": 1.0322422584939472,
+            "ratio_to_selected": 0.4109539253173761,
+            "relative_eigen_residual": 6.233602208774703e-14
+          },
+          {
+            "first_tine_projection": 0.9781555557767575,
+            "frequency_hz": 196.38614551789811,
+            "hammer_weight": 3.3583235227028254,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 197.68138376808247,
+            "pickup_weight": 58.863115013108015,
+            "ratio_to_selected": 1.0,
+            "relative_eigen_residual": 5.065182609001885e-15
+          },
+          {
+            "first_tine_projection": 0.001797556910353242,
+            "frequency_hz": 642.8083380472663,
+            "hammer_weight": -4.120047547034555,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -29.018923898650367,
+            "pickup_weight": 7.043346846697686,
+            "ratio_to_selected": 3.273185775667064,
+            "relative_eigen_residual": 5.423755564387019e-15
+          },
+          {
+            "first_tine_projection": 1.0858067356425558e-6,
+            "frequency_hz": 1326.2289662609971,
+            "hammer_weight": -18.77245836590294,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1118.2097730462328,
+            "pickup_weight": 59.56650702058691,
+            "ratio_to_selected": 6.75316969414285,
+            "relative_eigen_residual": 5.0626608419096985e-16
+          },
+          {
+            "first_tine_projection": 2.386246649081446e-9,
+            "frequency_hz": 3563.479042285955,
+            "hammer_weight": 36.46426297465472,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2379.7554458651803,
+            "pickup_weight": 65.26267780372473,
+            "ratio_to_selected": 18.145266983516354,
+            "relative_eigen_residual": 2.0386140779639872e-16
+          },
+          {
+            "first_tine_projection": 7.298400920996073e-11,
+            "frequency_hz": 6681.888081688916,
+            "hammer_weight": -47.25518757061605,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -2645.469568404283,
+            "pickup_weight": 55.982627609953106,
+            "ratio_to_selected": 34.02423355307386,
+            "relative_eigen_residual": 1.0729862319606284e-16
+          },
+          {
+            "first_tine_projection": 4.609416773403551e-12,
+            "frequency_hz": 11266.116189134138,
+            "hammer_weight": 46.55650162367298,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 1914.6939560166782,
+            "pickup_weight": 41.12624207664043,
+            "ratio_to_selected": 57.36716385681786,
+            "relative_eigen_residual": 1.2057449500774014e-16
+          },
+          {
+            "first_tine_projection": 4.348685975639082e-13,
+            "frequency_hz": 17466.276843970525,
+            "hammer_weight": -25.76029520785434,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -944.7383166471768,
+            "pickup_weight": 36.67420380955592,
+            "ratio_to_selected": 88.93843706698085,
+            "relative_eigen_residual": 2.9245570107619147e-16
+          }
+        ],
+        "fixed_root_fundamental_hz": 196.22053070848594,
+        "fixed_root_tine_modes": [
+          {
+            "frequency_hz": 196.22053070848594,
+            "ordinal": 1,
+            "ratio_to_first": 1.0
+          },
+          {
+            "frequency_hz": 1318.6215257487406,
+            "ordinal": 2,
+            "ratio_to_first": 6.720099680638129
+          },
+          {
+            "frequency_hz": 3559.1032311835734,
+            "ordinal": 3,
+            "ratio_to_first": 18.138281546446013
+          },
+          {
+            "frequency_hz": 6677.76397857318,
+            "ordinal": 4,
+            "ratio_to_first": 34.03193312372581
+          },
+          {
+            "frequency_hz": 11261.731335923003,
+            "ordinal": 5,
+            "ratio_to_first": 57.39323655511838
+          },
+          {
+            "frequency_hz": 17461.922961059932,
+            "ordinal": 6,
+            "ratio_to_first": 88.99131450725791
+          }
+        ],
+        "length_m": 0.07,
+        "maximum_mass_orthogonality_error": 1.9984014443252818e-15,
+        "selected_frequency_hz": 196.38614551789811,
+        "selected_mode_index": 2,
+        "shape_mac_from_previous": 0.9999999999999958,
+        "spring_center_from_root_mm": 56.09383392333984,
+        "spring_position_fraction": 0.8013404846191405,
+        "taper_end_fraction": 0.5,
+        "tip_diameter_ratio": 0.95,
+        "tuning_mass_kg": 0.0001,
+        "tuning_span_m": 0.0
+      },
+      "status": "retuned",
+      "taper_end_fraction": 0.5,
+      "target_hz": 196.38614697959488,
+      "tine_length_mm": 70.0,
+      "tip_diameter_ratio": 0.95,
+      "trials": [
+        {
+          "error_cents": -32.10004998814002,
+          "frequency_hz": 192.77836145320384,
+          "spatial_mac": 1.0,
+          "spring_position_fraction": 0.85
+        },
+        {
+          "error_cents": -15.344944672979103,
+          "frequency_hz": 194.65315277855638,
+          "spatial_mac": 0.9999951678337516,
+          "spring_position_fraction": 0.825
+        },
+        {
+          "error_cents": 0.8540130965545333,
+          "frequency_hz": 196.48304763575155,
+          "spatial_mac": 0.9999955266048001,
+          "spring_position_fraction": 0.7999999999999999
+        },
+        {
+          "error_cents": -7.174288005575727,
+          "frequency_hz": 195.57400059111328,
+          "spatial_mac": 0.9999988595232622,
+          "spring_position_fraction": 0.8125
+        },
+        {
+          "error_cents": -3.1421263818576293,
+          "frequency_hz": 196.03003657811118,
+          "spatial_mac": 0.999999723202103,
+          "spring_position_fraction": 0.8062499999999999
+        },
+        {
+          "error_cents": -1.1395261923450015,
+          "frequency_hz": 196.25692498074704,
+          "spatial_mac": 0.9999999318340066,
+          "spring_position_fraction": 0.8031249999999999
+        },
+        {
+          "error_cents": -0.1416209010908202,
+          "frequency_hz": 196.37008257422536,
+          "spatial_mac": 0.9999999830871755,
+          "spring_position_fraction": 0.8015625
+        },
+        {
+          "error_cents": 0.3564804668749974,
+          "frequency_hz": 196.42658924884955,
+          "spatial_mac": 0.9999999957878314,
+          "spring_position_fraction": 0.80078125
+        },
+        {
+          "error_cents": 0.10750064901974156,
+          "frequency_hz": 196.39834191865893,
+          "spatial_mac": 0.9999999989463,
+          "spring_position_fraction": 0.801171875
+        },
+        {
+          "error_cents": -0.017042430955241182,
+          "frequency_hz": 196.38421374539195,
+          "spatial_mac": 0.9999999997364908,
+          "spring_position_fraction": 0.8013671874999999
+        },
+        {
+          "error_cents": 0.045233825280664296,
+          "frequency_hz": 196.3912782399912,
+          "spatial_mac": 0.9999999999341473,
+          "spring_position_fraction": 0.80126953125
+        },
+        {
+          "error_cents": 0.014096794209466947,
+          "frequency_hz": 196.38774608537273,
+          "spatial_mac": 0.9999999999835338,
+          "spring_position_fraction": 0.801318359375
+        },
+        {
+          "error_cents": -0.001472298534597171,
+          "frequency_hz": 196.38597996640934,
+          "spatial_mac": 0.9999999999958837,
+          "spring_position_fraction": 0.8013427734374999
+        },
+        {
+          "error_cents": 0.00631232171583248,
+          "frequency_hz": 196.38686303228627,
+          "spatial_mac": 0.9999999999989708,
+          "spring_position_fraction": 0.80133056640625
+        },
+        {
+          "error_cents": 0.0024198942620104876,
+          "frequency_hz": 196.386421485542,
+          "spatial_mac": 0.9999999999997411,
+          "spring_position_fraction": 0.8013366699218749
+        },
+        {
+          "error_cents": 0.0004737090801916916,
+          "frequency_hz": 196.38620071578023,
+          "spatial_mac": 0.9999999999999358,
+          "spring_position_fraction": 0.8013397216796874
+        },
+        {
+          "error_cents": -0.000499388219280622,
+          "frequency_hz": 196.3860903304583,
+          "spatial_mac": 0.9999999999999833,
+          "spring_position_fraction": 0.8013412475585937
+        },
+        {
+          "error_cents": -0.000012885528166799121,
+          "frequency_hz": 196.38614551789811,
+          "spatial_mac": 0.9999999999999958,
+          "spring_position_fraction": 0.8013404846191405
+        }
+      ],
+      "tuning_mass_g": 0.1,
+      "tuning_span_mm": 0.0
+    },
+    {
+      "initial_structure": {
+        "coupled_modes_by_frequency_rank": [
+          {
+            "first_tine_projection": 0.017585694013680698,
+            "frequency_hz": 28.997484935623667,
+            "hammer_weight": 1.8298473023026374,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 12.332706584954286,
+            "pickup_weight": 6.739746299833376,
+            "ratio_to_selected": 0.1539207700279961,
+            "relative_eigen_residual": 7.215694914873356e-13
+          },
+          {
+            "first_tine_projection": 0.002673003427087162,
+            "frequency_hz": 80.71685855366601,
+            "hammer_weight": 4.579602936603958,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 4.84221354454799,
+            "pickup_weight": 1.0573435320876907,
+            "ratio_to_selected": 0.4284509863666873,
+            "relative_eigen_residual": 4.622234070058568e-14
+          },
+          {
+            "first_tine_projection": 0.9782164741304398,
+            "frequency_hz": 188.392280849098,
+            "hammer_weight": 3.1837638186291253,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 184.16334128001148,
+            "pickup_weight": 57.84453614379885,
+            "ratio_to_selected": 1.0,
+            "relative_eigen_residual": 4.131601432207868e-15
+          },
+          {
+            "first_tine_projection": 0.0015238068159631139,
+            "frequency_hz": 642.3425795497424,
+            "hammer_weight": -4.218539026705201,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -27.597065836243978,
+            "pickup_weight": 6.541853864938182,
+            "ratio_to_selected": 3.409601373552338,
+            "relative_eigen_residual": 3.2435798976840055e-15
+          },
+          {
+            "first_tine_projection": 1.0197058244902662e-6,
+            "frequency_hz": 1305.6134360715298,
+            "hammer_weight": -18.892343247945433,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1028.3274298849753,
+            "pickup_weight": 54.430909728299966,
+            "ratio_to_selected": 6.930291571326771,
+            "relative_eigen_residual": 6.470131621690124e-16
+          },
+          {
+            "first_tine_projection": 1.8535581526775652e-9,
+            "frequency_hz": 3650.721939072753,
+            "hammer_weight": 39.046693872334636,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2362.570953767572,
+            "pickup_weight": 60.50629949598628,
+            "ratio_to_selected": 19.37829895481215,
+            "relative_eigen_residual": 4.145340262664885e-17
+          },
+          {
+            "first_tine_projection": 4.917408428434286e-11,
+            "frequency_hz": 6884.500637514974,
+            "hammer_weight": -47.63387184103147,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -3056.377301644475,
+            "pickup_weight": 64.16394854158662,
+            "ratio_to_selected": 36.54343270587319,
+            "relative_eigen_residual": 1.1423742066716832e-16
+          },
+          {
+            "first_tine_projection": 3.821698103389829e-12,
+            "frequency_hz": 11049.59000543174,
+            "hammer_weight": 45.54090514112743,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2448.986145257372,
+            "pickup_weight": 53.77552636839715,
+            "ratio_to_selected": 58.65203157810085,
+            "relative_eigen_residual": 1.5801435943245674e-16
+          },
+          {
+            "first_tine_projection": 4.5080241445145163e-13,
+            "frequency_hz": 16647.27813363188,
+            "hammer_weight": -28.671135043802664,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1123.486160187965,
+            "pickup_weight": 39.185269731091765,
+            "ratio_to_selected": 88.36496940639691,
+            "relative_eigen_residual": 8.44470260902337e-18
+          }
+        ],
+        "fixed_root_fundamental_hz": 188.09894995931376,
+        "fixed_root_tine_modes": [
+          {
+            "frequency_hz": 188.09894995931376,
+            "ordinal": 1,
+            "ratio_to_first": 1.0
+          },
+          {
+            "frequency_hz": 1297.9887515675252,
+            "ordinal": 2,
+            "ratio_to_first": 6.900563516427302
+          },
+          {
+            "frequency_hz": 3646.197439673288,
+            "ordinal": 3,
+            "ratio_to_first": 19.384464615363186
+          },
+          {
+            "frequency_hz": 6880.685950229595,
+            "ordinal": 4,
+            "ratio_to_first": 36.58014014282325
+          },
+          {
+            "frequency_hz": 11045.750951578519,
+            "ordinal": 5,
+            "ratio_to_first": 58.72308672625626
+          },
+          {
+            "frequency_hz": 16643.170876807428,
+            "ordinal": 6,
+            "ratio_to_first": 88.48093453157173
+          }
+        ],
+        "length_m": 0.07,
+        "maximum_mass_orthogonality_error": 1.7763568394002505e-15,
+        "selected_frequency_hz": 188.392280849098,
+        "selected_mode_index": 2,
+        "shape_mac_from_previous": 1.0,
+        "spring_center_from_root_mm": 59.5,
+        "spring_position_fraction": 0.85,
+        "taper_end_fraction": 0.25,
+        "tip_diameter_ratio": 0.95,
+        "tuning_mass_kg": 0.0001,
+        "tuning_span_m": 0.0
+      },
+      "minimum_spatial_mac": 0.9999952347833376,
+      "reason": null,
+      "solution": {
+        "coupled_modes_by_frequency_rank": [
+          {
+            "first_tine_projection": 0.016781109594765968,
+            "frequency_hz": 29.009157404071267,
+            "hammer_weight": 1.8301764612575295,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 12.317524108554323,
+            "pickup_weight": 6.730238514864763,
+            "ratio_to_selected": 0.14771488690436402,
+            "relative_eigen_residual": 4.935264559926624e-13
+          },
+          {
+            "first_tine_projection": 0.002975624846878171,
+            "frequency_hz": 80.70911903676088,
+            "hammer_weight": 4.579452688468782,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 4.850385518525703,
+            "pickup_weight": 1.05916270971401,
+            "ratio_to_selected": 0.4109715502799406,
+            "relative_eigen_residual": 3.138710988154215e-14
+          },
+          {
+            "first_tine_projection": 0.9784951484619675,
+            "frequency_hz": 196.38614639330734,
+            "hammer_weight": 3.3853528921851943,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 203.60135397905523,
+            "pickup_weight": 60.14184058892414,
+            "ratio_to_selected": 1.0,
+            "relative_eigen_residual": 3.0370174703146287e-15
+          },
+          {
+            "first_tine_projection": 0.0017470619624797156,
+            "frequency_hz": 642.7468540088797,
+            "hammer_weight": -4.122566670199502,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -30.20180793589819,
+            "pickup_weight": 7.325971985902813,
+            "ratio_to_selected": 3.272872683807517,
+            "relative_eigen_residual": 5.501291393400413e-15
+          },
+          {
+            "first_tine_projection": 1.0520885547630332e-6,
+            "frequency_hz": 1312.8721996927202,
+            "hammer_weight": -18.254756607902628,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1173.862300373584,
+            "pickup_weight": 64.30446187737226,
+            "ratio_to_selected": 6.685156890157613,
+            "relative_eigen_residual": 1.5561175548075728e-16
+          },
+          {
+            "first_tine_projection": 2.969110109683035e-9,
+            "frequency_hz": 3410.7125850259367,
+            "hammer_weight": 36.57704273357143,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2225.4504920602485,
+            "pickup_weight": 60.842821774043195,
+            "ratio_to_selected": 17.36737874674326,
+            "relative_eigen_residual": 1.2791509420612304e-16
+          },
+          {
+            "first_tine_projection": 7.242464101907019e-11,
+            "frequency_hz": 6794.869609619195,
+            "hammer_weight": -51.67233692484103,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -2356.899183583923,
+            "pickup_weight": 45.612397732506345,
+            "ratio_to_selected": 34.59953634413164,
+            "relative_eigen_residual": 2.5025377505529687e-16
+          },
+          {
+            "first_tine_projection": 3.456816750248719e-12,
+            "frequency_hz": 11768.68708670731,
+            "hammer_weight": 45.8943841424008,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2091.7832796417724,
+            "pickup_weight": 45.578196956547025,
+            "ratio_to_selected": 59.926259070931984,
+            "relative_eigen_residual": 1.4357334855006207e-17
+          },
+          {
+            "first_tine_projection": 3.6241481201826743e-13,
+            "frequency_hz": 17002.499223273237,
+            "hammer_weight": -23.910842763135953,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1308.137755435962,
+            "pickup_weight": 54.70897736205084,
+            "ratio_to_selected": 86.57687691076698,
+            "relative_eigen_residual": 1.5378021458154572e-16
+          }
+        ],
+        "fixed_root_fundamental_hz": 196.20203601593798,
+        "fixed_root_tine_modes": [
+          {
+            "frequency_hz": 196.20203601593798,
+            "ordinal": 1,
+            "ratio_to_first": 1.0
+          },
+          {
+            "frequency_hz": 1305.7520113865069,
+            "ordinal": 2,
+            "ratio_to_first": 6.655139966439682
+          },
+          {
+            "frequency_hz": 3406.3882204879324,
+            "ordinal": 3,
+            "ratio_to_first": 17.3616354328312
+          },
+          {
+            "frequency_hz": 6790.353514919159,
+            "ordinal": 4,
+            "ratio_to_first": 34.6089859860963
+          },
+          {
+            "frequency_hz": 11764.493849044184,
+            "ordinal": 5,
+            "ratio_to_first": 59.96112011849115
+          },
+          {
+            "frequency_hz": 16999.330759071312,
+            "ordinal": 6,
+            "ratio_to_first": 86.64196918777344
+          }
+        ],
+        "length_m": 0.07,
+        "maximum_mass_orthogonality_error": 2.220446049250313e-15,
+        "selected_frequency_hz": 196.38614639330734,
+        "selected_mode_index": 2,
+        "shape_mac_from_previous": 1.0,
+        "spring_center_from_root_mm": 51.4739818572998,
+        "spring_position_fraction": 0.7353425979614256,
+        "taper_end_fraction": 0.25,
+        "tip_diameter_ratio": 0.95,
+        "tuning_mass_kg": 0.0001,
+        "tuning_span_m": 0.0
+      },
+      "status": "retuned",
+      "taper_end_fraction": 0.25,
+      "target_hz": 196.38614697959488,
+      "tine_length_mm": 70.0,
+      "tip_diameter_ratio": 0.95,
+      "trials": [
+        {
+          "error_cents": -71.94397502877423,
+          "frequency_hz": 188.392280849098,
+          "spatial_mac": 1.0,
+          "spring_position_fraction": 0.85
+        },
+        {
+          "error_cents": -55.23129566794938,
+          "frequency_hz": 190.21975542648426,
+          "spatial_mac": 0.9999952347833376,
+          "spring_position_fraction": 0.825
+        },
+        {
+          "error_cents": -39.06708367118837,
+          "frequency_hz": 192.00411926241998,
+          "spatial_mac": 0.9999955825249742,
+          "spring_position_fraction": 0.7999999999999999
+        },
+        {
+          "error_cents": -23.478403938243137,
+          "frequency_hz": 193.74080340188178,
+          "spatial_mac": 0.999995921989373,
+          "spring_position_fraction": 0.7749999999999999
+        },
+        {
+          "error_cents": -8.493420490685937,
+          "frequency_hz": 195.42503762787757,
+          "spatial_mac": 0.9999962524167985,
+          "spring_position_fraction": 0.75
+        },
+        {
+          "error_cents": 5.8591932689232555,
+          "frequency_hz": 197.05192278586915,
+          "spatial_mac": 0.9999965717382489,
+          "spring_position_fraction": 0.725
+        },
+        {
+          "error_cents": -1.236270451495454,
+          "frequency_hz": 196.24595812139873,
+          "spatial_mac": 0.9999991232590884,
+          "spring_position_fraction": 0.7375
+        },
+        {
+          "error_cents": 2.3318949710594263,
+          "frequency_hz": 196.65084858227988,
+          "spatial_mac": 0.9999997881643335,
+          "spring_position_fraction": 0.73125
+        },
+        {
+          "error_cents": 0.5528921213475261,
+          "frequency_hz": 196.44887546716456,
+          "spatial_mac": 0.9999999467368431,
+          "spring_position_fraction": 0.734375
+        },
+        {
+          "error_cents": -0.34042268645620033,
+          "frequency_hz": 196.34753421823646,
+          "spatial_mac": 0.9999999866461267,
+          "spring_position_fraction": 0.7359375
+        },
+        {
+          "error_cents": 0.10655157128574087,
+          "frequency_hz": 196.39823425138982,
+          "spatial_mac": 0.999999996675792,
+          "spring_position_fraction": 0.73515625
+        },
+        {
+          "error_cents": -0.11685615129659233,
+          "frequency_hz": 196.3728916055906,
+          "spatial_mac": 0.9999999991683401,
+          "spring_position_fraction": 0.735546875
+        },
+        {
+          "error_cents": -0.005132433818431594,
+          "frequency_hz": 196.38556477211768,
+          "spatial_mac": 0.9999999997923219,
+          "spring_position_fraction": 0.7353515625
+        },
+        {
+          "error_cents": 0.05071460325463749,
+          "frequency_hz": 196.39189998070646,
+          "spatial_mac": 0.9999999999481048,
+          "spring_position_fraction": 0.73525390625
+        },
+        {
+          "error_cents": 0.022792105754292843,
+          "frequency_hz": 196.3887324666914,
+          "spatial_mac": 0.9999999999870257,
+          "spring_position_fraction": 0.735302734375
+        },
+        {
+          "error_cents": 0.00883032208444324,
+          "frequency_hz": 196.38714866816164,
+          "spatial_mac": 0.999999999996755,
+          "spring_position_fraction": 0.7353271484375
+        },
+        {
+          "error_cents": 0.0018492036419069725,
+          "frequency_hz": 196.3863567479808,
+          "spatial_mac": 0.999999999999188,
+          "spring_position_fraction": 0.73533935546875
+        },
+        {
+          "error_cents": -0.0016417896706698255,
+          "frequency_hz": 196.38596073984593,
+          "spatial_mac": 0.9999999999997966,
+          "spring_position_fraction": 0.735345458984375
+        },
+        {
+          "error_cents": 0.00010349072591732271,
+          "frequency_hz": 196.38615871928167,
+          "spatial_mac": 0.9999999999999483,
+          "spring_position_fraction": 0.7353424072265624
+        },
+        {
+          "error_cents": -0.0007693997304619205,
+          "frequency_hz": 196.38605970115032,
+          "spatial_mac": 0.9999999999999869,
+          "spring_position_fraction": 0.7353439331054688
+        },
+        {
+          "error_cents": -0.00033253744052430165,
+          "frequency_hz": 196.38610925752002,
+          "spatial_mac": 0.9999999999999964,
+          "spring_position_fraction": 0.7353431701660156
+        },
+        {
+          "error_cents": -0.00011445505090736327,
+          "frequency_hz": 196.38613399614778,
+          "spatial_mac": 0.9999999999999989,
+          "spring_position_fraction": 0.735342788696289
+        },
+        {
+          "error_cents": -5.168393913550534e-6,
+          "frequency_hz": 196.38614639330734,
+          "spatial_mac": 1.0,
+          "spring_position_fraction": 0.7353425979614256
+        }
+      ],
+      "tuning_mass_g": 0.1,
+      "tuning_span_mm": 0.0
+    },
+    {
+      "initial_structure": {
+        "coupled_modes_by_frequency_rank": [
+          {
+            "first_tine_projection": 0.017625824264137526,
+            "frequency_hz": 28.997444574136214,
+            "hammer_weight": 1.8302937112615127,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 12.345869231888708,
+            "pickup_weight": 6.745294023536492,
+            "ratio_to_selected": 0.15627352826502522,
+            "relative_eigen_residual": 6.262872182843213e-13
+          },
+          {
+            "first_tine_projection": 0.0027238841568088088,
+            "frequency_hz": 80.72132999371142,
+            "hammer_weight": 4.581557175280396,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 4.943221592419779,
+            "pickup_weight": 1.0789391910441999,
+            "ratio_to_selected": 0.4350247833774317,
+            "relative_eigen_residual": 4.040718846556086e-14
+          },
+          {
+            "first_tine_projection": 0.9782226589758006,
+            "frequency_hz": 185.55570413025598,
+            "hammer_weight": 3.2146303466416986,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 185.58442469430065,
+            "pickup_weight": 57.731186694040694,
+            "ratio_to_selected": 1.0,
+            "relative_eigen_residual": 3.321897102066026e-15
+          },
+          {
+            "first_tine_projection": 0.001426674267209575,
+            "frequency_hz": 642.2494805731378,
+            "hammer_weight": -4.206494681144869,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -27.016132731867483,
+            "pickup_weight": 6.422481134461957,
+            "ratio_to_selected": 3.4612219741964547,
+            "relative_eigen_residual": 2.1522919436602856e-15
+          },
+          {
+            "first_tine_projection": 9.565826232205926e-7,
+            "frequency_hz": 1298.7409182545287,
+            "hammer_weight": -18.959780747778723,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1033.1154327153145,
+            "pickup_weight": 54.48984070326612,
+            "ratio_to_selected": 6.9991969491966755,
+            "relative_eigen_residual": 2.315094946474877e-16
+          },
+          {
+            "first_tine_projection": 1.7038375814813727e-9,
+            "frequency_hz": 3646.6896155924564,
+            "hammer_weight": 39.295134542609745,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2378.9606939441655,
+            "pickup_weight": 60.54084612853369,
+            "ratio_to_selected": 19.652802551586134,
+            "relative_eigen_residual": 1.826488958618742e-16
+          },
+          {
+            "first_tine_projection": 4.559904189810835e-11,
+            "frequency_hz": 6879.349525309808,
+            "hammer_weight": -48.24367302599452,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -3093.8464199994423,
+            "pickup_weight": 64.1295785735971,
+            "ratio_to_selected": 37.07430907368204,
+            "relative_eigen_residual": 1.1518404079249267e-16
+          },
+          {
+            "first_tine_projection": 3.5639788663854766e-12,
+            "frequency_hz": 11034.330038288224,
+            "hammer_weight": 46.285563117208135,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2488.81882814737,
+            "pickup_weight": 53.770952766524125,
+            "ratio_to_selected": 59.466401693274655,
+            "relative_eigen_residual": 1.5857925036181122e-16
+          },
+          {
+            "first_tine_projection": 4.1979590963368877e-13,
+            "frequency_hz": 16616.424147701615,
+            "hammer_weight": -29.141871776597515,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1142.9494594825605,
+            "pickup_weight": 39.220180098397464,
+            "ratio_to_selected": 89.54951951268097,
+            "relative_eigen_residual": 3.321447486829453e-16
+          }
+        ],
+        "fixed_root_fundamental_hz": 185.21283581100698,
+        "fixed_root_tine_modes": [
+          {
+            "frequency_hz": 185.21283581100698,
+            "ordinal": 1,
+            "ratio_to_first": 1.0
+          },
+          {
+            "frequency_hz": 1291.3214601946497,
+            "ordinal": 2,
+            "ratio_to_first": 6.972094858006099
+          },
+          {
+            "frequency_hz": 3642.28680013589,
+            "ordinal": 3,
+            "ratio_to_first": 19.6654124115486
+          },
+          {
+            "frequency_hz": 6875.62224121285,
+            "ordinal": 4,
+            "ratio_to_first": 37.1228171692636
+          },
+          {
+            "frequency_hz": 11030.58330231814,
+            "ordinal": 5,
+            "ratio_to_first": 59.556257286475855
+          },
+          {
+            "frequency_hz": 16612.434393079122,
+            "ordinal": 6,
+            "ratio_to_first": 89.69375324521576
+          }
+        ],
+        "length_m": 0.07,
+        "maximum_mass_orthogonality_error": 2.220446049250313e-15,
+        "selected_frequency_hz": 185.55570413025598,
+        "selected_mode_index": 2,
+        "shape_mac_from_previous": 1.0,
+        "spring_center_from_root_mm": 59.5,
+        "spring_position_fraction": 0.85,
+        "taper_end_fraction": 0.137,
+        "tip_diameter_ratio": 0.95,
+        "tuning_mass_kg": 0.0001,
+        "tuning_span_m": 0.0
+      },
+      "minimum_spatial_mac": 0.9999952986281937,
+      "reason": null,
+      "solution": {
+        "coupled_modes_by_frequency_rank": [
+          {
+            "first_tine_projection": 0.01648908565458091,
+            "frequency_hz": 29.013688772679064,
+            "hammer_weight": 1.8307081309885638,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 12.324193571103116,
+            "pickup_weight": 6.73192704095774,
+            "ratio_to_selected": 0.14773796647173512,
+            "relative_eigen_residual": 5.816073670871962e-13
+          },
+          {
+            "first_tine_projection": 0.0031126684500991197,
+            "frequency_hz": 80.7095801855578,
+            "hammer_weight": 4.5812144106539625,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 4.938706406032058,
+            "pickup_weight": 1.0780343296193953,
+            "ratio_to_selected": 0.41097391458303456,
+            "relative_eigen_residual": 3.623064121498011e-14
+          },
+          {
+            "first_tine_projection": 0.9786825106367809,
+            "frequency_hz": 196.3861386858191,
+            "hammer_weight": 3.491940456757251,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 212.7114320148608,
+            "pickup_weight": 60.91496537498029,
+            "ratio_to_selected": 1.0,
+            "relative_eigen_residual": 2.986692624093753e-15
+          },
+          {
+            "first_tine_projection": 0.001714598727810881,
+            "frequency_hz": 642.6895752243173,
+            "hammer_weight": -4.094608669013776,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -30.782781620361213,
+            "pickup_weight": 7.517881221058307,
+            "ratio_to_selected": 3.2725811481659597,
+            "relative_eigen_residual": 4.731141394155208e-15
+          },
+          {
+            "first_tine_projection": 1.1332890276292728e-6,
+            "frequency_hz": 1281.0050655311911,
+            "hammer_weight": -17.555897037510746,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1154.225728166908,
+            "pickup_weight": 65.74575629492105,
+            "ratio_to_selected": 6.522889416246216,
+            "relative_eigen_residual": 2.502542905054356e-16
+          },
+          {
+            "first_tine_projection": 3.1791801249427874e-9,
+            "frequency_hz": 3387.4784893238916,
+            "hammer_weight": 38.05765134550495,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2110.993379648332,
+            "pickup_weight": 55.46830413899581,
+            "ratio_to_selected": 17.24907120223602,
+            "relative_eigen_residual": 1.0271473191159522e-16
+          },
+          {
+            "first_tine_projection": 5.896522929854653e-11,
+            "frequency_hz": 7037.122540201857,
+            "hammer_weight": -53.06601973505426,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -2475.3861003626744,
+            "pickup_weight": 46.647291670294386,
+            "ratio_to_selected": 35.83309182253402,
+            "relative_eigen_residual": 2.4197843786802735e-16
+          },
+          {
+            "first_tine_projection": 3.0007215842368527e-12,
+            "frequency_hz": 11499.113474169499,
+            "hammer_weight": 41.927420842372534,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": 2381.0550933657773,
+            "pickup_weight": 56.78992519757963,
+            "ratio_to_selected": 58.55359014194947,
+            "relative_eigen_residual": 8.393678530825742e-17
+          },
+          {
+            "first_tine_projection": 5.544945019513708e-13,
+            "frequency_hz": 16312.970484010599,
+            "hammer_weight": -29.98216781305547,
+            "linear_hammer_to_pickup_velocity_residue_per_kg": -1290.627821931293,
+            "pickup_weight": 43.04651451418068,
+            "ratio_to_selected": 83.06579371219414,
+            "relative_eigen_residual": 1.312118995569207e-16
+          }
+        ],
+        "fixed_root_fundamental_hz": 196.18772585855663,
+        "fixed_root_tine_modes": [
+          {
+            "frequency_hz": 196.18772585855663,
+            "ordinal": 1,
+            "ratio_to_first": 1.0
+          },
+          {
+            "frequency_hz": 1274.2312699804145,
+            "ordinal": 2,
+            "ratio_to_first": 6.49495917445459
+          },
+          {
+            "frequency_hz": 3382.95296866842,
+            "ordinal": 3,
+            "ratio_to_first": 17.24344860955976
+          },
+          {
+            "frequency_hz": 7032.650623468735,
+            "ordinal": 4,
+            "ratio_to_first": 35.846537252483316
+          },
+          {
+            "frequency_hz": 11495.896415817992,
+            "ordinal": 5,
+            "ratio_to_first": 58.59640997167205
+          },
+          {
+            "frequency_hz": 16309.08777501917,
+            "ordinal": 6,
+            "ratio_to_first": 83.13001082839075
+          }
+        ],
+        "length_m": 0.07,
+        "maximum_mass_orthogonality_error": 3.885780586188048e-15,
+        "selected_frequency_hz": 196.3861386858191,
+        "selected_mode_index": 2,
+        "shape_mac_from_previous": 0.9999999999999898,
+        "spring_center_from_root_mm": 48.01808166503906,
+        "spring_position_fraction": 0.6859725952148438,
+        "taper_end_fraction": 0.137,
+        "tip_diameter_ratio": 0.95,
+        "tuning_mass_kg": 0.0001,
+        "tuning_span_m": 0.0
+      },
+      "status": "retuned",
+      "taper_end_fraction": 0.137,
+      "target_hz": 196.38614697959488,
+      "tine_length_mm": 70.0,
+      "tip_diameter_ratio": 0.95,
+      "trials": [
+        {
+          "error_cents": -98.20897757990524,
+          "frequency_hz": 185.55570413025598,
+          "spatial_mac": 1.0,
+          "spring_position_fraction": 0.85
+        },
+        {
+          "error_cents": -81.62523422052523,
+          "frequency_hz": 187.34170982048343,
+          "spatial_mac": 0.9999952986281937,
+          "spring_position_fraction": 0.825
+        },
+        {
+          "error_cents": -65.58101682414573,
+          "frequency_hz": 189.08596973220787,
+          "spatial_mac": 0.9999956386677991,
+          "spring_position_fraction": 0.7999999999999999
+        },
+        {
+          "error_cents": -50.10287594448913,
+          "frequency_hz": 190.78407720093267,
+          "spatial_mac": 0.9999959704095575,
+          "spring_position_fraction": 0.7749999999999999
+        },
+        {
+          "error_cents": -35.21844089957813,
+          "frequency_hz": 192.43143135650283,
+          "spatial_mac": 0.9999962931729013,
+          "spring_position_fraction": 0.75
+        },
+        {
+          "error_cents": -20.955855628251957,
+          "frequency_hz": 194.0233052173762,
+          "spatial_mac": 0.9999966050721838,
+          "spring_position_fraction": 0.725
+        },
+        {
+          "error_cents": -7.343197323047868,
+          "frequency_hz": 195.55492017878137,
+          "spatial_mac": 0.9999969033423647,
+          "spring_position_fraction": 0.7
+        },
+        {
+          "error_cents": 5.5922881534731586,
+          "frequency_hz": 197.02154554588554,
+          "spatial_mac": 0.9999971848348576,
+          "spring_position_fraction": 0.6749999999999999
+        },
+        {
+          "error_cents": -0.7891586042435905,
+          "frequency_hz": 196.29664752663987,
+          "spatial_mac": 0.9999992790227771,
+          "spring_position_fraction": 0.6875
+        },
+        {
+          "error_cents": 2.4233420109362984,
+          "frequency_hz": 196.6612363244582,
+          "spatial_mac": 0.9999998261581934,
+          "spring_position_fraction": 0.6812499999999999
+        },
+        {
+          "error_cents": 0.822510212551288,
+          "frequency_hz": 196.47947230961645,
+          "spatial_mac": 0.9999999562755262,
+          "spring_position_fraction": 0.684375
+        },
+        {
+          "error_cents": 0.01802735710813653,
+          "frequency_hz": 196.38819196111393,
+          "spatial_mac": 0.9999999890357193,
+          "spring_position_fraction": 0.6859375
+        },
+        {
+          "error_cents": -0.38522793623295953,
+          "frequency_hz": 196.34245270630643,
+          "spatial_mac": 0.9999999972547818,
+          "spring_position_fraction": 0.68671875
+        },
+        {
+          "error_cents": -0.18351571978924114,
+          "frequency_hz": 196.36533059428967,
+          "spatial_mac": 0.9999999993152549,
+          "spring_position_fraction": 0.686328125
+        },
+        {
+          "error_cents": -0.08272341734780939,
+          "frequency_hz": 196.37676330031792,
+          "spatial_mac": 0.999999999829009,
+          "spring_position_fraction": 0.6861328124999999
+        },
+        {
+          "error_cents": -0.03234283157227168,
+          "frequency_hz": 196.38247813727529,
+          "spatial_mac": 0.9999999999572813,
+          "spring_position_fraction": 0.68603515625
+        },
+        {
+          "error_cents": -0.00715642619572756,
+          "frequency_hz": 196.3853351771337,
+          "spatial_mac": 0.9999999999893192,
+          "spring_position_fraction": 0.685986328125
+        },
+        {
+          "error_cents": 0.005435951283665906,
+          "frequency_hz": 196.3867636190402,
+          "spatial_mac": 0.999999999997329,
+          "spring_position_fraction": 0.6859619140625
+        },
+        {
+          "error_cents": -0.0008604084875329547,
+          "frequency_hz": 196.3860493773869,
+          "spatial_mac": 0.9999999999993321,
+          "spring_position_fraction": 0.68597412109375
+        },
+        {
+          "error_cents": 0.002287840125506811,
+          "frequency_hz": 196.3864065056851,
+          "spatial_mac": 0.9999999999998328,
+          "spring_position_fraction": 0.685968017578125
+        },
+        {
+          "error_cents": 0.0007138089417471062,
+          "frequency_hz": 196.38622795201843,
+          "spatial_mac": 0.9999999999999583,
+          "spring_position_fraction": 0.6859710693359375
+        },
+        {
+          "error_cents": -0.0000731134427446076,
+          "frequency_hz": 196.3861386858191,
+          "spatial_mac": 0.9999999999999898,
+          "spring_position_fraction": 0.6859725952148438
+        }
+      ],
+      "tuning_mass_g": 0.1,
+      "tuning_span_mm": 0.0
+    }
+  ],
+  "completed_without_numerical_rejections": true,
+  "experiment": "localized-tine-transition-sensitivity-v1",
+  "frozen_reference": {
+    "candidate": {
+      "anchor": {
+        "frequency_hz": 169.57054042359366,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          155.56349186104043,
+          246.94165062806204
+        ],
+        "temporal_span_cents": 0.0002247349390880204,
+        "windows": [
+          {
+            "amplitude_dbfs": -26.92832673317971,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 169.57055409749734,
+            "margin_above_band_background_db": 74.05190154059491,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -34.16574079697804,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 169.5705350880768,
+            "margin_above_band_background_db": 85.32695903930747,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -41.477178741070816,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 169.5705320852075,
+            "margin_above_band_background_db": 84.05712677594852,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      },
+      "file": "renders/pitch-reference-default-75mm.wav",
+      "frozen_target_residual": {
+        "consistent_with_5_cent_pilot_limit": false,
+        "frequency_error_cents": -254.1691373241547
+      },
+      "role": "Diagnostic only; never participates in reference target fitting or qualification"
+    },
+    "experiment": "frequency-reference-preparation-v1",
+    "manifest": {
+      "capture_gain": "Unknown; raw distributed sample levels are not a calibrated strike-intensity curve",
+      "instrument": "1977 Rhodes Mark I Stage 73",
+      "note": 55,
+      "prior_exposure": "All five layers were inspected in the earlier G3 pilots. Training/validation is a new fixed protocol split, not blind independent data.",
+      "processing": "Harp output; treble boost, low-mid scoop and CoolEdit 96 noise reduction; mono version",
+      "schema_version": 1,
+      "source": "https://github.com/jlearman/jRhodes3d-wav",
+      "source_revision": "a886e6cebf074c995a10634f82ebe4fdb90f5ca6",
+      "takes": [
+        {
+          "file": "audio/jrhodes-g3-a886e6c/A_055__G3_1.wav",
+          "git_blob_sha1": "2a95dbf514bd9b721d4084c6ed5816ad123f2712",
+          "id": "g3-layer-1",
+          "role": "training"
+        },
+        {
+          "file": "audio/jrhodes-g3-a886e6c/A_055__G3_2.wav",
+          "git_blob_sha1": "c46d5086be237b50dcb2286e7891aba13cf4f183",
+          "id": "g3-layer-2",
+          "role": "validation"
+        },
+        {
+          "file": "audio/jrhodes-g3-a886e6c/A_055__G3_3.wav",
+          "git_blob_sha1": "e16318eb5d9cdf0c4c951aaa725d5e6138657c3b",
+          "id": "g3-layer-3",
+          "role": "training"
+        },
+        {
+          "file": "audio/jrhodes-g3-a886e6c/A_055__G3_4.wav",
+          "git_blob_sha1": "a3ad5115e19e8d011ed45052122d43718a0a7d52",
+          "id": "g3-layer-4",
+          "role": "validation"
+        },
+        {
+          "file": "audio/jrhodes-g3-a886e6c/A_055__G3_5.wav",
+          "git_blob_sha1": "c41b60a18683c78f9c77b45e9b5accf0fd2a775c",
+          "id": "g3-layer-5",
+          "role": "training"
+        }
+      ]
+    },
+    "protocol": {
+      "competitor_margin_db": 20,
+      "maximum_between_take_error_cents": 5,
+      "maximum_temporal_span_cents": 5,
+      "minimum_band_background_margin_db": 24,
+      "search_half_width_cents": 400,
+      "start_seconds": 0.25,
+      "target": "Equal-take arithmetic mean in log frequency; training only",
+      "window_count": 3,
+      "window_seconds": 0.512
+    },
+    "reference_qualification_passed": true,
+    "schema_version": 1,
+    "scope": "Frequency-only target from processed output recordings. Broad-band dominant local peak is not a proven fundamental or structural eigenmode. Unresolved close components can remain hidden. Reciprocal window duration and temporal spread are not confidence intervals. Reused layers are a declared protocol split, not blind independent data. No decay/material/geometry/gain/velocity identification, DSP mutation, WAV generation or listening claim. Git blob identity is verified on the exact decoded bytes; candidate is diagnostic and never fitted.",
+    "takes": [
+      {
+        "anchor": {
+          "frequency_hz": 196.45936360368256,
+          "observation_resolution_hz": 1.9531423003675985,
+          "qualified": true,
+          "rejection_reasons": [],
+          "search_band_hz": [
+            155.56349186104043,
+            246.94165062806204
+          ],
+          "temporal_span_cents": 0.6788180866722696,
+          "windows": [
+            {
+              "amplitude_dbfs": -17.0668867781483,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 0.7619954648526077,
+              "frequency_hz": 196.4903515401271,
+              "margin_above_band_background_db": 75.76357458055179,
+              "rejection_reasons": [],
+              "start_seconds": 0.25
+            },
+            {
+              "amplitude_dbfs": -16.718058682756965,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 1.2739909297052154,
+              "frequency_hz": 196.47442504984335,
+              "margin_above_band_background_db": 77.63588107889029,
+              "rejection_reasons": [],
+              "start_seconds": 0.7619954648526077
+            },
+            {
+              "amplitude_dbfs": -17.42058531889351,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 1.7859863945578232,
+              "frequency_hz": 196.41332263780205,
+              "margin_above_band_background_db": 79.2755181368896,
+              "rejection_reasons": [],
+              "start_seconds": 1.2739909297052154
+            }
+          ]
+        },
+        "frozen_target_residual": {
+          "consistent_with_5_cent_pilot_limit": true,
+          "frequency_error_cents": 0.645317869906372
+        },
+        "take": {
+          "file": "audio/jrhodes-g3-a886e6c/A_055__G3_1.wav",
+          "git_blob_sha1": "2a95dbf514bd9b721d4084c6ed5816ad123f2712",
+          "id": "g3-layer-1",
+          "role": "training"
+        }
+      },
+      {
+        "anchor": {
+          "frequency_hz": 196.39748177264747,
+          "observation_resolution_hz": 1.9531423003675985,
+          "qualified": true,
+          "rejection_reasons": [],
+          "search_band_hz": [
+            155.56349186104043,
+            246.94165062806204
+          ],
+          "temporal_span_cents": 0.9283452561283372,
+          "windows": [
+            {
+              "amplitude_dbfs": -10.858136318668734,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 0.7619954648526077,
+              "frequency_hz": 196.4534425466545,
+              "margin_above_band_background_db": 78.20041000186475,
+              "rejection_reasons": [],
+              "start_seconds": 0.25
+            },
+            {
+              "amplitude_dbfs": -11.937494191844872,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 1.2739909297052154,
+              "frequency_hz": 196.39089113687783,
+              "margin_above_band_background_db": 79.83103084907665,
+              "rejection_reasons": [],
+              "start_seconds": 0.7619954648526077
+            },
+            {
+              "amplitude_dbfs": -13.336869152415437,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 1.7859863945578232,
+              "frequency_hz": 196.3481259188584,
+              "margin_above_band_background_db": 78.26077588899678,
+              "rejection_reasons": [],
+              "start_seconds": 1.2739909297052154
+            }
+          ]
+        },
+        "frozen_target_residual": {
+          "consistent_with_5_cent_pilot_limit": true,
+          "frequency_error_cents": 0.0999185212457274
+        },
+        "take": {
+          "file": "audio/jrhodes-g3-a886e6c/A_055__G3_2.wav",
+          "git_blob_sha1": "c46d5086be237b50dcb2286e7891aba13cf4f183",
+          "id": "g3-layer-2",
+          "role": "validation"
+        }
+      },
+      {
+        "anchor": {
+          "frequency_hz": 196.35566237226888,
+          "observation_resolution_hz": 1.9531423003675985,
+          "qualified": true,
+          "rejection_reasons": [],
+          "search_band_hz": [
+            155.56349186104043,
+            246.94165062806204
+          ],
+          "temporal_span_cents": 0.3630940831357694,
+          "windows": [
+            {
+              "amplitude_dbfs": -6.54390496514811,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 0.7619954648526077,
+              "frequency_hz": 196.37889699797185,
+              "margin_above_band_background_db": 77.49103733746747,
+              "rejection_reasons": [],
+              "start_seconds": 0.25
+            },
+            {
+              "amplitude_dbfs": -8.015548369266435,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 1.2739909297052154,
+              "frequency_hz": 196.35037788251705,
+              "margin_above_band_background_db": 77.81182097445361,
+              "rejection_reasons": [],
+              "start_seconds": 0.7619954648526077
+            },
+            {
+              "amplitude_dbfs": -9.496066699229663,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 1.7859863945578232,
+              "frequency_hz": 196.3377145023009,
+              "margin_above_band_background_db": 77.9592595780272,
+              "rejection_reasons": [],
+              "start_seconds": 1.2739909297052154
+            }
+          ]
+        },
+        "frozen_target_residual": {
+          "consistent_with_5_cent_pilot_limit": true,
+          "frequency_error_cents": -0.2687566692647183
+        },
+        "take": {
+          "file": "audio/jrhodes-g3-a886e6c/A_055__G3_3.wav",
+          "git_blob_sha1": "e16318eb5d9cdf0c4c951aaa725d5e6138657c3b",
+          "id": "g3-layer-3",
+          "role": "training"
+        }
+      },
+      {
+        "anchor": {
+          "frequency_hz": 196.34550086240148,
+          "observation_resolution_hz": 1.9531423003675985,
+          "qualified": true,
+          "rejection_reasons": [],
+          "search_band_hz": [
+            155.56349186104043,
+            246.94165062806204
+          ],
+          "temporal_span_cents": 0.03202717459428604,
+          "windows": [
+            {
+              "amplitude_dbfs": -5.610169150597677,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 0.7619954648526077,
+              "frequency_hz": 196.34769051664583,
+              "margin_above_band_background_db": 77.36272993287488,
+              "rejection_reasons": [],
+              "start_seconds": 0.25
+            },
+            {
+              "amplitude_dbfs": -7.004115777822173,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 1.2739909297052154,
+              "frequency_hz": 196.34475389719705,
+              "margin_above_band_background_db": 78.92838206756981,
+              "rejection_reasons": [],
+              "start_seconds": 0.7619954648526077
+            },
+            {
+              "amplitude_dbfs": -8.355695923023404,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 1.7859863945578232,
+              "frequency_hz": 196.344058192292,
+              "margin_above_band_background_db": 78.04767318709368,
+              "rejection_reasons": [],
+              "start_seconds": 1.2739909297052154
+            }
+          ]
+        },
+        "frozen_target_residual": {
+          "consistent_with_5_cent_pilot_limit": true,
+          "frequency_error_cents": -0.3583512695525993
+        },
+        "take": {
+          "file": "audio/jrhodes-g3-a886e6c/A_055__G3_4.wav",
+          "git_blob_sha1": "a3ad5115e19e8d011ed45052122d43718a0a7d52",
+          "id": "g3-layer-4",
+          "role": "validation"
+        }
+      },
+      {
+        "anchor": {
+          "frequency_hz": 196.3434356192651,
+          "observation_resolution_hz": 1.9531423003675985,
+          "qualified": true,
+          "rejection_reasons": [],
+          "search_band_hz": [
+            155.56349186104043,
+            246.94165062806204
+          ],
+          "temporal_span_cents": 0.013025078459533403,
+          "windows": [
+            {
+              "amplitude_dbfs": -4.701871905561378,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 0.7619954648526077,
+              "frequency_hz": 196.34271229821093,
+              "margin_above_band_background_db": 77.66319736920367,
+              "rejection_reasons": [],
+              "start_seconds": 0.25
+            },
+            {
+              "amplitude_dbfs": -5.945246004725165,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 1.2739909297052154,
+              "frequency_hz": 196.34340505842763,
+              "margin_above_band_background_db": 78.14336258746637,
+              "rejection_reasons": [],
+              "start_seconds": 0.7619954648526077
+            },
+            {
+              "amplitude_dbfs": -7.163396426410098,
+              "competing_peak_frequency_hz": null,
+              "end_seconds": 1.7859863945578232,
+              "frequency_hz": 196.34418950393845,
+              "margin_above_band_background_db": 77.52625906338783,
+              "rejection_reasons": [],
+              "start_seconds": 1.2739909297052154
+            }
+          ]
+        },
+        "frozen_target_residual": {
+          "consistent_with_5_cent_pilot_limit": true,
+          "frequency_error_cents": -0.376561200646337
+        },
+        "take": {
+          "file": "audio/jrhodes-g3-a886e6c/A_055__G3_5.wav",
+          "git_blob_sha1": "c41b60a18683c78f9c77b45e9b5accf0fd2a775c",
+          "id": "g3-layer-5",
+          "role": "training"
+        }
+      }
+    ],
+    "training_target_hz": 196.38614697959488
+  },
+  "frozen_reference_file": "references/g3-pitch-reference-validation.json",
+  "protocol": {
+    "coarse_step_fraction": 0.025,
+    "diameter_profile": "d(s) = root_diameter * (1 + (tip_diameter_ratio - 1) * min(s/taper_end_fraction, 1))",
+    "initial_spring_fraction": 0.85,
+    "maximum_bisection_iterations": 32,
+    "maximum_runner_up_mac": 0.05,
+    "minimum_mac": 0.98,
+    "pitch_tolerance_cents": 0.0001,
+    "spring_position_fraction_bounds": [
+      0.5,
+      0.95
+    ],
+    "taper_end_fractions": [
+      1.0,
+      0.5,
+      0.25,
+      0.137
+    ],
+    "tine_lengths_mm": [
+      70.0
+    ],
+    "tip_diameter_ratios": [
+      0.95
+    ],
+    "tuning_masses_g": [
+      0.1
+    ],
+    "tuning_spans_mm": [
+      0.0
+    ]
+  },
+  "rejected_cases": 0,
+  "retuned_cases": 4,
+  "schema_version": 1,
+  "scope": "Undamped fixed-pitch sensitivity only. Per-cell physical-field tracking uses that cell's fixed length/mass/span/taper/transition and pairwise average actual spring inertia; no cross-cell MAC or identity assignment for higher modes. Higher coupled modes are frequency ranks. Root diameter/material, root/tonebar and normalized hammer/pickup positions remain at defaults; their absolute tine locations scale with length. The sign-invariant hammer/pickup product describes the linear velocity response to a force impulse, not nonlinear pickup amplitude or an audible timbre fit. Uniform co-moving span adds inertia only, with no coil stiffness, slip, or intrinsic cross-sectional rotary inertia. Piecewise linear diameter is provisional, not measured swaged geometry; beam mass and bending stiffness both follow the section. No 1425 Hz target, best-cell selection, audio rendering, geometry identification or plugin mutation.",
+  "shared_structural_parameters": {
+    "density_kg_m3": 7850.0,
+    "diameter_m": 0.0015,
+    "hammer_position_fraction": 0.2,
+    "pickup_position_fraction": 0.98,
+    "root_rotation_stiffness_n_m_rad": 3.9478417604357436,
+    "root_translation_stiffness_n_m": 7579.856180036627,
+    "support_inertia_kg_m2": 0.00001,
+    "support_mass_kg": 0.03,
+    "tine_elements": 64,
+    "tonebar_arm_m": 0.08,
+    "tonebar_frequency_hz": 190.0,
+    "tonebar_mass_kg": 0.015,
+    "young_modulus_pa": 200000000000.0
+  },
+  "unreachable_cases": 0
+}

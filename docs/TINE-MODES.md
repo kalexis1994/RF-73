@@ -24,6 +24,8 @@ in TU Delft's computational modelling course.
 
 The [linear-taper extension](TINE-TAPER.md) allows diameter to vary along the
 free length; its default ratio of one retains the uniform baseline.
+The [localized transition](TINE-TRANSITION.md) can end that taper before the
+tip, followed by constant diameter. Its endpoint defaults to the full length.
 
 This model assumes a straight, circular, slender beam, linear elasticity
 and small deflections in one plane. It omits shear deformation, rotary inertia,

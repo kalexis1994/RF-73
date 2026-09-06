@@ -232,6 +232,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", memory_modal_check::GEOMETRY_HELP);
         print!("{}", memory_modal_check::SPAN_HELP);
         print!("{}", memory_modal_check::TAPER_HELP);
+        print!("{}", memory_modal_check::TRANSITION_HELP);
         print!("{}", memory_modal_check::TAIL_TIMING_HELP);
         print!("{}", memory_modal_timing::HELP);
         print!("{}", modal_timing::HELP);
@@ -259,6 +260,7 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "sweep-tuned-geometry"
         || args[0] == "sweep-spring-span"
         || args[0] == "sweep-tine-taper"
+        || args[0] == "sweep-tine-transition"
     {
         return memory_modal_check::sweep_geometry(&args);
     }

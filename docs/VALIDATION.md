@@ -1417,3 +1417,30 @@ Cleanup removed 342 regenerable debug files (101.4 MiB) and the temporary
 duplicate regression WAV/report after the hash check. Release artifacts remain
 at about 151 MiB. Source recordings, existing listening WAVs, numerical receipts
 and the packaged plugin are preserved.
+
+## Localized root-section transition
+
+Date: 2026-09-06. [Localized transition](TINE-TRANSITION.md) ends a linear taper
+at a bounded free-length fraction and continues with a cylinder. Integration
+splits at the corner even when it falls inside an element. Prepared root moments,
+modal coupling and branch-tracking inertia all use the same section.
+
+All four endpoints 1/0.5/0.25/0.137 L at fixed 0.95 tip/root ratio retune to G3
+within 0.0001 cent. Coupled rank 5 spans 1281.005..1336.386 Hz and remains below
+the exploratory 1425 Hz family. All trials are retained in the 77887-byte receipt.
+The full-length case preserves its prior spring center, nine frequencies and
+hammer/pickup weights exactly. No section or timbre is selected.
+
+All 233 workspace release tests, strict Clippy and formatting pass. Three new
+regressions cover analytic segment moments and independent static flexibility,
+off-grid convergence/continuity and the uniform limit, and fixed-pitch modal
+sensitivity. Existing orthogonality and contact/damper energy checks now include
+three localized profiles. CLI output protection also covers the new command.
+
+The default 75 mm memory-hammer preview passes its render checks and remains
+byte-identical to the preserved WAV, SHA-256
+`0dbd0cd29a7929fe16f9eccfdc05b6b23554d406a4fa0add5f73408ec123be2e`.
+No localized-transition memory-hammer audio or listening result is claimed.
+Cleanup removed 342 regenerable debug files (101.4 MiB) and the duplicate
+regression WAV/report after the hash check. Release artifacts remain near
+151 MiB; source recordings, listening WAVs, receipts and the package are preserved.

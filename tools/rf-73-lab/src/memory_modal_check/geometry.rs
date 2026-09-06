@@ -1,5 +1,5 @@
 //! Bounded geometry sensitivity at fixed coupled pitch; no timbral selection.
-use super::tuning::{self, Selected, follow_local, spectrum_with_taper};
+use super::tuning::{self, Selected, follow_local, spectrum_with_transition};
 use rf_73_dsp::{ModalAssemblyProfile, TineGeometry};
 use serde_json::{Value, json};
 use std::{error::Error, fs::File, io::Read, path::Path};
@@ -26,6 +26,12 @@ Retune spring center to frozen G3. Provisional full-length linear diameter,
 not measured swaged geometry, upper-mode fitting or audio qualification.
 ";
 const HIGH: f64 = 0.95;
+pub const TRANSITION_HELP: &str = "Localized tine-section transition:
+  sweep-tine-transition REFERENCE.json --output REPORT.json
+Fixed 70 mm, 1.5 mm root, 0.95 tip/root ratio and 0.1 g point mass.
+End the linear transition at 1/0.5/0.25/0.137 L, then keep diameter constant.
+Retune to frozen G3; provisional geometry, no upper-mode fitting or audio.
+";
 const START: f64 = 0.85;
 const TOLERANCE_CENTS: f64 = 0.0001;
 
@@ -42,7 +48,18 @@ fn cell(length: f64, mass: f64, target: f64) -> Value {
 fn cell_with_span(length: f64, mass: f64, span: f64, target: f64) -> Value {
     cell_with_taper(length, mass, span, 1.0, target)
 }
+#[cfg(test)]
 fn cell_with_taper(length: f64, mass: f64, span: f64, taper: f64, target: f64) -> Value {
+    cell_with_transition(length, mass, span, taper, 1.0, target)
+}
+fn cell_with_transition(
+    length: f64,
+    mass: f64,
+    span: f64,
+    taper: f64,
+    taper_end: f64,
+    target: f64,
+) -> Value {
     let mut trials = Vec::new();
     let mut initial = Value::Null;
     let mut minimum_mac = 1.0_f64;
@@ -50,7 +67,7 @@ fn cell_with_taper(length: f64, mass: f64, span: f64, taper: f64, target: f64) -
         if !target.is_finite() || !(150.0..=250.0).contains(&target) {
             return Err("invalid finite G3 target".into());
         }
-        let mut previous = spectrum_with_taper(length, mass, span, taper, START)?;
+        let mut previous = spectrum_with_transition(length, mass, span, taper, taper_end, START)?;
         initial = previous.row(1.0);
         trials.push(trace(&previous, 1.0, target));
         if previous.mode().first_tine_projection < 0.5 {
@@ -129,7 +146,7 @@ fn cell_with_taper(length: f64, mass: f64, span: f64, taper: f64, target: f64) -
         ),
         Err(e) => ("rejected", json!(e.to_string()), Value::Null),
     };
-    json!({"tine_length_mm":length*1000.0,"tuning_mass_g":mass*1000.0,"tuning_span_mm":span*1000.0,"tip_diameter_ratio":taper,"status":status,"reason":reason,
+    json!({"tine_length_mm":length*1000.0,"tuning_mass_g":mass*1000.0,"tuning_span_mm":span*1000.0,"tip_diameter_ratio":taper,"taper_end_fraction":taper_end,"status":status,"reason":reason,
         "target_hz":target,"initial_structure":initial,"solution":solution,
         "minimum_spatial_mac":minimum_mac,"trials":trials})
 }
@@ -152,17 +169,25 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let mut cases = Vec::new();
     let span_study = args[0] == "sweep-spring-span";
     let taper_study = args[0] == "sweep-tine-taper";
-    let tapers: &[f64] = if taper_study {
+    let transition_study = args[0] == "sweep-tine-transition";
+    let ends: &[f64] = if transition_study {
+        &[1.0, 0.5, 0.25, 0.137]
+    } else {
+        &[1.0]
+    };
+    let tapers: &[f64] = if transition_study {
+        &[0.95]
+    } else if taper_study {
         &[0.9, 0.95, 1.0, 1.05]
     } else {
         &[1.0]
     };
-    let lengths: &[f64] = if span_study || taper_study {
+    let lengths: &[f64] = if span_study || taper_study || transition_study {
         &[0.07]
     } else {
         &[0.068, 0.07, 0.072]
     };
-    let masses: &[f64] = if span_study || taper_study {
+    let masses: &[f64] = if span_study || taper_study || transition_study {
         &[0.0001]
     } else {
         &[0.00008, 0.0001, 0.00012]
@@ -176,16 +201,20 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         for &mass in masses {
             for &span in spans {
                 for &taper in tapers {
-                    let result = cell_with_taper(length, mass, span, taper, target);
-                    println!(
-                        "Geometry {:.1} mm / {:.2} g / {:.1} mm span / {:.2} tip ratio: {}",
-                        length * 1000.0,
-                        mass * 1000.0,
-                        span * 1000.0,
-                        taper,
-                        result["status"]
-                    );
-                    cases.push(result);
+                    for &taper_end in ends {
+                        let result =
+                            cell_with_transition(length, mass, span, taper, taper_end, target);
+                        println!(
+                            "Geometry {:.1} mm / {:.2} g / {:.1} mm span / {:.2} tip ratio / {:.3} transition end: {}",
+                            length * 1000.0,
+                            mass * 1000.0,
+                            span * 1000.0,
+                            taper,
+                            taper_end,
+                            result["status"]
+                        );
+                        cases.push(result);
+                    }
                 }
             }
         }
@@ -194,7 +223,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let retuned = cases.iter().filter(|c| c["status"] == "retuned").count();
     let g = TineGeometry::default();
     let p = ModalAssemblyProfile::default();
-    let report = json!({"schema_version":1,"experiment":if taper_study {"linear-tine-taper-sensitivity-v1"} else if span_study {"finite-spring-span-sensitivity-v1"} else {"fixed-pitch-geometry-sensitivity-v1"},
+    let report = json!({"schema_version":1,"experiment":if transition_study {"localized-tine-transition-sensitivity-v1"} else if taper_study {"linear-tine-taper-sensitivity-v1"} else if span_study {"finite-spring-span-sensitivity-v1"} else {"fixed-pitch-geometry-sensitivity-v1"},
         "completed_without_numerical_rejections":rejected==0,"retuned_cases":retuned,
         "unreachable_cases":cases.len()-retuned-rejected,"rejected_cases":rejected,
         "frozen_reference_file":args[1],"frozen_reference":reference,
@@ -207,12 +236,12 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             "tonebar_mass_kg":p.tonebar_mass_kg,"tonebar_arm_m":p.tonebar_arm_m,
             "tonebar_frequency_hz":p.tonebar_frequency_hz},
         "protocol":{"tine_lengths_mm":lengths.iter().map(|x|x*1000.0).collect::<Vec<_>>(),"tuning_masses_g":masses.iter().map(|x|x*1000.0).collect::<Vec<_>>(),"tuning_spans_mm":spans.iter().map(|x|x*1000.0).collect::<Vec<_>>(),
-            "tip_diameter_ratios":tapers,"diameter_profile":"d(s) = root_diameter * (1 + (tip_diameter_ratio - 1) * s)",
+            "tip_diameter_ratios":tapers,"taper_end_fractions":ends,"diameter_profile":"d(s) = root_diameter * (1 + (tip_diameter_ratio - 1) * min(s/taper_end_fraction, 1))",
             "spring_position_fraction_bounds":[LOW,HIGH],"initial_spring_fraction":START,
             "coarse_step_fraction":0.025,"maximum_bisection_iterations":32,
             "pitch_tolerance_cents":TOLERANCE_CENTS,"minimum_mac":0.98,"maximum_runner_up_mac":0.05},
         "cases":cases,
-        "scope":"Undamped fixed-pitch sensitivity only. Per-cell physical-field tracking uses that cell's fixed length/mass/span/taper and pairwise average actual spring inertia; no cross-cell MAC or identity assignment for higher modes. Higher coupled modes are frequency ranks. Root diameter/material, root/tonebar and normalized hammer/pickup positions remain at defaults; their absolute tine locations scale with length. The sign-invariant hammer/pickup product describes the linear velocity response to a force impulse, not nonlinear pickup amplitude or an audible timbre fit. Uniform co-moving span adds inertia only, with no coil stiffness, slip, or intrinsic cross-sectional rotary inertia. Linear full-length diameter is provisional, not measured swaged geometry; beam mass and bending stiffness both follow the section. No 1425 Hz target, best-cell selection, audio rendering, geometry identification or plugin mutation."});
+        "scope":"Undamped fixed-pitch sensitivity only. Per-cell physical-field tracking uses that cell's fixed length/mass/span/taper/transition and pairwise average actual spring inertia; no cross-cell MAC or identity assignment for higher modes. Higher coupled modes are frequency ranks. Root diameter/material, root/tonebar and normalized hammer/pickup positions remain at defaults; their absolute tine locations scale with length. The sign-invariant hammer/pickup product describes the linear velocity response to a force impulse, not nonlinear pickup amplitude or an audible timbre fit. Uniform co-moving span adds inertia only, with no coil stiffness, slip, or intrinsic cross-sectional rotary inertia. Piecewise linear diameter is provisional, not measured swaged geometry; beam mass and bending stiffness both follow the section. No 1425 Hz target, best-cell selection, audio rendering, geometry identification or plugin mutation."});
     crate::analysis::write_report(output, &report)?;
     if rejected > 0 {
         return Err("geometry study retained numerical/branch rejections; inspect report".into());
@@ -223,6 +252,25 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn localized_transition_retunes_without_losing_branch_identity() {
+        let source: Value = serde_json::from_str(include_str!(
+            "../../../../references/g3-pitch-reference-validation.json"
+        ))
+        .unwrap();
+        let target = tuning::reference(&source).unwrap();
+        let a = cell_with_transition(0.07, 0.0001, 0.0, 0.95, 1.0, target);
+        let b = cell_with_transition(0.07, 0.0001, 0.0, 0.95, 0.137, target);
+        assert_eq!(b["status"], "retuned", "{b}");
+        let f = b["solution"]["selected_frequency_hz"].as_f64().unwrap();
+        assert!((1200.0 * (f / target).log2()).abs() < TOLERANCE_CENTS);
+        let upper = |v: &Value| {
+            v["solution"]["coupled_modes_by_frequency_rank"][4]["frequency_hz"]
+                .as_f64()
+                .unwrap()
+        };
+        assert!((upper(&a) - upper(&b)).abs() > 1.0);
+    }
     #[test]
     fn taper_retuning_preserves_anchor_and_changes_upper_structure() {
         let source: Value = serde_json::from_str(include_str!(
@@ -316,7 +364,7 @@ mod tests {
     }
     #[test]
     fn both_directions_boundaries_unreachable_and_invalid_cases_are_explicit() {
-        let initial = spectrum_with_taper(0.070, 0.0001, 0.0, 1.0, START)
+        let initial = spectrum_with_transition(0.070, 0.0001, 0.0, 1.0, 1.0, START)
             .unwrap()
             .mode()
             .frequency_hz;
