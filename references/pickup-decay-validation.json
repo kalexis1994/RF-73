@@ -1,0 +1,3776 @@
+{
+  "all_cases_qualified": true,
+  "cases": [
+    {
+      "decay_fits": [
+        {
+          "fitted_amplitude_decay_per_second": 5.799997810142508,
+          "label": "f2-f1",
+          "log_amplitude_fit_rms": 5.1815971705535835e-8,
+          "quadratic_expected_decay_per_second": 5.8
+        },
+        {
+          "fitted_amplitude_decay_per_second": 5.79999781014273,
+          "label": "f2+f1",
+          "log_amplitude_fit_rms": 5.181596490698049e-8,
+          "quadratic_expected_decay_per_second": 5.8
+        }
+      ],
+      "law": "production",
+      "max_control_relative_amplitude": 8.18774029034607e-13,
+      "max_quadratic_relative_error": 1.950097347286602e-6,
+      "max_refinement_relative_error": 1.4892224953985024e-14,
+      "modal_amplitude_decay_per_second": [
+        0.8,
+        5.0
+      ],
+      "observations": [
+        {
+          "age_seconds": 0.0,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00006392634112967136,
+                0.00004294557607474408
+              ],
+              "control_relative_amplitude": 4.158507455724157e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                1.718841608215789e-18,
+                -3.1979477460679893e-17
+              ],
+              "interaction_coefficient": [
+                0.00006392634112967951,
+                0.000042945576074730334
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -5.207346801482625e-18,
+                2.7456771508595158e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007502001982608901,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "phase_error_vs_quadratic_radians": -4.850966741436362e-10,
+              "phase_grid_32_relative_error": 3.721646975743736e-15,
+              "phase_grid_64_relative_error": 3.746527344014218e-15,
+              "quadratic_prediction": [
+                0.00006392646577167422,
+                0.00004294565985395556
+              ],
+              "quadratic_relative_error": 1.950097347286602e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000024090405134238296,
+                0.00009868506861644981
+              ],
+              "control_relative_amplitude": 2.1608254976478158e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -2.0571465673491565e-17,
+                7.657045494280867e-18
+              ],
+              "interaction_coefficient": [
+                0.000024090405134227596,
+                0.00009868506861644848
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                3.077905972085314e-18,
+                1.982279442723717e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687438775504657,
+              "omitted_envelope_derivative_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "phase_error_vs_quadratic_radians": -3.677641770533463e-10,
+              "phase_grid_32_relative_error": 4.0883383139983636e-15,
+              "phase_grid_64_relative_error": 3.401388634551788e-15,
+              "quadratic_prediction": [
+                0.000024090452076656344,
+                0.00009868526107115297
+              ],
+              "quadratic_relative_error": 1.9500971698814165e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.05,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00004783376038176721,
+                0.0000321346155499232
+              ],
+              "control_relative_amplitude": 8.18774029034607e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                2.8904999325053e-20,
+                7.318318342162852e-18
+              ],
+              "interaction_coefficient": [
+                0.00004783376038175139,
+                0.00003213461554994356
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -3.340253251673652e-17,
+                -3.332325552682944e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.000750200266167664,
+              "omitted_envelope_derivative_coefficient": [
+                0.00004785784084899737,
+                0.000032098712578270814
+              ],
+              "phase_error_vs_quadratic_radians": -4.1707548799986424e-10,
+              "phase_grid_32_relative_error": 2.68407217923183e-15,
+              "phase_grid_64_relative_error": 2.3429907946062204e-15,
+              "quadratic_prediction": [
+                0.00004783384534100199,
+                0.000032134672654336346
+              ],
+              "quadratic_relative_error": 1.7764128076331857e-6
+            },
+            {
+              "combined_coefficient": [
+                0.00001802597561717386,
+                0.00007384245433591872
+              ],
+              "control_relative_amplitude": 6.198855807974189e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.310282363636104e-19,
+                -5.349357169045729e-18
+              ],
+              "interaction_coefficient": [
+                0.00001802597561718089,
+                0.00007384245433592204
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                2.6903142833335867e-17,
+                3.8682393279437994e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687439291892432,
+              "omitted_envelope_derivative_coefficient": [
+                0.00001806796722488957,
+                0.0000738321782881454
+              ],
+              "phase_error_vs_quadratic_radians": -3.1620098661434946e-10,
+              "phase_grid_32_relative_error": 2.318294183623484e-15,
+              "phase_grid_64_relative_error": 2.653951797139154e-15,
+              "quadratic_prediction": [
+                0.000018026007615459332,
+                0.00007384258551652302
+              ],
+              "quadratic_relative_error": 1.7764126528234117e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.1,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00003579226559686658,
+                0.000024045165706490763
+              ],
+              "control_relative_amplitude": 3.4144756594898336e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -3.4583296445209015e-18,
+                -6.979442297534578e-18
+              ],
+              "interaction_coefficient": [
+                0.00003579226559686492,
+                0.000024045165706467835
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                1.1611868794790797e-17,
+                9.051440396473756e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.000750200316280738,
+              "omitted_envelope_derivative_coefficient": [
+                0.00003581028413709828,
+                0.000024018300814932272
+              ],
+              "phase_error_vs_quadratic_radians": -3.663813431735333e-10,
+              "phase_grid_32_relative_error": 6.704805485407719e-15,
+              "phase_grid_64_relative_error": 7.24436177406274e-16,
+              "quadratic_prediction": [
+                0.00003579232376585948,
+                0.00002404520480330308
+              ],
+              "quadratic_relative_error": 1.6254268964829463e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000013488182858802092,
+                0.00005525362666319397
+              ],
+              "control_relative_amplitude": 5.08539071904695e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -2.886878866655788e-17,
+                1.7819918849005373e-18
+              ],
+              "interaction_coefficient": [
+                0.00001348818285880049,
+                0.000055253626663204104
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                4.633270221481023e-19,
+                -5.954972491442753e-19
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687439680317405,
+              "omitted_envelope_derivative_coefficient": [
+                0.00001351960365587742,
+                0.0000552459374693255
+              ],
+              "phase_error_vs_quadratic_radians": -2.777592502687417e-10,
+              "phase_grid_32_relative_error": 4.7418345553689305e-15,
+              "phase_grid_64_relative_error": 2.830062486199781e-15,
+              "quadratic_prediction": [
+                0.000013488204767541985,
+                0.00005525371647781881
+              ],
+              "quadratic_relative_error": 1.6254267635129622e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.2,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00002004003612655815,
+                0.000013462852419794111
+              ],
+              "control_relative_amplitude": 4.4947665775715115e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                7.85940695933584e-18,
+                -6.884840959599338e-18
+              ],
+              "interaction_coefficient": [
+                0.000020040036126571022,
+                0.00001346285241981432
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -5.195753038017082e-18,
+                9.526657312746696e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007502003880936597,
+              "omitted_envelope_derivative_coefficient": [
+                0.000020050124681352912,
+                0.000013447810805677815
+              ],
+              "phase_error_vs_quadratic_radians": -2.9492304495770023e-10,
+              "phase_grid_32_relative_error": 7.660106905762198e-15,
+              "phase_grid_64_relative_error": 2.7679367217224162e-15,
+              "quadratic_prediction": [
+                0.000020040063612084744,
+                0.000013462870893099953
+              ],
+              "quadratic_relative_error": 1.3717264273756604e-6
+            },
+            {
+              "combined_coefficient": [
+                7.552013464851262e-6,
+                0.000030936423164559495
+              ],
+              "control_relative_amplitude": 7.182018370707817e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                3.752117728320135e-18,
+                2.2561160955842943e-17
+              ],
+              "interaction_coefficient": [
+                7.552013464853709e-6,
+                0.00003093642316454636
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.0832572013537239e-17,
+                -1.44458640196526e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687440222665134,
+              "omitted_envelope_derivative_coefficient": [
+                7.569605923955332e-6,
+                0.000030932117995955876
+              ],
+              "phase_error_vs_quadratic_radians": -2.235880985039105e-10,
+              "phase_grid_32_relative_error": 6.4853470274878686e-15,
+              "phase_grid_64_relative_error": 3.500134486222297e-15,
+              "quadratic_prediction": [
+                7.552023817246426e-6,
+                0.00003093646560259859
+              ],
+              "quadratic_relative_error": 1.3717263242957874e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.35,
+          "lines": [
+            {
+              "combined_coefficient": [
+                8.395806687254407e-6,
+                5.640284562322692e-6
+              ],
+              "control_relative_amplitude": 6.843338986045875e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                6.280669894551832e-18,
+                -2.9090734459795656e-18
+              ],
+              "interaction_coefficient": [
+                8.395806687255122e-6,
+                5.640284562317336e-6
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                1.811406427482923e-18,
+                -1.4497514831461635e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007502004585985749,
+              "omitted_envelope_derivative_coefficient": [
+                8.400033304571575e-6,
+                5.633982852300492e-6
+              ],
+              "phase_error_vs_quadratic_radians": -2.2459001470895403e-10,
+              "phase_grid_32_relative_error": 3.1701552435324867e-15,
+              "phase_grid_64_relative_error": 5.947644114706097e-15,
+              "quadratic_prediction": [
+                8.39581569730414e-6,
+                5.6402906179851715e-6
+              ],
+              "quadratic_relative_error": 1.0733103599164045e-6
+            },
+            {
+              "combined_coefficient": [
+                3.163928684515204e-6,
+                0.000012960866280866039
+              ],
+              "control_relative_amplitude": 3.618887808440629e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                3.518283695318745e-18,
+                -1.8608519757788928e-18
+              ],
+              "interaction_coefficient": [
+                3.1639286845164734e-6,
+                0.00001296086628087035
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -3.4281805655545687e-18,
+                3.3997586397072467e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687440749333094,
+              "omitted_envelope_derivative_coefficient": [
+                3.171299075394243e-6,
+                0.000012959062623114787
+              ],
+              "phase_error_vs_quadratic_radians": -1.7026864834734469e-10,
+              "phase_grid_32_relative_error": 6.3508621673078674e-15,
+              "phase_grid_64_relative_error": 4.595925879796197e-15,
+              "quadratic_prediction": [
+                3.163932078190459e-6,
+                0.000012960880192454976
+              ],
+              "quadratic_relative_error": 1.0733102903765015e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.5,
+          "lines": [
+            {
+              "combined_coefficient": [
+                3.51743702873956e-6,
+                2.363006499947496e-6
+              ],
+              "control_relative_amplitude": 6.564548358588467e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.1579752518079403e-18,
+                1.0816130971682135e-18
+              ],
+              "interaction_coefficient": [
+                3.5174370287429657e-6,
+                2.3630064999451906e-6
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                2.713999442121185e-18,
+                -6.100076514496805e-19
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007502005084825752,
+              "omitted_envelope_derivative_coefficient": [
+                3.5192077771415933e-6,
+                2.360366387987355e-6
+              ],
+              "phase_error_vs_quadratic_radians": -1.7501342543013116e-10,
+              "phase_grid_32_relative_error": 2.0607215235950348e-14,
+              "phase_grid_64_relative_error": 1.4892224953985024e-14,
+              "quadratic_prediction": [
+                3.5174399935832153e-6,
+                2.36300849261181e-6
+              ],
+              "quadratic_relative_error": 8.430147712146721e-7
+            },
+            {
+              "combined_coefficient": [
+                1.3255331291474505e-6,
+                5.4299762585111486e-6
+              ],
+              "control_relative_amplitude": 4.3980281307093003e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -2.01165031016976e-18,
+                3.5477114727909315e-19
+              ],
+              "interaction_coefficient": [
+                1.325533129147808e-6,
+                5.429976258512424e-6
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -8.755673696649296e-19,
+                2.2970309302230047e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687441128869975,
+              "omitted_envelope_derivative_coefficient": [
+                1.3286209667412638e-6,
+                5.429220613074841e-6
+              ],
+              "phase_error_vs_quadratic_radians": -1.3268688565315356e-10,
+              "phase_grid_32_relative_error": 1.0953040564899598e-14,
+              "phase_grid_64_relative_error": 1.9112478680214537e-15,
+              "quadratic_prediction": [
+                1.3255342458721946e-6,
+                5.429980836242047e-6
+              ],
+              "quadratic_relative_error": 8.430147245493586e-7
+            }
+          ]
+        }
+      ],
+      "primary_amplitude_mm": 0.005,
+      "probe": "weak_unequal_decay",
+      "qualified": true,
+      "secondary_amplitude_mm": 0.001,
+      "weak_prediction_gate_applied": true
+    },
+    {
+      "decay_fits": [
+        {
+          "fitted_amplitude_decay_per_second": 5.7935947281545275,
+          "label": "f2-f1",
+          "log_amplitude_fit_rms": 0.00017117965011826273,
+          "quadratic_expected_decay_per_second": 5.8
+        },
+        {
+          "fitted_amplitude_decay_per_second": 5.793594728783915,
+          "label": "f2+f1",
+          "log_amplitude_fit_rms": 0.0001711796208034713,
+          "quadratic_expected_decay_per_second": 5.8
+        }
+      ],
+      "law": "production",
+      "max_control_relative_amplitude": 2.4792844063534618e-14,
+      "max_quadratic_relative_error": 0.0054502061276425415,
+      "max_refinement_relative_error": 4.204216804494206e-15,
+      "modal_amplitude_decay_per_second": [
+        0.8,
+        5.0
+      ],
+      "observations": [
+        {
+          "age_seconds": 0.0,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.1589452955512958,
+                0.10677875157757646
+              ],
+              "control_relative_amplitude": 9.816405610384603e-15,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                1.8978281403000952e-16,
+                1.0706445631317521e-15
+              ],
+              "interaction_coefficient": [
+                0.15894529555129575,
+                0.1067787515775774
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                4.763306719543503e-16,
+                -1.818308263695388e-15
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007486823381257,
+              "omitted_envelope_derivative_coefficient": [
+                0.15902514979398133,
+                0.10665969223436339
+              ],
+              "phase_error_vs_quadratic_radians": -1.5183449604438598e-6,
+              "phase_grid_32_relative_error": 4.583767332546453e-15,
+              "phase_grid_64_relative_error": 4.204216804494206e-15,
+              "quadratic_prediction": [
+                0.15981616442918553,
+                0.10736414963488888
+              ],
+              "quadratic_relative_error": 0.0054502061276425415
+            },
+            {
+              "combined_coefficient": [
+                0.05989816785120379,
+                0.2453684463638695
+              ],
+              "control_relative_amplitude": 5.803672892977539e-15,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -1.46388299702635e-15,
+                -7.601019558775915e-17
+              ],
+              "interaction_coefficient": [
+                0.059898167851203846,
+                0.24536844636386815
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                7.082415166489997e-16,
+                -4.077870717966378e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005675931534182519,
+              "omitted_envelope_derivative_coefficient": [
+                0.060037417974602575,
+                0.2453343695328175
+              ],
+              "phase_error_vs_quadratic_radians": -1.1510921215199889e-6,
+              "phase_grid_32_relative_error": 3.094558779161786e-15,
+              "phase_grid_64_relative_error": 2.1661702398981736e-15,
+              "quadratic_prediction": [
+                0.06022613019164086,
+                0.2467131526778824
+              ],
+              "quadratic_relative_error": 0.005450205556934355
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.05,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.11899692763719667,
+                0.07994165504742501
+              ],
+              "control_relative_amplitude": 8.822865576777975e-15,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -5.259532501362962e-16,
+                -1.1502690483054454e-15
+              ],
+              "interaction_coefficient": [
+                0.11899692763719641,
+                0.0799416550474238
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -9.601423388988506e-16,
+                -2.673562089219265e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007489232739368108,
+              "omitted_envelope_derivative_coefficient": [
+                0.11905673103712534,
+                0.07985249067396119
+              ],
+              "phase_error_vs_quadratic_radians": -1.2774091489476683e-6,
+              "phase_grid_32_relative_error": 1.2732904461099371e-15,
+              "phase_grid_64_relative_error": 2.3811245690341916e-15,
+              "quadratic_prediction": [
+                0.11958461335250498,
+                0.08033668163584087
+              ],
+              "quadratic_relative_error": 0.004915246509406361
+            },
+            {
+              "combined_coefficient": [
+                0.04484369128708227,
+                0.18369903419180253
+              ],
+              "control_relative_amplitude": 5.445129777396293e-15,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -7.87096895906586e-16,
+                -6.638015095548292e-16
+              ],
+              "interaction_coefficient": [
+                0.044843691287082176,
+                0.18369903419180197
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                5.125430245153662e-16,
+                -7.1514483516912225e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005677758123755445,
+              "omitted_envelope_derivative_coefficient": [
+                0.04494797667680654,
+                0.1836735138150873
+              ],
+              "phase_error_vs_quadratic_radians": -9.684331596467783e-7,
+              "phase_grid_32_relative_error": 1.7090067840210805e-15,
+              "phase_grid_64_relative_error": 5.292314909243497e-16,
+              "quadratic_prediction": [
+                0.045065019038648325,
+                0.18460646379130755
+              ],
+              "quadratic_relative_error": 0.0049152460339924485
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.1,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.08908186322251291,
+                0.05984485838455732
+              ],
+              "control_relative_amplitude": 1.5917414077137232e-14,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                3.0661576251068967e-16,
+                -8.767110759019597e-16
+              ],
+              "interaction_coefficient": [
+                0.08908186322251341,
+                0.05984485838455768
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                2.319277853535945e-16,
+                -1.692394698503668e-15
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007490988999317143,
+              "omitted_envelope_derivative_coefficient": [
+                0.0891266429351219,
+                0.0597780937018923
+              ],
+              "phase_error_vs_quadratic_radians": -1.1017831555743942e-6,
+              "phase_grid_32_relative_error": 3.82356655893265e-15,
+              "phase_grid_64_relative_error": 3.6575967902717775e-15,
+              "quadratic_prediction": [
+                0.08948080941464868,
+                0.06011301200825769
+              ],
+              "quadratic_relative_error": 0.00445919234506067
+            },
+            {
+              "combined_coefficient": [
+                0.033570260553861773,
+                0.13751829584692557
+              ],
+              "control_relative_amplitude": 6.5658079224850646e-15,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.53496632322478e-16,
+                4.0167869369751343e-16
+              ],
+              "interaction_coefficient": [
+                0.033570260553860705,
+                0.13751829584692507
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -6.097010916972234e-16,
+                7.015054871359599e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005679089584760341,
+              "omitted_envelope_derivative_coefficient": [
+                0.03364834758213571,
+                0.13749918664684171
+              ],
+              "phase_error_vs_quadratic_radians": -8.352870648529703e-7,
+              "phase_grid_32_relative_error": 3.0061599367487144e-15,
+              "phase_grid_64_relative_error": 4.152712728588664e-15,
+              "quadratic_prediction": [
+                0.03372051191885496,
+                0.138134291194547
+              ],
+              "quadratic_relative_error": 0.004459191937766871
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.2,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.04991429208612875,
+                0.0335322498286795
+              ],
+              "control_relative_amplitude": 6.800536276971054e-15,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -3.4879249756979668e-16,
+                -2.1346426704846365e-16
+              ],
+              "interaction_coefficient": [
+                0.04991429208612824,
+                0.03353224982867928
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                1.2165002485171536e-16,
+                2.7767772890069375e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007493393269836507,
+              "omitted_envelope_derivative_coefficient": [
+                0.049939391082901054,
+                0.03349482827197125
+              ],
+              "phase_error_vs_quadratic_radians": -8.613560875202901e-7,
+              "phase_grid_32_relative_error": 2.7790677926390726e-15,
+              "phase_grid_64_relative_error": 2.854702500111632e-15,
+              "quadratic_prediction": [
+                0.05010015903021185,
+                0.03365717723274988
+              ],
+              "quadratic_relative_error": 0.0037104838766654994
+            },
+            {
+              "combined_coefficient": [
+                0.01881005571108299,
+                0.07705417861010345
+              ],
+              "control_relative_amplitude": 5.185442737468793e-15,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -2.334024697147642e-16,
+                1.5761979511757146e-17
+              ],
+              "interaction_coefficient": [
+                0.018810055711083202,
+                0.07705417861010412
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -4.10728817222452e-16,
+                2.1536236200414213e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005680912317408138,
+              "omitted_envelope_derivative_coefficient": [
+                0.018853823434378057,
+                0.07704346791717344
+              ],
+              "phase_error_vs_quadratic_radians": -6.530137977168781e-7,
+              "phase_grid_32_relative_error": 4.23277738999931e-15,
+              "phase_grid_64_relative_error": 2.3798006658449308e-15,
+              "quadratic_prediction": [
+                0.018880059543116064,
+                0.07734116400649647
+              ],
+              "quadratic_relative_error": 0.003710483560688137
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.35,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.02092960496351667,
+                0.014060443541030965
+              ],
+              "control_relative_amplitude": 5.923524018324803e-15,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                1.2697362692520864e-16,
+                -7.864340926253596e-17
+              ],
+              "interaction_coefficient": [
+                0.020929604963516764,
+                0.014060443541030674
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                7.112705064683811e-17,
+                -1.0723839452889388e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.000749565763687432,
+              "omitted_envelope_derivative_coefficient": [
+                0.020940132427398016,
+                0.014044747531736564
+              ],
+              "phase_error_vs_quadratic_radians": -6.349194044864368e-7,
+              "phase_grid_32_relative_error": 4.061536522608808e-15,
+              "phase_grid_64_relative_error": 2.8904224819009537e-15,
+              "quadratic_prediction": [
+                0.02098953924326035,
+                0.014100726544962928
+              ],
+              "quadratic_relative_error": 0.0028558610924565614
+            },
+            {
+              "combined_coefficient": [
+                0.007887256373484114,
+                0.032309660509792205
+              ],
+              "control_relative_amplitude": 1.0300751662105656e-14,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.853518474028177e-16,
+                4.538275476446453e-17
+              ],
+              "interaction_coefficient": [
+                0.007887256373484123,
+                0.032309660509792275
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -2.801713938974104e-16,
+                -1.9715401237437166e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005682628985745954,
+              "omitted_envelope_derivative_coefficient": [
+                0.00790561420389062,
+                0.03230516804206586
+              ],
+              "phase_error_vs_quadratic_radians": -4.813469545240865e-7,
+              "phase_grid_32_relative_error": 1.6723420369011373e-15,
+              "phase_grid_64_relative_error": 1.1439343138105467e-15,
+              "quadratic_prediction": [
+                0.007909830195476147,
+                0.032402200481137435
+              ],
+              "quadratic_relative_error": 0.002855860860640366
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.5,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.008774129700124833,
+                0.005894434991918986
+              ],
+              "control_relative_amplitude": 2.4792844063534618e-14,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.3499404462265505e-16,
+                -1.1600169152206847e-16
+              ],
+              "interaction_coefficient": [
+                0.008774129700124879,
+                0.005894434991919096
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                2.0791270723304056e-17,
+                1.0347576829807187e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007497180753121427,
+              "omitted_envelope_derivative_coefficient": [
+                0.008778543931188923,
+                0.0058878535576259074
+              ],
+              "phase_error_vs_quadratic_radians": -4.826077557252279e-7,
+              "phase_grid_32_relative_error": 2.8043830555035574e-15,
+              "phase_grid_64_relative_error": 3.2822820999352627e-15,
+              "quadratic_prediction": [
+                0.008793599983958037,
+                0.005907521231529525
+              ],
+              "quadratic_relative_error": 0.002214466092517846
+            },
+            {
+              "combined_coefficient": [
+                0.0033065021945087093,
+                0.013544889612520998
+              ],
+              "control_relative_amplitude": 1.0887098218018501e-14,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.765054353016938e-17,
+                -4.5125256748499223e-17
+              ],
+              "interaction_coefficient": [
+                0.0033065021945087197,
+                0.013544889612521
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.9739255802814215e-17,
+                -1.505058962658276e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005683783695320611,
+              "omitted_envelope_derivative_coefficient": [
+                0.0033141997469455825,
+                0.01354300589286969
+              ],
+              "phase_error_vs_quadratic_radians": -3.658760061434891e-7,
+              "phase_grid_32_relative_error": 4.5220659833995105e-15,
+              "phase_grid_64_relative_error": 2.7484978224657674e-15,
+              "quadratic_prediction": [
+                0.0033138356146804864,
+                0.013574952090605118
+              ],
+              "quadratic_relative_error": 0.0022144659166354625
+            }
+          ]
+        }
+      ],
+      "primary_amplitude_mm": 0.25,
+      "probe": "larger_unequal_decay",
+      "qualified": true,
+      "secondary_amplitude_mm": 0.05,
+      "weak_prediction_gate_applied": false
+    },
+    {
+      "decay_fits": [
+        {
+          "fitted_amplitude_decay_per_second": 3.999996708522899,
+          "label": "f2-f1",
+          "log_amplitude_fit_rms": 1.5153668310865178e-7,
+          "quadratic_expected_decay_per_second": 4.0
+        },
+        {
+          "fitted_amplitude_decay_per_second": 3.9999967085232835,
+          "label": "f2+f1",
+          "log_amplitude_fit_rms": 1.5153666682363797e-7,
+          "quadratic_expected_decay_per_second": 4.0
+        }
+      ],
+      "law": "production",
+      "max_control_relative_amplitude": 1.6941605075932704e-12,
+      "max_quadratic_relative_error": 1.950097704215407e-6,
+      "max_refinement_relative_error": 6.53352554504925e-15,
+      "modal_amplitude_decay_per_second": [
+        2.0,
+        2.0
+      ],
+      "observations": [
+        {
+          "age_seconds": 0.0,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00006393632861059816,
+                0.00004293068515747102
+              ],
+              "control_relative_amplitude": 5.1597755178018e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -3.752144198099737e-18,
+                2.079162806532868e-17
+              ],
+              "interaction_coefficient": [
+                0.0000639363286106267,
+                0.00004293068515745511
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                3.973156269862065e-17,
+                6.345600263914794e-19
+              ],
+              "omitted_derivative_phase_error_radians": -0.000517378823613657,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "phase_error_vs_quadratic_radians": -1.008994381418086e-9,
+              "phase_grid_32_relative_error": 4.939957050918189e-15,
+              "phase_grid_64_relative_error": 4.880831521931307e-15,
+              "quadratic_prediction": [
+                0.00006393645324962389,
+                0.00004293076894114925
+              ],
+              "quadratic_relative_error": 1.950097704215407e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000024107821340403453,
+                0.0000986808065799196
+              ],
+              "control_relative_amplitude": 2.5190481012644907e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.2900382761967264e-17,
+                1.9153532519787866e-18
+              ],
+              "interaction_coefficient": [
+                0.00002410782134039953,
+                0.00009868080657990056
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -2.5346190397164056e-17,
+                -3.518389574437152e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0003922366677278106,
+              "omitted_envelope_derivative_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "phase_error_vs_quadratic_radians": -7.649404958042168e-10,
+              "phase_grid_32_relative_error": 2.2013219239612056e-15,
+              "phase_grid_64_relative_error": 2.208385546729657e-15,
+              "quadratic_prediction": [
+                0.000024107868277601573,
+                0.00009868099903588383
+              ],
+              "quadratic_relative_error": 1.9500973733678294e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.05,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.0000523466569709216,
+                0.00003514868462401098
+              ],
+              "control_relative_amplitude": 3.9204841994638006e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.1878649269341764e-17,
+                1.1505764683257395e-17
+              ],
+              "interaction_coefficient": [
+                0.00005234665697093384,
+                0.000035148684624020726
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -3.8609879318219145e-18,
+                2.1502857808336473e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.000517379006352103,
+              "omitted_envelope_derivative_coefficient": [
+                0.00005236482814701257,
+                0.000035121592158852014
+              ],
+              "phase_error_vs_quadratic_radians": -8.260779001465797e-10,
+              "phase_grid_32_relative_error": 2.1520928164124023e-15,
+              "phase_grid_64_relative_error": 2.827104479699564e-15,
+              "quadratic_prediction": [
+                0.00005234674051819974,
+                0.000035148740785403955
+              ],
+              "quadratic_relative_error": 1.5965905768154338e-6
+            },
+            {
+              "combined_coefficient": [
+                0.0000197378216873579,
+                0.00008079303964921188
+              ],
+              "control_relative_amplitude": 4.64837116986324e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                3.208349045962476e-18,
+                6.414686388675223e-18
+              ],
+              "interaction_coefficient": [
+                0.000019737821687361043,
+                0.00008079303964919533
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -3.3127458567115686e-18,
+                3.851788359921345e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0003922368062913508,
+              "omitted_envelope_derivative_coefficient": [
+                0.000019769508651297558,
+                0.00008078528531987175
+              ],
+              "phase_error_vs_quadratic_radians": -6.262689479417148e-10,
+              "phase_grid_32_relative_error": 6.205008184870837e-15,
+              "phase_grid_64_relative_error": 2.8969756382385556e-15,
+              "quadratic_prediction": [
+                0.000019737853150025525,
+                0.00008079316865513677
+              ],
+              "quadratic_relative_error": 1.5965903098876977e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.1,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.000042857830282671907,
+                0.000028777317367141098
+              ],
+              "control_relative_amplitude": 1.0190166330993904e-12,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -4.842233249568659e-17,
+                2.0555411752163136e-17
+              ],
+              "interaction_coefficient": [
+                0.000042857830282649335,
+                0.000028777317367153458
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                3.3203691532368573e-18,
+                3.40651637443956e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005173791563899592,
+              "omitted_envelope_derivative_coefficient": [
+                0.000042872707591963876,
+                0.000028755135919903606
+              ],
+              "phase_error_vs_quadratic_radians": -6.763267185657584e-10,
+              "phase_grid_32_relative_error": 5.544666570986429e-15,
+              "phase_grid_64_relative_error": 2.890802698963681e-15,
+              "quadratic_prediction": [
+                0.000042857886285643386,
+                0.000028777355012976562
+              ],
+              "quadratic_relative_error": 1.3071681614315156e-6
+            },
+            {
+              "combined_coefficient": [
+                0.00001615996628377625,
+                0.00006614776534192418
+              ],
+              "control_relative_amplitude": 5.342442894212576e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -7.295071258227662e-19,
+                3.637103888972802e-17
+              ],
+              "interaction_coefficient": [
+                0.000016159966283763747,
+                0.0000661477653419461
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                3.010228039599695e-17,
+                -1.0110489660892748e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0003922369204699409,
+              "omitted_envelope_derivative_coefficient": [
+                0.000016185909390667213,
+                0.0000661414166303596
+              ],
+              "phase_error_vs_quadratic_radians": -5.127387840627619e-10,
+              "phase_grid_32_relative_error": 2.558514380614663e-15,
+              "phase_grid_64_relative_error": 7.961174066061589e-16,
+              "quadratic_prediction": [
+                0.000016159987373663017,
+                0.00006614785181657653
+              ],
+              "quadratic_relative_error": 1.3071679407741459e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.2,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.000028728475144480317,
+                0.000019290021021925174
+              ],
+              "control_relative_amplitude": 8.097659259155286e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.4850782002138697e-17,
+                1.2946759632439072e-17
+              ],
+              "interaction_coefficient": [
+                0.00002872847514449154,
+                0.000019290021021909623
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -4.012924466735655e-18,
+                3.0434555539337054e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005173793791262017,
+              "omitted_envelope_derivative_coefficient": [
+                0.000028738447711701878,
+                0.00001927515234032873
+              ],
+              "phase_error_vs_quadratic_radians": -4.5334328171995617e-10,
+              "phase_grid_32_relative_error": 4.52729758949151e-15,
+              "phase_grid_64_relative_error": 4.466540047338766e-15,
+              "quadratic_prediction": [
+                0.000028728500307982668,
+                0.000019290037937082383
+              ],
+              "quadratic_relative_error": 8.762114007744562e-7
+            },
+            {
+              "combined_coefficient": [
+                0.00001083235400404334,
+                0.00004434019221973707
+              ],
+              "control_relative_amplitude": 8.502313305360152e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                3.876372167726421e-17,
+                1.8559153618831763e-18
+              ],
+              "interaction_coefficient": [
+                0.000010832354004050443,
+                0.000044340192219716705
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                1.2225650044194944e-17,
+                9.588810009612705e-19
+              ],
+              "omitted_derivative_phase_error_radians": -0.0003922370901284909,
+              "omitted_envelope_derivative_coefficient": [
+                0.000010849744203682248,
+                0.000044335936547405425
+              ],
+              "phase_error_vs_quadratic_radians": -3.4369201251920434e-10,
+              "phase_grid_32_relative_error": 8.976823368497262e-16,
+              "phase_grid_64_relative_error": 4.0385047504262724e-15,
+              "quadratic_prediction": [
+                0.000010832363480249142,
+                0.00004434023107484622
+              ],
+              "quadratic_relative_error": 8.762112548631793e-7
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.35,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.000015766527677528894,
+                0.00001058659218587208
+              ],
+              "control_relative_amplitude": 1.0794507513135293e-12,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -6.166717493366527e-18,
+                -1.9550367455576506e-17
+              ],
+              "interaction_coefficient": [
+                0.00001576652767753025,
+                0.000010586592185865245
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                1.3075224090291007e-17,
+                8.211388853589404e-19
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005173795832241153,
+              "omitted_envelope_derivative_coefficient": [
+                0.000015772000742786557,
+                0.000010578432073959762
+              ],
+              "phase_error_vs_quadratic_radians": -2.4879807406555595e-10,
+              "phase_grid_32_relative_error": 2.9972894490067412e-15,
+              "phase_grid_64_relative_error": 4.374609122755052e-15,
+              "quadratic_prediction": [
+                0.000015766535256551712,
+                0.000010586597280566021
+              ],
+              "quadratic_relative_error": 4.808701644352812e-7
+            },
+            {
+              "combined_coefficient": [
+                5.9449242702115725e-6,
+                0.000024334423058127658
+              ],
+              "control_relative_amplitude": 3.806001056805516e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -9.45066422987145e-18,
+                1.258280678036064e-18
+              ],
+              "interaction_coefficient": [
+                5.944924270213251e-6,
+                0.00002433442305815146
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                8.299017058960821e-18,
+                -5.7199870230286885e-19
+              ],
+              "omitted_derivative_phase_error_radians": -0.00039223724500569247,
+              "omitted_envelope_derivative_coefficient": [
+                5.954468221667248e-6,
+                0.000024332087493823957
+              ],
+              "phase_error_vs_quadratic_radians": -1.8861835540454656e-10,
+              "phase_grid_32_relative_error": 3.425868947346891e-15,
+              "phase_grid_64_relative_error": 3.918293240329074e-15,
+              "quadratic_prediction": [
+                5.944927124360714e-6,
+                0.00002433443476097355
+              ],
+              "quadratic_relative_error": 4.808700832745889e-7
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.5,
+          "lines": [
+            {
+              "combined_coefficient": [
+                8.652855726942993e-6,
+                5.810046239736498e-6
+              ],
+              "control_relative_amplitude": 1.6941605075932704e-12,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.5248993366466625e-18,
+                5.3403375916464505e-18
+              ],
+              "interaction_coefficient": [
+                8.652855726937507e-6,
+                5.810046239730226e-6
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -1.3214296312318323e-17,
+                1.1711782286619852e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005173796954536955,
+              "omitted_envelope_derivative_coefficient": [
+                8.655859410151382e-6,
+                5.805567873430204e-6
+              ],
+              "phase_error_vs_quadratic_radians": -1.3653241880291683e-10,
+              "phase_grid_32_relative_error": 6.574306668164687e-15,
+              "phase_grid_64_relative_error": 4.4394352140728095e-15,
+              "quadratic_prediction": [
+                8.652858009682296e-6,
+                5.81004777421601e-6
+              ],
+              "quadratic_relative_error": 2.639056773573353e-7
+            },
+            {
+              "combined_coefficient": [
+                3.2626443219351295e-6,
+                0.00001335501742978461
+              ],
+              "control_relative_amplitude": 1.1401748441733074e-12,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -8.34486271723096e-19,
+                1.5652639469667436e-17
+              ],
+              "interaction_coefficient": [
+                3.2626443219322017e-6,
+                0.000013355017429790421
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -5.784705634154837e-18,
+                5.4623831279449744e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.00039223733033256244,
+              "omitted_envelope_derivative_coefficient": [
+                3.2678821558176793e-6,
+                0.000013353735644342879
+              ],
+              "phase_error_vs_quadratic_radians": -1.0351488222750854e-10,
+              "phase_grid_32_relative_error": 5.010339157617944e-15,
+              "phase_grid_64_relative_error": 6.53352554504925e-15,
+              "quadratic_prediction": [
+                3.2626451815801593e-6,
+                0.000013355020954593245
+              ],
+              "quadratic_relative_error": 2.639056407478536e-7
+            }
+          ]
+        }
+      ],
+      "primary_amplitude_mm": 0.005,
+      "probe": "weak_equal_decay",
+      "qualified": true,
+      "secondary_amplitude_mm": 0.001,
+      "weak_prediction_gate_applied": true
+    },
+    {
+      "decay_fits": [
+        {
+          "fitted_amplitude_decay_per_second": -0.0,
+          "label": "f2-f1",
+          "log_amplitude_fit_rms": 0.0,
+          "quadratic_expected_decay_per_second": 0.0
+        },
+        {
+          "fitted_amplitude_decay_per_second": -0.0,
+          "label": "f2+f1",
+          "log_amplitude_fit_rms": 0.0,
+          "quadratic_expected_decay_per_second": 0.0
+        }
+      ],
+      "law": "production",
+      "max_control_relative_amplitude": 2.5399349651952843e-13,
+      "max_quadratic_relative_error": 1.9500969248972023e-6,
+      "max_refinement_relative_error": 1.37357564204691e-15,
+      "modal_amplitude_decay_per_second": [
+        0.0,
+        0.0
+      ],
+      "observations": [
+        {
+          "age_seconds": 0.0,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "control_relative_amplitude": 2.392114791723259e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -1.635980610150637e-17,
+                8.469667728052961e-18
+              ],
+              "interaction_coefficient": [
+                0.00006395852291950552,
+                0.00004289759436917186
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                3.665958595716612e-18,
+                1.1168777919148192e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.762198379894647e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "phase_error_vs_quadratic_radians": -8.368168624112233e-16,
+              "phase_grid_32_relative_error": 2.3935691937728994e-15,
+              "phase_grid_64_relative_error": 1.3402139041696e-15,
+              "quadratic_prediction": [
+                0.00006395864764506758,
+                0.00004289767802380191
+              ],
+              "quadratic_relative_error": 1.9500969248972023e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "control_relative_amplitude": 2.5399349651952843e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.0233076011063472e-17,
+                -1.6010457950323175e-17
+              ],
+              "interaction_coefficient": [
+                0.00002414652385821501,
+                0.00009867133542735406
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -3.899527930921985e-18,
+                -2.0504655949776882e-17
+              ],
+              "omitted_derivative_phase_error_radians": 2.2705391221407e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "phase_error_vs_quadratic_radians": 4.4088052317863705e-16,
+              "phase_grid_32_relative_error": 2.1810142598403775e-15,
+              "phase_grid_64_relative_error": 1.37357564204691e-15,
+              "quadratic_prediction": [
+                0.000024146570946368758,
+                0.00009867152784639689
+              ],
+              "quadratic_relative_error": 1.950096922998917e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.05,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "control_relative_amplitude": 2.392114791723259e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -1.635980610150637e-17,
+                8.469667728052961e-18
+              ],
+              "interaction_coefficient": [
+                0.00006395852291950552,
+                0.00004289759436917186
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                3.665958595716612e-18,
+                1.1168777919148192e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.762198379894647e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "phase_error_vs_quadratic_radians": -8.368168624112233e-16,
+              "phase_grid_32_relative_error": 2.3935691937728994e-15,
+              "phase_grid_64_relative_error": 1.3402139041696e-15,
+              "quadratic_prediction": [
+                0.00006395864764506758,
+                0.00004289767802380191
+              ],
+              "quadratic_relative_error": 1.9500969248972023e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "control_relative_amplitude": 2.5399349651952843e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.0233076011063472e-17,
+                -1.6010457950323175e-17
+              ],
+              "interaction_coefficient": [
+                0.00002414652385821501,
+                0.00009867133542735406
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -3.899527930921985e-18,
+                -2.0504655949776882e-17
+              ],
+              "omitted_derivative_phase_error_radians": 2.2705391221407e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "phase_error_vs_quadratic_radians": 4.4088052317863705e-16,
+              "phase_grid_32_relative_error": 2.1810142598403775e-15,
+              "phase_grid_64_relative_error": 1.37357564204691e-15,
+              "quadratic_prediction": [
+                0.000024146570946368758,
+                0.00009867152784639689
+              ],
+              "quadratic_relative_error": 1.950096922998917e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.1,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "control_relative_amplitude": 2.392114791723259e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -1.635980610150637e-17,
+                8.469667728052961e-18
+              ],
+              "interaction_coefficient": [
+                0.00006395852291950552,
+                0.00004289759436917186
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                3.665958595716612e-18,
+                1.1168777919148192e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.762198379894647e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "phase_error_vs_quadratic_radians": -8.368168624112233e-16,
+              "phase_grid_32_relative_error": 2.3935691937728994e-15,
+              "phase_grid_64_relative_error": 1.3402139041696e-15,
+              "quadratic_prediction": [
+                0.00006395864764506758,
+                0.00004289767802380191
+              ],
+              "quadratic_relative_error": 1.9500969248972023e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "control_relative_amplitude": 2.5399349651952843e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.0233076011063472e-17,
+                -1.6010457950323175e-17
+              ],
+              "interaction_coefficient": [
+                0.00002414652385821501,
+                0.00009867133542735406
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -3.899527930921985e-18,
+                -2.0504655949776882e-17
+              ],
+              "omitted_derivative_phase_error_radians": 2.2705391221407e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "phase_error_vs_quadratic_radians": 4.4088052317863705e-16,
+              "phase_grid_32_relative_error": 2.1810142598403775e-15,
+              "phase_grid_64_relative_error": 1.37357564204691e-15,
+              "quadratic_prediction": [
+                0.000024146570946368758,
+                0.00009867152784639689
+              ],
+              "quadratic_relative_error": 1.950096922998917e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.2,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "control_relative_amplitude": 2.392114791723259e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -1.635980610150637e-17,
+                8.469667728052961e-18
+              ],
+              "interaction_coefficient": [
+                0.00006395852291950552,
+                0.00004289759436917186
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                3.665958595716612e-18,
+                1.1168777919148192e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.762198379894647e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "phase_error_vs_quadratic_radians": -8.368168624112233e-16,
+              "phase_grid_32_relative_error": 2.3935691937728994e-15,
+              "phase_grid_64_relative_error": 1.3402139041696e-15,
+              "quadratic_prediction": [
+                0.00006395864764506758,
+                0.00004289767802380191
+              ],
+              "quadratic_relative_error": 1.9500969248972023e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "control_relative_amplitude": 2.5399349651952843e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.0233076011063472e-17,
+                -1.6010457950323175e-17
+              ],
+              "interaction_coefficient": [
+                0.00002414652385821501,
+                0.00009867133542735406
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -3.899527930921985e-18,
+                -2.0504655949776882e-17
+              ],
+              "omitted_derivative_phase_error_radians": 2.2705391221407e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "phase_error_vs_quadratic_radians": 4.4088052317863705e-16,
+              "phase_grid_32_relative_error": 2.1810142598403775e-15,
+              "phase_grid_64_relative_error": 1.37357564204691e-15,
+              "quadratic_prediction": [
+                0.000024146570946368758,
+                0.00009867152784639689
+              ],
+              "quadratic_relative_error": 1.950096922998917e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.35,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "control_relative_amplitude": 2.392114791723259e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -1.635980610150637e-17,
+                8.469667728052961e-18
+              ],
+              "interaction_coefficient": [
+                0.00006395852291950552,
+                0.00004289759436917186
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                3.665958595716612e-18,
+                1.1168777919148192e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.762198379894647e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "phase_error_vs_quadratic_radians": -8.368168624112233e-16,
+              "phase_grid_32_relative_error": 2.3935691937728994e-15,
+              "phase_grid_64_relative_error": 1.3402139041696e-15,
+              "quadratic_prediction": [
+                0.00006395864764506758,
+                0.00004289767802380191
+              ],
+              "quadratic_relative_error": 1.9500969248972023e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "control_relative_amplitude": 2.5399349651952843e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.0233076011063472e-17,
+                -1.6010457950323175e-17
+              ],
+              "interaction_coefficient": [
+                0.00002414652385821501,
+                0.00009867133542735406
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -3.899527930921985e-18,
+                -2.0504655949776882e-17
+              ],
+              "omitted_derivative_phase_error_radians": 2.2705391221407e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "phase_error_vs_quadratic_radians": 4.4088052317863705e-16,
+              "phase_grid_32_relative_error": 2.1810142598403775e-15,
+              "phase_grid_64_relative_error": 1.37357564204691e-15,
+              "quadratic_prediction": [
+                0.000024146570946368758,
+                0.00009867152784639689
+              ],
+              "quadratic_relative_error": 1.950096922998917e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.5,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "control_relative_amplitude": 2.392114791723259e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -1.635980610150637e-17,
+                8.469667728052961e-18
+              ],
+              "interaction_coefficient": [
+                0.00006395852291950552,
+                0.00004289759436917186
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                3.665958595716612e-18,
+                1.1168777919148192e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.762198379894647e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000639585229195706,
+                0.0000428975943691899
+              ],
+              "phase_error_vs_quadratic_radians": -8.368168624112233e-16,
+              "phase_grid_32_relative_error": 2.3935691937728994e-15,
+              "phase_grid_64_relative_error": 1.3402139041696e-15,
+              "quadratic_prediction": [
+                0.00006395864764506758,
+                0.00004289767802380191
+              ],
+              "quadratic_relative_error": 1.9500969248972023e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "control_relative_amplitude": 2.5399349651952843e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.0233076011063472e-17,
+                -1.6010457950323175e-17
+              ],
+              "interaction_coefficient": [
+                0.00002414652385821501,
+                0.00009867133542735406
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -3.899527930921985e-18,
+                -2.0504655949776882e-17
+              ],
+              "omitted_derivative_phase_error_radians": 2.2705391221407e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.000024146523858199382,
+                0.00009867133542738722
+              ],
+              "phase_error_vs_quadratic_radians": 4.4088052317863705e-16,
+              "phase_grid_32_relative_error": 2.1810142598403775e-15,
+              "phase_grid_64_relative_error": 1.37357564204691e-15,
+              "quadratic_prediction": [
+                0.000024146570946368758,
+                0.00009867152784639689
+              ],
+              "quadratic_relative_error": 1.950096922998917e-6
+            }
+          ]
+        }
+      ],
+      "primary_amplitude_mm": 0.005,
+      "probe": "weak_zero_decay",
+      "qualified": true,
+      "secondary_amplitude_mm": 0.001,
+      "weak_prediction_gate_applied": true
+    },
+    {
+      "decay_fits": [
+        {
+          "fitted_amplitude_decay_per_second": 5.800008320046567,
+          "label": "f2-f1",
+          "log_amplitude_fit_rms": 1.968360843497241e-7,
+          "quadratic_expected_decay_per_second": 5.8
+        },
+        {
+          "fitted_amplitude_decay_per_second": 5.800008320045903,
+          "label": "f2+f1",
+          "log_amplitude_fit_rms": 1.9683605234474766e-7,
+          "quadratic_expected_decay_per_second": 5.8
+        }
+      ],
+      "law": "point_pole",
+      "max_control_relative_amplitude": 1.1997644559117246e-12,
+      "max_quadratic_relative_error": 7.40951349797565e-6,
+      "max_refinement_relative_error": 1.466410437447955e-14,
+      "modal_amplitude_decay_per_second": [
+        0.8,
+        5.0
+      ],
+      "observations": [
+        {
+          "age_seconds": 0.0,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00012328766875895387,
+                0.00008282438648646221
+              ],
+              "control_relative_amplitude": 6.160729888975636e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                2.4799430629711405e-17,
+                -3.2195378218001134e-17
+              ],
+              "interaction_coefficient": [
+                0.00012328766875901401,
+                0.00008282438648653344
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                9.007390712749593e-17,
+                -1.6105008003060436e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007502025261838507,
+              "omitted_envelope_derivative_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "phase_error_vs_quadratic_radians": 1.8428919438001395e-9,
+              "phase_grid_32_relative_error": 5.701315982520807e-15,
+              "phase_grid_64_relative_error": 4.0407222940603644e-15,
+              "quadratic_prediction": [
+                0.00012328675541680028,
+                0.00008282377257548573
+              ],
+              "quadratic_relative_error": 7.40951349797565e-6
+            },
+            {
+              "combined_coefficient": [
+                0.00004646050155761295,
+                0.00019032298517797009
+              ],
+              "control_relative_amplitude": 8.852045550607066e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                1.1107990070292895e-16,
+                -6.841225711132887e-17
+              ],
+              "interaction_coefficient": [
+                0.00004646050155762773,
+                0.00019032298517797242
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.0499947469106395e-16,
+                1.3802280114522656e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687456427026602,
+              "omitted_envelope_derivative_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "phase_error_vs_quadratic_radians": 1.397138856287757e-9,
+              "phase_grid_32_relative_error": 3.2492800641842186e-15,
+              "phase_grid_64_relative_error": 1.3835338215354013e-15,
+              "quadratic_prediction": [
+                0.00004646015757640867,
+                0.00019032157492293787
+              ],
+              "quadratic_relative_error": 7.409512812292015e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.05,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00009225161000852322,
+                0.00006197442999764699
+              ],
+              "control_relative_amplitude": 4.147441534933431e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                2.331881703791089e-18,
+                -9.27628132185547e-18
+              ],
+              "interaction_coefficient": [
+                0.00009225161000851729,
+                0.00006197442999770701
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                4.494568576368131e-17,
+                1.0219928964655964e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007502022672744788,
+              "omitted_envelope_derivative_coefficient": [
+                0.00009229805142944548,
+                0.00006190518777726243
+              ],
+              "phase_error_vs_quadratic_radians": 1.5845456441212257e-9,
+              "phase_grid_32_relative_error": 7.317748072110462e-15,
+              "phase_grid_64_relative_error": 1.5852919181456395e-15,
+              "quadratic_prediction": [
+                0.00009225098744336098,
+                0.00006197401154764867
+              ],
+              "quadratic_relative_error": 6.749666231536528e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000034764677735654355,
+                0.00014241166190538202
+              ],
+              "control_relative_amplitude": 6.789733717582836e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.8574232959150195e-17,
+                -4.691477266825154e-18
+              ],
+              "interaction_coefficient": [
+                0.000034764677735674996,
+                0.00014241166190536987
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -6.199942360722577e-17,
+                -7.786469481643364e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687454469705966,
+              "omitted_envelope_derivative_coefficient": [
+                0.000034845662457141574,
+                0.000142391843591389
+              ],
+              "phase_error_vs_quadratic_radians": 1.2012758050991697e-9,
+              "phase_grid_32_relative_error": 3.5518012002731786e-15,
+              "phase_grid_64_relative_error": 4.844796122322164e-15,
+              "quadratic_prediction": [
+                0.000034764443258385855,
+                0.00014241070063900868
+              ],
+              "quadratic_relative_error": 6.749665651053958e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.1,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.0000690284792324124,
+                0.00004637318147468822
+              ],
+              "control_relative_amplitude": 1.1997644559117246e-12,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                1.1686090056793955e-17,
+                3.5145196926593836e-17
+              ],
+              "interaction_coefficient": [
+                0.00006902847923239163,
+                0.00004637318147467785
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                4.000091917584752e-17,
+                -9.140130040007202e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007502020750608014,
+              "omitted_envelope_derivative_coefficient": [
+                0.00006906322962686273,
+                0.00004632137008677689
+              ],
+              "phase_error_vs_quadratic_radians": 1.3919618153648846e-9,
+              "phase_grid_32_relative_error": 1.3635413645331085e-14,
+              "phase_grid_64_relative_error": 4.265371157330862e-15,
+              "quadratic_prediction": [
+                0.0000690280529770147,
+                0.000046372894977798796
+              ],
+              "quadratic_relative_error": 6.17603885764862e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000026013126881997,
+                0.00010656139707217524
+              ],
+              "control_relative_amplitude": 2.6691206089402793e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.4964178537952367e-18,
+                -1.8292470589344667e-18
+              ],
+              "interaction_coefficient": [
+                0.000026013126882025655,
+                0.00010656139707215854
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -2.799698000559639e-17,
+                -8.564720706602654e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687453011996514,
+              "omitted_envelope_derivative_coefficient": [
+                0.000026073724748344857,
+                0.00010654656776217182
+              ],
+              "phase_error_vs_quadratic_radians": 1.055277989618039e-9,
+              "phase_grid_32_relative_error": 5.700924967637411e-15,
+              "phase_grid_64_relative_error": 2.866441870753883e-15,
+              "quadratic_prediction": [
+                0.000026012966337402398,
+                0.0001065607389215077
+              ],
+              "quadratic_relative_error": 6.1760383423421e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.2,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.0000386488955226833,
+                0.000025964243523030796
+              ],
+              "control_relative_amplitude": 9.736891844958612e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -3.832538212706011e-17,
+                2.4217092169751624e-17
+              ],
+              "interaction_coefficient": [
+                0.000038648895522666676,
+                0.000025964243523076596
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -2.230285395723856e-17,
+                -1.787196505314721e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007502018036498448,
+              "omitted_envelope_derivative_coefficient": [
+                0.00003866835218598552,
+                0.00002593523445008455
+              ],
+              "phase_error_vs_quadratic_radians": 1.1205113814669213e-9,
+              "phase_grid_32_relative_error": 1.175451666601985e-14,
+              "phase_grid_64_relative_error": 4.697930894167922e-15,
+              "quadratic_prediction": [
+                0.00003864869410902058,
+                0.000025964108150978483
+              ],
+              "quadratic_relative_error": 5.212148783462085e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000014564693224073468,
+                0.00005966349464790761
+              ],
+              "control_relative_amplitude": 4.197950883278706e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                1.373400396501804e-17,
+                8.421373615169665e-18
+              ],
+              "interaction_coefficient": [
+                0.00001456469322409486,
+                0.000059663494647888616
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.476886646832598e-17,
+                2.113263161849244e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687450953498086,
+              "omitted_envelope_derivative_coefficient": [
+                0.000014598621825472932,
+                0.000059655191752424795
+              ],
+              "phase_error_vs_quadratic_radians": 8.494851319680601e-10,
+              "phase_grid_32_relative_error": 5.891362027229074e-15,
+              "phase_grid_64_relative_error": 5.36465526511258e-15,
+              "quadratic_prediction": [
+                0.000014564617361832393,
+                0.00005966318366215443
+              ],
+              "quadratic_relative_error": 5.2121483759182035e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.35,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.000016191996300089278,
+                0.000010877747711337691
+              ],
+              "control_relative_amplitude": 2.8394171321691303e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -3.1679032227310833e-19,
+                -4.8303443480605566e-18
+              ],
+              "interaction_coefficient": [
+                0.00001619199630010207,
+                0.000010877747711351408
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -8.65138276501861e-19,
+                -5.4707442695766604e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007502015360452698,
+              "omitted_envelope_derivative_coefficient": [
+                0.000016200147687184457,
+                0.00001086559433338846
+              ],
+              "phase_error_vs_quadratic_radians": 8.533357533220901e-10,
+              "phase_grid_32_relative_error": 2.0915269343200288e-15,
+              "phase_grid_64_relative_error": 2.25799415253917e-15,
+              "quadratic_prediction": [
+                0.000016191930273372273,
+                0.00001087770333468569
+              ],
+              "quadratic_relative_error": 4.078328679797836e-6
+            },
+            {
+              "combined_coefficient": [
+                6.10189387718271e-6,
+                0.000024996085174086245
+              ],
+              "control_relative_amplitude": 7.678931883600517e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                6.083072989825165e-18,
+                1.879822205074939e-17
+              ],
+              "interaction_coefficient": [
+                6.101893877192975e-6,
+                0.0000249960851740792
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                3.1599622888505742e-18,
+                1.2694846739969723e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687448928907992,
+              "omitted_envelope_derivative_coefficient": [
+                6.116108296128856e-6,
+                0.00002499260666834872
+              ],
+              "phase_error_vs_quadratic_radians": 6.469330991898855e-10,
+              "phase_grid_32_relative_error": 5.112775238752675e-15,
+              "phase_grid_64_relative_error": 2.7670380421656477e-15,
+              "quadratic_prediction": [
+                6.101869007938744e-6,
+                0.000024995983228306028
+              ],
+              "quadratic_relative_error": 4.078328346105221e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.5,
+          "lines": [
+            {
+              "combined_coefficient": [
+                6.783656000337799e-6,
+                4.557245267023818e-6
+              ],
+              "control_relative_amplitude": 3.6908504812621106e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.23362588190959e-18,
+                2.0270226346734454e-18
+              ],
+              "interaction_coefficient": [
+                6.783656000335465e-6,
+                4.557245267018494e-6
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -8.021402010498224e-19,
+                1.1423827480500342e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007502013484911977,
+              "omitted_envelope_derivative_coefficient": [
+                6.787071032739203e-6,
+                4.552153596219978e-6
+              ],
+              "phase_error_vs_quadratic_radians": 6.650002346526776e-10,
+              "phase_grid_32_relative_error": 3.169170439366689e-14,
+              "phase_grid_64_relative_error": 1.466410437447955e-14,
+              "quadratic_prediction": [
+                6.783634273339059e-6,
+                4.557230664322778e-6
+              ],
+              "quadratic_relative_error": 3.20330173598813e-6
+            },
+            {
+              "combined_coefficient": [
+                2.5563956577862922e-6,
+                0.000010472139445061515
+              ],
+              "control_relative_amplitude": 6.318259900170635e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                1.2871724424713162e-18,
+                1.5150507750623246e-18
+              ],
+              "interaction_coefficient": [
+                2.5563956577823374e-6,
+                0.000010472139445067397
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.170176016631816e-18,
+                -6.709586203217728e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005687447493668667,
+              "omitted_envelope_derivative_coefficient": [
+                2.562350803904217e-6,
+                0.000010470682121348473
+              ],
+              "phase_error_vs_quadratic_radians": 5.041383586378539e-10,
+              "phase_grid_32_relative_error": 2.1890156776398552e-14,
+              "phase_grid_64_relative_error": 8.797206825132402e-15,
+              "quadratic_prediction": [
+                2.55638747418209e-6,
+                0.000010472105898466808
+              ],
+              "quadratic_relative_error": 3.2033014707674922e-6
+            }
+          ]
+        }
+      ],
+      "primary_amplitude_mm": 0.005,
+      "probe": "weak_unequal_decay",
+      "qualified": true,
+      "secondary_amplitude_mm": 0.001,
+      "weak_prediction_gate_applied": true
+    },
+    {
+      "decay_fits": [
+        {
+          "fitted_amplitude_decay_per_second": 5.816038393439538,
+          "label": "f2-f1",
+          "log_amplitude_fit_rms": 0.00028142109540913655,
+          "quadratic_expected_decay_per_second": 5.8
+        },
+        {
+          "fitted_amplitude_decay_per_second": 5.81603839242423,
+          "label": "f2+f1",
+          "log_amplitude_fit_rms": 0.000281421066499853,
+          "quadratic_expected_decay_per_second": 5.8
+        }
+      ],
+      "law": "point_pole",
+      "max_control_relative_amplitude": 2.609353803679378e-14,
+      "max_quadratic_relative_error": 0.015620688606705178,
+      "max_refinement_relative_error": 8.458457547199357e-15,
+      "modal_amplitude_decay_per_second": [
+        0.8,
+        5.0
+      ],
+      "observations": [
+        {
+          "age_seconds": 0.0,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.3130308058637604,
+                0.21029479884768632
+              ],
+              "control_relative_amplitude": 1.3691725360200757e-14,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                1.6154612370034016e-16,
+                -3.436731151398864e-15
+              ],
+              "interaction_coefficient": [
+                0.31303080586375853,
+                0.21029479884768687
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                5.070298564682774e-15,
+                9.755227631550942e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.000753256514140779,
+              "omitted_envelope_derivative_coefficient": [
+                0.313189034118764,
+                0.21005888712296167
+              ],
+              "phase_error_vs_quadratic_radians": 3.0558310698758583e-6,
+              "phase_grid_32_relative_error": 1.1520328729927403e-15,
+              "phase_grid_64_relative_error": 2.406415865248535e-15,
+              "quadratic_prediction": [
+                0.30821688854200063,
+                0.20705943143871425
+              ],
+              "quadratic_relative_error": 0.015620688606705178
+            },
+            {
+              "combined_coefficient": [
+                0.11796362341405127,
+                0.483236595120473
+              ],
+              "control_relative_amplitude": 9.455232245641056e-15,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.6956518614507097e-15,
+                -1.9010231485771384e-15
+              ],
+              "interaction_coefficient": [
+                0.117963623414052,
+                0.48323659512047407
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -3.0119678452733556e-15,
+                -3.6123278576282586e-15
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005710609411338587,
+              "omitted_envelope_derivative_coefficient": [
+                0.11823954242967327,
+                0.4831690731287559
+              ],
+              "phase_error_vs_quadratic_radians": 2.316695591850747e-6,
+              "phase_grid_32_relative_error": 1.9964976341507096e-15,
+              "phase_grid_64_relative_error": 3.4935297114096832e-15,
+              "quadratic_prediction": [
+                0.11615039394102164,
+                0.4758039373073446
+              ],
+              "quadratic_relative_error": 0.015620687485489315
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.05,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.23396662403619106,
+                0.15717920562802468
+              ],
+              "control_relative_amplitude": 9.482693893956878e-15,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                1.0816000872715392e-15,
+                -7.005131880382515e-16
+              ],
+              "interaction_coefficient": [
+                0.2339666240361904,
+                0.15717920562802926
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -2.410696425467207e-15,
+                1.1543034662332176e-15
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007529673504794663,
+              "omitted_envelope_derivative_coefficient": [
+                0.234084842151814,
+                0.15700294735133458
+              ],
+              "phase_error_vs_quadratic_radians": 2.766667403181455e-6,
+              "phase_grid_32_relative_error": 4.44110006822411e-15,
+              "phase_grid_64_relative_error": 2.6459624914135512e-15,
+              "quadratic_prediction": [
+                0.23062746860840241,
+                0.15493502886912167
+              ],
+              "quadratic_relative_error": 0.014480453570714367
+            },
+            {
+              "combined_coefficient": [
+                0.0881688627405635,
+                0.3611823649618167
+              ],
+              "control_relative_amplitude": 1.5937326633609048e-14,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -5.891757893193572e-15,
+                -6.296690463957963e-16
+              ],
+              "interaction_coefficient": [
+                0.08816886274056368,
+                0.36118236496181244
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                4.18132054588044e-15,
+                1.1723037633953187e-15
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005708417195328521,
+              "omitted_envelope_derivative_coefficient": [
+                0.08837501192732779,
+                0.3611319168125632
+              ],
+              "phase_error_vs_quadratic_radians": 2.0974739832050595e-6,
+              "phase_grid_32_relative_error": 5.7050714284290994e-15,
+              "phase_grid_64_relative_error": 5.798095029938293e-15,
+              "quadratic_prediction": [
+                0.08691110814596462,
+                0.3560267515975217
+              ],
+              "quadratic_relative_error": 0.014480452559629922
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.1,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.17488978981516745,
+                0.11749122080683022
+              ],
+              "control_relative_amplitude": 2.609353803679378e-14,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                4.341118393577648e-15,
+                -3.3732858425506752e-15
+              ],
+              "interaction_coefficient": [
+                0.17488978981516626,
+                0.11749122080682971
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -5.257567384925332e-16,
+                -3.6974004587186915e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007527324526660294,
+              "omitted_envelope_derivative_coefficient": [
+                0.17497813014295244,
+                0.11735950906488762
+              ],
+              "phase_error_vs_quadratic_radians": 2.5317695843171637e-6,
+              "phase_grid_32_relative_error": 4.165859378352857e-15,
+              "phase_grid_64_relative_error": 3.963044012623435e-15,
+              "quadratic_prediction": [
+                0.17257013244253674,
+                0.11593223744449696
+              ],
+              "quadratic_relative_error": 0.0134435480904229
+            },
+            {
+              "combined_coefficient": [
+                0.06590616398036903,
+                0.26998335956687897
+              ],
+              "control_relative_amplitude": 2.135797476922626e-14,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -5.886187804532428e-15,
+                -7.644497759958478e-16
+              ],
+              "interaction_coefficient": [
+                0.06590616398036885,
+                0.2699833595668782
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.1938963272867253e-15,
+                6.124903711925318e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005706636381025086,
+              "omitted_envelope_derivative_coefficient": [
+                0.06606021217031662,
+                0.26994566140177484
+              ],
+              "phase_error_vs_quadratic_radians": 1.919392564329464e-6,
+              "phase_grid_32_relative_error": 2.496802511982952e-15,
+              "phase_grid_64_relative_error": 2.996579119237375e-15,
+              "quadratic_prediction": [
+                0.06503241584350598,
+                0.2664018473037692
+              ],
+              "quadratic_relative_error": 0.01344354716774892
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.2,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.09774355993380716,
+                0.06566421697278278
+              ],
+              "control_relative_amplitude": 1.261536608930944e-14,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                2.1508538223038998e-16,
+                5.098730707865022e-16
+              ],
+              "interaction_coefficient": [
+                0.09774355993380779,
+                0.06566421697278078
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                9.142196006305114e-16,
+                -1.1708443256271996e-15
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007523665465742335,
+              "omitted_envelope_derivative_coefficient": [
+                0.0977929081470606,
+                0.06559064084631627
+              ],
+              "phase_error_vs_quadratic_radians": 2.165863480444671e-6,
+              "phase_grid_32_relative_error": 3.3769342036617557e-15,
+              "phase_grid_64_relative_error": 5.067800102037366e-15,
+              "quadratic_prediction": [
+                0.09662173527255143,
+                0.06491027037744619
+              ],
+              "quadratic_relative_error": 0.011611951465525672
+            },
+            {
+              "combined_coefficient": [
+                0.03683410468645786,
+                0.15089003448437163
+              ],
+              "control_relative_amplitude": 7.279262585053839e-15,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                5.132765550476884e-16,
+                1.0073980952679312e-15
+              ],
+              "interaction_coefficient": [
+                0.036834104686459264,
+                0.15089003448437066
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -4.2607790125964717e-16,
+                -2.0260075186257203e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005703862363068019,
+              "omitted_envelope_derivative_coefficient": [
+                0.03692015828303493,
+                0.15086897573196087
+              ],
+              "phase_error_vs_quadratic_radians": 1.6419907594780349e-6,
+              "phase_grid_32_relative_error": 3.62084749687511e-15,
+              "phase_grid_64_relative_error": 2.601887558340172e-15,
+              "quadratic_prediction": [
+                0.03641154340458098,
+                0.14915795915538602
+              ],
+              "quadratic_relative_error": 0.011611950678640282
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.35,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.04085727270515269,
+                0.027447930516000436
+              ],
+              "control_relative_amplitude": 2.4146288867345108e-14,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                5.844933911869354e-16,
+                9.215705760632579e-16
+              ],
+              "interaction_coefficient": [
+                0.04085727270515187,
+                0.02744793051600206
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -9.738981539622604e-16,
+                6.81222859697482e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0007519561901742362,
+              "omitted_envelope_derivative_coefficient": [
+                0.040877889236376315,
+                0.027417192128356326
+              ],
+              "phase_error_vs_quadratic_radians": 1.755507081338031e-6,
+              "phase_grid_32_relative_error": 5.238859638726669e-15,
+              "phase_grid_64_relative_error": 8.458457547199357e-15,
+              "quadratic_prediction": [
+                0.04047982568343067,
+                0.027194258336714218
+              ],
+              "quadratic_relative_error": 0.00932551479835576
+            },
+            {
+              "combined_coefficient": [
+                0.0153968462401359,
+                0.06307272954528262
+              ],
+              "control_relative_amplitude": 1.0991365011884718e-14,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                1.4920654772473951e-16,
+                1.4770984050694116e-16
+              ],
+              "interaction_coefficient": [
+                0.015396846240136155,
+                0.0630727295452829
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -5.320891568062064e-16,
+                4.755247201050378e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005700751357008584,
+              "omitted_envelope_derivative_coefficient": [
+                0.01543279742344684,
+                0.06306393169024442
+              ],
+              "phase_error_vs_quadratic_radians": 1.3308901591714082e-6,
+              "phase_grid_32_relative_error": 2.127473401382209e-15,
+              "phase_grid_64_relative_error": 9.084445569776443e-16,
+              "quadratic_prediction": [
+                0.015254672519846855,
+                0.06248995807076505
+              ],
+              "quadratic_relative_error": 0.009325514161505285
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.5,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.017085739943364164,
+                0.01147819817210612
+              ],
+              "control_relative_amplitude": 2.5844907937408194e-14,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -3.477104129796793e-16,
+                -3.287135815551335e-16
+              ],
+              "interaction_coefficient": [
+                0.0170857399433642,
+                0.011478198172105492
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -5.034967126386902e-16,
+                -1.7171602478154892e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.000751630566991159,
+              "omitted_envelope_derivative_coefficient": [
+                0.01709435765215373,
+                0.011465349527951602
+              ],
+              "phase_error_vs_quadratic_radians": 1.4298839063879658e-6,
+              "phase_grid_32_relative_error": 3.1803184111198325e-15,
+              "phase_grid_64_relative_error": 3.866710509851909e-15,
+              "quadratic_prediction": [
+                0.01695908568334764,
+                0.011393076660806939
+              ],
+              "quadratic_relative_error": 0.007469192454920065
+            },
+            {
+              "combined_coefficient": [
+                0.006438675464604928,
+                0.026375817146141962
+              ],
+              "control_relative_amplitude": 1.269785429011158e-14,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                1.1237755517812253e-16,
+                1.0213184464813452e-16
+              ],
+              "interaction_coefficient": [
+                0.006438675464604539,
+                0.026375817146142268
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                2.0645242243197415e-16,
+                2.7609885948701174e-16
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005698282733378911,
+              "omitted_envelope_derivative_coefficient": [
+                0.006453703057028162,
+                0.026372139643274457
+              ],
+              "phase_error_vs_quadratic_radians": 1.0840277739145635e-6,
+              "phase_grid_32_relative_error": 4.517937188449467e-15,
+              "phase_grid_64_relative_error": 3.156741911118138e-15,
+              "quadratic_prediction": [
+                0.0063909686854552224,
+                0.02618026474616701
+              ],
+              "quadratic_relative_error": 0.007469191936273024
+            }
+          ]
+        }
+      ],
+      "primary_amplitude_mm": 0.25,
+      "probe": "larger_unequal_decay",
+      "qualified": true,
+      "secondary_amplitude_mm": 0.05,
+      "weak_prediction_gate_applied": false
+    },
+    {
+      "decay_fits": [
+        {
+          "fitted_amplitude_decay_per_second": 4.000012506019255,
+          "label": "f2-f1",
+          "log_amplitude_fit_rms": 5.757032128721357e-7,
+          "quadratic_expected_decay_per_second": 4.0
+        },
+        {
+          "fitted_amplitude_decay_per_second": 4.000012506017838,
+          "label": "f2+f1",
+          "log_amplitude_fit_rms": 5.757031474595581e-7,
+          "quadratic_expected_decay_per_second": 4.0
+        }
+      ],
+      "law": "point_pole",
+      "max_control_relative_amplitude": 1.0733544030128254e-12,
+      "max_quadratic_relative_error": 7.409514861144164e-6,
+      "max_refinement_relative_error": 8.809285022153403e-15,
+      "modal_amplitude_decay_per_second": [
+        2.0,
+        2.0
+      ],
+      "observations": [
+        {
+          "age_seconds": 0.0,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00012330693030186064,
+                0.00008279566833023098
+              ],
+              "control_relative_amplitude": 2.8910305405114027e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                2.0680309407213743e-17,
+                1.4270731686001647e-17
+              ],
+              "interaction_coefficient": [
+                0.00012330693030168386,
+                0.00008279566833027252
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                3.1709948929885615e-17,
+                2.895243317009924e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005173836657946608,
+              "omitted_envelope_derivative_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "phase_error_vs_quadratic_radians": 3.833252333061299e-9,
+              "phase_grid_32_relative_error": 8.011600664136333e-15,
+              "phase_grid_64_relative_error": 3.1037515576755118e-15,
+              "quadratic_prediction": [
+                0.00012330601698141752,
+                0.00008279505438650213
+              ],
+              "quadratic_relative_error": 7.409514861144164e-6
+            },
+            {
+              "combined_coefficient": [
+                0.00004649408990685493,
+                0.0001903147655479112
+              ],
+              "control_relative_amplitude": 5.245109912018369e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                5.662838768868625e-17,
+                5.095676095298986e-17
+              ],
+              "interaction_coefficient": [
+                0.000046494089906893066,
+                0.0001903147655478915
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                7.938901001435655e-17,
+                -6.524234218534806e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.00039224033899458574,
+              "omitted_envelope_derivative_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "phase_error_vs_quadratic_radians": 2.9060770950749342e-9,
+              "phase_grid_32_relative_error": 5.536837310815124e-15,
+              "phase_grid_64_relative_error": 1.6845626530993361e-15,
+              "quadratic_prediction": [
+                0.00004649374596394589,
+                0.00019031335528349027
+              ],
+              "quadratic_relative_error": 7.409513600307277e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.05,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00010095504036641709,
+                0.00006778726877278648
+              ],
+              "control_relative_amplitude": 5.657560491675e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                1.46693400970236e-17,
+                3.5819223394371446e-17
+              ],
+              "interaction_coefficient": [
+                0.00010095504036643349,
+                0.00006778726877272733
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                6.800573423620601e-17,
+                -1.0404449798259393e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005173829700506147,
+              "omitted_envelope_derivative_coefficient": [
+                0.00010099008531437268,
+                0.00006773501821771923
+              ],
+              "phase_error_vs_quadratic_radians": 3.1384769897370477e-9,
+              "phase_grid_32_relative_error": 8.704516807637332e-16,
+              "phase_grid_64_relative_error": 2.854510667850273e-15,
+              "quadratic_prediction": [
+                0.00010095442814224239,
+                0.00006778685722899336
+              ],
+              "quadratic_relative_error": 6.066470120381062e-6
+            },
+            {
+              "combined_coefficient": [
+                0.00003806609020124319,
+                0.00015581634203174928
+              ],
+              "control_relative_amplitude": 2.199856469364604e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                3.5282733901404253e-17,
+                4.356396326847273e-19
+              ],
+              "interaction_coefficient": [
+                0.000038066090201079046,
+                0.0001558163420318367
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                9.82177053988724e-18,
+                -2.1450262356267902e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.00039223981264793105,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000381272017110473,
+                0.0001558013870245214
+              ],
+              "phase_error_vs_quadratic_radians": 2.379351249433824e-9,
+              "phase_grid_32_relative_error": 3.442754427997797e-15,
+              "phase_grid_64_relative_error": 3.5509567974926784e-15,
+              "quadratic_prediction": [
+                0.000038065859646477804,
+                0.0001558153966920495
+              ],
+              "quadratic_relative_error": 6.066469086903074e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.1,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00008265490536961296,
+                0.00005549946053665167
+              ],
+              "control_relative_amplitude": 7.739122703870474e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -7.441904419634195e-17,
+                1.996284603110975e-17
+              ],
+              "interaction_coefficient": [
+                0.00008265490536961389,
+                0.000055499460536597375
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                3.266201396259945e-17,
+                2.2965180782432218e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005173824009441902,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000826835976831883,
+                0.00005545668149448838
+              ],
+              "phase_error_vs_quadratic_radians": 2.5696222131684303e-9,
+              "phase_grid_32_relative_error": 5.382119587626686e-15,
+              "phase_grid_64_relative_error": 1.7748578891694896e-15,
+              "quadratic_prediction": [
+                0.00008265449497945511,
+                0.000055499184667883366
+              ],
+              "quadratic_relative_error": 4.966854209956499e-6
+            },
+            {
+              "combined_coefficient": [
+                0.00003116584448180478,
+                0.00012757149076119588
+              ],
+              "control_relative_amplitude": 5.961295189350607e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                5.88488845599134e-17,
+                5.1628034563688894e-17
+              ],
+              "interaction_coefficient": [
+                0.00003116584448180083,
+                0.00012757149076123202
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                2.4583013711687932e-17,
+                -2.1551218095668774e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0003922393806108748,
+              "omitted_envelope_derivative_coefficient": [
+                0.00003121587824425524,
+                0.00012755924666379856
+              ],
+              "phase_error_vs_quadratic_radians": 1.9480897342810558e-9,
+              "phase_grid_32_relative_error": 3.891944569345678e-15,
+              "phase_grid_64_relative_error": 3.127225102313951e-15,
+              "quadratic_prediction": [
+                0.00003116568993492153,
+                0.00012757085707482618
+              ],
+              "quadratic_relative_error": 4.9668533648130945e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.2,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.000055405149282579796,
+                0.00003720233997921629
+              ],
+              "control_relative_amplitude": 8.988536202133001e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -5.90221027976269e-17,
+                -1.0711684530096289e-17
+              ],
+              "interaction_coefficient": [
+                0.00005540514928254929,
+                0.00003720233997912575
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                5.300223964149059e-17,
+                -1.7128329682462038e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.000517381555489108,
+              "omitted_envelope_derivative_coefficient": [
+                0.0000554243822525926,
+                0.000037173664423468275
+              ],
+              "phase_error_vs_quadratic_radians": 1.7225263836063528e-9,
+              "phase_grid_32_relative_error": 8.346503739875329e-15,
+              "phase_grid_64_relative_error": 4.337695553436586e-15,
+              "quadratic_prediction": [
+                0.00005540496487968086,
+                0.000037202216021516024
+              ],
+              "quadratic_relative_error": 3.329430413506309e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000020891056155234654,
+                0.00008551358752496217
+              ],
+              "control_relative_amplitude": 6.030582247405099e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                1.1802133570567794e-17,
+                -4.460846077155569e-18
+              ],
+              "interaction_coefficient": [
+                0.000020891056155307354,
+                0.00008551358752500522
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -5.225769768085406e-17,
+                -9.342746938435331e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.0003922387387159967,
+              "omitted_envelope_derivative_coefficient": [
+                0.000020924594679472493,
+                0.00008550538008798371
+              ],
+              "phase_error_vs_quadratic_radians": 1.3058858139240324e-9,
+              "phase_grid_32_relative_error": 9.472451478168197e-15,
+              "phase_grid_64_relative_error": 8.809285022153403e-15,
+              "quadratic_prediction": [
+                0.00002089098671190906,
+                0.00008551330278720344
+              ],
+              "quadratic_relative_error": 3.329429843821985e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.35,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.000030406944965142956,
+                0.00002041704637694104
+              ],
+              "control_relative_amplitude": 8.989080865506199e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -1.3423354631612525e-17,
+                2.332806822588168e-17
+              ],
+              "interaction_coefficient": [
+                0.00003040694496516813,
+                0.00002041704637690496
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                1.2392303776567228e-17,
+                -3.0501815249304965e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005173807776335979,
+              "omitted_envelope_derivative_coefficient": [
+                0.00003041750021121336,
+                0.000020401308945598803
+              ],
+              "phase_error_vs_quadratic_radians": 9.453599574066897e-10,
+              "phase_grid_32_relative_error": 4.218972029943263e-15,
+              "phase_grid_64_relative_error": 3.4227620081867607e-15,
+              "quadratic_prediction": [
+                0.00003040688942334973,
+                0.000020417009041091614
+              ],
+              "quadratic_relative_error": 1.827254558027313e-6
+            },
+            {
+              "combined_coefficient": [
+                0.00001146523751323373,
+                0.00004693078137299513
+              ],
+              "control_relative_amplitude": 1.0733544030128254e-12,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -4.8190668984612536e-17,
+                -1.91462533303974e-17
+              ],
+              "interaction_coefficient": [
+                0.000011465237513209952,
+                0.00004693078137297245
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.9623212289040376e-17,
+                -4.215074173553814e-18
+              ],
+              "omitted_derivative_phase_error_radians": -0.000392238150621573,
+              "omitted_envelope_derivative_coefficient": [
+                0.000011483643790284878,
+                0.0000469262770495613
+              ],
+              "phase_error_vs_quadratic_radians": 7.167051197549758e-10,
+              "phase_grid_32_relative_error": 6.699782588262505e-15,
+              "phase_grid_64_relative_error": 6.46582568292224e-15,
+              "quadratic_prediction": [
+                0.000011465216596981376,
+                0.00004693069561044899
+              ],
+              "quadratic_relative_error": 1.8272542468511674e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.5,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.000016687671461961243,
+                0.00001120510338140031
+              ],
+              "control_relative_amplitude": 6.935759426119094e-13,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                1.5680697436045235e-18,
+                8.77633335962842e-18
+              ],
+              "interaction_coefficient": [
+                0.000016687671461955412,
+                0.000011205103381401472
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                5.5766531664855e-18,
+                -1.277731995576371e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0005173803513802381,
+              "omitted_envelope_derivative_coefficient": [
+                0.000016693464294258884,
+                0.000011196466510214767
+              ],
+              "phase_error_vs_quadratic_radians": 5.188389539404596e-10,
+              "phase_grid_32_relative_error": 1.2739595215782548e-14,
+              "phase_grid_64_relative_error": 3.001108224414956e-15,
+              "quadratic_prediction": [
+                0.000016687654732958714,
+                0.00001120509213598802
+              ],
+              "quadratic_relative_error": 1.0028259122597521e-6
+            },
+            {
+              "combined_coefficient": [
+                6.2922505786525855e-6,
+                0.000025756137672362624
+              ],
+              "control_relative_amplitude": 6.982799759989644e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                -1.5816222707605923e-18,
+                1.3009049641286765e-17
+              ],
+              "interaction_coefficient": [
+                6.292250578654837e-6,
+                0.000025756137672366158
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.351314012402148e-17,
+                1.2655439855587696e-17
+              ],
+              "omitted_derivative_phase_error_radians": -0.0003922378261440696,
+              "omitted_envelope_derivative_coefficient": [
+                6.302352141003325e-6,
+                0.000025753665651336506
+              ],
+              "phase_error_vs_quadratic_radians": 3.933405352013623e-10,
+              "phase_grid_32_relative_error": 4.153124375019994e-16,
+              "phase_grid_64_relative_error": 3.098869725976457e-15,
+              "quadratic_prediction": [
+                6.292244278761736e-6,
+                0.00002575611184100126
+              ],
+              "quadratic_relative_error": 1.0028257389417394e-6
+            }
+          ]
+        }
+      ],
+      "primary_amplitude_mm": 0.005,
+      "probe": "weak_equal_decay",
+      "qualified": true,
+      "secondary_amplitude_mm": 0.001,
+      "weak_prediction_gate_applied": true
+    },
+    {
+      "decay_fits": [
+        {
+          "fitted_amplitude_decay_per_second": -0.0,
+          "label": "f2-f1",
+          "log_amplitude_fit_rms": 0.0,
+          "quadratic_expected_decay_per_second": 0.0
+        },
+        {
+          "fitted_amplitude_decay_per_second": -0.0,
+          "label": "f2+f1",
+          "log_amplitude_fit_rms": 0.0,
+          "quadratic_expected_decay_per_second": 0.0
+        }
+      ],
+      "law": "point_pole",
+      "max_control_relative_amplitude": 1.1148552017194104e-12,
+      "max_quadratic_relative_error": 7.40951188139389e-6,
+      "max_refinement_relative_error": 3.9146007232402415e-15,
+      "modal_amplitude_decay_per_second": [
+        0.0,
+        0.0
+      ],
+      "observations": [
+        {
+          "age_seconds": 0.0,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "control_relative_amplitude": 1.1148552017194104e-12,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.2497195079074217e-18,
+                1.6556873610641004e-16
+              ],
+              "interaction_coefficient": [
+                0.00012334973441289497,
+                0.0000827318491868384
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -2.7921594073290756e-17,
+                6.538903770390066e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.132098615884509e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "phase_error_vs_quadratic_radians": 1.949876002675917e-15,
+              "phase_grid_32_relative_error": 4.069468777276239e-15,
+              "phase_grid_64_relative_error": 3.346427891782001e-15,
+              "quadratic_prediction": [
+                0.00012334882045834464,
+                0.00008273123618876083
+              ],
+              "quadratic_relative_error": 7.4095118793879084e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "control_relative_amplitude": 7.300394801606609e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.498916600989637e-17,
+                1.0389282614547621e-17
+              ],
+              "interaction_coefficient": [
+                0.00004656873187415574,
+                0.00019029649941177702
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.3994254838061923e-16,
+                -2.952534507979837e-17
+              ],
+              "omitted_derivative_phase_error_radians": -1.9008509725422055e-14,
+              "omitted_envelope_derivative_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "phase_error_vs_quadratic_radians": -2.6724179938567423e-15,
+              "phase_grid_32_relative_error": 6.6424044424044165e-15,
+              "phase_grid_64_relative_error": 3.9146007232402415e-15,
+              "quadratic_prediction": [
+                0.00004656838682513975,
+                0.00019029508941805114
+              ],
+              "quadratic_relative_error": 7.40951188139389e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.05,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "control_relative_amplitude": 1.1148552017194104e-12,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.2497195079074217e-18,
+                1.6556873610641004e-16
+              ],
+              "interaction_coefficient": [
+                0.00012334973441289497,
+                0.0000827318491868384
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -2.7921594073290756e-17,
+                6.538903770390066e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.132098615884509e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "phase_error_vs_quadratic_radians": 1.949876002675917e-15,
+              "phase_grid_32_relative_error": 4.069468777276239e-15,
+              "phase_grid_64_relative_error": 3.346427891782001e-15,
+              "quadratic_prediction": [
+                0.00012334882045834464,
+                0.00008273123618876083
+              ],
+              "quadratic_relative_error": 7.4095118793879084e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "control_relative_amplitude": 7.300394801606609e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.498916600989637e-17,
+                1.0389282614547621e-17
+              ],
+              "interaction_coefficient": [
+                0.00004656873187415574,
+                0.00019029649941177702
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.3994254838061923e-16,
+                -2.952534507979837e-17
+              ],
+              "omitted_derivative_phase_error_radians": -1.9008509725422055e-14,
+              "omitted_envelope_derivative_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "phase_error_vs_quadratic_radians": -2.6724179938567423e-15,
+              "phase_grid_32_relative_error": 6.6424044424044165e-15,
+              "phase_grid_64_relative_error": 3.9146007232402415e-15,
+              "quadratic_prediction": [
+                0.00004656838682513975,
+                0.00019029508941805114
+              ],
+              "quadratic_relative_error": 7.40951188139389e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.1,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "control_relative_amplitude": 1.1148552017194104e-12,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.2497195079074217e-18,
+                1.6556873610641004e-16
+              ],
+              "interaction_coefficient": [
+                0.00012334973441289497,
+                0.0000827318491868384
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -2.7921594073290756e-17,
+                6.538903770390066e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.132098615884509e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "phase_error_vs_quadratic_radians": 1.949876002675917e-15,
+              "phase_grid_32_relative_error": 4.069468777276239e-15,
+              "phase_grid_64_relative_error": 3.346427891782001e-15,
+              "quadratic_prediction": [
+                0.00012334882045834464,
+                0.00008273123618876083
+              ],
+              "quadratic_relative_error": 7.4095118793879084e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "control_relative_amplitude": 7.300394801606609e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.498916600989637e-17,
+                1.0389282614547621e-17
+              ],
+              "interaction_coefficient": [
+                0.00004656873187415574,
+                0.00019029649941177702
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.3994254838061923e-16,
+                -2.952534507979837e-17
+              ],
+              "omitted_derivative_phase_error_radians": -1.9008509725422055e-14,
+              "omitted_envelope_derivative_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "phase_error_vs_quadratic_radians": -2.6724179938567423e-15,
+              "phase_grid_32_relative_error": 6.6424044424044165e-15,
+              "phase_grid_64_relative_error": 3.9146007232402415e-15,
+              "quadratic_prediction": [
+                0.00004656838682513975,
+                0.00019029508941805114
+              ],
+              "quadratic_relative_error": 7.40951188139389e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.2,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "control_relative_amplitude": 1.1148552017194104e-12,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.2497195079074217e-18,
+                1.6556873610641004e-16
+              ],
+              "interaction_coefficient": [
+                0.00012334973441289497,
+                0.0000827318491868384
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -2.7921594073290756e-17,
+                6.538903770390066e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.132098615884509e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "phase_error_vs_quadratic_radians": 1.949876002675917e-15,
+              "phase_grid_32_relative_error": 4.069468777276239e-15,
+              "phase_grid_64_relative_error": 3.346427891782001e-15,
+              "quadratic_prediction": [
+                0.00012334882045834464,
+                0.00008273123618876083
+              ],
+              "quadratic_relative_error": 7.4095118793879084e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "control_relative_amplitude": 7.300394801606609e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.498916600989637e-17,
+                1.0389282614547621e-17
+              ],
+              "interaction_coefficient": [
+                0.00004656873187415574,
+                0.00019029649941177702
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.3994254838061923e-16,
+                -2.952534507979837e-17
+              ],
+              "omitted_derivative_phase_error_radians": -1.9008509725422055e-14,
+              "omitted_envelope_derivative_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "phase_error_vs_quadratic_radians": -2.6724179938567423e-15,
+              "phase_grid_32_relative_error": 6.6424044424044165e-15,
+              "phase_grid_64_relative_error": 3.9146007232402415e-15,
+              "quadratic_prediction": [
+                0.00004656838682513975,
+                0.00019029508941805114
+              ],
+              "quadratic_relative_error": 7.40951188139389e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.35,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "control_relative_amplitude": 1.1148552017194104e-12,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.2497195079074217e-18,
+                1.6556873610641004e-16
+              ],
+              "interaction_coefficient": [
+                0.00012334973441289497,
+                0.0000827318491868384
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -2.7921594073290756e-17,
+                6.538903770390066e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.132098615884509e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "phase_error_vs_quadratic_radians": 1.949876002675917e-15,
+              "phase_grid_32_relative_error": 4.069468777276239e-15,
+              "phase_grid_64_relative_error": 3.346427891782001e-15,
+              "quadratic_prediction": [
+                0.00012334882045834464,
+                0.00008273123618876083
+              ],
+              "quadratic_relative_error": 7.4095118793879084e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "control_relative_amplitude": 7.300394801606609e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.498916600989637e-17,
+                1.0389282614547621e-17
+              ],
+              "interaction_coefficient": [
+                0.00004656873187415574,
+                0.00019029649941177702
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.3994254838061923e-16,
+                -2.952534507979837e-17
+              ],
+              "omitted_derivative_phase_error_radians": -1.9008509725422055e-14,
+              "omitted_envelope_derivative_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "phase_error_vs_quadratic_radians": -2.6724179938567423e-15,
+              "phase_grid_32_relative_error": 6.6424044424044165e-15,
+              "phase_grid_64_relative_error": 3.9146007232402415e-15,
+              "quadratic_prediction": [
+                0.00004656838682513975,
+                0.00019029508941805114
+              ],
+              "quadratic_relative_error": 7.40951188139389e-6
+            }
+          ]
+        },
+        {
+          "age_seconds": 0.5,
+          "lines": [
+            {
+              "combined_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "control_relative_amplitude": 1.1148552017194104e-12,
+              "frequency_hz": 1230.46875,
+              "independent_coefficient": [
+                -2.2497195079074217e-18,
+                1.6556873610641004e-16
+              ],
+              "interaction_coefficient": [
+                0.00012334973441289497,
+                0.0000827318491868384
+              ],
+              "label": "f2-f1",
+              "linear_coefficient": [
+                -2.7921594073290756e-17,
+                6.538903770390066e-17
+              ],
+              "omitted_derivative_phase_error_radians": -2.132098615884509e-13,
+              "omitted_envelope_derivative_coefficient": [
+                0.00012334973441295376,
+                0.00008273184918683971
+              ],
+              "phase_error_vs_quadratic_radians": 1.949876002675917e-15,
+              "phase_grid_32_relative_error": 4.069468777276239e-15,
+              "phase_grid_64_relative_error": 3.346427891782001e-15,
+              "quadratic_prediction": [
+                0.00012334882045834464,
+                0.00008273123618876083
+              ],
+              "quadratic_relative_error": 7.4095118793879084e-6
+            },
+            {
+              "combined_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "control_relative_amplitude": 7.300394801606609e-13,
+              "frequency_hz": 1623.046875,
+              "independent_coefficient": [
+                2.498916600989637e-17,
+                1.0389282614547621e-17
+              ],
+              "interaction_coefficient": [
+                0.00004656873187415574,
+                0.00019029649941177702
+              ],
+              "label": "f2+f1",
+              "linear_coefficient": [
+                -1.3994254838061923e-16,
+                -2.952534507979837e-17
+              ],
+              "omitted_derivative_phase_error_radians": -1.9008509725422055e-14,
+              "omitted_envelope_derivative_coefficient": [
+                0.000046568731874174334,
+                0.00019029649941183736
+              ],
+              "phase_error_vs_quadratic_radians": -2.6724179938567423e-15,
+              "phase_grid_32_relative_error": 6.6424044424044165e-15,
+              "phase_grid_64_relative_error": 3.9146007232402415e-15,
+              "quadratic_prediction": [
+                0.00004656838682513975,
+                0.00019029508941805114
+              ],
+              "quadratic_relative_error": 7.40951188139389e-6
+            }
+          ]
+        }
+      ],
+      "primary_amplitude_mm": 0.005,
+      "probe": "weak_zero_decay",
+      "qualified": true,
+      "secondary_amplitude_mm": 0.001,
+      "weak_prediction_gate_applied": true
+    }
+  ],
+  "experiment": "phase-resolved-pickup-decay-v1",
+  "gap_mm": 1.5,
+  "initial_phases_radians": [
+    0.37,
+    -0.61
+  ],
+  "offset_mm": 0.5,
+  "parent_frequencies_hz": [
+    196.2890625,
+    1426.7578125
+  ],
+  "phase_grid_sizes": [
+    32,
+    64,
+    128
+  ],
+  "protocol": "Independent phase-torus quadrature at each fixed envelope age; exact damped-motion velocity. Peak complex coefficients use exp(-i*(theta2 +/- theta1)) and 2/N^2 scaling, retaining initial phases but demodulating carrier evolution. Free log-amplitude regression estimates decay from six observations. 64/128 grid relative agreement and null controls below 1e-8; weak quadratic complex and fitted rate absolute errors below 1e-3. Larger-motion approximation errors are observations, not gates.",
+  "schema_version": 1,
+  "scope": "Prescribed motion and existing one-coordinate flux proxies. Not a temporal FFT, measured decay estimator, global aliasing bound, finite-pole model or instrument antialias qualification. Independent modal amplitude decay rates are probes, not calibrated damping or measured energy decay. No geometry fitting, audio or plugin change."
+}

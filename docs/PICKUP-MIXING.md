@@ -129,3 +129,8 @@ comparisons with the pinned recordings, whose processing and strike velocities
 remain uncertain. Keep the tuned listening pair as the audible baseline until
 modal identity justifies a structural or loss change; this experiment alone does
 not justify moving a mechanical resonance to 1425 Hz.
+
+The subsequent [phase-resolved decay study](PICKUP-DECAY.md) now verifies the
+weak-motion sum of modal amplitude-decay rates, its complex phase relation and
+finite-amplitude departures. It uses independent phase quadrature rather than
+treating a decaying trajectory as periodic.

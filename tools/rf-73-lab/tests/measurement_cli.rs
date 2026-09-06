@@ -1287,3 +1287,37 @@ fn pickup_mixing_rejects_invalid_arguments_and_preserves_existing_output() {
         assert!(!scratch.0.join("bad.wav").exists());
     }
 }
+
+#[test]
+fn pickup_decay_reports_controls_and_preserves_existing_output() {
+    let scratch = Scratch::new();
+    scratch.success(&["pickup-decay", "--output", "decay.json"]);
+    let report = scratch.json("decay.json");
+    assert_eq!(report["all_cases_qualified"], true);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 8);
+    for case in cases {
+        assert_eq!(case["qualified"], true);
+        assert_eq!(case["observations"].as_array().unwrap().len(), 6);
+        assert_eq!(case["decay_fits"].as_array().unwrap().len(), 2);
+        assert!(case["max_refinement_relative_error"].as_f64().unwrap() < 1e-8);
+    }
+    let before = fs::read(scratch.0.join("decay.json")).unwrap();
+    assert!(
+        !scratch
+            .run(&["pickup-decay", "--output", "decay.json"])
+            .status
+            .success()
+    );
+    assert_eq!(before, fs::read(scratch.0.join("decay.json")).unwrap());
+    for args in [
+        vec!["pickup-decay"],
+        vec!["pickup-decay", "--unknown", "bad.json"],
+        vec!["pickup-decay", "--output", "bad.json", "--unknown"],
+        vec!["pickup-decay", "--output", "bad.wav"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}

@@ -353,3 +353,11 @@ an analytic expansion; all eight probes pass full ideal-band sampling refinement
 This establishes a mechanism, not recorded modal identity. Next test independent
 modal decay envelopes and predicted sideband decay/phase relations before using
 the source families to fit geometry or losses. No DSP or audible baseline changed.
+
+The [phase-resolved decay study](PICKUP-DECAY.md) now recovers the sum of modal
+amplitude-decay rates in weak pickup sidebands and quantifies finite-amplitude
+departures. Exact envelope velocity passes independent derivative/phase checks;
+all eight probes qualify. Phase quadrature is not a recording estimator. Next
+validate a temporal envelope estimator against synthetic known-rate mixtures,
+nearby components and noise before applying it to the pinned recordings or
+fitting mechanical losses. Production DSP and the audible baseline are unchanged.

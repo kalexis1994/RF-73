@@ -16,6 +16,7 @@ mod modal_timing;
 mod package;
 mod partial_comparison;
 mod pickup_convergence;
+mod pickup_decay;
 mod pickup_listening;
 mod pickup_mixing;
 mod pickup_pair;
@@ -216,6 +217,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", register_families::HELP);
         print!("{}", pickup_transfer::HELP);
         print!("{}", pickup_mixing::HELP);
+        print!("{}", pickup_decay::HELP);
         print!("{}", convergence::HELP);
         print!("{}", assembly_check::HELP);
         print!("{}", tine_modes::HELP);
@@ -252,6 +254,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "pickup-mixing" {
         return pickup_mixing::run(&args);
+    }
+    if args[0] == "pickup-decay" {
+        return pickup_decay::run(&args);
     }
     if args[0] == "inspect" {
         if args.len() != 2 {

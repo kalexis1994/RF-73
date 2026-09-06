@@ -34,19 +34,19 @@ const LINES: [(&str, usize); 10] = [
 ];
 #[derive(Clone, Copy, Serialize)]
 #[serde(rename_all = "snake_case")]
-enum Law {
+pub(super) enum Law {
     Production,
     PointPole,
 }
 impl Law {
-    fn voltage(self, p: MagneticPickup, x: f64, v: f64) -> f64 {
+    pub(super) fn voltage(self, p: MagneticPickup, x: f64, v: f64) -> f64 {
         match self {
             Self::Production => p.voltage(x, v),
             Self::PointPole => p.research_point_pole_voltage(x, v),
         }
     }
     // Derivative at equilibrium of the displacement-dependent velocity sensitivity.
-    fn quadratic(self, gap: f64, offset: f64) -> f64 {
+    pub(super) fn quadratic(self, gap: f64, offset: f64) -> f64 {
         let z = offset / gap;
         match self {
             Self::Production => 0.015 / gap.powi(2) * (1.0 - 2.0 * z * z) / (1.0 + z * z).powf(2.5),

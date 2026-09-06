@@ -1536,3 +1536,41 @@ claimed. Independent modal envelopes and sideband decay/phase remain next.
 Cleanup removed 342 regenerable debug files (101.5 MiB); release artifacts
 occupy 151.8 MiB. No source downloads or WAVs were produced. Existing source
 recordings, listening files, numeric receipts and the packaged plugin remain.
+
+## Phase-resolved pickup decay
+
+Date: 2026-09-06. [Pickup decay](PICKUP-DECAY.md) prescribes two independent
+exponential modal envelopes and exact displacement derivatives through both
+unchanged magnetic laws. Phase-torus quadrature isolates sum/difference
+coefficients at six ages; a free log-amplitude regression estimates decay.
+This is not an estimator for recorded audio or a temporal FFT of decaying motion.
+The 143454-byte receipt keeps eight cases, complex controls, phase errors and
+finite-grid refinement.
+
+Weak unequal probes recover the predicted 5.8 /s amplitude decay as 5.799998 /s
+(production) and 5.800008 /s (point-pole). Equal and zero-loss controls recover
+4 and 0 /s. Larger probes fit 5.793595 and 5.816038 /s, with nonzero departure
+from one exponential. Omitting envelope velocity introduces the predicted phase
+error. These observations constrain how pickup mixing should be interpreted;
+they do not identify source modes or calibrate mechanical losses.
+
+All eight probes qualify: 64/128 grid interaction differences stay below
+`1.5e-14` relative and null controls below `1.7e-12`. Weak quadratic complex
+errors and absolute fitted rate errors satisfy the declared `1e-3` bounds.
+Large-amplitude approximation errors are retained without weak-motion gates.
+The refinement covers two phase coefficients, not a full temporal spectrum or
+the production decimator.
+
+All 138 affected analysis/laboratory release tests, strict workspace Clippy and
+formatting pass. Five new tests bring the workspace total to 253; unchanged
+DSP/plugin/UI suites were not rerun. Tests cover an independent displacement
+derivative, analytic complex mixing, an intentionally omitted derivative,
+free rate estimation and invalid observations, phase-grid refinement, removal
+of one parent, and CLI report/output protection. No source download, WAV,
+DSP equation or preset change was produced; no listening result is claimed.
+Next qualify a temporal envelope estimator before applying decay constraints
+to source recordings.
+
+Cleanup removed 342 regenerable debug files (101.5 MiB). Release artifacts
+remain at 151.8 MiB; source audio, listening WAVs, numeric receipts and the
+packaged plugin are preserved.
