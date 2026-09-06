@@ -1,4 +1,4 @@
-//! Offline modal preparation for a uniform Euler-Bernoulli tine with a point mass.
+//! Offline modes of a uniform Euler-Bernoulli tine with a point or spread tuning mass.
 //! No measured Rhodes geometry is implied. See docs/TINE-MODES.md.
 use crate::ModelError;
 use core::f64::consts::{PI, TAU};
@@ -13,6 +13,9 @@ pub struct TineGeometry {
     pub young_modulus_pa: f64,
     pub density_kg_m3: f64,
     pub tuning_mass_kg: f64,
+    /// Uniform co-moving mass span, centered at tuning_position. Zero is a point.
+    /// Adds inertia only: no coil elasticity, slip, or cross-sectional rotary inertia.
+    pub tuning_span_m: f64,
     /// All positions are fractions of free beam length, measured from the root.
     pub tuning_position: f64,
     pub hammer_position: f64,
@@ -27,6 +30,7 @@ impl Default for TineGeometry {
             young_modulus_pa: 2e11,
             density_kg_m3: 7850.0,
             tuning_mass_kg: 0.0001,
+            tuning_span_m: 0.0,
             tuning_position: 0.85,
             hammer_position: 0.2,
             pickup_position: 0.98,
@@ -42,6 +46,7 @@ impl TineGeometry {
             (self.young_modulus_pa, 1e10, 3e11),
             (self.density_kg_m3, 1000.0, 20000.0),
             (self.tuning_mass_kg, 0.0, 0.01),
+            (self.tuning_span_m, 0.0, self.length_m),
             (self.tuning_position, 0.0, 1.0),
             (self.hammer_position, 0.0, 1.0),
             (self.pickup_position, 0.0, 1.0),
@@ -57,7 +62,55 @@ impl TineGeometry {
                 "Euler-Bernoulli tine requires length/diameter >= 10",
             ));
         }
+        let half = 0.5 * self.tuning_span_m / self.length_m;
+        if self.tuning_position - half < 0.0
+            || self.tuning_position + half > 1.0
+            || (self.tuning_span_m > 0.0
+                && self.tuning_position - half >= self.tuning_position + half)
+        {
+            return Err(ModelError(
+                "tuning mass span must fit on the tine and be numerically resolvable",
+            ));
+        }
         Ok(())
+    }
+
+    /// Offline quadrature: (position fraction, fraction of total tuning mass).
+    /// Four Gauss points per intersected Hermite element integrate degree 7
+    /// exactly, including products of cubic shapes. At most 4*elements points.
+    pub fn tuning_mass_quadrature(self, elements: usize) -> Result<Vec<(f64, f64)>, ModelError> {
+        self.validate()?;
+        if !(8..=64).contains(&elements) || !elements.is_power_of_two() {
+            return Err(ModelError(
+                "tuning quadrature needs 8..64 power-of-two elements",
+            ));
+        }
+        if self.tuning_span_m == 0.0 {
+            return Ok(vec![(self.tuning_position, 1.0)]);
+        }
+        let half = 0.5 * self.tuning_span_m / self.length_m;
+        let lo = self.tuning_position - half;
+        let hi = self.tuning_position + half;
+        let mut points = Vec::with_capacity(4 * elements);
+        for e in 0..elements {
+            let a = lo.max(e as f64 / elements as f64);
+            let b = hi.min((e + 1) as f64 / elements as f64);
+            if b <= a {
+                continue;
+            }
+            for (node, weight) in [
+                (-0.8611363115940526, 0.3478548451374538),
+                (-0.3399810435848563, 0.6521451548625461),
+                (0.3399810435848563, 0.6521451548625461),
+                (0.8611363115940526, 0.3478548451374538),
+            ] {
+                points.push((
+                    a + 0.5 * (b - a) * (1.0 + node),
+                    0.5 * weight * (b - a) / (hi - lo),
+                ));
+            }
+        }
+        Ok(points)
     }
 
     pub fn beam_mass_kg(self) -> f64 {
@@ -132,14 +185,18 @@ impl TineModes {
                 }
             }
         }
-        let (element, weights) = interpolation(elements, geometry.tuning_position);
+        let spring_points = geometry.tuning_mass_quadrature(elements)?;
         let mass_ratio = geometry.tuning_mass_kg / geometry.beam_mass_kg();
-        // Exact point evaluation, not snapping the spring to a mesh node.
-        for i in 0..4 {
-            for j in 0..4 {
-                let (gi, gj) = (2 * element + i, 2 * element + j);
-                if gi >= 2 && gj >= 2 {
-                    m[(gi - 2) * n + gj - 2] += mass_ratio * weights[i] * weights[j];
+        // Point evaluation or an integrated finite span, without snapping to nodes.
+        for &(position, fraction) in &spring_points {
+            let (element, weights) = interpolation(elements, position);
+            for i in 0..4 {
+                for j in 0..4 {
+                    let (gi, gj) = (2 * element + i, 2 * element + j);
+                    if gi >= 2 && gj >= 2 {
+                        m[(gi - 2) * n + gj - 2] +=
+                            (mass_ratio * fraction) * weights[i] * weights[j];
+                    }
                 }
             }
         }
@@ -153,7 +210,8 @@ impl TineModes {
             first_mass_moment_kg_m: mass * geometry.length_m / 2.0
                 + geometry.tuning_mass_kg * tuning_x,
             second_mass_moment_kg_m2: mass * geometry.length_m.powi(2) / 3.0
-                + geometry.tuning_mass_kg * tuning_x.powi(2),
+                + geometry.tuning_mass_kg
+                    * (tuning_x.powi(2) + geometry.tuning_span_m.powi(2) / 12.0),
             maximum_mass_orthogonality_error: 0.0,
             elements,
             shapes: [[0.0; MAX_DOFS]; TINE_MODE_COUNT],
@@ -200,9 +258,13 @@ impl TineModes {
                     rotation += mass * geometry.length_m * h * w * s * shape;
                 }
             }
-            let spring_shape = sample(&result.shapes[index], elements, geometry.tuning_position);
-            translation += geometry.tuning_mass_kg * spring_shape;
-            rotation += geometry.tuning_mass_kg * tuning_x * spring_shape;
+            for &(position, fraction) in &spring_points {
+                let spring_shape = sample(&result.shapes[index], elements, position);
+                translation += (geometry.tuning_mass_kg * fraction) * spring_shape;
+                rotation += (geometry.tuning_mass_kg * fraction)
+                    * (position * geometry.length_m)
+                    * spring_shape;
+            }
             result.modes[index] = TineMode {
                 frequency_hz: (lambda * rigidity / (mass * geometry.length_m.powi(3))).sqrt() / TAU,
                 effective_mass_kg: effective_mass,
@@ -258,7 +320,7 @@ impl TineModes {
     }
 
     /// Coordinates [root translation, root angle, six tip-normalized modal q].
-    /// Reciprocal inertial coupling includes the beam and tuning point mass once.
+    /// Reciprocal inertial coupling includes the beam and tuning mass once.
     /// A host assembly must add its other components' inertia, not this mass again.
     pub fn moving_root_mass_matrix(&self) -> [[f64; 8]; 8] {
         let mut mass = [[0.0; 8]; 8];
@@ -427,6 +489,130 @@ pub(crate) fn eigen(
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn finite_span_quadrature_preserves_polynomial_mass_moments_and_bounds() {
+        let g = TineGeometry {
+            tuning_position: 0.637,
+            tuning_span_m: 0.006,
+            ..TineGeometry::default()
+        };
+        let half = g.tuning_span_m / (2.0 * g.length_m);
+        for elements in [8, 16, 32, 64] {
+            let q = g.tuning_mass_quadrature(elements).unwrap();
+            assert!(
+                q.len() <= 4 * elements
+                    && q.iter()
+                        .all(|(s, w)| *w > 0.0 && (*s - g.tuning_position).abs() <= half)
+            );
+            for k in 0..=7 {
+                let exact = ((g.tuning_position + half).powi(k + 1)
+                    - (g.tuning_position - half).powi(k + 1))
+                    / (2.0 * half * (k + 1) as f64);
+                let actual: f64 = q.iter().map(|(s, w)| w * s.powi(k)).sum();
+                assert!((actual - exact).abs() < 2e-14);
+            }
+        }
+        for span in [-0.001, f64::NAN, 1e-300, 0.08] {
+            assert!(
+                TineGeometry {
+                    tuning_span_m: span,
+                    ..g
+                }
+                .validate()
+                .is_err()
+            );
+        }
+        assert!(
+            TineGeometry {
+                tuning_position: 0.99,
+                ..g
+            }
+            .validate()
+            .is_err()
+        );
+        assert!(g.tuning_mass_quadrature(12).is_err());
+        assert_eq!(
+            TineGeometry::default().tuning_mass_quadrature(64).unwrap(),
+            vec![(0.85, 1.0)]
+        );
+    }
+    #[test]
+    fn full_length_mass_span_matches_uniform_density_and_analytic_root_inertia() {
+        let mut g = TineGeometry {
+            tuning_position: 0.5,
+            tuning_span_m: 0.075,
+            ..TineGeometry::default()
+        };
+        g.tuning_mass_kg = 0.3 * g.beam_mass_kg();
+        let a = TineModes::prepare(g, 64).unwrap();
+        let b = TineModes::prepare(
+            TineGeometry {
+                density_kg_m3: 1.3 * g.density_kg_m3,
+                tuning_mass_kg: 0.0,
+                tuning_span_m: 0.0,
+                ..g
+            },
+            64,
+        )
+        .unwrap();
+        assert!((a.total_mass_kg / b.total_mass_kg - 1.0).abs() < 1e-14);
+        assert!((a.first_mass_moment_kg_m / b.first_mass_moment_kg_m - 1.0).abs() < 1e-14);
+        assert!((a.second_mass_moment_kg_m2 / b.second_mass_moment_kg_m2 - 1.0).abs() < 1e-14);
+        for i in 0..6 {
+            assert!((a.modes[i].frequency_hz / b.modes[i].frequency_hz - 1.0).abs() < 1e-6);
+            for x in [0.1, 0.37, 0.83, 1.0] {
+                assert!((a.shape(i, x).unwrap() - b.shape(i, x).unwrap()).abs() < 1e-5);
+            }
+        }
+    }
+    #[test]
+    fn shrinking_span_recovers_point_mass_and_finite_span_converges_with_mesh() {
+        let g = TineGeometry::default();
+        let point = TineModes::prepare(g, 64).unwrap();
+        let tiny = TineModes::prepare(
+            TineGeometry {
+                tuning_span_m: 1e-6,
+                ..g
+            },
+            64,
+        )
+        .unwrap();
+        for (a, b) in point.modes.iter().zip(tiny.modes) {
+            assert!((a.frequency_hz / b.frequency_hz - 1.0).abs() < 1e-6);
+        }
+        let g = TineGeometry {
+            tuning_position: 0.793,
+            tuning_span_m: 0.006,
+            ..g
+        };
+        let fine = TineModes::prepare(g, 64).unwrap();
+        let middle = TineModes::prepare(g, 32).unwrap();
+        let coarse = TineModes::prepare(g, 16).unwrap();
+        let err = |a: &TineModes| {
+            a.modes
+                .iter()
+                .zip(fine.modes)
+                .map(|(a, b)| (a.frequency_hz / b.frequency_hz - 1.0).abs())
+                .fold(0.0_f64, f64::max)
+        };
+        assert!(err(&middle) < err(&coarse) * 0.2);
+        assert!(err(&middle) < 1e-4);
+        let point = TineModes::prepare(
+            TineGeometry {
+                tuning_span_m: 0.0,
+                ..g
+            },
+            64,
+        )
+        .unwrap();
+        assert!(
+            (fine.second_mass_moment_kg_m2
+                - point.second_mass_moment_kg_m2
+                - g.tuning_mass_kg * g.tuning_span_m.powi(2) / 12.0)
+                .abs()
+                < 1e-20
+        );
+    }
     use super::*;
     const ROOTS: [f64; 6] = [
         1.875104068711961,

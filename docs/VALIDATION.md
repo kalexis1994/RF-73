@@ -1360,3 +1360,30 @@ No nonlinear audio, listening, measured-geometry or remote-CI claim is made.
 After verification, Cargo removed 342 regenerable debug files (101.4 MiB).
 Release artifacts remain at about 67 MiB. No new audio files were generated;
 all existing WAVs, packaged plugin and numeric receipts are preserved.
+
+## Finite tuning-mass span
+
+Date: 2026-09-06. [Finite spring span](FINITE-SPRING-SPAN.md) adds consistent
+uniform co-moving inertia over an axial interval, retaining the zero-width
+point baseline. All four 0/2/4/6 mm probes on the 70 mm, 0.1 g geometry regain
+the frozen G3 target within 0.0001 cent. At 6 mm, coupled rank 5 moves from
+1361.884 to 1358.852 Hz, away from the exploratory reference family. The retained
+receipt includes all trials; no width, timbre or measured geometry is selected.
+
+All 227 workspace release tests, strict Clippy and formatting pass. Five new
+regressions cover quadrature moments and bounds, uniform-density equivalence,
+the point limit and mesh convergence, coupled contact/release energy, and
+fixed-pitch upper-mode sensitivity. Existing local-inertia orthogonality and
+exclusive CLI output tests now cover finite spans as well. This is an inertia
+approximation without coil elasticity, slip or intrinsic rotary inertia.
+
+The default point-mass 75 mm memory-hammer preview passes its independent
+render checks and reproduces the preserved WAV byte-for-byte (SHA-256
+`0dbd0cd29a7929fe16f9eccfdc05b6b23554d406a4fa0add5f73408ec123be2e`).
+The finite-span contact regression uses the single-mass hammer; finite-span
+memory-hammer audio, listening and realtime integration remain unqualified.
+
+Cleanup removed 342 regenerable debug files (101.4 MiB) and the duplicate
+regression WAV/report after the hash check. Release artifacts remain at about
+151 MiB after the full workspace test run. The new numerical receipt occupies
+74596 bytes; existing audio, reference recordings and packaged plugin remain.

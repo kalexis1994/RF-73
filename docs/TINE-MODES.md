@@ -1,7 +1,8 @@
 # Geometry-derived tine modes and moving-root inertia
 
 `TineModes::prepare` computes six bending modes of a uniform circular tine with
-a movable tuning point mass. Frequencies, effective masses, hammer/pickup weights
+a movable tuning mass, either concentrated at a point or distributed over an
+axial span. Frequencies, effective masses, hammer/pickup weights
 and root coupling follow from the same spatial modes. This is an offline
 structural preparation step used by the [nine-coordinate assembly](MODAL-ASSEMBLY.md).
 The earlier `AssemblyVoice` reference and the 0.1.2 instrument remain unchanged.
@@ -9,7 +10,9 @@ The earlier `AssemblyVoice` reference and the 0.1.2 instrument remain unchanged.
 ## Physical scope and sources
 
 The mechanical reduction uses an Euler-Bernoulli beam, clamped at its root,
-with a translational point mass representing the tuning spring. Pfeifle's Rhodes
+with a translational added mass representing the tuning spring. The default
+remains a point mass; the [finite-span extension](FINITE-SPRING-SPAN.md) integrates
+uniform co-moving inertia over a specified interval. Pfeifle's Rhodes
 work motivates treating the spring as added mass. Our finite-element reduction
 does not reproduce that paper's full nonlinear, nonplanar instrument model.
 [DAFx 2017](https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_79.pdf).
@@ -21,8 +24,8 @@ in TU Delft's computational modelling course.
 
 This model assumes a uniform, straight, circular, slender beam, linear elasticity
 and small deflections in one plane. It omits shear deformation, rotary inertia,
-large-deflection effects, the finite width and rotary inertia of the tuning
-spring, taper, root-block geometry and a second polarization. The accepted
+large-deflection effects, coil elasticity and slip, cross-sectional rotary inertia
+of the tuning spring, taper, root-block geometry and a second polarization. The accepted
 length/diameter ratio of at least 10 is an input guard, not proof that every
 retained high mode lies within Euler-Bernoulli theory's physical accuracy range.
 No geometry or damping values have been identified from a real Rhodes.
@@ -36,6 +39,7 @@ No geometry or damping values have been identified from a real Rhodes.
 | Young modulus | 200 GPa | Assumed material value |
 | Density | 7850 kg/m³ | Assumed material value |
 | Tuning mass | 0.1 g | Illustrative point mass |
+| Tuning axial span | 0 mm | Point-mass baseline; finite spans are experimental |
 | Tuning position | 0.85 of free length | Illustrative |
 | Hammer position | 0.20 of free length | Illustrative |
 | Pickup observation position | 0.98 of free length | Illustrative |

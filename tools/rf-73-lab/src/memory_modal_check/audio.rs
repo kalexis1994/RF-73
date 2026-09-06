@@ -318,7 +318,7 @@ pub(super) fn configuration(o: &Options) -> Value {
     let p = ModalAssemblyProfile::default();
     let h = MemoryHammerProfile::default();
     json!({"geometry":{"length_m":g.length_m,"diameter_m":g.diameter_m,"young_modulus_pa":g.young_modulus_pa,
-        "density_kg_m3":g.density_kg_m3,"tuning_mass_kg":g.tuning_mass_kg,"tuning_position":g.tuning_position,
+        "density_kg_m3":g.density_kg_m3,"tuning_mass_kg":g.tuning_mass_kg,"tuning_span_m":g.tuning_span_m,"tuning_position":g.tuning_position,
         "hammer_position":g.hammer_position,"pickup_position":g.pickup_position},
         "structure":{"support_mass_kg":p.support_mass_kg,"support_inertia_kg_m2":p.support_inertia_kg_m2,
         "translation_stiffness_n_m":p.translation_stiffness_n_m,"rotation_stiffness_n_m_rad":p.rotation_stiffness_n_m_rad,

@@ -1,5 +1,5 @@
 //! Bounded geometry sensitivity at fixed coupled pitch; no timbral selection.
-use super::tuning::{self, Selected, follow_local, spectrum_with_mass};
+use super::tuning::{self, Selected, follow_local, spectrum_with_span};
 use rf_73_dsp::{ModalAssemblyProfile, TineGeometry};
 use serde_json::{Value, json};
 use std::{error::Error, fs::File, io::Read, path::Path};
@@ -13,6 +13,11 @@ Retain unreachable and rejected cases, all coupled modes and linear port residue
 This is undamped structural sensitivity, not audio, mode identification or a fit
 to the exploratory 1425 Hz family. No parameter selection or plugin change.
 ";
+pub const SPAN_HELP: &str = "Finite tuning-mass span:
+  sweep-spring-span REFERENCE.json --output REPORT.json
+Fixed 70 mm/0.10 g; uniform co-moving spans 0/2/4/6 mm, retuned to frozen G3.
+Zero span preserves point mass. No coil stiffness, slip, measured dimensions or audio.
+";
 const LOW: f64 = 0.5;
 const HIGH: f64 = 0.95;
 const START: f64 = 0.85;
@@ -23,7 +28,11 @@ fn trace(s: &Selected, score: f64, target: f64) -> Value {
         "error_cents":1200.0*(s.mode().frequency_hz/target).log2(),"spatial_mac":score})
 }
 
+#[cfg(test)]
 fn cell(length: f64, mass: f64, target: f64) -> Value {
+    cell_with_span(length, mass, 0.0, target)
+}
+fn cell_with_span(length: f64, mass: f64, span: f64, target: f64) -> Value {
     let mut trials = Vec::new();
     let mut initial = Value::Null;
     let mut minimum_mac = 1.0_f64;
@@ -31,7 +40,7 @@ fn cell(length: f64, mass: f64, target: f64) -> Value {
         if !target.is_finite() || !(150.0..=250.0).contains(&target) {
             return Err("invalid finite G3 target".into());
         }
-        let mut previous = spectrum_with_mass(length, mass, START)?;
+        let mut previous = spectrum_with_span(length, mass, span, START)?;
         initial = previous.row(1.0);
         trials.push(trace(&previous, 1.0, target));
         if previous.mode().first_tine_projection < 0.5 {
@@ -110,7 +119,7 @@ fn cell(length: f64, mass: f64, target: f64) -> Value {
         ),
         Err(e) => ("rejected", json!(e.to_string()), Value::Null),
     };
-    json!({"tine_length_mm":length*1000.0,"tuning_mass_g":mass*1000.0,"status":status,"reason":reason,
+    json!({"tine_length_mm":length*1000.0,"tuning_mass_g":mass*1000.0,"tuning_span_mm":span*1000.0,"status":status,"reason":reason,
         "target_hz":target,"initial_structure":initial,"solution":solution,
         "minimum_spatial_mac":minimum_mac,"trials":trials})
 }
@@ -131,23 +140,42 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let reference: Value = serde_json::from_slice(&bytes)?;
     let target = tuning::reference(&reference)?;
     let mut cases = Vec::new();
-    for length in [0.068, 0.070, 0.072] {
-        for mass in [0.00008, 0.00010, 0.00012] {
-            let result = cell(length, mass, target);
-            println!(
-                "Geometry {:.1} mm / {:.2} g: {}",
-                length * 1000.0,
-                mass * 1000.0,
-                result["status"]
-            );
-            cases.push(result);
+    let span_study = args[0] == "sweep-spring-span";
+    let lengths: &[f64] = if span_study {
+        &[0.07]
+    } else {
+        &[0.068, 0.07, 0.072]
+    };
+    let masses: &[f64] = if span_study {
+        &[0.0001]
+    } else {
+        &[0.00008, 0.0001, 0.00012]
+    };
+    let spans: &[f64] = if span_study {
+        &[0.0, 0.002, 0.004, 0.006]
+    } else {
+        &[0.0]
+    };
+    for &length in lengths {
+        for &mass in masses {
+            for &span in spans {
+                let result = cell_with_span(length, mass, span, target);
+                println!(
+                    "Geometry {:.1} mm / {:.2} g / {:.1} mm span: {}",
+                    length * 1000.0,
+                    mass * 1000.0,
+                    span * 1000.0,
+                    result["status"]
+                );
+                cases.push(result);
+            }
         }
     }
     let rejected = cases.iter().filter(|c| c["status"] == "rejected").count();
     let retuned = cases.iter().filter(|c| c["status"] == "retuned").count();
     let g = TineGeometry::default();
     let p = ModalAssemblyProfile::default();
-    let report = json!({"schema_version":1,"experiment":"fixed-pitch-geometry-sensitivity-v1",
+    let report = json!({"schema_version":1,"experiment":if span_study {"finite-spring-span-sensitivity-v1"} else {"fixed-pitch-geometry-sensitivity-v1"},
         "completed_without_numerical_rejections":rejected==0,"retuned_cases":retuned,
         "unreachable_cases":cases.len()-retuned-rejected,"rejected_cases":rejected,
         "frozen_reference_file":args[1],"frozen_reference":reference,
@@ -159,12 +187,12 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             "root_rotation_stiffness_n_m_rad":p.rotation_stiffness_n_m_rad,
             "tonebar_mass_kg":p.tonebar_mass_kg,"tonebar_arm_m":p.tonebar_arm_m,
             "tonebar_frequency_hz":p.tonebar_frequency_hz},
-        "protocol":{"tine_lengths_mm":[68,70,72],"tuning_masses_g":[0.08,0.10,0.12],
+        "protocol":{"tine_lengths_mm":lengths.iter().map(|x|x*1000.0).collect::<Vec<_>>(),"tuning_masses_g":masses.iter().map(|x|x*1000.0).collect::<Vec<_>>(),"tuning_spans_mm":spans.iter().map(|x|x*1000.0).collect::<Vec<_>>(),
             "spring_position_fraction_bounds":[LOW,HIGH],"initial_spring_fraction":START,
             "coarse_step_fraction":0.025,"maximum_bisection_iterations":32,
             "pitch_tolerance_cents":TOLERANCE_CENTS,"minimum_mac":0.98,"maximum_runner_up_mac":0.05},
         "cases":cases,
-        "scope":"Undamped fixed-pitch sensitivity only. Per-cell physical-field tracking uses that cell's fixed length/mass and pairwise average actual spring inertia; no cross-cell MAC or identity assignment for higher modes. Higher coupled modes are frequency ranks. Diameter/material, root/tonebar and normalized hammer/pickup positions remain at defaults; their absolute tine locations scale with length. The sign-invariant hammer/pickup product describes the linear velocity response to a force impulse, not nonlinear pickup amplitude or an audible timbre fit. No 1425 Hz target, best-cell selection, audio rendering, geometry identification or plugin mutation."});
+        "scope":"Undamped fixed-pitch sensitivity only. Per-cell physical-field tracking uses that cell's fixed length/mass/span and pairwise average actual spring inertia; no cross-cell MAC or identity assignment for higher modes. Higher coupled modes are frequency ranks. Diameter/material, root/tonebar and normalized hammer/pickup positions remain at defaults; their absolute tine locations scale with length. The sign-invariant hammer/pickup product describes the linear velocity response to a force impulse, not nonlinear pickup amplitude or an audible timbre fit. Uniform co-moving span adds inertia only, with no coil stiffness, slip, or intrinsic cross-sectional rotary inertia. No 1425 Hz target, best-cell selection, audio rendering, geometry identification or plugin mutation."});
     crate::analysis::write_report(output, &report)?;
     if rejected > 0 {
         return Err("geometry study retained numerical/branch rejections; inspect report".into());
@@ -175,6 +203,41 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn finite_mass_span_retunes_without_changing_total_mass_and_changes_upper_modes() {
+        let r: Value = serde_json::from_str(include_str!(
+            "../../../../references/g3-pitch-reference-validation.json"
+        ))
+        .unwrap();
+        let target = tuning::reference(&r).unwrap();
+        let point = cell_with_span(0.07, 0.0001, 0.0, target);
+        let spread = cell_with_span(0.07, 0.0001, 0.006, target);
+        assert_eq!(spread["status"], "retuned", "{spread}");
+        assert_eq!(
+            spread["solution"]["tuning_mass_kg"],
+            point["solution"]["tuning_mass_kg"]
+        );
+        assert_eq!(spread["solution"]["tuning_span_m"], 0.006);
+        assert!(
+            (spread["solution"]["selected_frequency_hz"]
+                .as_f64()
+                .unwrap()
+                - target)
+                .abs()
+                < 0.0001
+        );
+        assert!(
+            (spread["solution"]["coupled_modes_by_frequency_rank"][7]["frequency_hz"]
+                .as_f64()
+                .unwrap()
+                - point["solution"]["coupled_modes_by_frequency_rank"][7]["frequency_hz"]
+                    .as_f64()
+                    .unwrap())
+            .abs()
+                > 1.0
+        );
+    }
+
     #[test]
     fn retuning_preserves_pitch_while_mass_changes_higher_modes_and_ports() {
         let source: Value = serde_json::from_str(include_str!(
@@ -212,7 +275,7 @@ mod tests {
     }
     #[test]
     fn both_directions_boundaries_unreachable_and_invalid_cases_are_explicit() {
-        let initial = spectrum_with_mass(0.070, 0.0001, START)
+        let initial = spectrum_with_span(0.070, 0.0001, 0.0, START)
             .unwrap()
             .mode()
             .frequency_hz;

@@ -22,6 +22,7 @@ const INITIAL_POSITION: f64 = 0.85;
 pub(super) struct Selected {
     length: f64,
     mass: f64,
+    span: f64,
     pub(super) position: f64,
     spectrum: ModalSpectrum,
     index: usize,
@@ -34,7 +35,7 @@ impl Selected {
         self.spectrum.modes[self.index]
     }
     pub(super) fn row(&self, mac: f64) -> Value {
-        json!({"length_m":self.length,"tuning_mass_kg":self.mass,"spring_position_fraction":self.position,
+        json!({"length_m":self.length,"tuning_mass_kg":self.mass,"tuning_span_m":self.span,"spring_position_fraction":self.position,
             "spring_center_from_root_mm":1000.0*self.length*self.position,
             "selected_mode_index":self.index,"selected_frequency_hz":self.mode().frequency_hz,
             "shape_mac_from_previous":mac,"fixed_root_fundamental_hz":self.spectrum.fixed_root_fundamental_hz,
@@ -57,9 +58,18 @@ pub(super) fn spectrum_with_mass(
     mass: f64,
     position: f64,
 ) -> Result<Selected, Box<dyn Error>> {
+    spectrum_with_span(length, mass, 0.0, position)
+}
+pub(super) fn spectrum_with_span(
+    length: f64,
+    mass: f64,
+    span: f64,
+    position: f64,
+) -> Result<Selected, Box<dyn Error>> {
     let g = TineGeometry {
         length_m: length,
         tuning_mass_kg: mass,
+        tuning_span_m: span,
         tuning_position: position,
         ..TineGeometry::default()
     };
@@ -77,6 +87,11 @@ pub(super) fn spectrum_with_mass(
         (0.8611363115940526, 0.3478548451374538),
     ];
     let mut fields: [Vec<f64>; 9] = core::array::from_fn(|_| Vec::with_capacity(260));
+    let reference_spring = TineGeometry {
+        tuning_position: INITIAL_POSITION,
+        ..g
+    }
+    .tuning_mass_quadrature(64)?;
     for (mode, field) in spectrum.modes.iter().zip(&mut fields) {
         let q = mode.shape;
         let displacement = |x: f64| -> Result<f64, Box<dyn Error>> {
@@ -95,7 +110,9 @@ pub(super) fn spectrum_with_mass(
         field.push(q[0] * p.support_mass_kg.sqrt());
         field.push(q[1] * p.support_inertia_kg_m2.sqrt());
         field.push((q[0] + p.tonebar_arm_m * q[1] + q[8]) * p.tonebar_mass_kg.sqrt());
-        field.push(displacement(INITIAL_POSITION)? * g.tuning_mass_kg.sqrt());
+        for &(position, fraction) in &reference_spring {
+            field.push(displacement(position)? * (g.tuning_mass_kg * fraction).sqrt());
+        }
     }
     let index = (0..9)
         .max_by(|&a, &b| {
@@ -107,6 +124,7 @@ pub(super) fn spectrum_with_mass(
     Ok(Selected {
         length,
         mass,
+        span,
         position,
         spectrum,
         index,
@@ -128,12 +146,12 @@ pub(super) fn follow(a: &Selected, position: f64) -> Result<(Selected, f64), Box
 // spring inertia: modes there need not be orthogonal in that obsolete metric.
 // Average the two actual physical inertias for each local comparison instead.
 fn local_mac(a: &Selected, b: &Selected, index: usize) -> Result<f64, Box<dyn Error>> {
-    if a.length != b.length || a.mass != b.mass {
+    if a.length != b.length || a.mass != b.mass || a.span != b.span {
         return Err("local spring metric requires fixed cell length and mass".into());
     }
     let product = |x: &[f64], y: &[f64]| x.iter().zip(y).map(|(x, y)| x * y).sum::<f64>();
     // First 259 entries contain distributed beam, support and tonebar inertia.
-    // Discard the final, initial-position spring entry and integrate it below.
+    // Discard the initial-position spring samples and integrate locally below.
     let x = &a.fields[a.index][..259];
     let y = &b.fields[index][..259];
     let (mut xx, mut yy, mut xy) = (product(x, x), product(y, y), product(x, y));
@@ -145,12 +163,21 @@ fn local_mac(a: &Selected, b: &Selected, index: usize) -> Result<f64, Box<dyn Er
         }
         Ok(value)
     };
-    for position in [a.position, b.position] {
-        let u = displacement(a, a.index, position)?;
-        let v = displacement(b, index, position)?;
-        xx += 0.5 * a.mass * u * u;
-        yy += 0.5 * a.mass * v * v;
-        xy += 0.5 * a.mass * u * v;
+    for center in [a.position, b.position] {
+        let g = TineGeometry {
+            length_m: a.length,
+            tuning_mass_kg: a.mass,
+            tuning_span_m: a.span,
+            tuning_position: center,
+            ..TineGeometry::default()
+        };
+        for (position, fraction) in g.tuning_mass_quadrature(64)? {
+            let u = displacement(a, a.index, position)?;
+            let v = displacement(b, index, position)?;
+            xx += 0.5 * a.mass * fraction * u * u;
+            yy += 0.5 * a.mass * fraction * v * v;
+            xy += 0.5 * a.mass * fraction * u * v;
+        }
     }
     Ok(xy * xy / (xx * yy))
 }
@@ -162,7 +189,7 @@ fn follow_with_metric(
     position: f64,
     local: bool,
 ) -> Result<(Selected, f64), Box<dyn Error>> {
-    let mut next = spectrum_with_mass(a.length, a.mass, position)?;
+    let mut next = spectrum_with_span(a.length, a.mass, a.span, position)?;
     let mut scores = Vec::with_capacity(9);
     for i in 0..9 {
         scores.push((
@@ -409,9 +436,16 @@ mod tests {
     use super::*;
     #[test]
     fn local_metric_recovers_orthogonality_after_large_spring_motion() {
-        for position in [0.5, 0.75, 0.95] {
-            let mut a = spectrum_with_mass(0.070, 0.00012, position).unwrap();
-            let b = spectrum_with_mass(0.070, 0.00012, position).unwrap();
+        for (position, span) in [
+            (0.5, 0.0),
+            (0.75, 0.0),
+            (0.95, 0.0),
+            (0.5, 0.006),
+            (0.75, 0.006),
+            (0.95, 0.006),
+        ] {
+            let mut a = spectrum_with_span(0.070, 0.00012, span, position).unwrap();
+            let b = spectrum_with_span(0.070, 0.00012, span, position).unwrap();
             for i in 0..9 {
                 a.index = i;
                 for j in 0..9 {

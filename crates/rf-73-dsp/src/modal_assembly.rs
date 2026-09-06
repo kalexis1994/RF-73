@@ -474,6 +474,44 @@ impl ModalAssembly {
 mod tests {
     use super::*;
     #[test]
+    fn finite_tuning_span_closes_coupled_contact_and_release_energy_budget() {
+        let g = TineGeometry {
+            length_m: 0.07,
+            tuning_position: 0.796,
+            tuning_span_m: 0.006,
+            ..TineGeometry::default()
+        };
+        let mut v = ModalAssembly::new(
+            48000.0,
+            g,
+            ModalAssemblyProfile::default(),
+            ModalIntegration::Refined {
+                contact_substeps: 32,
+            },
+        )
+        .unwrap();
+        assert!(v.strike(0.5));
+        for i in 0..4800 {
+            if i == 2400 {
+                v.set_damped(true);
+            }
+            let before = v.probe();
+            v.tick();
+            let after = v.probe();
+            assert!(after.balance_residual_j.abs() < after.injected_energy_j * 1e-8);
+            assert!(
+                after.mechanical_energy_j
+                    <= before.mechanical_energy_j + after.injected_energy_j * 1e-10
+            );
+            assert!(
+                after.dissipated_energy_j
+                    >= before.dissipated_energy_j - after.injected_energy_j * 1e-12
+            );
+            assert!(after.pickup_velocity_m_s.is_finite());
+        }
+        assert!(!v.contact && v.escaped > 0.0 && v.dissipated > 0.0);
+    }
+    #[test]
     fn damping_products_preserve_dense_arithmetic_and_nonzero_coupling() {
         for length in [0.05, 0.075, 0.12] {
             for damper in [0.0, 0.2] {

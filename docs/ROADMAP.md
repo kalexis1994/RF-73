@@ -305,3 +305,11 @@ same G3 fundamental; none of the grid's rank-5 modes reaches the exploratory
 1425 Hz family. No new sound is selected. Additional modal/spatial evidence is
 needed before adopting geometry, with nonlinear/audio qualification reserved
 for a justified candidate. The existing tuned WAV pair remains the baseline.
+
+The [finite spring-span study](FINITE-SPRING-SPAN.md) now integrates uniform
+co-moving tuning mass over 0/2/4/6 mm. All four cases regain G3; upper modes and
+port residues change, but rank 5 moves away from the exploratory 1425 Hz family.
+Mass moments, a uniform-density analytic case, mesh convergence and coupled
+contact/release energy are tested. No width or new sound is selected. Next
+investigate nonuniform tine geometry with explicit assumptions and independent
+checks, while seeking modal/spatial evidence before fitting a physical profile.

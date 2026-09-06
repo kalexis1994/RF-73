@@ -11,28 +11,20 @@ static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
 fn geometry_study_preserves_outputs_and_rejects_unqualified_reference() {
-    let scratch = Scratch::new();
-    fs::write(scratch.0.join("study.json"), b"preserve").unwrap();
-    let args = [
-        "sweep-tuned-geometry",
-        "missing.json",
-        "--output",
-        "study.json",
-    ];
-    let out = scratch.run(&args);
-    assert!(!out.status.success());
-    assert!(String::from_utf8_lossy(&out.stderr).contains("new .json"));
-    assert_eq!(fs::read(scratch.0.join("study.json")).unwrap(), b"preserve");
-    fs::write(scratch.0.join("invalid.json"), b"{}").unwrap();
-    let out = scratch.run(&[
-        "sweep-tuned-geometry",
-        "invalid.json",
-        "--output",
-        "new.json",
-    ]);
-    assert!(!out.status.success());
-    assert!(String::from_utf8_lossy(&out.stderr).contains("qualified G3"));
-    assert!(!scratch.0.join("new.json").exists());
+    for command in ["sweep-tuned-geometry", "sweep-spring-span"] {
+        let scratch = Scratch::new();
+        fs::write(scratch.0.join("study.json"), b"preserve").unwrap();
+        let args = [command, "missing.json", "--output", "study.json"];
+        let out = scratch.run(&args);
+        assert!(!out.status.success());
+        assert!(String::from_utf8_lossy(&out.stderr).contains("new .json"));
+        assert_eq!(fs::read(scratch.0.join("study.json")).unwrap(), b"preserve");
+        fs::write(scratch.0.join("invalid.json"), b"{}").unwrap();
+        let out = scratch.run(&[command, "invalid.json", "--output", "new.json"]);
+        assert!(!out.status.success());
+        assert!(String::from_utf8_lossy(&out.stderr).contains("qualified G3"));
+        assert!(!scratch.0.join("new.json").exists());
+    }
 }
 
 #[test]
