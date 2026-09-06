@@ -231,6 +231,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", memory_modal_check::TUNING_HELP);
         print!("{}", memory_modal_check::GEOMETRY_HELP);
         print!("{}", memory_modal_check::SPAN_HELP);
+        print!("{}", memory_modal_check::TAPER_HELP);
         print!("{}", memory_modal_check::TAIL_TIMING_HELP);
         print!("{}", memory_modal_timing::HELP);
         print!("{}", modal_timing::HELP);
@@ -255,7 +256,10 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "tune-modal-pitch" {
         return memory_modal_check::tune_pitch(&args);
     }
-    if args[0] == "sweep-tuned-geometry" || args[0] == "sweep-spring-span" {
+    if args[0] == "sweep-tuned-geometry"
+        || args[0] == "sweep-spring-span"
+        || args[0] == "sweep-tine-taper"
+    {
         return memory_modal_check::sweep_geometry(&args);
     }
     if args[0] == "assembly-check" {

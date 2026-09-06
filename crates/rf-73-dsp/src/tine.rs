@@ -1,15 +1,25 @@
-//! Offline modes of a uniform Euler-Bernoulli tine with a point or spread tuning mass.
+//! Offline modes of a circular Euler-Bernoulli tine with a point or spread tuning mass.
 //! No measured Rhodes geometry is implied. See docs/TINE-MODES.md.
 use crate::ModelError;
 use core::f64::consts::{PI, TAU};
 
 pub const TINE_MODE_COUNT: usize = 6;
 const MAX_DOFS: usize = 130;
+const GAUSS5: [(f64, f64); 5] = [
+    (-0.906179845938664, 0.2369268850561891),
+    (-0.5384693101056831, 0.4786286704993665),
+    (0.0, 0.5688888888888889),
+    (0.5384693101056831, 0.4786286704993665),
+    (0.906179845938664, 0.2369268850561891),
+];
 
 #[derive(Debug, Clone, Copy)]
 pub struct TineGeometry {
     pub length_m: f64,
     pub diameter_m: f64,
+    /// Tip/root diameter ratio; diameter varies linearly along the free length.
+    /// One preserves the uniform baseline. No measured manufacturing profile is implied.
+    pub tip_diameter_ratio: f64,
     pub young_modulus_pa: f64,
     pub density_kg_m3: f64,
     pub tuning_mass_kg: f64,
@@ -27,6 +37,7 @@ impl Default for TineGeometry {
         Self {
             length_m: 0.075,
             diameter_m: 0.0015,
+            tip_diameter_ratio: 1.0,
             young_modulus_pa: 2e11,
             density_kg_m3: 7850.0,
             tuning_mass_kg: 0.0001,
@@ -43,6 +54,8 @@ impl TineGeometry {
         for (value, low, high) in [
             (self.length_m, 0.015, 0.3),
             (self.diameter_m, 0.0003, 0.003),
+            (self.tip_diameter_ratio, 0.5, 1.5),
+            (self.diameter_m * self.tip_diameter_ratio, 0.0003, 0.003),
             (self.young_modulus_pa, 1e10, 3e11),
             (self.density_kg_m3, 1000.0, 20000.0),
             (self.tuning_mass_kg, 0.0, 0.01),
@@ -57,7 +70,7 @@ impl TineGeometry {
                 ));
             }
         }
-        if self.length_m / self.diameter_m < 10.0 {
+        if self.length_m / (self.diameter_m * self.tip_diameter_ratio.max(1.0)) < 10.0 {
             return Err(ModelError(
                 "Euler-Bernoulli tine requires length/diameter >= 10",
             ));
@@ -113,9 +126,50 @@ impl TineGeometry {
         Ok(points)
     }
 
-    pub fn beam_mass_kg(self) -> f64 {
+    fn reference_mass_kg(self) -> f64 {
         self.density_kg_m3 * PI * self.diameter_m.powi(2) * self.length_m / 4.0
     }
+    fn relative_mass_moment(self, order: i32) -> f64 {
+        let a = self.tip_diameter_ratio - 1.0;
+        1.0 / (order + 1) as f64 + 2.0 * a / (order + 2) as f64 + a * a / (order + 3) as f64
+    }
+    pub fn beam_mass_kg(self) -> f64 {
+        self.reference_mass_kg() * self.relative_mass_moment(0)
+    }
+    /// Offline samples (fraction of free length, physical mass in kg).
+    /// Five points integrate tapered Hermite mass products (degree 8) exactly.
+    pub fn beam_mass_quadrature(self, elements: usize) -> Result<Vec<(f64, f64)>, ModelError> {
+        self.validate()?;
+        if !(8..=64).contains(&elements) || !elements.is_power_of_two() {
+            return Err(ModelError(
+                "beam quadrature needs 8..64 power-of-two elements",
+            ));
+        }
+        let uniform = [
+            (-0.8611363115940526, 0.3478548451374538),
+            (-0.3399810435848563, 0.6521451548625461),
+            (0.3399810435848563, 0.6521451548625461),
+            (0.8611363115940526, 0.3478548451374538),
+        ];
+        let rule: &[(f64, f64)] = if self.tip_diameter_ratio == 1.0 {
+            &uniform
+        } else {
+            &GAUSS5
+        };
+        let mut points = Vec::with_capacity(elements * rule.len());
+        for e in 0..elements {
+            for &(node, weight) in rule {
+                let s = (e as f64 + 0.5 * (1.0 + node)) / elements as f64;
+                let area = (1.0 + (self.tip_diameter_ratio - 1.0) * s).powi(2);
+                points.push((
+                    s,
+                    self.reference_mass_kg() * weight / (2 * elements) as f64 * area,
+                ));
+            }
+        }
+        Ok(points)
+    }
+    /// Bending rigidity at the root; tapered preparation integrates its local value.
     pub fn bending_rigidity_n_m2(self) -> f64 {
         self.young_modulus_pa * PI * self.diameter_m.powi(4) / 64.0
     }
@@ -175,18 +229,42 @@ impl TineModes {
             [-13.0 * h, -3.0 * h * h, -22.0 * h, 4.0 * h * h],
         ];
         for element in 0..elements {
+            let (mut local_k, mut local_m) = (ke, me);
+            if geometry.tip_diameter_ratio != 1.0 {
+                local_k = [[0.0; 4]; 4];
+                local_m = [[0.0; 4]; 4];
+                for (node, weight) in GAUSS5 {
+                    let t = 0.5 * (1.0 + node);
+                    let s = (element as f64 + t) * h;
+                    let d = 1.0 + (geometry.tip_diameter_ratio - 1.0) * s;
+                    let (_, shape) = interpolation(elements, s);
+                    // Curvatures with respect to s, multiplied by h^2.
+                    let curvature = [
+                        12.0 * t - 6.0,
+                        h * (6.0 * t - 4.0),
+                        6.0 - 12.0 * t,
+                        h * (6.0 * t - 2.0),
+                    ];
+                    for i in 0..4 {
+                        for j in 0..4 {
+                            local_k[i][j] += 0.5 * weight * d.powi(4) * curvature[i] * curvature[j];
+                            local_m[i][j] += 210.0 * weight * d.powi(2) * shape[i] * shape[j];
+                        }
+                    }
+                }
+            }
             for i in 0..4 {
                 for j in 0..4 {
                     let (gi, gj) = (2 * element + i, 2 * element + j);
                     if gi >= 2 && gj >= 2 {
-                        k[(gi - 2) * n + gj - 2] += ke[i][j] / h.powi(3);
-                        m[(gi - 2) * n + gj - 2] += me[i][j] * h / 420.0;
+                        k[(gi - 2) * n + gj - 2] += local_k[i][j] / h.powi(3);
+                        m[(gi - 2) * n + gj - 2] += local_m[i][j] * h / 420.0;
                     }
                 }
             }
         }
         let spring_points = geometry.tuning_mass_quadrature(elements)?;
-        let mass_ratio = geometry.tuning_mass_kg / geometry.beam_mass_kg();
+        let mass_ratio = geometry.tuning_mass_kg / geometry.reference_mass_kg();
         // Point evaluation or an integrated finite span, without snapping to nodes.
         for &(position, fraction) in &spring_points {
             let (element, weights) = interpolation(elements, position);
@@ -201,17 +279,20 @@ impl TineModes {
             }
         }
         let (values, vectors) = eigen(&k, &m, n, TINE_MODE_COUNT)?;
-        let mass = geometry.beam_mass_kg();
+        let mass = geometry.reference_mass_kg();
         let rigidity = geometry.bending_rigidity_n_m2();
         let tuning_x = geometry.tuning_position * geometry.length_m;
         let mut result = Self {
             modes: [TineMode::default(); TINE_MODE_COUNT],
-            total_mass_kg: mass + geometry.tuning_mass_kg,
-            first_mass_moment_kg_m: mass * geometry.length_m / 2.0
+            total_mass_kg: geometry.beam_mass_kg() + geometry.tuning_mass_kg,
+            first_mass_moment_kg_m: mass * geometry.length_m * geometry.relative_mass_moment(1)
                 + geometry.tuning_mass_kg * tuning_x,
-            second_mass_moment_kg_m2: mass * geometry.length_m.powi(2) / 3.0
-                + geometry.tuning_mass_kg
-                    * (tuning_x.powi(2) + geometry.tuning_span_m.powi(2) / 12.0),
+            second_mass_moment_kg_m2: if geometry.tip_diameter_ratio == 1.0 {
+                mass * geometry.length_m.powi(2) / 3.0
+            } else {
+                mass * geometry.length_m.powi(2) * geometry.relative_mass_moment(2)
+            } + geometry.tuning_mass_kg
+                * (tuning_x.powi(2) + geometry.tuning_span_m.powi(2) / 12.0),
             maximum_mass_orthogonality_error: 0.0,
             elements,
             shapes: [[0.0; MAX_DOFS]; TINE_MODE_COUNT],
@@ -245,17 +326,25 @@ impl TineModes {
             }
             let effective_mass = mass * inner(phi, &mp) / tip.powi(2);
             let (mut translation, mut rotation) = (0.0, 0.0);
-            let node = (3.0_f64 / 5.0).sqrt();
-            for e in 0..elements {
-                for (t, w) in [
-                    (0.5 * (1.0 - node), 5.0 / 18.0),
-                    (0.5, 4.0 / 9.0),
-                    (0.5 * (1.0 + node), 5.0 / 18.0),
-                ] {
-                    let s = (e as f64 + t) * h;
+            if geometry.tip_diameter_ratio != 1.0 {
+                for (s, weight) in geometry.beam_mass_quadrature(elements)? {
                     let shape = sample(&result.shapes[index], elements, s);
-                    translation += mass * h * w * shape;
-                    rotation += mass * geometry.length_m * h * w * s * shape;
+                    translation += weight * shape;
+                    rotation += weight * geometry.length_m * s * shape;
+                }
+            } else {
+                let node = (3.0_f64 / 5.0).sqrt();
+                for e in 0..elements {
+                    for (t, w) in [
+                        (0.5 * (1.0 - node), 5.0 / 18.0),
+                        (0.5, 4.0 / 9.0),
+                        (0.5 * (1.0 + node), 5.0 / 18.0),
+                    ] {
+                        let s = (e as f64 + t) * h;
+                        let shape = sample(&result.shapes[index], elements, s);
+                        translation += mass * h * w * shape;
+                        rotation += mass * geometry.length_m * h * w * s * shape;
+                    }
                 }
             }
             for &(position, fraction) in &spring_points {
@@ -489,6 +578,125 @@ pub(crate) fn eigen(
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn tapered_frustum_mass_moments_and_tip_compliance_match_analytic_values() {
+        for r in [0.5, 0.9, 1.0, 1.5] {
+            let g = TineGeometry {
+                tip_diameter_ratio: r,
+                tuning_mass_kg: 0.0,
+                ..TineGeometry::default()
+            };
+            let b = TineModes::prepare(g, 64).unwrap();
+            let m0 = g.density_kg_m3 * PI * g.diameter_m.powi(2) * g.length_m / 4.0;
+            let expected = [
+                m0 * (1.0 + r + r * r) / 3.0,
+                m0 * g.length_m * (1.0 + 2.0 * r + 3.0 * r * r) / 12.0,
+                m0 * g.length_m.powi(2) * (1.0 + 3.0 * r + 6.0 * r * r) / 30.0,
+            ];
+            for (actual, exact) in [
+                b.total_mass_kg,
+                b.first_mass_moment_kg_m,
+                b.second_mass_moment_kg_m2,
+            ]
+            .into_iter()
+            .zip(expected)
+            {
+                assert!((actual / exact - 1.0).abs() < 2e-14);
+            }
+            let q = g.beam_mass_quadrature(64).unwrap();
+            for order in 0..=2 {
+                let actual: f64 = q
+                    .iter()
+                    .map(|(s, m)| m * (s * g.length_m).powi(order))
+                    .sum();
+                assert!((actual / expected[order as usize] - 1.0).abs() < 2e-14);
+            }
+            // Exact static tip flexibility: integral (L-x)^2/[E I(x)] dx = L^3/(3 EI_root r).
+            // Six retained modes approach it from below; this checks stiffness independently of mass.
+            let exact = g.length_m.powi(3) / (3.0 * g.bending_rigidity_n_m2() * r);
+            let modal: f64 = b
+                .modes
+                .iter()
+                .map(|m| 1.0 / (m.effective_mass_kg * (TAU * m.frequency_hz).powi(2)))
+                .sum();
+            assert!(
+                modal < exact && (modal / exact - 1.0).abs() < 0.001,
+                "ratio {r}, compliance {modal}/{exact}"
+            );
+        }
+    }
+
+    #[test]
+    fn tapered_modes_converge_scale_and_reject_invalid_sections() {
+        for r in [0.5, 0.9, 1.05, 1.5] {
+            let g = TineGeometry {
+                tip_diameter_ratio: r,
+                tuning_span_m: 0.006,
+                ..TineGeometry::default()
+            };
+            let fine = TineModes::prepare(g, 64).unwrap();
+            let medium = TineModes::prepare(g, 32).unwrap();
+            let coarse = TineModes::prepare(g, 16).unwrap();
+            let error = |b: &TineModes| {
+                b.modes
+                    .iter()
+                    .zip(fine.modes)
+                    .map(|(a, b)| (a.frequency_hz / b.frequency_hz - 1.0).abs())
+                    .fold(0.0_f64, f64::max)
+            };
+            assert!(
+                error(&medium) < 0.0002 && error(&medium) < 0.2 * error(&coarse),
+                "ratio {r}: {} / {}",
+                error(&medium),
+                error(&coarse)
+            );
+            let scaled = TineModes::prepare(
+                TineGeometry {
+                    length_m: 2.0 * g.length_m,
+                    tuning_mass_kg: 2.0 * g.tuning_mass_kg,
+                    tuning_span_m: 2.0 * g.tuning_span_m,
+                    ..g
+                },
+                64,
+            )
+            .unwrap();
+            for (a, b) in fine.modes.into_iter().zip(scaled.modes) {
+                assert!((b.frequency_hz / a.frequency_hz - 0.25).abs() < 1e-10);
+                assert!((b.effective_mass_kg / a.effective_mass_kg - 2.0).abs() < 1e-10);
+            }
+        }
+        for r in [f64::NAN, f64::INFINITY, 0.0, 0.49, 1.51] {
+            assert!(
+                TineGeometry {
+                    tip_diameter_ratio: r,
+                    ..TineGeometry::default()
+                }
+                .validate()
+                .is_err()
+            );
+        }
+        assert!(
+            TineGeometry {
+                diameter_m: 0.003,
+                tip_diameter_ratio: 1.5,
+                ..TineGeometry::default()
+            }
+            .validate()
+            .is_err()
+        );
+        assert!(
+            TineGeometry {
+                length_m: 0.02,
+                diameter_m: 0.0015,
+                tip_diameter_ratio: 1.5,
+                ..TineGeometry::default()
+            }
+            .validate()
+            .is_err()
+        );
+        assert!(TineGeometry::default().beam_mass_quadrature(12).is_err());
+    }
+
     #[test]
     fn finite_span_quadrature_preserves_polynomial_mass_moments_and_bounds() {
         let g = TineGeometry {

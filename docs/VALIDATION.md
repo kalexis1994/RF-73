@@ -1387,3 +1387,33 @@ Cleanup removed 342 regenerable debug files (101.4 MiB) and the duplicate
 regression WAV/report after the hash check. Release artifacts remain at about
 151 MiB after the full workspace test run. The new numerical receipt occupies
 74596 bytes; existing audio, reference recordings and packaged plugin remain.
+
+## Linear tine-section variation
+
+Date: 2026-09-06. [Tine taper](TINE-TAPER.md) adds a linear root-to-tip diameter
+with consistent variable-section mass and bending stiffness. Five-point element
+quadrature integrates degree-eight Hermite mass products. Root mass moments and
+physical-field tracking use that same section; the uniform branch stays exact.
+
+All four 0.90/0.95/1/1.05 ratios on a 70 mm blank with 1.5 mm root diameter and
+0.1 g point mass retune within 0.0001 cent of frozen G3. Coupled rank 5 spans
+1301.832..1373.127 Hz; none reaches the exploratory 1425 Hz family. The 74853-byte
+receipt preserves all trials and shared parameters. No geometry is selected.
+
+All 230 workspace release tests, strict Clippy and formatting pass. Three new
+tests cover analytic frustum inertia/static flexibility, convergence/scaling
+and geometry validation, and retuned modal sensitivity. Existing nine-mode
+orthogonality, contact/damper energy and CLI output-protection tests also cover
+the new section study. These checks qualify the equations for the tested
+profiles, not a real manufactured part or the whole accepted domain.
+
+The uniform study cell retains its fitted spring center, all nine frequencies
+and hammer/pickup weights exactly. The 75 mm memory-hammer baseline re-renders
+byte-identically, SHA-256
+`0dbd0cd29a7929fe16f9eccfdc05b6b23554d406a4fa0add5f73408ec123be2e`.
+No tapered-memory-hammer audio, listening, plugin or remote-CI result is claimed.
+
+Cleanup removed 342 regenerable debug files (101.4 MiB) and the temporary
+duplicate regression WAV/report after the hash check. Release artifacts remain
+at about 151 MiB. Source recordings, existing listening WAVs, numerical receipts
+and the packaged plugin are preserved.

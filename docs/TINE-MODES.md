@@ -1,6 +1,6 @@
 # Geometry-derived tine modes and moving-root inertia
 
-`TineModes::prepare` computes six bending modes of a uniform circular tine with
+`TineModes::prepare` computes six bending modes of a circular tine with
 a movable tuning mass, either concentrated at a point or distributed over an
 axial span. Frequencies, effective masses, hammer/pickup weights
 and root coupling follow from the same spatial modes. This is an offline
@@ -22,10 +22,13 @@ node. The stiffness matrix follows the bending-energy integral, as described
 in TU Delft's computational modelling course.
 [Euler-Bernoulli beam elements](https://teachbooks.tudelft.nl/computational-modelling/structural_linear/euler_bernouilli.html).
 
-This model assumes a uniform, straight, circular, slender beam, linear elasticity
+The [linear-taper extension](TINE-TAPER.md) allows diameter to vary along the
+free length; its default ratio of one retains the uniform baseline.
+
+This model assumes a straight, circular, slender beam, linear elasticity
 and small deflections in one plane. It omits shear deformation, rotary inertia,
 large-deflection effects, coil elasticity and slip, cross-sectional rotary inertia
-of the tuning spring, taper, root-block geometry and a second polarization. The accepted
+of the tuning spring, measured swaged geometry, root-block geometry and a second polarization. The accepted
 length/diameter ratio of at least 10 is an input guard, not proof that every
 retained high mode lies within Euler-Bernoulli theory's physical accuracy range.
 No geometry or damping values have been identified from a real Rhodes.
@@ -35,7 +38,8 @@ No geometry or damping values have been identified from a real Rhodes.
 | Default quantity | Value | Status |
 | --- | --- | --- |
 | Free length | 75 mm | Illustrative |
-| Diameter | 1.5 mm | Illustrative |
+| Root diameter | 1.5 mm | Illustrative |
+| Tip/root diameter ratio | 1 | Uniform baseline; linear variation is experimental |
 | Young modulus | 200 GPa | Assumed material value |
 | Density | 7850 kg/m³ | Assumed material value |
 | Tuning mass | 0.1 g | Illustrative point mass |
@@ -57,6 +61,8 @@ of freedom. It uses dimensionless position `s=x/L` and nodal coordinates
 `[w, dw/ds]` to avoid mixing tiny physical lengths with rotation units during
 factorization. Root displacement and slope are eliminated. Consistent element
 mass comes from integrating products of the cubic interpolation functions.
+The equations below describe the uniform point-mass baseline; variable-section
+integration and physical mass moments are specified in [Tine taper](TINE-TAPER.md).
 
 ```text
 A = pi d² / 4

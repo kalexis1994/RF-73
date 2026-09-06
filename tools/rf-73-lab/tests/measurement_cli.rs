@@ -11,7 +11,11 @@ static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
 fn geometry_study_preserves_outputs_and_rejects_unqualified_reference() {
-    for command in ["sweep-tuned-geometry", "sweep-spring-span"] {
+    for command in [
+        "sweep-tuned-geometry",
+        "sweep-spring-span",
+        "sweep-tine-taper",
+    ] {
         let scratch = Scratch::new();
         fs::write(scratch.0.join("study.json"), b"preserve").unwrap();
         let args = [command, "missing.json", "--output", "study.json"];

@@ -23,6 +23,8 @@ pub(super) struct Selected {
     length: f64,
     mass: f64,
     span: f64,
+    taper: f64,
+    distributed_fields: usize,
     pub(super) position: f64,
     spectrum: ModalSpectrum,
     index: usize,
@@ -35,7 +37,7 @@ impl Selected {
         self.spectrum.modes[self.index]
     }
     pub(super) fn row(&self, mac: f64) -> Value {
-        json!({"length_m":self.length,"tuning_mass_kg":self.mass,"tuning_span_m":self.span,"spring_position_fraction":self.position,
+        json!({"length_m":self.length,"tuning_mass_kg":self.mass,"tuning_span_m":self.span,"tip_diameter_ratio":self.taper,"spring_position_fraction":self.position,
             "spring_center_from_root_mm":1000.0*self.length*self.position,
             "selected_mode_index":self.index,"selected_frequency_hz":self.mode().frequency_hz,
             "shape_mac_from_previous":mac,"fixed_root_fundamental_hz":self.spectrum.fixed_root_fundamental_hz,
@@ -66,10 +68,20 @@ pub(super) fn spectrum_with_span(
     span: f64,
     position: f64,
 ) -> Result<Selected, Box<dyn Error>> {
+    spectrum_with_taper(length, mass, span, 1.0, position)
+}
+pub(super) fn spectrum_with_taper(
+    length: f64,
+    mass: f64,
+    span: f64,
+    taper: f64,
+    position: f64,
+) -> Result<Selected, Box<dyn Error>> {
     let g = TineGeometry {
         length_m: length,
         tuning_mass_kg: mass,
         tuning_span_m: span,
+        tip_diameter_ratio: taper,
         tuning_position: position,
         ..TineGeometry::default()
     };
@@ -79,14 +91,10 @@ pub(super) fn spectrum_with_span(
     // Reconstruct physical fields: modal coordinates alone are not comparable
     // when their fixed-root basis changes. Use the same positive reference
     // inertia (spring at 0.85 L) for every field, not a frequency proximity test.
-    // Four-point Gauss integration is exact for products of cubic FE shapes.
-    let quadrature = [
-        (-0.8611363115940526, 0.3478548451374538),
-        (-0.3399810435848563, 0.6521451548625461),
-        (0.3399810435848563, 0.6521451548625461),
-        (0.8611363115940526, 0.3478548451374538),
-    ];
-    let mut fields: [Vec<f64>; 9] = core::array::from_fn(|_| Vec::with_capacity(260));
+    let quadrature = g.beam_mass_quadrature(64)?;
+    let distributed_fields = quadrature.len() + 3;
+    let mut fields: [Vec<f64>; 9] =
+        core::array::from_fn(|_| Vec::with_capacity(distributed_fields + 1));
     let reference_spring = TineGeometry {
         tuning_position: INITIAL_POSITION,
         ..g
@@ -101,11 +109,8 @@ pub(super) fn spectrum_with_span(
             }
             Ok(y)
         };
-        for element in 0..64 {
-            for (node, weight) in quadrature {
-                let x = (element as f64 + 0.5 * (1.0 + node)) / 64.0;
-                field.push(displacement(x)? * (g.beam_mass_kg() * weight / 128.0).sqrt());
-            }
+        for &(x, mass) in &quadrature {
+            field.push(displacement(x)? * mass.sqrt());
         }
         field.push(q[0] * p.support_mass_kg.sqrt());
         field.push(q[1] * p.support_inertia_kg_m2.sqrt());
@@ -125,6 +130,8 @@ pub(super) fn spectrum_with_span(
         length,
         mass,
         span,
+        taper,
+        distributed_fields,
         position,
         spectrum,
         index,
@@ -146,14 +153,14 @@ pub(super) fn follow(a: &Selected, position: f64) -> Result<(Selected, f64), Box
 // spring inertia: modes there need not be orthogonal in that obsolete metric.
 // Average the two actual physical inertias for each local comparison instead.
 fn local_mac(a: &Selected, b: &Selected, index: usize) -> Result<f64, Box<dyn Error>> {
-    if a.length != b.length || a.mass != b.mass || a.span != b.span {
-        return Err("local spring metric requires fixed cell length and mass".into());
+    if a.length != b.length || a.mass != b.mass || a.span != b.span || a.taper != b.taper {
+        return Err("local spring metric requires fixed cell geometry and mass".into());
     }
     let product = |x: &[f64], y: &[f64]| x.iter().zip(y).map(|(x, y)| x * y).sum::<f64>();
-    // First 259 entries contain distributed beam, support and tonebar inertia.
+    // Leading entries contain distributed beam, support and tonebar inertia.
     // Discard the initial-position spring samples and integrate locally below.
-    let x = &a.fields[a.index][..259];
-    let y = &b.fields[index][..259];
+    let x = &a.fields[a.index][..a.distributed_fields];
+    let y = &b.fields[index][..b.distributed_fields];
     let (mut xx, mut yy, mut xy) = (product(x, x), product(y, y), product(x, y));
     let displacement = |s: &Selected, index: usize, position: f64| -> Result<f64, Box<dyn Error>> {
         let q = s.spectrum.modes[index].shape;
@@ -168,6 +175,7 @@ fn local_mac(a: &Selected, b: &Selected, index: usize) -> Result<f64, Box<dyn Er
             length_m: a.length,
             tuning_mass_kg: a.mass,
             tuning_span_m: a.span,
+            tip_diameter_ratio: a.taper,
             tuning_position: center,
             ..TineGeometry::default()
         };
@@ -189,7 +197,7 @@ fn follow_with_metric(
     position: f64,
     local: bool,
 ) -> Result<(Selected, f64), Box<dyn Error>> {
-    let mut next = spectrum_with_span(a.length, a.mass, a.span, position)?;
+    let mut next = spectrum_with_taper(a.length, a.mass, a.span, a.taper, position)?;
     let mut scores = Vec::with_capacity(9);
     for i in 0..9 {
         scores.push((
@@ -436,24 +444,26 @@ mod tests {
     use super::*;
     #[test]
     fn local_metric_recovers_orthogonality_after_large_spring_motion() {
-        for (position, span) in [
-            (0.5, 0.0),
-            (0.75, 0.0),
-            (0.95, 0.0),
-            (0.5, 0.006),
-            (0.75, 0.006),
-            (0.95, 0.006),
-        ] {
-            let mut a = spectrum_with_span(0.070, 0.00012, span, position).unwrap();
-            let b = spectrum_with_span(0.070, 0.00012, span, position).unwrap();
-            for i in 0..9 {
-                a.index = i;
-                for j in 0..9 {
-                    let score = local_mac(&a, &b, j).unwrap();
-                    assert!(
-                        (score - f64::from(i == j)).abs() < 1e-10,
-                        "position={position}, modes={i}/{j}: {score}"
-                    );
+        for taper in [0.9, 1.0, 1.05] {
+            for (position, span) in [
+                (0.5, 0.0),
+                (0.75, 0.0),
+                (0.95, 0.0),
+                (0.5, 0.006),
+                (0.75, 0.006),
+                (0.95, 0.006),
+            ] {
+                let mut a = spectrum_with_taper(0.070, 0.00012, span, taper, position).unwrap();
+                let b = spectrum_with_taper(0.070, 0.00012, span, taper, position).unwrap();
+                for i in 0..9 {
+                    a.index = i;
+                    for j in 0..9 {
+                        let score = local_mac(&a, &b, j).unwrap();
+                        assert!(
+                            (score - f64::from(i == j)).abs() < 1e-10,
+                            "position={position}, modes={i}/{j}: {score}"
+                        );
+                    }
                 }
             }
         }

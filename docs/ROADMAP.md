@@ -313,3 +313,11 @@ Mass moments, a uniform-density analytic case, mesh convergence and coupled
 contact/release energy are tested. No width or new sound is selected. Next
 investigate nonuniform tine geometry with explicit assumptions and independent
 checks, while seeking modal/spatial evidence before fitting a physical profile.
+
+The [linear tine-taper study](TINE-TAPER.md) now derives mass and stiffness from
+a varying circular section. Four tip/root ratios retune to G3, with analytic
+frustum moments, static flexibility, mesh convergence and coupled energy checks.
+Full-length narrowing lowers the rank-5 mode away from the exploratory 1425 Hz
+family. No profile is selected. Next distinguish localized section transitions
+from full-length taper, and require multiple modal/spatial observations before
+geometry identification. The uniform structural and audio baselines remain exact.
