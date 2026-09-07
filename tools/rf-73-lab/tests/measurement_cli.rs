@@ -10,6 +10,185 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_repetition_receipt_preserves_prefix_and_separates_second_strikes() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-repetition-validation.json");
+    let prior = read("loaded-hammer-return-validation.json");
+    assert_eq!(r["experiment"], "loaded-repetition-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 3);
+    for (case, old_case) in cases.iter().zip(prior["cases"].as_array().unwrap()) {
+        assert_eq!(case["name"], old_case["name"]);
+        assert_eq!(
+            case["settings"]["return_damping_n_s_m"],
+            old_case["settings"]["return_damping_n_s_m"]
+        );
+        assert_eq!(
+            case["settings"]["pedestal_rate_loss_s_m"],
+            old_case["settings"]["pedestal_rate_loss_s_m"]
+        );
+        let rows = case["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 4);
+        for row in rows {
+            assert_eq!(row["measurement_qualified"], true);
+            assert_eq!(row["convergence"]["passed"], true);
+            assert_eq!(row["convergence"]["velocity"].as_array().unwrap().len(), 16);
+            assert_eq!(row["convergence"]["phases"].as_array().unwrap().len(), 4);
+            let old = old_case["rows"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .find(|old| old["speed_m_s"] == row["speed_m_s"])
+                .unwrap();
+            let takes = row["takes"].as_array().unwrap();
+            assert_eq!(takes.len(), 2);
+            for (take, old) in takes.iter().zip(old["takes"].as_array().unwrap()) {
+                assert_eq!(take["passed"], true);
+                assert_eq!(take["steps_per_frame"], old["steps_per_frame"]);
+                assert_eq!(take["first_contact"], old["first_contact"]);
+                let repeat = &take["repetition"];
+                let phases = repeat["phases"].as_array().unwrap();
+                assert_eq!(phases.len(), 4);
+                let second_start = phases[2]["start_seconds"].as_f64().unwrap();
+                assert!(
+                    (second_start - 0.15 - row["release_to_repeat_seconds"].as_f64().unwrap())
+                        .abs()
+                        < 1e-15
+                );
+                for snapshot in take["snapshots"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .filter(|s| s["seconds"].as_f64().unwrap() < second_start)
+                {
+                    let old_snapshot = old["snapshots"]
+                        .as_array()
+                        .unwrap()
+                        .iter()
+                        .find(|s| s["seconds"] == snapshot["seconds"])
+                        .unwrap();
+                    assert_eq!(snapshot, old_snapshot);
+                }
+                assert_eq!(phases[0]["impact"], old["impact"]);
+                let entries: usize = phases
+                    .iter()
+                    .map(|s| s["entries"].as_array().unwrap().len())
+                    .sum();
+                assert_eq!(entries as u64, take["contact_entries"][0].as_u64().unwrap());
+                let impulse: f64 = phases
+                    .iter()
+                    .map(|s| s["impact"]["impulse_n_s"].as_f64().unwrap())
+                    .sum();
+                assert!(
+                    (impulse
+                        - take["whole_gesture_impact"]["impulse_n_s"]
+                            .as_f64()
+                            .unwrap())
+                    .abs()
+                        < 1e-12
+                );
+                for phase in phases {
+                    assert_eq!(phase["overflow"], false);
+                    assert!(phase["raw_voltage_rms_v"].as_f64().unwrap().is_finite());
+                    for entry in phase["entries"].as_array().unwrap() {
+                        let t = entry["seconds"].as_f64().unwrap();
+                        assert!(
+                            t >= phase["start_seconds"].as_f64().unwrap()
+                                && t <= phase["end_seconds"].as_f64().unwrap() + 1e-15
+                        );
+                    }
+                }
+                let before = &repeat["before_second_drive"];
+                assert_eq!(before["position_m"].as_array().unwrap().len(), 20);
+                assert_eq!(before["velocity_m_s"].as_array().unwrap().len(), 20);
+                assert!(before["mechanical_energy_j"].as_f64().unwrap() > 0.0);
+                assert_eq!(
+                    before["contact_entries"][0].as_u64().unwrap(),
+                    (phases[0]["entries"].as_array().unwrap().len()
+                        + phases[1]["entries"].as_array().unwrap().len())
+                        as u64
+                );
+                let ready = &repeat["readiness"];
+                let ready_pass = ready["max_position_error_m"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .all(|x| x.as_f64().unwrap() < 0.0001)
+                    && ready["max_velocity_m_s"]
+                        .as_array()
+                        .unwrap()
+                        .iter()
+                        .all(|x| x.as_f64().unwrap() < 0.01)
+                    && ready["felt_contact_fraction"].as_f64().unwrap() >= 0.9;
+                assert_eq!(ready["passed"], ready_pass);
+                let lifted = repeat["minimum_held_felt_clearance_m"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .all(|x| x.as_f64().unwrap() >= 0.0001)
+                    && repeat["held_felt_contact_ticks"] == serde_json::json!([0, 0]);
+                assert_eq!(repeat["both_lifts_passed"], lifted);
+                let separated = phases
+                    .iter()
+                    .all(|s| s["carry_in"] == false && s["carry_out"] == false)
+                    && [1, 3].iter().all(|i| {
+                        phases[*i]["entries"].as_array().unwrap().is_empty()
+                            && phases[*i]["impact"]["active_contact_seconds"] == 0.0
+                    });
+                assert_eq!(repeat["separated_strikes"], separated);
+                let impact_ok = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+                    .iter()
+                    .all(|key| {
+                        let first = phases[0]["impact"][key].as_f64().unwrap();
+                        first > 0.0
+                            && (phases[2]["impact"][key].as_f64().unwrap() / first - 1.0).abs()
+                                < 0.05
+                    });
+                let a = phases[0]["entries"].as_array().unwrap();
+                let b = phases[2]["entries"].as_array().unwrap();
+                let matching = a.len() == 1 && b.len() == 1 && impact_ok && {
+                    let va = a[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+                    let vb = b[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+                    (vb / va - 1.0).abs() < 0.05
+                        && ((b[0]["seconds"].as_f64().unwrap() - second_start)
+                            - (a[0]["seconds"].as_f64().unwrap() - 0.03))
+                            .abs()
+                            < 0.001
+                };
+                assert_eq!(repeat["attack_repeatability"]["passed"], matching);
+                assert_eq!(
+                    repeat["two_clean_repeatable_strikes"],
+                    matching && separated && lifted
+                );
+            }
+        }
+    }
+}
+
+#[test]
+fn loaded_repetition_cli_preserves_outputs_and_rejects_ambiguous_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-repetition"],
+        vec!["loaded-repetition", "--output", "keep.json"],
+        vec!["loaded-repetition", "--output", "bad.wav"],
+        vec!["loaded-repetition", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_hammer_return_receipt_checks_free_motion_and_replays_bridle_prefix() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

@@ -143,7 +143,8 @@ time-dependent damping switch, additional backcheck, new audio render,
 recorded-source fit or production default change. Two speeds cannot establish
 velocity monotonicity. No intervention is adopted: one solves settling while
 changing attack, and the other leaves a settling failure. Repetition must
-subsequently be measured from the actual returned state, including the
-baseline and loss controls with their distinct first strikes, before adopting
-any candidate. The sophisticated model
+be qualified from the actual returned state, including the baseline and loss
+controls with their distinct first strikes. The
+[two-strike study](LOADED-REPETITION.md) now measures those trajectories at
+two recovery intervals. The sophisticated model
 also still needs computational reduction for the playable plugin.

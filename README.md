@@ -100,6 +100,11 @@ to 800 ms, traces pedestal contacts and checks free hammer motion against
 an independent analytical solution. Return damping and contact loss controls
 retain separate attack, felt-lift and settling decisions.
 
+The [two-strike repetition study](docs/LOADED-REPETITION.md) follows the same
+mechanical and electrical state through a second key gesture. It separates
+action readiness, repeated impact consistency, unwanted contacts and felt
+lift at two recovery intervals.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

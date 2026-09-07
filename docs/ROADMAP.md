@@ -117,10 +117,22 @@ not only parameter-identification diagnostics:
     by a factor of 12.36; higher pedestal loss preserves the strong attack
     but still fails late position limits. No intervention is adopted.
 
-Next qualify repetition from the returned mechanical state, retaining
-the measured attack tradeoffs and investigating spatial recontact before
-adopting a candidate. Preserve loss uncertainty and the physical
-non-striking threshold, and
+15. **Repetition from persistent state:** the
+    [two-strike study](LOADED-REPETITION.md) repeats the same key gesture after
+    60/300 ms from release, crossing both drive speeds with the three return
+    configurations. Full pre-repeat state and phase-local contacts separate
+    action readiness from second/first attack consistency and unintended
+    recovery/release strikes. First-attack tradeoffs remain explicit.
+    All 24 takes converge and preserve the first-strike prefix. Both loss
+    controls repeat within the frozen limits in all eight paired rows;
+    baseline fails all four, including soft second/first impulse ratios
+    of 13.51 and 6.71. Readiness passes only in the long-wait return-damping
+    control, so settling alone cannot stand in for repetition testing.
+
+Next isolate pedestal/bridle launch work and incoming-state sensitivity around
+the soft-strike threshold. Address first-strike regulation while retaining
+the successful repetition controls before adopting a candidate. Preserve
+loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.
 

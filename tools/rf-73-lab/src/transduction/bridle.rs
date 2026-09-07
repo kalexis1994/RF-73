@@ -110,7 +110,7 @@ fn target(p: ElectromechanicalProfile, time: f64) -> f64 {
 }
 pub(super) struct Take {
     pub(super) report: Value,
-    velocities: Vec<[f64; 4]>,
+    pub(super) velocities: Vec<[f64; 4]>,
 }
 fn take(p: ElectromechanicalProfile, steps: usize, speed: f64) -> Result<Take, Box<dyn Error>> {
     take_observed(p, steps, speed, FRAMES, |_, _, _, _, _| {})
@@ -120,6 +120,22 @@ pub(super) fn take_observed(
     steps: usize,
     speed: f64,
     frames: usize,
+    observe: impl FnMut(
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        f64,
+        f64,
+    ),
+) -> Result<Take, Box<dyn Error>> {
+    take_driven(p, steps, speed, frames, |t| target(p, t), observe)
+}
+pub(super) fn take_driven(
+    p: ElectromechanicalProfile,
+    steps: usize,
+    speed: f64,
+    frames: usize,
+    drive: impl Fn(f64) -> f64,
     mut observe: impl FnMut(
         ElectromechanicalProbe,
         ElectromechanicalProbe,
@@ -161,7 +177,13 @@ pub(super) fn take_observed(
     for frame in 0..frames {
         for sub in 0..steps {
             let t = (frame * steps + sub) as f64 * h;
-            x += (target(p, t) - x).clamp(-speed * h, speed * h);
+            let target = drive(t);
+            if !target.is_finite()
+                || !(p.action.hammer_rest_m..=-p.action.escapement_m).contains(&target)
+            {
+                return Err("action drive target outside regulated travel".into());
+            }
+            x += (target - x).clamp(-speed * h, speed * h);
             model.advance(x, p.action.damper_closed_m)?;
             let b = model.probe();
             if first_contact.is_null() && b.mechanical.contact_entries[0] > 0 {

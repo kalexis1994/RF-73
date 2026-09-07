@@ -2702,3 +2702,34 @@ SHA-256 `52579de65a5d83a57de3ade283ce9a1eaeffbbc2b88421f4220d7f139ca1952a`.
 Verification passes 124 lab unit tests, nineteen loaded CLI/receipt tests,
 strict Clippy and formatting. No new WAVs are generated; release cache remains
 approximately 194 MiB.
+
+## Loaded repetition from persistent state
+
+The [two-strike matrix](LOADED-REPETITION.md) crosses baseline and the two
+return-loss controls with two speeds and second key-downs 60/300 ms after
+release. All 24 takes and twelve 128/256 refinement pairs qualify numerically.
+One assembly retains all mechanical and electrical state across both strokes.
+First-impact receipts and every historical pre-repeat snapshot exactly replay
+the preceding return study.
+
+Every take contains one contact in each held phase and none during recovery
+or release, with both felt-lift windows passing. Both loss controls pass
+repeatability in all eight paired rows. Baseline fails all four: soft-drive
+second/first impulse ratios are 13.509 and 6.706; strong-drive ratios are
+0.8855 and 0.9103. Only the long-wait return-damping rows pass action readiness,
+so repeatability can pass while the hammer still moves outside rest limits.
+The controls retain their previously measured first-attack changes and are
+not adopted as defaults.
+
+Maximum relative energy defect is 1.832e-12, independent hammer work defect
+1.428e-12 and coupling defect 1.391e-12. Maximum velocity refinement RMSE is
+0.009586%, impact error 0.042590% and entry-time difference 0.0814 microseconds.
+Tests reconstruct phase totals/counts and functional decisions. All terminal
+return diagnostics fail in this experiment's short 70 ms second-release tail;
+long return remains a separate measurement.
+
+Receipt: `references/loaded-repetition-validation.json`, 963517 bytes,
+SHA-256 `59c569cd6829e9a64c0c7d652be1a13078989deb128829710cdaf0151402813e`.
+Verification passes 126 lab unit tests, 21 loaded CLI/receipt tests, strict
+Clippy and formatting. The release cache remains approximately 195 MiB;
+no new audio renders or production changes are introduced.
