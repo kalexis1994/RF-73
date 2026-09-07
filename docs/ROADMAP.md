@@ -509,3 +509,12 @@ one descriptive noise-distance unit, all at 20 dB. None does at 40 dB. The
 singular directions and local radii are retained without a confidence claim.
 Next compare per-window and constant-voltage-noise weighting with paired data,
 then qualify uncertainty and sensor mismatch before recorded-source calibration.
+
+The [constant-voltage weighting comparison](MAGNETIC-LOSS-WEIGHTING.md) now
+pairs 30 new fits with the pinned relative-window baseline. At 40 dB all 12
+cases recover loss and state within 1%. At 20 dB maximum loss error falls from
+6.76% to 4.00%, but two-loss recovery falls from 3/12 to 2/12; weighting does
+not resolve physical ambiguity. One unselected outer start reaches its fixed
+iteration budget and remains recorded. Next align the local-resolution study
+with the new objective, then qualify independent-noise coverage and sensor
+uncertainty before source calibration.

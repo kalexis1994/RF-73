@@ -114,6 +114,13 @@ fn templates(
 
 // Training owns only selected observations and their operator rows. No truth,
 // held-out voltage, optimizer start chosen from state, or fitted-loss truth.
+#[derive(Clone, Copy, PartialEq, Serialize)]
+#[serde(rename_all = "snake_case")]
+enum Weighting {
+    RelativeWindows,
+    ConstantVoltage,
+}
+
 struct Training {
     q: Dense,
     v: Dense,
@@ -122,6 +129,13 @@ struct Training {
 }
 impl Training {
     fn new(t: &Templates, observations: &[Vec<f64>; 2]) -> Result<Self, Box<dyn Error>> {
+        Self::weighted(t, observations, Weighting::RelativeWindows)
+    }
+    fn weighted(
+        t: &Templates,
+        observations: &[Vec<f64>; 2],
+        weighting: Weighting,
+    ) -> Result<Self, Box<dyn Error>> {
         let mut data = Self {
             q: Vec::new(),
             v: Vec::new(),
@@ -142,6 +156,15 @@ impl Training {
                 data.y.push(*value);
                 data.weights.push(1.0 / (2.0_f64.sqrt() * norm));
             }
+        }
+        if weighting == Weighting::ConstantVoltage {
+            // One training-only scalar preserves voltage least-squares minima
+            // without dividing by oracle sigma (also defined for noiseless data).
+            let norm = dot(&data.y, &data.y).sqrt();
+            if !norm.is_finite() || norm <= 0.0 {
+                return Err("invalid pooled training voltage norm".into());
+            }
+            data.weights.fill(1.0 / norm);
         }
         Ok(data)
     }
@@ -307,8 +330,21 @@ fn fit_state(
     traces: &[Trace; 2],
     voltages: &[Vec<f64>; 2],
 ) -> Result<Value, Box<dyn Error>> {
+    fit_state_weighted(t, s, traces, voltages, Weighting::RelativeWindows)
+}
+
+fn fit_state_weighted(
+    t: &Templates,
+    s: Sensor,
+    traces: &[Trace; 2],
+    voltages: &[Vec<f64>; 2],
+    weighting: Weighting,
+) -> Result<Value, Box<dyn Error>> {
     let observations = core::array::from_fn(|i| voltages[i][..voltages[i].len() / 2].to_vec());
-    let data = Training::new(t, &observations)?;
+    let data = match weighting {
+        Weighting::RelativeWindows => Training::new(t, &observations)?,
+        Weighting::ConstantVoltage => Training::weighted(t, &observations, weighting)?,
+    };
     let seed = data.seed(s)?;
     let mut attempts = Vec::new();
     let mut best: Option<(usize, Solution)> = None;
@@ -456,6 +492,78 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn constant_voltage_weights_preserve_pooled_error_and_ignore_held_out_rows() {
+        let p = prepare(perturbations()[0]).unwrap();
+        let mut t = templates(&p.spectrum, &p.structural, &p.damper, 0.7, 1.3, 48000).unwrap();
+        let y = [vec![2.0; 20], vec![5.0; 60]];
+        let pooled = Training::weighted(&t, &y, Weighting::ConstantVoltage).unwrap();
+        let relative = Training::new(&t, &y).unwrap();
+        let norm = (20.0_f64 * 4.0 + 60.0 * 25.0).sqrt();
+        assert!(
+            pooled
+                .weights
+                .iter()
+                .all(|w| (*w - 1.0 / norm).abs() < 1e-15)
+        );
+        assert_ne!(relative.weights[0], relative.weights[20]);
+        let sensor = sensors().unwrap()[0];
+        let state: Vec<_> = (0..18).map(|i| 1e-3 * (f64::from(i) + 0.3).sin()).collect();
+        let raw: f64 = pooled
+            .q
+            .iter()
+            .zip(&pooled.v)
+            .zip(&pooled.y)
+            .map(|((q, v), y)| (y - sensor.voltage(dot(q, &state), dot(v, &state))).powi(2))
+            .sum();
+        let r = pooled.residual(sensor, &state);
+        assert!((dot(&r, &r) - raw / norm.powi(2)).abs() < 1e-12);
+        for (window, values) in t.windows.iter_mut().zip(&y) {
+            for q in &mut window.displacement[values.len()..] {
+                q.fill(f64::NAN);
+            }
+            for v in &mut window.velocity[values.len()..] {
+                v.fill(f64::NAN);
+            }
+        }
+        let unaffected = Training::weighted(&t, &y, Weighting::ConstantVoltage).unwrap();
+        assert_eq!(r, unaffected.residual(sensor, &state));
+        for bad in [
+            [vec![], vec![1.0]],
+            [vec![f64::NAN], vec![1.0]],
+            [vec![0.0], vec![1.0]],
+        ] {
+            assert!(Training::weighted(&t, &bad, Weighting::ConstantVoltage).is_err());
+        }
+    }
+
+    #[test]
+    fn constant_voltage_jacobian_matches_weighted_residual_differences() {
+        let p = prepare(perturbations()[0]).unwrap();
+        let t = templates(&p.spectrum, &p.structural, &p.damper, 0.7, 1.3, 48000).unwrap();
+        let data = Training::weighted(
+            &t,
+            &[vec![2.0; 40], vec![5.0; 40]],
+            Weighting::ConstantVoltage,
+        )
+        .unwrap();
+        let sensor = sensors().unwrap()[0];
+        let state: Vec<_> = (0..18).map(|i| 1e-3 * (f64::from(i) + 0.3).sin()).collect();
+        let columns = data.jacobian(sensor, &state);
+        for j in 0..18 {
+            let mut plus = state.clone();
+            let mut minus = state.clone();
+            plus[j] += 1e-7;
+            minus[j] -= 1e-7;
+            let rp = data.residual(sensor, &plus);
+            let rm = data.residual(sensor, &minus);
+            for i in 0..rp.len() {
+                let derivative = (rm[i] - rp[i]) / 2e-7;
+                assert!((columns[j][i] - derivative).abs() < 1e-7 * columns[j][i].abs().max(1.0));
+            }
+        }
+    }
+
     #[test]
     fn magnetic_jacobian_matches_independent_centered_differences() {
         for s in sensors().unwrap() {

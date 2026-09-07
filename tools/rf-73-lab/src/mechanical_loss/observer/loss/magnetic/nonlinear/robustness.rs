@@ -131,7 +131,18 @@ pub(super) fn outcome(
     clean: &[Vec<f64>; 2],
     measured: &[Vec<f64>; 2],
 ) -> Result<Value, Box<dyn Error>> {
-    let fit = fit_state(t, s, traces, measured)?;
+    outcome_weighted(t, s, traces, clean, measured, Weighting::RelativeWindows)
+}
+
+pub(super) fn outcome_weighted(
+    t: &Templates,
+    s: Sensor,
+    traces: &[Trace; 2],
+    clean: &[Vec<f64>; 2],
+    measured: &[Vec<f64>; 2],
+    weighting: Weighting,
+) -> Result<Value, Box<dyn Error>> {
+    let fit = fit_state_weighted(t, s, traces, measured, weighting)?;
     let Some(selected) = fit["selected_start_index"].as_u64() else {
         return Ok(fit);
     };

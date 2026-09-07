@@ -136,3 +136,7 @@ and preserving all loss/state/prediction scores. This is necessary before
 turning profile geometry into an uncertainty claim: the current objective and
 the noise-scaled diagnostic use different weighting. Coverage and sensor
 uncertainty still need independent qualification before source calibration.
+
+The paired weighting comparison is specified in
+[MAGNETIC-LOSS-WEIGHTING.md](MAGNETIC-LOSS-WEIGHTING.md). It uses a separate
+command and retains the relative-window behavior of this local diagnostic.

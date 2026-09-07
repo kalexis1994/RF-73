@@ -1,6 +1,7 @@
 //! Profile two unknown loss scales with a nonlinear continuous-state refit.
 pub mod noise;
 pub mod resolution;
+pub mod weighting;
 use super::*;
 
 pub const HELP: &str = "Nonlinear magnetic loss profile:
@@ -35,6 +36,7 @@ struct Profile<'a> {
     damper: &'a Matrix,
     sensor: Sensor,
     rate: u32,
+    weighting: Weighting,
     training: [Vec<f64>; 2],
     evaluations: Vec<Value>,
 }
@@ -83,7 +85,7 @@ impl Profile<'_> {
             scales[1],
             self.rate,
         )?;
-        let data = Training::new(&t, &self.training)?;
+        let data = Training::weighted(&t, &self.training, self.weighting)?;
         let seed = data.seed(self.sensor)?;
         let mut starts = Vec::new();
         let mut best: Option<(usize, Solution)> = None;
@@ -287,6 +289,7 @@ fn study() -> Result<Value, Box<dyn Error>> {
             sensor,
             rate,
             training: core::array::from_fn(|i| voltages[i][..voltages[i].len() / 2].to_vec()),
+            weighting: Weighting::RelativeWindows,
             evaluations: Vec::new(),
         };
         let fit = match recover(&mut profile) {

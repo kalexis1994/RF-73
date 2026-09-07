@@ -11,8 +11,9 @@ pub const HELP: &str = "Magnetic loss resolution study:
   magnetic-loss-resolution --input NOISE_RECEIPT.json --output REPORT.json
 Pinned estimates, continuous-state refits and oracle noise-scaled prediction distances.
 ";
-const SOURCE_BLOB: &str = "5e32ac1255599fd8aae280eb6656d14921c0f174";
-const SOURCE_SHA256: &str = "5499232a9abd733a0e1a09169b14d8d17de6da855202923669e92cac8a54d1a1";
+pub(super) const SOURCE_BLOB: &str = "5e32ac1255599fd8aae280eb6656d14921c0f174";
+pub(super) const SOURCE_SHA256: &str =
+    "5499232a9abd733a0e1a09169b14d8d17de6da855202923669e92cac8a54d1a1";
 
 // No reference losses, reference motion, held-out scores or prior states are
 // deserialized into the local diagnostic. Fixture truth only regenerates input.
@@ -39,7 +40,7 @@ struct SourceFit {
     training_relative_rmse: f64,
 }
 
-fn source(path: &Path) -> Result<Source, Box<dyn Error>> {
+pub(super) fn pinned_bytes(path: &Path) -> Result<Vec<u8>, Box<dyn Error>> {
     let mut bytes = Vec::new();
     File::open(path)?.take(8_000_001).read_to_end(&mut bytes)?;
     if bytes.len() > 8_000_000 {
@@ -60,7 +61,11 @@ fn source(path: &Path) -> Result<Source, Box<dyn Error>> {
     if !result.status.success() || String::from_utf8(result.stdout)?.trim() != SOURCE_BLOB {
         return Err("loss receipt does not match pinned evidence".into());
     }
-    let parsed: Source = serde_json::from_slice(&bytes)?;
+    Ok(bytes)
+}
+
+fn source(path: &Path) -> Result<Source, Box<dyn Error>> {
+    let parsed: Source = serde_json::from_slice(&pinned_bytes(path)?)?;
     if parsed.schema_version != 1
         || parsed.experiment != "nonlinear-magnetic-loss-noise-v1"
         || parsed.cases.len() != 6
@@ -313,6 +318,7 @@ fn study(input: &Source) -> Result<Value, Box<dyn Error>> {
                 sensor,
                 rate,
                 training: core::array::from_fn(|i| measured[i][..measured[i].len() / 2].to_vec()),
+                weighting: Weighting::RelativeWindows,
                 evaluations: Vec::new(),
             };
             let diagnosis = match diagnose(&mut profile, row, sigma) {
@@ -379,6 +385,7 @@ mod tests {
             sensor,
             rate: 48000,
             training: measured.clone(),
+            weighting: Weighting::RelativeWindows,
             evaluations: Vec::new(),
         };
         let voltage = residual_in_voltage(&profile, &c);

@@ -81,6 +81,10 @@ fn validation(
 }
 
 fn study() -> Result<Value, Box<dyn Error>> {
+    study_weighted(Weighting::RelativeWindows)
+}
+
+pub(super) fn study_weighted(weighting: Weighting) -> Result<Value, Box<dyn Error>> {
     let p = prepare(perturbations()[0])?;
     let sensor = sensors()?
         .into_iter()
@@ -142,6 +146,7 @@ fn study() -> Result<Value, Box<dyn Error>> {
                     training: core::array::from_fn(|i| {
                         measured[i][..measured[i].len() / 2].to_vec()
                     }),
+                    weighting,
                     evaluations: Vec::new(),
                 };
                 // Finish unknown-loss selection before preparing the oracle comparator.
@@ -187,8 +192,9 @@ fn study() -> Result<Value, Box<dyn Error>> {
                     Err(e) => json!({"error":e.to_string()}),
                 };
                 let known_t = templates(&p.spectrum, &p.structural, &p.damper, alpha, beta, rate)?;
-                let known = match robustness::outcome(&known_t, sensor, &traces, &clean, &measured)
-                {
+                let known = match robustness::outcome_weighted(
+                    &known_t, sensor, &traces, &clean, &measured, weighting,
+                ) {
                     Ok(v) => v,
                     Err(e) => json!({"error":e.to_string()}),
                 };
@@ -204,11 +210,12 @@ fn study() -> Result<Value, Box<dyn Error>> {
                     && fit["validation"]["strict_state_recovery"] == true
                     && fit["validation"]["both_losses_within_one_percent"] == true
                     && known["strict_matched_recovery"] == true;
-                rows.push(json!({"snr_db":snr,"seed":seed,"noise_standard_deviation":sigma,"required_control":required,
+                rows.push(json!({"snr_db":snr,"seed":seed,"noise_standard_deviation":sigma,"weighting":weighting,"training_window_voltage_energy":profile.training.iter().map(|y|dot(y,y)).collect::<Vec<_>>(),"required_control":required,
                     "required_control_passed":if required{Some(passed)}else{None},"fit":fit,"known_loss_state_control":known,"paired_state_comparison":pair,
                     "profile_evaluations":profile.evaluations}));
                 println!(
-                    "Noisy magnetic loss: {rate} Hz, reference ({alpha}, {beta}), SNR {snr:?}, seed {seed}"
+                    "Magnetic loss weighting {}: {rate} Hz, reference ({alpha}, {beta}), SNR {snr:?}, seed {seed}",
+                    serde_json::to_string(&weighting)?
                 );
             }
             cases.push(json!({"sample_rate":rate,"reference_scales_for_scoring_only":[alpha,beta],"diagnostics":take.diagnostics,

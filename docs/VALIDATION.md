@@ -2137,3 +2137,31 @@ Clippy and formatting. The prior expensive noise-matrix test was not rerun;
 its verified results supply the centers. No objective, optimizer, production
 DSP or audio asset changed. Next qualify noise-consistent weighting before
 interpreting the profile as a calibrated uncertainty measure.
+
+## Constant-voltage weighting of noisy loss fits
+
+The [paired weighting protocol](MAGNETIC-LOSS-WEIGHTING.md) and
+[receipt](../references/nonlinear-magnetic-loss-weighting-validation.json)
+compare 30 new loss/state fits with the byte-pinned relative-window evidence.
+One common training-voltage normalization yields equal sample weights without
+oracle sigma. Seed, residual, analytic Jacobian, outer loss residual and
+known-loss state comparator use the same weighting. Starts and budgets remain
+fixed; previous results enter comparison only after new fitting finishes.
+
+All six noiseless controls pass. At 40 dB both methods recover both losses in
+12/12 cases, while state recovery improves from 11/12 to 12/12. At 20 dB,
+maximum loss error falls from 6.7595% to 3.9983%, but recovery within 1% changes
+from 3/12 to 2/12 (two gains, three losses). All noisy predictions and start
+agreements pass their descriptive gates even when losses are inaccurate.
+The known-loss state comparator improves in every noisy held-out window.
+
+Receipt schema 1, `nonlinear-magnetic-loss-weighting-v1`, 4009237 bytes,
+SHA-256 `c0629403f9187efc05f69c22a90ae6b777ba0e400fb69ddc5d46cdc97c4085ca`.
+The full command completes with 2827 candidates, 8481 inner starts and no
+failed candidates or boundaries. Twelve outer starts converge in noiseless
+data, 47 noisy starts stop without descent and one unselected noisy start
+reaches the iteration limit. This is retained, not treated as proof of an
+optimum. All 102 unit tests, two weighting CLI/receipt checks, the existing
+end-to-end resolution regression, strict Clippy and formatting pass. The old
+expensive outer noise matrix is reused rather than rerun. Development cache
+was cleaned; no production DSP, audio asset or host change is part of this run.

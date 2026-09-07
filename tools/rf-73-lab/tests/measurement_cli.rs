@@ -10,6 +10,212 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn magnetic_loss_weighting_preflights_output_and_pinned_input() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    let result = scratch.run(&[
+        "magnetic-loss-weighting",
+        "--input",
+        "missing.json",
+        "--output",
+        "keep.json",
+    ]);
+    assert!(!result.status.success());
+    assert!(String::from_utf8_lossy(&result.stderr).contains("new .json file"));
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    let source = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../references/nonlinear-magnetic-loss-noise-validation.json");
+    let mut bytes = fs::read(source).unwrap();
+    bytes.push(b' ');
+    fs::write(scratch.0.join("modified.json"), &bytes).unwrap();
+    let result = scratch.run(&[
+        "magnetic-loss-weighting",
+        "--input",
+        "modified.json",
+        "--output",
+        "bad.json",
+    ]);
+    assert!(!result.status.success());
+    assert!(String::from_utf8_lossy(&result.stderr).contains("pinned evidence"));
+    assert!(!scratch.0.join("bad.json").exists());
+    assert_eq!(fs::read(scratch.0.join("modified.json")).unwrap(), bytes);
+    for args in [
+        vec!["magnetic-loss-weighting"],
+        vec![
+            "magnetic-loss-weighting",
+            "--input",
+            "modified.json",
+            "--output",
+            "bad.wav",
+        ],
+        vec![
+            "magnetic-loss-weighting",
+            "--unknown",
+            "modified.json",
+            "--output",
+            "bad.json",
+        ],
+        vec![
+            "magnetic-loss-weighting",
+            "--input",
+            "modified.json",
+            "--output",
+            "bad.json",
+            "extra",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+    let help = scratch.run(&["--help"]);
+    assert!(help.status.success());
+    assert!(String::from_utf8_lossy(&help.stdout).contains("magnetic-loss-weighting --input"));
+}
+
+#[test]
+fn magnetic_loss_weighting_receipt_preserves_pairs_and_training_selection() {
+    fn same_evidence(a: &serde_json::Value, b: &serde_json::Value) {
+        use serde_json::Value;
+        match (a, b) {
+            (Value::Number(a), Value::Number(b)) => {
+                // Baseline scores undergo an extra JSON parse/serialize cycle.
+                // Retain a relative machine-precision allowance, not an error gate.
+                let (a, b) = (a.as_f64().unwrap(), b.as_f64().unwrap());
+                assert!((a - b).abs() <= 8.0 * f64::EPSILON * a.abs().max(b.abs()));
+            }
+            (Value::Array(a), Value::Array(b)) => {
+                assert_eq!(a.len(), b.len());
+                for (a, b) in a.iter().zip(b) {
+                    same_evidence(a, b);
+                }
+            }
+            (Value::Object(a), Value::Object(b)) => {
+                assert_eq!(a.keys().collect::<Vec<_>>(), b.keys().collect::<Vec<_>>());
+                for (key, a) in a {
+                    same_evidence(a, &b[key]);
+                }
+            }
+            _ => assert_eq!(a, b),
+        }
+    }
+    // The expensive full command is run once to produce the tracked receipt.
+    // Recheck its evidence without repeating the complete outer-search matrix.
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let report: serde_json::Value = serde_json::from_slice(
+        &fs::read(root.join("nonlinear-magnetic-loss-weighting-validation.json")).unwrap(),
+    )
+    .unwrap();
+    let old: serde_json::Value = serde_json::from_slice(
+        &fs::read(root.join("nonlinear-magnetic-loss-noise-validation.json")).unwrap(),
+    )
+    .unwrap();
+    assert_eq!(report["experiment"], "nonlinear-magnetic-loss-weighting-v1");
+    assert_eq!(report["weighting"], "constant_voltage");
+    assert_eq!(
+        report["source_git_blob_sha1"],
+        "5e32ac1255599fd8aae280eb6656d14921c0f174"
+    );
+    assert_eq!(report["controls_passed"], true);
+    assert_eq!(report["cases"].as_array().unwrap().len(), 6);
+    let mut controls = 0;
+    for (case, prior) in report["cases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .zip(old["cases"].as_array().unwrap())
+    {
+        assert_eq!(case["sample_rate"], prior["sample_rate"]);
+        assert_eq!(
+            case["reference_scales_for_scoring_only"],
+            prior["reference_scales_for_scoring_only"]
+        );
+        assert_eq!(case["observations"].as_array().unwrap().len(), 5);
+        for (row, previous) in case["observations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .zip(prior["observations"].as_array().unwrap())
+        {
+            for key in ["snr_db", "seed", "noise_standard_deviation"] {
+                assert_eq!(row[key], previous[key]);
+            }
+            assert_eq!(row["weighting"], "constant_voltage");
+            same_evidence(
+                &row["relative_window_baseline"]["validation"],
+                &previous["fit"]["validation"],
+            );
+            same_evidence(
+                &row["relative_window_baseline"]["known_loss_state_control"],
+                &previous["known_loss_state_control"],
+            );
+            assert_eq!(row["paired_weighting_comparison"]["status"], "compared");
+            if row["required_control"] == true {
+                controls += 1;
+                assert_eq!(row["required_control_passed"], true);
+            } else {
+                assert!(row["required_control_passed"].is_null());
+            }
+            let fit = &row["fit"];
+            let attempts = fit["attempts"].as_array().unwrap();
+            assert_eq!(attempts.len(), 2);
+            let selected = fit["selected_loss_start_index"].as_u64().unwrap() as usize;
+            let objective = attempts[selected]["objective"].as_f64().unwrap();
+            assert!(
+                attempts
+                    .iter()
+                    .all(|a| objective <= a["objective"].as_f64().unwrap())
+            );
+            let evaluations = row["profile_evaluations"].as_array().unwrap();
+            for a in attempts {
+                let index = a["evaluation_index"].as_u64().unwrap() as usize;
+                assert_eq!(a["scales"], evaluations[index]["scales"]);
+                assert_eq!(a["objective"], evaluations[index]["objective"]);
+            }
+            for e in evaluations {
+                let starts = e["state_starts"].as_array().unwrap();
+                assert_eq!(starts.len(), 3);
+                let selected = e["selected_state_start_index"].as_u64().unwrap() as usize;
+                let best = starts[selected]["training_relative_rmse"].as_f64().unwrap();
+                assert!(
+                    starts
+                        .iter()
+                        .all(|s| best <= s["training_relative_rmse"].as_f64().unwrap())
+                );
+            }
+            for i in 0..2 {
+                let expected = fit["validation"]["relative_loss_errors"][i]
+                    .as_f64()
+                    .unwrap()
+                    - previous["fit"]["validation"]["relative_loss_errors"][i]
+                        .as_f64()
+                        .unwrap();
+                let actual = row["paired_weighting_comparison"]["relative_loss_error_change"][i]
+                    .as_f64()
+                    .unwrap();
+                assert!((actual - expected).abs() < 1e-14);
+                for field in [
+                    "clean_voltage_relative_rmse",
+                    "measured_voltage_relative_rmse",
+                    "state_energy_norm_relative_rmse",
+                ] {
+                    let expected = fit["validation"]["windows"][i][field].as_f64().unwrap()
+                        - previous["fit"]["validation"]["windows"][i][field]
+                            .as_f64()
+                            .unwrap();
+                    let actual = row["paired_weighting_comparison"]["windows"][i]
+                        [format!("{field}_change")]
+                    .as_f64()
+                    .unwrap();
+                    assert!((actual - expected).abs() < 1e-14);
+                }
+            }
+        }
+    }
+    assert_eq!(controls, 6);
+}
+
+#[test]
 fn magnetic_loss_resolution_pins_evidence_replays_centers_and_withholds_zero_noise() {
     let scratch = Scratch::new();
     let source = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
