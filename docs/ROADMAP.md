@@ -454,3 +454,11 @@ The 54 fits within 1% of both true scales remain unchanged: this improves reject
 not geometric identification. Pickup-position mismatch becomes visible in the
 residual but still passes the existing gate. Next qualify the nonlinear magnetic
 observation on these trajectories while retaining continuity and geometry limits.
+
+The [magnetic observation study](MAGNETIC-OBSERVATION-LOSS.md) retains 66 cases:
+30 positive controls pass, 12 centered zero-slope observations are withheld, and
+all 24 full nonlinear voltage fits fail prediction and two-scale recovery under
+the rest-linearized observer. Next qualify a nonlinear state fit with known
+mechanics/sensor geometry, continuous state and held-out samples before freeing
+loss parameters. These direct point samples do not validate antialiasing or a
+real-instrument field law; the production equations remain unchanged.

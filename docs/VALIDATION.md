@@ -1967,3 +1967,25 @@ Receipt schema 1, `continuous-pickup-loss-v1`, 1090267 bytes, SHA-256
 The laboratory release suite passes 119 tests (86 unit, 33 CLI), plus strict
 laboratory Clippy and formatting checks. Analytic switched-damping tests validate
 the event propagation. No production equation, audio asset or host change is claimed.
+
+## Magnetic observation and rest-linearized loss inference
+
+The [magnetic observation protocol](MAGNETIC-OBSERVATION-LOSS.md) and
+[receipt](../references/magnetic-observation-loss-validation.json) retain 66
+observations of six shared continuous-state trajectories. Existing production
+and point-pole voltage laws use baseline, close and centered sensor geometries.
+Only the assumed constant rest sensitivity is supplied to the linear inverse.
+
+All 30 mechanical/linearized controls pass, with held-out observation relative
+RMSE below `7.365e-9`. All 12 centered zero-slope controls explicitly withhold
+inference despite nonzero nonlinear voltage. All 24 noncentered nonlinear fits
+complete but fail both prediction consistency and two-scale recovery. No gate
+was tuned; no erroneous fitted loss is promoted into production parameters.
+
+Receipt schema 1, `magnetic-observation-loss-v1`, 616210 bytes, SHA-256
+`a846f053c157154bf488d90fea007506241c9ade96ef05c42b10acbfd1e79480`.
+The laboratory release suite passes 122 tests (88 unit, 34 CLI), with strict
+laboratory Clippy and formatting checks. Forward diagnostics use 192/384 kHz
+mechanical ticks; inverse data are point samples at 48/96 kHz, so no antialiasing
+or recorded-voltage calibration is claimed. No production equation, preset,
+audio asset or host process changed.

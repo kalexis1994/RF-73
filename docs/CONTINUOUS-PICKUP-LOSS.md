@@ -120,3 +120,8 @@ recordings; state continuity alone does not validate physical loss coefficients.
 
 No production solver, preset, plugin engine or audio asset changed. This is an
 offline inference experiment, not a new audible version or a listening test.
+
+The subsequent [magnetic observation study](MAGNETIC-OBSERVATION-LOSS.md) applies
+the existing voltage laws to these trajectories. All 30 mechanical/linearized
+controls pass, but all 24 full nonlinear voltage fits fail the linear inverse's
+prediction and loss-recovery criteria. Centered zero-slope cases are withheld.

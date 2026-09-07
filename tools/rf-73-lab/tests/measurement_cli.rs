@@ -10,6 +10,86 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn magnetic_loss_keeps_linear_controls_nonlinear_failures_and_centered_withholding() {
+    let scratch = Scratch::new();
+    let args = ["magnetic-pickup-loss", "--output", "magnetic.json"];
+    scratch.success(&args);
+    let report = scratch.json("magnetic.json");
+    assert_eq!(report["experiment"], "magnetic-observation-loss-v1");
+    assert_eq!(report["controls_passed"], true);
+    assert_eq!(report["summary"]["observations"], 66);
+    assert_eq!(report["summary"]["positive_controls"], 30);
+    assert_eq!(report["summary"]["centered_withheld"], 12);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    for case in cases {
+        let rows = case["observations"].as_array().unwrap();
+        assert_eq!(rows.len(), 11);
+        for row in rows {
+            if row["required_control"] == true {
+                assert_eq!(row["required_control_passed"], true);
+            }
+            if row["status"] == "withheld_zero_rest_sensitivity" {
+                assert_eq!(row["sensor"]["geometry"], "centered");
+                assert_eq!(row["rest_sensitivity_per_velocity"], 0.0);
+                assert!(row["reason"].as_str().unwrap().contains("rest sensitivity"));
+                assert!(row["fit"].is_null());
+                for stats in row["nonlinear_forward_diagnostics"].as_array().unwrap() {
+                    assert!(stats["voltage_proxy_rms"].as_f64().unwrap() > 0.0);
+                    assert_eq!(stats["rest_linearization_relative_rmse"], 1.0);
+                }
+            } else if row["status"] == "fitted" {
+                assert_eq!(row["fit"]["fitted_initial_state_count"], 1);
+                for window in row["fit"]["windows"].as_array().unwrap() {
+                    assert!(
+                        window["held_out_clean_observation_relative_rmse"]
+                            .as_f64()
+                            .is_some()
+                    );
+                    assert!(window["held_out_clean_pickup_relative_rmse"].is_null());
+                    if row["required_control"] == true {
+                        assert!(
+                            window["held_out_clean_observation_relative_rmse"]
+                                .as_f64()
+                                .unwrap()
+                                < 1e-5
+                        );
+                    }
+                }
+            }
+            if row["observation"] != "mechanical_velocity" {
+                assert_eq!(row["observation_units"], "uncalibrated_voltage_proxy");
+                assert_eq!(
+                    row["nonlinear_forward_diagnostics"]
+                        .as_array()
+                        .unwrap()
+                        .len(),
+                    2
+                );
+            }
+        }
+    }
+    let saved = fs::read(scratch.0.join("magnetic.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("magnetic.json")).unwrap());
+    for args in [
+        vec!["magnetic-pickup-loss"],
+        vec!["magnetic-pickup-loss", "--output", "bad.wav"],
+        vec![
+            "magnetic-pickup-loss",
+            "--output",
+            "bad.json",
+            "--gain",
+            "1",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn continuous_loss_carries_one_state_and_pairs_every_position_case() {
     let scratch = Scratch::new();
     let args = ["pickup-loss-continuity", "--output", "continuous.json"];

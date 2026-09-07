@@ -221,6 +221,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", mechanical_loss::observer::loss::HELP);
         print!("{}", mechanical_loss::observer::loss::geometry::HELP);
         print!("{}", mechanical_loss::observer::loss::continuity::HELP);
+        print!("{}", mechanical_loss::observer::loss::magnetic::HELP);
         print!("{}", source_envelope::short::HELP);
         print!("{}", short_envelope::HELP);
         print!("{}", partial_comparison::HELP);
@@ -305,6 +306,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "pickup-loss-continuity" {
         return mechanical_loss::observer::loss::continuity::run(&args);
+    }
+    if args[0] == "magnetic-pickup-loss" {
+        return mechanical_loss::observer::loss::magnetic::run(&args);
     }
     if args[0] == "observe-short-source-envelopes" {
         return source_envelope::short::run(&args);

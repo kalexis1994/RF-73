@@ -132,7 +132,10 @@ fn continuous_sensitivity(
     )
 }
 
-fn continuous_outcome(model: &Model<'_>, traces: &[Trace; 2]) -> Result<Value, Box<dyn Error>> {
+pub(super) fn continuous_outcome(
+    model: &Model<'_>,
+    traces: &[Trace; 2],
+) -> Result<Value, Box<dyn Error>> {
     let training: [Vec<f64>; 2] =
         core::array::from_fn(|i| traces[i].pickup[..traces[i].pickup.len() / 2].to_vec());
     // Recovery sees training slices and assumed operators, not truth or held-out data.
