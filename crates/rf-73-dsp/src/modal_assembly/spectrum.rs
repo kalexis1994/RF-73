@@ -1,16 +1,16 @@
-//! Offline undamped modes of the complete nine-coordinate structure.
+//! Offline undamped modes of the planar or polarized structure.
 use super::{
-    Matrix, ModalAssemblyProfile, N, Operators, TineGeometry, Vector,
+    ModalAssemblyProfile, N, Operators, PolarizationProfile, TineGeometry,
     numerics::{apply, dot, inverse},
 };
 use crate::ModelError;
 use core::f64::consts::TAU;
 
 #[derive(Debug, Clone, Copy)]
-pub struct StructuralMode {
+pub struct StructuralMode<const D: usize = N> {
     pub frequency_hz: f64,
     /// Generalized coordinates, mass normalized: shape^T M shape = 1.
-    pub shape: Vector,
+    pub shape: [f64; D],
     pub hammer_weight: f64,
     pub pickup_weight: f64,
     /// Squared M-inner-product projection onto the first fixed-root tine coordinate.
@@ -20,9 +20,9 @@ pub struct StructuralMode {
 }
 
 #[derive(Debug, Clone)]
-pub struct ModalSpectrum {
-    pub modes: [StructuralMode; N],
-    pub mass_matrix: Matrix,
+pub struct ModalSpectrum<const D: usize = N> {
+    pub modes: [StructuralMode<D>; D],
+    pub mass_matrix: [[f64; D]; D],
     pub maximum_mass_orthogonality_error: f64,
     pub fixed_root_fundamental_hz: f64,
 }
@@ -36,11 +36,37 @@ impl ModalSpectrum {
         geometry.validate()?;
         profile.validate()?;
         let op = Operators::prepare(geometry, profile)?;
-        let flat = |m: Matrix| m.into_iter().flatten().collect::<Vec<_>>();
-        let (values, vectors) = crate::tine::eigen(&flat(op.k), &flat(op.m), N, N)?;
+        Self::from_structure(op.m, op.k, op.hammer, op.pickup)
+    }
+}
+impl ModalSpectrum<18> {
+    /// Same two-plane mass, stiffness and vertical pickup as the action.
+    /// Excludes contact, damping and magnetic loading; output pitch needs a
+    /// separate time-domain qualification. Projection refers to the vertical tine.
+    pub fn prepare_polarized(
+        geometry: TineGeometry,
+        profile: ModalAssemblyProfile,
+        polarization: PolarizationProfile,
+    ) -> Result<Self, ModelError> {
+        profile.validate()?;
+        polarization.validate()?;
+        let base = Operators::prepare(geometry, profile)?;
+        let op = super::polarization::prepare_structure(&base, polarization);
+        Self::from_structure(op.m, op.k, op.hammer, op.pickup)
+    }
+}
+impl<const D: usize> ModalSpectrum<D> {
+    fn from_structure(
+        m: [[f64; D]; D],
+        k: [[f64; D]; D],
+        hammer: [f64; D],
+        pickup: [f64; D],
+    ) -> Result<Self, ModelError> {
+        let flat = |m: [[f64; D]; D]| m.into_iter().flatten().collect::<Vec<_>>();
+        let (values, vectors) = crate::tine::eigen(&flat(k), &flat(m), D, D)?;
         let largest = values.iter().copied().fold(0.0_f64, f64::max);
-        let inv = inverse(op.m)?;
-        let mut modes = Vec::with_capacity(N);
+        let inv = inverse(m)?;
+        let mut modes = Vec::with_capacity(D);
         for (value, vector) in values.into_iter().zip(vectors) {
             if !value.is_finite() || value < -largest * 1e-12 {
                 return Err(ModelError("invalid structural eigenvalue"));
@@ -50,13 +76,13 @@ impl ModalSpectrum {
             } else {
                 value
             };
-            let shape: Vector = vector
+            let shape: [f64; D] = vector
                 .try_into()
                 .map_err(|_| ModelError("incomplete structural eigenvector"))?;
-            let mv = apply(&op.m, shape);
+            let mv = apply(&m, shape);
             let norm = dot(shape, mv);
-            let kv = apply(&op.k, shape);
-            let force: Vector = core::array::from_fn(|i| kv[i] - lambda * mv[i]);
+            let kv = apply(&k, shape);
+            let force = core::array::from_fn(|i| kv[i] - lambda * mv[i]);
             let error = dot(force, apply(&inv, force));
             let scale = if lambda > 0.0 {
                 2.0 * lambda * lambda * norm
@@ -64,7 +90,7 @@ impl ModalSpectrum {
                 largest * largest * norm
             };
             let residual = (error.max(0.0) / scale).sqrt();
-            let projection = mv[2] * mv[2] / (op.m[2][2] * norm);
+            let projection = mv[2] * mv[2] / (m[2][2] * norm);
             if ![norm, residual, projection].iter().all(|x| x.is_finite())
                 || norm <= 0.0
                 || residual > 1e-8
@@ -75,8 +101,8 @@ impl ModalSpectrum {
             modes.push(StructuralMode {
                 frequency_hz: lambda.sqrt() / TAU,
                 shape,
-                hammer_weight: dot(op.hammer, shape),
-                pickup_weight: dot(op.pickup, shape),
+                hammer_weight: dot(hammer, shape),
+                pickup_weight: dot(pickup, shape),
                 first_tine_projection: projection,
                 relative_eigen_residual: residual,
             });
@@ -84,8 +110,8 @@ impl ModalSpectrum {
         let mut orthogonality = 0.0_f64;
         for (i, a) in modes.iter().enumerate() {
             for (j, b) in modes.iter().enumerate() {
-                orthogonality = orthogonality
-                    .max((dot(a.shape, apply(&op.m, b.shape)) - f64::from(i == j)).abs());
+                orthogonality =
+                    orthogonality.max((dot(a.shape, apply(&m, b.shape)) - f64::from(i == j)).abs());
             }
         }
         if orthogonality > 1e-8 {
@@ -95,16 +121,61 @@ impl ModalSpectrum {
             modes: modes
                 .try_into()
                 .map_err(|_| ModelError("missing structural modes"))?,
-            mass_matrix: op.m,
+            mass_matrix: m,
             maximum_mass_orthogonality_error: orthogonality,
-            fixed_root_fundamental_hz: (op.k[2][2] / op.m[2][2]).sqrt() / TAU,
+            fixed_root_fundamental_hz: (k[2][2] / m[2][2]).sqrt() / TAU,
         })
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::super::{ModalAssembly, ModalIntegration};
+    use super::super::{ModalAssembly, ModalIntegration, Vector};
+    #[test]
+    fn polarized_spectrum_recovers_planar_doublets_and_rotation_invariant_frequencies() {
+        use super::*;
+        let geometry = TineGeometry::default();
+        let profile = ModalAssemblyProfile::default();
+        let planar = ModalSpectrum::prepare(geometry, profile).unwrap();
+        let pair = ModalSpectrum::<18>::prepare_polarized(
+            geometry,
+            profile,
+            PolarizationProfile::isotropic(),
+        )
+        .unwrap();
+        for (i, mode) in planar.modes.iter().enumerate() {
+            for index in [2 * i, 2 * i + 1] {
+                assert!((pair.modes[index].frequency_hz / mode.frequency_hz - 1.0).abs() < 1e-8);
+            }
+        }
+        let p = PolarizationProfile::default();
+        let a = ModalSpectrum::<18>::prepare_polarized(geometry, profile, p).unwrap();
+        let b = ModalSpectrum::<18>::prepare_polarized(
+            geometry,
+            profile,
+            PolarizationProfile {
+                boundary_angle_rad: 1.1,
+                ..p
+            },
+        )
+        .unwrap();
+        for (x, y) in a.modes.iter().zip(&b.modes) {
+            assert!((x.frequency_hz / y.frequency_hz - 1.0).abs() < 1e-8);
+            assert!(x.relative_eigen_residual < 1e-8);
+        }
+        assert!(a.maximum_mass_orthogonality_error < 1e-8);
+        assert!(
+            ModalSpectrum::<18>::prepare_polarized(
+                geometry,
+                profile,
+                PolarizationProfile {
+                    boundary_angle_rad: f64::NAN,
+                    ..p
+                }
+            )
+            .is_err()
+        );
+    }
     #[test]
     fn sliding_tuning_mass_changes_coupled_pitch_and_partial_ratios() {
         for length in [0.07, 0.075] {

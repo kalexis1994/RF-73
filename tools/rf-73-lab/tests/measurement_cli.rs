@@ -10,6 +10,111 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_tuning_receipt_requires_audio_pitch_long_gesture_convergence_and_changed_ratios() {
+    let path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../references/loaded-polarized-spring-tuning-validation.json");
+    let r: serde_json::Value = serde_json::from_slice(&fs::read(path).unwrap()).unwrap();
+    assert_eq!(r["passed"], true);
+    assert_eq!(r["cases"].as_array().unwrap().len(), 2);
+    assert!(
+        r["structural_fit"]["undamped_error_cents"]
+            .as_f64()
+            .unwrap()
+            .abs()
+            < 0.0001
+    );
+    assert!(
+        r["tuned_structure"]["spring_center_from_root_mm"]
+            .as_f64()
+            .unwrap()
+            < 59.5
+    );
+    assert_ne!(
+        r["before_structure"]["fixed_root_ratios"],
+        r["tuned_structure"]["fixed_root_ratios"]
+    );
+    for case in r["cases"].as_array().unwrap() {
+        assert_eq!(case["passed"], true);
+        assert_eq!(case["pitch_anchor"]["qualified"], true);
+        assert_eq!(case["takes"].as_array().unwrap().len(), 2);
+        if case["case"] == "tuned" {
+            assert!(case["output_error_cents"].as_f64().unwrap().abs() < 5.0);
+        }
+        for take in case["takes"].as_array().unwrap() {
+            assert_eq!(take["passed"], true);
+            assert_eq!(take["heat_monotone"], true);
+            assert!(take["max_relative_total_balance_defect"].as_f64().unwrap() < 1e-8);
+            assert!(take["max_relative_exchange_defect"].as_f64().unwrap() < 1e-10);
+            assert!(take["max_stationary_drive_energy_growth"].as_f64().unwrap() < 1e-10);
+            assert!(take["hammer_contact_entries"].as_u64().unwrap() >= 2);
+            assert!((0.0..1.0).contains(&take["peak"].as_f64().unwrap()));
+        }
+        let windows = case["voltage_convergence"]["windows"].as_array().unwrap();
+        assert_eq!(windows.len(), 5);
+        for window in windows {
+            assert!(window["voltage_relative_rmse"].as_f64().unwrap() < 0.01);
+        }
+    }
+    assert_eq!(r["tone_comparison"]["windows"].as_array().unwrap().len(), 3);
+}
+
+#[test]
+fn loaded_tuning_cli_validates_reference_and_preserves_each_output() {
+    let scratch = Scratch::new();
+    for name in ["a.wav", "b-before.wav", "c.json"] {
+        fs::write(scratch.0.join(name), b"preserve").unwrap();
+    }
+    for output in ["a.wav", "b.wav", "c.wav"] {
+        assert!(
+            !scratch
+                .run(&["tune-electromechanical", "missing.json", "--output", output])
+                .status
+                .success()
+        );
+    }
+    for name in ["a.wav", "b-before.wav", "c.json"] {
+        assert_eq!(fs::read(scratch.0.join(name)).unwrap(), b"preserve");
+    }
+    fs::write(scratch.0.join("bad-reference.json"), b"{}").unwrap();
+    for args in [
+        vec!["tune-electromechanical"],
+        vec![
+            "tune-electromechanical",
+            "bad-reference.json",
+            "--output",
+            "bad.wav",
+        ],
+        vec![
+            "tune-electromechanical",
+            "bad-reference.json",
+            "--output",
+            "bad.json",
+        ],
+        vec![
+            "tune-electromechanical",
+            "bad-reference.json",
+            "--bad",
+            "bad.wav",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    for name in [
+        "a-before.wav",
+        "a.json",
+        "b.wav",
+        "b.json",
+        "c.wav",
+        "c-before.wav",
+        "bad.wav",
+        "bad-before.wav",
+        "bad.json",
+    ] {
+        assert!(!scratch.0.join(name).exists());
+    }
+}
+
+#[test]
 fn electromechanical_receipt_qualifies_reciprocity_load_controls_and_output_convergence() {
     let path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("../../references/electromechanical-validation.json");

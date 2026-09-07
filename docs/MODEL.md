@@ -23,6 +23,12 @@ planes, with separately audited mechanical/electrical exchange and heat.
 The new renderer converts output volts to mono audio using an explicit fixed
 gain. Neither this field proxy nor its electrical constants are calibrated.
 
+The [loaded tuning pilot](LOADED-SPRING-TUNING.md) selects spring position by
+physical mode tracking in the eighteen-coordinate undamped structure, then
+checks pitch independently in the full action/circuit WAV. It preserves and
+reports the accompanying changes in nonharmonic mode ratios and output level.
+Its one-cell G3 result does not identify material parameters or keyboard tuning.
+
 ```text
 MIDI velocity -> hammer initial velocity <-> unilateral contact <-> modal resonator
                                                                   ^ damper

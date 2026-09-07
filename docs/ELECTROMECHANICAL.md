@@ -169,7 +169,8 @@ amplifier and loudspeaker are absent. Spatial flux and circuit constants still
 need real-instrument identification. Numerical passivity does not certify tone.
 The action remains a small-deflection reduction with provisional contact laws.
 
-Next qualify longer gestures, pitch and timbre through this combined output,
-then compare measured sources and reduce computational cost before integrating
+The subsequent [loaded spring pilot](LOADED-SPRING-TUNING.md) qualifies longer
+gestures and output pitch, with retained before/after timbre observations. Next
+compare measured sources and reduce computational cost before integrating
 the engine into the playable plugin. The current high-resolution reference is
 offline; no realtime, host or human-listening result is claimed here.

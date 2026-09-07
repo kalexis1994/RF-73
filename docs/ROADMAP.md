@@ -28,9 +28,15 @@ not only parameter-identification diagnostics:
    Eight cases and 24 takes pass load controls and output refinement. Measured
    fields, magnetic bias force and full keyboard wiring remain open.
 
-The next functional block should qualify longer gestures and tuned pitch/timbre
-through this combined output, followed by measured-source comparisons and a
-computational reduction suitable for the playable plugin.
+5. **Tuning through the combined output:** the
+   [loaded spring pilot](LOADED-SPRING-TUNING.md) passes four 2.5-second takes,
+   with physical mode tracking, long sustain/release/restrike, output pitch
+   qualification and retained before/after timbre observations. It covers one
+   provisional G3 cell, not a calibrated keyboard.
+
+Next compare the tuned combined output with measured sources across intensities
+and decay phases, retaining uncertainty in the pickup and material parameters.
+A computational reduction suitable for the playable plugin remains necessary.
 
 Measured material/geometry calibration, listening and realtime integration
 remain cross-cutting release gates. The current damper is not a calibrated

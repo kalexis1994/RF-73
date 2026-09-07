@@ -292,7 +292,7 @@ fn fit(target: f64) -> Result<(Selected, Value), Box<dyn Error>> {
     Err("bounded structural tuning did not converge".into())
 }
 
-pub(super) fn reference(value: &Value) -> Result<f64, Box<dyn Error>> {
+pub(crate) fn reference(value: &Value) -> Result<f64, Box<dyn Error>> {
     if value["schema_version"] != 1
         || value["experiment"] != "frequency-reference-preparation-v1"
         || value["reference_qualification_passed"] != true

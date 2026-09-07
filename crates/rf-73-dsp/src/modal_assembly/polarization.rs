@@ -84,7 +84,7 @@ impl ActionAssembly<18, 20> {
     }
 }
 
-fn prepare_structure(base: &Operators, p: PolarizationProfile) -> ActionStructure<18> {
+pub(super) fn prepare_structure(base: &Operators, p: PolarizationProfile) -> ActionStructure<18> {
     let mut m = [[0.0; 18]; 18];
     let mut k = m;
     let mut c = m;

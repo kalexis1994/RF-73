@@ -48,6 +48,12 @@ takes pass energy, load-control and output-refinement checks; a short offline
 WAV renderer makes the combined model audible. Field/circuit calibration and
 realtime plugin integration remain open.
 
+The [loaded spring-tuning pilot](docs/LOADED-SPRING-TUNING.md) now moves the
+tuning mass on a fixed tine while tracking the physical mode in both planes.
+Four long-gesture takes pass energy and output-refinement gates; the tuned
+audio also passes the frozen G3 pitch target. A before/after WAV pair preserves
+changes in nonharmonic structure and output level for listening.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

@@ -2341,3 +2341,52 @@ about 193 MiB. This is offline reference physics with provisional spatial and
 circuit constants. Full field geometry, static magnetic pull, nonlinear
 inductance, keyboard wiring, complete aliasing qualification and realtime host
 integration remain open. No plugin version or Desktop session was produced.
+
+## Loaded polarized spring tuning and long gestures
+
+The [combined tuning pilot](LOADED-SPRING-TUNING.md) extends undamped structural
+analysis to the eighteen-coordinate polarized assembly using the same operators
+as the action. A bounded inward spring search tracks physical two-plane fields
+in a common positive mass metric, then checks the result independently through
+the full mechanical/electrical output. Both bracket directions must agree on
+mode identity. Tine length and tuning mass remain fixed at 70 mm and 0.1 g.
+
+The [retained receipt](../references/loaded-polarized-spring-tuning-validation.json)
+passes both before/after cases and four 2.5-second takes at 128/256 ticks per
+frame. The spring center moves from 59.5 to 55.740811 mm. The selected undamped
+frequency is 196.386153 Hz; the frozen training target is 196.386147 Hz.
+The output observer measures 192.829360 Hz before and 196.380958 Hz afterward,
+changing estimated error from -31.6421 to -0.0457 cents. Both broad three-window
+anchors qualify, with temporal spans below 0.076 cents. This is a finite-window
+numerical estimate; the pilot gate remains 5 cents and does not establish
+sub-cent physical calibration accuracy.
+
+Worst output refinement error is 0.003402% across ten fixed windows, including
+long sustain and release/restrike. Total relative energy defect is below
+1.477e-12; exchange defect is below 4.071e-19. Stationary-drive energy never
+grows, heat is monotone and every take contains two hammer contacts. The
+outer solve uses at most three iterations. No qualification threshold or
+material/circuit parameter was changed in response to these results.
+
+Both fine WAVs retain 120,000 finite samples at 48 kHz, with fixed 0.1 FS/V gain.
+Rust readback gives peaks 0.186048448/0.215824589 and RMS
+0.012811531/0.013314061 before/after. Only this fine pair is kept, less than
+1 MiB combined; coarse arrays are discarded after the comparison. The protocol
+records paths and hashes. Full modal tables preserve nonharmonic ratio changes;
+raw attack/body spectra preserve accompanying level changes. Body harmonic
+balances remain null because the nominal-note detector withholds the untuned
+fundamental; no missing estimate is converted into a timbre improvement claim.
+
+Verification passes 126 DSP tests, eight plugin integration tests, 108 lab unit
+tests (including a live structural-fit replay), two loaded-tuning CLI/receipt
+checks, strict Clippy and formatting. The isotropic structural spectrum reduces
+to planar doublets; rotating anisotropy preserves frequencies. Input checks
+validate the frozen training reference and preserve all three possible existing
+outputs. The earlier planar trajectory replay continues to pass.
+
+Receipt schema 1, 269324 bytes, SHA-256
+`cac1fca3346a22841c66b9bddfc5366d4a08c7e1ad333cded13db35bcfa10a50`.
+This is one provisional cell with selected long gestures. No host session,
+listening judgment, measured timbre match, complete aliasing bound or realtime
+integration is claimed. Next compare the tuned combined output to recorded
+sources across intensities and decay phases before freeing more parameters.
