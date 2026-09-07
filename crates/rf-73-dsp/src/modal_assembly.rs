@@ -336,6 +336,14 @@ impl ModalAssembly {
     pub fn mass_matrix(&self) -> [[f64; 9]; 9] {
         self.op.m
     }
+    /// Immutable research inspection; physical stiffness in generalized coordinates.
+    pub fn stiffness_matrix(&self) -> [[f64; 9]; 9] {
+        self.op.k
+    }
+    /// Immutable viscous operator for the specified damper state; does not change state.
+    pub fn damping_matrix(&self, damped: bool) -> [[f64; 9]; 9] {
+        self.op.c[usize::from(damped)]
+    }
     pub fn strike(&mut self, velocity: f64) -> bool {
         if self.contact || !velocity.is_finite() || velocity <= 0.0 || velocity > 1.0 {
             return false;
@@ -473,6 +481,49 @@ impl ModalAssembly {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn operator_inspection_preserves_state_and_recovers_spatial_damper_power() {
+        let g = TineGeometry::default();
+        let p = ModalAssemblyProfile::default();
+        let mut voice = ModalAssembly::new(
+            48000.0,
+            g,
+            p,
+            ModalIntegration::Refined {
+                contact_substeps: 64,
+            },
+        )
+        .unwrap();
+        assert!(voice.strike(0.5));
+        voice.tick();
+        let before = voice.probe();
+        let off = voice.damping_matrix(false);
+        let on = voice.damping_matrix(true);
+        let mut stiffness = voice.stiffness_matrix();
+        stiffness[0][0] = f64::INFINITY;
+        assert!(stiffness[0][0].is_infinite());
+        assert!(voice.stiffness_matrix()[0][0].is_finite());
+        let v = [0.1, 0.02, -0.03, 0.04, 0.01, -0.02, 0.03, -0.01, 0.07];
+        let basis = TineModes::prepare(g, 64).unwrap();
+        let speed = v[0]
+            + g.length_m * p.damper_position * v[1]
+            + (0..6)
+                .map(|i| basis.shape(i, p.damper_position).unwrap() * v[i + 2])
+                .sum::<f64>();
+        let measured = (0..9)
+            .map(|i| v[i] * (0..9).map(|j| (on[i][j] - off[i][j]) * v[j]).sum::<f64>())
+            .sum::<f64>();
+        assert!((measured - p.damper_n_s_m * speed * speed).abs() < 1e-12);
+        for (i, row) in on.iter().enumerate() {
+            for (j, value) in row.iter().enumerate() {
+                assert!((value - on[j][i]).abs() < 1e-14 * value.abs().max(1.0));
+            }
+        }
+        let after = voice.probe();
+        assert_eq!(before.position, after.position);
+        assert_eq!(before.velocity, after.velocity);
+        assert_eq!(before.mechanical_energy_j, after.mechanical_energy_j);
+    }
     #[test]
     fn finite_tuning_span_closes_coupled_contact_and_release_energy_budget() {
         for (taper, end) in [

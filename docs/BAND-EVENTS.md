@@ -116,3 +116,8 @@ Further threshold tightening cannot resolve histories outside observed support.
 
 Production DSP, pickup law, spring geometry, presets and source WAVs are unchanged.
 No host launch, listening result or packaged release is claimed.
+
+The subsequent [controlled mechanical study](MECHANICAL-LOSS.md) separates
+structural and damper power using known full-state trajectories and predicts
+held-out energy drops. Its successful two-scale recovery does not remove the
+audio observation and event-history limits established here.

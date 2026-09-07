@@ -10,6 +10,50 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn mechanical_loss_recovers_known_scales_with_held_out_rows_and_output_protection() {
+    let scratch = Scratch::new();
+    let args = ["mechanical-loss", "--output", "loss.json"];
+    scratch.success(&args);
+    let report = scratch.json("loss.json");
+    assert_eq!(report["all_cases_qualified"], true);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    for case in cases {
+        assert_eq!(case["qualified"], true);
+        assert_eq!(case["rows"].as_array().unwrap().len(), 6);
+        assert_eq!(case["fit_row_indices"], serde_json::json!([0, 1, 3]));
+        assert_eq!(case["held_out_row_indices"], serde_json::json!([2, 4, 5]));
+        for row in case["rows"].as_array().unwrap() {
+            assert_eq!(row["contact_free"], true);
+        }
+        assert!(
+            case["omitted_damper_control"]["relative_energy_rmse"]
+                .as_f64()
+                .unwrap()
+                > 0.01
+        );
+        assert!(case["held_out_relative_energy_rmse"].as_f64().unwrap() < 0.005);
+        for name in ["structural", "damper"] {
+            let actual = case[format!("estimated_{name}_scale")].as_f64().unwrap();
+            let expected = case[format!("known_{name}_scale")].as_f64().unwrap();
+            assert!((actual / expected - 1.0).abs() < 0.01);
+        }
+    }
+    let saved = fs::read(scratch.0.join("loss.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("loss.json")).unwrap());
+    for args in [
+        vec!["mechanical-loss"],
+        vec!["mechanical-loss", "--output", "bad.wav"],
+        vec!["mechanical-loss", "--output", "bad.json", "--hold", "0.1"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn band_event_grid_retains_all_outcomes_without_identifying_natural_sustain() {
     let scratch = Scratch::new();
     let args = ["study-band-events", "--output", "events.json"];

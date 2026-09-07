@@ -406,3 +406,11 @@ does not identify natural sustain; every result states that limit explicitly.
 Next use controlled mechanical excitation/damper timing to test loss recovery.
 The processed bank remains conditional timbral evidence, not a natural-loss target
 without independent state and mode information. No estimator gate or DSP changed.
+
+The [controlled mechanical loss study](MECHANICAL-LOSS.md) now recovers separate
+structural and damper multipliers from full-state nine-coordinate trajectories.
+All six known-state cases pass held-out energy prediction; omission of damper
+power leaves 63..74% relative residual. Independent endpoint quadrature error
+decreases under 48/96 kHz refinement. Next reduce observation to modal/pickup
+motion under known event history; full-state success does not identify source
+losses. New matrix inspection methods leave the physical solver unchanged.

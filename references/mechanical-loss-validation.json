@@ -1,0 +1,531 @@
+{
+  "all_cases_qualified": true,
+  "cases": [
+    {
+      "diagnostics": {
+        "contact_substeps": 64,
+        "damper_on_seconds": 0.14,
+        "first_separation_seconds": 0.00084375,
+        "initial_hammer_speed_m_s": 0.30314331330207966,
+        "last_contact_seconds": 0.00084375,
+        "maximum_energy_ledger_relative_residual": 1.7947066265874625e-11,
+        "maximum_positive_energy_step_relative": 0.0,
+        "mechanical_checks_passed": true,
+        "mechanical_tick_rate_hz": 192000,
+        "sample_rate_hz": 48000,
+        "strike_input": 0.5
+      },
+      "estimated_damper_scale": 1.4999966538996239,
+      "estimated_structural_scale": 0.4999995849393027,
+      "fit_relative_energy_rmse": 5.506233731379189e-8,
+      "fit_row_indices": [
+        0,
+        1,
+        3
+      ],
+      "held_out_relative_energy_rmse": 8.797544056766016e-7,
+      "held_out_row_indices": [
+        2,
+        4,
+        5
+      ],
+      "known_damper_scale": 1.5,
+      "known_structural_scale": 0.5,
+      "normalized_qr_pivot": 0.9996837373787241,
+      "omitted_damper_control": {
+        "fitted_structural_scale": 0.5104867173552361,
+        "relative_energy_rmse": 0.632810425226347
+      },
+      "qualified": true,
+      "rows": [
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.06,
+          "energy_drop_j": 0.000018592344699339277,
+          "start_seconds": 0.02,
+          "structural_integral_j": 0.000037184720800819966
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.1,
+          "energy_drop_j": 3.668172766231354e-6,
+          "start_seconds": 0.06,
+          "structural_integral_j": 7.336348914345294e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.14,
+          "energy_drop_j": 2.220785432420887e-6,
+          "start_seconds": 0.1,
+          "structural_integral_j": 4.4415708195084435e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.00001061985743557027,
+          "end_seconds": 0.18,
+          "energy_drop_j": 0.0000164064759979525,
+          "start_seconds": 0.14,
+          "structural_integral_j": 9.534515508926401e-7
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 1.398840814749073e-7,
+          "end_seconds": 0.22,
+          "energy_drop_j": 3.8092720260486414e-7,
+          "start_seconds": 0.18,
+          "structural_integral_j": 3.422021869936997e-7
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 8.016618739619258e-8,
+          "end_seconds": 0.26,
+          "energy_drop_j": 2.1591345663490815e-7,
+          "start_seconds": 0.22,
+          "structural_integral_j": 1.9132833520515445e-7
+        }
+      ]
+    },
+    {
+      "diagnostics": {
+        "contact_substeps": 64,
+        "damper_on_seconds": 0.14,
+        "first_separation_seconds": 0.0008411458333333333,
+        "initial_hammer_speed_m_s": 0.30314331330207966,
+        "last_contact_seconds": 0.0008411458333333333,
+        "maximum_energy_ledger_relative_residual": 1.7294480532588716e-11,
+        "maximum_positive_energy_step_relative": 0.0,
+        "mechanical_checks_passed": true,
+        "mechanical_tick_rate_hz": 384000,
+        "sample_rate_hz": 96000,
+        "strike_input": 0.5
+      },
+      "estimated_damper_scale": 1.4999991635729364,
+      "estimated_structural_scale": 0.4999998962422339,
+      "fit_relative_energy_rmse": 1.3788732285256878e-8,
+      "fit_row_indices": [
+        0,
+        1,
+        3
+      ],
+      "held_out_relative_energy_rmse": 2.2015296482144935e-7,
+      "held_out_row_indices": [
+        2,
+        4,
+        5
+      ],
+      "known_damper_scale": 1.5,
+      "known_structural_scale": 0.5,
+      "normalized_qr_pivot": 0.9996837378519886,
+      "omitted_damper_control": {
+        "fitted_structural_scale": 0.5104870117365904,
+        "relative_energy_rmse": 0.6328100318197994
+      },
+      "qualified": true,
+      "rows": [
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.06,
+          "energy_drop_j": 0.000018592343535146836,
+          "start_seconds": 0.02,
+          "structural_integral_j": 0.00003718469492049721
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.1,
+          "energy_drop_j": 3.6681701411515773e-6,
+          "start_seconds": 0.06,
+          "structural_integral_j": 7.336341126525344e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.14,
+          "energy_drop_j": 2.220783016188752e-6,
+          "start_seconds": 0.1,
+          "structural_integral_j": 4.441566019916902e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.000010619827177726759,
+          "end_seconds": 0.18,
+          "energy_drop_j": 0.000016406456865208197,
+          "start_seconds": 0.14,
+          "structural_integral_j": 9.534501605135603e-7
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 1.3988389131191047e-7,
+          "end_seconds": 0.22,
+          "energy_drop_j": 3.809267027288149e-7,
+          "start_seconds": 0.18,
+          "structural_integral_j": 3.422017381026883e-7
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 8.016608233642427e-8,
+          "end_seconds": 0.26,
+          "energy_drop_j": 2.1591316980168192e-7,
+          "start_seconds": 0.22,
+          "structural_integral_j": 1.9132808864051563e-7
+        }
+      ]
+    },
+    {
+      "diagnostics": {
+        "contact_substeps": 64,
+        "damper_on_seconds": 0.14,
+        "first_separation_seconds": 0.00084375,
+        "initial_hammer_speed_m_s": 0.30314331330207966,
+        "last_contact_seconds": 0.00084375,
+        "maximum_energy_ledger_relative_residual": 5.9260683662435285e-12,
+        "maximum_positive_energy_step_relative": 0.0,
+        "mechanical_checks_passed": true,
+        "mechanical_tick_rate_hz": 192000,
+        "sample_rate_hz": 48000,
+        "strike_input": 0.5
+      },
+      "estimated_damper_scale": 0.4999996698792879,
+      "estimated_structural_scale": 0.999999081350315,
+      "fit_relative_energy_rmse": 1.4490039524123608e-7,
+      "fit_row_indices": [
+        0,
+        1,
+        3
+      ],
+      "held_out_relative_energy_rmse": 1.0712956241767946e-6,
+      "held_out_row_indices": [
+        2,
+        4,
+        5
+      ],
+      "known_damper_scale": 0.5,
+      "known_structural_scale": 1.0,
+      "normalized_qr_pivot": 0.9986389252495412,
+      "omitted_damper_control": {
+        "fitted_structural_scale": 1.059607343468784,
+        "relative_energy_rmse": 0.7430915896576354
+      },
+      "qualified": true,
+      "rows": [
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.06,
+          "energy_drop_j": 9.147471362385483e-6,
+          "start_seconds": 0.02,
+          "structural_integral_j": 9.14748050601111e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.1,
+          "energy_drop_j": 3.1615619904355307e-6,
+          "start_seconds": 0.06,
+          "structural_integral_j": 3.1615627528763923e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.14,
+          "energy_drop_j": 2.457798977838863e-6,
+          "start_seconds": 0.1,
+          "structural_integral_j": 2.4577986007834555e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.000023560561472710043,
+          "end_seconds": 0.18,
+          "energy_drop_j": 0.000012285752852253822,
+          "start_seconds": 0.14,
+          "structural_integral_j": 5.054803580875049e-7
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 8.137351081411532e-8,
+          "end_seconds": 0.22,
+          "energy_drop_j": 1.4857483019857339e-7,
+          "start_seconds": 0.18,
+          "structural_integral_j": 1.0788807006168341e-7
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 2.5087616658639485e-8,
+          "end_seconds": 0.26,
+          "energy_drop_j": 7.100364767633901e-8,
+          "start_seconds": 0.22,
+          "structural_integral_j": 5.845983712775696e-8
+        }
+      ]
+    },
+    {
+      "diagnostics": {
+        "contact_substeps": 64,
+        "damper_on_seconds": 0.14,
+        "first_separation_seconds": 0.00084375,
+        "initial_hammer_speed_m_s": 0.30314331330207966,
+        "last_contact_seconds": 0.00084375,
+        "maximum_energy_ledger_relative_residual": 5.946420192501937e-12,
+        "maximum_positive_energy_step_relative": 0.0,
+        "mechanical_checks_passed": true,
+        "mechanical_tick_rate_hz": 384000,
+        "sample_rate_hz": 96000,
+        "strike_input": 0.5
+      },
+      "estimated_damper_scale": 0.4999999174719998,
+      "estimated_structural_scale": 0.9999997703840282,
+      "fit_relative_energy_rmse": 3.623142737312885e-8,
+      "fit_row_indices": [
+        0,
+        1,
+        3
+      ],
+      "held_out_relative_energy_rmse": 2.678502931172193e-7,
+      "held_out_row_indices": [
+        2,
+        4,
+        5
+      ],
+      "known_damper_scale": 0.5,
+      "known_structural_scale": 1.0,
+      "normalized_qr_pivot": 0.998638925550664,
+      "omitted_damper_control": {
+        "fitted_structural_scale": 1.0596079876687698,
+        "relative_energy_rmse": 0.7430914526984087
+      },
+      "qualified": true,
+      "rows": [
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.06,
+          "energy_drop_j": 9.14746693126211e-6,
+          "start_seconds": 0.02,
+          "structural_integral_j": 9.14746921677322e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.1,
+          "energy_drop_j": 3.1615588381810384e-6,
+          "start_seconds": 0.06,
+          "structural_integral_j": 3.1615590285504414e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.14,
+          "energy_drop_j": 2.4577964500973766e-6,
+          "start_seconds": 0.1,
+          "structural_integral_j": 2.4577963556538692e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.000023560525881965613,
+          "end_seconds": 0.18,
+          "energy_drop_j": 0.000012285740561766895,
+          "start_seconds": 0.14,
+          "structural_integral_j": 5.054796812533851e-7
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 8.137343540306177e-8,
+          "end_seconds": 0.22,
+          "energy_drop_j": 1.4857466534153405e-7,
+          "start_seconds": 0.18,
+          "structural_integral_j": 1.0788794646119772e-7
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 2.5087589372552533e-8,
+          "end_seconds": 0.26,
+          "energy_drop_j": 7.100356795112571e-8,
+          "start_seconds": 0.22,
+          "structural_integral_j": 5.845977271207046e-8
+        }
+      ]
+    },
+    {
+      "diagnostics": {
+        "contact_substeps": 64,
+        "damper_on_seconds": 0.14,
+        "first_separation_seconds": 0.00084375,
+        "initial_hammer_speed_m_s": 0.30314331330207966,
+        "last_contact_seconds": 0.00084375,
+        "maximum_energy_ledger_relative_residual": 1.537167538217478e-11,
+        "maximum_positive_energy_step_relative": 0.0,
+        "mechanical_checks_passed": true,
+        "mechanical_tick_rate_hz": 192000,
+        "sample_rate_hz": 48000,
+        "strike_input": 0.5
+      },
+      "estimated_damper_scale": 0.9999983114771456,
+      "estimated_structural_scale": 1.4999991600624378,
+      "fit_relative_energy_rmse": 1.119528623069385e-7,
+      "fit_row_indices": [
+        0,
+        1,
+        3
+      ],
+      "held_out_relative_energy_rmse": 7.357167356781119e-7,
+      "held_out_row_indices": [
+        2,
+        4,
+        5
+      ],
+      "known_damper_scale": 1.0,
+      "known_structural_scale": 1.5,
+      "normalized_qr_pivot": 0.9996185610673458,
+      "omitted_damper_control": {
+        "fitted_structural_scale": 1.544967383571902,
+        "relative_energy_rmse": 0.7417740881681322
+      },
+      "qualified": true,
+      "rows": [
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.06,
+          "energy_drop_j": 7.146793208461271e-6,
+          "start_seconds": 0.02,
+          "structural_integral_j": 4.764531876821666e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.1,
+          "energy_drop_j": 3.4173776102227633e-6,
+          "start_seconds": 0.06,
+          "structural_integral_j": 2.278252172572287e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.14,
+          "energy_drop_j": 2.534353430027606e-6,
+          "start_seconds": 0.1,
+          "structural_integral_j": 1.6895686564026586e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 9.48179620103044e-6,
+          "end_seconds": 0.18,
+          "energy_drop_j": 9.700645217525645e-6,
+          "start_seconds": 0.14,
+          "structural_integral_j": 1.4591009952011e-7
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 4.706427803027631e-9,
+          "end_seconds": 0.22,
+          "energy_drop_j": 2.145788919586439e-8,
+          "start_seconds": 0.18,
+          "structural_integral_j": 1.1167641343300636e-8
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 1.623152610326338e-9,
+          "end_seconds": 0.26,
+          "energy_drop_j": 7.347134843867179e-9,
+          "start_seconds": 0.22,
+          "structural_integral_j": 3.81598799342126e-9
+        }
+      ]
+    },
+    {
+      "diagnostics": {
+        "contact_substeps": 64,
+        "damper_on_seconds": 0.14,
+        "first_separation_seconds": 0.00084375,
+        "initial_hammer_speed_m_s": 0.30314331330207966,
+        "last_contact_seconds": 0.00084375,
+        "maximum_energy_ledger_relative_residual": 1.61202686436797e-11,
+        "maximum_positive_energy_step_relative": 0.0,
+        "mechanical_checks_passed": true,
+        "mechanical_tick_rate_hz": 384000,
+        "sample_rate_hz": 96000,
+        "strike_input": 0.5
+      },
+      "estimated_damper_scale": 0.9999995779092573,
+      "estimated_structural_scale": 1.4999997902064643,
+      "fit_relative_energy_rmse": 2.800695845539663e-8,
+      "fit_row_indices": [
+        0,
+        1,
+        3
+      ],
+      "held_out_relative_energy_rmse": 1.8400994671709728e-7,
+      "held_out_row_indices": [
+        2,
+        4,
+        5
+      ],
+      "known_damper_scale": 1.0,
+      "known_structural_scale": 1.5,
+      "normalized_qr_pivot": 0.9996185614650084,
+      "omitted_damper_control": {
+        "fitted_structural_scale": 1.5449679229794535,
+        "relative_energy_rmse": 0.7417740546303137
+      },
+      "qualified": true,
+      "rows": [
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.06,
+          "energy_drop_j": 7.14678840401058e-6,
+          "start_seconds": 0.02,
+          "structural_integral_j": 4.764526369929372e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.1,
+          "energy_drop_j": 3.4173746171653436e-6,
+          "start_seconds": 0.06,
+          "structural_integral_j": 2.2782498524516287e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 0.0,
+          "end_seconds": 0.14,
+          "energy_drop_j": 2.5343512185655763e-6,
+          "start_seconds": 0.1,
+          "structural_integral_j": 1.689567404455086e-6
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 9.481776157789787e-6,
+          "end_seconds": 0.18,
+          "energy_drop_j": 9.700636912767947e-6,
+          "start_seconds": 0.14,
+          "structural_integral_j": 1.4590985850602895e-7
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 4.706422799282173e-9,
+          "end_seconds": 0.22,
+          "energy_drop_j": 2.1457866850030428e-8,
+          "start_seconds": 0.18,
+          "structural_integral_j": 1.116762947099122e-8
+        },
+        {
+          "contact_free": true,
+          "damper_integral_j": 1.623150950677467e-9,
+          "end_seconds": 0.26,
+          "energy_drop_j": 7.347127144738978e-9,
+          "start_seconds": 0.22,
+          "structural_integral_j": 3.815984088829713e-9
+        }
+      ]
+    }
+  ],
+  "experiment": "controlled-mechanical-loss-recovery-v1",
+  "protocol": "Fixed nine-coordinate default tine/tonebar geometry, elastic single-mass hammer, strike input 0.5; damper enabled at 0.14 s. Structural/damper scales (0.5,1.5), (1,0.5), (1.5,1), independently rendered at 48/96 kHz with four exact free-motion ticks per sample and 64 contact subdivisions. Energy endpoints reconstructed from q,v,M,K, without dissipated-energy ledger inputs. Endpoint trapezoidal integration of v^T C0 v and known on/off v^T D v. Six fixed intervals bounded by 0.02,0.06,0.10,0.14,0.18,0.22,0.26 s; require contact absent throughout. Two normalized columns, reorthogonalized QR with pivot >=1e-4. Fit rows 0,1,3, validate 2,4,5 without refit. Each scale error <1%, held-out relative energy RMSE <0.005, mechanical ledger <1e-8 and positive energy step <1e-10. Omitted-damper best scalar fit over all rows must retain relative residual >0.01. Thresholds and row choices declared before first run.",
+  "schema_version": 1,
+  "scope": "Known full mechanical state and correct operator shapes, not audio-only identification. Recovers only two global multipliers, not nine independent losses or modal decay times. The hammer is the existing elastic assembly reference, not the memory-material hammer. Integration and quadrature refinement are separate from real-instrument validation. No pickup conversion, reference bank fitting, production preset changes, WAV or host launch."
+}
