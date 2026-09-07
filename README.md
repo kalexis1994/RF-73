@@ -66,6 +66,11 @@ cold/rest controls and six source-comparison takes pass voltage, displacement,
 energy and refinement checks. The remaining fast sustain decay is explicit;
 the source comparison starts from rest using `--at-rest`.
 
+The [loaded loss budget](docs/LOADED-LOSS-BUDGET.md) separates twelve mechanical
+and electrical heat channels and compares controlled support, tine, tonebar,
+damper and load changes. This provides a physical diagnostic before fitting
+the remaining sustain mismatch; the playable plugin is unchanged.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

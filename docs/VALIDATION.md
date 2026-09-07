@@ -2476,3 +2476,28 @@ control), 110 lab unit tests and six focused CLI/receipt checks. Strict Clippy
 and formatting pass. The CLI tests were rerun successfully after Windows
 released the render executable. Release artifacts are reused with incremental
 compilation disabled; no host session or new playable plugin version is claimed.
+
+## Loaded physical loss attribution
+
+The [loaded loss budget](LOADED-LOSS-BUDGET.md) retains twelve 1.8-second takes:
+baseline and five controlled interventions, each at 128/256 ticks. Static
+geometry/rest are identical. The independent structural observer includes both
+transverse components and their cross terms and rejects unsupported matrix
+structure. Its four heat channels sum to the separate solver structural ledger.
+Together with action/contact and circuit ledgers, all twelve channels close
+energy in five time windows. No waveform matrix is written.
+
+All six cases pass. Worst relative total defect is 1.170e-12, structural split
+defect 6.222e-14, exchange defect 7.948e-19 and windowed voltage RMSE 6.377e-5.
+The baseline timbre is exactly equal to the prior stationary 1.5 m/s receipt.
+No configuration has felt contact after 300 ms. Late baseline heat shares are
+78.5891% tine, 18.6725% support, 1.1197% tonebar and 1.6187% electrical. Halving
+tine coefficients improves late relative level by 5.9092 dB; halving support
+losses improves it by 1.3889 dB. This is conditional sensitivity and trajectory
+attribution, not a calibrated instrument or an additive decomposition of sound.
+
+The 352718-byte receipt is `references/loaded-loss-budget-validation.json`,
+SHA-256 `8b316a3f1a47555db48f5c7ce7ed5507afe037411d096699f230b8f0225edfcb`.
+Verification passes 129 DSP tests, 112 lab unit tests, seven loaded CLI/receipt
+checks, strict Clippy and formatting. The project reuses its release cache and
+does not produce a new playable version or claim a host/listening test.

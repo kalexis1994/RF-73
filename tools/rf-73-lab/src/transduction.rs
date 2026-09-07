@@ -3,6 +3,7 @@ use rf_73_dsp::{ElectromechanicalAssembly, ElectromechanicalProfile, ProductionD
 use serde_json::{Value, json};
 use std::{error::Error, io::BufWriter, path::Path};
 pub(crate) mod bank;
+pub(crate) mod losses;
 pub(crate) mod rest;
 pub(crate) mod tuning;
 
@@ -10,6 +11,7 @@ pub const HELP: &str = "Electromechanical audit:
   electromechanical --output REPORT.json [--refined]
   electromechanical-render --output AUDIO.wav [--gain FS_PER_VOLT]
   stationary-rest --output REPORT.json
+  loaded-loss-budget --output REPORT.json
 Eight loaded two-plane cases; render writes one 1.2-second WAV plus its JSON receipt.
 ";
 const DURATION: f64 = 0.18;

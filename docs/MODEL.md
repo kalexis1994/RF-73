@@ -131,6 +131,12 @@ equilibrium preload potential and starts the circuit at zero current/voltage.
 It neither warms up nor gates the output. The historical cold constructor and
 the production voice are unchanged.
 
+The [loaded loss observer](LOADED-LOSS-BUDGET.md) reads the prepared damping
+matrix and integrates support translation/rotation, tine and tonebar heat
+independently, including transverse cross terms. Their sum is checked against
+the dynamic solver's structural ledger. This observer does not change the
+equations of motion or introduce an additional damping path.
+
 The [moving damper block](MOVING-FELT-DAMPER.md) extends the offline nine-coordinate
 assembly with arm inertia, elastic return, viscous arm loss and unilateral
 rate-dependent felt contact. Continuous prescribed key/pedal lift and actuator

@@ -10,6 +10,74 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_loss_receipt_closes_independent_channels_and_preserves_baseline() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-loss-budget-validation.json");
+    let prior = read("loaded-source-rest-validation.json");
+    assert_eq!(r["passed"], true);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    assert_eq!(r["channels"].as_array().unwrap().len(), 12);
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    assert_eq!(
+        cases[0]["takes"][1]["timbre"],
+        prior["candidates"][1]["profile"]
+    );
+    for case in cases {
+        assert_eq!(case["passed"], true);
+        assert_eq!(case["convergence"]["passed"], true);
+        for take in case["takes"].as_array().unwrap() {
+            assert_eq!(take["passed"], true);
+            assert_eq!(take["heat_monotone"], true);
+            assert_eq!(
+                take["initial_position"],
+                cases[0]["takes"][0]["initial_position"]
+            );
+            assert!(
+                take["max_relative_structural_split_defect"]
+                    .as_f64()
+                    .unwrap()
+                    < 1e-10
+            );
+            assert!(take["max_relative_energy_defect"].as_f64().unwrap() < 1e-8);
+            assert!(take["pre_key_peak_fs"].as_f64().unwrap() < 1e-10);
+            for window in take["windows"].as_array().unwrap() {
+                let heat = window["heat_j"].as_array().unwrap();
+                assert_eq!(heat.len(), 12);
+                assert!(heat.iter().all(|v| v.as_f64().unwrap() >= 0.0));
+                assert_eq!(window["passed"], true);
+                if let Some(fractions) = window["heat_fraction"].as_array() {
+                    assert!(
+                        (fractions.iter().map(|x| x.as_f64().unwrap()).sum::<f64>() - 1.0).abs()
+                            < 1e-12
+                    );
+                }
+            }
+        }
+    }
+}
+
+#[test]
+fn loaded_loss_cli_preserves_outputs_and_rejects_ambiguous_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-loss-budget"],
+        vec!["loaded-loss-budget", "--output", "keep.json"],
+        vec!["loaded-loss-budget", "--output", "bad.wav"],
+        vec!["loaded-loss-budget", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.wav").exists());
+    assert!(!scratch.0.join("bad.json").exists());
+}
+
+#[test]
 fn stationary_rest_receipt_keeps_positive_control_and_physical_silence() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let r: serde_json::Value =

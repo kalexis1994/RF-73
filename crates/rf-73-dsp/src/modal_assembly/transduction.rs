@@ -232,6 +232,10 @@ impl ElectromechanicalAssembly {
     pub fn rest_preparation(&self) -> Option<RestPreparation> {
         self.rest
     }
+    /// Read-only damping operator for independent offline loss observers.
+    pub fn structural_damping_matrix(&self) -> [[f64; 18]; 18] {
+        self.mechanics.structural_damping_matrix()
+    }
     pub fn advance(&mut self, pedestal: f64, pedal: f64) -> Result<(), ModelError> {
         self.advance_budget(pedestal, pedal, 16)
     }
