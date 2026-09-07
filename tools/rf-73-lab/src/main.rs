@@ -228,6 +228,10 @@ fn run() -> Result<(), Box<dyn Error>> {
         );
         print!(
             "{}",
+            mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::HELP
+        );
+        print!(
+            "{}",
             mechanical_loss::observer::loss::magnetic::nonlinear::robustness::HELP
         );
         print!(
@@ -324,6 +328,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "magnetic-state" {
         return mechanical_loss::observer::loss::magnetic::nonlinear::run(&args);
+    }
+    if args[0] == "magnetic-loss-profile" {
+        return mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::run(&args);
     }
     if args[0] == "magnetic-state-robustness" {
         return mechanical_loss::observer::loss::magnetic::nonlinear::robustness::run(&args);

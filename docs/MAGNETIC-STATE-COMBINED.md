@@ -137,3 +137,10 @@ residual cannot certify the state, sensor geometry or physical losses. Before
 recorded-source calibration, loss estimates must account for sensor uncertainty
 and retain competing explanations or withhold a unique result when the data
 cannot distinguish them.
+
+The [nonlinear loss-profile study](NONLINEAR-MAGNETIC-LOSS-PROFILE.md) now
+recovers both unknown scales in six noiseless, known-geometry controls while
+refitting the continuous state at every candidate. An out-of-range control is
+rejected at the structural search boundary. This establishes controlled
+numerical recovery; the noise/sensor ambiguity documented here remains a limit
+on recorded-source calibration.

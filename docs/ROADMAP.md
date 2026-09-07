@@ -485,3 +485,11 @@ relative to their paired noise-only controls. At 40 dB all tested mismatches
 are rejected. Next implement nonlinear loss profiling with known geometry,
 refitting the continuous state at every loss candidate. Sensor uncertainty and
 competing explanations must remain visible before recorded-source calibration.
+
+The [nonlinear magnetic loss profile](NONLINEAR-MAGNETIC-LOSS-PROFILE.md) now
+estimates both losses jointly from training voltage with known production
+pickup geometry. All six noiseless controls recover both scales and held-out
+state; all 12 outer starts converge. A seventh control beyond the structural
+search range reaches the bound, exhausts its budget and is rejected. Next
+qualify voltage-noise sensitivity of the unknown-loss inverse, keeping loss,
+state and prediction errors separate before introducing sensor uncertainty.

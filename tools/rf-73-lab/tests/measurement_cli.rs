@@ -10,6 +10,106 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn nonlinear_loss_profile_recovers_unknown_scales_and_retains_bounded_failure() {
+    let scratch = Scratch::new();
+    let args = ["magnetic-loss-profile", "--output", "profile.json"];
+    scratch.success(&args);
+    let report = scratch.json("profile.json");
+    assert_eq!(report["experiment"], "nonlinear-magnetic-loss-profile-v1");
+    assert_eq!(report["controls_passed"], true);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 7);
+    let mut positives = 0;
+    let mut negatives = 0;
+    for case in cases {
+        assert_eq!(case["control_passed"], true);
+        let fit = &case["fit"];
+        if case["negative_out_of_range_control"] == true {
+            negatives += 1;
+            assert_eq!(fit["prediction_consistent"], false);
+            assert_eq!(fit["both_losses_within_one_percent"], false);
+        } else {
+            positives += 1;
+            assert_eq!(fit["validation"]["known_state_recovery"], true);
+            assert_eq!(fit["both_losses_within_one_percent"], true);
+            assert_eq!(fit["boundary_limited"], false);
+        }
+        let evaluations = case["profile_evaluations"].as_array().unwrap();
+        for evaluation in evaluations {
+            for x in evaluation["scales"].as_array().unwrap() {
+                assert!((0.25..=2.0).contains(&x.as_f64().unwrap()));
+            }
+            if let Some(selected) = evaluation["selected_state_start_index"].as_u64() {
+                let starts = evaluation["state_starts"].as_array().unwrap();
+                assert_eq!(starts.len(), 3);
+                let best = starts[selected as usize]["training_relative_rmse"]
+                    .as_f64()
+                    .unwrap();
+                for start in starts {
+                    if let Some(cost) = start["training_relative_rmse"].as_f64() {
+                        assert!(best <= cost);
+                    } else {
+                        assert!(start["error"].is_string());
+                    }
+                }
+            } else {
+                assert!(evaluation["error"].is_string());
+            }
+        }
+        let attempts = fit["attempts"].as_array().unwrap();
+        assert_eq!(attempts.len(), 2);
+        let selected = fit["selected_loss_start_index"].as_u64().unwrap() as usize;
+        let best = attempts[selected]["objective"].as_f64().unwrap();
+        for attempt in attempts {
+            if let Some(cost) = attempt["objective"].as_f64() {
+                assert!(best <= cost);
+                for step in attempt["history"].as_array().unwrap() {
+                    if let Some(index) = step["from_evaluation_index"].as_u64() {
+                        let next = step["proposal_evaluation_index"].as_u64().unwrap();
+                        assert_eq!(
+                            step["accepted"],
+                            evaluations[next as usize]["objective"].as_f64().unwrap()
+                                < evaluations[index as usize]["objective"].as_f64().unwrap()
+                        );
+                        for difference in step["derivative_evaluations"].as_array().unwrap() {
+                            assert!(difference["log_span"].as_f64().unwrap() > 0.0);
+                            assert!(
+                                difference["plus_evaluation_index"].as_u64().unwrap()
+                                    < evaluations.len() as u64
+                            );
+                            assert!(
+                                difference["minus_evaluation_index"].as_u64().unwrap()
+                                    < evaluations.len() as u64
+                            );
+                        }
+                    }
+                }
+            } else {
+                assert!(attempt["error"].is_string());
+            }
+        }
+    }
+    assert_eq!((positives, negatives), (6, 1));
+    let saved = fs::read(scratch.0.join("profile.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("profile.json")).unwrap());
+    for args in [
+        vec!["magnetic-loss-profile"],
+        vec!["magnetic-loss-profile", "--output", "bad.wav"],
+        vec![
+            "magnetic-loss-profile",
+            "--output",
+            "bad.json",
+            "--truth",
+            "1",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert!(!scratch.0.join("bad.json").exists());
+}
+
+#[test]
 fn combined_magnetic_state_keeps_paired_controls_and_withheld_geometry() {
     let scratch = Scratch::new();
     let args = ["magnetic-state-combined", "--output", "combined.json"];

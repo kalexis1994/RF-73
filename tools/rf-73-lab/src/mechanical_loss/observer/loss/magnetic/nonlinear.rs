@@ -1,4 +1,5 @@
 //! Nonlinear initial-state fitting with known mechanics and sensor geometry.
+pub mod loss_profile;
 pub mod robustness;
 use super::*;
 

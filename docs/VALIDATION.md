@@ -2057,3 +2057,30 @@ The full laboratory release suite passes 131 tests (94 unit, 37 CLI), strict
 Clippy and formatting checks. No gate or optimizer budget was retuned. Next
 implement controlled nonlinear loss profiling with known geometry and explicit
 sensor-uncertainty limits. No production DSP, preset, audio asset or host change.
+
+## Unknown losses with nonlinear magnetic state profiling
+
+The [nonlinear loss-profile protocol](NONLINEAR-MAGNETIC-LOSS-PROFILE.md) and
+[receipt](../references/nonlinear-magnetic-loss-profile-validation.json) retain
+seven known-geometry, noiseless cases. The inverse receives neither true loss
+scale: each bounded log-scale candidate rebuilds the mechanics and fits one
+continuous 18-coordinate state from three fixed starts. Two outer starts are
+selected by training error alone; reference scales and held-out samples are
+used only for final scoring.
+
+All six positive controls pass, and all 12 outer starts converge in four or
+five iterations. Selected relative loss errors are below `2.330e-10`, held-out
+voltage relative RMSE below `5.134e-10`, and state energy-norm relative error
+below `5.120e-10`. The negative structural-scale 2.2 control reaches the fixed
+2.0 bound and exhausts both outer budgets; its up to 27.49% voltage error and
+31.00% state error are retained with explicit rejection. No range or gate was
+changed to accommodate that control.
+
+Receipt schema 1, `nonlinear-magnetic-loss-profile-v1`, 485448 bytes, SHA-256
+`09a6e413c340e48b3de2efa97f7b537e0634b0a40c0d453d3cda23a3c0e95ef1`.
+The full laboratory release suite passes 132 tests (94 unit, 38 CLI), strict
+Clippy and formatting checks. The receipt retains 465 loss candidates and
+1395 inner state starts. This is numerical recovery under matched synthetic
+assumptions, not uncertainty-qualified source calibration. Noise and sensor
+mismatch remain unqualified for this inverse; production DSP and audio assets
+are unchanged.
