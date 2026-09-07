@@ -6,6 +6,7 @@ mod band_envelope;
 mod band_events;
 mod component_envelope;
 mod convergence;
+mod felt_damper;
 mod hammer_memory;
 mod mechanical_loss;
 mod memory_contact_resolution;
@@ -251,6 +252,7 @@ fn run() -> Result<(), Box<dyn Error>> {
             mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::weighting::HELP
         );
         print!("{}", mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::resolution::weighted::HELP);
+        print!("{}", felt_damper::HELP);
         print!("{}", source_envelope::short::HELP);
         print!("{}", short_envelope::HELP);
         print!("{}", partial_comparison::HELP);
@@ -355,6 +357,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "magnetic-weighted-loss-resolution" {
         return mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::resolution::weighted::run(&args);
+    }
+    if args[0] == "felt-damper" {
+        return felt_damper::run(&args);
     }
     if args[0] == "magnetic-loss-weighting" {
         return mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::weighting::run(

@@ -2191,3 +2191,29 @@ simulation. All 105 unit tests, the new end-to-end weighted resolution CLI
 check and strict Clippy pass. The earlier relative-window resolution command
 is regression-tested separately. No outer loss search or production DSP,
 preset, audio asset or host change is included.
+
+## Moving felt damper block
+
+[Moving felt damper](MOVING-FELT-DAMPER.md) adds a massive elastic arm and
+unilateral rate-dependent felt contact to all nine structural coordinates,
+with continuous prescribed drive and separately integrated actuator work.
+A handoff preserves ringing state after hammer separation. No legacy binary
+damper loss is applied in this candidate.
+
+The original [16/32/64 receipt](../references/moving-felt-damper-validation.json)
+retains one failed recontact case out of 24: 1.0324% pickup velocity error
+against a 1% gate, despite passing all independent energy checks. The
+[32/64/128 receipt](../references/moving-felt-damper-refined-validation.json)
+passes all 24 cases and 72 takes with identical physics and thresholds.
+Maximum pickup velocity errors are 0.2598% and 0.0520% for the two comparisons
+against 128 ticks/frame. Relative total energy/work defect stays below
+1.567e-13; stationary-drive energy does not grow. All held controls avoid
+contact and all release gestures dissipate through the felt.
+
+All 109 DSP tests, 105 lab unit tests and two CLI/receipt checks pass with
+strict Clippy. State transfer, analytic free-arm motion, separate work ports,
+continuous drive and invalid-input preservation are covered. Both historical
+failure and successful refinement remain recorded. Final stored energy also
+contains preload, so its ratio to held energy is not an acoustic decay score.
+No calibrated material, simultaneous hammer/felt contact, realtime host or
+audio qualification is claimed. Full action/repetition is the next large block.

@@ -22,6 +22,12 @@ basis to nonlinear hammer contact and a spatial damper. Its time-domain energy
 and convergence audits pass; it remains an offline experiment pending calibration
 and polyphonic performance work.
 
+The [moving felt damper](docs/MOVING-FELT-DAMPER.md) adds a massive elastic arm,
+unilateral felt contact and continuous prescribed key/pedal actuation to the
+experimental assembly. A refined 24-case release/recontact audit passes with
+independent energy and actuator-work checks. It remains outside the playable
+plugin, pending full action coupling and material calibration.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

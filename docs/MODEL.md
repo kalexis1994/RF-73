@@ -96,3 +96,12 @@ The engine supports 44.1–192 kHz. Profiles are immutable during rendering and 
 Events are sample-positioned. Equal-time order is parameter events, MIDI 1.0 events, then MIDI 2.0 events, preserving order within each list. Seven-bit-origin wide events recover their original velocity; native wide notes use 16-bit resolution. Release velocity, pitch bend and expression beyond sustain are not implemented yet.
 
 Saved plugin state contains a magic header, schema version, output gain, two pickup selections and the active comparison side. It represents instrument settings, not a recording of currently vibrating keys. Mechanical profiles are compiled into this research version and must acquire their own versioned state before becoming user-editable plugin controls. See [Pickup Lab UI](PICKUP-LAB-UI.md) for the binary format and host compatibility limits.
+
+## Experimental moving felt damper
+
+The [moving damper block](MOVING-FELT-DAMPER.md) extends the offline nine-coordinate
+assembly with arm inertia, elastic return, viscous arm loss and unilateral
+rate-dependent felt contact. Continuous prescribed key/pedal lift and actuator
+work are explicit. It accepts a ringing-state handoff only after hammer
+separation; simultaneous hammer/felt contacts remain future action work.
+This does not change the binary damper of the production voice described above.

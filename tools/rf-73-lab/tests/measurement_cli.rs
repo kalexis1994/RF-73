@@ -10,6 +10,83 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn felt_damper_preserves_failed_coarse_evidence_and_qualifies_refinement() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let coarse: serde_json::Value =
+        serde_json::from_slice(&fs::read(root.join("moving-felt-damper-validation.json")).unwrap())
+            .unwrap();
+    let fine: serde_json::Value = serde_json::from_slice(
+        &fs::read(root.join("moving-felt-damper-refined-validation.json")).unwrap(),
+    )
+    .unwrap();
+    assert_eq!(coarse["passed"], false);
+    assert_eq!(fine["passed"], true);
+    assert_eq!(fine["steps_per_frame"], serde_json::json!([32, 64, 128]));
+    assert!(
+        fine["protocol"]
+            .as_str()
+            .unwrap()
+            .contains("original 16/32/64 matrix failed")
+    );
+    assert_eq!(fine["cases"].as_array().unwrap().len(), 24);
+    let mut failed = 0;
+    for (a, b) in coarse["cases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .zip(fine["cases"].as_array().unwrap())
+    {
+        for key in ["length_m", "sample_rate", "gesture"] {
+            assert_eq!(a[key], b[key]);
+        }
+        if a["passed"] == false {
+            failed += 1;
+        }
+        assert_eq!(b["passed"], true);
+        // Independent runs at overlapping resolutions must preserve the complete summary.
+        assert_eq!(a["takes"][1], b["takes"][0]);
+        assert_eq!(a["takes"][2], b["takes"][1]);
+        for take in b["takes"].as_array().unwrap() {
+            assert_eq!(take["passed"], true);
+            assert_eq!(take["heat_monotone"], true);
+            assert!(take["minimum_force_n"].as_f64().unwrap() >= 0.0);
+            assert!(take["max_relative_balance_defect"].as_f64().unwrap() < 1e-8);
+            if b["gesture"] == "held" {
+                assert_eq!(take["contact_entries"], 0);
+                assert_eq!(take["felt_heat_j"], 0.0);
+            } else {
+                assert!(take["contact_entries"].as_u64().unwrap() > 0);
+                assert!(take["felt_heat_j"].as_f64().unwrap() > 0.0);
+            }
+        }
+        for key in ["coarse_vs_fine", "medium_vs_fine"] {
+            assert_eq!(b[key]["passed"], true);
+            assert_eq!(b[key]["windows"].as_array().unwrap().len(), 3);
+        }
+    }
+    assert_eq!(failed, 1);
+}
+
+#[test]
+fn felt_damper_cli_rejects_invalid_options_and_existing_outputs() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    let out = scratch.run(&["felt-damper", "--output", "keep.json", "--refined"]);
+    assert!(!out.status.success());
+    assert!(String::from_utf8_lossy(&out.stderr).contains("new .json file"));
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    for args in [
+        vec!["felt-damper"],
+        vec!["felt-damper", "--output", "bad.wav"],
+        vec!["felt-damper", "--output", "bad.json", "--unknown"],
+        vec!["felt-damper", "--bad", "bad.json"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+    }
+}
+
+#[test]
 fn magnetic_weighted_loss_resolution_replays_and_qualifies_every_start() {
     let scratch = Scratch::new();
     let source = PathBuf::from(env!("CARGO_MANIFEST_DIR"))

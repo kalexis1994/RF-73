@@ -2,6 +2,27 @@
 
 All application code, analysis tools and tests are Rust. Documentation, identifiers and user-facing strings are English.
 
+## Delivery in functional physics blocks
+
+The next milestones deliver coupled behavior and gesture-level validation,
+not only parameter-identification diagnostics:
+
+1. **Moving felt damper:** implemented offline in
+   [Moving felt damper](MOVING-FELT-DAMPER.md), with arm inertia/compliance,
+   unilateral dissipative contact, continuous prescribed key/pedal lift,
+   post-hammer state transfer and independent actuator work. The refined
+   24-case gesture matrix passes; the failed coarse recontact remains recorded.
+2. **Action and repetition:** next connect hammer, drive and felt throughout
+   a complete strike/release/restrike cycle, including simultaneous contacts.
+3. **Motion and structural coupling:** add the second tine polarization and
+   qualify the corresponding support/tonebar and observation couplings.
+4. **Magnetic and electrical conversion:** improve spatial field and loading
+   reductions and qualify the complete output chain.
+
+Measured material/geometry calibration, listening and realtime integration
+remain cross-cutting release gates. The current damper is not a calibrated
+half-pedal implementation in the playable plugin.
+
 ## Implemented in 0.1.0
 
 - Independent Cargo workspace and locked toolchain.

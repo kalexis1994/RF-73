@@ -4,6 +4,8 @@ use crate::{ModelError, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN, TineGeometry, TineMode
 use core::f64::consts::TAU;
 mod contact;
 mod dissipative_contact;
+mod felt_damper;
+pub use felt_damper::{DamperDrive, FeltDamperAssembly, FeltDamperProbe, FeltDamperProfile};
 mod memory_coupling;
 pub use memory_coupling::{
     MemoryContactInspection, MemoryContactStatus, MemoryContactStep, MemoryModalAssembly,
@@ -139,6 +141,7 @@ struct Operators {
     c: [Matrix; 2],
     hammer: Vector,
     pickup: Vector,
+    damper: Vector,
 }
 impl Operators {
     fn prepare(g: TineGeometry, p: ModalAssemblyProfile) -> Result<Self, ModelError> {
@@ -183,8 +186,9 @@ impl Operators {
         };
         let hammer = port(g.hammer_position)?;
         let pickup = port(g.pickup_position)?;
+        let damper = port(p.damper_position)?;
         let mut damped = c;
-        add_outer(&mut damped, port(p.damper_position)?, p.damper_n_s_m);
+        add_outer(&mut damped, damper, p.damper_n_s_m);
         numerics::inverse(m)?;
         Ok(Self {
             m,
@@ -194,6 +198,7 @@ impl Operators {
             c: [c, damped],
             hammer,
             pickup,
+            damper,
         })
     }
     fn stiffness_force(&self, q: Vector) -> Vector {

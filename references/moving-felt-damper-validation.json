@@ -1,0 +1,3208 @@
+{
+  "cases": [
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00018578105032063792,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00010759043362553888,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000026813097727913536,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 1.0,
+      "gesture": "held",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000037159094929875465,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000021517747464438652,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 5.362561075567442e-6,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 0.0000178395049319644,
+          "final_structural_energy_j": 0.0000178395049319644,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 1.0502707770307786e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000027323938709056733,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 0.000017839500631472004,
+          "final_structural_energy_j": 0.000017839500631472004,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 2.7907194932532117e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002732394300954808,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 0.000017839499556349158,
+          "final_structural_energy_j": 0.000017839499556349158,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 2.115545422304854e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000027323944084671648,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 5.576325335752273e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0002049582133324844,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 4.4385327864537746e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.001167668489649757,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 1.3245640179358548e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0008872927896014249,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.07460681785872685,
+      "gesture": "fast_release",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.2977764458938935e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00004100480126619547,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 7.126400161750052e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0002335334451300262,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 5.689555938033035e-9,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00017745264303021464,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0003110742744672744,
+          "actuator_work_j": 0.00031102962478570434,
+          "arm_heat_j": 0.00023476568974057196,
+          "contact_entries": 4,
+          "felt_heat_j": 0.00009849965743596556,
+          "final_arm_position_m": 0.00010492639300221914,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.4546193917141355e-6,
+          "final_structural_energy_j": 1.3309484424415894e-6,
+          "first_contact_seconds": 0.019587239583333336,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 353,
+          "max_relative_balance_defect": 1.567391914014825e-14,
+          "max_relative_felt_work_defect": 1.3344944049466332e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514286869360915,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002047310185847818,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0003110677602927195,
+          "actuator_work_j": 0.0003110361326018861,
+          "arm_heat_j": 0.00023477224139927238,
+          "contact_entries": 4,
+          "felt_heat_j": 0.00009849960234786346,
+          "final_arm_position_m": 0.00010492639176337095,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.454619324809595e-6,
+          "final_structural_energy_j": 1.3309482962700251e-6,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 705,
+          "max_relative_balance_defect": 1.7804680328396866e-14,
+          "max_relative_felt_work_defect": 1.891806728937067e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514323399874738,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002047311317096539,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.00031105473837468735,
+          "actuator_work_j": 0.00031104915293035093,
+          "arm_heat_j": 0.00023478527064896347,
+          "contact_entries": 4,
+          "felt_heat_j": 0.00009849958975467628,
+          "final_arm_position_m": 0.00010492639207651362,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.4546193290230057e-6,
+          "final_structural_energy_j": 1.33094829409138e-6,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1409,
+          "max_relative_balance_defect": 2.5414447092581997e-14,
+          "max_relative_felt_work_defect": 1.8799866422691468e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514314875062329,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002047311683871147,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 4.835218026767495e-10,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00018578105032063792,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 2.87306052739859e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00015134295853622744,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 5.68167805685571e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0010410871251228325,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.06542482627435484,
+      "gesture": "slow_release",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 9.653719417080724e-11,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000037159094929875465,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 5.7462928049151184e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000030268324090896263,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 1.1364472438804872e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00020821820257716108,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.000011317897201681649,
+          "actuator_work_j": 9.797193290812514e-6,
+          "arm_heat_j": 0.000010771031482871363,
+          "contact_entries": 4,
+          "felt_heat_j": 0.00002226228262557351,
+          "final_arm_position_m": 0.00010312471707733471,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.3196724395616947e-6,
+          "final_structural_energy_j": 1.1671460342496896e-6,
+          "first_contact_seconds": 0.0544453125,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 9.867819548503855e-15,
+          "max_relative_felt_work_defect": 1.0561253319141277e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.2735823653286876,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000019607650383827297,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.000011317893471689688,
+          "actuator_work_j": 9.797189610805572e-6,
+          "arm_heat_j": 0.000010771019536397959,
+          "contact_entries": 4,
+          "felt_heat_j": 0.000022262282962210552,
+          "final_arm_position_m": 0.00010312472000627094,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.319672528288724e-6,
+          "final_structural_energy_j": 1.1671461342963174e-6,
+          "first_contact_seconds": 0.0544453125,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 1.9765633774805494e-14,
+          "max_relative_felt_work_defect": 1.150322779405442e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.2735840037401258,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00001960765822492867,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.000011317892525740596,
+          "actuator_work_j": 9.797188689918965e-6,
+          "arm_heat_j": 0.000010771016549162256,
+          "contact_entries": 4,
+          "felt_heat_j": 0.000022262283056733056,
+          "final_arm_position_m": 0.0001031247207382573,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.3196725504680985e-6,
+          "final_structural_energy_j": 1.1671461592955737e-6,
+          "first_contact_seconds": 0.054444986979166665,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 1.496669411049206e-14,
+          "max_relative_felt_work_defect": 1.3240667566575743e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.27358443576338076,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00001960766017457638,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.0522352685977174e-7,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0001993050823125389,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 6.812247935383856e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0013165292071206452,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 1.6647056992238996e-7,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0007466800866728665,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.037745395202574264,
+      "gesture": "partial_lift",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 2.162709862430358e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000039875874490200875,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 1.412468238606476e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00026333462893173004,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 3.4944917067571725e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00014932695453436515,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.00030745319626506714,
+          "actuator_work_j": 0.0003074055046349379,
+          "arm_heat_j": 0.00025242174768728005,
+          "contact_entries": 5,
+          "felt_heat_j": 0.00007896157104672205,
+          "final_arm_position_m": 0.00006158869362032796,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 7.995224144621411e-7,
+          "final_structural_energy_j": 6.733587254409026e-7,
+          "first_contact_seconds": 0.019610677083333333,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 330,
+          "max_relative_balance_defect": 2.951744097678681e-14,
+          "max_relative_felt_work_defect": 1.2708798109359758e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.8063133593784441,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020386107127485405,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.00030744381746172544,
+          "actuator_work_j": 0.00030741487752295236,
+          "arm_heat_j": 0.0002524311448966273,
+          "contact_entries": 5,
+          "felt_heat_j": 0.00007896159343845359,
+          "final_arm_position_m": 0.00006158869868199854,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 7.99522577185639e-7,
+          "final_structural_energy_j": 6.733589106716669e-7,
+          "first_contact_seconds": 0.019610677083333333,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 660,
+          "max_relative_balance_defect": 2.0140039679190662e-14,
+          "max_relative_felt_work_defect": 1.6432545196858733e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.8063013006350829,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020386060251701737,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.00030743362720707005,
+          "actuator_work_j": 0.00030743362720707005,
+          "arm_heat_j": 0.00025244989983157283,
+          "contact_entries": 5,
+          "felt_heat_j": 0.0000789615995270307,
+          "final_arm_position_m": 0.00006158870003624893,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 7.995226212009557e-7,
+          "final_structural_energy_j": 6.733589609705472e-7,
+          "first_contact_seconds": 0.019610677083333333,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1320,
+          "max_relative_balance_defect": 3.951251745491964e-14,
+          "max_relative_felt_work_defect": 1.4832133154782777e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.806297397288353,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020386048868285525,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 5.576325335752273e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0002049582133324844,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.00009299595755156017,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000571900362975591,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.0000119350874559181,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0013334991207855252,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.04548960356174144,
+      "gesture": "pedal_catch",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.2977764458938935e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00004100480126619547,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.00003099634125203987,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00015797025385534848,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 3.988618678300298e-6,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0002731604151337706,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0008925406713714327,
+          "actuator_work_j": 0.0008924070075677712,
+          "arm_heat_j": 0.0007791007913166338,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013597396342714777,
+          "final_arm_position_m": 0.000093442791495538,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.195757823897569e-6,
+          "final_structural_energy_j": 8.114898078175229e-7,
+          "first_contact_seconds": 0.019587239583333336,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 353,
+          "max_relative_balance_defect": 9.943582985397803e-15,
+          "max_relative_felt_work_defect": 1.3344944049466332e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514286869360915,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020299938641104204,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0008925210125362019,
+          "actuator_work_j": 0.0008924264138175615,
+          "arm_heat_j": 0.0007791173397324888,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013597672097102225,
+          "final_arm_position_m": 0.00009344332577732385,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.1957592441670313e-6,
+          "final_structural_energy_j": 8.115043838914298e-7,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 705,
+          "max_relative_balance_defect": 2.0812586767515547e-14,
+          "max_relative_felt_work_defect": 1.891806728937067e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514323399874738,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020300037510905588,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0008924818941676547,
+          "actuator_work_j": 0.0008924654217445087,
+          "arm_heat_j": 0.0007791548997576653,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013597811285548486,
+          "final_arm_position_m": 0.00009344359464254945,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.195759985625222e-6,
+          "final_structural_energy_j": 8.115117625581855e-7,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1409,
+          "max_relative_balance_defect": 3.029514014915991e-14,
+          "max_relative_felt_work_defect": 1.8799866422691468e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514314875062329,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020300092786728295,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": false,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 5.576325335752273e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0002049582133324844,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.00008962487480773075,
+            "end_seconds": 0.09,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.010324209250443951,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.00037543145699471,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0016511483258824181,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.13516321531826786,
+      "gesture": "reopen_reclose",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.2977764458938935e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00004100480126619547,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.000029875617233168308,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0020787589651687765,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.00012510378248591775,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0005475602685076285,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": false,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0009314266235402789,
+          "actuator_work_j": 0.0009312936801196887,
+          "arm_heat_j": 0.0008135773791568535,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013507318421701446,
+          "final_arm_position_m": 0.00011766591677271943,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 3.244889857039974e-6,
+          "final_structural_energy_j": 2.4110027001643586e-6,
+          "first_contact_seconds": 0.019587239583333336,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 2.1801739121345665e-7,
+          "limited_unloading_steps": 353,
+          "max_relative_balance_defect": 1.39939045002495e-14,
+          "max_relative_felt_work_defect": 1.3344944049466332e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514286869360915,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024779687921020222,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.00093140697546993,
+          "actuator_work_j": 0.0009313130979881631,
+          "arm_heat_j": 0.0008135971775348012,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013507222415310975,
+          "final_arm_position_m": 0.00011766835193172137,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 3.2450055834154518e-6,
+          "final_structural_energy_j": 2.4111636377364757e-6,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 2.1802879583322292e-7,
+          "limited_unloading_steps": 705,
+          "max_relative_balance_defect": 1.936403712041147e-14,
+          "max_relative_felt_work_defect": 1.891806728937067e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514323399874738,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024780163153704566,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0009313678594465863,
+          "actuator_work_j": 0.0009313521086876667,
+          "arm_heat_j": 0.0008136363646338331,
+          "contact_entries": 7,
+          "felt_heat_j": 0.0001350717696898409,
+          "final_arm_position_m": 0.00011766956963393219,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 3.245063452870984e-6,
+          "final_structural_energy_j": 2.411244119704965e-6,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00004516344364102092,
+          "injected_impulse_energy_j": 2.1803167883524722e-7,
+          "limited_unloading_steps": 1409,
+          "max_relative_balance_defect": 2.6199427215368017e-14,
+          "max_relative_felt_work_defect": 1.8799866422691468e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514314875062329,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024780386230983776,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00004644895174749789,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00002689889256397719,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 6.703589575277275e-6,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 1.0,
+      "gesture": "held",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 9.289815787065508e-6,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 5.379755739125633e-6,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 1.3407140509511128e-6,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 0.00001783949472783372,
+          "final_structural_energy_j": 0.00001783949472783372,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 3.780975384986695e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000027323941893445318,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 0.000017839493652711234,
+          "final_structural_energy_j": 0.000017839493652711234,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 3.060789597370182e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000027323942968568097,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 0.00001783949338393129,
+          "final_structural_energy_j": 0.00001783949338393129,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 6.091571453589676e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000027323943237349347,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.561069762625115e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00005124994391871597,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 9.271364781384504e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0002918763615506214,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 5.639896052428709e-9,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00022187131923345708,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.07460683582733835,
+      "gesture": "fast_release",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 2.775119951955824e-9,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000010249850896175817,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 2.222079732219654e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000058374496309980676,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 6.864788213090434e-10,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00004437394538564199,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0003110677602927195,
+          "actuator_work_j": 0.0003110361326018861,
+          "arm_heat_j": 0.00023477224632538412,
+          "contact_entries": 4,
+          "felt_heat_j": 0.00009849958824901668,
+          "final_arm_position_m": 0.00010492639001542907,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.454619226269627e-6,
+          "final_structural_energy_j": 1.3309481638400197e-6,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 705,
+          "max_relative_balance_defect": 1.521767579422935e-14,
+          "max_relative_felt_work_defect": 2.1147219389832388e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.951432228038809,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020473115422490574,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.00031105473837468735,
+          "actuator_work_j": 0.00031104915293035093,
+          "arm_heat_j": 0.00023478527557421725,
+          "contact_entries": 4,
+          "felt_heat_j": 0.0000984995756558158,
+          "final_arm_position_m": 0.00010492639032893736,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.4546192304950487e-6,
+          "final_structural_energy_j": 1.3309481616812971e-6,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1409,
+          "max_relative_balance_defect": 2.100116028676714e-14,
+          "max_relative_felt_work_defect": 1.9468636758141525e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514313752576562,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020473119091108992,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0003110577580342022,
+          "actuator_work_j": 0.0003110507803723192,
+          "arm_heat_j": 0.00023478690568729034,
+          "contact_entries": 4,
+          "felt_heat_j": 0.00009849957212349784,
+          "final_arm_position_m": 0.00010492639028077667,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.454619227274233e-6,
+          "final_structural_energy_j": 1.3309481541378502e-6,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 2818,
+          "max_relative_balance_defect": 3.211019751585697e-14,
+          "max_relative_felt_work_defect": 2.0928607103314563e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514317678447725,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020473119955526715,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.205532828226108e-10,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00004644895174749789,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 7.180693026944583e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000378333746436276,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 1.420599988321653e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0002603301793369678,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.06542484085126675,
+      "gesture": "slow_release",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 2.403108112612031e-11,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 9.289815787065508e-6,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 1.4361493579667157e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 7.566655316732073e-6,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 2.841254900035546e-9,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00005206606456486428,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.000011317892384391073,
+          "actuator_work_j": 9.797188523507638e-6,
+          "arm_heat_j": 0.000010771016698549713,
+          "contact_entries": 4,
+          "felt_heat_j": 0.00002226227641606028,
+          "final_arm_position_m": 0.00010312471716733706,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.319672439109376e-6,
+          "final_structural_energy_j": 1.1671459842628123e-6,
+          "first_contact_seconds": 0.0544453125,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 1.2657890643244581e-14,
+          "max_relative_felt_work_defect": 1.2985908762988666e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.27358398081255225,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00001960765959106809,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.000011317891438442211,
+          "actuator_work_j": 9.797187602621276e-6,
+          "arm_heat_j": 0.000010771013711313969,
+          "contact_entries": 4,
+          "felt_heat_j": 0.00002226227651056962,
+          "final_arm_position_m": 0.00010312471789932284,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.3196724612887124e-6,
+          "final_structural_energy_j": 1.167146009262002e-6,
+          "first_contact_seconds": 0.054444986979166665,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 3.2704453621744315e-14,
+          "max_relative_felt_work_defect": 1.4421443719388008e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.2735844126454852,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00001960766154072842,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.000011317891201917724,
+          "actuator_work_j": 9.797187372311725e-6,
+          "arm_heat_j": 0.000010771012964433813,
+          "contact_entries": 4,
+          "felt_heat_j": 0.000022262276534851538,
+          "final_arm_position_m": 0.00010312471808230157,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.3196724668333287e-6,
+          "final_structural_energy_j": 1.1671460155109307e-6,
+          "first_contact_seconds": 0.05444482421875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 5.1895919594679134e-14,
+          "max_relative_felt_work_defect": 1.3442050933137353e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.2735845133843214,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.0000196076620274755,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 2.831387100723882e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000498443361151148,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 1.8681764021663115e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00032912780046114547,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 4.7039832040457036e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00018670959006858855,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.03774540238030194,
+      "gesture": "partial_lift",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 6.749701826026545e-9,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 9.970764517192576e-6,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 4.5793168197442095e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00006582897711169366,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 1.214072300468519e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00003734135064123416,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.00030744381746172544,
+          "actuator_work_j": 0.00030741487752295236,
+          "arm_heat_j": 0.00025243114974873637,
+          "contact_entries": 5,
+          "felt_heat_j": 0.00007896157924861672,
+          "final_arm_position_m": 0.00006158869665249728,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 7.995224685394525e-7,
+          "final_structural_energy_j": 6.733587890259954e-7,
+          "first_contact_seconds": 0.019610677083333333,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 660,
+          "max_relative_balance_defect": 2.5367226055138926e-14,
+          "max_relative_felt_work_defect": 1.5644323833720858e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.8063011846513332,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002038606267834515,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.00030743362720707005,
+          "actuator_work_j": 0.00030743362720707005,
+          "arm_heat_j": 0.00025244990468353476,
+          "contact_entries": 5,
+          "felt_heat_j": 0.00007896158533707104,
+          "final_arm_position_m": 0.00006158869800680358,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 7.995225125563226e-7,
+          "final_structural_energy_j": 6.733588393268609e-7,
+          "first_contact_seconds": 0.019610677083333333,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1320,
+          "max_relative_balance_defect": 8.209994062643529e-14,
+          "max_relative_felt_work_defect": 1.808645704901093e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.8062972813936103,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020386051295216285,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.00030743369213525045,
+          "actuator_work_j": 0.00030743369213525045,
+          "arm_heat_j": 0.0002524499708246784,
+          "contact_entries": 5,
+          "felt_heat_j": 0.0000789615868989223,
+          "final_arm_position_m": 0.00006158869846640882,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 7.995225267065235e-7,
+          "final_structural_energy_j": 6.733588560372208e-7,
+          "first_contact_seconds": 0.01961067708333333,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 2639,
+          "max_relative_balance_defect": 5.719320653389432e-14,
+          "max_relative_felt_work_defect": 1.5707644951455014e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.8062959451519248,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002038604850620915,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.561069762625115e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00005124994391871597,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.00004649326315771642,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0002274480292536041,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 5.980969069751376e-6,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0003473630565268342,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.045489820038024806,
+      "gesture": "pedal_catch",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 2.775119951955824e-9,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000010249850896175817,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.00001549701309237275,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00007094093201122676,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 1.991834761633028e-6,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000768056804068729,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0008925210145308252,
+          "actuator_work_j": 0.0008924264158122536,
+          "arm_heat_j": 0.000779117344694817,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013597670866037856,
+          "final_arm_position_m": 0.00009344332293060053,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.195759190950318e-6,
+          "final_structural_energy_j": 8.115042650747538e-7,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 705,
+          "max_relative_balance_defect": 4.8793953683110044e-14,
+          "max_relative_felt_work_defect": 2.1147219389832388e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.951432228038809,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000020300039887431952,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0008924818961640051,
+          "actuator_work_j": 0.0008924654237409283,
+          "arm_heat_j": 0.0007791549047215297,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013597810054418553,
+          "final_arm_position_m": 0.00009344359179630737,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.1957599324084314e-6,
+          "final_structural_energy_j": 8.115116437535184e-7,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1409,
+          "max_relative_balance_defect": 2.220101885420313e-14,
+          "max_relative_felt_work_defect": 1.9468636758141525e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514313752576562,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002030009516409727,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.000892491108034755,
+          "actuator_work_j": 0.0008924702815135057,
+          "arm_heat_j": 0.0007791590343552015,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013597879964147376,
+          "final_arm_position_m": 0.00009344372620946064,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.1957603100061978e-6,
+          "final_structural_energy_j": 8.115153436045684e-7,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 2818,
+          "max_relative_balance_defect": 3.042635241744317e-14,
+          "max_relative_felt_work_defect": 2.0928607103314563e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514317678447725,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002030012382811938,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.561069762625115e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00005124994391871597,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.000044786861762831147,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0025975700692922963,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.00018839270303239468,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0008203380905561502,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.13516550665969382,
+      "gesture": "reopen_reclose",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 2.775119951955824e-9,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000010249850896175817,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.000014929042536373164,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0005197079415343943,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.00006278603358082544,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00027282389129684064,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0009314069740394823,
+          "actuator_work_j": 0.000931313096557807,
+          "arm_heat_j": 0.0008135971808066553,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013507221044101487,
+          "final_arm_position_m": 0.00011766834915988601,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 3.245005477557476e-6,
+          "final_structural_energy_j": 2.411163480876939e-6,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 2.1802878716081134e-7,
+          "limited_unloading_steps": 705,
+          "max_relative_balance_defect": 9.212719631198558e-15,
+          "max_relative_felt_work_defect": 2.1147219389832388e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.951432228038809,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.0000247801652410255,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0009313678580162463,
+          "actuator_work_j": 0.0009313521072574184,
+          "arm_heat_j": 0.0008136363679050275,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013507175597762355,
+          "final_arm_position_m": 0.00011766956686247826,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 3.245063347033385e-6,
+          "final_structural_energy_j": 2.4112439628738016e-6,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 2.1803167014573384e-7,
+          "limited_unloading_steps": 1409,
+          "max_relative_balance_defect": 4.551043740152362e-14,
+          "max_relative_felt_work_defect": 1.9468636758141525e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514313752576562,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024780388319201565,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0009313775208070238,
+          "actuator_work_j": 0.0009313569649125541,
+          "arm_heat_j": 0.000813641311998632,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00013507153402392624,
+          "final_arm_position_m": 0.00011767017526811277,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 3.2450922470774027e-6,
+          "final_structural_energy_j": 2.4112841617913284e-6,
+          "first_contact_seconds": 0.019587239583333332,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000045163436621280154,
+          "injected_impulse_energy_j": 2.1803239316550463e-7,
+          "limited_unloading_steps": 2818,
+          "max_relative_balance_defect": 2.7638992193789242e-14,
+          "max_relative_felt_work_defect": 2.0928607103314563e-16,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.9514317678447725,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024780495657384385,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000054143993139730156,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000049872670686185936,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000010330121885543356,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 1.0,
+      "gesture": "held",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000010828772696389544,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 9.974513990802473e-6,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.0660137511853086e-6,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 1.2230066469659864e-6,
+          "final_structural_energy_j": 1.2230066469659864e-6,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 9.450963307387522e-15,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002530569145847377,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 1.2230066155888088e-6,
+          "final_structural_energy_j": 1.2230066155888088e-6,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 2.567085979439043e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000025305691489850374,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 1.2230066077445472e-6,
+          "final_structural_energy_j": 1.2230066077445472e-6,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 1.864649517403484e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000025305691497695285,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 6.06272446654025e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00005258713241277061,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 4.433197047542505e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00009667457065227259,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 7.703034319539992e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000950387987335255,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.9343521364685384,
+      "gesture": "fast_release",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.4166764596847497e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000010512839029638381,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 1.0259097307379337e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000019340105813439117,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 1.8924483340449213e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000019013233179219635,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0003110742744672744,
+          "actuator_work_j": 0.00031102962478570434,
+          "arm_heat_j": 0.0002554191272856648,
+          "contact_entries": 3,
+          "felt_heat_j": 0.000050264386772669744,
+          "final_arm_position_m": 0.00014968244333746214,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.4838397866236896e-6,
+          "final_structural_energy_j": 1.1427190283664162e-6,
+          "first_contact_seconds": 0.01974869791666667,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 297,
+          "max_relative_balance_defect": 8.34982472749158e-15,
+          "max_relative_felt_work_defect": 4.527891920941996e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784441472192124,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00003039096904618599,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0003110677602927195,
+          "actuator_work_j": 0.0003110361326018861,
+          "arm_heat_j": 0.000255425652709351,
+          "contact_entries": 3,
+          "felt_heat_j": 0.0000502646081810373,
+          "final_arm_position_m": 0.00014968243822860861,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.4838396913401402e-6,
+          "final_structural_energy_j": 1.1427188871526172e-6,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 595,
+          "max_relative_balance_defect": 2.3925920974830485e-14,
+          "max_relative_felt_work_defect": 4.675971686688775e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784467232658639,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000030390730125601365,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.00031105473837468735,
+          "actuator_work_j": 0.00031104915293035093,
+          "arm_heat_j": 0.00025543867688097486,
+          "contact_entries": 3,
+          "felt_heat_j": 0.000050264664369686176,
+          "final_arm_position_m": 0.00014968243652378093,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.4838396580228252e-6,
+          "final_structural_energy_j": 1.1427188368612574e-6,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1190,
+          "max_relative_balance_defect": 2.216043259749911e-14,
+          "max_relative_felt_work_defect": 5.376937787921413e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784471034202138,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000030390670127109408,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 4.835218026767495e-10,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000054143993139730156,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 8.159858968282652e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00006102892645604875,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 6.956278653552128e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00014307669783365648,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.7727172616901277,
+      "gesture": "slow_release",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 9.653719417080724e-11,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000010828772696389544,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 1.6319587223219573e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000012205762171543637,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 1.3912233013823673e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000028615317020617965,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 6.493437479621584e-6,
+          "actuator_work_j": 4.972614168204855e-6,
+          "arm_heat_j": 4.636320975709237e-6,
+          "contact_entries": 2,
+          "felt_heat_j": 1.1566453562849818e-6,
+          "final_arm_position_m": 0.0001447539561781727,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.3410332109887809e-6,
+          "final_structural_energy_j": 9.450384038710773e-7,
+          "first_contact_seconds": 0.0568359375,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 9.541970886981128e-15,
+          "max_relative_felt_work_defect": 3.263161350945228e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.09028112631363995,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024367312730661895,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 6.493438511995996e-6,
+          "actuator_work_j": 4.97261525050739e-6,
+          "arm_heat_j": 4.636319495928836e-6,
+          "contact_entries": 2,
+          "felt_heat_j": 1.156643392171036e-6,
+          "final_arm_position_m": 0.00014475395348900424,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.3410331588647035e-6,
+          "final_structural_energy_j": 9.450383343438432e-7,
+          "first_contact_seconds": 0.056835937499999996,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 1.5558845775979673e-14,
+          "max_relative_felt_work_defect": 2.869784674046174e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.09028119673579994,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024367317308982816,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 6.493438757239329e-6,
+          "actuator_work_j": 4.972615520801294e-6,
+          "arm_heat_j": 4.636319125698843e-6,
+          "contact_entries": 2,
+          "felt_heat_j": 1.1566429010591218e-6,
+          "final_arm_position_m": 0.0001447539528168129,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.3410331458355476e-6,
+          "final_structural_energy_j": 9.450383169652986e-7,
+          "first_contact_seconds": 0.05683561197916666,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 2.2319862396630194e-14,
+          "max_relative_felt_work_defect": 3.02872979202614e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.09028120261219501,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024367318453647396,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 9.665878744629822e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00004611768363264262,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 2.2946530417601088e-6,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00008281886515505096,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 4.098321688954337e-7,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00008628044602600584,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.2909382111094274,
+      "gesture": "partial_lift",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.8296338491956937e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 9.229698219124728e-6,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 4.4697176042017103e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000016568644798775037,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 7.852034285715744e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000017258529299970356,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.00030745319626506714,
+          "actuator_work_j": 0.0003074055046349379,
+          "arm_heat_j": 0.00026824401507719817,
+          "contact_entries": 5,
+          "felt_heat_j": 0.00003763489916957212,
+          "final_arm_position_m": 0.00007496156523514084,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 3.945376001024413e-7,
+          "final_structural_energy_j": 3.558194400009408e-7,
+          "first_contact_seconds": 0.019803385416666666,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 267,
+          "max_relative_balance_defect": 1.1686644955123921e-14,
+          "max_relative_felt_work_defect": 2.801668966767243e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.46206646476731283,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000027660750893506255,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.00030744381746172544,
+          "actuator_work_j": 0.00030741487752295236,
+          "arm_heat_j": 0.0002682533580601944,
+          "contact_entries": 5,
+          "felt_heat_j": 0.000037635008703979914,
+          "final_arm_position_m": 0.00007496156167407451,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 3.945375493534977e-7,
+          "final_structural_energy_j": 3.558193666743404e-7,
+          "first_contact_seconds": 0.019803385416666666,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 533,
+          "max_relative_balance_defect": 4.3826149297637983e-14,
+          "max_relative_felt_work_defect": 4.128317693035153e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.46207057998158096,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002766067131485444,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.00030743362720707005,
+          "actuator_work_j": 0.00030743362720707005,
+          "arm_heat_j": 0.00026827209997920553,
+          "contact_entries": 5,
+          "felt_heat_j": 0.000037635036082806774,
+          "final_arm_position_m": 0.00007496156100108108,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 3.9453754192026526e-7,
+          "final_structural_energy_j": 3.5581935463220777e-7,
+          "first_contact_seconds": 0.019803385416666666,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1065,
+          "max_relative_balance_defect": 3.9607061940132185e-14,
+          "max_relative_felt_work_defect": 3.188224550424679e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.4620716052545874,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000027660651708583674,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 6.06272446654025e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00005258713241277061,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.0000993326263328242,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00008596516821468724,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 1.9351456724597322e-7,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00029975331605886136,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.5605087290101546,
+      "gesture": "pedal_catch",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.4166764596847497e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000010512839029638381,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.00003311049202062806,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000017177523111288134,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 5.8013656614950164e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00005987625422953388,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.000958818924784774,
+          "actuator_work_j": 0.0009586866341320875,
+          "arm_heat_j": 0.000822433113226271,
+          "contact_entries": 6,
+          "felt_heat_j": 0.00012383036987549572,
+          "final_arm_position_m": 0.00012369420839877974,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.3960655799815518e-6,
+          "final_structural_energy_j": 6.855058715740134e-7,
+          "first_contact_seconds": 0.01974869791666667,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 614,
+          "max_relative_balance_defect": 1.397412169136584e-14,
+          "max_relative_felt_work_defect": 4.527891920941996e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.832795640169004,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000037555783555778795,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0009588012504267902,
+          "actuator_work_j": 0.0009587080265739676,
+          "arm_heat_j": 0.0008224545756614529,
+          "contact_entries": 6,
+          "felt_heat_j": 0.00012383060591867492,
+          "final_arm_position_m": 0.00012369419832452942,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.3960657498872361e-6,
+          "final_structural_energy_j": 6.855058949108595e-7,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1229,
+          "max_relative_balance_defect": 1.1223511652950039e-14,
+          "max_relative_felt_work_defect": 4.675971686688775e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.8328021926702796,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000037555477349394565,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0009587631201607812,
+          "actuator_work_j": 0.000958748023461618,
+          "arm_heat_j": 0.0008224945980351057,
+          "contact_entries": 6,
+          "felt_heat_j": 0.00012383065795111475,
+          "final_arm_position_m": 0.00012369419383609088,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.3960658078541989e-6,
+          "final_structural_energy_j": 6.855058792779168e-7,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 2458,
+          "max_relative_balance_defect": 2.1347505131252015e-14,
+          "max_relative_felt_work_defect": 5.376937787921413e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.8328035837795906,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.0000375553997729916,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 6.06272446654025e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00005258713241277061,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.00008950698344109274,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0002920268039753398,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.00024350583929935122,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0014697239880087753,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 2.18942946147196,
+      "gesture": "reopen_reclose",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.4166764596847497e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000010512839029638381,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.000029836188780424226,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00006174073099536477,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.00008113064674571174,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0004853048058484507,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0009295159572612801,
+          "actuator_work_j": 0.0009293829211722054,
+          "arm_heat_j": 0.0008170456742312094,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00009672413383116118,
+          "final_arm_position_m": 0.00015354327919746296,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.9613015566064087e-6,
+          "final_structural_energy_j": 2.6774681577206884e-6,
+          "first_contact_seconds": 0.01974869791666667,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 1.1089658297028802e-7,
+          "limited_unloading_steps": 530,
+          "max_relative_balance_defect": 1.0318655525766606e-14,
+          "max_relative_felt_work_defect": 4.527891920941996e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784441472192124,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00003929140624164307,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0009294963167903348,
+          "actuator_work_j": 0.0009294023466199161,
+          "arm_heat_j": 0.0008170613844536751,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00009672727999514214,
+          "final_arm_position_m": 0.00015354698251123915,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.9614070441966216e-6,
+          "final_structural_energy_j": 2.677613870150385e-6,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 1.108920033054933e-7,
+          "limited_unloading_steps": 1063,
+          "max_relative_balance_defect": 2.1431494113042337e-14,
+          "max_relative_felt_work_defect": 4.675971686688775e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784467232658639,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00003929186523566362,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0009294572026344355,
+          "actuator_work_j": 0.0009294413591768009,
+          "arm_heat_j": 0.0008170985319628997,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00009672877353781361,
+          "final_arm_position_m": 0.00015354883025917645,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.961459808125511e-6,
+          "final_structural_energy_j": 2.6776866985707922e-6,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652869810543985,
+          "injected_impulse_energy_j": 1.1089085754556972e-7,
+          "limited_unloading_steps": 2126,
+          "max_relative_balance_defect": 4.082356363131995e-14,
+          "max_relative_felt_work_defect": 5.376937787921413e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784471034202138,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000039292182830914067,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000013524357186823248,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000012469448133700762,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.5832562718118775e-6,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 1.0,
+      "gesture": "held",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.7048697747204434e-6,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.493888298839683e-6,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.0,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 5.16650592741228e-7,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 1.2230044545724628e-6,
+          "final_structural_energy_j": 1.2230044545724628e-6,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 1.302702333958427e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000025305653203515687,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 1.22300444672813e-6,
+          "final_structural_energy_j": 1.22300444672813e-6,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 2.005139866975226e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002530565321136016,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0,
+          "actuator_work_j": 0.0,
+          "arm_heat_j": 0.0,
+          "contact_entries": 0,
+          "felt_heat_j": 0.0,
+          "final_arm_position_m": -0.002,
+          "final_drive_position_m": -0.002,
+          "final_mechanical_energy_j": 1.2230044447671973e-6,
+          "final_structural_energy_j": 1.2230044447671973e-6,
+          "first_contact_seconds": null,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 2.4393739782947017e-14,
+          "max_relative_felt_work_defect": 0.0,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.0,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000025305653213320957,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.7242083031606915e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000013133222493288163,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 1.2521676768381148e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000024192388363562648,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 2.2908709503672555e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000237701537856919,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.9343536630972805,
+      "gesture": "fast_release",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 3.0922859018935676e-9,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.6270083964321104e-6,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 2.264745594459026e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 4.836801894899635e-6,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 3.985304493262707e-9,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 4.753115290196245e-6,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0003110677602927195,
+          "actuator_work_j": 0.0003110361326018861,
+          "arm_heat_j": 0.00025542564893402505,
+          "contact_entries": 3,
+          "felt_heat_j": 0.00005026460499105787,
+          "final_arm_position_m": 0.00014968243582701816,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.4838395690883351e-6,
+          "final_structural_energy_j": 1.1427187433703478e-6,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 595,
+          "max_relative_balance_defect": 1.2685556936038863e-14,
+          "max_relative_felt_work_defect": 5.074865708348469e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784467523780137,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00003039069676579991,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.00031105473837468735,
+          "actuator_work_j": 0.00031104915293035093,
+          "arm_heat_j": 0.00025543867310565425,
+          "contact_entries": 3,
+          "felt_heat_j": 0.00005026466117986235,
+          "final_arm_position_m": 0.00014968243412218722,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.4838395357709705e-6,
+          "final_structural_energy_j": 1.1427186930788965e-6,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1190,
+          "max_relative_balance_defect": 2.6014423992227246e-14,
+          "max_relative_felt_work_defect": 6.258556390545394e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784471322739801,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000030390636767146544,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0003110577580342022,
+          "actuator_work_j": 0.0003110507803723192,
+          "arm_heat_j": 0.0002554403016378012,
+          "contact_entries": 3,
+          "felt_heat_j": 0.00005026467505791656,
+          "final_arm_position_m": 0.0001496824337665561,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.4838395289773597e-6,
+          "final_structural_energy_j": 1.1427186829524865e-6,
+          "first_contact_seconds": 0.019748046874999998,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 2378,
+          "max_relative_balance_defect": 1.0758955659925236e-13,
+          "max_relative_felt_work_defect": 5.567644488950158e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784473604982586,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000030390621805747844,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.205532828226108e-10,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000013524357186823248,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 2.0393357992877205e-8,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000015258159145247104,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 1.7391548100446622e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00003577647670882597,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.772718379069068,
+      "gesture": "slow_release",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 2.403108112612031e-11,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.7048697747204434e-6,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 4.0786543441036865e-9,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 3.051630275128166e-6,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 3.4782859525762064e-9,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 7.155293854102496e-6,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 6.49343903803209e-6,
+          "actuator_work_j": 4.9726157766032265e-6,
+          "arm_heat_j": 4.63631790598425e-6,
+          "contact_entries": 2,
+          "felt_heat_j": 1.1566420202784117e-6,
+          "final_arm_position_m": 0.00014475394397096367,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.341032978498646e-6,
+          "final_structural_energy_j": 9.450380338777105e-7,
+          "first_contact_seconds": 0.056835937499999996,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 1.1594021290717328e-14,
+          "max_relative_felt_work_defect": 3.226095206264491e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.09028114939729173,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024367280529930166,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 6.493439283275276e-6,
+          "actuator_work_j": 4.972616046896974e-6,
+          "arm_heat_j": 4.636317535752316e-6,
+          "contact_entries": 2,
+          "felt_heat_j": 1.1566415291667222e-6,
+          "final_arm_position_m": 0.00014475394329877236,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.3410329654695199e-6,
+          "final_structural_energy_j": 9.450380164992003e-7,
+          "first_contact_seconds": 0.05683561197916666,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 2.0476036792540063e-14,
+          "max_relative_felt_work_defect": 3.0058839282220264e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.09028115533686357,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024367281674595983,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 6.493439344572774e-6,
+          "actuator_work_j": 4.972616114421653e-6,
+          "arm_heat_j": 4.63631744314534e-6,
+          "contact_entries": 2,
+          "felt_heat_j": 1.1566414063838155e-6,
+          "final_arm_position_m": 0.000144753943130731,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.341032962212334e-6,
+          "final_structural_energy_j": 9.450380121547743e-7,
+          "first_contact_seconds": 0.056835449218749994,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 0,
+          "max_relative_balance_defect": 3.160140287072656e-14,
+          "max_relative_felt_work_defect": 3.759191219264089e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.09028116032977421,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000024367281960767264,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 2.3176237347790264e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000011525793384721851,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 5.626341502147419e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000207206179173995,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 9.929159865235691e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000021577328919904836,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.2909386224078886,
+      "gesture": "partial_lift",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 4.900597551361503e-9,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.3027148870488597e-6,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 1.1573073132701759e-7,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 4.141949353057707e-6,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 2.0785383491864317e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 4.315434581932549e-6,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.00030744381746172544,
+          "actuator_work_j": 0.00030741487752295236,
+          "arm_heat_j": 0.00026825335452957555,
+          "contact_entries": 5,
+          "felt_heat_j": 0.000037635006740956414,
+          "final_arm_position_m": 0.00007496155790920804,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 3.9453744059257934e-7,
+          "final_structural_energy_j": 3.558192452842088e-7,
+          "first_contact_seconds": 0.019803385416666666,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 533,
+          "max_relative_balance_defect": 1.639422820424811e-14,
+          "max_relative_felt_work_defect": 3.677789587717796e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.46207061049819065,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000027660636469917354,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.00030743362720707005,
+          "actuator_work_j": 0.00030743362720707005,
+          "arm_heat_j": 0.000268272096448776,
+          "contact_entries": 5,
+          "felt_heat_j": 0.000037635034119172515,
+          "final_arm_position_m": 0.00007496155723645318,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 3.9453743316492297e-7,
+          "final_structural_energy_j": 3.558192332488165e-7,
+          "first_contact_seconds": 0.019803385416666666,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1065,
+          "max_relative_balance_defect": 6.3468701205736e-14,
+          "max_relative_felt_work_defect": 3.617713907972487e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.4620716359775783,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000027660616864064206,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.00030743369213525045,
+          "actuator_work_j": 0.00030743369213525045,
+          "arm_heat_j": 0.00026827215959538623,
+          "contact_entries": 5,
+          "felt_heat_j": 0.00003763504089203133,
+          "final_arm_position_m": 0.00007496155700371078,
+          "final_drive_position_m": 0.00008999999999999999,
+          "final_mechanical_energy_j": 3.9453742972973914e-7,
+          "final_structural_energy_j": 3.558192283592931e-7,
+          "first_contact_seconds": 0.019803222656249998,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 2129,
+          "max_relative_balance_defect": 3.636057878785432e-14,
+          "max_relative_felt_work_defect": 3.663782946926806e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.4620718876838471,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00002766061187618674,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.7242083031606915e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000013133222493288163,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.00004966517784608613,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00002144517373927263,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 5.998066204513279e-8,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000748499775460996,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 0.5605097457577636,
+      "gesture": "pedal_catch",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 3.0922859018935676e-9,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.6270083964321104e-6,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.000016554760906737088,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 4.2668234903742935e-6,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 5.388362256636709e-9,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000014943025257704793,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0009588012471447017,
+          "actuator_work_j": 0.0009587080232913553,
+          "arm_heat_j": 0.0008224545800631604,
+          "contact_entries": 6,
+          "felt_heat_j": 0.00012383059171884527,
+          "final_arm_position_m": 0.00012369419268250885,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.3960658810994667e-6,
+          "final_structural_energy_j": 6.855059288985858e-7,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 1229,
+          "max_relative_balance_defect": 1.5423536739475764e-14,
+          "max_relative_felt_work_defect": 5.074865708348469e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.8328021020428313,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00003755544328634419,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0009587631168792135,
+          "actuator_work_j": 0.0009587480201795261,
+          "arm_heat_j": 0.0008224946024388188,
+          "contact_entries": 6,
+          "felt_heat_j": 0.0001238306437497686,
+          "final_arm_position_m": 0.00012369418819196815,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.3960659390980357e-6,
+          "final_structural_energy_j": 6.85505913259285e-7,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 2458,
+          "max_relative_balance_defect": 3.0526887822435446e-14,
+          "max_relative_felt_work_defect": 6.258556390545394e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.8328034927628225,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00003755536570993083,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0009587736818982619,
+          "actuator_work_j": 0.0009587533713024814,
+          "arm_heat_j": 0.0008224999622518106,
+          "contact_entries": 6,
+          "felt_heat_j": 0.00012383065479264617,
+          "final_arm_position_m": 0.00012369418841592618,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 1.3960659306028958e-6,
+          "final_structural_energy_j": 6.855059103970765e-7,
+          "first_contact_seconds": 0.019748046874999998,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 0.0,
+          "limited_unloading_steps": 4914,
+          "max_relative_balance_defect": 2.4260571518849036e-14,
+          "max_relative_felt_work_defect": 5.567644488950158e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.8328037196555322,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00003755534598549675,
+          "substeps": 64
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 1.7242083031606915e-8,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000013133222493288163,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.000044730075072556685,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00007932053403623345,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.00012226733151645617,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0007262459667918183,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "final_structural_energy_relative_to_held": 2.1894630715135968,
+      "gesture": "reopen_reclose",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_relative_rmse": 3.0922859018935676e-9,
+            "end_seconds": 0.03,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.6270083964321104e-6,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_relative_rmse": 0.000014910083019316029,
+            "end_seconds": 0.09,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000018544169796441726,
+            "start_seconds": 0.03
+          },
+          {
+            "arm_position_relative_rmse": 0.000040744783627914336,
+            "end_seconds": 0.16,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0002409494615997968,
+            "start_seconds": 0.09
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "actuator_absolute_work_j": 0.0009294963134561258,
+          "actuator_work_j": 0.0009294023432858792,
+          "arm_heat_j": 0.0008170613695286076,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00009672728382704326,
+          "final_arm_position_m": 0.0001535469761615445,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.9614070206917665e-6,
+          "final_structural_energy_j": 2.6776137761494107e-6,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 1.1089203440914067e-7,
+          "limited_unloading_steps": 1063,
+          "max_relative_balance_defect": 3.0049450792747673e-14,
+          "max_relative_felt_work_defect": 5.074865708348469e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784467523780137,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00003929183260206021,
+          "substeps": 16
+        },
+        {
+          "actuator_absolute_work_j": 0.0009294571993002014,
+          "actuator_work_j": 0.000929441355842739,
+          "arm_heat_j": 0.0008170985170377443,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00009672877737011927,
+          "final_arm_position_m": 0.0001535488239098112,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.96145978459935e-6,
+          "final_structural_energy_j": 2.6776866045547358e-6,
+          "first_contact_seconds": 0.019748046875,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 1.1089088865250742e-7,
+          "limited_unloading_steps": 2126,
+          "max_relative_balance_defect": 1.612175676487827e-14,
+          "max_relative_felt_work_defect": 6.258556390545394e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784471322739801,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.000039292150197023834,
+          "substeps": 32
+        },
+        {
+          "actuator_absolute_work_j": 0.0009294668045883468,
+          "actuator_work_j": 0.0009294462139337585,
+          "arm_heat_j": 0.0008171024412957556,
+          "contact_entries": 7,
+          "felt_heat_j": 0.00009672950317738649,
+          "final_arm_position_m": 0.00015354974639743637,
+          "final_drive_position_m": 0.0002,
+          "final_mechanical_energy_j": 2.961486233071136e-6,
+          "final_structural_energy_j": 2.6777230681147688e-6,
+          "first_contact_seconds": 0.019748046874999998,
+          "heat_monotone": true,
+          "initial_energy_j": 0.00002652865765808809,
+          "injected_impulse_energy_j": 1.108906028876639e-7,
+          "limited_unloading_steps": 4249,
+          "max_relative_balance_defect": 6.294791968195063e-14,
+          "max_relative_felt_work_defect": 5.567644488950158e-17,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_force_n": 0.5784473604982586,
+          "minimum_force_n": 0.0,
+          "passed": true,
+          "structural_heat_j": 0.00003929233148857393,
+          "substeps": 64
+        }
+      ]
+    }
+  ],
+  "experiment": "moving-felt-damper-v1",
+  "passed": false,
+  "profile": {
+    "arm_damping_n_s_m": 0.5,
+    "arm_mass_kg": 0.001,
+    "arm_stiffness_n_m": 200.0,
+    "felt_rate_loss_s_m": 5.0,
+    "felt_stiffness_n_m2": 20000000.0
+  },
+  "protocol": "Frozen before first run. Two tine lengths, 48/96 kHz, six gestures, 16/32/64 midpoint ticks per frame: 24 cases, 72 takes. Identical ringing-state handoff 20 ms after a 0.6 normalized elastic strike, no legacy damper. Simulate 160 ms of held, fast/slow release, partial lift, pedal catch and reopen/reclose with a diagnostic hammer-port impulse at 65 ms. Closed drive +0.2 mm, travel 2.2 mm; max(key,pedal) lift; 0.5 m/s drive, 0.05 m/s slow release. Continuous drive work, arm/structural/felt heat and unilateral contact tracked independently. Require balance defect <1e-8, felt work defect <1e-9, stationary-drive energy growth <1e-10, monotone heat, nonnegative force, zero held contact and nonzero released contact/heat. Pickup velocity and arm displacement relative RMSE <1% in each of three separate windows for both 16/64 and 32/64 comparisons. Final energy ratios to held are descriptive because the moving actuator supplies work and the reclose case has an extra impulse. No tuned gates or measured material claim.",
+  "schema_version": 1,
+  "scope": "A new coupled physical damper reduction, not a calibrated felt/leaf-spring model, full bridle action, half-pedal MIDI integration or production plugin replacement. Selected post-strike gestures only; simultaneous live hammer/felt contact and 73-key realtime cost remain open. No audio/host test claimed."
+}
