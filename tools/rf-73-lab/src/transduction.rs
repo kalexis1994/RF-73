@@ -7,6 +7,7 @@ pub(crate) mod calibration;
 pub(crate) mod dynamics;
 pub(crate) mod losses;
 pub(crate) mod rest;
+pub(crate) mod threshold;
 pub(crate) mod tuning;
 pub(crate) mod voicing;
 
@@ -18,6 +19,7 @@ pub const HELP: &str = "Electromechanical audit:
   calibrate-loaded-loss MANIFEST.json --output REPORT.json [--preview AUDIO.wav] [--qualified-grid]
   loaded-voicing MANIFEST.json --output REPORT.json
   loaded-dynamics MANIFEST.json --output REPORT.json
+  loaded-strike-threshold --output REPORT.json
 Eight loaded two-plane cases; render writes one 1.2-second WAV plus its JSON receipt.
 ";
 const DURATION: f64 = 0.18;

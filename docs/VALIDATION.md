@@ -2606,3 +2606,35 @@ Verification passes 119 lab unit tests, thirteen loaded CLI/receipt tests,
 strict Clippy and formatting, including independent score/interpolation checks.
 Release cache remains approximately 194 MiB; no WAVs or plugin presets are added.
 No measured velocity calibration, listening or realtime result is claimed.
+
+## Loaded soft-strike threshold and independent hammer work
+
+The [threshold study](LOADED-STRIKE-THRESHOLD.md) qualifies sixty 120 ms takes
+across five action/contact configurations and six drive speeds. Eight rows
+remain non-striking within the window, twenty-one have one contact and one
+has two contacts. Baseline's observed no-contact/contact interval is
+1.0625–1.125 m/s. The half-return-damping intervention has two contacts at
+1.125 m/s in both resolutions. Shorter escapement strikes across the grid but
+introduces locally non-monotone low-speed hammer response; it is not adopted.
+
+Independent signed work ledgers close hammer energy, pedestal-to-hammer work
+and hammer-contact-to-structure transfer including potentials and heat. At
+baseline drive 1.125 m/s, 9.100461 mJ of the hammer's received 9.748414 mJ has
+crossed the bridle port before impact. This is transfer into the coupled
+mechanism, not wholly dissipated loss; some returns later. Bridle geometry and
+damper loading are the next controlled diagnostic targets.
+
+Maximum relative total/hammer/pedestal/contact work defects are respectively
+1.742e-12, 1.463e-12, 1.312e-12 and 2.175e-15. Independent return-heat defect
+is at most 9.708e-18; velocity refinement RMSE is at most 0.034009% and impact
+refinement error 0.042589%. Baseline impacts at three shared speeds exactly
+reproduce the preceding long study. Half contact stiffness preserves the entire
+pre-contact history snapshot, while changing the subsequent force pulse.
+
+Receipt: `references/loaded-strike-threshold-validation.json`, 818295 bytes,
+SHA-256 `c61391b37e22525450ec838c4cf6758bea6d6e69ccd496c5e4954dd21e76f0c5`.
+Verification passes 121 lab unit tests, fifteen loaded CLI/receipt tests,
+strict Clippy and formatting. Tests independently reconstruct end-work balances,
+detect a wrong port sign, and preserve no-contact, recontact and non-monotone
+controls. No WAVs, production changes or source-fit claims are added; the release
+cache remains approximately 194 MiB.

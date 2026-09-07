@@ -10,6 +10,147 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_threshold_receipt_closes_hammer_work_and_preserves_known_impacts() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-strike-threshold-validation.json");
+    let prior = read("loaded-dynamics-validation.json");
+    assert_eq!(r["experiment"], "loaded-strike-threshold-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["reference_match_claimed"], false);
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 5);
+    for case in cases {
+        let rows = case["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 6);
+        for row in rows {
+            assert_eq!(row["measurement_qualified"], true);
+            assert_eq!(row["convergence"]["passed"], true);
+            assert_eq!(row["takes"].as_array().unwrap().len(), 2);
+            for take in row["takes"].as_array().unwrap() {
+                assert_eq!(take["event_overflow"], false);
+                assert_eq!(take["duration_seconds"], 0.12);
+                let end = &take["end"];
+                // This fixed grid starts with zero hammer/hammer-contact/pedestal energy.
+                let number = |key: &str| end[key].as_f64().unwrap();
+                let hammer = number("hammer_energy_j") - number("pedestal_to_hammer_work_j")
+                    + number("hammer_to_contact_work_j")
+                    + number("hammer_to_bridle_work_j")
+                    + number("hammer_return_heat_j");
+                let pedestal = number("actuator_pedestal_work_j")
+                    - number("pedestal_to_hammer_work_j")
+                    - number("pedestal_potential_j")
+                    - number("pedestal_heat_j");
+                let contact = number("hammer_to_contact_work_j")
+                    - number("contact_to_structure_work_j")
+                    - number("hammer_contact_potential_j")
+                    - number("hammer_contact_heat_j");
+                assert!(hammer.abs() < 1e-10 && pedestal.abs() < 1e-10 && contact.abs() < 1e-10);
+                if take["contact_entries"][0] == 0 {
+                    assert_eq!(take["classification"], "no_contact_in_window");
+                    assert!(take["before_first_contact"].is_null());
+                    assert_eq!(take["impact"]["impulse_n_s"], 0.0);
+                    assert_eq!(number("contact_to_structure_work_j"), 0.0);
+                }
+            }
+        }
+    }
+    // Contact stiffness cannot change the trajectory before first hammer contact.
+    for (a, b) in cases[0]["rows"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .zip(cases[4]["rows"].as_array().unwrap())
+    {
+        for (a, b) in a["takes"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .zip(b["takes"].as_array().unwrap())
+        {
+            assert_eq!(a["before_first_contact"], b["before_first_contact"]);
+        }
+    }
+    assert_eq!(cases[2]["rows"][2]["takes"][1]["contact_entries"][0], 2);
+    assert!(
+        cases[3]["transition_intervals"]
+            .as_array()
+            .unwrap()
+            .is_empty()
+    );
+    for ((a, b), c) in cases[3]["rows"][1]["takes"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .zip(cases[3]["rows"][2]["takes"].as_array().unwrap())
+        .zip(cases[3]["rows"][3]["takes"].as_array().unwrap())
+    {
+        let speed = |take: &serde_json::Value| {
+            take["before_first_contact"]["hammer_velocity_m_s"]
+                .as_f64()
+                .unwrap()
+        };
+        assert!(speed(a) > speed(b) && speed(b) > speed(c));
+    }
+    for speed in [1.125, 1.3125, 1.5] {
+        let row = cases[0]["rows"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|r| r["speed_m_s"] == speed)
+            .unwrap();
+        let old = prior["training_cases"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .chain(prior["validation_cases"].as_array().unwrap())
+            .find(|r| r["voicing"] == "baseline" && r["speed_m_s"] == speed)
+            .unwrap();
+        for i in 0..2 {
+            let take = &row["takes"][i];
+            assert_eq!(
+                take["first_contact_seconds"],
+                old["takes"][i]["first_contact_seconds"]
+            );
+            assert_eq!(
+                take["before_first_contact"]["hammer_velocity_m_s"],
+                old["takes"][i]["impact"]["pre_contact_hammer_speed_m_s"]
+            );
+            for key in ["impulse_n_s", "peak_force_n", "active_contact_seconds"] {
+                assert_eq!(take["impact"][key], old["takes"][i]["impact"][key]);
+            }
+        }
+    }
+}
+
+#[test]
+fn loaded_threshold_cli_preserves_outputs_and_rejects_ambiguous_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-strike-threshold"],
+        vec!["loaded-strike-threshold", "--output", "keep.json"],
+        vec!["loaded-strike-threshold", "--output", "bad.wav"],
+        vec![
+            "loaded-strike-threshold",
+            "--output",
+            "bad.json",
+            "--unknown",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists());
+    assert!(!scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_dynamics_receipt_selects_shared_training_minimum_and_freezes_reserved_speeds() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

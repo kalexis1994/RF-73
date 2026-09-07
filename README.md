@@ -86,6 +86,11 @@ configuration across drive speeds. Training layers choose between two pickup
 offsets and two explicit layer-order hypotheses; reserved layers then use fixed
 intermediate speeds, with no refit to their spectra.
 
+The [soft-strike threshold study](docs/LOADED-STRIKE-THRESHOLD.md) separates
+non-striking motion from impact and tests action/escapement/contact controls.
+Independent hammer and contact-port work ledgers identify energy transfer
+through the soft-drive region.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

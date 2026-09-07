@@ -83,9 +83,19 @@ not only parameter-identification diagnostics:
     nonlinear hammer-speed and impulse response, with a 45.93 dB attack-band
     discrepancy against layer 5.
 
-Next qualify the soft-strike threshold with hammer speed, actuator work and
-impulse, then compare action/escapement and contact interventions to distinguish
-drive mapping from modal excitation. Investigate spatial recontact and preserve loss uncertainty
+12. **Soft-strike action and energy transfer:** the
+    [threshold matrix](LOADED-STRIKE-THRESHOLD.md) compares return stiffness,
+    return damping, escapement and contact stiffness across six drive speeds.
+    Independent hammer/pedestal/contact work ledgers separate energy transfer,
+    contact storage and dissipation. Non-striking controls remain explicit.
+    All sixty short takes qualify numerically. The original contact transition
+    lies between sampled speeds 1.0625 and 1.125 m/s; shorter escapement strikes
+    throughout the grid but gives locally non-monotone low-speed response.
+    At the baseline soft impact, most received hammer work has crossed the
+    bridle port; it is transfer, not wholly dissipated heat.
+
+Next compare bridle slack/ratio and damper-arm loading with continuous return
+and lift checks before adopting a velocity curve. Investigate spatial recontact and preserve loss uncertainty
 and qualify release/repetition before adopting a candidate. Retain the physical
 non-striking threshold and
 separate bank processing from parameter inference. A computational reduction
