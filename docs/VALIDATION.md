@@ -2008,3 +2008,27 @@ was followed by affected tests and byte-identical receipt regeneration.
 Selection and optimization use training samples only. No noise, geometry
 mismatch, unknown-loss recovery, antialiasing or real-instrument validation is
 claimed. Production DSP and audio assets remain unchanged.
+
+## Nonlinear magnetic state under noise and sensor mismatch
+
+The [robustness protocol](MAGNETIC-STATE-ROBUSTNESS.md) and
+[receipt](../references/nonlinear-magnetic-state-robustness-validation.json)
+retain 288 conditions with known losses and timing. All 24 matched controls
+pass. Twelve requested 0.475 mm gap cases are withheld by the existing 0.5 mm
+minimum; all 276 valid cases complete three starts. Noise uses constant voltage
+standard deviation set from the first clean training window, with nominal SNRs
+60/40/20 dB and two deterministic Gaussian realizations each.
+
+All 48 cases at each of 60 and 40 dB recover state within 1%, with maxima
+0.09585% and 0.9584%. At 20 dB only 2/48 meet that limit, although all 48 pass
+the oracle injected-noise prediction diagnostic. All 108 valid noiseless sensor
+mismatches fail prediction and exceed 1% state error. No deployable acceptance
+rule, universal SNR threshold or unknown-loss recovery is claimed.
+
+Receipt schema 1, `nonlinear-magnetic-state-robustness-v1`, 1200966 bytes,
+SHA-256 `fba6bc11ed5db9c834992f3a8dbec32fc6f9558952ae0d0aaebd93685a45f219`.
+Validation covers 128 laboratory tests (92 unit, 36 CLI), strict Clippy and
+formatting. The new CLI test passed after its JSON round-trip comparison was
+corrected to allow floating-point roundoff; no experimental gate was relaxed.
+Next combine noise and sensor mismatch before estimating losses. No production
+equation, preset, audio asset or host process changed.

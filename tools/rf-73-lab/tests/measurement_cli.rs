@@ -10,6 +10,93 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn magnetic_state_robustness_retains_noise_mismatch_and_training_selection() {
+    let scratch = Scratch::new();
+    let args = ["magnetic-state-robustness", "--output", "robustness.json"];
+    scratch.success(&args);
+    let report = scratch.json("robustness.json");
+    assert_eq!(
+        report["experiment"],
+        "nonlinear-magnetic-state-robustness-v1"
+    );
+    assert_eq!(report["controls_passed"], true);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut controls = 0;
+    let mut noisy = 0;
+    let mut mismatch = 0;
+    let mut withheld = 0;
+    for case in cases {
+        let rows = case["observations"].as_array().unwrap();
+        assert_eq!(rows.len(), 48);
+        for row in rows {
+            if row["required_control"] == true {
+                controls += 1;
+                assert_eq!(row["fit"]["strict_matched_recovery"], true);
+            } else if row["condition"]["snr_db"].is_number() {
+                noisy += 1;
+                assert!(row["noise_standard_deviation"].as_f64().unwrap() > 0.0);
+                assert_eq!(row["true_sensor"], row["assumed_sensor"]);
+            } else {
+                mismatch += 1;
+                assert_eq!(row["noise_standard_deviation"], 0.0);
+                assert_ne!(row["true_sensor"], row["assumed_sensor"]);
+            }
+            let fit = &row["fit"];
+            if fit["status"] == "withheld_invalid_sensor" {
+                withheld += 1;
+                assert_eq!(row["condition"]["name"], "assumed_gap");
+                assert_eq!(row["true_sensor"]["geometry"], "close");
+                assert!(row["requested_gap_m"].as_f64().unwrap() < 0.0005);
+            }
+            if let Some(index) = fit["selected_start_index"].as_u64() {
+                let attempts = fit["attempts"].as_array().unwrap();
+                assert_eq!(attempts.len(), 3);
+                let selected = attempts[index as usize]["training_relative_rmse"]
+                    .as_f64()
+                    .unwrap();
+                for attempt in attempts {
+                    if let Some(other) = attempt["training_relative_rmse"].as_f64() {
+                        assert!(selected <= other);
+                    } else {
+                        assert!(attempt["error"].is_string());
+                    }
+                }
+                let windows = fit["windows"].as_array().unwrap();
+                assert_eq!(windows.len(), 2);
+                assert_eq!(
+                    fit["state_within_one_percent"],
+                    windows
+                        .iter()
+                        .all(|w| w["state_energy_norm_relative_rmse"].as_f64().unwrap() < 0.01)
+                );
+                for w in windows {
+                    let threshold =
+                        (1.25 * w["injected_noise_relative_rmse"].as_f64().unwrap()).max(1e-6);
+                    // JSON round trips can shift the recomputed product by an ULP.
+                    let stored = w["oracle_prediction_threshold"].as_f64().unwrap();
+                    assert!((stored - threshold).abs() <= 8.0 * f64::EPSILON * threshold);
+                }
+            } else {
+                assert!(fit["error"].is_string());
+            }
+        }
+    }
+    assert_eq!((controls, noisy, mismatch), (24, 144, 120));
+    assert_eq!(withheld, 12);
+    let saved = fs::read(scratch.0.join("robustness.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("robustness.json")).unwrap());
+    assert!(
+        !scratch
+            .run(&["magnetic-state-robustness", "--output", "bad.wav"])
+            .status
+            .success()
+    );
+    assert!(!scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn nonlinear_magnetic_state_uses_training_selection_and_retains_centered_ambiguity() {
     let scratch = Scratch::new();
     let args = ["magnetic-state", "--output", "state.json"];

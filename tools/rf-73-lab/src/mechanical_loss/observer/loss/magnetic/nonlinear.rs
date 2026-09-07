@@ -1,4 +1,5 @@
 //! Nonlinear initial-state fitting with known mechanics and sensor geometry.
+pub mod robustness;
 use super::*;
 
 pub const HELP: &str = "Nonlinear magnetic state study:

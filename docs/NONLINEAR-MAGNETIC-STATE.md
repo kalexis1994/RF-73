@@ -102,3 +102,10 @@ candidate while preserving continuity and training-only selection. Physical
 field validation and antialiasing remain separate requirements before recorded
 source calibration. No production equation, preset, audio asset or host process
 changed, and no listening validation is claimed.
+
+The follow-up [noise and sensor-mismatch study](MAGNETIC-STATE-ROBUSTNESS.md)
+retains 288 conditions, including 12 invalid-geometry withholdings. All matched
+controls pass. At nominal 20 dB, 46/48 fits pass the oracle voltage diagnostic
+while exceeding 1% state error. Valid noiseless sensor mismatches are detected
+but alter the recovered state. Combined noise and sensor mismatch is next;
+unknown losses remain fixed until that ambiguity is qualified.

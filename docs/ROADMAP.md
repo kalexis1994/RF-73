@@ -469,3 +469,11 @@ attempts converge. Twelve centered cases explicitly withhold unique sign
 recovery. Next qualify noise and geometry/field-law sensitivity, then estimate
 losses with a nonlinear state refit for every candidate. These matched synthetic
 results do not yet establish robustness or real-instrument calibration.
+
+The [nonlinear state robustness study](MAGNETIC-STATE-ROBUSTNESS.md) retains 288
+conditions: 24 matched controls pass, 12 unsupported gap cases are withheld,
+and 252 perturbed cases complete. At nominal 20 dB noise, 46/48 fits pass an
+oracle noise-aware voltage diagnostic but exceed 1% state error. All 108 valid
+noiseless sensor mismatches fail prediction and state recovery. Next combine
+noise with sensor mismatch before freeing loss parameters; good residuals alone
+do not certify the mechanical state or geometry.
