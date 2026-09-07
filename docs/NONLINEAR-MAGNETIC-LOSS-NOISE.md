@@ -137,3 +137,11 @@ point estimate as a calibration. Any proposed uncertainty diagnostic needs
 separate validation under controlled noise; agreement between optimizer starts
 cannot substitute for that check. Sensor uncertainty must still be included
 before applying the results to recordings.
+
+The [local resolution study](MAGNETIC-LOSS-RESOLUTION.md) now replays these 30
+estimates from pinned evidence and refits state at 300 nearby alternatives.
+At 20 dB, both approximately 1% structural changes lie below one descriptive
+noise-distance unit in every case; none of the tested alternatives does at
+40 dB. This is a local signal-resolution diagnostic, not a confidence interval.
+Next compare noise-consistent weighting against the existing per-window
+normalization before interpreting uncertainty in the fitted losses.

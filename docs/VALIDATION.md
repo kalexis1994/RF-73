@@ -2111,3 +2111,29 @@ a search boundary or exhausts the outer iteration budget; noisy starts stop
 with `no_descent_step`. This does not certify a global optimum or confidence.
 Noise-aware prediction here requires synthetic noise knowledge. No production
 DSP, preset, audio asset or host change is claimed.
+
+## Local resolution of noisy loss profiles
+
+The [resolution protocol](MAGNETIC-LOSS-RESOLUTION.md) and
+[receipt](../references/nonlinear-magnetic-loss-resolution-validation.json)
+replay 30 centers from the pinned noisy-loss evidence, with maximum training
+RMSE difference below `1.150e-16`. The original inner inverse refits state at
+the center and ten local alternatives: 330 candidates, 990 state starts and
+300 alternative comparisons. No outer loss search is repeated.
+
+At 20 dB, all 24 approximately 1% structural-axis alternatives have voltage
+prediction distance below one injected-noise unit. No damper-axis or 5%
+alternative does, and none does at 40 dB. Local log-vector radii for that unit
+span 0.01481-0.03090 at 20 dB and 0.001448-0.003021 at 40 dB. These are oracle
+signal-distance diagnostics, not confidence intervals. All alternatives raise
+the existing relative-window training objective. Zero-noise metrics withhold
+division by sigma while retaining raw-voltage sensitivity.
+
+Receipt schema 1, `nonlinear-magnetic-loss-resolution-v1`, 556837 bytes, SHA-256
+`3f57ff47bc6275436e4bbeaa84199130649be03e547f2d572ae059986a291d7d`.
+Source blob `5e32ac1255599fd8aae280eb6656d14921c0f174` is verified before any
+simulation. All 98 unit tests and the new end-to-end CLI test pass, with strict
+Clippy and formatting. The prior expensive noise-matrix test was not rerun;
+its verified results supply the centers. No objective, optimizer, production
+DSP or audio asset changed. Next qualify noise-consistent weighting before
+interpreting the profile as a calibrated uncertainty measure.

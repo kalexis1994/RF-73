@@ -501,3 +501,11 @@ despite prediction acceptance and start agreement in every noisy case. One
 40 dB case newly exceeds 1% state error when losses are freed. Next quantify
 training-profile sensitivity and nearby alternative losses; start agreement
 does not establish uncertainty or physical calibration.
+
+The [local magnetic loss-resolution study](MAGNETIC-LOSS-RESOLUTION.md) now
+replays all 30 noisy-loss centers without repeating the outer search. Of 300
+state-refitted alternatives, 24 approximately 1% structural changes fall below
+one descriptive noise-distance unit, all at 20 dB. None does at 40 dB. The
+singular directions and local radii are retained without a confidence claim.
+Next compare per-window and constant-voltage-noise weighting with paired data,
+then qualify uncertainty and sensor mismatch before recorded-source calibration.

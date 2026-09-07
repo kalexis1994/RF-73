@@ -10,6 +10,109 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn magnetic_loss_resolution_pins_evidence_replays_centers_and_withholds_zero_noise() {
+    let scratch = Scratch::new();
+    let source = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../references/nonlinear-magnetic-loss-noise-validation.json");
+    let bytes = fs::read(source).unwrap();
+    fs::write(scratch.0.join("source.json"), &bytes).unwrap();
+    let args = [
+        "magnetic-loss-resolution",
+        "--input",
+        "source.json",
+        "--output",
+        "resolution.json",
+    ];
+    scratch.success(&args);
+    let report = scratch.json("resolution.json");
+    assert_eq!(
+        report["experiment"],
+        "nonlinear-magnetic-loss-resolution-v1"
+    );
+    assert_eq!(report["controls_passed"], true);
+    assert_eq!(
+        report["source_git_blob_sha1"],
+        "5e32ac1255599fd8aae280eb6656d14921c0f174"
+    );
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut noiseless = 0;
+    for case in cases {
+        let rows = case["observations"].as_array().unwrap();
+        assert_eq!(rows.len(), 5);
+        for row in rows {
+            let d = &row["diagnosis"];
+            assert_eq!(d["center_replayed"], true);
+            let alternatives = d["alternatives"].as_array().unwrap();
+            assert_eq!(alternatives.len(), 10);
+            let evaluations = row["profile_evaluations"].as_array().unwrap();
+            assert_eq!(evaluations.len(), 11);
+            for eval in evaluations {
+                let starts = eval["state_starts"].as_array().unwrap();
+                assert_eq!(starts.len(), 3);
+                let best=starts[eval["selected_state_start_index"].as_u64().unwrap() as usize]["training_relative_rmse"].as_f64().unwrap();
+                for start in starts {
+                    if let Some(other) = start["training_relative_rmse"].as_f64() {
+                        assert!(best <= other);
+                    } else {
+                        assert!(start["error"].is_string());
+                    }
+                }
+            }
+            let sigma = row["noise_standard_deviation"].as_f64().unwrap();
+            if sigma == 0.0 {
+                noiseless += 1;
+                assert_eq!(d["noise_resolution_status"], "withheld_no_noise_scale");
+                assert!(d["oracle_noise_scaled_singular_values"].is_null());
+                assert!(d["linearized_log_radius_for_one_noise_unit"].is_null());
+            }
+            let singular = d["raw_voltage_profile_singular_values"].as_array().unwrap();
+            assert!(singular[0].as_f64().unwrap() >= singular[1].as_f64().unwrap());
+            let center = d["center_scales"].as_array().unwrap();
+            for alt in alternatives {
+                assert!(alt["evaluation_index"].as_u64().unwrap() < 11);
+                for j in 0..2 {
+                    let expected = center[j].as_f64().unwrap()
+                        * alt["log_scale_offset"][j].as_f64().unwrap().exp();
+                    assert!((alt["scales"][j].as_f64().unwrap() - expected).abs() < 1e-14);
+                }
+                if sigma > 0.0 {
+                    let distance = alt["prediction_change_voltage_l2"].as_f64().unwrap() / sigma;
+                    let stored = alt["oracle_noise_scaled_prediction_distance"]
+                        .as_f64()
+                        .unwrap();
+                    assert!((distance - stored).abs() < 1e-12 * distance.max(1.0));
+                    assert_eq!(alt["within_one_noise_unit"], stored < 1.0);
+                } else {
+                    assert!(alt["within_one_noise_unit"].is_null());
+                }
+            }
+        }
+    }
+    assert_eq!(noiseless, 6);
+    let saved = fs::read(scratch.0.join("resolution.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("resolution.json")).unwrap());
+    let mut modified = bytes.clone();
+    modified.push(b' ');
+    fs::write(scratch.0.join("modified.json"), modified).unwrap();
+    assert!(
+        !scratch
+            .run(&[
+                "magnetic-loss-resolution",
+                "--input",
+                "modified.json",
+                "--output",
+                "rejected.json"
+            ])
+            .status
+            .success()
+    );
+    assert!(!scratch.0.join("rejected.json").exists());
+    assert_eq!(bytes, fs::read(scratch.0.join("source.json")).unwrap());
+}
+
+#[test]
 fn noisy_magnetic_losses_keep_truth_separate_and_pair_identical_noise() {
     let scratch = Scratch::new();
     let args = ["magnetic-loss-noise", "--output", "noise.json"];

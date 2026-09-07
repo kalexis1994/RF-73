@@ -242,6 +242,10 @@ fn run() -> Result<(), Box<dyn Error>> {
             "{}",
             mechanical_loss::observer::loss::magnetic::nonlinear::robustness::combined::HELP
         );
+        print!(
+            "{}",
+            mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::resolution::HELP
+        );
         print!("{}", source_envelope::short::HELP);
         print!("{}", short_envelope::HELP);
         print!("{}", partial_comparison::HELP);
@@ -343,6 +347,11 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "magnetic-state-robustness" {
         return mechanical_loss::observer::loss::magnetic::nonlinear::robustness::run(&args);
+    }
+    if args[0] == "magnetic-loss-resolution" {
+        return mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::resolution::run(
+            &args,
+        );
     }
     if args[0] == "magnetic-state-combined" {
         return mechanical_loss::observer::loss::magnetic::nonlinear::robustness::combined::run(
