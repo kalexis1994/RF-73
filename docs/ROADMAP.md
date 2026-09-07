@@ -34,9 +34,16 @@ not only parameter-identification diagnostics:
    qualification and retained before/after timbre observations. It covers one
    provisional G3 cell, not a calibrated keyboard.
 
-Next compare the tuned combined output with measured sources across intensities
-and decay phases, retaining uncertainty in the pickup and material parameters.
-A computational reduction suitable for the playable plugin remains necessary.
+6. **Recorded-source baseline:** the [loaded G3 comparison](LOADED-SOURCE-BASELINE.md)
+   verifies source identities, probes contact feasibility and compares pitch-aware
+   band balance and relative attack/decay trajectories. The sample-bank layers
+   are not assigned unmeasured physical strike velocities. Initial preload
+   remains visible and must be resolved before quiet-note parameter fitting.
+
+Next establish a physically stationary initialization, check the transition
+from non-striking to soft-striking action, then repeat source comparisons before
+freeing pickup and material parameters. A computational reduction suitable for
+the playable plugin remains necessary.
 
 Measured material/geometry calibration, listening and realtime integration
 remain cross-cutting release gates. The current damper is not a calibrated

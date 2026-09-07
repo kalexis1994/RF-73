@@ -118,6 +118,44 @@ pub(crate) fn verified_audio(path: &Path, expected: &str) -> Result<AudioClip, B
     Ok(AudioClip::read(Cursor::new(bytes), None)?)
 }
 
+pub(crate) struct VerifiedBank {
+    pub manifest: Value,
+    pub takes: Vec<(String, String, AudioClip)>,
+}
+pub(crate) fn verified_bank(path: &Path) -> Result<VerifiedBank, Box<dyn Error>> {
+    let mut bytes = Vec::new();
+    fs::File::open(path)?.take(65537).read_to_end(&mut bytes)?;
+    if bytes.len() > 65536 {
+        return Err("bank manifest exceeds 64 KiB".into());
+    }
+    let manifest: Manifest = serde_json::from_slice(&bytes)?;
+    manifest.validate()?;
+    if manifest.note != 55 {
+        return Err("loaded bank study requires G3".into());
+    }
+    let mut takes = Vec::new();
+    for take in &manifest.takes {
+        let clip = verified_audio(
+            &path.parent().unwrap_or(Path::new(".")).join(&take.file),
+            &take.git_blob_sha1,
+        )?;
+        takes.push((
+            take.id.clone(),
+            if take.role == Role::Training {
+                "training"
+            } else {
+                "validation"
+            }
+            .to_owned(),
+            clip,
+        ));
+    }
+    Ok(VerifiedBank {
+        manifest: serde_json::to_value(manifest)?,
+        takes,
+    })
+}
+
 fn target(anchors: &[(Role, PitchAnchor)]) -> Option<f64> {
     let training: Vec<_> = anchors
         .iter()

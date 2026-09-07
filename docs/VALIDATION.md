@@ -2390,3 +2390,52 @@ This is one provisional cell with selected long gestures. No host session,
 listening judgment, measured timbre match, complete aliasing bound or realtime
 integration is claimed. Next compare the tuned combined output to recorded
 sources across intensities and decay phases before freeing more parameters.
+
+## Loaded model against verified G3 sources
+
+The [source-baseline protocol](LOADED-SOURCE-BASELINE.md) now verifies all five
+bank blobs and compares native-rate, pitch-aware spectral-power bands and
+relative level trajectories. The initial 0.75/1.125/1.5 m/s study failed because
+the 0.75 m/s gesture had no hammer contact; its 162-byte failed receipt remains
+in `references/loaded-source-timbre-baseline-validation.json`. That output was
+not accepted as a soft strike.
+
+A six-speed, 120 ms preflight finds no contact at 0.75 or 1.0 m/s within its
+support, and contact at 1.125/1.25/1.5/1.75 m/s. The explicit striking follow-up
+uses 1.125/1.5/1.75 m/s without changing physics or measurement gates. Its
+[receipt](../references/loaded-source-timbre-striking-validation.json) qualifies
+all six 2.5-second takes and all five source profiles. Three gestures times
+five layers produce fifteen comparisons and seventy-five paired windows.
+Every pair shows descriptive disagreement. Measurement success and reference
+agreement are separate report fields; no matching claim or parameter fit is made.
+
+Worst relative total and exchange defects are 1.616e-12 and 6.796e-19. The
+maximum output refinement error is 0.003402%, and at most three outer iterations
+are needed. All takes have two physical hammer contacts and qualified output
+pitch. The factored 1.5 m/s renderer reproduces both prior tuned take summaries
+and the structural fit exactly.
+
+The final-window level relative to the body ranges from -5.58 to -2.43 dB in
+the bank and -14.58 to -13.63 dB in the model, leaving 8.06–12.15 dB additional
+model attenuation in every pair. Available band-balance discrepancies are also
+substantial; weak missing upper bands remain null. Unknown bank gain, EQ/noise
+reduction and onset uncertainty preclude identifying a unique physical cause.
+
+The model's unrelaxed preload is retained. The new anchor uses actual hammer
+contact instead of treating initial relaxation as a strike. The soft preview
+has approximately 0.008654 FS peak before the key command; later residual
+preload motion is not subtracted. Stationary initialization is the next physical
+gate before quiet-note calibration and renewed loss/pickup comparisons.
+
+Only one optional fine WAV is saved: 480058 bytes, 120,000 finite 48 kHz samples,
+peak 0.099136651 and RMS 0.004493842 FS on Rust readback. Source recordings are
+reused without copying. The protocol records hashes for it and both receipts.
+The follow-up receipt is schema 1, 264644 bytes, SHA-256
+`8c7babfc94504e15476a586642bc4316a79e87b2b4c6fa499bed9353a685fc99`.
+
+Verification covers 69 analysis tests, 110 lab unit tests and loaded-bank
+CLI/receipt checks, including native-rate/gain invariance, known synthetic decay,
+silence/support rejection, missing-estimate handling, contact feasibility,
+source hash rejection and output preservation. Strict Clippy and formatting
+also pass. Release builds reuse the existing cache with incremental compilation
+disabled. No DSP constants, playable plugin, GUI or host session were changed.

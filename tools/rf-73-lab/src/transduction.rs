@@ -2,6 +2,7 @@
 use rf_73_dsp::{ElectromechanicalAssembly, ElectromechanicalProfile, ProductionDecimator};
 use serde_json::{Value, json};
 use std::{error::Error, io::BufWriter, path::Path};
+pub(crate) mod bank;
 pub(crate) mod tuning;
 
 pub const HELP: &str = "Electromechanical audit:

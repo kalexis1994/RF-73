@@ -260,6 +260,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", polarization::HELP);
         print!("{}", transduction::HELP);
         print!("{}", transduction::tuning::HELP);
+        print!("{}", transduction::bank::HELP);
         print!("{}", source_envelope::short::HELP);
         print!("{}", short_envelope::HELP);
         print!("{}", partial_comparison::HELP);
@@ -382,6 +383,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "tune-electromechanical" {
         return transduction::tuning::run(&args);
+    }
+    if args[0] == "compare-loaded-bank" {
+        return transduction::bank::run(&args);
     }
     if args[0] == "magnetic-loss-weighting" {
         return mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::weighting::run(

@@ -10,6 +10,144 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_bank_receipt_keeps_failed_control_and_separates_measurement_from_disagreement() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let failed = read("loaded-source-timbre-baseline-validation.json");
+    assert_eq!(failed["measurement_qualified"], false);
+    assert_eq!(failed["reason"], "gesture produced no hammer contact");
+    let r = read("loaded-source-timbre-striking-validation.json");
+    assert_eq!(r["measurement_qualified"], true);
+    assert_eq!(r["reference_match_claimed"], false);
+    assert_eq!(r["sources"].as_array().unwrap().len(), 5);
+    assert_eq!(r["candidates"].as_array().unwrap().len(), 3);
+    assert_eq!(r["comparisons"].as_array().unwrap().len(), 15);
+    let prior = read("loaded-polarized-spring-tuning-validation.json");
+    assert_eq!(r["candidates"][1]["takes"], prior["cases"][1]["takes"]);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    for candidate in r["candidates"].as_array().unwrap() {
+        assert_eq!(candidate["measurement_qualified"], true);
+        assert!(candidate["output_error_cents"].as_f64().unwrap().abs() < 5.0);
+        assert!(candidate["first_hammer_contact_seconds"].as_f64().unwrap() > 0.03);
+        for take in candidate["takes"].as_array().unwrap() {
+            assert_eq!(take["passed"], true);
+            assert!(take["max_relative_total_balance_defect"].as_f64().unwrap() < 1e-8);
+            assert!(take["max_relative_exchange_defect"].as_f64().unwrap() < 1e-10);
+            assert!(take["hammer_contact_entries"].as_u64().unwrap() >= 2);
+        }
+        for window in candidate["convergence"]["windows"].as_array().unwrap() {
+            assert!(window["voltage_relative_rmse"].as_f64().unwrap() < 0.01);
+        }
+    }
+    for pair in r["comparisons"].as_array().unwrap() {
+        assert_eq!(pair["comparison"]["within_descriptive_tolerances"], false);
+        assert_eq!(pair["comparison"]["windows"].as_array().unwrap().len(), 5);
+        assert!(
+            pair["comparison"]["max_absolute_relative_level_difference_db"]
+                .as_f64()
+                .unwrap()
+                > 3.0
+        );
+    }
+    for row in r["sources"].as_array().unwrap() {
+        assert_eq!(row["profile"]["qualified"], true);
+        for window in row["profile"]["windows"].as_array().unwrap() {
+            let sum: f64 = window["band_power_fractions"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|x| x.as_f64().unwrap())
+                .sum();
+            assert!((sum - 1.0).abs() < 1e-12);
+        }
+    }
+}
+
+#[test]
+fn loaded_bank_cli_preserves_outputs_and_rejects_unverified_sources_before_rendering() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"receipt").unwrap();
+    fs::write(scratch.0.join("keep.wav"), b"audio").unwrap();
+    fs::write(scratch.0.join("bad-manifest.json"), b"{}").unwrap();
+    for args in [
+        vec!["compare-loaded-bank"],
+        vec![
+            "compare-loaded-bank",
+            "missing.json",
+            "--output",
+            "keep.json",
+        ],
+        vec![
+            "compare-loaded-bank",
+            "missing.json",
+            "--output",
+            "bad.json",
+            "--preview",
+            "keep.wav",
+        ],
+        vec![
+            "compare-loaded-bank",
+            "bad-manifest.json",
+            "--output",
+            "bad.json",
+        ],
+        vec![
+            "compare-loaded-bank",
+            "bad-manifest.json",
+            "--output",
+            "bad.wav",
+        ],
+        vec![
+            "compare-loaded-bank",
+            "bad-manifest.json",
+            "--output",
+            "bad.json",
+            "--unknown",
+            "new.wav",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    let manifest_path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../references/g3-pitch-reference.manifest.json");
+    let mut manifest: serde_json::Value =
+        serde_json::from_slice(&fs::read(manifest_path).unwrap()).unwrap();
+    // All bytes are present, but the first blob identity is deliberately wrong.
+    for (i, take) in manifest["takes"]
+        .as_array_mut()
+        .unwrap()
+        .iter_mut()
+        .enumerate()
+    {
+        let file = format!("source-{i}.wav");
+        fs::write(scratch.0.join(&file), b"corrupt source").unwrap();
+        take["file"] = serde_json::json!(file);
+    }
+    fs::write(
+        scratch.0.join("corrupt.json"),
+        serde_json::to_vec(&manifest).unwrap(),
+    )
+    .unwrap();
+    let out = scratch.run(&[
+        "compare-loaded-bank",
+        "corrupt.json",
+        "--output",
+        "bad.json",
+        "--preview",
+        "new.wav",
+    ]);
+    assert!(!out.status.success());
+    assert!(String::from_utf8_lossy(&out.stderr).contains("blob mismatch"));
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"receipt");
+    assert_eq!(fs::read(scratch.0.join("keep.wav")).unwrap(), b"audio");
+    for name in ["bad.json", "bad.wav", "new.wav"] {
+        assert!(!scratch.0.join(name).exists());
+    }
+}
+
+#[test]
 fn loaded_tuning_receipt_requires_audio_pitch_long_gesture_convergence_and_changed_ratios() {
     let path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
         .join("../../references/loaded-polarized-spring-tuning-validation.json");

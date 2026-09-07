@@ -9,7 +9,11 @@ mod partial_comparison;
 mod pitch_anchor;
 mod short_envelope;
 mod spectrum;
+mod timbre_profile;
 mod tone_comparison;
+pub use timbre_profile::{
+    TimbreProfile, TimbreWindow, detect_timbre_onset, measure_timbre_profile,
+};
 mod tracking;
 
 pub use audio::{AudioClip, AudioError, AudioMetadata};

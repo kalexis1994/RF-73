@@ -54,6 +54,12 @@ Four long-gesture takes pass energy and output-refinement gates; the tuned
 audio also passes the frozen G3 pitch target. A before/after WAV pair preserves
 changes in nonharmonic structure and output level for listening.
 
+The [loaded source baseline](docs/LOADED-SOURCE-BASELINE.md) now compares the
+combined model with all five pinned G3 layers using native-rate, pitch-aware
+spectral bands and relative level trajectories. Contact feasibility keeps a
+non-striking gesture separate from a soft note; source processing and initial
+preload remain explicit limitations before physical parameter calibration.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

@@ -142,3 +142,8 @@ keyboard calibration, magnetic field identification and listening against
 recorded sources remain open. Selected temporal refinement does not prove a
 complete aliasing bound. The high-resolution solver remains offline and has not
 replaced the playable plugin.
+
+The subsequent [recorded-source baseline](LOADED-SOURCE-BASELINE.md) compares
+multiple prescribed gestures with the pinned G3 layers. It retains processing
+uncertainty and the cold-start preload contribution rather than treating pitch
+agreement as a timbre or physical-parameter calibration.

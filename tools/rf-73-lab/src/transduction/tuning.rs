@@ -167,11 +167,51 @@ fn fit(target: f64) -> Result<(Selected, Value), Box<dyn Error>> {
     }
     Err("polarized spring tuning budget exhausted".into())
 }
-struct Take {
-    samples: Vec<f64>,
-    summary: Value,
+pub(super) struct Take {
+    pub(super) samples: Vec<f64>,
+    pub(super) summary: Value,
+    pub(super) first_contact_seconds: Option<f64>,
 }
 fn take(position: f64, steps: usize) -> Result<Take, Box<dyn Error>> {
+    take_driven(position, steps, 1.5)
+}
+pub(super) fn fitted_position(target: f64) -> Result<(f64, Value), Box<dyn Error>> {
+    let (s, r) = fit(target)?;
+    Ok((s.position, r))
+}
+pub(super) fn strike_feasibility(position: f64) -> Result<Value, Box<dyn Error>> {
+    let p = profile(position);
+    let h = 1.0 / (48000.0 * 128.0);
+    let mut rows = Vec::new();
+    for speed in [0.75, 1.0, 1.125, 1.25, 1.5, 1.75] {
+        let mut model = ElectromechanicalAssembly::new(h, p)?;
+        let mut x = p.action.hammer_rest_m;
+        let mut impact = None;
+        let mut pre_contact_velocity = None;
+        for i in 0..737280 {
+            let t = i as f64 * h;
+            let target = if t >= 0.03 {
+                -p.action.escapement_m
+            } else {
+                p.action.hammer_rest_m
+            };
+            x += (target - x).clamp(-speed * h, speed * h);
+            let before = model.probe();
+            model.advance(x, p.action.damper_closed_m)?;
+            if model.probe().mechanical.contact_entries[0] > 0 {
+                impact = Some(t + h);
+                pre_contact_velocity = Some(before.mechanical.velocity[18]);
+                break;
+            }
+        }
+        rows.push(json!({"pedestal_speed_m_s":speed,"first_contact_seconds":impact,"pre_contact_hammer_velocity_m_s":pre_contact_velocity}));
+    }
+    Ok(json!({"duration_limit_seconds":0.12,"steps_per_frame":128,"cases":rows}))
+}
+pub(super) fn take_driven(position: f64, steps: usize, speed: f64) -> Result<Take, Box<dyn Error>> {
+    if !speed.is_finite() || !(0.1..=2.0).contains(&speed) || ![128, 256].contains(&steps) {
+        return Err("invalid loaded gesture speed or resolution".into());
+    }
     let p = profile(position);
     let h = 1.0 / (f64::from(RATE) * steps as f64);
     let mut model = ElectromechanicalAssembly::new(h, p)?;
@@ -183,6 +223,7 @@ fn take(position: f64, steps: usize) -> Result<Take, Box<dyn Error>> {
     let mut exchange = 0.0_f64;
     let mut passive = 0.0_f64;
     let mut heat_monotone = true;
+    let mut first_contact_seconds = None;
     for frame in 0..FRAMES {
         let mut average = 0.0;
         for sub in 0..steps {
@@ -192,9 +233,12 @@ fn take(position: f64, steps: usize) -> Result<Take, Box<dyn Error>> {
             } else {
                 p.action.hammer_rest_m
             };
-            x += (target - x).clamp(-1.5 * h, 1.5 * h);
+            x += (target - x).clamp(-speed * h, speed * h);
             model.advance(x, p.action.damper_closed_m)?;
             let b = model.probe();
+            if first_contact_seconds.is_none() && b.mechanical.contact_entries[0] > 0 {
+                first_contact_seconds = Some(t + h);
+            }
             let scale =
                 (b.mechanical.initial_energy_j + b.mechanical.absolute_drive_work_j).max(1e-20);
             balance = balance.max(b.total_balance_residual_j.abs() / scale);
@@ -228,13 +272,14 @@ fn take(position: f64, steps: usize) -> Result<Take, Box<dyn Error>> {
         && old.mechanical.contact_entries[0] >= 2;
     Ok(Take {
         samples,
+        first_contact_seconds,
         summary: json!({"steps_per_frame":steps,"passed":passed,"peak":peak,"rms":rms,"max_relative_total_balance_defect":balance,
         "max_relative_exchange_defect":exchange,"max_stationary_drive_energy_growth":passive,"heat_monotone":heat_monotone,
         "hammer_contact_entries":old.mechanical.contact_entries[0],"maximum_coupling_iterations":old.maximum_iterations,
         "coil_heat_j":old.coil_heat_j,"load_heat_j":old.load_heat_j}),
     })
 }
-fn compare_resolution(a: &Take, b: &Take) -> Value {
+pub(super) fn compare_resolution(a: &Take, b: &Take) -> Value {
     let windows:Vec<_>=[(0.0,0.25),(0.25,0.762),(0.762,1.274),(1.274,1.786),(1.786,2.5)].into_iter().map(|(lo,hi)| {
         let range=(lo*f64::from(RATE)).round() as usize..(hi*f64::from(RATE)).round() as usize;
         let mut e=0.0;let mut s=0.0;
@@ -244,7 +289,7 @@ fn compare_resolution(a: &Take, b: &Take) -> Value {
     }).collect();
     json!({"passed":windows.iter().all(|w|w["passed"]==true),"windows":windows})
 }
-fn write_wav(path: &Path, take: &Take) -> Result<(), Box<dyn Error>> {
+pub(super) fn write_wav(path: &Path, take: &Take) -> Result<(), Box<dyn Error>> {
     let mut wav =
         crate::wav::FloatWav::new(BufWriter::new(crate::new_file(path)?), RATE, FRAMES as u32)?;
     for &x in &take.samples {
@@ -351,6 +396,14 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn striking_drive_feasibility_is_explicit() {
+        let (position, _) = fitted_position(196.38614697959488).unwrap();
+        let map = strike_feasibility(position).unwrap();
+        println!("{map}");
+        assert_eq!(map["cases"][0]["first_contact_seconds"], Value::Null);
+        assert!(map["cases"][4]["first_contact_seconds"].as_f64().is_some());
+    }
     #[test]
     fn retained_reference_replays_the_structural_fit_with_current_validation() {
         let path = Path::new(env!("CARGO_MANIFEST_DIR"))
