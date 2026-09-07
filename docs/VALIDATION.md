@@ -1946,3 +1946,24 @@ All 51 evaluations still run per scale; the receipt keeps 17 coarse nodes plus
 selected values, final brackets and counts to bound storage. The laboratory
 release suite passes 116 tests (84 unit, 32 CLI), with strict laboratory Clippy
 and formatting checks. No production solver, waveform or host change is claimed.
+
+## Continuous state through the known damper event
+
+The [continuous loss protocol](CONTINUOUS-PICKUP-LOSS.md) and
+[receipt](../references/continuous-pickup-loss-validation.json) retain 102 paired
+fits. The new path fits one state before the event and propagates it continuously
+to the damper-on interval without reading held-out samples or resetting state.
+All six matched controls pass; maximum held-out pickup relative RMSE is `7.365e-9`.
+
+The rerun independent reference reproduces 100 prediction-consistent fits with
+46 biased losses. Continuity accepts 82 predictions with 28 biased losses,
+rejecting 18 additional wrong fits. Both scales remain within 1% in 54 cases,
+as before. The largest remaining accepted damper error is 3.907%, with about
+0.3514% pickup prediction error. Pickup-only geometry errors now leave measurable
+signal residuals, but none is rejected on this fixed noiseless grid.
+
+Receipt schema 1, `continuous-pickup-loss-v1`, 1090267 bytes, SHA-256
+`cf65badf0289cd4ac127da17aa655f1bc4ee3a741c26b54e85cb69fd7d2c52b6`.
+The laboratory release suite passes 119 tests (86 unit, 33 CLI), plus strict
+laboratory Clippy and formatting checks. Analytic switched-damping tests validate
+the event propagation. No production equation, audio asset or host change is claimed.

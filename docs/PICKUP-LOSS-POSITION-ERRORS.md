@@ -130,3 +130,8 @@ mechanical trajectories before attempting recorded-voltage loss inference.
 
 No production equations, loss presets, plugin engine or audio assets changed.
 The command runs offline and does not launch the host.
+
+The subsequent [continuous-state study](CONTINUOUS-PICKUP-LOSS.md) carries the
+off-window state through the known damper event. On the same grid it reduces
+prediction-consistent but biased fits from 46 to 28, without changing gates.
+Continuity helps reject wrong fits but still does not establish correct geometry.

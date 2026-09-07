@@ -10,6 +10,86 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn continuous_loss_carries_one_state_and_pairs_every_position_case() {
+    let scratch = Scratch::new();
+    let args = ["pickup-loss-continuity", "--output", "continuous.json"];
+    scratch.success(&args);
+    let report = scratch.json("continuous.json");
+    assert_eq!(report["experiment"], "continuous-pickup-loss-v1");
+    assert_eq!(report["controls_passed"], true);
+    assert_eq!(report["summary"]["paired_observations"], 102);
+    // The unchanged independent path must reproduce the established grid.
+    assert_eq!(report["summary"]["independent_prediction_consistent"], 100);
+    assert_eq!(report["summary"]["independent_consistent_but_biased"], 46);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut required = 0;
+    let mut biased = 0;
+    for case in cases {
+        assert_eq!(case["propagation_gap_contact_free"], true);
+        assert_eq!(case["controls_passed"], true);
+        let rows = case["observations"].as_array().unwrap();
+        assert_eq!(rows.len(), 17);
+        for row in rows {
+            assert_eq!(row["operator_invariants_passed"], true);
+            if row["required_control"] == true {
+                required += 1;
+                assert_eq!(row["required_control_passed"], true);
+            }
+            if row["classification"]["prediction_consistent_but_biased"] == true {
+                biased += 1;
+            }
+            let fit = &row["fit"];
+            if fit["error"].is_null() {
+                assert_eq!(fit["fitted_initial_state_count"], 1);
+                assert_eq!(
+                    fit["estimated_structural_scale"],
+                    row["independent_window_reference"]["estimated_structural_scale"]
+                );
+                assert_eq!(fit["windows"].as_array().unwrap().len(), 2);
+                assert!(fit["windows"][1]["minimum_normalized_qr_pivot"].is_null());
+                assert!(
+                    fit["windows"][1]["source_off_state_fit_minimum_normalized_qr_pivot"]
+                        .as_f64()
+                        .unwrap()
+                        > 1e-8
+                );
+                for name in ["structural_profile", "conditional_damper_profile"] {
+                    assert_eq!(fit[name]["evaluation_count"], 51);
+                    assert_eq!(
+                        fit[name]["coarse_evaluations"].as_array().unwrap().len(),
+                        17
+                    );
+                }
+            }
+        }
+    }
+    assert_eq!(required, 6);
+    assert_eq!(
+        report["summary"]["continuous_consistent_but_biased"],
+        biased
+    );
+    let saved = fs::read(scratch.0.join("continuous.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("continuous.json")).unwrap());
+    for args in [
+        vec!["pickup-loss-continuity"],
+        vec!["pickup-loss-continuity", "--output", "bad.wav"],
+        vec![
+            "pickup-loss-continuity",
+            "--output",
+            "bad.json",
+            "--reset",
+            "1",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn small_position_errors_retain_every_fit_and_keep_prediction_separate_from_truth() {
     let scratch = Scratch::new();
     let args = ["pickup-loss-geometry", "--output", "geometry.json"];

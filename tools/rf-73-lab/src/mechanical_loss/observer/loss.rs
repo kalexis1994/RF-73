@@ -1,4 +1,5 @@
 //! Profile unknown viscous scales while eliminating nuisance initial states.
+pub mod continuity;
 pub mod geometry;
 use super::*;
 

@@ -8,12 +8,12 @@ Noiseless shared trajectories; retain prediction-consistent but biased fits. Not
 ";
 
 #[derive(Clone, Copy, Serialize)]
-struct Perturbation {
-    family: &'static str,
-    damper_offset: f64,
-    pickup_offset: f64,
+pub(super) struct Perturbation {
+    pub(super) family: &'static str,
+    pub(super) damper_offset: f64,
+    pub(super) pickup_offset: f64,
 }
-fn perturbations() -> Vec<Perturbation> {
+pub(super) fn perturbations() -> Vec<Perturbation> {
     let mut values = vec![Perturbation {
         family: "matched",
         damper_offset: 0.0,
@@ -43,14 +43,14 @@ fn perturbations() -> Vec<Perturbation> {
     values
 }
 
-struct Prepared {
-    perturbation: Perturbation,
-    spectrum: ModalSpectrum,
-    structural: Matrix,
-    damper: Matrix,
-    invariants_passed: bool,
+pub(super) struct Prepared {
+    pub(super) perturbation: Perturbation,
+    pub(super) spectrum: ModalSpectrum,
+    pub(super) structural: Matrix,
+    pub(super) damper: Matrix,
+    pub(super) invariants_passed: bool,
 }
-fn prepare(p: Perturbation) -> Result<Prepared, Box<dyn Error>> {
+pub(super) fn prepare(p: Perturbation) -> Result<Prepared, Box<dyn Error>> {
     let geometry = TineGeometry {
         pickup_position: 0.98 + p.pickup_offset,
         ..TineGeometry::default()
@@ -97,7 +97,7 @@ fn prepare(p: Perturbation) -> Result<Prepared, Box<dyn Error>> {
 
 // Keep every fit and coarse node, but not 34 local refinement evaluations per
 // scale. The fitted result, search bounds/bracket and evaluation count remain.
-fn compact(mut fit: Value) -> Value {
+pub(super) fn compact(mut fit: Value) -> Value {
     for name in ["structural_profile", "conditional_damper_profile"] {
         if let Some(profile) = fit[name].as_object_mut()
             && let Some(Value::Array(mut evaluations)) = profile.remove("evaluations")
@@ -110,7 +110,7 @@ fn compact(mut fit: Value) -> Value {
     fit
 }
 
-fn classify(fit: &Value, alpha: f64, beta: f64) -> Value {
+pub(super) fn classify(fit: &Value, alpha: f64, beta: f64) -> Value {
     let errors = fit["estimated_structural_scale"]
         .as_f64()
         .zip(fit["estimated_damper_scale"].as_f64())

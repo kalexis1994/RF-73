@@ -446,3 +446,11 @@ pickup residual. Pickup-position mismatch is absorbed by independent window
 states while motion estimates change. Next enforce state continuity through
 the known damper event and test whether that reduces position ambiguity, then
 qualify magnetic observation. Existing prediction gates cannot certify geometry.
+
+The [continuous-state loss study](CONTINUOUS-PICKUP-LOSS.md) now uses one initial
+state propagated through the known damper event. All six matched controls pass;
+paired accepted-but-biased fits fall from 46 to 28 across 102 position cases.
+The 54 fits within 1% of both true scales remain unchanged: this improves rejection,
+not geometric identification. Pickup-position mismatch becomes visible in the
+residual but still passes the existing gate. Next qualify the nonlinear magnetic
+observation on these trajectories while retaining continuity and geometry limits.
