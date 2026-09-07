@@ -10,6 +10,110 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn noisy_magnetic_losses_keep_truth_separate_and_pair_identical_noise() {
+    let scratch = Scratch::new();
+    let args = ["magnetic-loss-noise", "--output", "noise.json"];
+    scratch.success(&args);
+    let report = scratch.json("noise.json");
+    assert_eq!(report["experiment"], "nonlinear-magnetic-loss-noise-v1");
+    assert_eq!(report["controls_passed"], true);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut controls = 0;
+    let mut noisy = 0;
+    for case in cases {
+        let rows = case["observations"].as_array().unwrap();
+        assert_eq!(rows.len(), 5);
+        for row in rows {
+            if row["required_control"] == true {
+                controls += 1;
+                assert_eq!(row["required_control_passed"], true);
+                assert!(row["snr_db"].is_null());
+                assert_eq!(row["noise_standard_deviation"], 0.0);
+            } else {
+                noisy += 1;
+                assert!(row["required_control_passed"].is_null());
+                assert!(row["noise_standard_deviation"].as_f64().unwrap() > 0.0);
+            }
+            let fit = &row["fit"];
+            let known = &row["known_loss_state_control"];
+            if let Some(selected) = fit["selected_loss_start_index"].as_u64() {
+                let attempts = fit["attempts"].as_array().unwrap();
+                assert_eq!(attempts.len(), 2);
+                let best = attempts[selected as usize]["objective"].as_f64().unwrap();
+                for attempt in attempts {
+                    if let Some(cost) = attempt["objective"].as_f64() {
+                        assert!(best <= cost);
+                        assert_eq!(
+                            attempt["relative_loss_errors_for_scoring_only"]
+                                .as_array()
+                                .unwrap()
+                                .len(),
+                            2
+                        );
+                    } else {
+                        assert!(attempt["error"].is_string());
+                    }
+                }
+                let v = &fit["validation"];
+                let errors = v["relative_loss_errors"].as_array().unwrap();
+                assert_eq!(
+                    v["both_losses_within_one_percent"],
+                    errors.iter().all(|e| e.as_f64().unwrap() < 0.01)
+                );
+                assert_eq!(
+                    v["prediction_consistent_loss_error"],
+                    v["prediction_consistent"] == true
+                        && v["both_losses_within_one_percent"] == false
+                );
+                assert_eq!(
+                    fit["agreement_hides_loss_error"],
+                    fit["loss_start_agreement"]["within_one_percent"] == true
+                        && v["prediction_consistent_loss_error"] == true
+                );
+                if row["paired_state_comparison"]["status"] == "compared" {
+                    for i in 0..2 {
+                        assert_eq!(
+                            v["windows"][i]["injected_noise_relative_rmse"],
+                            known["windows"][i]["injected_noise_relative_rmse"]
+                        );
+                    }
+                    assert_eq!(
+                        row["paired_state_comparison"]["new_hidden_state_error_when_freeing_losses"],
+                        known["state_within_one_percent"] == true
+                            && v["prediction_consistent"] == true
+                            && v["state_within_one_percent"] == false
+                    );
+                } else {
+                    assert!(known["error"].is_string());
+                }
+            } else {
+                assert!(fit["error"].is_string());
+            }
+            assert!(!row["profile_evaluations"].as_array().unwrap().is_empty());
+        }
+    }
+    assert_eq!((controls, noisy), (6, 24));
+    let saved = fs::read(scratch.0.join("noise.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("noise.json")).unwrap());
+    for args in [
+        vec!["magnetic-loss-noise"],
+        vec!["magnetic-loss-noise", "--output", "bad.wav"],
+        vec![
+            "magnetic-loss-noise",
+            "--output",
+            "bad.json",
+            "--truth",
+            "1",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert!(!scratch.0.join("bad.json").exists());
+}
+
+#[test]
 fn nonlinear_loss_profile_recovers_unknown_scales_and_retains_bounded_failure() {
     let scratch = Scratch::new();
     let args = ["magnetic-loss-profile", "--output", "profile.json"];

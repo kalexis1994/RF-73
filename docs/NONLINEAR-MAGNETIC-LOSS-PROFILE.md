@@ -128,3 +128,11 @@ and loss error separately and compare both loss starts. The earlier paired
 sensor study requires uncertainty or competing sensor explanations to remain
 visible before applying these estimates to recorded sources; low residuals
 alone must not promote a fitted loss into production calibration.
+
+The [noisy unknown-loss study](NONLINEAR-MAGNETIC-LOSS-NOISE.md) now retains
+30 fits and paired known-loss state controls. At nominal 40 dB all 12 fits
+recover both losses within 1%; at 20 dB only 3/12 do, although all pass the
+oracle prediction diagnostic and both loss starts agree. Nine incorrect loss
+estimates therefore survive both checks. Next measure profile sensitivity and
+competing nearby loss estimates before interpreting the point estimate as a
+calibration.

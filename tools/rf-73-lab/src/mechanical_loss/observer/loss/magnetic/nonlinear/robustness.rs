@@ -109,7 +109,22 @@ fn corrupt(clean: &[Vec<f64>; 2], c: Condition) -> ([Vec<f64>; 2], f64) {
     )
 }
 
-fn outcome(
+pub(super) fn additive_voltage_noise(
+    clean: &[Vec<f64>; 2],
+    snr_db: Option<f64>,
+    seed: u64,
+) -> ([Vec<f64>; 2], f64) {
+    corrupt(
+        clean,
+        Condition {
+            snr_db,
+            seed,
+            ..conditions()[0]
+        },
+    )
+}
+
+pub(super) fn outcome(
     t: &Templates,
     s: Sensor,
     traces: &[Trace; 2],

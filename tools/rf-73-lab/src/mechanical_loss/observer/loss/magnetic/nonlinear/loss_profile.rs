@@ -1,4 +1,5 @@
 //! Profile two unknown loss scales with a nonlinear continuous-state refit.
+pub mod noise;
 use super::*;
 
 pub const HELP: &str = "Nonlinear magnetic loss profile:

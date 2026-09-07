@@ -2084,3 +2084,30 @@ Clippy and formatting checks. The receipt retains 465 loss candidates and
 assumptions, not uncertainty-qualified source calibration. Noise and sensor
 mismatch remain unqualified for this inverse; production DSP and audio assets
 are unchanged.
+
+## Noisy nonlinear magnetic loss estimates
+
+The [noise protocol](NONLINEAR-MAGNETIC-LOSS-NOISE.md) and
+[receipt](../references/nonlinear-magnetic-loss-noise-validation.json) retain
+30 fits: six noiseless controls and 24 noisy cases at nominal 40/20 dB with
+two seeds, across the same three loss pairs and two rates. Every fit has a
+known-loss state comparator on identical measured samples, prepared only after
+unknown-loss selection. All six clean candidate histories and all 30 paired
+known-loss results reproduce the corresponding earlier receipts exactly.
+
+All six controls pass. At 40 dB all 12 fits recover both losses within 1%,
+with a maximum loss error of 0.7411%; at 20 dB only 3/12 pass, with a maximum
+of 6.760%. All 24 noisy fits pass the oracle injected-noise prediction gate
+and have agreeing starts, leaving nine accepted but incorrect loss estimates.
+State recovery is 11/12 and 0/12 respectively, versus 12/12 and 0/12 with known
+losses. One 40 dB pair newly exceeds 1% state error when losses are freed.
+
+Receipt schema 1, `nonlinear-magnetic-loss-noise-v1`, 4014816 bytes, SHA-256
+`5499232a9abd733a0e1a09169b14d8d17de6da855202923669e92cac8a54d1a1`.
+The full laboratory release suite passes 134 tests (95 unit, 39 CLI), strict
+Clippy and formatting checks. The receipt retains 3042 loss candidates and
+9126 inner starts, plus 90 starts for the known-loss comparators. No fit hits
+a search boundary or exhausts the outer iteration budget; noisy starts stop
+with `no_descent_step`. This does not certify a global optimum or confidence.
+Noise-aware prediction here requires synthetic noise knowledge. No production
+DSP, preset, audio asset or host change is claimed.

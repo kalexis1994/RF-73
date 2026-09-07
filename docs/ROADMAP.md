@@ -493,3 +493,11 @@ state; all 12 outer starts converge. A seventh control beyond the structural
 search range reaches the bound, exhausts its budget and is rejected. Next
 qualify voltage-noise sensitivity of the unknown-loss inverse, keeping loss,
 state and prediction errors separate before introducing sensor uncertainty.
+
+The [noisy nonlinear loss study](NONLINEAR-MAGNETIC-LOSS-NOISE.md) now compares
+30 unknown-loss fits with known-loss state controls on identical noise. All
+12 fits at nominal 40 dB recover both losses within 1%; only 3/12 do at 20 dB,
+despite prediction acceptance and start agreement in every noisy case. One
+40 dB case newly exceeds 1% state error when losses are freed. Next quantify
+training-profile sensitivity and nearby alternative losses; start agreement
+does not establish uncertainty or physical calibration.
