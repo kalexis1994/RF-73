@@ -138,3 +138,9 @@ validation and antialiasing remain separate requirements before source calibrati
 
 No production magnetic equation, mechanical solver, preset or audio asset changed.
 This is an offline observation study, with no host launch or listening claim.
+
+The follow-up [nonlinear state study](NONLINEAR-MAGNETIC-STATE.md) recovers all
+24 noncentered states with the true losses and geometry supplied. All 72 fixed
+start attempts converge; 12 centered cases retain the sign ambiguity. This
+qualifies the nonlinear state fit, not unknown-loss recovery. Next test noise
+and sensor-model mismatch before freeing loss parameters.

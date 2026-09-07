@@ -1,4 +1,5 @@
 //! Existing magnetic laws observed by a deliberately linear continuous-state inverse.
+pub mod nonlinear;
 use super::continuity::continuous_outcome;
 use super::geometry::{classify, perturbations, prepare};
 use super::*;

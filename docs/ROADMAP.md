@@ -462,3 +462,10 @@ the rest-linearized observer. Next qualify a nonlinear state fit with known
 mechanics/sensor geometry, continuous state and held-out samples before freeing
 loss parameters. These direct point samples do not validate antialiasing or a
 real-instrument field law; the production equations remain unchanged.
+
+The [nonlinear magnetic state study](NONLINEAR-MAGNETIC-STATE.md) now recovers
+24/24 noncentered states with known losses and geometry; all 72 fixed start
+attempts converge. Twelve centered cases explicitly withhold unique sign
+recovery. Next qualify noise and geometry/field-law sensitivity, then estimate
+losses with a nonlinear state refit for every candidate. These matched synthetic
+results do not yet establish robustness or real-instrument calibration.

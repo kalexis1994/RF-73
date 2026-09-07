@@ -10,6 +10,82 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn nonlinear_magnetic_state_uses_training_selection_and_retains_centered_ambiguity() {
+    let scratch = Scratch::new();
+    let args = ["magnetic-state", "--output", "state.json"];
+    scratch.success(&args);
+    let report = scratch.json("state.json");
+    assert_eq!(report["experiment"], "nonlinear-magnetic-state-v1");
+    assert_eq!(report["controls_passed"], true);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut centered = 0;
+    let mut baseline = 0;
+    for case in cases {
+        assert_eq!(case["controls_passed"], true);
+        let rows = case["observations"].as_array().unwrap();
+        assert_eq!(rows.len(), 6);
+        for row in rows {
+            if row["required_control"] == true {
+                assert_eq!(row["required_control_passed"], true);
+            }
+            let fit = &row["fit"];
+            if row["sensor"]["geometry"] == "centered" {
+                centered += 1;
+                assert_eq!(fit["status"], "withheld_sign_ambiguity");
+                assert!(fit["voltage_energy"].as_f64().unwrap() > 0.0);
+                assert!(fit["sign_symmetry_relative_rmse"].as_f64().unwrap() < 1e-12);
+                continue;
+            }
+            if row["sensor"]["geometry"] == "baseline" {
+                baseline += 1;
+                assert_eq!(fit["validation"]["known_state_recovery"], true);
+            }
+            let attempts = fit["attempts"].as_array().unwrap();
+            assert_eq!(attempts.len(), 3);
+            if fit["error"].is_null() {
+                let selected = fit["selected_start_index"].as_u64().unwrap() as usize;
+                let objective = attempts[selected]["optimization"]["training_relative_rmse"]
+                    .as_f64()
+                    .unwrap();
+                for attempt in attempts {
+                    if let Some(other) = attempt["optimization"]["training_relative_rmse"].as_f64()
+                    {
+                        assert!(objective <= other);
+                    }
+                }
+            }
+            for attempt in attempts {
+                if let Some(history) = attempt["optimization"]["history"].as_array() {
+                    let mut previous = history[0]["objective"].as_f64().unwrap();
+                    for step in &history[1..] {
+                        if step["accepted"] == true {
+                            let next = step["candidate_objective"].as_f64().unwrap();
+                            assert!(next < previous);
+                            previous = next;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    assert_eq!(centered, 12);
+    assert_eq!(baseline, 12);
+    let saved = fs::read(scratch.0.join("state.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("state.json")).unwrap());
+    for args in [
+        vec!["magnetic-state"],
+        vec!["magnetic-state", "--output", "bad.wav"],
+        vec!["magnetic-state", "--output", "bad.json", "--truth", "1"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn magnetic_loss_keeps_linear_controls_nonlinear_failures_and_centered_withholding() {
     let scratch = Scratch::new();
     let args = ["magnetic-pickup-loss", "--output", "magnetic.json"];

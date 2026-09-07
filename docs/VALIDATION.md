@@ -1989,3 +1989,22 @@ laboratory Clippy and formatting checks. Forward diagnostics use 192/384 kHz
 mechanical ticks; inverse data are point samples at 48/96 kHz, so no antialiasing
 or recorded-voltage calibration is claimed. No production equation, preset,
 audio asset or host process changed.
+
+## Nonlinear magnetic state with known losses
+
+The [nonlinear state protocol](NONLINEAR-MAGNETIC-STATE.md) and
+[receipt](../references/nonlinear-magnetic-state-validation.json) retain 36
+sensor cases on six continuous mechanical trajectories. With true losses,
+geometry and gain supplied, all 24 noncentered cases recover the initial state;
+all 72 fixed start attempts converge. Selected held-out voltage relative RMSE
+is below `1.722e-10` and state energy-norm relative error below `1.633e-10`.
+All 12 centered cases retain nonzero voltage but withhold unique state sign.
+
+Receipt schema 1, `nonlinear-magnetic-state-v1`, 252573 bytes, SHA-256
+`86857559abb5b22d9c43265362f409c486ac30f05a39aa25a8e62c16c7b62f43`.
+The laboratory release suite passes 125 tests (90 unit, 35 CLI), plus strict
+laboratory Clippy and formatting checks. A capacity-only allocation correction
+was followed by affected tests and byte-identical receipt regeneration.
+Selection and optimization use training samples only. No noise, geometry
+mismatch, unknown-loss recovery, antialiasing or real-instrument validation is
+claimed. Production DSP and audio assets remain unchanged.
