@@ -10,6 +10,132 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_voicing_receipt_preserves_baseline_and_separates_impact_from_spectrum() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-voicing-validation.json");
+    let prior = read("loaded-loss-calibration-qualified-validation.json");
+    assert_eq!(r["experiment"], "loaded-voicing-v1");
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["sources"], prior["sources"]);
+    assert_eq!(r["manifest"], prior["manifest"]);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    assert_eq!(r["reference_match_claimed"], false);
+    assert_eq!(r["physical_calibration_claimed"], false);
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 7);
+    assert_eq!(r["comparisons"].as_array().unwrap().len(), 35);
+    assert_eq!(cases[0]["measurement_qualified"], true);
+    assert_eq!(r["measurement_qualified"], false);
+    assert_eq!(
+        cases
+            .iter()
+            .filter(|c| c["measurement_qualified"] == true)
+            .count(),
+        6
+    );
+    // Preserve the converged recontact as an ineligible single-strike control.
+    assert_eq!(cases[2]["name"], "strike_30_percent");
+    assert_eq!(cases[2]["measurement_qualified"], false);
+    assert_eq!(cases[2]["voltage_convergence"]["passed"], true);
+    assert_eq!(cases[2]["impact_convergence"]["passed"], true);
+    for take in cases[2]["takes"].as_array().unwrap() {
+        assert_eq!(take["contact_entries"][0], 3);
+        assert!(take["max_relative_energy_defect"].as_f64().unwrap() < 1e-8);
+    }
+    for i in 0..2 {
+        let mut take = cases[0]["takes"][i].clone();
+        assert!(take.as_object_mut().unwrap().remove("impact").is_some());
+        assert_eq!(take, prior["gestures"][0]["takes"][i]);
+    }
+    for c in cases {
+        let a = &c["takes"][0];
+        let b = &c["takes"][1];
+        assert_eq!(a["steps_per_frame"], 128);
+        assert_eq!(b["steps_per_frame"], 256);
+        let mut impact_passed = true;
+        for q in c["impact_convergence"]["quantities"].as_array().unwrap() {
+            let key = q["quantity"].as_str().unwrap();
+            let fine = b["impact"][key].as_f64().unwrap();
+            assert!(fine > 0.0);
+            let error = (a["impact"][key].as_f64().unwrap() - fine).abs() / fine;
+            assert!((q["relative_error"].as_f64().unwrap() - error).abs() < 1e-12);
+            assert_eq!(q["passed"], error < 0.01);
+            impact_passed &= error < 0.01;
+        }
+        assert_eq!(c["impact_convergence"]["passed"], impact_passed);
+        let qualified = a["passed"] == true
+            && b["passed"] == true
+            && c["voltage_convergence"]["passed"] == true
+            && impact_passed;
+        assert_eq!(c["measurement_qualified"], qualified);
+        // Independently pool all nine training attack dimensions; absent bands withhold it.
+        let mut squared = Some(0.0);
+        for s in r["sources"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter(|s| s["role"] == "training")
+        {
+            for i in 0..3 {
+                squared = squared
+                    .zip(
+                        s["profile"]["windows"][0]["band_db_relative_to_fundamental_band"][i]
+                            .as_f64(),
+                    )
+                    .zip(
+                        b["timbre"]["windows"][0]["band_db_relative_to_fundamental_band"][i]
+                            .as_f64(),
+                    )
+                    .map(|((sum, source), candidate)| sum + (candidate - source).powi(2));
+            }
+        }
+        match squared {
+            Some(sum) => assert!(
+                ((sum / 9.0).sqrt() - c["training_attack_rms_db"].as_f64().unwrap()).abs() < 1e-12
+            ),
+            None => assert!(c["training_attack_rms_db"].is_null()),
+        }
+    }
+    assert_eq!(
+        r["measurement_qualified"],
+        cases.iter().all(|c| c["measurement_qualified"] == true)
+    );
+    for pair in r["comparisons"].as_array().unwrap() {
+        let p = &pair["comparison"];
+        if p["available"] == true && p["maximum_band_difference_db"].as_f64().unwrap() > 6.0 {
+            assert_eq!(p["spectral_agreement"], false);
+        }
+    }
+}
+
+#[test]
+fn loaded_voicing_cli_requires_verified_inputs_and_preserves_outputs() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-voicing"],
+        vec!["loaded-voicing", "missing.json", "--output", "keep.json"],
+        vec!["loaded-voicing", "missing.json", "--output", "bad.wav"],
+        vec!["loaded-voicing", "missing.json", "--output", "bad.json"],
+        vec![
+            "loaded-voicing",
+            "missing.json",
+            "--output",
+            "bad.json",
+            "--unknown",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.wav").exists());
+    assert!(!scratch.0.join("bad.json").exists());
+}
+
+#[test]
 fn loaded_calibration_receipt_selects_training_minimum_and_preserves_validation() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

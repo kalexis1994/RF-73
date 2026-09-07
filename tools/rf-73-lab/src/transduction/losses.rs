@@ -122,6 +122,14 @@ pub(super) fn take_profile(
     steps: usize,
     speed: f64,
 ) -> Result<Take, Box<dyn Error>> {
+    take_observed(p, steps, speed, false)
+}
+pub(super) fn take_observed(
+    p: ElectromechanicalProfile,
+    steps: usize,
+    speed: f64,
+    observe_impact: bool,
+) -> Result<Take, Box<dyn Error>> {
     if ![128, 256].contains(&steps) || !speed.is_finite() || !(0.1..=2.0).contains(&speed) {
         return Err("invalid loss-render resolution or speed".into());
     }
@@ -139,6 +147,10 @@ pub(super) fn take_profile(
     let mut exchange = 0.0_f64;
     let mut monotone = true;
     let mut onset = None;
+    let mut impulse = 0.0_f64;
+    let mut force_peak = 0.0_f64;
+    let mut contact_ticks = 0_u64;
+    let mut before_impact = None;
     let mut snapshots = Vec::new();
     let mut prior_heat = [0.0; 12];
     let mut prior_probe = initial;
@@ -159,6 +171,13 @@ pub(super) fn take_profile(
             let b = model.probe();
             if onset.is_none() && b.mechanical.contact_entries[0] > 0 {
                 onset = Some(t + h);
+                before_impact = Some(old.mechanical.velocity[18]);
+            }
+            if observe_impact {
+                let force = b.mechanical.contact_force_n[0];
+                impulse += h * force;
+                force_peak = force_peak.max(force);
+                contact_ticks += u64::from(force > 0.0);
             }
             let vm = core::array::from_fn(|i| {
                 0.5 * (old.mechanical.velocity[i] + b.mechanical.velocity[i])
@@ -246,13 +265,14 @@ pub(super) fn take_profile(
         && timbre.as_ref().is_some_and(|t| t.qualified)
         && snapshots.iter().all(|w| w["passed"] == true)
         && old.mechanical.contact_entries[0] == 1;
-    Ok(Take {
-        samples,
-        report: json!({"passed":passed,"steps_per_frame":steps,"max_relative_energy_defect":balance,"max_relative_exchange_defect":exchange,
+    let mut report = json!({"passed":passed,"steps_per_frame":steps,"max_relative_energy_defect":balance,"max_relative_exchange_defect":exchange,
         "max_relative_structural_split_defect":split_defect,"heat_monotone":monotone,"peak_fs":peak,"pre_key_peak_fs":quiet,"initial_position":initial.mechanical.position,
         "first_contact_seconds":onset,"contact_entries":old.mechanical.contact_entries,"felt_contact_ticks_after_300ms":stationary_felt_steps,
-        "pitch_anchor":anchor,"timbre":timbre,"windows":snapshots}),
-    })
+        "pitch_anchor":anchor,"timbre":timbre,"windows":snapshots});
+    if observe_impact {
+        report["impact"] = json!({"impulse_n_s":impulse,"peak_force_n":force_peak,"active_contact_seconds":contact_ticks as f64*h,"pre_contact_hammer_speed_m_s":before_impact});
+    }
+    Ok(Take { samples, report })
 }
 pub(super) fn convergence(a: &Take, b: &Take) -> Value {
     let windows:Vec<_>=[(0,14400),(14400,28800),(28800,57600),(57600,86400)].into_iter().map(|(lo,hi)| {

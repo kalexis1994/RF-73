@@ -76,6 +76,11 @@ first-mode tine and support losses using the training layers, then checks
 reserved layers, numerical refinement and other strike speeds. Unqualified
 frequency observations and spectral mismatch remain explicit.
 
+The [loaded voicing study](docs/LOADED-VOICING.md) compares seven controlled
+hammer-point, contact-stiffness and pickup configurations. It measures impact
+force, impulse and duration alongside source spectra and numerical refinement,
+with no automatic preset selection.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

@@ -63,9 +63,20 @@ not only parameter-identification diagnostics:
    mismatch. Selection is on a grid boundary and two alternatives score nearby;
    this does not identify unique material constants.
 
-Next address attack and spectral balance using physical excitation and pickup
-controls, preserving the loss uncertainty and qualifying release/repetition
-before adopting a candidate. Retain the physical non-striking threshold and
+10. **Controlled excitation and pickup sensitivity:** the
+    [loaded voicing study](LOADED-VOICING.md) compares seven prescribed settings
+    using the conditional sustain preset. Independent impact and voltage
+    refinement gates separate numerical acceptance from source spectral agreement.
+    Missing bands remain explicit and no candidate is automatically promoted.
+    Six cases qualify; the 21 mm strike retains three converged hammer contacts
+    and is ineligible under the single-contact protocol. All 35 source/case
+    pairs still fail spectral agreement, despite preserved late-level agreement.
+
+Next qualify a shared excitation/pickup voicing across multiple feasible speeds,
+retaining source layers separately and treating velocity mapping as an explicit
+nuisance assumption. Investigate the spatial recontact, preserve loss uncertainty
+and qualify release/repetition before adopting a candidate. Retain the physical
+non-striking threshold and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.
 

@@ -2533,3 +2533,39 @@ One medium sustain WAV is retained and reads back as 86,400 finite samples at
 48 kHz. The protocol lists its hash and the preserved failed receipt. Verification
 passes 114 lab unit tests, nine loaded CLI/receipt tests, strict Clippy and
 formatting. The selected preset remains offline, with no production default change.
+
+## Loaded excitation and pickup sensitivity
+
+The [controlled voicing study](LOADED-VOICING.md) retains seven physical cases,
+fourteen 1.8-second takes and 35 source comparisons on the conditional G3
+sustain preset. Hammer point, quadratic contact stiffness and pickup gap/offset
+are varied separately. A new passive observer measures integrated impulse,
+peak interval force, active duration and pre-contact hammer speed.
+
+Six cases qualify. The strike at 21 mm from the root produces three hammer/tine
+contacts at both resolutions, violating the single-contact criterion. Its
+energy, voltage and impact convergence pass. The complete study correctly
+returns failure and retains `measurement_qualified: false`; no threshold or
+receipt was changed to remove that rejection.
+
+Maximum voltage refinement RMSE is 0.008972%; maximum impact refinement error
+is 0.031241%. Relative total energy defect is at most 1.161e-12, structural
+split defect 4.203e-14 and exchange defect 3.489e-18. Both baseline takes exactly
+reproduce the preceding calibration once the new impact fields are removed.
+Source profiles, identities and spring fit also reproduce it exactly.
+
+The 7 mm strike changes attack bands by 21.77 dB RMS from baseline. Peak force
+rises from 23.56 to 44.01 N while total impulse falls from 0.006782 to 0.006139 N s.
+The vertical pickup offset changes attack bands by 6.24 dB RMS with nearly
+unchanged impulse. Its lower pooled training error hides conflicting per-layer
+changes. No voicing is selected, and all 35 pairs still fail full spectral
+agreement. All 35 late-level comparisons pass, including observations from
+the ineligible recontact case; that does not qualify the case.
+
+The retained receipt is 477924 bytes, SHA-256
+`2d884be2ec6f7ef10553f6f4411d1a4c3c827578e231bb0d81d7c61bc0ce47aa`.
+Verification passes 116 lab unit tests, eleven loaded CLI/receipt tests, strict
+Clippy and formatting. Regression checks preserve the failed control and
+independently recompute impact errors and training attack scores. No WAVs are
+added; release cache remains approximately 194 MiB. This is offline diagnostic
+work with no new material law, listening verdict or production preset change.
