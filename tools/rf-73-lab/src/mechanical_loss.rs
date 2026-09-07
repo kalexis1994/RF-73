@@ -1,4 +1,5 @@
 //! Known-state mechanical loss recovery from endpoint energy and velocity quadrature.
+pub mod reduced;
 use rf_73_dsp::{ModalAssembly, ModalAssemblyProfile, ModalIntegration, TineGeometry};
 use serde::Serialize;
 use serde_json::{Value, json};
@@ -20,7 +21,7 @@ fn quadratic(v: [f64; 9], m: &Matrix) -> f64 {
 fn energy(q: [f64; 9], v: [f64; 9], m: &Matrix, k: &Matrix) -> f64 {
     0.5 * (quadratic(q, k) + quadratic(v, m))
 }
-#[derive(Serialize)]
+#[derive(Clone, Serialize)]
 struct Row {
     start_seconds: f64,
     end_seconds: f64,
@@ -35,6 +36,15 @@ struct Take {
 }
 
 fn simulate(rate: u32, structural: f64, damper: f64) -> Result<Take, Box<dyn Error>> {
+    simulate_observed(rate, structural, damper, |_, _, _, _, _| {})
+}
+
+fn simulate_observed(
+    rate: u32,
+    structural: f64,
+    damper: f64,
+    mut observe: impl FnMut(usize, usize, &rf_73_dsp::ModalProbe, &rf_73_dsp::ModalProbe, bool),
+) -> Result<Take, Box<dyn Error>> {
     let geometry = TineGeometry::default();
     let baseline = ModalAssembly::new(
         rate as f64,
@@ -115,6 +125,7 @@ fn simulate(rate: u32, structural: f64, damper: f64) -> Result<Take, Box<dyn Err
         max_balance = max_balance.max(after.balance_residual_j.abs() / launch);
         max_positive =
             max_positive.max((after.mechanical_energy_j - before.mechanical_energy_j) / launch);
+        observe(tick, tick_rate, &before, &after, tick >= release);
         if tick >= edges[index] {
             // Endpoint trapezoidal quadrature, not the integrator's heat increment.
             a += 0.5 * dt * (quadratic(before.velocity, &c) + quadratic(after.velocity, &c));

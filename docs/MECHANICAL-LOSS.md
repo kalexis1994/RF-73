@@ -115,3 +115,8 @@ calibration. No preset, physical loss value, magnetic conversion or audible
 baseline was selected from this study. The new DSP methods expose copied
 stiffness/damping matrices for research inspection only; they do not change the
 equations or integration behavior.
+
+The subsequent [reduced-observation study](REDUCED-MECHANICAL-LOSS.md) uses these
+same trajectories. Three exact modal projections pass the two-scale criterion
+in all six cases; one mode and an instantaneous pickup lift fail. This reduces
+the required oracle state but does not yet extract modes from pickup history.

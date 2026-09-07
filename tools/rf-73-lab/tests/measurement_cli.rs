@@ -10,6 +10,61 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn reduced_mechanical_loss_keeps_shared_trajectory_controls_and_all_observations() {
+    let scratch = Scratch::new();
+    let args = ["reduced-mechanical-loss", "--output", "reduced.json"];
+    scratch.success(&args);
+    let report = scratch.json("reduced.json");
+    assert_eq!(report["controls_passed"], true);
+    assert_eq!(report["modes"].as_array().unwrap().len(), 9);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    for case in cases {
+        assert_eq!(case["full_state_rows_match_original"], true);
+        let observations = case["observations"].as_array().unwrap();
+        assert_eq!(observations.len(), 6);
+        for (index, label) in [
+            "full_state",
+            "lowest_1_modes",
+            "lowest_3_modes",
+            "lowest_6_modes",
+            "lowest_9_modes",
+            "instantaneous_pickup_lift",
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            assert_eq!(observations[index]["observation"], label);
+            assert_eq!(observations[index]["rows"].as_array().unwrap().len(), 6);
+            assert!(observations[index]["fit"]["internally_consistent"].is_boolean());
+            assert!(observations[index]["fit"]["known_scale_recovery"].is_boolean());
+        }
+        for index in [0, 4] {
+            assert_eq!(observations[index]["fit"]["internally_consistent"], true);
+            assert_eq!(observations[index]["fit"]["known_scale_recovery"], true);
+        }
+    }
+    let original = fs::read(scratch.0.join("reduced.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(original, fs::read(scratch.0.join("reduced.json")).unwrap());
+    for args in [
+        vec!["reduced-mechanical-loss"],
+        vec!["reduced-mechanical-loss", "--output", "bad.wav"],
+        vec![
+            "reduced-mechanical-loss",
+            "--output",
+            "bad.json",
+            "--modes",
+            "3",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn mechanical_loss_recovers_known_scales_with_held_out_rows_and_output_protection() {
     let scratch = Scratch::new();
     let args = ["mechanical-loss", "--output", "loss.json"];

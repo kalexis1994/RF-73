@@ -414,3 +414,10 @@ power leaves 63..74% relative residual. Independent endpoint quadrature error
 decreases under 48/96 kHz refinement. Next reduce observation to modal/pickup
 motion under known event history; full-state success does not identify source
 losses. New matrix inspection methods leave the physical solver unchanged.
+
+The [reduced-observation loss study](REDUCED-MECHANICAL-LOSS.md) retains 36
+observations of the same six mechanical trajectories. Three and six exact modal
+projections recover the two scales within the existing criterion; one mode and
+an instantaneous pickup lift fail. Reduced-state bias persists under refinement.
+Next test dynamic reconstruction from pickup history, including noise and omitted
+modes. Oracle modal projection is not audio extraction or a reduced plugin engine.
