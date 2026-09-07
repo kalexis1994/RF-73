@@ -7,6 +7,7 @@ mod laboratory;
 mod memory_hammer;
 pub use memory_hammer::{MemoryFreeStatus, MemoryFreeStep};
 mod modal_assembly;
+pub use modal_assembly::RestPreparation;
 pub use modal_assembly::{
     ActionAssembly, ActionProbe, ActionProfile, DamperDrive, FeltDamperAssembly, FeltDamperProbe,
     FeltDamperProfile, MemoryContactInspection, MemoryContactStatus, MemoryContactStep,

@@ -10,6 +10,50 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn stationary_rest_receipt_keeps_positive_control_and_physical_silence() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let r: serde_json::Value =
+        serde_json::from_slice(&fs::read(root.join("stationary-rest-validation.json")).unwrap())
+            .unwrap();
+    assert_eq!(r["passed"], true);
+    assert_eq!(r["cases"].as_array().unwrap().len(), 4);
+    for c in r["cases"].as_array().unwrap() {
+        assert_eq!(c["passed"], true);
+        assert!(c["cold"]["peak_filtered_voltage_v"].as_f64().unwrap() > 1e-4);
+        let a = &c["rest"];
+        assert_eq!(a["time_step_independent"], true);
+        assert!(a["peak_raw_voltage_v"].as_f64().unwrap() < 1e-9);
+        assert!(a["peak_filtered_voltage_v"].as_f64().unwrap() < 1e-9);
+        assert!(a["maximum_pickup_drift_m"].as_f64().unwrap() < 1e-12);
+        assert!(a["max_relative_total_balance_defect"].as_f64().unwrap() < 1e-8);
+        assert!(a["initial_energy_j"].as_f64().unwrap() > 0.0);
+        assert_eq!(a["absolute_drive_work_j"], 0.0);
+        assert_eq!(a["contact_entries"], serde_json::json!([0, 0, 0, 0]));
+    }
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["stationary-rest"],
+        vec!["stationary-rest", "--output", "keep.json"],
+        vec!["stationary-rest", "--output", "bad.wav"],
+        vec!["stationary-rest", "--output", "bad.json", "--unknown"],
+        vec![
+            "compare-loaded-bank",
+            "missing.json",
+            "--output",
+            "bad.json",
+            "--at-rest",
+            "--at-rest",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists());
+    assert!(!scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_bank_receipt_keeps_failed_control_and_separates_measurement_from_disagreement() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {
@@ -63,6 +107,51 @@ fn loaded_bank_receipt_keeps_failed_control_and_separates_measurement_from_disag
             assert!((sum - 1.0).abs() < 1e-12);
         }
     }
+}
+
+#[test]
+fn loaded_rest_receipt_preserves_sources_and_qualifies_quiet_gestures() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-source-rest-validation.json");
+    let cold = read("loaded-source-timbre-striking-validation.json");
+    assert_eq!(r["at_rest"], true);
+    assert_eq!(r["measurement_qualified"], true);
+    assert_eq!(r["reference_match_claimed"], false);
+    for key in [
+        "manifest",
+        "sources",
+        "structural_fit",
+        "pedestal_speeds_m_s",
+        "training_pitch_target_hz",
+    ] {
+        assert_eq!(r[key], cold[key], "changed frozen input: {key}");
+    }
+    assert_eq!(r["candidates"].as_array().unwrap().len(), 3);
+    assert_eq!(r["comparisons"].as_array().unwrap().len(), 15);
+    for c in r["candidates"].as_array().unwrap() {
+        assert_eq!(c["measurement_qualified"], true);
+        assert!(c["output_error_cents"].as_f64().unwrap().abs() < 5.0);
+        assert_eq!(c["convergence"]["passed"], true);
+        for take in c["takes"].as_array().unwrap() {
+            assert_eq!(take["passed"], true);
+            assert!(take["max_relative_total_balance_defect"].as_f64().unwrap() < 1e-8);
+            assert!(take["max_relative_exchange_defect"].as_f64().unwrap() < 1e-10);
+            assert!(take["hammer_contact_entries"].as_u64().unwrap() >= 2);
+            let rest = &take["rest_preparation"];
+            assert_eq!(rest["quiet_idle_passed"], true);
+            assert!(rest["pre_key_peak_fs"].as_f64().unwrap() < 1e-10);
+            assert!(rest["max_relative_force_defect"].as_f64().unwrap() <= 1e-10);
+            assert!(rest["max_relative_contact_defect"].as_f64().unwrap() <= 1e-12);
+            assert!(rest["initial_energy_j"].as_f64().unwrap() > 0.0);
+        }
+    }
+    let preflight = r["strike_feasibility"]["cases"].as_array().unwrap();
+    assert!(preflight[0]["first_contact_seconds"].is_null());
+    assert!(preflight[1]["first_contact_seconds"].is_null());
+    assert!(preflight[2]["first_contact_seconds"].as_f64().unwrap() > 0.03);
 }
 
 #[test]

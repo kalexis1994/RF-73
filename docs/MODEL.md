@@ -124,6 +124,13 @@ Saved plugin state contains a magic header, schema version, output gain, two pic
 
 ## Experimental moving felt damper
 
+The combined offline electromechanical model supports
+[stationary contact initialization](STATIONARY-REST.md). Its opt-in constructor
+solves static spring/contact force balance before integration, retains the
+equilibrium preload potential and starts the circuit at zero current/voltage.
+It neither warms up nor gates the output. The historical cold constructor and
+the production voice are unchanged.
+
 The [moving damper block](MOVING-FELT-DAMPER.md) extends the offline nine-coordinate
 assembly with arm inertia, elastic return, viscous arm loss and unilateral
 rate-dependent felt contact. Continuous prescribed key/pedal lift and actuator

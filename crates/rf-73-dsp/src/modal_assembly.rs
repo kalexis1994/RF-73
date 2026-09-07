@@ -11,7 +11,7 @@ pub use transduction::{
 mod polarization;
 pub use polarization::{PolarizationProfile, PolarizedActionAssembly, PolarizedActionProbe};
 mod contact;
-pub use action::{ActionAssembly, ActionProbe, ActionProfile};
+pub use action::{ActionAssembly, ActionProbe, ActionProfile, RestPreparation};
 mod dissipative_contact;
 mod felt_damper;
 pub use felt_damper::{DamperDrive, FeltDamperAssembly, FeltDamperProbe, FeltDamperProfile};

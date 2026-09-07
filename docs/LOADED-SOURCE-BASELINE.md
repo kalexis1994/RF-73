@@ -144,7 +144,7 @@ additional waveform matrix is written. Retained identities:
 
 ## Interpretation limits
 
-The model still begins with the action's unrelaxed preload. The onset anchor
+This historical cold baseline begins with the action's unrelaxed preload. The onset anchor
 prevents identifying the initial transient as hammer contact, but does not
 remove any remaining preload vibration from later windows. The optional soft
 preview has a peak of approximately 0.008654 FS in the first 30 ms, before the
@@ -159,7 +159,11 @@ controls; they do not uniquely assign it to hammer material, modal damping or
 the magnetic field. No human listening, new plugin version or host test is
 claimed by this experiment.
 
-The next physical block should prepare a stationary rest state with the same
+The subsequent [stationary initialization block](STATIONARY-REST.md) prepares a
+rest state with the same laws and verifies quiet loaded idle behavior. Its
+`--at-rest` comparison is separate; these cold receipts remain unchanged.
+
+The original next-step decision was to prepare a stationary rest state with the same
 contact laws and energy ledger, verify quiet idle behavior and preserve physical
 soft-strike thresholds. Repeat the recorded-source baseline from that state
 before changing modal losses or the magnetic observation. The observed fast

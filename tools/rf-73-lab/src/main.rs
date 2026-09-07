@@ -378,6 +378,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "electromechanical" {
         return transduction::run(&args);
     }
+    if args[0] == "stationary-rest" {
+        return transduction::rest::run(&args);
+    }
     if args[0] == "electromechanical-render" {
         return transduction::render(&args);
     }

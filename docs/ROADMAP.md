@@ -37,13 +37,22 @@ not only parameter-identification diagnostics:
 6. **Recorded-source baseline:** the [loaded G3 comparison](LOADED-SOURCE-BASELINE.md)
    verifies source identities, probes contact feasibility and compares pitch-aware
    band balance and relative attack/decay trajectories. The sample-bank layers
-   are not assigned unmeasured physical strike velocities. Initial preload
-   remains visible and must be resolved before quiet-note parameter fitting.
+   are not assigned unmeasured physical strike velocities. Historical cold
+   receipts retain the initial preload transient for comparison.
 
-Next establish a physically stationary initialization, check the transition
-from non-striking to soft-striking action, then repeat source comparisons before
-freeing pickup and material parameters. A computational reduction suitable for
-the playable plugin remains necessary.
+7. **Stationary initial contact equilibrium:** the
+   [rest preparation block](STATIONARY-REST.md) solves the loaded mechanical
+   rest state before time integration, preserves preload energy and qualifies
+   four cold/rest control pairs. The explicit `--at-rest` source comparison
+   qualifies all six soft/medium/strong takes with an added pre-key silence gate.
+   All 15 source pairs retain timbre disagreement and 8.06–12.15 dB excessive
+   late level attenuation; removing the initial transient does not resolve it.
+
+Next use the source comparison from rest to isolate structural, support, felt
+and electrical contributions to the fast level decay. Retain the physical
+non-striking threshold and separate bank processing from parameter inference
+before fitting material or field values. A computational reduction suitable
+for the playable plugin remains necessary.
 
 Measured material/geometry calibration, listening and realtime integration
 remain cross-cutting release gates. The current damper is not a calibrated

@@ -2439,3 +2439,40 @@ silence/support rejection, missing-estimate handling, contact feasibility,
 source hash rejection and output preservation. Strict Clippy and formatting
 also pass. Release builds reuse the existing cache with incremental compilation
 disabled. No DSP constants, playable plugin, GUI or host session were changed.
+
+## Stationary initial equilibrium and renewed source comparison
+
+[Stationary rest](STATIONARY-REST.md) adds a bounded static solve for the existing
+four contact ports and anchored mechanical stiffness. Acceptance checks actual
+constitutive and generalized force residuals before installing the equilibrium.
+The initial ledger retains its preload energy, without time advancement or
+invented dissipation. Circuit current/voltage start at zero. Historical cold
+constructors remain available; dynamic integration is unchanged.
+
+`references/stationary-rest-validation.json` retains four cold/rest pairs over
+100 ms: 70 mm at 48 kHz and 120 mm at 96 kHz with two felt orientations. All
+pass, including exact initial-state agreement at half the time step. Worst raw
+idle output is 9.460e-14 V against a 1e-9 V gate; cold peaks exceed 0.085 V.
+Maximum pickup drift is 3.331e-17 m, with no actuator work or new contact entries.
+Positive preload energy and felt force are preserved; worst relative total
+energy defect is 6.792e-16. Singular/free preparations reject, failed trials
+preserve state and the disengaged felt control retains zero energy.
+
+`references/loaded-source-rest-validation.json` qualifies all six 2.5-second
+loaded takes at the unchanged three striking speeds and two resolutions.
+Every take has two contacts; first-30-ms peaks stay below 4.135e-15 FS. Worst
+relative voltage RMSE is 3.395e-5, total energy defect 1.567e-12 and exchange
+defect 6.781e-19. Source measurements, manifest, target and spring fit remain
+identical to the cold baseline. Output pitch errors stay within 0.055 cents.
+The 0.75 and 1.0 m/s preflight controls still produce no impact within 120 ms.
+
+All 15 source pairs still fail descriptive agreement, including 8.057–12.148 dB
+additional late level attenuation. Initialization is resolved for these cases;
+loss calibration remains open. A single 480058-byte soft WAV is retained and
+read back as finite float audio. The protocol records all artifact identities.
+
+Verification covers 129 DSP tests (the full suite plus the added open-felt
+control), 110 lab unit tests and six focused CLI/receipt checks. Strict Clippy
+and formatting pass. The CLI tests were rerun successfully after Windows
+released the render executable. Release artifacts are reused with incremental
+compilation disabled; no host session or new playable plugin version is claimed.

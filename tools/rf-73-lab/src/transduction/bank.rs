@@ -7,12 +7,13 @@ use serde_json::{Value, json};
 use std::{error::Error, path::Path};
 
 pub const HELP: &str = "Loaded real-source baseline:
-  compare-loaded-bank MANIFEST.json --output REPORT.json [--preview AUDIO.wav] [--striking]
+  compare-loaded-bank MANIFEST.json --output REPORT.json [--preview AUDIO.wav] [--striking] [--at-rest]
 Verify every G3 blob before rendering. Three prescribed pedestal speeds,
 0.75/1.125/1.5 m/s, each at 128/256 ticks with the tuned 70 mm assembly.
 Compare every source layer against every gesture; no assumed velocity mapping,
 per-window gain fit, EQ fit or parameter optimization.
 --striking selects the follow-up 1.125/1.5/1.75 m/s profile after a contact preflight.
+--at-rest prepares static contact equilibrium before time integration.
 The optional preview is always the 1.125 m/s gesture. Report measurement
 qualification separately from descriptive mismatch.
 ";
@@ -54,9 +55,14 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let output = Path::new(&args[3]);
     let mut preview = None;
     let mut striking = false;
+    let mut at_rest = false;
     let mut i = 4;
     while i < args.len() {
         match args[i].as_str() {
+            "--at-rest" if !at_rest => {
+                at_rest = true;
+                i += 1;
+            }
             "--striking" if !striking => {
                 striking = true;
                 i += 1;
@@ -94,7 +100,11 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         }
         let target = (training.iter().map(|f| f.ln()).sum::<f64>() / training.len() as f64).exp();
         let (position, fit) = tuning::fitted_position(target)?;
-        let feasibility = tuning::strike_feasibility(position)?;
+        let feasibility = if at_rest {
+            tuning::strike_feasibility_initialized(position, true)?
+        } else {
+            tuning::strike_feasibility(position)?
+        };
         let speeds = if striking {
             [1.125, 1.5, 1.75]
         } else {
@@ -108,7 +118,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         }) {
             return Ok(
                 json!({"schema_version":1,"experiment":"loaded-source-timbre-baseline-v1","measurement_qualified":false,
-                "reason":"requested profile includes a non-striking gesture","strike_feasibility":feasibility,"requested_speeds_m_s":speeds,
+                "reason":"requested profile includes a non-striking gesture","at_rest":at_rest,"strike_feasibility":feasibility,"requested_speeds_m_s":speeds,
                 "manifest":bank.manifest,"sources":source_rows}),
             );
         }
@@ -120,9 +130,9 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         let mut pairs = Vec::new();
         for speed in speeds {
             println!("Rendering loaded gesture {speed} m/s, 128 ticks");
-            let coarse = tuning::take_driven(position, 128, speed)?;
+            let coarse = tuning::take_initialized(position, 128, speed, at_rest)?;
             println!("Rendering loaded gesture {speed} m/s, 256 ticks");
-            let fine = tuning::take_driven(position, 256, speed)?;
+            let fine = tuning::take_initialized(position, 256, speed, at_rest)?;
             let convergence = tuning::compare_resolution(&coarse, &fine);
             if speed == 1.125
                 && let Some(p) = preview
@@ -160,7 +170,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         Ok(
             json!({"schema_version":1,"experiment":"loaded-source-timbre-baseline-v1","measurement_qualified":qualified,
             "reference_match_claimed":false,"manifest":bank.manifest,"training_pitch_target_hz":target,"structural_fit":fit,
-            "striking_followup":striking,"pedestal_speeds_m_s":speeds,"strike_feasibility":feasibility,
+            "striking_followup":striking,"at_rest":at_rest,"initialization":if at_rest { "Qualified static mechanical equilibrium, zero circuit current/voltage; no warmup or muting" } else { "Historical cold preload relaxation" },"pedestal_speeds_m_s":speeds,"strike_feasibility":feasibility,
             "sources":source_rows,"candidates":candidates,"comparisons":pairs,
             "protocol":"Measurement gates fixed before first run. The initial 0.75/1.125/1.5 m/s study failed because 0.75 produced no hammer contact; its receipt is retained. The explicit --striking follow-up uses 1.125/1.5/1.75 m/s after the six-speed contact preflight, with no change to physics or qualification gates. Verify manifest and all Git blob identities; preserve source rates and gain. Training-only mean log frequency sets the spring target. No assignment to recorded layers, 128/256 ticks and prior long-gesture convergence/energy/headroom gates. Source onset: four 1 ms RMS bins above -40 dB of first-250-ms maximum. Model onset: first hammer contact plus FIR delay; retain pre-onset peak. Five windows after onset: 0-64,64-192,256-512,640-1152,1152-1664 ms. Hann spectral-power bands use edges 0.5/1.5/4/12 times each observed fundamental, capped at 8 kHz. Report band balance relative to first band and RMS level relative to 256-512 ms body. Fractions below 1e-8 withhold band dB. Compare all layers with all gestures, retaining roles without optimization. Descriptive differences >6 dB in band balance or >3 dB in relative level flag mismatch; missing bands cannot establish agreement. Technical qualification is distinct from timbre agreement.",
             "scope":"Processed sample-bank comparison, not raw physical parameter identification. Unknown capture gain and EQ/noise reduction confound absolute levels and spectral/decay interpretation. Layer labels are not hammer or key velocities. Prior exposure is declared in the source manifest. No fitted material/field parameters, time warping, per-window gain, plugin update or human-listening verdict."}),
@@ -171,7 +181,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         Err(e) => {
             crate::analysis::write_report(
                 output,
-                &json!({"schema_version":1,"experiment":"loaded-source-timbre-baseline-v1","measurement_qualified":false,"reason":e.to_string()}),
+                &json!({"schema_version":1,"experiment":"loaded-source-timbre-baseline-v1","at_rest":at_rest,"measurement_qualified":false,"reason":e.to_string()}),
             )?;
             return Err(e);
         }

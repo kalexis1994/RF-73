@@ -180,11 +180,17 @@ pub(super) fn fitted_position(target: f64) -> Result<(f64, Value), Box<dyn Error
     Ok((s.position, r))
 }
 pub(super) fn strike_feasibility(position: f64) -> Result<Value, Box<dyn Error>> {
+    strike_feasibility_initialized(position, false)
+}
+pub(super) fn strike_feasibility_initialized(
+    position: f64,
+    at_rest: bool,
+) -> Result<Value, Box<dyn Error>> {
     let p = profile(position);
     let h = 1.0 / (48000.0 * 128.0);
     let mut rows = Vec::new();
     for speed in [0.75, 1.0, 1.125, 1.25, 1.5, 1.75] {
-        let mut model = ElectromechanicalAssembly::new(h, p)?;
+        let mut model = initialized(h, p, at_rest)?;
         let mut x = p.action.hammer_rest_m;
         let mut impact = None;
         let mut pre_contact_velocity = None;
@@ -209,12 +215,32 @@ pub(super) fn strike_feasibility(position: f64) -> Result<Value, Box<dyn Error>>
     Ok(json!({"duration_limit_seconds":0.12,"steps_per_frame":128,"cases":rows}))
 }
 pub(super) fn take_driven(position: f64, steps: usize, speed: f64) -> Result<Take, Box<dyn Error>> {
+    take_initialized(position, steps, speed, false)
+}
+fn initialized(
+    h: f64,
+    p: ElectromechanicalProfile,
+    at_rest: bool,
+) -> Result<ElectromechanicalAssembly, rf_73_dsp::ModelError> {
+    if at_rest {
+        ElectromechanicalAssembly::new_at_rest(h, p)
+    } else {
+        ElectromechanicalAssembly::new(h, p)
+    }
+}
+pub(super) fn take_initialized(
+    position: f64,
+    steps: usize,
+    speed: f64,
+    at_rest: bool,
+) -> Result<Take, Box<dyn Error>> {
     if !speed.is_finite() || !(0.1..=2.0).contains(&speed) || ![128, 256].contains(&steps) {
         return Err("invalid loaded gesture speed or resolution".into());
     }
     let p = profile(position);
     let h = 1.0 / (f64::from(RATE) * steps as f64);
-    let mut model = ElectromechanicalAssembly::new(h, p)?;
+    let mut model = initialized(h, p, at_rest)?;
+    let rest_preparation = model.rest_preparation();
     let mut old = model.probe();
     let mut x = p.action.hammer_rest_m;
     let mut filter = ProductionDecimator::new();
@@ -263,20 +289,31 @@ pub(super) fn take_driven(position: f64, steps: usize, speed: f64) -> Result<Tak
     }
     let peak = samples.iter().map(|x| x.abs()).fold(0.0_f64, f64::max);
     let rms = (samples.iter().map(|x| x * x).sum::<f64>() / FRAMES as f64).sqrt();
+    let pre_key_peak = samples[..1440]
+        .iter()
+        .map(|x| x.abs())
+        .fold(0.0_f64, f64::max);
     let passed = balance < 1e-8
         && exchange < 1e-10
         && passive < 1e-10
         && heat_monotone
         && peak > 0.0
         && peak < 1.0
-        && old.mechanical.contact_entries[0] >= 2;
+        && old.mechanical.contact_entries[0] >= 2
+        && (!at_rest || pre_key_peak < 1e-10);
+    let mut summary = json!({"steps_per_frame":steps,"passed":passed,"peak":peak,"rms":rms,"max_relative_total_balance_defect":balance,
+        "max_relative_exchange_defect":exchange,"max_stationary_drive_energy_growth":passive,"heat_monotone":heat_monotone,
+        "hammer_contact_entries":old.mechanical.contact_entries[0],"maximum_coupling_iterations":old.maximum_iterations,
+        "coil_heat_j":old.coil_heat_j,"load_heat_j":old.load_heat_j});
+    if let Some(r) = rest_preparation {
+        summary["rest_preparation"] = json!({"sweeps":r.sweeps,"max_relative_force_defect":r.max_relative_force_defect,
+            "max_relative_contact_defect":r.max_relative_contact_defect,"initial_energy_j":old.mechanical.initial_energy_j,
+            "pre_key_peak_fs":pre_key_peak,"quiet_idle_passed":pre_key_peak<1e-10});
+    }
     Ok(Take {
         samples,
         first_contact_seconds,
-        summary: json!({"steps_per_frame":steps,"passed":passed,"peak":peak,"rms":rms,"max_relative_total_balance_defect":balance,
-        "max_relative_exchange_defect":exchange,"max_stationary_drive_energy_growth":passive,"heat_monotone":heat_monotone,
-        "hammer_contact_entries":old.mechanical.contact_entries[0],"maximum_coupling_iterations":old.maximum_iterations,
-        "coil_heat_j":old.coil_heat_j,"load_heat_j":old.load_heat_j}),
+        summary,
     })
 }
 pub(super) fn compare_resolution(a: &Take, b: &Take) -> Value {

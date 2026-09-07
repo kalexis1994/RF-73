@@ -196,6 +196,7 @@ pub struct ElectromechanicalAssembly {
     emf: f64,
     iterations: usize,
     max_iterations: usize,
+    rest: Option<RestPreparation>,
 }
 impl ElectromechanicalAssembly {
     pub fn new(h: f64, p: ElectromechanicalProfile) -> Result<Self, ModelError> {
@@ -217,7 +218,19 @@ impl ElectromechanicalAssembly {
             emf: 0.0,
             iterations: 0,
             max_iterations: 0,
+            rest: None,
         })
+    }
+    /// Prepare the mechanical preload in force equilibrium with zero current
+    /// and voltage. Does not advance time, mute samples or erase stored energy.
+    /// Requires positive anchored stiffness; new() retains the historical start.
+    pub fn new_at_rest(h: f64, p: ElectromechanicalProfile) -> Result<Self, ModelError> {
+        let mut result = Self::new(h, p)?;
+        result.rest = Some(result.mechanics.initialize_rest()?);
+        Ok(result)
+    }
+    pub fn rest_preparation(&self) -> Option<RestPreparation> {
+        self.rest
     }
     pub fn advance(&mut self, pedestal: f64, pedal: f64) -> Result<(), ModelError> {
         self.advance_budget(pedestal, pedal, 16)
@@ -297,6 +310,57 @@ impl ElectromechanicalAssembly {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn stationary_rest_is_time_step_independent_quiet_and_rejects_free_returns() {
+        for length in [0.07, 0.12] {
+            let mut p = ElectromechanicalProfile::default();
+            p.geometry.length_m = length;
+            p.polarization.felt_angle_rad = 0.4;
+            let mut a = ElectromechanicalAssembly::new_at_rest(1e-6, p).unwrap();
+            let b = ElectromechanicalAssembly::new_at_rest(0.5e-6, p).unwrap();
+            assert_eq!(a.probe(), b.probe());
+            assert_eq!(a.rest_preparation(), b.rest_preparation());
+            let start = a.probe();
+            assert!(start.mechanical.contact_force_n[1] > 0.0);
+            assert!(start.mechanical.initial_energy_j > 0.0);
+            for _ in 0..50000 {
+                a.advance(p.action.hammer_rest_m, p.action.damper_closed_m)
+                    .unwrap();
+                let v = a.probe();
+                assert!(v.output_voltage_v.abs() < 1e-9);
+                assert!(
+                    v.total_balance_residual_j.abs() / start.mechanical.initial_energy_j < 1e-8
+                );
+            }
+            assert_eq!(a.probe().mechanical.absolute_drive_work_j, 0.0);
+            let before = a.probe();
+            assert!(a.advance(f64::NAN, p.action.damper_closed_m).is_err());
+            assert_eq!(before, a.probe());
+        }
+        let mut p = ElectromechanicalProfile::default();
+        p.action.hammer_return_n_m = 0.0;
+        assert!(ElectromechanicalAssembly::new(1e-6, p).is_ok());
+        assert!(ElectromechanicalAssembly::new_at_rest(1e-6, p).is_err());
+        let mut p = ElectromechanicalProfile::default();
+        p.assembly.translation_stiffness_n_m = 0.0;
+        p.assembly.rotation_stiffness_n_m_rad = 0.0;
+        assert!(ElectromechanicalAssembly::new(1e-6, p).is_ok());
+        assert!(ElectromechanicalAssembly::new_at_rest(1e-6, p).is_err());
+    }
+    #[test]
+    fn open_felt_rest_preserves_zero_energy_without_artificial_contact() {
+        let mut p = ElectromechanicalProfile::default();
+        p.action.damper_closed_m = -0.001;
+        let mut v = ElectromechanicalAssembly::new_at_rest(1e-6, p).unwrap();
+        assert_eq!(v.probe().mechanical.initial_energy_j, 0.0);
+        assert_eq!(v.probe().mechanical.contact_force_n, [0.0; 4]);
+        for _ in 0..1000 {
+            v.advance(p.action.hammer_rest_m, p.action.damper_closed_m)
+                .unwrap();
+        }
+        assert_eq!(v.probe().mechanical.mechanical_energy_j, 0.0);
+        assert_eq!(v.probe().output_voltage_v, 0.0);
+    }
     #[test]
     fn spatial_flux_gradient_closes_work_and_matches_analytic_derivative_limit() {
         let pickup = SpatialPickup::new(SpatialPickupProfile::default()).unwrap();

@@ -2,6 +2,8 @@
 //! Offline experiment: prescribed pedestal motion, not a measured pivot/cam model.
 use super::dissipative_contact::RateContact;
 use super::*;
+mod rest;
+pub use rest::RestPreparation;
 
 #[cfg(test)]
 const D: usize = N + 2;

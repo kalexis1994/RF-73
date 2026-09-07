@@ -60,6 +60,12 @@ spectral bands and relative level trajectories. Contact feasibility keeps a
 non-striking gesture separate from a soft note; source processing and initial
 preload remain explicit limitations before physical parameter calibration.
 
+[Stationary initialization](docs/STATIONARY-REST.md) now prepares the coupled
+mechanism in static contact equilibrium while retaining preload energy. Four
+cold/rest controls and six source-comparison takes pass voltage, displacement,
+energy and refinement checks. The remaining fast sustain decay is explicit;
+the source comparison starts from rest using `--at-rest`.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start
