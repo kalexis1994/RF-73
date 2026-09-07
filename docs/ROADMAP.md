@@ -477,3 +477,11 @@ oracle noise-aware voltage diagnostic but exceed 1% state error. All 108 valid
 noiseless sensor mismatches fail prediction and state recovery. Next combine
 noise with sensor mismatch before freeing loss parameters; good residuals alone
 do not certify the mechanical state or geometry.
+
+The [paired noise/sensor study](MAGNETIC-STATE-COMBINED.md) now retains 720 rows
+and 432 complete comparisons. At 20 dB all 168 valid gap/offset errors pass the
+oracle prediction gate while exceeding 1% state error; six are new hidden errors
+relative to their paired noise-only controls. At 40 dB all tested mismatches
+are rejected. Next implement nonlinear loss profiling with known geometry,
+refitting the continuous state at every loss candidate. Sensor uncertainty and
+competing explanations must remain visible before recorded-source calibration.

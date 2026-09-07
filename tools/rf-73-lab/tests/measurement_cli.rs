@@ -10,6 +10,120 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn combined_magnetic_state_keeps_paired_controls_and_withheld_geometry() {
+    let scratch = Scratch::new();
+    let args = ["magnetic-state-combined", "--output", "combined.json"];
+    scratch.success(&args);
+    let report = scratch.json("combined.json");
+    assert_eq!(report["experiment"], "nonlinear-magnetic-state-combined-v1");
+    assert_eq!(report["controls_passed"], true);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut controls = 0;
+    let mut withheld = 0;
+    let mut incomplete = 0;
+    for case in cases {
+        let rows = case["observations"].as_array().unwrap();
+        assert_eq!(rows.len(), 120);
+        for row in rows {
+            if row["required_control"] == true {
+                controls += 1;
+                assert_eq!(row["fit"]["strict_matched_recovery"], true);
+            }
+            if row["fit"]["status"] == "withheld_invalid_sensor" {
+                withheld += 1;
+                assert!(row["requested_gap_m"].as_f64().unwrap() < 0.0005);
+            }
+            if let Some(selected) = row["fit"]["selected_start_index"].as_u64() {
+                let attempts = row["fit"]["attempts"].as_array().unwrap();
+                assert_eq!(attempts.len(), 3);
+                let cost = attempts[selected as usize]["training_relative_rmse"]
+                    .as_f64()
+                    .unwrap();
+                for attempt in attempts {
+                    if let Some(other) = attempt["training_relative_rmse"].as_f64() {
+                        assert!(cost <= other);
+                    } else {
+                        assert!(attempt["error"].is_string());
+                    }
+                }
+            } else {
+                assert!(row["fit"]["error"].is_string());
+            }
+        }
+        let pairs = case["paired_comparisons"].as_array().unwrap();
+        assert_eq!(pairs.len(), 80);
+        for pair in pairs {
+            let combined = &rows[pair["combined_row_index"].as_u64().unwrap() as usize];
+            let noise = &rows[pair["noise_only_row_index"].as_u64().unwrap() as usize];
+            let sensor = &rows[pair["sensor_only_row_index"].as_u64().unwrap() as usize];
+            assert_eq!(combined["true_sensor"], noise["true_sensor"]);
+            assert_eq!(combined["true_sensor"], sensor["true_sensor"]);
+            assert_eq!(combined["condition"]["seed"], noise["condition"]["seed"]);
+            assert_eq!(
+                combined["condition"]["snr_db"],
+                noise["condition"]["snr_db"]
+            );
+            assert_eq!(
+                combined["noise_standard_deviation"],
+                noise["noise_standard_deviation"]
+            );
+            assert!(sensor["condition"]["snr_db"].is_null());
+            for field in ["gap_scale", "offset_scale", "swap_law"] {
+                assert_eq!(combined["condition"][field], sensor["condition"][field]);
+            }
+            let comparison = &pair["comparison"];
+            if comparison["status"] == "withheld_incomplete_pair" {
+                incomplete += 1;
+                assert!(
+                    [combined, noise, sensor]
+                        .iter()
+                        .any(|r| r["fit"]["error"].is_string())
+                );
+            } else {
+                assert_eq!(comparison["status"], "compared");
+                let accepted = combined["fit"]["oracle_prediction_consistent"] == true;
+                let wrong = combined["fit"]["state_within_one_percent"] == false;
+                assert_eq!(
+                    comparison["mismatch_masked_by_noise"],
+                    sensor["fit"]["oracle_prediction_consistent"] == false && accepted
+                );
+                assert_eq!(
+                    comparison["prediction_consistent_state_error"],
+                    accepted && wrong
+                );
+                assert_eq!(
+                    comparison["new_hidden_state_error_vs_noise_only"],
+                    accepted
+                        && wrong
+                        && noise["fit"]["oracle_prediction_consistent"] == true
+                        && noise["fit"]["state_within_one_percent"] == true
+                );
+            }
+        }
+    }
+    assert_eq!((controls, withheld, incomplete), (24, 60, 48));
+    let saved = fs::read(scratch.0.join("combined.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("combined.json")).unwrap());
+    for args in [
+        vec!["magnetic-state-combined"],
+        vec!["magnetic-state-combined", "--output", "bad.wav"],
+        vec![
+            "magnetic-state-combined",
+            "--output",
+            "bad.json",
+            "--truth",
+            "1",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert!(!scratch.0.join("bad.json").exists());
+    assert!(!scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn magnetic_state_robustness_retains_noise_mismatch_and_training_selection() {
     let scratch = Scratch::new();
     let args = ["magnetic-state-robustness", "--output", "robustness.json"];

@@ -130,3 +130,10 @@ state. This is needed before freeing loss parameters: otherwise sensor or state
 errors could be absorbed into apparently plausible loss estimates. A later
 loss search still needs a nonlinear state refit at each candidate and an
 explicit uncertainty/identifiability assessment, not just a low voltage residual.
+
+The follow-up [paired combined study](MAGNETIC-STATE-COMBINED.md) retains 720
+rows and 432 complete paired comparisons. At nominal 20 dB all 168 valid gap/
+offset errors become prediction-consistent despite state errors above 1%; six
+comparisons have a paired noise-only state within 1%. At 40 dB all tested
+mismatches are rejected. Next implement controlled nonlinear loss profiling
+with known geometry and preserve these ambiguity limits before source calibration.

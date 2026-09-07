@@ -1,4 +1,5 @@
 //! Fixed noise and sensor mismatch qualification; mechanical losses remain known.
+pub mod combined;
 use super::*;
 
 pub const HELP: &str = "Magnetic state robustness study:
@@ -171,7 +172,7 @@ fn outcome(
     )
 }
 
-fn study() -> Result<Value, Box<dyn Error>> {
+fn study_cases(scenarios: &[Condition], label: &str) -> Result<Vec<Value>, Box<dyn Error>> {
     let p = prepare(perturbations()[0])?;
     let sensors: Vec<_> = sensors()?
         .into_iter()
@@ -221,19 +222,19 @@ fn study() -> Result<Value, Box<dyn Error>> {
                         .map(|(x, v)| sensor.voltage(*x, *v))
                         .collect()
                 });
-                for condition in conditions() {
+                for &condition in scenarios {
+                    let (measured, sigma) = corrupt(&clean, condition);
                     let assumed = match assumed_sensor(*sensor, condition) {
                         Ok(s) => s,
                         Err(e) => {
                             rows.push(json!({"true_sensor":sensor,"assumed_sensor":null,"condition":condition,
                                 "requested_gap_m":sensor.gap_m * condition.gap_scale,
                                 "requested_offset_m":sensor.offset_m * condition.offset_scale,
-                                "noise_standard_deviation":0.0,"required_control":condition.name == "matched",
+                                "noise_standard_deviation":sigma,"required_control":condition.name == "matched",
                                 "fit":{"status":"withheld_invalid_sensor","error":e.to_string()}}));
                             continue;
                         }
                     };
-                    let (measured, sigma) = corrupt(&clean, condition);
                     let fit = match outcome(&t, assumed, &traces, &clean, &measured) {
                         Ok(v) => v,
                         Err(e) => json!({"error":e.to_string()}),
@@ -248,9 +249,14 @@ fn study() -> Result<Value, Box<dyn Error>> {
                     .filter(|r| r["required_control"] == true)
                     .all(|r| r["fit"]["strict_matched_recovery"] == true);
             cases.push(json!({"sample_rate":rate,"supplied_structural_scale":alpha,"supplied_damper_scale":beta,"controls_passed":passed,"diagnostics":take.diagnostics,"observations":rows}));
-            println!("Magnetic state robustness: completed {rate} Hz, scales ({alpha}, {beta})");
+            println!("{label}: completed {rate} Hz, scales ({alpha}, {beta})");
         }
     }
+    Ok(cases)
+}
+
+fn study() -> Result<Value, Box<dyn Error>> {
+    let cases = study_cases(&conditions(), "Magnetic state robustness")?;
     Ok(
         json!({"schema_version":1,"experiment":"nonlinear-magnetic-state-robustness-v1","controls_passed":cases.iter().all(|c|c["controls_passed"] == true),"cases":cases,
         "protocol":"Frozen before first run. Six known-loss trajectories, two laws at baseline and close geometry, 12 conditions each: noiseless matched; additive Gaussian noise at 60/40/20 dB with seeds 17 and 71; assumed gap +/-5%; assumed offset +/-5%; swapped field law. No combined perturbations. Noise sigma uses only RMS of first clean training window and stays constant across both windows. SplitMix64/Box-Muller; paired conditions reuse standardized noise. Same nonlinear fitter, three fixed starts, continuous event state, training-only selection and held-out windows as nonlinear-magnetic-state-v1. No budgets or gates changed. All 24 matched controls require original strict state/voltage recovery; all perturbed cases descriptive. State recovery within 1% requires both held-out state energy-norm relative errors <0.01. Oracle voltage consistency requires each measured held-out relative RMSE < max(1e-6, 1.25 * actual injected held-out noise relative RMS). This synthetic diagnostic uses known injected noise, is never supplied to optimization/selection, and is not a deployable acceptance rule. All start outcomes and failures retained compactly.",

@@ -2032,3 +2032,28 @@ formatting. The new CLI test passed after its JSON round-trip comparison was
 corrected to allow floating-point roundoff; no experimental gate was relaxed.
 Next combine noise and sensor mismatch before estimating losses. No production
 equation, preset, audio asset or host process changed.
+
+## Paired noise and magnetic sensor mismatch
+
+The [combined protocol](MAGNETIC-STATE-COMBINED.md) and
+[receipt](../references/nonlinear-magnetic-state-combined-validation.json)
+retain 720 rows: 24 matched controls, 120 noiseless sensor-error conditions,
+96 noise-only controls and 480 combined conditions. Sixty invalid gap requests
+are retained, including 48 combined cases with withheld comparisons. All 24
+matched controls pass; all 660 valid fits complete, yielding 432 paired
+comparisons. The 240 controls shared with the previous receipt reproduce
+identical serialized fit results.
+
+At nominal 20 dB, all 168 valid gap/offset errors pass the oracle noise-aware
+prediction diagnostic but exceed 1% state error. Six comparisons start from a
+noise-only control within 1% and reach 4.322%-8.423% state error with geometry
+mismatch. Those six comparisons reuse two distinct noise-only controls. All
+tested mismatches are rejected at nominal 40 dB; swapped-law cases are also
+rejected at 20 dB. These are synthetic paired outcomes, not general SNR limits.
+
+Receipt schema 1, `nonlinear-magnetic-state-combined-v1`, 3268672 bytes, SHA-256
+`ac7bfb41f7b9854e076304609dd2628beb260ce4d5a070507e0e62f6be1c8f0e`.
+The full laboratory release suite passes 131 tests (94 unit, 37 CLI), strict
+Clippy and formatting checks. No gate or optimizer budget was retuned. Next
+implement controlled nonlinear loss profiling with known geometry and explicit
+sensor-uncertainty limits. No production DSP, preset, audio asset or host change.
