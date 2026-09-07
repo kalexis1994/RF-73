@@ -14,7 +14,7 @@ const NAMES: [&str; 7] = [
     "pickup_gap_1mm",
     "pickup_vertical_offset_1mm",
 ];
-fn profile(position: f64, case: usize) -> ElectromechanicalProfile {
+pub(super) fn profile(position: f64, case: usize) -> ElectromechanicalProfile {
     let mut p = ElectromechanicalProfile::default();
     p.geometry.length_m = 0.07;
     p.geometry.tuning_position = position;
@@ -31,7 +31,7 @@ fn profile(position: f64, case: usize) -> ElectromechanicalProfile {
     p
 }
 // Missing observations never reduce a score by silently dropping dimensions.
-fn attack_error(source: &Value, candidate: &Value) -> Option<f64> {
+pub(super) fn attack_error(source: &Value, candidate: &Value) -> Option<f64> {
     let mut square = 0.0;
     for i in 0..3 {
         let a = source["windows"][0]["band_db_relative_to_fundamental_band"][i].as_f64()?;
@@ -43,7 +43,7 @@ fn attack_error(source: &Value, candidate: &Value) -> Option<f64> {
     }
     Some((square / 3.0).sqrt())
 }
-fn comparison(source: &Value, candidate: &Value) -> Value {
+pub(super) fn comparison(source: &Value, candidate: &Value) -> Value {
     if candidate.is_null() {
         return json!({"available":false});
     }
@@ -74,7 +74,7 @@ fn comparison(source: &Value, candidate: &Value) -> Value {
         "spectral_agreement":if worst>6.0 {Some(false)} else if count==15 {Some(true)} else {None},
         "sustain_within_3db":windows[3..].iter().all(|w|w["relative_level_difference_db"].as_f64().is_some_and(|d|d.abs()<=3.0))})
 }
-fn impact_convergence(a: &Value, b: &Value) -> Value {
+pub(super) fn impact_convergence(a: &Value, b: &Value) -> Value {
     let rows: Vec<_> = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
         .into_iter()
         .map(|key| {

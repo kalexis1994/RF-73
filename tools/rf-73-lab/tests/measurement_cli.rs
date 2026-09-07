@@ -10,6 +10,143 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_dynamics_receipt_selects_shared_training_minimum_and_freezes_reserved_speeds() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-dynamics-validation.json");
+    let prior = read("loaded-voicing-validation.json");
+    let calibration = read("loaded-loss-calibration-qualified-validation.json");
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["experiment"], "loaded-dynamics-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert_eq!(r["sources"], prior["sources"]);
+    assert_eq!(r["manifest"], prior["manifest"]);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    assert_eq!(r["reference_match_claimed"], false);
+    assert_eq!(r["physical_calibration_claimed"], false);
+    let training = r["training_cases"].as_array().unwrap();
+    assert_eq!(training.len(), 6);
+    assert_eq!(r["validation_cases"].as_array().unwrap().len(), 2);
+    assert_eq!(r["all_comparisons"].as_array().unwrap().len(), 40);
+    assert_eq!(r["mapped_comparisons"].as_array().unwrap().len(), 5);
+    for case in training
+        .iter()
+        .chain(r["validation_cases"].as_array().unwrap())
+    {
+        assert_eq!(case["measurement_qualified"], true);
+        assert_eq!(case["voltage_convergence"]["passed"], true);
+        assert_eq!(case["impact_convergence"]["passed"], true);
+        for take in case["takes"].as_array().unwrap() {
+            assert_eq!(take["passed"], true);
+            assert_eq!(take["contact_entries"][0], 1);
+            assert!(take["max_relative_energy_defect"].as_f64().unwrap() < 1e-8);
+            assert!(take["pre_key_peak_fs"].as_f64().unwrap() < 1e-10);
+        }
+    }
+    // Reusing analysis helpers must preserve historical renders exactly.
+    for (i, previous_case) in [(1, 0), (4, 6)] {
+        assert_eq!(training[i]["takes"], prior["cases"][previous_case]["takes"]);
+    }
+    for (i, g) in [1, 0, 2].into_iter().enumerate() {
+        for resolution in 0..2 {
+            let mut take = training[i]["takes"][resolution].clone();
+            take.as_object_mut().unwrap().remove("impact");
+            assert_eq!(take, calibration["gestures"][g]["takes"][resolution]);
+        }
+    }
+    let hypotheses = r["hypotheses"].as_array().unwrap();
+    assert_eq!(hypotheses.len(), 4);
+    let mut best = (usize::MAX, f64::INFINITY);
+    for (h, hypothesis) in hypotheses.iter().enumerate() {
+        let reverse = hypothesis["reverse"].as_bool().unwrap();
+        let mut sum = Some(0.0);
+        for layer in [0, 2, 4] {
+            let speed = if reverse { 4 - layer } else { layer };
+            let take = training
+                .iter()
+                .find(|t| t["voicing"] == hypothesis["voicing"] && t["speed_index"] == speed)
+                .unwrap();
+            if take["measurement_qualified"] != true {
+                sum = None;
+            }
+            for band in 0..3 {
+                sum = sum.zip(r["sources"][layer]["profile"]["windows"][0]["band_db_relative_to_fundamental_band"][band].as_f64())
+                    .zip(take["takes"][1]["timbre"]["windows"][0]["band_db_relative_to_fundamental_band"][band].as_f64())
+                    .map(|((total,a),b)|total+(a-b).powi(2));
+            }
+        }
+        if let Some(sum) = sum {
+            let score = (sum / 9.0).sqrt();
+            assert!((score - hypothesis["training_attack_rms_db"].as_f64().unwrap()).abs() < 1e-12);
+            if score < best.1 {
+                best = (h, score);
+            }
+        } else {
+            assert!(hypothesis["training_attack_rms_db"].is_null());
+        }
+    }
+    assert_eq!(r["selected"]["hypothesis_index"], best.0);
+    assert_eq!(r["selected"]["voicing"], hypotheses[best.0]["voicing"]);
+    let reverse = r["selected"]["reverse"].as_bool().unwrap();
+    let mut reserved_square = 0.0;
+    for (layer, pair) in r["mapped_comparisons"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .enumerate()
+    {
+        let speed = if reverse { 4 - layer } else { layer };
+        assert_eq!(pair["speed_m_s"], r["speed_grid_m_s"][speed]);
+        assert_eq!(pair["source_id"], r["sources"][layer]["id"]);
+        if layer % 2 == 1 {
+            let left = r["mapped_comparisons"][layer - 1]["speed_m_s"]
+                .as_f64()
+                .unwrap();
+            let right = r["mapped_comparisons"][layer + 1]["speed_m_s"]
+                .as_f64()
+                .unwrap();
+            assert_eq!(pair["speed_m_s"].as_f64().unwrap(), 0.5 * (left + right));
+            reserved_square += pair["comparison"]["attack_band_rms_db"]
+                .as_f64()
+                .unwrap()
+                .powi(2);
+        }
+    }
+    assert!(
+        ((reserved_square / 2.0).sqrt()
+            - r["selected"]["validation_attack_rms_db"].as_f64().unwrap())
+        .abs()
+            < 1e-12
+    );
+}
+
+#[test]
+fn loaded_dynamics_cli_preserves_outputs_and_requires_verified_inputs() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-dynamics"],
+        vec!["loaded-dynamics", "missing.json", "--output", "keep.json"],
+        vec!["loaded-dynamics", "missing.json", "--output", "bad.wav"],
+        vec!["loaded-dynamics", "missing.json", "--output", "bad.json"],
+        vec![
+            "loaded-dynamics",
+            "missing.json",
+            "--output",
+            "bad.json",
+            "--unknown",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.wav").exists());
+    assert!(!scratch.0.join("bad.json").exists());
+}
+
+#[test]
 fn loaded_voicing_receipt_preserves_baseline_and_separates_impact_from_spectrum() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

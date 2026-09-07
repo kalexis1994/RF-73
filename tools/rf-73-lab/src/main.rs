@@ -390,6 +390,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "loaded-voicing" {
         return transduction::voicing::run(&args);
     }
+    if args[0] == "loaded-dynamics" {
+        return transduction::dynamics::run(&args);
+    }
     if args[0] == "electromechanical-render" {
         return transduction::render(&args);
     }

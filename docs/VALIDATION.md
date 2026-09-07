@@ -2569,3 +2569,40 @@ Clippy and formatting. Regression checks preserve the failed control and
 independently recompute impact errors and training attack scores. No WAVs are
 added; release cache remains approximately 194 MiB. This is offline diagnostic
 work with no new material law, listening verdict or production preset change.
+
+## Shared loaded voicing across drive speeds
+
+The [loaded dynamics study](LOADED-DYNAMICS.md) retains sixteen 1.8-second takes:
+twelve training takes across two pickup offsets and three drive speeds, followed
+by four reserved takes at intermediate speeds after selection. All take pairs
+qualify under the original energy, quiet, single-contact, headroom, pitch/timbre
+and impact/voltage refinement gates.
+
+Four hypotheses combine a shared pickup offset with increasing or decreasing
+speed by source layer. Only layers 1/3/5 select the candidate; layers 2/4 do not
+refit either voicing or speed. Original offset with decreasing speed wins at
+18.869982 dB training attack RMS. The single-speed original-offset control was
+18.735510 dB, so selection does not establish training improvement. Reserved
+attack RMS is 12.418104 dB versus 14.108503 dB for that control.
+
+All five mapped pairs still fail full spectral agreement and pass the two
+sustain windows. All forty cross-pairs fail spectral agreement; 39 pass sustain.
+The five nominal drive speeds produce pre-contact hammer speeds of 0.1062,
+0.7191, 1.0786, 1.2699 and 1.4386 m/s. The lowest drive produces a much smaller
+impulse and a 45.93 dB second-attack-band discrepancy against layer 5. This
+points to soft action/contact diagnosis before adopting a source velocity map;
+it does not identify the source of the physical mismatch uniquely.
+
+Maximum voltage refinement RMSE is 0.002869%; maximum impact refinement error
+is 0.042589%. Relative energy defect is at most 1.567e-12, structural split
+defect 4.203e-14 and exchange defect 2.202e-18. Medium voicings reproduce the
+prior receipt exactly; all original-offset speeds reproduce the conditional
+sustain takes after removing the added impact fields. Source profiles and
+spring fit are also unchanged.
+
+Receipt: `references/loaded-dynamics-validation.json`, 512707 bytes, SHA-256
+`a13e4558979e2f283a3db997018f2dcaf648afaf3b7207dea7e3acc41af72951`.
+Verification passes 119 lab unit tests, thirteen loaded CLI/receipt tests,
+strict Clippy and formatting, including independent score/interpolation checks.
+Release cache remains approximately 194 MiB; no WAVs or plugin presets are added.
+No measured velocity calibration, listening or realtime result is claimed.

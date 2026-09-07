@@ -81,6 +81,11 @@ hammer-point, contact-stiffness and pickup configurations. It measures impact
 force, impulse and duration alongside source spectra and numerical refinement,
 with no automatic preset selection.
 
+The [shared-voicing dynamics study](docs/LOADED-DYNAMICS.md) tests one physical
+configuration across drive speeds. Training layers choose between two pickup
+offsets and two explicit layer-order hypotheses; reserved layers then use fixed
+intermediate speeds, with no refit to their spectra.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

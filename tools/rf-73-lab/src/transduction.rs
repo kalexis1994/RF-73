@@ -4,6 +4,7 @@ use serde_json::{Value, json};
 use std::{error::Error, io::BufWriter, path::Path};
 pub(crate) mod bank;
 pub(crate) mod calibration;
+pub(crate) mod dynamics;
 pub(crate) mod losses;
 pub(crate) mod rest;
 pub(crate) mod tuning;
@@ -16,6 +17,7 @@ pub const HELP: &str = "Electromechanical audit:
   loaded-loss-budget --output REPORT.json
   calibrate-loaded-loss MANIFEST.json --output REPORT.json [--preview AUDIO.wav] [--qualified-grid]
   loaded-voicing MANIFEST.json --output REPORT.json
+  loaded-dynamics MANIFEST.json --output REPORT.json
 Eight loaded two-plane cases; render writes one 1.2-second WAV plus its JSON receipt.
 ";
 const DURATION: f64 = 0.18;

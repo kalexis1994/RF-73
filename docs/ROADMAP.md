@@ -72,9 +72,20 @@ not only parameter-identification diagnostics:
     and is ineligible under the single-contact protocol. All 35 source/case
     pairs still fail spectral agreement, despite preserved late-level agreement.
 
-Next qualify a shared excitation/pickup voicing across multiple feasible speeds,
-retaining source layers separately and treating velocity mapping as an explicit
-nuisance assumption. Investigate the spatial recontact, preserve loss uncertainty
+11. **Shared voicing across intensities:** the
+    [loaded dynamics experiment](LOADED-DYNAMICS.md) fixes two physical pickup
+    settings and two ordinal drive hypotheses. Three training layers select the
+    experimental candidate; two reserved layers use prescribed intermediate
+    speeds without refitting. Every candidate retains numerical and impact checks.
+    All sixteen takes qualify. Training retains the original pickup with decreasing
+    drive speed by layer; reserved attack RMS is 12.42 dB, but all five mapped
+    pairs retain spectral disagreement. The soft drive region shows strongly
+    nonlinear hammer-speed and impulse response, with a 45.93 dB attack-band
+    discrepancy against layer 5.
+
+Next qualify the soft-strike threshold with hammer speed, actuator work and
+impulse, then compare action/escapement and contact interventions to distinguish
+drive mapping from modal excitation. Investigate spatial recontact and preserve loss uncertainty
 and qualify release/repetition before adopting a candidate. Retain the physical
 non-striking threshold and
 separate bank processing from parameter inference. A computational reduction
