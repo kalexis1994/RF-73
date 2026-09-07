@@ -25,7 +25,7 @@ fn profile(position: f64, case: usize) -> ElectromechanicalProfile {
     }
     p
 }
-fn potential(k: f64, d: f64) -> f64 {
+pub(super) fn potential(k: f64, d: f64) -> f64 {
     k * d.max(0.0).powi(3) / 3.0
 }
 fn hammer_energy(p: ElectromechanicalProfile, b: ElectromechanicalProbe) -> f64 {
@@ -36,7 +36,7 @@ fn hammer_energy(p: ElectromechanicalProfile, b: ElectromechanicalProbe) -> f64 
 }
 
 #[derive(Default)]
-struct Work {
+pub(super) struct Work {
     pedestal_to_hammer: f64,
     hammer_to_contact: f64,
     contact_to_structure: f64,
@@ -47,7 +47,7 @@ struct Work {
     max_contact_defect: f64,
 }
 impl Work {
-    fn observe(
+    pub(super) fn observe(
         &mut self,
         p: ElectromechanicalProfile,
         initial: ElectromechanicalProbe,
@@ -97,7 +97,19 @@ impl Work {
         self.max_contact_defect = self.max_contact_defect.max(contact.abs() / scale);
         self.max_pedestal_defect = self.max_pedestal_defect.max(pedestal.abs() / scale);
     }
-    fn snapshot(&self, p: ElectromechanicalProfile, b: ElectromechanicalProbe, time: f64) -> Value {
+    pub(super) fn defects(&self) -> [f64; 3] {
+        [
+            self.max_hammer_defect,
+            self.max_pedestal_defect,
+            self.max_contact_defect,
+        ]
+    }
+    pub(super) fn snapshot(
+        &self,
+        p: ElectromechanicalProfile,
+        b: ElectromechanicalProbe,
+        time: f64,
+    ) -> Value {
         json!({"seconds":time,"hammer_position_m":b.mechanical.position[18],"hammer_velocity_m_s":b.mechanical.velocity[18],
             "hammer_energy_j":hammer_energy(p,b),"hammer_kinetic_j":0.5*p.assembly.hammer_mass_kg*b.mechanical.velocity[18].powi(2),
             "hammer_return_potential_j":0.5*p.action.hammer_return_n_m*(b.mechanical.position[18]-p.action.hammer_rest_m).powi(2),

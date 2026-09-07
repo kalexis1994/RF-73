@@ -94,8 +94,21 @@ not only parameter-identification diagnostics:
     At the baseline soft impact, most received hammer work has crossed the
     bridle port; it is transfer, not wholly dissipated heat.
 
-Next compare bridle slack/ratio and damper-arm loading with continuous return
-and lift checks before adopting a velocity curve. Investigate spatial recontact and preserve loss uncertainty
+13. **Bridle/damper coupling and return:** the
+    [loaded bridle study](LOADED-BRIDLE.md) compares slack, ratio, arm stiffness
+    and damping across three speeds. Signed work identities retain initial
+    preload and distinguish bridle storage/heat from energy delivered to the
+    arm. Key release, held felt clearance and return are checked independently
+    of numerical qualification.
+    All thirty takes converge and retain felt lift/contact restoration, but
+    every case fails the declared hammer settling limits at 350–400 ms.
+    Bridle work is now separated into storage, heat and arm transfer. The
+    4 mm slack intervention retains a non-monotone contact/no-contact/contact
+    response across the three sampled speeds.
+
+Next trace hammer return and pedestal contact over a longer tail, compare
+return/contact loss controls and qualify repetition without hiding changes to
+the attack. Investigate spatial recontact and preserve loss uncertainty
 and qualify release/repetition before adopting a candidate. Retain the physical
 non-striking threshold and
 separate bank processing from parameter inference. A computational reduction

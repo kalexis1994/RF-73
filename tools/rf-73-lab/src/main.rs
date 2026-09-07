@@ -396,6 +396,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "loaded-strike-threshold" {
         return transduction::threshold::run(&args);
     }
+    if args[0] == "loaded-bridle" {
+        return transduction::bridle::run(&args);
+    }
     if args[0] == "electromechanical-render" {
         return transduction::render(&args);
     }

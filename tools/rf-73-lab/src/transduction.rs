@@ -3,6 +3,7 @@ use rf_73_dsp::{ElectromechanicalAssembly, ElectromechanicalProfile, ProductionD
 use serde_json::{Value, json};
 use std::{error::Error, io::BufWriter, path::Path};
 pub(crate) mod bank;
+pub(crate) mod bridle;
 pub(crate) mod calibration;
 pub(crate) mod dynamics;
 pub(crate) mod losses;
@@ -20,6 +21,7 @@ pub const HELP: &str = "Electromechanical audit:
   loaded-voicing MANIFEST.json --output REPORT.json
   loaded-dynamics MANIFEST.json --output REPORT.json
   loaded-strike-threshold --output REPORT.json
+  loaded-bridle --output REPORT.json
 Eight loaded two-plane cases; render writes one 1.2-second WAV plus its JSON receipt.
 ";
 const DURATION: f64 = 0.18;

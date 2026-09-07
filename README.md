@@ -91,6 +91,10 @@ non-striking motion from impact and tests action/escapement/contact controls.
 Independent hammer and contact-port work ledgers identify energy transfer
 through the soft-drive region.
 
+The [bridle/damper study](docs/LOADED-BRIDLE.md) follows that work through
+linkage storage, arm motion and dissipation, then checks felt lift and key
+return under controlled slack, ratio and arm-loading changes.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

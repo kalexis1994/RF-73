@@ -2638,3 +2638,36 @@ strict Clippy and formatting. Tests independently reconstruct end-work balances,
 detect a wrong port sign, and preserve no-contact, recontact and non-monotone
 controls. No WAVs, production changes or source-fit claims are added; the release
 cache remains approximately 194 MiB.
+
+## Loaded bridle/damper transfer and return
+
+The [bridle matrix](LOADED-BRIDLE.md) qualifies thirty 400 ms takes across five
+slack/ratio/arm-loading configurations and three drive speeds. The key returns
+from 150 ms with no state reset; the pedal stays closed. All fifteen pairs
+converge, but none passes the complete functional diagnostic. Felt lift and
+restoration succeed; hammer position/speed exceed the declared settling limits
+in 350–400 ms. Fine maximum hammer offsets span 1.389–2.703 mm. Every arm is
+within its return limits and felt-contact fraction is 100% throughout that
+window. The slack-4-mm control preserves contact counts 1/0/1 across increasing
+drive speeds at both resolutions.
+
+Independent signed bridle, arm and felt ledgers include initial preload and
+separate work transfer from potential and heat. Before the baseline soft strike,
+9.100461 mJ enters the bridle: 8.371911 mJ reaches the arm, 0.112714 mJ remains
+in bridle potential and 0.615837 mJ has dissipated there. Residual hammer motion
+after release remains visible even when the bridle and pedestal forces are zero
+at the 220 and 400 ms checkpoints. No parameter is promoted from this study.
+
+Maximum relative total energy defect is 1.741e-12; independent bridle/arm/felt
+defects are at most 1.391e-12, 1.137e-12 and 1.223e-14. Maximum velocity RMSE is
+0.010950% and impact refinement error 0.042589%. The original 120 ms hammer
+snapshots exactly reproduce the threshold receipt. Functional failures remain
+separate from successful numerical qualification.
+
+Receipt: `references/loaded-bridle-validation.json`, 664379 bytes, SHA-256
+`045b803673f7a9f45b7bac1632701792dc8fac24a34b2c515a3cff911f0c4365`.
+Verification passes 122 lab unit tests, seventeen loaded CLI/receipt tests,
+strict Clippy and formatting, including independent work and functional checks.
+No WAVs or production defaults are added; release cache remains approximately
+194 MiB. Longer return, repetition, moving-pedal behavior and source fidelity
+remain unqualified by this experiment.

@@ -10,6 +10,130 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_bridle_receipt_closes_coupling_and_preserves_strike_prefix() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-bridle-validation.json");
+    let prior = read("loaded-strike-threshold-validation.json");
+    assert_eq!(r["experiment"], "loaded-bridle-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    assert_eq!(r["physical_calibration_claimed"], false);
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 5);
+    for case in cases {
+        let rows = case["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 3);
+        for row in rows {
+            assert_eq!(row["measurement_qualified"], true);
+            assert_eq!(row["takes"].as_array().unwrap().len(), 2);
+            for take in row["takes"].as_array().unwrap() {
+                let initial = &take["initial_coupling"];
+                assert!(initial["arm_energy_j"].as_f64().unwrap() > 0.0);
+                for snapshot in take["snapshots"].as_array().unwrap() {
+                    let c = &snapshot["coupling"];
+                    let number = |key: &str| c[key].as_f64().unwrap();
+                    let delta = |key: &str| number(key) - initial[key].as_f64().unwrap();
+                    let bridle = number("hammer_to_bridle_work_j")
+                        - number("bridle_to_arm_work_j")
+                        - delta("bridle_potential_j")
+                        - delta("bridle_heat_j");
+                    let arm = delta("arm_energy_j") - number("bridle_to_arm_work_j")
+                        + number("arm_to_felt_work_j")
+                        + number("arm_heat_j")
+                        - number("pedal_work_j");
+                    let felt = number("arm_to_felt_work_j")
+                        - number("felt_to_structure_work_j")
+                        - delta("felt_potential_j")
+                        - delta("felt_heat_j");
+                    assert!(bridle.abs() < 1e-10 && arm.abs() < 1e-10 && felt.abs() < 1e-10);
+                    assert_eq!(
+                        c["hammer_to_bridle_work_j"],
+                        snapshot["hammer"]["hammer_to_bridle_work_j"]
+                    );
+                    assert_eq!(number("pedal_work_j"), 0.0);
+                }
+                let f = &take["function"];
+                let lifted = f["minimum_held_felt_clearance_m"].as_f64().unwrap() >= 0.0001
+                    && f["held_felt_contact_ticks"] == 0;
+                let returned = f["return_max_position_error_m"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .all(|v| v.as_f64().unwrap() < 0.0001)
+                    && f["return_max_velocity_m_s"]
+                        .as_array()
+                        .unwrap()
+                        .iter()
+                        .all(|v| v.as_f64().unwrap() < 0.01)
+                    && f["return_felt_contact_fraction"].as_f64().unwrap() >= 0.9;
+                assert_eq!(f["held_lift_passed"], lifted);
+                assert_eq!(f["return_passed"], returned);
+                assert!(lifted && !returned);
+                // The arm and felt return; the hammer alone exceeds both settling limits.
+                assert!(f["return_max_position_error_m"][0].as_f64().unwrap() > 0.0001);
+                assert!(f["return_max_velocity_m_s"][0].as_f64().unwrap() > 0.01);
+                assert!(f["return_max_position_error_m"][1].as_f64().unwrap() < 0.0001);
+                assert!(f["return_max_velocity_m_s"][1].as_f64().unwrap() < 0.01);
+                assert_eq!(f["return_felt_contact_fraction"], 1.0);
+                assert_eq!(
+                    f["single_strike_lift_return_passed"],
+                    take["contact_entries"][0] == 1 && lifted && returned
+                );
+            }
+        }
+    }
+    let slack_rows = cases[1]["rows"].as_array().unwrap();
+    for (row, count) in slack_rows.iter().zip([1, 0, 1]) {
+        for take in row["takes"].as_array().unwrap() {
+            assert_eq!(take["contact_entries"][0], count);
+        }
+    }
+    for row in cases[0]["rows"].as_array().unwrap() {
+        let old = prior["cases"][0]["rows"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|r| r["speed_m_s"] == row["speed_m_s"])
+            .unwrap();
+        for (take, old) in row["takes"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .zip(old["takes"].as_array().unwrap())
+        {
+            assert_eq!(take["snapshots"][0]["hammer"], old["end"]);
+            if !old["before_first_contact"].is_null() {
+                assert_eq!(
+                    take["first_contact"]["before_hammer"],
+                    old["before_first_contact"]
+                );
+            }
+        }
+    }
+}
+
+#[test]
+fn loaded_bridle_cli_preserves_outputs_and_rejects_ambiguous_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-bridle"],
+        vec!["loaded-bridle", "--output", "keep.json"],
+        vec!["loaded-bridle", "--output", "bad.wav"],
+        vec!["loaded-bridle", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists());
+    assert!(!scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_threshold_receipt_closes_hammer_work_and_preserves_known_impacts() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {
