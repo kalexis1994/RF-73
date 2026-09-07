@@ -1,5 +1,6 @@
 //! Offline initial-state inference from one mechanical pickup-velocity history.
 //! Geometry AND damping are supplied; no unknown losses are estimated here.
+pub mod loss;
 use super::*;
 use rf_73_dsp::{ModalProbe, ModalSpectrum};
 use std::f64::consts::TAU;

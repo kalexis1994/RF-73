@@ -10,6 +10,75 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn pickup_loss_recovers_off_grid_scales_without_truth_in_search_and_keeps_controls() {
+    let scratch = Scratch::new();
+    let args = ["pickup-loss", "--output", "loss.json"];
+    scratch.success(&args);
+    let report = scratch.json("loss.json");
+    assert_eq!(report["experiment"], "profiled-pickup-loss-v1");
+    assert_eq!(report["controls_passed"], true);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    for case in cases {
+        assert_eq!(case["controls_passed"], true);
+        let observations = case["observations"].as_array().unwrap();
+        assert_eq!(observations.len(), 3);
+        for (observation, label) in observations.iter().zip([
+            "matched_noiseless",
+            "matched_noise_1pct",
+            "wrong_damper_position",
+        ]) {
+            assert_eq!(observation["observation"], label);
+            if observation["required_control"] == true {
+                assert_eq!(observation["required_control_passed"], true);
+                assert_eq!(
+                    observation["fit"]["known_scale_recovery_within_one_percent"],
+                    true
+                );
+                for error in observation["fit"]["known_scale_relative_errors"]
+                    .as_array()
+                    .unwrap()
+                {
+                    assert!(error.as_f64().unwrap() < 0.001);
+                }
+            } else {
+                assert!(observation["required_control_passed"].is_null());
+            }
+            let fit = &observation["fit"];
+            if fit["error"].is_null() {
+                assert_eq!(fit["windows"].as_array().unwrap().len(), 2);
+                for name in ["structural_profile", "conditional_damper_profile"] {
+                    let evaluations = fit[name]["evaluations"].as_array().unwrap();
+                    assert_eq!(evaluations.len(), 51);
+                    for e in evaluations {
+                        assert!((0.25..=2.0).contains(&e[0].as_f64().unwrap()));
+                        assert!(e[1].as_f64().unwrap() >= 0.0);
+                    }
+                }
+                assert!(
+                    fit["local_sensitivity"]["minimum_to_maximum_singular_ratio"]
+                        .as_f64()
+                        .is_some_and(|r| (0.0..=1.0).contains(&r))
+                );
+                assert!(fit["prediction_consistent"].is_boolean());
+            }
+        }
+    }
+    let saved = fs::read(scratch.0.join("loss.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("loss.json")).unwrap());
+    for args in [
+        vec!["pickup-loss"],
+        vec!["pickup-loss", "--output", "bad.wav"],
+        vec!["pickup-loss", "--output", "bad.json", "--truth", "1"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn pickup_history_infers_states_with_held_out_prediction_and_retains_reductions() {
     let scratch = Scratch::new();
     let args = ["pickup-state", "--output", "state.json"];

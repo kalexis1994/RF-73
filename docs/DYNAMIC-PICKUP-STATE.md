@@ -127,3 +127,8 @@ unknown capture gain and processed source recordings remain separate stages.
 No physical solver, production preset or plugin engine changed. This work adds
 an offline inverse-model validation tool; it does not claim a new audible version
 or a host/listening test.
+
+The subsequent [profiled pickup-loss study](PROFILED-PICKUP-LOSS.md) removes the
+supplied-scale assumption while retaining known operator shapes. Six noiseless
+off-grid controls recover both global losses; noise and incorrect damper position
+remain explicit controls. It does not yet identify losses from magnetic voltage.

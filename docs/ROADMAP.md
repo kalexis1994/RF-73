@@ -430,3 +430,11 @@ even nine modes with 1% noise can have 43.71% error in one weakly observed mode.
 Next profile unknown structural/damper scales with training-only nuisance-state
 fits, held-out predictions and sensitivity/wrong-operator controls. Known-damping
 state recovery is not evidence of unknown-loss or recorded-audio identification.
+
+The [profiled pickup-loss study](PROFILED-PICKUP-LOSS.md) now estimates unknown
+structural/damper multipliers with training-only nuisance-state fits. All six
+noiseless off-grid controls pass. With 1% training noise, both scale errors stay
+below 1%, but three held-out predictions fail. Wrong damper contact position
+biases its scale by 46..52%; all six cases are rejected, including four interior
+fits. Next quantify smaller operator errors and qualify the magnetic observation
+path. This synthetic two-scale result still assumes known geometry and timing.

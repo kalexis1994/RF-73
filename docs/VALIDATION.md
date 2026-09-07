@@ -1900,3 +1900,25 @@ The laboratory release suite passes 110 tests (80 unit, 30 CLI), covering analyt
 propagation, history observability, rank/finite-input rejection, deterministic
 noise, all study outcomes and protection of existing output files. No DSP engine,
 source waveform, preset or audible baseline changed; no host test was run.
+
+## Profiled unknown losses from pickup history
+
+The [profiled pickup-loss protocol](PROFILED-PICKUP-LOSS.md) and
+[receipt](../references/profiled-pickup-loss-validation.json) retain 18 fits from
+six trajectories with off-grid truth scales. Each loss search keeps all 51
+candidate evaluations. Initial states are refitted from training samples for
+each candidate; true scales and held-out samples do not enter recovery.
+
+All six noiseless controls pass: maximum structural/damper relative errors
+`4.686e-9` / `4.043e-9`, held-out pickup relative RMSE `6.024e-9`. With 1% training
+noise, both scales remain within 1% in all six cases, while only three meet the
+held-out prediction criterion. Wrong damper position biases its scale by 46..52%;
+none of six cases passes prediction consistency or known-scale recovery. Local
+sensitivity remains resolved even for those incorrect operators.
+
+Receipt schema 1, `profiled-pickup-loss-v1`, 318045 bytes, SHA-256
+`830c2d80380c7e1e539aa2549f0122faeb443d2ea6b37044c0674895b1ab73c1`.
+The laboratory release suite passes 113 tests (82 unit and 31 CLI), with strict
+laboratory Clippy and formatting checks. No host or listening test was run.
+This identifies only two synthetic viscous scales under supplied mechanical
+operator shapes and event timing; magnetic/source-bank calibration is not claimed.

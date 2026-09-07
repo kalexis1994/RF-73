@@ -218,6 +218,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", mechanical_loss::HELP);
         print!("{}", mechanical_loss::reduced::HELP);
         print!("{}", mechanical_loss::observer::HELP);
+        print!("{}", mechanical_loss::observer::loss::HELP);
         print!("{}", source_envelope::short::HELP);
         print!("{}", short_envelope::HELP);
         print!("{}", partial_comparison::HELP);
@@ -293,6 +294,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "pickup-state" {
         return mechanical_loss::observer::run(&args);
+    }
+    if args[0] == "pickup-loss" {
+        return mechanical_loss::observer::loss::run(&args);
     }
     if args[0] == "observe-short-source-envelopes" {
         return source_envelope::short::run(&args);
