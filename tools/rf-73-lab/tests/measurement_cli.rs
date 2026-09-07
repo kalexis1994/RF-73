@@ -10,6 +10,96 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn action_cycle_cli_rejects_invalid_options_and_preserves_existing_reports() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    let out = scratch.run(&[
+        "action-cycle",
+        "--output",
+        "keep.json",
+        "--fast-drive",
+        "--reference",
+    ]);
+    assert!(!out.status.success());
+    assert!(String::from_utf8_lossy(&out.stderr).contains("new .json file"));
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    for args in [
+        vec!["action-cycle"],
+        vec!["action-cycle", "--output", "bad.wav"],
+        vec!["action-cycle", "--output", "bad.json", "--unknown"],
+        vec![
+            "action-cycle",
+            "--output",
+            "bad.json",
+            "--reference",
+            "--refined",
+        ],
+        vec![
+            "action-cycle",
+            "--output",
+            "bad.json",
+            "--fast-drive",
+            "--fast-drive",
+        ],
+        vec!["action-cycle", "--bad", "bad.json"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+    }
+}
+
+#[test]
+fn action_cycle_receipts_preserve_failed_studies_and_reproduce_overlapping_resolution() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let slow = read("persistent-action-cycle-validation.json");
+    let fast = read("persistent-action-cycle-fast-refined-validation.json");
+    let reference = read("persistent-action-cycle-reference-validation.json");
+    assert_eq!(slow["passed"], false);
+    assert_eq!(fast["passed"], false);
+    assert_eq!(reference["passed"], true);
+    assert_eq!(
+        reference["steps_per_frame"],
+        serde_json::json!([512, 1024, 2048])
+    );
+    assert_eq!(reference["drive_speed_m_s"], 1.5);
+    assert_eq!(reference["profile"], fast["profile"]);
+    assert_eq!(reference["cases"].as_array().unwrap().len(), 16);
+    for (a, b) in fast["cases"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .zip(reference["cases"].as_array().unwrap())
+    {
+        for field in ["length_m", "sample_rate", "gesture"] {
+            assert_eq!(a[field], b[field]);
+        }
+        assert_eq!(a["takes"][2], b["takes"][0]);
+        assert_eq!(b["passed"], true);
+        for take in b["takes"].as_array().unwrap() {
+            assert_eq!(take["passed"], true);
+            assert_eq!(take["behavior_passed"], true);
+            assert_eq!(take["heat_monotone"], true);
+            assert!(take["max_relative_balance_defect"].as_f64().unwrap() < 1e-8);
+            assert!(take["max_relative_contact_work_defect"].as_f64().unwrap() < 1e-9);
+            assert!(take["maximum_solver_sweeps"].as_u64().unwrap() <= 64);
+            if b["gesture"] == "slack_bridle" {
+                assert!(take["simultaneous_hammer_felt_steps"].as_u64().unwrap() > 0);
+            }
+        }
+        for comparison in ["coarse_vs_fine", "medium_vs_fine"] {
+            for window in b[comparison]["windows"].as_array().unwrap() {
+                assert!(window["pickup_velocity_relative_rmse"].as_f64().unwrap() < 0.01);
+                assert!(window["hammer_position_rmse_m"].as_f64().unwrap() < 1e-5);
+                assert!(window["arm_position_rmse_m"].as_f64().unwrap() < 1e-5);
+            }
+        }
+    }
+}
+
+#[test]
 fn felt_damper_preserves_failed_coarse_evidence_and_qualifies_refinement() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let coarse: serde_json::Value =

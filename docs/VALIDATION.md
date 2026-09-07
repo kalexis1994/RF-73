@@ -2216,4 +2216,43 @@ continuous drive and invalid-input preservation are covered. Both historical
 failure and successful refinement remain recorded. Final stored energy also
 contains preload, so its ratio to held energy is not an acoustic decay score.
 No calibrated material, simultaneous hammer/felt contact, realtime host or
-audio qualification is claimed. Full action/repetition is the next large block.
+audio qualification is claimed for that stage. The subsequent action/repetition
+block is documented below.
+
+## Persistent action and repetition block
+
+[Action and repetition](ACTION-REPETITION.md) connects the nine-coordinate
+structure to a persistent hammer, moving felt arm, unilateral pedestal and
+reciprocal tension-only bridle. Four contact laws are solved jointly, with
+separate mechanical input work and constitutive heat. There is no strike-time
+state replacement or diagnostic impulse in these whole-action cycles.
+
+The [original 1 m/s study](../references/persistent-action-cycle-validation.json)
+retains 9 failed cases out of 16. All 48 energy audits pass, but some strikes
+fail to reach the tine and short-tine comparisons exceed the convergence gate.
+The [1.5 m/s refined study](../references/persistent-action-cycle-fast-refined-validation.json)
+passes all behavior and per-take energy checks; 5/16 case comparisons still
+fail pickup-velocity or hammer-position convergence. Neither failed report is
+overwritten. The latter is a changed drive experiment as well as a refinement;
+it must not be presented as resolution alone fixing weak strikes.
+
+The [512/1024/2048 reference](../references/persistent-action-cycle-reference-validation.json)
+keeps the 1.5 m/s experiment unchanged and passes all 16 cases and 48 takes.
+Maximum pickup velocity RMSE is 0.2555% for 512/2048 and 0.0499% for 1024/2048,
+against the fixed 1% gate. Maximum hammer and arm displacement errors are
+1.933 and 0.421 micrometers, below the 10 micrometer gates. Total energy/work
+defect stays below 8.861e-12 and individual contact-work defect below 1.747e-14.
+Stationary actuators produce no measured energy growth. The solver needs at
+most two sweeps in this high-resolution matrix, against a hard budget of 64.
+All complete 512-tick summaries exactly match the preceding study.
+
+Verification passes 115 DSP tests, 105 laboratory unit tests and two action
+CLI/receipt checks (222 total), strict Clippy and formatting. The coupled
+stress test also forces an exhausted one-sweep solve and verifies exact rollback
+before retrying with the normal budget. No qualification threshold was relaxed.
+
+The coupled system covers physical drive work and simultaneous contact; its
+high-resolution qualification is not a realtime performance result, calibrated
+touch response or audible plugin update. Source audio and existing renders
+are preserved, incremental compilation remains disabled and only the reused
+release cache is retained.

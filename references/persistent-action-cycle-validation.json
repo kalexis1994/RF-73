@@ -1,0 +1,4946 @@
+{
+  "cases": [
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 9.247575858708451e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 1.129709189583677e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0006344023558735122,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 3.1963338834736233e-10,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 6.526421784828242e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00001470005694305204,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 1.150125077831377e-9,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 1.4133125915186121e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00001966099608758518,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 3.464978644526849e-10,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 7.105202935267195e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000015034957440250426,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "repeat",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 1.8437616507467682e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 2.253285689528609e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00012690460352816468,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 6.389530361655807e-11,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 1.304994389925615e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.9398099484711323e-6,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 2.2994886867559078e-10,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 2.825687082447616e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 3.9316291139841886e-6,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 6.932044068382723e-11,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 1.4214586685533055e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 3.0059940332876477e-6,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": false,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.023537274524656177,
+          "arm_heat_j": 0.01019199630844637,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            11,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00010790019986718104,
+            0.010433470658121554,
+            0.0015417868176654916
+          ],
+          "final_mechanical_energy_j": 0.00008572880517844545,
+          "final_position": [
+            4.0613170996725855e-6,
+            0.0007543415336203281,
+            0.000053075575267442896,
+            8.218769717930399e-8,
+            -5.94183715458025e-8,
+            -2.6432795862560782e-8,
+            -6.270870191792407e-9,
+            -4.1978390181901936e-11,
+            7.678275098420852e-7,
+            -0.01160080645044004,
+            0.00011640847706111772
+          ],
+          "final_velocity": [
+            0.0009452099424448903,
+            0.09105924876655026,
+            -0.0015475449375035378,
+            0.00018923808055912113,
+            -3.6363678731185137e-6,
+            -2.2578944326137306e-6,
+            -7.804341660408903e-7,
+            3.277252599564011e-9,
+            0.0006818815149746346,
+            -0.2026962111978286,
+            0.006308556268940654
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0012243550289225908,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            429,
+            618,
+            0
+          ],
+          "max_kinematic_defect": 1.7234473498664842e-18,
+          "max_relative_balance_defect": 2.847443390670949e-13,
+          "max_relative_contact_work_defect": 1.3817196334738843e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7949054009447201,
+            22.415173656449745,
+            3.534732662790675
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.023537274524656177,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 5.370039788749761e-6
+        },
+        {
+          "absolute_drive_work_j": 0.02353728129638847,
+          "arm_heat_j": 0.010191998914693176,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            11,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0001079002127425804,
+            0.010433474204274675,
+            0.0015417873572699532
+          ],
+          "final_mechanical_energy_j": 0.00008572876725629074,
+          "final_position": [
+            4.061314152260601e-6,
+            0.0007543411148509118,
+            0.000053075593583718523,
+            8.21992350128146e-8,
+            -5.941295154258869e-8,
+            -2.6432228052846996e-8,
+            -6.27070659911429e-9,
+            -4.1979372828346614e-11,
+            7.678278541792771e-7,
+            -0.011600805435868198,
+            0.0001164084740895238
+          ],
+          "final_velocity": [
+            0.0009452061553789124,
+            0.09105911894882521,
+            -0.0015475316892162396,
+            0.0001889433749530875,
+            -3.5669176693964632e-6,
+            -2.2335771908117004e-6,
+            -7.71950265980438e-7,
+            3.1601587932704167e-9,
+            0.0006819001349257856,
+            -0.20269616245417074,
+            0.006308583762543503
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0012243551609288528,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            857,
+            1234,
+            0
+          ],
+          "max_kinematic_defect": 1.7297736271912898e-18,
+          "max_relative_balance_defect": 2.6106576306614434e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7974450888083856,
+            22.415277888178508,
+            3.5347402470034455
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.02353728129638847,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 5.37001255656644e-6
+        },
+        {
+          "absolute_drive_work_j": 0.02353728298535679,
+          "arm_heat_j": 0.01019199956502648,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            11,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00010790021569467667,
+            0.010433475089667204,
+            0.0015417874907347007
+          ],
+          "final_mechanical_energy_j": 0.0000857287577662894,
+          "final_position": [
+            4.061313429361281e-6,
+            0.000754341012212548,
+            0.000053075598113799864,
+            8.220211646243038e-8,
+            -5.9411595576515535e-8,
+            -2.6432083845183168e-8,
+            -6.270664186819962e-9,
+            -4.19796710087488e-11,
+            7.678279451192315e-7,
+            -0.011600805182064067,
+            0.00011640847342292059
+          ],
+          "final_velocity": [
+            0.0009452052101209372,
+            0.09105908648800277,
+            -0.0015475283526425832,
+            0.00018886968801679662,
+            -3.5497406208487224e-6,
+            -2.2275602138162713e-6,
+            -7.699580076612685e-7,
+            3.135742840188312e-9,
+            0.0006819047895837056,
+            -0.20269615025129104,
+            0.006308590618528109
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.00122435519384888,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            1710,
+            2466,
+            0
+          ],
+          "max_kinematic_defect": 1.7327647122862815e-18,
+          "max_relative_balance_defect": 2.68841558919739e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7987206561110909,
+            22.415301385330825,
+            3.534741972275355
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.02353728298535679,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 5.3700059516347795e-6
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": false,
+        "windows": [
+          {
+            "arm_position_rmse_m": 5.4989395752273736e-11,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 6.719040215864527e-7,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.010469950411282689,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 2.0776625570375963e-14,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 2.8995603413939277e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.008666494886478448,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 6.452423695492449e-15,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 4.589629386601128e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.009304779168383527,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 6.126891273312242e-6,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 0.000022061928633745423,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.0043545200104805675,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "pedal_repeat",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 9.731463689770416e-12,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 1.341535381649106e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0021225597191669473,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 4.140236082820057e-15,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 7.164823599658004e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0017503743461250805,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 4.295540357363673e-15,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 8.75413035434872e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0021009798754258106,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 1.1456448374541331e-6,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 4.1266410171492e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0008837074853858763,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": false,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.014087204457356343,
+          "arm_heat_j": 0.002042323314581914,
+          "behavior_passed": true,
+          "contact_entries": [
+            11,
+            5,
+            8,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00017393740845073914,
+            0.006374454490414855,
+            0.00024235536251019282
+          ],
+          "final_mechanical_energy_j": 0.00013025826298533944,
+          "final_position": [
+            0.000017437933443420496,
+            0.0024077186135154135,
+            -1.3643050521940765e-6,
+            6.790703881463385e-6,
+            6.485872456352871e-8,
+            -1.0983654056332009e-9,
+            3.604766753388951e-10,
+            -1.053345050905732e-10,
+            5.2641144096516786e-6,
+            -0.00854152053371579,
+            -0.0004540831193966635
+          ],
+          "final_velocity": [
+            0.0005014995608087151,
+            0.06308188291933305,
+            0.005127482517241693,
+            -0.0208961435083923,
+            0.003173614147094729,
+            -1.8452466371384761e-6,
+            2.67801572335266e-7,
+            6.001251947368382e-7,
+            0.004607304043306329,
+            0.1306206938677781,
+            -0.10687944337132696
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.001077969276245327,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            110,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.726438434961476e-18,
+          "max_relative_balance_defect": 7.534432628067814e-14,
+          "max_relative_contact_work_defect": 3.1841555658751308e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            35.682450892316126,
+            1.4557288010563973,
+            17.239043691984154,
+            2.3120811184309007
+          ],
+          "pedal_work_j": 0.0027107515901087756,
+          "pedestal_work_j": 0.010672114194674499,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            33.6988962547232,
+            35.682450892316126
+          ],
+          "structural_heat_j": 0.003394901002928072
+        },
+        {
+          "absolute_drive_work_j": 0.014074501625221668,
+          "arm_heat_j": 0.0020313709686683684,
+          "behavior_passed": true,
+          "contact_entries": [
+            11,
+            5,
+            8,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00017226524676849396,
+            0.006372885532589697,
+            0.00024116902115313798
+          ],
+          "final_mechanical_energy_j": 0.00013001632348029897,
+          "final_position": [
+            0.00001742040181538726,
+            0.0024093599095836886,
+            -1.031453900993804e-6,
+            6.734028129364553e-6,
+            7.20128924630963e-8,
+            -1.0557017231060175e-9,
+            3.7028937844632894e-10,
+            -1.0422219794955159e-10,
+            5.258223236687444e-6,
+            -0.008538413631772235,
+            -0.0004566469293636053
+          ],
+          "final_velocity": [
+            0.0005161722383583084,
+            0.06401218556868057,
+            0.005159671096363994,
+            -0.02111167467275239,
+            0.00305057866864583,
+            -2.0976371524814727e-6,
+            5.864048366628669e-7,
+            5.966476594430366e-7,
+            0.004560935190209039,
+            0.1291468433088423,
+            -0.10826568150361193
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010778105163244801,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            219,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7282516148641922e-18,
+          "max_relative_balance_defect": 9.151457890009421e-14,
+          "max_relative_contact_work_defect": 3.286594182698584e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            35.67850294852527,
+            1.4426662448991436,
+            17.239073857271975,
+            2.3042397693407084
+          ],
+          "pedal_work_j": 0.002695136854001678,
+          "pedestal_work_j": 0.010671880842684412,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            33.696281774450895,
+            35.67850294852527
+          ],
+          "structural_heat_j": 0.003394833421034399
+        },
+        {
+          "absolute_drive_work_j": 0.014071552897473154,
+          "arm_heat_j": 0.0020288384528966354,
+          "behavior_passed": true,
+          "contact_entries": [
+            11,
+            5,
+            8,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00017186728600824836,
+            0.0063725024589116165,
+            0.00024089892539445594
+          ],
+          "final_mechanical_energy_j": 0.00012996076825512484,
+          "final_position": [
+            0.000017416549556785167,
+            0.0024097645380900487,
+            -9.508821695012787e-7,
+            6.719713714711338e-6,
+            7.370452896692499e-8,
+            -1.045543595654231e-9,
+            3.740087778820474e-10,
+            -1.0394105191243284e-10,
+            5.257153337541258e-6,
+            -0.008537693243146318,
+            -0.00045724961851775157
+          ],
+          "final_velocity": [
+            0.0005194200108277273,
+            0.06422068932253837,
+            0.005170674796706947,
+            -0.02117864101837063,
+            0.003019226336941723,
+            -2.5350766875108556e-6,
+            5.604726917911907e-7,
+            5.956062219292419e-7,
+            0.004550332779388752,
+            0.1288060295555889,
+            -0.10857924465578232
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010777778216831083,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            438,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.730978002163167e-18,
+          "max_relative_balance_defect": 2.083402206626168e-13,
+          "max_relative_contact_work_defect": 3.2270709377100366e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            35.676568596068336,
+            1.4395490754021725,
+            17.23908052361132,
+            2.3024412035911035
+          ],
+          "pedal_work_j": 0.00269154289794523,
+          "pedestal_work_j": 0.01067180338151784,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            33.694748619613854,
+            35.676568596068336
+          ],
+          "structural_heat_j": 0.0033948338996455337
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 9.247575858708451e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 1.129709189583677e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0006344023558735122,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 1.2740627679333913e-10,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 1.2763056315536752e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 8.739057870367803e-6,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 1.7549491679403592e-9,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 2.1032235741821384e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 7.054378108663242e-6,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 3.8551673064688806e-10,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 7.779877598208987e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 8.285436280200512e-6,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "partial_release",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 1.8437616507467682e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 2.253285689528609e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00012690460352816468,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 2.54793904998904e-11,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 2.5524290934468773e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 1.700549729800776e-6,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 3.909200394963231e-11,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 4.5690082209380075e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 1.3287872936785285e-6,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 7.697448767952901e-11,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 1.5529331388989994e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 1.6567683232161064e-6,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": false,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.018506225365823102,
+          "arm_heat_j": 0.007470541035995578,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            7,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007059456871276381,
+            0.008642095227652092,
+            0.0014932656569269015
+          ],
+          "final_mechanical_energy_j": 0.00008718438407584293,
+          "final_position": [
+            7.040110409251568e-6,
+            0.0012241841160550821,
+            0.00004083594722769184,
+            1.0286570193307128e-7,
+            -3.6030276928317995e-8,
+            -1.731563071602802e-8,
+            -4.11884198708989e-9,
+            -2.7774043706035507e-11,
+            2.2044185874266948e-6,
+            -0.011577868406986996,
+            0.00013327838063345726
+          ],
+          "final_velocity": [
+            0.0017740914714340552,
+            0.18064604756567468,
+            -0.006009157534121788,
+            0.0011323265631215207,
+            -0.00001568158922323646,
+            1.2089983280232083e-7,
+            -5.549319295936723e-7,
+            -1.0194694418007393e-8,
+            0.0009102900896730846,
+            -0.20039907766115794,
+            0.009160372630462982
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0007911034287168937,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            187,
+            458,
+            0
+          ],
+          "max_kinematic_defect": 1.7290854129216457e-18,
+          "max_relative_balance_defect": 2.847443390670949e-13,
+          "max_relative_contact_work_defect": 1.3817196334738843e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7949054009447201,
+            18.361028511632284,
+            3.836010404521907
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018506225365823102,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 4.774397076793099e-6
+        },
+        {
+          "absolute_drive_work_j": 0.018506241578364432,
+          "arm_heat_j": 0.007470544609794221,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            7,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007059462595907877,
+            0.00864210619520787,
+            0.0014932670894495573
+          ],
+          "final_mechanical_energy_j": 0.00008718433466078653,
+          "final_position": [
+            7.04010934088311e-6,
+            0.0012241838815118535,
+            0.00004083594739326848,
+            1.0290160210391174e-7,
+            -3.602997488216837e-8,
+            -1.7314431116247216e-8,
+            -4.118807486820615e-9,
+            -2.7773377397339984e-11,
+            2.2044178981782042e-6,
+            -0.011577867242693963,
+            0.000133278367859811
+          ],
+          "final_velocity": [
+            0.0017740895000715633,
+            0.1806460483182542,
+            -0.006009150077807623,
+            0.0011321171210500716,
+            -0.0000157760259776733,
+            1.0534559204598613e-7,
+            -5.320903244887003e-7,
+            -1.0427616658173772e-8,
+            0.000910293669177325,
+            -0.20039901395017584,
+            0.009160392678746675
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.00079110368716417,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            374,
+            915,
+            0
+          ],
+          "max_kinematic_defect": 1.721306606441197e-18,
+          "max_relative_balance_defect": 2.6106576306614434e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7974450888083856,
+            18.361075749680417,
+            3.8360117180908473
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018506241578364432,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 4.774369462525065e-6
+        },
+        {
+          "absolute_drive_work_j": 0.018506243936186183,
+          "arm_heat_j": 0.007470544796676264,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            7,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007059463916667252,
+            0.008642108178728063,
+            0.0014932672724205652
+          ],
+          "final_mechanical_energy_j": 0.00008718432231885955,
+          "final_position": [
+            7.0401090853567385e-6,
+            0.0012241838246108223,
+            0.000040835947371364765,
+            1.0291057826200875e-7,
+            -3.6029899429380665e-8,
+            -1.7314132466311196e-8,
+            -4.11879457378099e-9,
+            -2.7773318883615036e-11,
+            2.204417732384733e-6,
+            -0.011577866952107295,
+            0.00013327836471319846
+          ],
+          "final_velocity": [
+            0.00177408901019978,
+            0.18064604871175444,
+            -0.006009148249016225,
+            0.0011320647224089915,
+            -0.000015799695252487023,
+            1.0133441536528401e-7,
+            -5.264168914921983e-7,
+            -1.0490071612530132e-8,
+            0.0009102945670680176,
+            -0.20039899802108624,
+            0.009160397685796259
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0007911036973993725,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            747,
+            1827,
+            0
+          ],
+          "max_kinematic_defect": 1.725316778050854e-18,
+          "max_relative_balance_defect": 2.68841558919739e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7987206561110909,
+            18.36108225863609,
+            3.836012750839792
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018506243936186183,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 4.774362808302452e-6
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": false,
+        "windows": [
+          {
+            "arm_position_rmse_m": 1.078206051802116e-7,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 7.68738343228313e-7,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.010096350453315464,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 7.496208216123632e-8,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 6.417009865766092e-6,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.07118167529736318,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 3.97644634090886e-7,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 7.742246662228774e-6,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.022503766677290555,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 4.1720708902512595e-7,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 0.00011211849468708303,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.03989426457934679,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "slack_bridle",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": false,
+        "windows": [
+          {
+            "arm_position_rmse_m": 2.1558009121788776e-8,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 1.4419044532088326e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.002010347095312684,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 1.4482644848251553e-8,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 9.603015733426852e-7,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.013950216650732783,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 8.520629373584601e-8,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 1.6711159128448784e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.003949033835304942,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 9.278676418073116e-8,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 0.000024482103064585177,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.009036149548243243,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": false,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.010505055287206575,
+          "arm_heat_j": 0.00021377827304579002,
+          "behavior_passed": true,
+          "contact_entries": [
+            9,
+            19,
+            7,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0004946104764672252,
+            0.005405809436429614,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.00023539203175900107,
+          "final_position": [
+            0.000019571651659550807,
+            0.0029597231933967605,
+            7.227612045642077e-6,
+            3.7822229458727485e-6,
+            1.0576091006622849e-8,
+            -9.756629695580239e-10,
+            2.478185128105437e-10,
+            -7.096183316299815e-11,
+            6.262162508360657e-6,
+            -0.011409790970140912,
+            0.00019795143906543722
+          ],
+          "final_velocity": [
+            0.0015719643922227058,
+            0.17572467469728975,
+            0.005464683686677034,
+            -0.04189262774857898,
+            -0.000035684214262699196,
+            8.828036981811321e-6,
+            -2.1885675255189385e-6,
+            6.327150335201994e-7,
+            0.0031797665637045515,
+            -0.32564857856963403,
+            0.01069412941074
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010247891376655358,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            2067,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7119991701887503e-18,
+          "max_relative_balance_defect": 2.847443390670949e-13,
+          "max_relative_contact_work_defect": 1.3817196334738843e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.70258085404513,
+            2.245476005148883,
+            17.239043691984154,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.010505055287206575,
+          "simultaneous_hammer_felt_steps": 2347,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            33.43900493222749,
+            33.70258085404513
+          ],
+          "structural_heat_j": 0.0031840092651726094
+        },
+        {
+          "absolute_drive_work_j": 0.01050557697515773,
+          "arm_heat_j": 0.00021376698811568354,
+          "behavior_passed": true,
+          "contact_entries": [
+            10,
+            19,
+            7,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0004947642102927411,
+            0.005405371648471013,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.00023520394578541918,
+          "final_position": [
+            0.000019580043901505182,
+            0.0029640098795209887,
+            7.260318482754097e-6,
+            3.573718418830298e-6,
+            1.0599924046342706e-8,
+            -9.39345851123874e-10,
+            2.3879364842009566e-10,
+            -6.822884773646426e-11,
+            6.269016834924316e-6,
+            -0.011523820128081072,
+            0.00019812338597377331
+          ],
+          "final_velocity": [
+            0.0015598095345385192,
+            0.17454176389303291,
+            0.005491747248536922,
+            -0.04230054337782075,
+            -0.00004593542788855109,
+            8.875652677682954e-6,
+            -2.180381089548758e-6,
+            6.366230745369264e-7,
+            0.0031748104453165147,
+            -0.32568368748892645,
+            0.01062258494598506
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010258412749007593,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            4136,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7130182567034156e-18,
+          "max_relative_balance_defect": 2.6106576306614434e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.70474351249497,
+            2.247002617683639,
+            17.239073857271975,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.01050557697515773,
+          "simultaneous_hammer_felt_steps": 4744,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            33.44784590658039,
+            33.70474351249497
+          ],
+          "structural_heat_j": 0.0031839622409255146
+        },
+        {
+          "absolute_drive_work_j": 0.010505669568730069,
+          "arm_heat_j": 0.00021376389127498503,
+          "behavior_passed": true,
+          "contact_entries": [
+            10,
+            19,
+            7,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0004947682178857674,
+            0.0054052145577947325,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.00023515849121714177,
+          "final_position": [
+            0.000019582234399969557,
+            0.002965163734342253,
+            7.27000229472245e-6,
+            3.5127341362576293e-6,
+            1.0571254587711813e-8,
+            -9.28363463552201e-10,
+            2.3614049113532135e-10,
+            -6.741867620103372e-11,
+            6.271244085416438e-6,
+            -0.011555649426960805,
+            0.00019817077975369624
+          ],
+          "final_velocity": [
+            0.0015561095744723503,
+            0.17417888579769747,
+            0.005500531603563653,
+            -0.04244402485281334,
+            -0.00004850313094378768,
+            8.893922521911082e-6,
+            -2.1834055038271987e-6,
+            6.376154645806146e-7,
+            0.0031749084277690447,
+            -0.32569217343175383,
+            0.01060230708872659
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010261486837099523,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            8274,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7274509040312409e-18,
+          "max_relative_balance_defect": 2.68841558919739e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.70577124588994,
+            2.2473746161575203,
+            17.23908052361132,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.010505669568730069,
+          "simultaneous_hammer_felt_steps": 9503,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            33.44839003453677,
+            33.70577124588994
+          ],
+          "structural_heat_j": 0.00318394906018079
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 2.3068177321576573e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 2.8188886410985027e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00015862055551432854,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 7.9880124949182e-11,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 1.6309955906841396e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 3.6749619625521493e-6,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 2.8747205491733265e-10,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 3.53272941715615e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 4.915831253407704e-6,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 8.664500551466401e-11,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 1.7763382665613513e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 3.757624462296391e-6,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "repeat",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 4.630724066816367e-11,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 5.656030857258432e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00003171376940460476,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 1.598513698445077e-11,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 3.262820731041198e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 7.351294090245067e-7,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 5.752319581429185e-11,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 7.068983606781079e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 9.830711464312055e-7,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 1.7324552189235377e-11,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 3.55174523922826e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 7.516824305085783e-7,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": false,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.02353728129638847,
+          "arm_heat_j": 0.010191998914693176,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            11,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0001079002127425804,
+            0.010433474204274675,
+            0.0015417873572699532
+          ],
+          "final_mechanical_energy_j": 0.00008572876725629074,
+          "final_position": [
+            4.061314152260601e-6,
+            0.0007543411148509118,
+            0.000053075593583718523,
+            8.21992350128146e-8,
+            -5.941295154258869e-8,
+            -2.6432228052846996e-8,
+            -6.27070659911429e-9,
+            -4.1979372828346614e-11,
+            7.678278541792771e-7,
+            -0.011600805435868198,
+            0.0001164084740895238
+          ],
+          "final_velocity": [
+            0.0009452061553789124,
+            0.09105911894882521,
+            -0.0015475316892162396,
+            0.0001889433749530875,
+            -3.5669176693964632e-6,
+            -2.2335771908117004e-6,
+            -7.71950265980438e-7,
+            3.1601587932704167e-9,
+            0.0006819001349257856,
+            -0.20269616245417074,
+            0.006308583762543503
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0012243551609288528,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            857,
+            1234,
+            0
+          ],
+          "max_kinematic_defect": 1.7297736271912898e-18,
+          "max_relative_balance_defect": 2.6106576306614434e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7974450888083856,
+            22.415277888178508,
+            3.5347402470034455
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.02353728129638847,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 5.37001255656644e-6
+        },
+        {
+          "absolute_drive_work_j": 0.02353728298535679,
+          "arm_heat_j": 0.01019199956502648,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            11,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00010790021569467667,
+            0.010433475089667204,
+            0.0015417874907347007
+          ],
+          "final_mechanical_energy_j": 0.0000857287577662894,
+          "final_position": [
+            4.061313429361281e-6,
+            0.000754341012212548,
+            0.000053075598113799864,
+            8.220211646243038e-8,
+            -5.9411595576515535e-8,
+            -2.6432083845183168e-8,
+            -6.270664186819962e-9,
+            -4.19796710087488e-11,
+            7.678279451192315e-7,
+            -0.011600805182064067,
+            0.00011640847342292059
+          ],
+          "final_velocity": [
+            0.0009452052101209372,
+            0.09105908648800277,
+            -0.0015475283526425832,
+            0.00018886968801679662,
+            -3.5497406208487224e-6,
+            -2.2275602138162713e-6,
+            -7.699580076612685e-7,
+            3.135742840188312e-9,
+            0.0006819047895837056,
+            -0.20269615025129104,
+            0.006308590618528109
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.00122435519384888,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            1710,
+            2466,
+            0
+          ],
+          "max_kinematic_defect": 1.7327647122862815e-18,
+          "max_relative_balance_defect": 2.68841558919739e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7987206561110909,
+            22.415301385330825,
+            3.534741972275355
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.02353728298535679,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 5.3700059516347795e-6
+        },
+        {
+          "absolute_drive_work_j": 0.023537283408706464,
+          "arm_heat_j": 0.010191999727948972,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            11,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00010790021651103007,
+            0.010433475311349163,
+            0.0015417875244945365
+          ],
+          "final_mechanical_energy_j": 0.00008572875539543795,
+          "final_position": [
+            4.061313244964268e-6,
+            0.0007543409860103468,
+            0.00005307559925838584,
+            8.220283667193252e-8,
+            -5.941125652582821e-8,
+            -2.6432047669730627e-8,
+            -6.270653496502779e-9,
+            -4.1979748443991174e-11,
+            7.678279665742138e-7,
+            -0.011600805118647445,
+            0.00011640847323522203
+          ],
+          "final_velocity": [
+            0.0009452049736707396,
+            0.0910590783755474,
+            -0.0015475275241707612,
+            0.00018885126595035625,
+            -3.5454580912800794e-6,
+            -2.226059855454024e-6,
+            -7.694681807779263e-7,
+            3.129981190187126e-9,
+            0.0006819059525890328,
+            -0.2026961472040725,
+            0.00630859233567075
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0012243552020995117,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            3418,
+            4932,
+            0
+          ],
+          "max_kinematic_defect": 1.7328602516470314e-18,
+          "max_relative_balance_defect": 5.223801149498964e-13,
+          "max_relative_contact_work_defect": 1.36909694657559e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7993598578380992,
+            22.415305963735516,
+            3.5347423183297493
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.023537283408706464,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 5.3700042434353585e-6
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 1.2606189013892409e-11,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 1.677060753721214e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0026543205403905187,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 5.1923138088177565e-15,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 9.068366152384585e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.002189474488574551,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 2.817344434391046e-15,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 1.0906159922466551e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.002646226272997401,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 1.4258656939216533e-6,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 5.13638717301218e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0011060476879453335,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "pedal_repeat",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 2.8752706719156468e-12,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 3.3556543486442085e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0005323361734574488,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 1.0473016341520088e-15,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 1.9039746973645585e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00043909624797426817,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 3.6696605574676394e-15,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 2.15763764037043e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0005456647532669654,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 2.802436850188947e-7,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 1.0096239609874222e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000222415761861976,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.014074501625221668,
+          "arm_heat_j": 0.0020313709686683684,
+          "behavior_passed": true,
+          "contact_entries": [
+            11,
+            5,
+            8,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00017226524676849396,
+            0.006372885532589697,
+            0.00024116902115313798
+          ],
+          "final_mechanical_energy_j": 0.00013001632348029897,
+          "final_position": [
+            0.00001742040181538726,
+            0.0024093599095836886,
+            -1.031453900993804e-6,
+            6.734028129364553e-6,
+            7.20128924630963e-8,
+            -1.0557017231060175e-9,
+            3.7028937844632894e-10,
+            -1.0422219794955159e-10,
+            5.258223236687444e-6,
+            -0.008538413631772235,
+            -0.0004566469293636053
+          ],
+          "final_velocity": [
+            0.0005161722383583084,
+            0.06401218556868057,
+            0.005159671096363994,
+            -0.02111167467275239,
+            0.00305057866864583,
+            -2.0976371524814727e-6,
+            5.864048366628669e-7,
+            5.966476594430366e-7,
+            0.004560935190209039,
+            0.1291468433088423,
+            -0.10826568150361193
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010778105163244801,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            219,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7282516148641922e-18,
+          "max_relative_balance_defect": 9.151457890009421e-14,
+          "max_relative_contact_work_defect": 3.286594182698584e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            35.67850294852527,
+            1.4426662448991436,
+            17.239073857271975,
+            2.3042397693407084
+          ],
+          "pedal_work_j": 0.002695136854001678,
+          "pedestal_work_j": 0.010671880842684412,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            33.696281774450895,
+            35.67850294852527
+          ],
+          "structural_heat_j": 0.003394833421034399
+        },
+        {
+          "absolute_drive_work_j": 0.014071552897473154,
+          "arm_heat_j": 0.0020288384528966354,
+          "behavior_passed": true,
+          "contact_entries": [
+            11,
+            5,
+            8,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00017186728600824836,
+            0.0063725024589116165,
+            0.00024089892539445594
+          ],
+          "final_mechanical_energy_j": 0.00012996076825512484,
+          "final_position": [
+            0.000017416549556785167,
+            0.0024097645380900487,
+            -9.508821695012787e-7,
+            6.719713714711338e-6,
+            7.370452896692499e-8,
+            -1.045543595654231e-9,
+            3.740087778820474e-10,
+            -1.0394105191243284e-10,
+            5.257153337541258e-6,
+            -0.008537693243146318,
+            -0.00045724961851775157
+          ],
+          "final_velocity": [
+            0.0005194200108277273,
+            0.06422068932253837,
+            0.005170674796706947,
+            -0.02117864101837063,
+            0.003019226336941723,
+            -2.5350766875108556e-6,
+            5.604726917911907e-7,
+            5.956062219292419e-7,
+            0.004550332779388752,
+            0.1288060295555889,
+            -0.10857924465578232
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010777778216831083,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            438,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.730978002163167e-18,
+          "max_relative_balance_defect": 2.083402206626168e-13,
+          "max_relative_contact_work_defect": 3.2270709377100366e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            35.676568596068336,
+            1.4395490754021725,
+            17.23908052361132,
+            2.3024412035911035
+          ],
+          "pedal_work_j": 0.00269154289794523,
+          "pedestal_work_j": 0.01067180338151784,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            33.694748619613854,
+            35.676568596068336
+          ],
+          "structural_heat_j": 0.0033948338996455337
+        },
+        {
+          "absolute_drive_work_j": 0.014070829671805875,
+          "arm_heat_j": 0.0020282181475379433,
+          "behavior_passed": true,
+          "contact_entries": [
+            11,
+            5,
+            8,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00017176904029397072,
+            0.00637240709335215,
+            0.00024083300844367746
+          ],
+          "final_mechanical_energy_j": 0.00012994718167038386,
+          "final_position": [
+            0.000017415621174997726,
+            0.002409865357362206,
+            -9.309769257045731e-7,
+            6.716120525711367e-6,
+            7.412237444196205e-8,
+            -1.0432784175725652e-9,
+            3.7495831333726714e-10,
+            -1.0387022911104173e-10,
+            5.256913533666643e-6,
+            -0.008537516781884791,
+            -0.00045739772437040807
+          ],
+          "final_velocity": [
+            0.0005202043365832698,
+            0.06427116038219133,
+            0.0051735848358496666,
+            -0.021196267620990205,
+            0.003011351060763279,
+            -2.666409318943123e-6,
+            5.455784877198319e-7,
+            5.953769001921813e-7,
+            0.004547754695581391,
+            0.12872257776289128,
+            -0.1086556039342552
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010777700796366552,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            877,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7271746257066482e-18,
+          "max_relative_balance_defect": 2.4372361816085723e-13,
+          "max_relative_contact_work_defect": 3.2634461562277122e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            35.6764248916583,
+            1.4387790265711056,
+            17.239082617101808,
+            2.30200157620827
+          ],
+          "pedal_work_j": 0.0026906635433878666,
+          "pedestal_work_j": 0.010671782755157707,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            33.6950876794602,
+            35.6764248916583
+          ],
+          "structural_heat_j": 0.0033948350809434725
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 2.3068177321576573e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 2.8188886410985027e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00015862055551432854,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 3.1849934691215817e-11,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 3.1906047084402966e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.1428810712800192e-6,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 4.86400612557732e-11,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 5.855455907803874e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 1.690119568861254e-6,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 9.625049323635984e-11,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 1.941450639787598e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.0710203220084966e-6,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "partial_release",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 4.630724066816367e-11,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 5.656030857258432e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00003171376940460476,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 6.370544501788329e-12,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 6.381755941544542e-12,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 4.420385582475001e-7,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 8.087271730369074e-11,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 9.693509560107613e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 3.6112657685066886e-7,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 1.927622965626564e-11,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 3.8887353233080954e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 4.143070545613716e-7,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": false,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.018506241578364432,
+          "arm_heat_j": 0.007470544609794221,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            7,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007059462595907877,
+            0.00864210619520787,
+            0.0014932670894495573
+          ],
+          "final_mechanical_energy_j": 0.00008718433466078653,
+          "final_position": [
+            7.04010934088311e-6,
+            0.0012241838815118535,
+            0.00004083594739326848,
+            1.0290160210391174e-7,
+            -3.602997488216837e-8,
+            -1.7314431116247216e-8,
+            -4.118807486820615e-9,
+            -2.7773377397339984e-11,
+            2.2044178981782042e-6,
+            -0.011577867242693963,
+            0.000133278367859811
+          ],
+          "final_velocity": [
+            0.0017740895000715633,
+            0.1806460483182542,
+            -0.006009150077807623,
+            0.0011321171210500716,
+            -0.0000157760259776733,
+            1.0534559204598613e-7,
+            -5.320903244887003e-7,
+            -1.0427616658173772e-8,
+            0.000910293669177325,
+            -0.20039901395017584,
+            0.009160392678746675
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.00079110368716417,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            374,
+            915,
+            0
+          ],
+          "max_kinematic_defect": 1.721306606441197e-18,
+          "max_relative_balance_defect": 2.6106576306614434e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7974450888083856,
+            18.361075749680417,
+            3.8360117180908473
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018506241578364432,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 4.774369462525065e-6
+        },
+        {
+          "absolute_drive_work_j": 0.018506243936186183,
+          "arm_heat_j": 0.007470544796676264,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            7,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007059463916667252,
+            0.008642108178728063,
+            0.0014932672724205652
+          ],
+          "final_mechanical_energy_j": 0.00008718432231885955,
+          "final_position": [
+            7.0401090853567385e-6,
+            0.0012241838246108223,
+            0.000040835947371364765,
+            1.0291057826200875e-7,
+            -3.6029899429380665e-8,
+            -1.7314132466311196e-8,
+            -4.11879457378099e-9,
+            -2.7773318883615036e-11,
+            2.204417732384733e-6,
+            -0.011577866952107295,
+            0.00013327836471319846
+          ],
+          "final_velocity": [
+            0.00177408901019978,
+            0.18064604871175444,
+            -0.006009148249016225,
+            0.0011320647224089915,
+            -0.000015799695252487023,
+            1.0133441536528401e-7,
+            -5.264168914921983e-7,
+            -1.0490071612530132e-8,
+            0.0009102945670680176,
+            -0.20039899802108624,
+            0.009160397685796259
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0007911036973993725,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            747,
+            1827,
+            0
+          ],
+          "max_kinematic_defect": 1.725316778050854e-18,
+          "max_relative_balance_defect": 2.68841558919739e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7987206561110909,
+            18.36108225863609,
+            3.836012750839792
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018506243936186183,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 4.774362808302452e-6
+        },
+        {
+          "absolute_drive_work_j": 0.018506247626423257,
+          "arm_heat_j": 0.0074705449746914395,
+          "behavior_passed": false,
+          "contact_entries": [
+            0,
+            7,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007059464277752682,
+            0.008642111601093534,
+            0.001493267350823222
+          ],
+          "final_mechanical_energy_j": 0.00008718431922995312,
+          "final_position": [
+            7.040109018573774e-6,
+            0.0012241838099348095,
+            0.000040835947382438827,
+            1.0291282164152961e-7,
+            -3.6029880615631196e-8,
+            -1.731405789562461e-8,
+            -4.118791081859302e-9,
+            -2.777331133828623e-11,
+            2.2044176893358114e-6,
+            -0.011577866879366733,
+            0.00013327836391522745
+          ],
+          "final_velocity": [
+            0.0017740888869009245,
+            0.1806460487469976,
+            -0.00600914778574841,
+            0.0011320516277129827,
+            -0.00001580561632442005,
+            1.0032398927446007e-7,
+            -5.250013734449698e-7,
+            -1.0505871512270273e-8,
+            0.0009102947905662146,
+            -0.2003989940391612,
+            0.009160398938493214
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.000791103710066498,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            1495,
+            3653,
+            0
+          ],
+          "max_kinematic_defect": 1.7302633181139212e-18,
+          "max_relative_balance_defect": 5.223801149498964e-13,
+          "max_relative_contact_work_defect": 1.36909694657559e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            0.0,
+            0.7993598578380992,
+            18.36108390482606,
+            3.8360129088352957
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018506247626423257,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            0.0,
+            0.0
+          ],
+          "structural_heat_j": 4.774361074862851e-6
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": false,
+        "windows": [
+          {
+            "arm_position_rmse_m": 2.6943554816990753e-8,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 1.7954809679842553e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0025119117643669147,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 1.80772030825377e-8,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 1.1779782032686054e-6,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.017436341672255943,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 1.0690692778431636e-7,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 2.095626314592169e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.004901503527983153,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 1.1663951933040985e-7,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 0.00003074405034888311,
+            "passed": false,
+            "pickup_velocity_relative_rmse": 0.011367876062075365,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "slack_bridle",
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 5.3869023292512455e-9,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 3.5421802133790595e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000501871729903231,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 3.593799964422479e-9,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 2.1771088183509672e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0034751606803088133,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 2.1707664334342946e-8,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 4.264456513928864e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0009543531446776396,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 2.3851193447189875e-8,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 6.264496770173436e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0023296814965956185,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": false,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.01050557697515773,
+          "arm_heat_j": 0.00021376698811568354,
+          "behavior_passed": true,
+          "contact_entries": [
+            10,
+            19,
+            7,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0004947642102927411,
+            0.005405371648471013,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.00023520394578541918,
+          "final_position": [
+            0.000019580043901505182,
+            0.0029640098795209887,
+            7.260318482754097e-6,
+            3.573718418830298e-6,
+            1.0599924046342706e-8,
+            -9.39345851123874e-10,
+            2.3879364842009566e-10,
+            -6.822884773646426e-11,
+            6.269016834924316e-6,
+            -0.011523820128081072,
+            0.00019812338597377331
+          ],
+          "final_velocity": [
+            0.0015598095345385192,
+            0.17454176389303291,
+            0.005491747248536922,
+            -0.04230054337782075,
+            -0.00004593542788855109,
+            8.875652677682954e-6,
+            -2.180381089548758e-6,
+            6.366230745369264e-7,
+            0.0031748104453165147,
+            -0.32568368748892645,
+            0.01062258494598506
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010258412749007593,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            4136,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7130182567034156e-18,
+          "max_relative_balance_defect": 2.6106576306614434e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.70474351249497,
+            2.247002617683639,
+            17.239073857271975,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.01050557697515773,
+          "simultaneous_hammer_felt_steps": 4744,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            33.44784590658039,
+            33.70474351249497
+          ],
+          "structural_heat_j": 0.0031839622409255146
+        },
+        {
+          "absolute_drive_work_j": 0.010505669568730069,
+          "arm_heat_j": 0.00021376389127498503,
+          "behavior_passed": true,
+          "contact_entries": [
+            10,
+            19,
+            7,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0004947682178857674,
+            0.0054052145577947325,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.00023515849121714177,
+          "final_position": [
+            0.000019582234399969557,
+            0.002965163734342253,
+            7.27000229472245e-6,
+            3.5127341362576293e-6,
+            1.0571254587711813e-8,
+            -9.28363463552201e-10,
+            2.3614049113532135e-10,
+            -6.741867620103372e-11,
+            6.271244085416438e-6,
+            -0.011555649426960805,
+            0.00019817077975369624
+          ],
+          "final_velocity": [
+            0.0015561095744723503,
+            0.17417888579769747,
+            0.005500531603563653,
+            -0.04244402485281334,
+            -0.00004850313094378768,
+            8.893922521911082e-6,
+            -2.1834055038271987e-6,
+            6.376154645806146e-7,
+            0.0031749084277690447,
+            -0.32569217343175383,
+            0.01060230708872659
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010261486837099523,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            8274,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7274509040312409e-18,
+          "max_relative_balance_defect": 2.68841558919739e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.70577124588994,
+            2.2473746161575203,
+            17.23908052361132,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.010505669568730069,
+          "simultaneous_hammer_felt_steps": 9503,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            33.44839003453677,
+            33.70577124588994
+          ],
+          "structural_heat_j": 0.00318394906018079
+        },
+        {
+          "absolute_drive_work_j": 0.01050569061943842,
+          "arm_heat_j": 0.00021376311354761443,
+          "behavior_passed": true,
+          "contact_entries": [
+            10,
+            19,
+            7,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0004947674512084681,
+            0.005405172605624877,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.00023514739739326912,
+          "final_position": [
+            0.000019582787326480423,
+            0.002965456752988097,
+            7.272507755900213e-6,
+            3.4970343644010056e-6,
+            1.0561982759546138e-8,
+            -9.255159651757805e-10,
+            2.354558681894635e-10,
+            -6.72098788574995e-11,
+            6.271828263251063e-6,
+            -0.011563793325654293,
+            0.00019818287130785354
+          ],
+          "final_velocity": [
+            0.001555147212783499,
+            0.1740843396034042,
+            0.005502845106515161,
+            -0.0424822748034394,
+            -0.00004914135172561978,
+            8.898821089145863e-6,
+            -2.1845495751840628e-6,
+            6.378737990385738e-7,
+            0.0031750130129856533,
+            -0.3256942709648148,
+            0.010597103744661544
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0010262280833358722,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            16549,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7243771008749938e-18,
+          "max_relative_balance_defect": 5.223801149498964e-13,
+          "max_relative_contact_work_defect": 1.36909694657559e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.70585228341022,
+            2.2474682524669394,
+            17.239082617101808,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.01050569061943842,
+          "simultaneous_hammer_felt_steps": 19011,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            33.448012986839764,
+            33.70585228341022
+          ],
+          "structural_heat_j": 0.0031839453016618844
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 1.0672587642042248e-9,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 1.2267208810681202e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0004087456351779742,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 4.913762064682428e-10,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 8.858880273265879e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00002439466562743533,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 1.3304498356054975e-9,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 1.6393195636352627e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00001301991987822127,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 4.2798566452588025e-10,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 8.157317869689082e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 9.776155119263621e-6,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "repeat",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 2.129265986718775e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 2.4470220801808623e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000817333071145516,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 9.820191281900637e-11,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 1.770510294713634e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 4.875409876382437e-6,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 2.6609647397399397e-10,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 3.2786469312876626e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.6050060482634234e-6,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 8.56140027671217e-11,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 1.6315462320310635e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 1.955519839496109e-6,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": false,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.023767516055148458,
+          "arm_heat_j": 0.01024404768163462,
+          "behavior_passed": false,
+          "contact_entries": [
+            2,
+            12,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00010626324509608356,
+            0.010515939895591193,
+            0.001596313595397314
+          ],
+          "final_mechanical_energy_j": 0.00009309449608487086,
+          "final_position": [
+            6.120773424831535e-6,
+            0.0008510888706453795,
+            -0.00002289199119637211,
+            3.746833940086115e-6,
+            -2.1798256980735086e-7,
+            -8.269086667601342e-8,
+            -2.202148053698648e-8,
+            -1.7616730687576686e-9,
+            2.5171209715056727e-6,
+            -0.011694890777781224,
+            0.00009798955681296191
+          ],
+          "final_velocity": [
+            0.0014448471190350537,
+            0.11026954163104613,
+            0.010185020085661212,
+            0.0007913623291089777,
+            0.00006834249190813404,
+            0.00010595120142302243,
+            0.00004028846986067205,
+            2.8503260194637066e-6,
+            -0.00020649362930549024,
+            -0.21097196457907927,
+            -0.00194427794233078
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0012350163541020515,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            307,
+            614,
+            0
+          ],
+          "max_kinematic_defect": 1.7344389258460889e-18,
+          "max_relative_balance_defect": 2.8441798452375156e-13,
+          "max_relative_contact_work_defect": 1.3817196334738843e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            1.6209212860446052,
+            0.7960756465029182,
+            22.63661692585758,
+            3.6642980753734284
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.023767516055148458,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            1.6209212860446052,
+            0.0
+          ],
+          "structural_heat_j": 0.000030174120576182054
+        },
+        {
+          "absolute_drive_work_j": 0.023767522793209983,
+          "arm_heat_j": 0.010244050269472253,
+          "behavior_passed": false,
+          "contact_entries": [
+            2,
+            12,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00010626322229838719,
+            0.010515942297363136,
+            0.0015963140687162455
+          ],
+          "final_mechanical_energy_j": 0.00009309442276945365,
+          "final_position": [
+            6.120770421681185e-6,
+            0.000851088718802389,
+            -0.000022892016758819586,
+            3.74684345543823e-6,
+            -2.1796895736987895e-7,
+            -8.269387980895307e-8,
+            -2.2021647024445315e-8,
+            -1.7616391054264014e-9,
+            2.5171217355136986e-6,
+            -0.011694889534633735,
+            0.00009798973427118145
+          ],
+          "final_velocity": [
+            0.0014448416126971288,
+            0.1102688437209042,
+            0.010184900907257518,
+            0.0007913058492862576,
+            0.00006840101361509324,
+            0.00010595001084387853,
+            0.00004028105622179911,
+            2.8508553067807183e-6,
+            -0.00020649127456629155,
+            -0.21097189214044057,
+            -0.0019443252446196893
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0012350164335372732,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            613,
+            1226,
+            0
+          ],
+          "max_kinematic_defect": 1.7313585052449414e-18,
+          "max_relative_balance_defect": 2.606179658739211e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            1.6210799538469653,
+            0.7980335083200008,
+            22.636699710499023,
+            3.6643055409282437
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.023767522793209983,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            1.6210799538469653,
+            0.0
+          ],
+          "structural_heat_j": 0.000030175412388161923
+        },
+        {
+          "absolute_drive_work_j": 0.02376752447600027,
+          "arm_heat_j": 0.010244050917163612,
+          "behavior_passed": false,
+          "contact_entries": [
+            2,
+            12,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00010626321705183366,
+            0.010515942897761076,
+            0.0015963141847573539
+          ],
+          "final_mechanical_energy_j": 0.0000930944044299968,
+          "final_position": [
+            6.1207696609680235e-6,
+            0.0008510886795942107,
+            -0.000022892023120279407,
+            3.746845840700447e-6,
+            -2.179655541611506e-7,
+            -8.269463371678439e-8,
+            -2.2021689112848228e-8,
+            -1.7616305917491214e-9,
+            2.5171219247642388e-6,
+            -0.011694889223818096,
+            0.00009798977862409565
+          ],
+          "final_velocity": [
+            0.0014448402349575714,
+            0.11026866895230081,
+            0.010184871075218547,
+            0.0007912917564602109,
+            0.00006841563111668613,
+            0.00010594971845979082,
+            0.00004027920197425661,
+            2.8509832520693535e-6,
+            -0.00020649068145391078,
+            -0.21097187402708292,
+            -0.0019443370960391172
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0012350164533859894,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            1227,
+            2449,
+            0
+          ],
+          "max_kinematic_defect": 1.7331882287599087e-18,
+          "max_relative_balance_defect": 2.665722905475267e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            1.62110584387786,
+            0.799015675390894,
+            22.636712349337408,
+            3.6643070663427166
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.02376752447600027,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            1.62110584387786,
+            0.0
+          ],
+          "structural_heat_j": 0.000030175734783263888
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 1.704016302142358e-11,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 5.095825399524078e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0008959979871777681,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 2.0672385779769944e-14,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 1.5296461055887485e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0007676356018412712,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 6.531518577908027e-15,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 5.511697739967779e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0019873524288733235,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 2.3727913873659212e-7,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 1.4839745269389706e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000340914518285781,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "pedal_repeat",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 4.335457973671811e-12,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 9.904669248070677e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00017801106333183695,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 4.154063289943532e-15,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 3.027038423979349e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00014838710996036464,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 4.406290610746612e-15,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 1.0884411107805e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0003937247260105254,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 4.661121573519391e-8,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 2.915287630023557e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00006739513663981033,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.01335428791474834,
+          "arm_heat_j": 0.0021363934915891807,
+          "behavior_passed": true,
+          "contact_entries": [
+            38,
+            4,
+            8,
+            1
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0001635989322719631,
+            0.005081970353174826,
+            4.896604684737172e-6
+          ],
+          "final_mechanical_energy_j": 0.00012914878536143587,
+          "final_position": [
+            0.000013966923647324684,
+            0.003402006842287681,
+            0.0003711325763784908,
+            1.7862931275791945e-6,
+            -9.635550014326883e-7,
+            4.1731025445844517e-8,
+            1.3289951292750263e-9,
+            6.905898489859989e-13,
+            4.977658766879546e-6,
+            -0.009130051773270673,
+            -0.00008018608777911179
+          ],
+          "final_velocity": [
+            0.0025081522507321083,
+            0.008809188687701123,
+            -0.3802187853923784,
+            -0.02244163517903547,
+            -0.01058422497854814,
+            -0.000898224117836592,
+            -0.00005234756301037276,
+            -2.9210746046193586e-7,
+            0.0022477864496555076,
+            0.13324042294394634,
+            -0.1017562285082908
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011198497532673465,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            785,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7330161751924976e-18,
+          "max_relative_balance_defect": 8.052908560183445e-14,
+          "max_relative_contact_work_defect": 3.1143779294642348e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 1,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.61284610730303,
+            0.9596640965459113,
+            17.239043691984154,
+            0.31456848937119875
+          ],
+          "pedal_work_j": 0.0021132160041002737,
+          "pedestal_work_j": 0.010348908105470872,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            33.61284610730303,
+            32.985307211697275
+          ],
+          "structural_heat_j": 0.0038795995225550267
+        },
+        {
+          "absolute_drive_work_j": 0.013354215754318242,
+          "arm_heat_j": 0.002136419844569334,
+          "behavior_passed": true,
+          "contact_entries": [
+            38,
+            4,
+            8,
+            1
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00016359168125674228,
+            0.005082020723379086,
+            4.904804653804196e-6
+          ],
+          "final_mechanical_energy_j": 0.00012912247587137682,
+          "final_position": [
+            0.000013969301854006293,
+            0.0034022731184305075,
+            0.0003711399579126145,
+            1.7674042694726166e-6,
+            -9.653229234860245e-7,
+            4.143543318248966e-8,
+            1.3034463119020954e-9,
+            6.537085996534948e-13,
+            4.976602542681267e-6,
+            -0.009129389684622432,
+            -0.00008072473750203382
+          ],
+          "final_velocity": [
+            0.0025078877702104526,
+            0.008721075552150195,
+            -0.3802119828045946,
+            -0.02239788020596776,
+            -0.01055866593263312,
+            -0.0009002120330752533,
+            -0.00005255361913454456,
+            -3.0248134064645754e-7,
+            0.002251652181044445,
+            0.13320036518887218,
+            -0.10129655384840687
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011198947088001817,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            1570,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.723288531188874e-18,
+          "max_relative_balance_defect": 9.162078454888833e-14,
+          "max_relative_contact_work_defect": 3.206705801345225e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 1,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.62267428297122,
+            0.9596588075991469,
+            17.239073857271975,
+            0.31479919105107457
+          ],
+          "pedal_work_j": 0.002113213461688315,
+          "pedestal_work_j": 0.010348833481406965,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            33.62267428297122,
+            32.993487747205
+          ],
+          "structural_heat_j": 0.003879426037897687
+        },
+        {
+          "absolute_drive_work_j": 0.013354197950885858,
+          "arm_heat_j": 0.002136426293120504,
+          "behavior_passed": true,
+          "contact_entries": [
+            38,
+            4,
+            8,
+            1
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0001635898790178072,
+            0.005082033023393192,
+            4.906810353654327e-6
+          ],
+          "final_mechanical_energy_j": 0.00012911607673690055,
+          "final_position": [
+            0.000013969885759451374,
+            0.0034023384509556946,
+            0.00037114175982500035,
+            1.7627412970271979e-6,
+            -9.657585664623309e-7,
+            4.136224406247734e-8,
+            1.2970985023017613e-9,
+            6.432017135161584e-13,
+            4.9763409329087486e-6,
+            -0.00912922790956856,
+            -0.00008085606708530327
+          ],
+          "final_velocity": [
+            0.0025078227613949907,
+            0.008699468234350114,
+            -0.38021028510302823,
+            -0.022387119312540865,
+            -0.010552356568255986,
+            -0.0009007014092696154,
+            -0.000052603820866624624,
+            -3.0506868285243755e-7,
+            0.0022526026104636877,
+            0.13319057087589495,
+            -0.10118430572550147
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011199057648324008,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            3142,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7331683764252074e-18,
+          "max_relative_balance_defect": 1.5313869500555248e-13,
+          "max_relative_contact_work_defect": 3.140838980712585e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 1,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.62691265472279,
+            0.9596576290921706,
+            17.23908052361132,
+            0.31485559675232794
+          ],
+          "pedal_work_j": 0.0021132128291388645,
+          "pedestal_work_j": 0.010348815060004292,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            33.62691265472279,
+            32.99822405912725
+          ],
+          "structural_heat_j": 0.003879383375020646
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 1.0672587642042248e-9,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 1.2267208810681202e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0004087456351779742,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 1.2329296966858082e-10,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 1.242636492733162e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00006361493380994299,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 1.7549503051119012e-9,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 2.103224932485694e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000350689068116555,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 4.677008576159369e-10,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 8.565228988807959e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000010698391264117817,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "partial_release",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 2.129265986718775e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 2.4470220801808623e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000817333071145516,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 2.4659434607819877e-11,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 2.4853139845560585e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000012705097948261175,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 3.909200159071914e-11,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 4.569008006345263e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 6.981976664549424e-6,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 9.342283285719017e-11,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 1.7097102277913482e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.139409077665737e-6,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.018637304465215467,
+          "arm_heat_j": 0.007506198873038834,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            8,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007771045049670923,
+            0.008667099569049359,
+            0.0015179187094055534
+          ],
+          "final_mechanical_energy_j": 0.0000981737785384078,
+          "final_position": [
+            7.374289886214856e-6,
+            0.0009787597532555279,
+            -0.00004117856551549202,
+            8.777924209760296e-7,
+            -3.456105537875756e-8,
+            -8.28514877606517e-9,
+            -1.7325779879071892e-9,
+            -2.716218254636009e-10,
+            2.7931473824085275e-6,
+            -0.01168274444939715,
+            0.00007922808870936418
+          ],
+          "final_velocity": [
+            0.00267608661716811,
+            0.27942074812362916,
+            -0.0070150539572518406,
+            -0.0015845596681427008,
+            -0.0003088969290571053,
+            0.000014000426200028811,
+            1.5624232211722966e-7,
+            -1.9513025536797266e-8,
+            0.0006366730693272443,
+            -0.210021516097447,
+            0.023612033176033102
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0007964951699053778,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            307,
+            453,
+            0
+          ],
+          "max_kinematic_defect": 1.726954595663709e-18,
+          "max_relative_balance_defect": 2.8441798452375156e-13,
+          "max_relative_contact_work_defect": 1.3817196334738843e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            1.6209212860446052,
+            0.7960756465029182,
+            18.36102803822029,
+            3.8360103184657057
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018637304465215467,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            1.6209212860446052,
+            0.0
+          ],
+          "structural_heat_j": 0.000027041248115220844
+        },
+        {
+          "absolute_drive_work_j": 0.018637320283097305,
+          "arm_heat_j": 0.007506202159784684,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            8,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007771045422179,
+            0.00866710945621004,
+            0.0015179199895660586
+          ],
+          "final_mechanical_energy_j": 0.00009817368970899876,
+          "final_position": [
+            7.3742964788422015e-6,
+            0.0009787611184868645,
+            -0.00004117843228676003,
+            8.777874002843344e-7,
+            -3.456180312043619e-8,
+            -8.284177391844461e-9,
+            -1.7326609323467289e-9,
+            -2.7163703752012214e-10,
+            2.793148924126167e-6,
+            -0.01168274315391857,
+            0.00007922827790752713
+          ],
+          "final_velocity": [
+            0.0026760810911404215,
+            0.2794202330382009,
+            -0.00701502999449139,
+            -0.0015846421334701581,
+            -0.0003089795254695446,
+            0.000013980748493798517,
+            1.5540562991306114e-7,
+            -2.022194138633929e-8,
+            0.0006366587553313068,
+            -0.21002144091992406,
+            0.023611955769188415
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0007964953883898648,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            613,
+            906,
+            0
+          ],
+          "max_kinematic_defect": 1.731944149118629e-18,
+          "max_relative_balance_defect": 2.606179658739211e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            1.6210799538469653,
+            0.7980335083200008,
+            18.36107527441103,
+            3.8360116317751323
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018637320283097305,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            1.6210799538469653,
+            0.0
+          ],
+          "structural_heat_j": 0.000027042478549689984
+        },
+        {
+          "absolute_drive_work_j": 0.018637322543815955,
+          "arm_heat_j": 0.0075062022758577915,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            8,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007771045566314215,
+            0.008667111170455257,
+            0.0015179201334927777
+          ],
+          "final_mechanical_energy_j": 0.00009817366747059756,
+          "final_position": [
+            7.3742981098650846e-6,
+            0.0009787614573469737,
+            -0.0000411783987007527,
+            8.777861350038674e-7,
+            -3.456198957399276e-8,
+            -8.283934892752823e-9,
+            -1.7326817047468187e-9,
+            -2.716408682386051e-10,
+            2.7931493022875972e-6,
+            -0.011682742830670124,
+            0.00007922832510186164
+          ],
+          "final_velocity": [
+            0.0026760797044379976,
+            0.27942010353089264,
+            -0.007015023923182086,
+            -0.001584662767419473,
+            -0.00030900018706179046,
+            0.00001397582411729387,
+            1.5519867720908146e-7,
+            -2.0397135461812217e-8,
+            0.0006366551771123635,
+            -0.21002142213475164,
+            0.023611936372580643
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0007964953886815855,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            1227,
+            1809,
+            0
+          ],
+          "max_kinematic_defect": 1.73305257113945e-18,
+          "max_relative_balance_defect": 2.665722905475267e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            1.62110584387786,
+            0.799015675390894,
+            18.361081782420655,
+            3.8360126646824058
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018637322543815955,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            1.62110584387786,
+            0.0
+          ],
+          "structural_heat_j": 0.000027042785527130843
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 3.5807479722193383e-9,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 1.7731265750023979e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000663224212894482,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 2.109778145052759e-8,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 8.035120848238684e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.009995816159693022,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 2.425409408600819e-8,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 3.4812356856878373e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.001767278535601024,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 1.0419376789661442e-8,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 1.961568267026928e-6,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.006520788930968655,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "slack_bridle",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 7.132172859691152e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 3.5160188027992075e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00013253921962494284,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 4.188266216152079e-9,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 1.5459908045641787e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0019847467339931027,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 4.747905472689968e-9,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 6.822696644224628e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00034725271892144016,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 2.0349563346902135e-9,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 3.8719843134812863e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.001294420801105646,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.010284958767859061,
+          "arm_heat_j": 0.00028410034087441205,
+          "behavior_passed": true,
+          "contact_entries": [
+            36,
+            22,
+            8,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00033314782597244723,
+            0.004800792612679603,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.0001164580772504512,
+          "final_position": [
+            0.000015549784089793215,
+            0.002258821911275091,
+            8.87371326002168e-6,
+            7.986994348539538e-6,
+            2.3483683681471558e-9,
+            -2.068582857407637e-9,
+            5.584415801698027e-10,
+            -1.7715224237206206e-10,
+            5.747262506218062e-6,
+            -0.010745686507514252,
+            0.000201268819584387
+          ],
+          "final_velocity": [
+            0.00270449775328657,
+            0.2391920899889756,
+            0.014021481578985253,
+            0.0075997870645860485,
+            0.000050413240239231354,
+            4.6777039982537143e-7,
+            -1.2391756670752908e-7,
+            3.28276891552194e-8,
+            0.0012197510132011564,
+            0.21996794931833466,
+            0.011936611227852749
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011114737806993554,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            2578,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.724347322372942e-18,
+          "max_relative_balance_defect": 2.8441798452375156e-13,
+          "max_relative_contact_work_defect": 1.3817196334738843e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.31686559330744,
+            1.022769743696233,
+            17.239043691984154,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.010284958767859061,
+          "simultaneous_hammer_felt_steps": 3146,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            33.31686559330744,
+            32.75447536594767
+          ],
+          "structural_heat_j": 0.0036923194637161856
+        },
+        {
+          "absolute_drive_work_j": 0.010284987397139353,
+          "arm_heat_j": 0.00028411728207340404,
+          "behavior_passed": true,
+          "contact_entries": [
+            36,
+            22,
+            8,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00033313709628740335,
+            0.0048009797921345155,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.0001164569591856705,
+          "final_position": [
+            0.000015548783545543143,
+            0.002258608701815372,
+            8.871298756729474e-6,
+            7.997712280466764e-6,
+            2.325820162463777e-9,
+            -2.0673138064245778e-9,
+            5.579326533192921e-10,
+            -1.770296614196669e-10,
+            5.7481279293935375e-6,
+            -0.01074429000324299,
+            0.00020126280335244122
+          ],
+          "final_velocity": [
+            0.0027036538669963288,
+            0.23940261770405516,
+            0.013988722657204283,
+            0.007404025753814331,
+            0.0000505921123140589,
+            4.363737916744517e-7,
+            -1.1824853165211523e-7,
+            3.239181060442451e-8,
+            0.0012015148213588517,
+            0.21996104660662355,
+            0.01193870504250883
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011114817421149367,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            5149,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7234473498664842e-18,
+          "max_relative_balance_defect": 2.606179658739211e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.33254197188729,
+            1.0226703137200694,
+            17.239073857271975,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.010284987397139353,
+          "simultaneous_hammer_felt_steps": 6280,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            33.33254197188729,
+            32.777351360658194
+          ],
+          "structural_heat_j": 0.003692147858676938
+        },
+        {
+          "absolute_drive_work_j": 0.010284994217476565,
+          "arm_heat_j": 0.00028412145400571077,
+          "behavior_passed": true,
+          "contact_entries": [
+            36,
+            22,
+            8,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0003331344355682651,
+            0.004801025602997298,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.00011645667997454836,
+          "final_position": [
+            0.000015548540499048094,
+            0.0022585564484128144,
+            8.870724327532333e-6,
+            8.000334475347263e-6,
+            2.3203498146257577e-9,
+            -2.067002905507836e-9,
+            5.578074248541228e-10,
+            -1.7699932078751322e-10,
+            5.748340099480519e-6,
+            -0.010743946621459747,
+            0.00020126133870031532
+          ],
+          "final_velocity": [
+            0.002703443091279334,
+            0.23945461558354383,
+            0.013980627177451695,
+            0.00735551818499568,
+            0.000050637495117287565,
+            4.287079466066192e-7,
+            -1.1685388167429917e-7,
+            3.2289568872337125e-8,
+            0.0011969956237759666,
+            0.21995934599433525,
+            0.011939210364117825
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011114838365467513,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            10300,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7173857703376956e-18,
+          "max_relative_balance_defect": 2.665722905475267e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.334700888528815,
+            1.0226454218579246,
+            17.23908052361132,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.010284994217476565,
+          "simultaneous_hammer_felt_steps": 12549,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            33.334700888528815,
+            32.779858930806085
+          ],
+          "structural_heat_j": 0.0036921055417180816
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 2.6620100809221754e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 3.0592930393659475e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0001021683885827642,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 1.2275880221676174e-10,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 2.2126356904320722e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 6.0946718924154785e-6,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 3.326317848443458e-10,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 4.098785387572318e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 3.256492885535183e-6,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 1.0701582189949938e-10,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 2.0389335351462434e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.444387916065427e-6,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "repeat",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 5.327444632863933e-11,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 6.122713142402616e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000020435166399890635,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 2.4557179602216748e-11,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 4.425794131274073e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 1.2192499530744048e-6,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 6.653520490364396e-11,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 8.198663829016919e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 6.51447713218074e-7,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 2.1403279365806814e-11,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 4.0777262544761793e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 4.888693609032823e-7,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": false,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.023767522793209983,
+          "arm_heat_j": 0.010244050269472253,
+          "behavior_passed": false,
+          "contact_entries": [
+            2,
+            12,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00010626322229838719,
+            0.010515942297363136,
+            0.0015963140687162455
+          ],
+          "final_mechanical_energy_j": 0.00009309442276945365,
+          "final_position": [
+            6.120770421681185e-6,
+            0.000851088718802389,
+            -0.000022892016758819586,
+            3.74684345543823e-6,
+            -2.1796895736987895e-7,
+            -8.269387980895307e-8,
+            -2.2021647024445315e-8,
+            -1.7616391054264014e-9,
+            2.5171217355136986e-6,
+            -0.011694889534633735,
+            0.00009798973427118145
+          ],
+          "final_velocity": [
+            0.0014448416126971288,
+            0.1102688437209042,
+            0.010184900907257518,
+            0.0007913058492862576,
+            0.00006840101361509324,
+            0.00010595001084387853,
+            0.00004028105622179911,
+            2.8508553067807183e-6,
+            -0.00020649127456629155,
+            -0.21097189214044057,
+            -0.0019443252446196893
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0012350164335372732,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            613,
+            1226,
+            0
+          ],
+          "max_kinematic_defect": 1.7313585052449414e-18,
+          "max_relative_balance_defect": 2.606179658739211e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            1.6210799538469653,
+            0.7980335083200008,
+            22.636699710499023,
+            3.6643055409282437
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.023767522793209983,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            1.6210799538469653,
+            0.0
+          ],
+          "structural_heat_j": 0.000030175412388161923
+        },
+        {
+          "absolute_drive_work_j": 0.02376752447600027,
+          "arm_heat_j": 0.010244050917163612,
+          "behavior_passed": false,
+          "contact_entries": [
+            2,
+            12,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00010626321705183366,
+            0.010515942897761076,
+            0.0015963141847573539
+          ],
+          "final_mechanical_energy_j": 0.0000930944044299968,
+          "final_position": [
+            6.1207696609680235e-6,
+            0.0008510886795942107,
+            -0.000022892023120279407,
+            3.746845840700447e-6,
+            -2.179655541611506e-7,
+            -8.269463371678439e-8,
+            -2.2021689112848228e-8,
+            -1.7616305917491214e-9,
+            2.5171219247642388e-6,
+            -0.011694889223818096,
+            0.00009798977862409565
+          ],
+          "final_velocity": [
+            0.0014448402349575714,
+            0.11026866895230081,
+            0.010184871075218547,
+            0.0007912917564602109,
+            0.00006841563111668613,
+            0.00010594971845979082,
+            0.00004027920197425661,
+            2.8509832520693535e-6,
+            -0.00020649068145391078,
+            -0.21097187402708292,
+            -0.0019443370960391172
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0012350164533859894,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            1227,
+            2449,
+            0
+          ],
+          "max_kinematic_defect": 1.7331882287599087e-18,
+          "max_relative_balance_defect": 2.665722905475267e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            1.62110584387786,
+            0.799015675390894,
+            22.636712349337408,
+            3.6643070663427166
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.02376752447600027,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            1.62110584387786,
+            0.0
+          ],
+          "structural_heat_j": 0.000030175734783263888
+        },
+        {
+          "absolute_drive_work_j": 0.02376752489684961,
+          "arm_heat_j": 0.01024405107906433,
+          "behavior_passed": false,
+          "contact_entries": [
+            2,
+            12,
+            12,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00010626321573330607,
+            0.01051594304788087,
+            0.0015963142138746324
+          ],
+          "final_mechanical_energy_j": 0.00009309439984526417,
+          "final_position": [
+            6.120769471282043e-6,
+            0.0008510886698594337,
+            -0.0000228920247144924,
+            3.7468464369257267e-6,
+            -2.1796470338422223e-7,
+            -8.269482222073928e-8,
+            -2.2021699659746525e-8,
+            -1.7616284616652569e-9,
+            2.5171219722559116e-6,
+            -0.011694889146118492,
+            0.00009798978972024144
+          ],
+          "final_velocity": [
+            0.0014448398903949711,
+            0.11026862523959878,
+            0.010184863616088885,
+            0.0007912882355002624,
+            0.00006841928460685646,
+            0.00010594964574567602,
+            0.00004027873836012228,
+            2.851014963944202e-6,
+            -0.00020649053290000134,
+            -0.21097186949908805,
+            -0.0019443400590096994
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0012350164583482203,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            2452,
+            4896,
+            0
+          ],
+          "max_kinematic_defect": 1.7329400745761428e-18,
+          "max_relative_balance_defect": 5.20855235548458e-13,
+          "max_relative_contact_work_defect": 1.36909694657559e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": false,
+          "peak_contact_force_n": [
+            1.6211182841907716,
+            0.799507568001159,
+            22.636714247096084,
+            3.6643072775412873
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.02376752489684961,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            1.6211182841907716,
+            0.0
+          ],
+          "structural_heat_j": 0.000030175815439006312
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 5.370625338229204e-12,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 1.2358149429338977e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00022241895303188306,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 5.2394383519912436e-15,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 3.780806756500201e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00018510186624797663,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 2.9064682109028596e-15,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 1.3597924385871878e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0004918294740949694,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 5.817013084549609e-8,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 3.640135639246482e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00008418776543689109,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "pedal_repeat",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 1.0352559020751258e-12,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 2.453822504306135e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000044410615784460115,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 1.0843586595598193e-15,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 7.539277557372457e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00003670375536413289,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 3.842981679226101e-15,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 2.7104713942196793e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0000981089589984244,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 1.1582798830627412e-8,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 7.248272176783929e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000016789305186741396,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.013354215754318242,
+          "arm_heat_j": 0.002136419844569334,
+          "behavior_passed": true,
+          "contact_entries": [
+            38,
+            4,
+            8,
+            1
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00016359168125674228,
+            0.005082020723379086,
+            4.904804653804196e-6
+          ],
+          "final_mechanical_energy_j": 0.00012912247587137682,
+          "final_position": [
+            0.000013969301854006293,
+            0.0034022731184305075,
+            0.0003711399579126145,
+            1.7674042694726166e-6,
+            -9.653229234860245e-7,
+            4.143543318248966e-8,
+            1.3034463119020954e-9,
+            6.537085996534948e-13,
+            4.976602542681267e-6,
+            -0.009129389684622432,
+            -0.00008072473750203382
+          ],
+          "final_velocity": [
+            0.0025078877702104526,
+            0.008721075552150195,
+            -0.3802119828045946,
+            -0.02239788020596776,
+            -0.01055866593263312,
+            -0.0009002120330752533,
+            -0.00005255361913454456,
+            -3.0248134064645754e-7,
+            0.002251652181044445,
+            0.13320036518887218,
+            -0.10129655384840687
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011198947088001817,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            1570,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.723288531188874e-18,
+          "max_relative_balance_defect": 9.162078454888833e-14,
+          "max_relative_contact_work_defect": 3.206705801345225e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 1,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.62267428297122,
+            0.9596588075991469,
+            17.239073857271975,
+            0.31479919105107457
+          ],
+          "pedal_work_j": 0.002113213461688315,
+          "pedestal_work_j": 0.010348833481406965,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            33.62267428297122,
+            32.993487747205
+          ],
+          "structural_heat_j": 0.003879426037897687
+        },
+        {
+          "absolute_drive_work_j": 0.013354197950885858,
+          "arm_heat_j": 0.002136426293120504,
+          "behavior_passed": true,
+          "contact_entries": [
+            38,
+            4,
+            8,
+            1
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0001635898790178072,
+            0.005082033023393192,
+            4.906810353654327e-6
+          ],
+          "final_mechanical_energy_j": 0.00012911607673690055,
+          "final_position": [
+            0.000013969885759451374,
+            0.0034023384509556946,
+            0.00037114175982500035,
+            1.7627412970271979e-6,
+            -9.657585664623309e-7,
+            4.136224406247734e-8,
+            1.2970985023017613e-9,
+            6.432017135161584e-13,
+            4.9763409329087486e-6,
+            -0.00912922790956856,
+            -0.00008085606708530327
+          ],
+          "final_velocity": [
+            0.0025078227613949907,
+            0.008699468234350114,
+            -0.38021028510302823,
+            -0.022387119312540865,
+            -0.010552356568255986,
+            -0.0009007014092696154,
+            -0.000052603820866624624,
+            -3.0506868285243755e-7,
+            0.0022526026104636877,
+            0.13319057087589495,
+            -0.10118430572550147
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011199057648324008,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            3142,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7331683764252074e-18,
+          "max_relative_balance_defect": 1.5313869500555248e-13,
+          "max_relative_contact_work_defect": 3.140838980712585e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 1,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.62691265472279,
+            0.9596576290921706,
+            17.23908052361132,
+            0.31485559675232794
+          ],
+          "pedal_work_j": 0.0021132128291388645,
+          "pedestal_work_j": 0.010348815060004292,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            33.62691265472279,
+            32.99822405912725
+          ],
+          "structural_heat_j": 0.003879383375020646
+        },
+        {
+          "absolute_drive_work_j": 0.013354193514768036,
+          "arm_heat_j": 0.002136427897259568,
+          "behavior_passed": true,
+          "contact_entries": [
+            38,
+            4,
+            8,
+            1
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0001635894288994834,
+            0.005082036082831028,
+            4.907309091307297e-6
+          ],
+          "final_mechanical_energy_j": 0.0001291144872962719,
+          "final_position": [
+            0.000013970031017655123,
+            0.0034023546965418552,
+            0.0003711422069572843,
+            1.7615792290569665e-6,
+            -9.658670970769507e-7,
+            4.13439875661681e-8,
+            1.2955138269502557e-9,
+            6.404905039080084e-13,
+            4.9762756698918425e-6,
+            -0.009129187693065973,
+            -0.00008088869766470489
+          ],
+          "final_velocity": [
+            0.0025078065805788693,
+            0.008694093353445268,
+            -0.38020985965368753,
+            -0.022384439941161793,
+            -0.010550783757359244,
+            -0.0009008232884932265,
+            -0.00005261628703946412,
+            -3.057149645208787e-7,
+            0.0022528392466057414,
+            0.13318813565869286,
+            -0.10115640570203
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.001119908516903489,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            6281,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7265989080003113e-18,
+          "max_relative_balance_defect": 2.4644913547784166e-13,
+          "max_relative_contact_work_defect": 3.183726534864792e-15,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 1,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.627586013187205,
+            0.9596572396437693,
+            17.239082617101808,
+            0.3148696229083208
+          ],
+          "pedal_work_j": 0.0021132126712616996,
+          "pedestal_work_j": 0.010348810470782208,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            33.627586013187205,
+            32.99873114232861
+          ],
+          "structural_heat_j": 0.003879372753095266
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 2.6620100809221754e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 3.0592930393659475e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0001021683885827642,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 3.082422441859907e-11,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 3.1066392053229784e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000015882720010560195,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 4.8640163642789055e-11,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 5.855468668328922e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 8.732050323737269e-6,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 1.1679558270791665e-10,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 2.1372866120140345e-10,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 2.674309603265744e-6,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "partial_release",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 5.327444632863933e-11,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 6.122713142402616e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000020435166399890635,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 6.1647776581778304e-12,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 6.213240423599239e-12,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 3.1778702447439572e-6,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 8.087282056435826e-11,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 9.693522349650032e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 1.7481805992387058e-6,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 2.3374343793114716e-11,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 4.279762181170237e-11,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 5.348625853173441e-7,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.018637320283097305,
+          "arm_heat_j": 0.007506202159784684,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            8,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007771045422179,
+            0.00866710945621004,
+            0.0015179199895660586
+          ],
+          "final_mechanical_energy_j": 0.00009817368970899876,
+          "final_position": [
+            7.3742964788422015e-6,
+            0.0009787611184868645,
+            -0.00004117843228676003,
+            8.777874002843344e-7,
+            -3.456180312043619e-8,
+            -8.284177391844461e-9,
+            -1.7326609323467289e-9,
+            -2.7163703752012214e-10,
+            2.793148924126167e-6,
+            -0.01168274315391857,
+            0.00007922827790752713
+          ],
+          "final_velocity": [
+            0.0026760810911404215,
+            0.2794202330382009,
+            -0.00701502999449139,
+            -0.0015846421334701581,
+            -0.0003089795254695446,
+            0.000013980748493798517,
+            1.5540562991306114e-7,
+            -2.022194138633929e-8,
+            0.0006366587553313068,
+            -0.21002144091992406,
+            0.023611955769188415
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0007964953883898648,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            613,
+            906,
+            0
+          ],
+          "max_kinematic_defect": 1.731944149118629e-18,
+          "max_relative_balance_defect": 2.606179658739211e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            1.6210799538469653,
+            0.7980335083200008,
+            18.36107527441103,
+            3.8360116317751323
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018637320283097305,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            1.6210799538469653,
+            0.0
+          ],
+          "structural_heat_j": 0.000027042478549689984
+        },
+        {
+          "absolute_drive_work_j": 0.018637322543815955,
+          "arm_heat_j": 0.0075062022758577915,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            8,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00007771045566314215,
+            0.008667111170455257,
+            0.0015179201334927777
+          ],
+          "final_mechanical_energy_j": 0.00009817366747059756,
+          "final_position": [
+            7.3742981098650846e-6,
+            0.0009787614573469737,
+            -0.0000411783987007527,
+            8.777861350038674e-7,
+            -3.456198957399276e-8,
+            -8.283934892752823e-9,
+            -1.7326817047468187e-9,
+            -2.716408682386051e-10,
+            2.7931493022875972e-6,
+            -0.011682742830670124,
+            0.00007922832510186164
+          ],
+          "final_velocity": [
+            0.0026760797044379976,
+            0.27942010353089264,
+            -0.007015023923182086,
+            -0.001584662767419473,
+            -0.00030900018706179046,
+            0.00001397582411729387,
+            1.5519867720908146e-7,
+            -2.0397135461812217e-8,
+            0.0006366551771123635,
+            -0.21002142213475164,
+            0.023611936372580643
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0007964953886815855,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            1227,
+            1809,
+            0
+          ],
+          "max_kinematic_defect": 1.73305257113945e-18,
+          "max_relative_balance_defect": 2.665722905475267e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            1.62110584387786,
+            0.799015675390894,
+            18.361081782420655,
+            3.8360126646824058
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.018637322543815955,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            1.62110584387786,
+            0.0
+          ],
+          "structural_heat_j": 0.000027042785527130843
+        },
+        {
+          "absolute_drive_work_j": 0.01863732620892918,
+          "arm_heat_j": 0.007506202436068875,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            8,
+            12,
+            2
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0000777104560135261,
+            0.008667114525210249,
+            0.0015179202018836525
+          ],
+          "final_mechanical_energy_j": 0.00009817366191316848,
+          "final_position": [
+            7.374298518252433e-6,
+            0.0009787615421775265,
+            -0.00004117839031678668,
+            8.777858191257106e-7,
+            -3.456203628100553e-8,
+            -8.283874291345038e-9,
+            -1.7326869011272592e-9,
+            -2.7164182786623926e-10,
+            2.7931493970841514e-6,
+            -0.011682742749773038,
+            0.00007922833690337497
+          ],
+          "final_velocity": [
+            0.002676079358076503,
+            0.2794200711793745,
+            -0.0070150224099538045,
+            -0.0015846679226634327,
+            -0.00030900535260170104,
+            0.000013974592861759274,
+            1.5514710821871783e-7,
+            -2.0440807620248874e-8,
+            0.0006366542830763285,
+            -0.21002141743901057,
+            0.023611931521319483
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0007964953988441275,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            2452,
+            3616,
+            0
+          ],
+          "max_kinematic_defect": 1.7305677205793407e-18,
+          "max_relative_balance_defect": 5.20855235548458e-13,
+          "max_relative_contact_work_defect": 1.36909694657559e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            1.6211182841907716,
+            0.799507568001159,
+            18.36108342913214,
+            3.836012822664881
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.01863732620892918,
+          "simultaneous_hammer_felt_steps": 0,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            1.6211182841907716,
+            0.0
+          ],
+          "structural_heat_j": 0.000027042862328925968
+        }
+      ]
+    },
+    {
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 8.923128226048972e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 4.390811945881855e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00016566074502227213,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 5.2329834944288486e-9,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 1.9274499337340873e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0024790909737722475,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 5.927219715440284e-9,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 8.517059882953597e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0004335936379228136,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 2.540978639478101e-9,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 4.836279282166593e-7,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0016174237064898675,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "gesture": "slack_bridle",
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "arm_position_rmse_m": 1.7963193981408003e-10,
+            "end_seconds": 0.045,
+            "hammer_position_rmse_m": 8.757319897920006e-9,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.000033121453704904365,
+            "start_seconds": 0.0
+          },
+          {
+            "arm_position_rmse_m": 1.0446407493519512e-9,
+            "end_seconds": 0.095,
+            "hammer_position_rmse_m": 3.815189553160321e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.0004946092205930437,
+            "start_seconds": 0.045
+          },
+          {
+            "arm_position_rmse_m": 1.1795977112651972e-9,
+            "end_seconds": 0.14,
+            "hammer_position_rmse_m": 1.695037584202388e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00008635530108067551,
+            "start_seconds": 0.095
+          },
+          {
+            "arm_position_rmse_m": 5.054044966248381e-10,
+            "end_seconds": 0.18,
+            "hammer_position_rmse_m": 9.644408528025895e-8,
+            "passed": true,
+            "pickup_velocity_relative_rmse": 0.00032305379873413185,
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.010284987397139353,
+          "arm_heat_j": 0.00028411728207340404,
+          "behavior_passed": true,
+          "contact_entries": [
+            36,
+            22,
+            8,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00033313709628740335,
+            0.0048009797921345155,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.0001164569591856705,
+          "final_position": [
+            0.000015548783545543143,
+            0.002258608701815372,
+            8.871298756729474e-6,
+            7.997712280466764e-6,
+            2.325820162463777e-9,
+            -2.0673138064245778e-9,
+            5.579326533192921e-10,
+            -1.770296614196669e-10,
+            5.7481279293935375e-6,
+            -0.01074429000324299,
+            0.00020126280335244122
+          ],
+          "final_velocity": [
+            0.0027036538669963288,
+            0.23940261770405516,
+            0.013988722657204283,
+            0.007404025753814331,
+            0.0000505921123140589,
+            4.363737916744517e-7,
+            -1.1824853165211523e-7,
+            3.239181060442451e-8,
+            0.0012015148213588517,
+            0.21996104660662355,
+            0.01193870504250883
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011114817421149367,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            5149,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7234473498664842e-18,
+          "max_relative_balance_defect": 2.606179658739211e-13,
+          "max_relative_contact_work_defect": 1.385556363394197e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.33254197188729,
+            1.0226703137200694,
+            17.239073857271975,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.010284987397139353,
+          "simultaneous_hammer_felt_steps": 6280,
+          "steps_per_frame": 32,
+          "strike_window_peak_n": [
+            33.33254197188729,
+            32.777351360658194
+          ],
+          "structural_heat_j": 0.003692147858676938
+        },
+        {
+          "absolute_drive_work_j": 0.010284994217476565,
+          "arm_heat_j": 0.00028412145400571077,
+          "behavior_passed": true,
+          "contact_entries": [
+            36,
+            22,
+            8,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0003331344355682651,
+            0.004801025602997298,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.00011645667997454836,
+          "final_position": [
+            0.000015548540499048094,
+            0.0022585564484128144,
+            8.870724327532333e-6,
+            8.000334475347263e-6,
+            2.3203498146257577e-9,
+            -2.067002905507836e-9,
+            5.578074248541228e-10,
+            -1.7699932078751322e-10,
+            5.748340099480519e-6,
+            -0.010743946621459747,
+            0.00020126133870031532
+          ],
+          "final_velocity": [
+            0.002703443091279334,
+            0.23945461558354383,
+            0.013980627177451695,
+            0.00735551818499568,
+            0.000050637495117287565,
+            4.287079466066192e-7,
+            -1.1685388167429917e-7,
+            3.2289568872337125e-8,
+            0.0011969956237759666,
+            0.21995934599433525,
+            0.011939210364117825
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011114838365467513,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            10300,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7173857703376956e-18,
+          "max_relative_balance_defect": 2.665722905475267e-13,
+          "max_relative_contact_work_defect": 1.3640240748377485e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.334700888528815,
+            1.0226454218579246,
+            17.23908052361132,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.010284994217476565,
+          "simultaneous_hammer_felt_steps": 12549,
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            33.334700888528815,
+            32.779858930806085
+          ],
+          "structural_heat_j": 0.0036921055417180816
+        },
+        {
+          "absolute_drive_work_j": 0.0102849959003538,
+          "arm_heat_j": 0.00028412249683573264,
+          "behavior_passed": true,
+          "contact_entries": [
+            36,
+            22,
+            8,
+            0
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0003331337728084276,
+            0.004801036994342221,
+            0.0
+          ],
+          "final_mechanical_energy_j": 0.00011645660993669726,
+          "final_position": [
+            0.000015548480080738185,
+            0.0022585434312057577,
+            8.870582661678139e-6,
+            8.000987030770084e-6,
+            2.3189915123454185e-9,
+            -2.066925495038355e-9,
+            5.577762151394642e-10,
+            -1.7699174764754281e-10,
+            5.748392905141841e-6,
+            -0.01074386109279544,
+            0.00020126097461234158
+          ],
+          "final_velocity": [
+            0.0027033903532010513,
+            0.23946758201667195,
+            0.013978607591422405,
+            0.007343410067890381,
+            0.0000506488947812037,
+            4.268013037043818e-7,
+            -1.1650635626080919e-7,
+            3.226438864189645e-8,
+            0.0011958675461618776,
+            0.21995892219717345,
+            0.011939335619594933
+          ],
+          "force_nonnegative": true,
+          "hammer_return_heat_j": 0.0011114843677063533,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "limited_unloading_steps": [
+            0,
+            20593,
+            0,
+            0
+          ],
+          "max_kinematic_defect": 1.7257237509122302e-18,
+          "max_relative_balance_defect": 5.20855235548458e-13,
+          "max_relative_contact_work_defect": 1.36909694657559e-14,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "passed": true,
+          "peak_contact_force_n": [
+            33.335711991676234,
+            1.0226392112742684,
+            17.239082617101808,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.0102849959003538,
+          "simultaneous_hammer_felt_steps": 25088,
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            33.335711991676234,
+            32.78083306237898
+          ],
+          "structural_heat_j": 0.003692094992058464
+        }
+      ]
+    }
+  ],
+  "contact_order": [
+    "hammer_tine",
+    "felt_tine",
+    "pedestal_hammer",
+    "bridle"
+  ],
+  "experiment": "persistent-action-cycle-v1",
+  "passed": false,
+  "profile": {
+    "bridle_rate_loss_s_m": 2.0,
+    "bridle_ratio": 0.8,
+    "bridle_slack_m": 0.002,
+    "bridle_stiffness_n_m2": 20000000.0,
+    "damper_closed_m": 0.0002,
+    "escapement_m": 0.0015,
+    "hammer_rest_m": -0.012,
+    "hammer_return_n_m": 4.0,
+    "hammer_return_n_s_m": 0.025,
+    "pedal_travel_m": 0.01,
+    "pedestal_rate_loss_s_m": 2.0,
+    "pedestal_stiffness_n_m2": 200000000.0
+  },
+  "protocol": "Frozen before first matrix run. Two tine lengths, 48/96 kHz, four gestures, three uniform midpoint resolutions. 180 ms from rest including initial felt preload relaxation. Key down at 10 and 95 ms, release at 45 and 130 ms, both drives speed limited to 1 m/s. Pedal held 5-150 ms in pedal_repeat; partial_release retains 0.7 key lift between strikes; slack_bridle increases slack to 20 mm to stress simultaneous tine contacts. All other assembly/felt parameters use library defaults. No impulse, strike event, state reset or force normalization. Require relative energy defect <1e-8, per-contact work defect <1e-9, stationary-drive energy growth <1e-10, midpoint position defect <1e-14, monotone heat and nonnegative force. Require initial strike in all cases, repeat strike except shallow partial release, and simultaneous hammer/felt contact in slack-brindle stress cases. For both coarse/fine and medium/fine, pickup velocity relative RMSE <1% and each hammer/arm displacement RMSE <10 micrometers in four separate windows. Failures retain their report; no gate tuning.",
+  "schema_version": 1,
+  "scope": "Offline whole-action reduction, not measured pivot geometry, calibrated hammer/strap/felt materials, production MIDI action or realtime plugin replacement. Bridle is reciprocal; pedestal and pedal spring base are prescribed mechanical work ports. No listening or host test claimed.",
+  "steps_per_frame": [
+    32,
+    64,
+    128
+  ]
+}

@@ -4,6 +4,12 @@ Status: research prototype 0.1.2. The default mechanical profile is unchanged fr
 
 ## Signal path
 
+The production path below remains unchanged. The separate offline
+[persistent action](ACTION-REPETITION.md) now drives an eleven-coordinate
+mechanism through pedestal motion, with reciprocal hammer/bridle/felt forces
+and no strike-time state replacement. Its geometry and material profile are
+provisional; its work ledger and validation scope are documented separately.
+
 ```text
 MIDI velocity -> hammer initial velocity <-> unilateral contact <-> modal resonator
                                                                   ^ damper

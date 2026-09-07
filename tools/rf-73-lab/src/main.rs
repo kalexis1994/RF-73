@@ -1,4 +1,5 @@
 //! Offline laboratory. All rendering, WAV writing and analysis runs in Rust.
+mod action;
 mod analysis;
 mod assembly_check;
 mod audition;
@@ -253,6 +254,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         );
         print!("{}", mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::resolution::weighted::HELP);
         print!("{}", felt_damper::HELP);
+        print!("{}", action::HELP);
         print!("{}", source_envelope::short::HELP);
         print!("{}", short_envelope::HELP);
         print!("{}", partial_comparison::HELP);
@@ -360,6 +362,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "felt-damper" {
         return felt_damper::run(&args);
+    }
+    if args[0] == "action-cycle" {
+        return action::run(&args);
     }
     if args[0] == "magnetic-loss-weighting" {
         return mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::weighting::run(

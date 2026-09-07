@@ -147,9 +147,10 @@ Receipt checks preserve the failed coarse case and compare the complete
 overlapping 32/64-tick summaries across independent runs. No old physics gate
 was relaxed. No plugin package, audio render or host session is claimed.
 
-The remaining physical blocks are full action/repetition with simultaneous
-contacts; orthogonal tine motion and its couplings; and improved magnetic and
-electrical transduction. Each should include a usable simulation path and
-gesture-level qualification. The present block still needs measured arm/felt
+The subsequent [action/repetition block](ACTION-REPETITION.md) now connects a
+persistent hammer and reciprocal bridle with simultaneous contacts. The next
+physical blocks are orthogonal tine motion and its couplings, and improved
+magnetic and electrical transduction. Each should include a usable simulation
+path and gesture-level qualification. The present block still needs measured arm/felt
 parameters, register-specific geometry, longer trajectories, audio qualification
 and polyphonic performance before host integration.

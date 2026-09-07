@@ -12,8 +12,11 @@ not only parameter-identification diagnostics:
    unilateral dissipative contact, continuous prescribed key/pedal lift,
    post-hammer state transfer and independent actuator work. The refined
    24-case gesture matrix passes; the failed coarse recontact remains recorded.
-2. **Action and repetition:** next connect hammer, drive and felt throughout
-   a complete strike/release/restrike cycle, including simultaneous contacts.
+2. **Action and repetition:** implemented as an offline
+   [coupled action reduction](ACTION-REPETITION.md): persistent hammer, moving
+   pedestal, reciprocal tension-only bridle and moving felt, with simultaneous
+   contact solving throughout strike/release/restrike. Measured action geometry,
+   touch calibration and realtime integration remain open.
 3. **Motion and structural coupling:** add the second tine polarization and
    qualify the corresponding support/tonebar and observation couplings.
 4. **Magnetic and electrical conversion:** improve spatial field and loading

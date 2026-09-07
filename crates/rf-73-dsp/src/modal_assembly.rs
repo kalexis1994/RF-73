@@ -2,7 +2,9 @@
 //! Coordinates: root translation, root angle, six tine modal amplitudes, bar deflection.
 use crate::{ModelError, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN, TineGeometry, TineModes};
 use core::f64::consts::TAU;
+mod action;
 mod contact;
+pub use action::{ActionAssembly, ActionProbe, ActionProfile};
 mod dissipative_contact;
 mod felt_damper;
 pub use felt_damper::{DamperDrive, FeltDamperAssembly, FeltDamperProbe, FeltDamperProfile};

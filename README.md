@@ -26,7 +26,14 @@ The [moving felt damper](docs/MOVING-FELT-DAMPER.md) adds a massive elastic arm,
 unilateral felt contact and continuous prescribed key/pedal actuation to the
 experimental assembly. A refined 24-case release/recontact audit passes with
 independent energy and actuator-work checks. It remains outside the playable
-plugin, pending full action coupling and material calibration.
+plugin, pending material calibration and realtime integration.
+
+The [persistent action and repetition](docs/ACTION-REPETITION.md) experiment
+connects a moving pedestal, persistent hammer, reciprocal bridle and felt arm.
+Four interfaces are solved jointly with independent drive-work and heat ledgers;
+repeated strikes preserve all mechanical state. Its reference matrix passes
+16 cases and 48 takes; earlier failed studies remain recorded. This is an
+offline action reduction with provisional geometry and materials.
 
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 

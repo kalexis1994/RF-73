@@ -14,7 +14,7 @@ pub(super) struct RateContact {
     pub rate: f64,
 }
 impl RateContact {
-    fn law(&self, a: f64, b: f64) -> (f64, f64) {
+    pub(super) fn law(&self, a: f64, b: f64) -> (f64, f64) {
         let g = contact_gradient(self.stiffness, a, b);
         let multiplier = 1.0 + self.rate * (b - a);
         if multiplier <= 0.0 {
