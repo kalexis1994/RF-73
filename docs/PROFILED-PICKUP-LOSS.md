@@ -137,3 +137,8 @@ only two global viscous multipliers are estimated.
 
 This adds an offline identification study. No physical equations, production
 presets, plugin engine or audio assets changed, and no host was launched.
+
+The subsequent [small-position-error study](PICKUP-LOSS-POSITION-ERRORS.md)
+retains 102 fits with fixed gates. It finds 46 prediction-consistent but biased
+fits; rejecting the large wrong-position control above does not establish a
+safe tolerance for smaller geometry errors.

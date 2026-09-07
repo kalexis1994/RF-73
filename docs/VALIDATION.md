@@ -1922,3 +1922,27 @@ The laboratory release suite passes 113 tests (82 unit and 31 CLI), with strict
 laboratory Clippy and formatting checks. No host or listening test was run.
 This identifies only two synthetic viscous scales under supplied mechanical
 operator shapes and event timing; magnetic/source-bank calibration is not claimed.
+
+## Small longitudinal position errors in loss inference
+
+The [position-error protocol](PICKUP-LOSS-POSITION-ERRORS.md) and
+[receipt](../references/pickup-loss-position-errors-validation.json) retain 102
+fits of six shared noiseless trajectories. Matched controls, six signed offsets
+for each of damper/pickup position, and four combined offsets use unchanged
+searches and acceptance gates. All six matched controls and 102 mechanical
+operator-invariant checks pass. Matched parameters and window metrics are
+identical to the previous profiled-loss receipt.
+
+100 fits pass prediction consistency, 54 recover both scales within 1%, and 46
+pass prediction while retaining biased loss estimates. An accepted -0.75 mm
+damper offset produces 3.91% scale error with 0.0953% pickup prediction error.
+Pickup-only offsets preserve fitted losses at search resolution while full-state
+energy-norm error reaches 1.5396%. These are failed physical-identification
+diagnostics, not evidence for changing the existing production losses.
+
+Receipt schema 1, `pickup-loss-position-errors-v1`, 1014475 bytes, SHA-256
+`6dce481f5674cc122dc0ba5c170d7cb7e4796c83f0b10f6b43cde1fd8e42a690`.
+All 51 evaluations still run per scale; the receipt keeps 17 coarse nodes plus
+selected values, final brackets and counts to bound storage. The laboratory
+release suite passes 116 tests (84 unit, 32 CLI), with strict laboratory Clippy
+and formatting checks. No production solver, waveform or host change is claimed.

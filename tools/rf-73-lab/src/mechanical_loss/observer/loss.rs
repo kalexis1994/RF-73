@@ -1,4 +1,5 @@
 //! Profile unknown viscous scales while eliminating nuisance initial states.
+pub mod geometry;
 use super::*;
 
 pub const HELP: &str = "Unknown pickup loss study:

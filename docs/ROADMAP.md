@@ -438,3 +438,11 @@ below 1%, but three held-out predictions fail. Wrong damper contact position
 biases its scale by 46..52%; all six cases are rejected, including four interior
 fits. Next quantify smaller operator errors and qualify the magnetic observation
 path. This synthetic two-scale result still assumes known geometry and timing.
+
+The [small-position-error study](PICKUP-LOSS-POSITION-ERRORS.md) retains 102
+noiseless fits: 100 pass prediction, but 46 of those have biased damper loss.
+A -0.75 mm contact-position error can hide a 3.91% loss error behind a 0.0953%
+pickup residual. Pickup-position mismatch is absorbed by independent window
+states while motion estimates change. Next enforce state continuity through
+the known damper event and test whether that reduces position ambiguity, then
+qualify magnetic observation. Existing prediction gates cannot certify geometry.

@@ -10,6 +10,86 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn small_position_errors_retain_every_fit_and_keep_prediction_separate_from_truth() {
+    let scratch = Scratch::new();
+    let args = ["pickup-loss-geometry", "--output", "geometry.json"];
+    scratch.success(&args);
+    let report = scratch.json("geometry.json");
+    assert_eq!(report["experiment"], "pickup-loss-position-errors-v1");
+    assert_eq!(report["controls_passed"], true);
+    assert_eq!(report["summary"]["observations"], 102);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut biased = 0;
+    for case in cases {
+        assert_eq!(case["controls_passed"], true);
+        let rows = case["observations"].as_array().unwrap();
+        assert_eq!(rows.len(), 17);
+        for (family, count) in [
+            ("matched", 1),
+            ("damper_only", 6),
+            ("pickup_only", 6),
+            ("combined", 4),
+        ] {
+            assert_eq!(
+                rows.iter()
+                    .filter(|r| r["perturbation"]["family"] == family)
+                    .count(),
+                count
+            );
+        }
+        for row in rows {
+            assert_eq!(row["operator_invariants_passed"], true);
+            if row["required_control"] == true {
+                assert_eq!(row["required_control_passed"], true);
+            } else {
+                assert!(row["required_control_passed"].is_null());
+            }
+            let c = &row["classification"];
+            assert_eq!(
+                c["prediction_consistent_but_biased"],
+                row["fit"]["prediction_consistent"] == true
+                    && c["known_scale_recovery_within_one_percent"] == false
+                    && c["known_scale_relative_errors"].is_array()
+            );
+            if c["prediction_consistent_but_biased"] == true {
+                biased += 1;
+            }
+            if row["fit"]["error"].is_null() {
+                for name in ["structural_profile", "conditional_damper_profile"] {
+                    let p = &row["fit"][name];
+                    assert_eq!(p["evaluation_count"], 51);
+                    assert_eq!(p["coarse_evaluations"].as_array().unwrap().len(), 17);
+                    assert!(p["evaluations"].is_null());
+                }
+            }
+        }
+    }
+    assert_eq!(
+        report["summary"]["prediction_consistent_but_biased"],
+        biased
+    );
+    let saved = fs::read(scratch.0.join("geometry.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("geometry.json")).unwrap());
+    for args in [
+        vec!["pickup-loss-geometry"],
+        vec!["pickup-loss-geometry", "--output", "bad.wav"],
+        vec![
+            "pickup-loss-geometry",
+            "--output",
+            "bad.json",
+            "--offset",
+            "0.1",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn pickup_loss_recovers_off_grid_scales_without_truth_in_search_and_keeps_controls() {
     let scratch = Scratch::new();
     let args = ["pickup-loss", "--output", "loss.json"];
