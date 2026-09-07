@@ -71,6 +71,11 @@ and electrical heat channels and compares controlled support, tine, tonebar,
 damper and load changes. This provides a physical diagnostic before fitting
 the remaining sustain mismatch; the playable plugin is unchanged.
 
+The [conditional sustain calibration](docs/LOADED-LOSS-CALIBRATION.md) selects
+first-mode tine and support losses using the training layers, then checks
+reserved layers, numerical refinement and other strike speeds. Unqualified
+frequency observations and spectral mismatch remain explicit.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

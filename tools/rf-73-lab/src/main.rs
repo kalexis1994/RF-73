@@ -384,6 +384,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "loaded-loss-budget" {
         return transduction::losses::run(&args);
     }
+    if args[0] == "calibrate-loaded-loss" {
+        return transduction::calibration::run(&args);
+    }
     if args[0] == "electromechanical-render" {
         return transduction::render(&args);
     }

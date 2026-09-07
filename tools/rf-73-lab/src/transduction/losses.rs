@@ -110,12 +110,21 @@ fn heat(b: ElectromechanicalProbe, structural: [f64; 4]) -> [f64; 12] {
         b.load_heat_j,
     ]
 }
-struct Take {
-    samples: Vec<f64>,
-    report: Value,
+pub(super) struct Take {
+    pub(super) samples: Vec<f64>,
+    pub(super) report: Value,
 }
 fn take(position: f64, case: usize, steps: usize) -> Result<Take, Box<dyn Error>> {
-    let p = profile(position, case);
+    take_profile(profile(position, case), steps, 1.5)
+}
+pub(super) fn take_profile(
+    p: ElectromechanicalProfile,
+    steps: usize,
+    speed: f64,
+) -> Result<Take, Box<dyn Error>> {
+    if ![128, 256].contains(&steps) || !speed.is_finite() || !(0.1..=2.0).contains(&speed) {
+        return Err("invalid loss-render resolution or speed".into());
+    }
     let h = 1.0 / (f64::from(RATE) * steps as f64);
     let mut model = ElectromechanicalAssembly::new_at_rest(h, p)?;
     let observer = LossObserver::new(model.structural_damping_matrix())?;
@@ -145,7 +154,7 @@ fn take(position: f64, case: usize, steps: usize) -> Result<Take, Box<dyn Error>
             } else {
                 p.action.hammer_rest_m
             };
-            x += (target - x).clamp(-1.5 * h, 1.5 * h);
+            x += (target - x).clamp(-speed * h, speed * h);
             model.advance(x, p.action.damper_closed_m)?;
             let b = model.probe();
             if onset.is_none() && b.mechanical.contact_entries[0] > 0 {
@@ -220,12 +229,13 @@ fn take(position: f64, case: usize, steps: usize) -> Result<Take, Box<dyn Error>
         .fold(0.0_f64, f64::max);
     let clip = AudioClip::from_samples(RATE, samples.clone())?;
     let anchor = pitch_anchor(&clip, 55)?;
-    let frequency = anchor.frequency_hz.ok_or("loss study pitch unavailable")?;
-    let timbre = measure_timbre_profile(
-        &clip,
-        onset.ok_or("loss study produced no impact")? + 63.0 / (48000.0 * 4.0),
-        frequency,
-    )?;
+    let timbre = anchor
+        .frequency_hz
+        .zip(onset)
+        .map(|(frequency, onset)| {
+            measure_timbre_profile(&clip, onset + 63.0 / (48000.0 * 4.0), frequency)
+        })
+        .transpose()?;
     let passed = balance < 1e-8
         && exchange < 1e-10
         && split_defect < 1e-10
@@ -233,7 +243,7 @@ fn take(position: f64, case: usize, steps: usize) -> Result<Take, Box<dyn Error>
         && quiet < 1e-10
         && peak > 0.0
         && peak < 1.0
-        && timbre.qualified
+        && timbre.as_ref().is_some_and(|t| t.qualified)
         && snapshots.iter().all(|w| w["passed"] == true)
         && old.mechanical.contact_entries[0] == 1;
     Ok(Take {
@@ -244,7 +254,7 @@ fn take(position: f64, case: usize, steps: usize) -> Result<Take, Box<dyn Error>
         "pitch_anchor":anchor,"timbre":timbre,"windows":snapshots}),
     })
 }
-fn convergence(a: &Take, b: &Take) -> Value {
+pub(super) fn convergence(a: &Take, b: &Take) -> Value {
     let windows:Vec<_>=[(0,14400),(14400,28800),(28800,57600),(57600,86400)].into_iter().map(|(lo,hi)| {
         let e=a.samples[lo..hi].iter().zip(&b.samples[lo..hi]).map(|(a,b)|(a-b).powi(2)).sum::<f64>();
         let s=b.samples[lo..hi].iter().map(|x|x*x).sum::<f64>();

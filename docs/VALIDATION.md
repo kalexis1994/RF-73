@@ -2501,3 +2501,35 @@ SHA-256 `8b316a3f1a47555db48f5c7ce7ed5507afe037411d096699f230b8f0225edfcb`.
 Verification passes 129 DSP tests, 112 lab unit tests, seven loaded CLI/receipt
 checks, strict Clippy and formatting. The project reuses its release cache and
 does not produce a new playable version or claim a host/listening test.
+
+## Conditional loaded sustain calibration
+
+The [loss calibration grid](LOADED-LOSS-CALIBRATION.md) changes only the first
+tine-mode damping and the support damping pair, with unchanged spring fit and
+upper-mode losses. The first strict run failed frequency observation at the
+lowest-damping corner and its receipt is preserved. An explicit qualified-grid
+follow-up retains all nine points, including three withheld observations with
+a competing output peak near 225 Hz; six candidates receive training scores.
+Pitch and energy thresholds are unchanged.
+
+Training layers 1/3/5 select first-tine T60 30 s and original support damping.
+The selected point is on the grid edge and two alternatives lie within 0.25 dB
+training RMS. Reserved layers 2/4 are evaluated after selection and cannot
+rerank it. Training RMS falls from 8.051992 to 1.226638 dB and reserved RMS from
+8.498277 to 0.986501 dB. The baseline report and source observations reproduce
+their preceding receipts exactly.
+
+All six selected takes at three drive speeds qualify. Worst relative voltage
+RMSE is 2.869e-5, energy defect 1.567e-12, structural split defect 4.203e-14 and
+exchange defect 1.462e-18. All fifteen source pairs meet the 3 dB sustain gate
+in the two fitted windows; all fifteen fail separate spectral agreement, with
+maximum available band differences ranging 12.85–51.64 dB across pairs. The
+bank's processing, prior exposure and parameter ambiguity preclude a claim of
+identified physical materials or a completed instrument.
+
+The qualified receipt is 423961 bytes, SHA-256
+`708fb7e58b16bdfc8def13942e29861aeef32424d380c20f2cd5a707e7d56a81`.
+One medium sustain WAV is retained and reads back as 86,400 finite samples at
+48 kHz. The protocol lists its hash and the preserved failed receipt. Verification
+passes 114 lab unit tests, nine loaded CLI/receipt tests, strict Clippy and
+formatting. The selected preset remains offline, with no production default change.

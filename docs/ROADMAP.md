@@ -55,11 +55,19 @@ not only parameter-identification diagnostics:
    the support intervention improves it by 1.39 dB. Felt contact is absent after
    300 ms in every case. The remaining bank mismatch is explicit.
 
-Next calibrate tine losses, then support dissipation, with held-out output and
-spectral checks. Do not treat the diagnostic doubled T60 values as identified
-materials. Retain the physical non-striking threshold and separate bank
-processing from parameter inference. A computational reduction suitable for
-the playable plugin remains necessary.
+9. **Conditional sustain calibration:** the [training-only grid](LOADED-LOSS-CALIBRATION.md)
+   keeps six eligible candidates and three rejected frequency observations. The
+   selected first-tine T60 is 30 s with unchanged support losses. Reserved-layer
+   RMS level error falls from 8.50 to 0.99 dB. Six cross-speed takes qualify and
+   all 15 sustain pairs meet the 3 dB criterion, while all 15 retain spectral
+   mismatch. Selection is on a grid boundary and two alternatives score nearby;
+   this does not identify unique material constants.
+
+Next address attack and spectral balance using physical excitation and pickup
+controls, preserving the loss uncertainty and qualifying release/repetition
+before adopting a candidate. Retain the physical non-striking threshold and
+separate bank processing from parameter inference. A computational reduction
+suitable for the playable plugin remains necessary.
 
 Measured material/geometry calibration, listening and realtime integration
 remain cross-cutting release gates. The current damper is not a calibrated

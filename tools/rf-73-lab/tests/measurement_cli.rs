@@ -10,6 +10,125 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_calibration_receipt_selects_training_minimum_and_preserves_validation() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let failed = read("loaded-loss-calibration-validation.json");
+    assert_eq!(failed["measurement_qualified"], false);
+    assert_eq!(failed["reason"], "loss study pitch unavailable");
+    let r = read("loaded-loss-calibration-qualified-validation.json");
+    assert_eq!(r["qualified_grid_followup"], true);
+    let prior = read("loaded-source-rest-validation.json");
+    assert_eq!(r["measurement_qualified"], true);
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["reference_match_claimed"], false);
+    assert_eq!(r["sources"], prior["sources"]);
+    assert_eq!(r["manifest"], prior["manifest"]);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let grid = r["grid"].as_array().unwrap();
+    assert_eq!(grid.len(), 9);
+    let best = grid
+        .iter()
+        .filter_map(|x| x["training_rms_db"].as_f64())
+        .fold(f64::INFINITY, f64::min);
+    assert_eq!(
+        best,
+        r["selected"]["training_coarse_rms_db"].as_f64().unwrap()
+    );
+    let selected = grid
+        .iter()
+        .find(|x| {
+            x["tine_loss_scale"] == r["selected"]["tine_loss_scale"]
+                && x["support_loss_scale"] == r["selected"]["support_loss_scale"]
+        })
+        .unwrap();
+    assert_eq!(selected["take"]["passed"], true);
+    for row in grid {
+        if row["take"]["passed"] != true {
+            assert!(row["training_rms_db"].is_null());
+        }
+    }
+    assert_eq!(
+        selected["training_rms_db"],
+        r["selected"]["training_coarse_rms_db"]
+    );
+    assert_eq!(r["gestures"].as_array().unwrap().len(), 3);
+    assert_eq!(r["comparisons"].as_array().unwrap().len(), 15);
+    for g in r["gestures"].as_array().unwrap() {
+        assert_eq!(g["qualified"], true);
+        assert_eq!(g["convergence"]["passed"], true);
+        for take in g["takes"].as_array().unwrap() {
+            assert_eq!(take["passed"], true);
+            assert_eq!(take["initial_position"], r["baseline"]["initial_position"]);
+        }
+    }
+    // Recompute role-specific scores from retained observations, without the fitter.
+    let fine = &r["gestures"][0]["takes"][1]["timbre"];
+    for (role, key) in [
+        ("training", "training_fine_rms_db"),
+        ("validation", "validation_fine_rms_db"),
+    ] {
+        let mut sum = 0.0;
+        let mut n = 0;
+        for s in r["sources"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter(|s| s["role"] == role)
+        {
+            for i in [3, 4] {
+                sum += (s["profile"]["windows"][i]["level_relative_to_body_db"]
+                    .as_f64()
+                    .unwrap()
+                    - fine["windows"][i]["level_relative_to_body_db"]
+                        .as_f64()
+                        .unwrap())
+                .powi(2);
+                n += 1;
+            }
+        }
+        assert!(((sum / n as f64).sqrt() - r["selected"][key].as_f64().unwrap()).abs() < 1e-12);
+    }
+}
+
+#[test]
+fn loaded_calibration_cli_requires_verified_inputs_and_new_outputs() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"keep").unwrap();
+    fs::write(scratch.0.join("keep.wav"), b"keep").unwrap();
+    for args in [
+        vec!["calibrate-loaded-loss"],
+        vec![
+            "calibrate-loaded-loss",
+            "missing.json",
+            "--output",
+            "keep.json",
+        ],
+        vec![
+            "calibrate-loaded-loss",
+            "missing.json",
+            "--output",
+            "bad.json",
+            "--preview",
+            "keep.wav",
+        ],
+        vec![
+            "calibrate-loaded-loss",
+            "missing.json",
+            "--output",
+            "bad.json",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"keep");
+    assert_eq!(fs::read(scratch.0.join("keep.wav")).unwrap(), b"keep");
+    assert!(!scratch.0.join("bad.json").exists());
+}
+
+#[test]
 fn loaded_loss_receipt_closes_independent_channels_and_preserves_baseline() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {
