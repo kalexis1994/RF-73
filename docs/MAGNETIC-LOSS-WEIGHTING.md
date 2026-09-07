@@ -115,3 +115,7 @@ independent noise realizations before attaching coverage or confidence to
 any local radius. The mixed 20 dB recovery and supplied sensor geometry remain
 limitations; these results do not authorize fitting a real recording as if its
 physical parameters were uniquely identified.
+
+The [weighted local-resolution study](WEIGHTED-MAGNETIC-LOSS-RESOLUTION.md)
+now replays all 30 estimates with matching voltage weights. It preserves the
+unselected iteration limit above and withholds that row's descriptive radius.

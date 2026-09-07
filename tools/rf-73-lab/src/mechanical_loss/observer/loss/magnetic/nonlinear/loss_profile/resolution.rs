@@ -1,4 +1,5 @@
 //! Local profiled prediction distances around pinned noisy loss estimates.
+pub mod weighted;
 use super::*;
 use serde::Deserialize;
 use std::{
@@ -21,6 +22,7 @@ pub(super) const SOURCE_SHA256: &str =
 struct Source {
     schema_version: u32,
     experiment: String,
+    weighting: Option<String>,
     cases: Vec<SourceCase>,
 }
 #[derive(Deserialize)]
@@ -38,9 +40,20 @@ struct SourceRow {
 struct SourceFit {
     estimated_scales: [f64; 2],
     training_relative_rmse: f64,
+    selected_loss_start_index: usize,
+    attempts: Vec<SourceAttempt>,
+}
+
+#[derive(Deserialize, Serialize)]
+struct SourceAttempt {
+    status: Option<String>,
 }
 
 pub(super) fn pinned_bytes(path: &Path) -> Result<Vec<u8>, Box<dyn Error>> {
+    pinned_bytes_for(path, SOURCE_BLOB)
+}
+
+fn pinned_bytes_for(path: &Path, expected_blob: &str) -> Result<Vec<u8>, Box<dyn Error>> {
     let mut bytes = Vec::new();
     File::open(path)?.take(8_000_001).read_to_end(&mut bytes)?;
     if bytes.len() > 8_000_000 {
@@ -58,7 +71,7 @@ pub(super) fn pinned_bytes(path: &Path) -> Result<Vec<u8>, Box<dyn Error>> {
         .ok_or("missing receipt hash pipe")?
         .write_all(&bytes)?;
     let result = child.wait_with_output()?;
-    if !result.status.success() || String::from_utf8(result.stdout)?.trim() != SOURCE_BLOB {
+    if !result.status.success() || String::from_utf8(result.stdout)?.trim() != expected_blob {
         return Err("loss receipt does not match pinned evidence".into());
     }
     Ok(bytes)
@@ -115,6 +128,16 @@ fn sensitivity(columns: &[Vec<f64>; 2]) -> Result<Sensitivity, Box<dyn Error>> {
     })
 }
 fn residual_in_voltage(profile: &Profile<'_>, c: &Candidate) -> Vec<f64> {
+    if profile.weighting == Weighting::ConstantVoltage {
+        let norm = profile
+            .training
+            .iter()
+            .flatten()
+            .map(|y| y * y)
+            .sum::<f64>()
+            .sqrt();
+        return c.residual.iter().map(|r| r * norm).collect();
+    }
     let mut result = Vec::with_capacity(c.residual.len());
     let mut offset = 0;
     for y in &profile.training {
@@ -247,17 +270,32 @@ fn diagnose(
     } else {
         None
     };
-    Ok(
-        json!({"center_scales":center.scales,"center_evaluation_index":center.evaluation_index,"center_training_relative_rmse":center.objective.sqrt(),
+    let mut report = json!({"center_scales":center.scales,"center_evaluation_index":center.evaluation_index,"center_training_relative_rmse":center.objective.sqrt(),
         "source_training_rmse_absolute_difference":replay,"center_replayed":replay<1e-8,
         "relative_window_profile_singular_values":weighted.singular_values,"raw_voltage_profile_singular_values":voltage.singular_values,
         "weak_log_scale_direction":voltage.weak_direction,"minimum_to_maximum_raw_singular_ratio":voltage.singular_values[1]/voltage.singular_values[0],
         "oracle_noise_scaled_singular_values":noise_singular,"linearized_log_radius_for_one_noise_unit":radius,
-        "noise_resolution_status":if sigma>0.0{"descriptive_oracle_distance"}else{"withheld_no_noise_scale"},"alternatives":alternatives}),
-    )
+        "noise_resolution_status":if sigma>0.0{"descriptive_oracle_distance"}else{"withheld_no_noise_scale"},"alternatives":alternatives});
+    if profile.weighting == Weighting::ConstantVoltage {
+        report
+            .as_object_mut()
+            .unwrap()
+            .remove("relative_window_profile_singular_values");
+        report["pooled_relative_profile_singular_values"] = json!(weighted.singular_values);
+        report["training_voltage_l2_norm"] = json!(
+            profile
+                .training
+                .iter()
+                .flatten()
+                .map(|y| y * y)
+                .sum::<f64>()
+                .sqrt()
+        );
+    }
+    Ok(report)
 }
 
-fn study(input: &Source) -> Result<Value, Box<dyn Error>> {
+fn study(input: &Source, weighting: Weighting) -> Result<Value, Box<dyn Error>> {
     let p = prepare(perturbations()[0])?;
     let sensor = sensors()?
         .into_iter()
@@ -318,13 +356,16 @@ fn study(input: &Source) -> Result<Value, Box<dyn Error>> {
                 sensor,
                 rate,
                 training: core::array::from_fn(|i| measured[i][..measured[i].len() / 2].to_vec()),
-                weighting: Weighting::RelativeWindows,
+                weighting,
                 evaluations: Vec::new(),
             };
-            let diagnosis = match diagnose(&mut profile, row, sigma) {
+            let mut diagnosis = match diagnose(&mut profile, row, sigma) {
                 Ok(v) => v,
                 Err(e) => json!({"error":e.to_string()}),
             };
+            if weighting == Weighting::ConstantVoltage {
+                weighted::qualify(&mut diagnosis, row, &profile.evaluations, sigma);
+            }
             rows.push(json!({"source_row_index":row_index,"snr_db":row.snr_db,"seed":row.seed,"noise_standard_deviation":sigma,
                 "diagnosis":diagnosis,"profile_evaluations":profile.evaluations}));
         }
@@ -352,7 +393,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         return Err("output must be a new .json file".into());
     }
     let input = source(Path::new(&args[2]))?;
-    let report = study(&input)?;
+    let report = study(&input, Weighting::RelativeWindows)?;
     crate::analysis::write_report(output, &report)?;
     if report["controls_passed"] != true {
         return Err("loss resolution study retained failed replay controls".into());
@@ -364,6 +405,47 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn pooled_residual_restores_voltage_with_unequal_window_energies() {
+        let p = prepare(perturbations()[0]).unwrap();
+        let sensor = sensors().unwrap()[0];
+        let t = templates(&p.spectrum, &p.structural, &p.damper, 1.0, 1.0, 48000).unwrap();
+        let measured = [vec![2.0; 20], vec![5.0; 60]];
+        let data = Training::weighted(&t, &measured, Weighting::ConstantVoltage).unwrap();
+        let c = Candidate {
+            scales: [1.0, 1.0],
+            state: vec![0.0; 18],
+            residual: data.residual(sensor, &[0.0; 18]),
+            objective: 1.0,
+            evaluation_index: 0,
+        };
+        let profile = Profile {
+            spectrum: &p.spectrum,
+            structural: &p.structural,
+            damper: &p.damper,
+            sensor,
+            rate: 48000,
+            training: measured.clone(),
+            weighting: Weighting::ConstantVoltage,
+            evaluations: Vec::new(),
+        };
+        let voltage = residual_in_voltage(&profile, &c);
+        for (a, b) in voltage.iter().zip(measured.iter().flatten()) {
+            assert!((a - b).abs() < 1e-12);
+        }
+        let norm = (20.0_f64 * 4.0 + 60.0 * 25.0).sqrt();
+        let normalized = [vec![0.4, 0.1, 0.2], vec![0.3, -0.2, 0.5]];
+        let raw = normalized
+            .clone()
+            .map(|v| v.iter().map(|x| x * norm).collect());
+        let a = sensitivity(&normalized).unwrap();
+        let b = sensitivity(&raw).unwrap();
+        for j in 0..2 {
+            assert!((a.singular_values[j] * norm / b.singular_values[j] - 1.0).abs() < 1e-12);
+            assert!((a.weak_direction[j] - b.weak_direction[j]).abs() < 1e-12);
+        }
+    }
+
     #[test]
     fn profiled_residual_unweighting_restores_each_training_window_voltage() {
         let p = prepare(perturbations()[0]).unwrap();

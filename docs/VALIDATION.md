@@ -2165,3 +2165,29 @@ optimum. All 102 unit tests, two weighting CLI/receipt checks, the existing
 end-to-end resolution regression, strict Clippy and formatting pass. The old
 expensive outer noise matrix is reused rather than rerun. Development cache
 was cleaned; no production DSP, audio asset or host change is part of this run.
+
+## Local resolution under constant-voltage weights
+
+The [weighted resolution protocol](WEIGHTED-MAGNETIC-LOSS-RESOLUTION.md) and
+[receipt](../references/nonlinear-magnetic-weighted-loss-resolution-validation.json)
+replay 30 centers from pinned weighting evidence, with maximum absolute RMSE
+difference below `3.990e-17`. The common normalization relates raw and pooled
+singular values within `7.106e-15` relative discrepancy. There are 330 successful
+candidate refits, 990 inner starts and 300 alternatives; all alternatives
+increase the center objective and no new local start reaches its budget.
+
+At 20 dB, 42 approximately 1% alternatives have descriptive voltage distance
+D<1: 24 structural alternatives across all 12 cases and 18 damper alternatives
+across nine cases. None does at 40 dB; no 5% alternative does at either level.
+This remains an oracle noise-distance diagnostic, not a statistical test.
+Radii are reported for 23 noisy rows and withheld for six noiseless rows and
+one 40 dB row whose prior unselected outer start reached its iteration limit.
+The corresponding raw sensitivity and signal distances remain available.
+
+Receipt schema 1, `nonlinear-magnetic-weighted-loss-resolution-v1`, 591705 bytes,
+SHA-256 `a0666500489a5ee289dc99a0241209d88217d51800688768734075c00599f948`.
+Source blob `72ef1d0838548765e3955eaf673da4ed82ad0494` is verified before
+simulation. All 105 unit tests, the new end-to-end weighted resolution CLI
+check and strict Clippy pass. The earlier relative-window resolution command
+is regression-tested separately. No outer loss search or production DSP,
+preset, audio asset or host change is included.

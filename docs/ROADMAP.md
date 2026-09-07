@@ -518,3 +518,12 @@ not resolve physical ambiguity. One unselected outer start reaches its fixed
 iteration budget and remains recorded. Next align the local-resolution study
 with the new objective, then qualify independent-noise coverage and sensor
 uncertainty before source calibration.
+
+The [weighted local-resolution study](WEIGHTED-MAGNETIC-LOSS-RESOLUTION.md)
+now aligns profile sensitivity with the constant-voltage inverse. All 30
+centers replay; 330 local candidates succeed. At 20 dB, 24 structural and 18
+damper approximately 1% alternatives have descriptive signal distance D<1;
+none does at 40 dB. There are 23 descriptive radii, six zero-noise withholdings
+and one withheld for the prior unselected outer iteration limit. Next test
+independent noise realizations and estimator dispersion before assigning
+coverage or using the diagnostics for recorded-source calibration.

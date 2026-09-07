@@ -10,6 +10,179 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn magnetic_weighted_loss_resolution_replays_and_qualifies_every_start() {
+    let scratch = Scratch::new();
+    let source = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../references/nonlinear-magnetic-loss-weighting-validation.json");
+    let bytes = fs::read(source).unwrap();
+    fs::write(scratch.0.join("source.json"), &bytes).unwrap();
+    let args = [
+        "magnetic-weighted-loss-resolution",
+        "--input",
+        "source.json",
+        "--output",
+        "resolution.json",
+    ];
+    scratch.success(&args);
+    let report = scratch.json("resolution.json");
+    let source: serde_json::Value = serde_json::from_slice(&bytes).unwrap();
+    assert_eq!(
+        report["experiment"],
+        "nonlinear-magnetic-weighted-loss-resolution-v1"
+    );
+    assert_eq!(report["weighting"], "constant_voltage");
+    assert_eq!(
+        report["source_git_blob_sha1"],
+        "72ef1d0838548765e3955eaf673da4ed82ad0494"
+    );
+    assert_eq!(report["controls_passed"], true);
+    assert_eq!(report["cases"].as_array().unwrap().len(), 6);
+    let mut zero_noise = 0;
+    let mut source_limited = 0;
+    for (ci, case) in report["cases"].as_array().unwrap().iter().enumerate() {
+        assert_eq!(case["sample_rate"], source["cases"][ci]["sample_rate"]);
+        assert_eq!(case["observations"].as_array().unwrap().len(), 5);
+        for (ri, row) in case["observations"].as_array().unwrap().iter().enumerate() {
+            let d = &row["diagnosis"];
+            let old = &source["cases"][ci]["observations"][ri];
+            assert_eq!(d["center_replayed"], true);
+            assert!(
+                d["source_training_rmse_absolute_difference"]
+                    .as_f64()
+                    .unwrap()
+                    < 1e-8
+            );
+            assert!(d["relative_window_profile_singular_values"].is_null());
+            let norm = d["training_voltage_l2_norm"].as_f64().unwrap();
+            for i in 0..2 {
+                let normalized = d["pooled_relative_profile_singular_values"][i]
+                    .as_f64()
+                    .unwrap();
+                let raw = d["raw_voltage_profile_singular_values"][i]
+                    .as_f64()
+                    .unwrap();
+                assert!((normalized * norm / raw - 1.0).abs() < 1e-10);
+                let a = d["center_scales"][i].as_f64().unwrap();
+                let b = old["fit"]["estimated_scales"][i].as_f64().unwrap();
+                assert!((a / b - 1.0).abs() < 1e-14);
+            }
+            let qualification = &d["optimizer_qualification"];
+            assert_eq!(qualification["global_optimum_certified"], false);
+            assert_eq!(
+                qualification["selected_source_outer_start_index"],
+                old["fit"]["selected_loss_start_index"]
+            );
+            let incomplete = old["fit"]["attempts"].as_array().unwrap().iter().any(|a| {
+                !matches!(
+                    a["status"].as_str(),
+                    Some("residual_converged" | "no_descent_step")
+                )
+            });
+            assert_eq!(qualification["source_all_starts_complete"], !incomplete);
+            let sigma = row["noise_standard_deviation"].as_f64().unwrap();
+            if sigma == 0.0 {
+                zero_noise += 1;
+                assert_eq!(d["local_radius_status"], "withheld_no_noise_scale");
+                assert!(d["oracle_noise_scaled_singular_values"].is_null());
+                assert!(d["linearized_log_radius_for_one_noise_unit"].is_null());
+            } else if incomplete {
+                source_limited += 1;
+                assert_eq!(d["local_radius_status"], "withheld_incomplete_optimizer");
+                assert!(d["linearized_log_radius_for_one_noise_unit"].is_null());
+            } else if d["local_radius_status"] == "descriptive_local_radius" {
+                assert_eq!(qualification["local_all_starts_complete"], true);
+                assert_eq!(qualification["all_alternatives_non_improving"], true);
+                let radius = d["linearized_log_radius_for_one_noise_unit"]
+                    .as_f64()
+                    .unwrap();
+                let small = d["raw_voltage_profile_singular_values"][1]
+                    .as_f64()
+                    .unwrap();
+                assert!((radius * small / sigma - 1.0).abs() < 1e-12);
+            } else {
+                assert!(d["linearized_log_radius_for_one_noise_unit"].is_null());
+            }
+            let evaluations = row["profile_evaluations"].as_array().unwrap();
+            assert_eq!(evaluations.len(), 11);
+            for e in evaluations {
+                let starts = e["state_starts"].as_array().unwrap();
+                assert_eq!(starts.len(), 3);
+                let selected = e["selected_state_start_index"].as_u64().unwrap() as usize;
+                let best = starts[selected]["training_relative_rmse"].as_f64().unwrap();
+                assert!(
+                    starts
+                        .iter()
+                        .all(|s| best <= s["training_relative_rmse"].as_f64().unwrap())
+                );
+            }
+            let alternatives = d["alternatives"].as_array().unwrap();
+            assert_eq!(alternatives.len(), 10);
+            for a in alternatives {
+                let i = a["evaluation_index"].as_u64().unwrap() as usize;
+                assert_eq!(a["scales"], evaluations[i]["scales"]);
+                assert_eq!(a["training_objective"], evaluations[i]["objective"]);
+                if sigma > 0.0 {
+                    let distance = a["prediction_change_voltage_l2"].as_f64().unwrap() / sigma;
+                    assert!(
+                        (a["oracle_noise_scaled_prediction_distance"]
+                            .as_f64()
+                            .unwrap()
+                            / distance
+                            - 1.0)
+                            .abs()
+                            < 1e-12
+                    );
+                    assert_eq!(a["within_one_noise_unit"], distance < 1.0);
+                } else {
+                    assert!(a["oracle_noise_scaled_prediction_distance"].is_null());
+                    assert!(a["within_one_noise_unit"].is_null());
+                }
+            }
+        }
+    }
+    assert_eq!(zero_noise, 6);
+    assert_eq!(source_limited, 1);
+    let before = fs::read(scratch.0.join("resolution.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(before, fs::read(scratch.0.join("resolution.json")).unwrap());
+    let mut modified = bytes.clone();
+    modified.push(b' ');
+    fs::write(scratch.0.join("modified.json"), modified).unwrap();
+    let out = scratch.run(&[
+        "magnetic-weighted-loss-resolution",
+        "--input",
+        "modified.json",
+        "--output",
+        "bad.json",
+    ]);
+    assert!(!out.status.success());
+    assert!(String::from_utf8_lossy(&out.stderr).contains("pinned evidence"));
+    assert!(!scratch.0.join("bad.json").exists());
+    assert_eq!(fs::read(scratch.0.join("source.json")).unwrap(), bytes);
+    for args in [
+        vec!["magnetic-weighted-loss-resolution"],
+        vec![
+            "magnetic-weighted-loss-resolution",
+            "--input",
+            "source.json",
+            "--output",
+            "bad.wav",
+        ],
+        vec![
+            "magnetic-weighted-loss-resolution",
+            "--bad",
+            "source.json",
+            "--output",
+            "bad.json",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn magnetic_loss_weighting_preflights_output_and_pinned_input() {
     let scratch = Scratch::new();
     fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
