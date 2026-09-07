@@ -9,7 +9,7 @@ const REPEATS: [usize; 2] = [10080, 21600]; // 60/300 ms after first release.
 const NAMES: [&str; 3] = ["baseline", "return_damping_0_1", "pedestal_rate_loss_10"];
 const PHASES: [&str; 4] = ["first", "recovery", "second", "second_release"];
 
-fn profile(position: f64, case: usize) -> ElectromechanicalProfile {
+pub(super) fn profile(position: f64, case: usize) -> ElectromechanicalProfile {
     let mut p = voicing::profile(position, 0);
     match case {
         1 => p.action.hammer_return_n_s_m = 0.1,
@@ -116,6 +116,24 @@ fn take(
     speed: f64,
     repeat: usize,
 ) -> Result<bridle::Take, Box<dyn Error>> {
+    take_observed(p, steps, speed, repeat, |_, _, _, _, _| {})
+}
+pub(super) fn take_observed(
+    p: ElectromechanicalProfile,
+    steps: usize,
+    speed: f64,
+    repeat: usize,
+    mut observe: impl FnMut(
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        f64,
+        f64,
+    ),
+) -> Result<bridle::Take, Box<dyn Error>> {
+    if !REPEATS.contains(&repeat) {
+        return Err("unsupported repetition onset".into());
+    }
     let frames = repeat + 9120; // 120 ms second hold and 70 ms release observation.
     let h = 1.0 / (48000.0 * steps as f64);
     let mut segments: [Segment; 4] = std::array::from_fn(|_| Segment::default());
@@ -159,6 +177,7 @@ fn take(
                 }
             }
             tick += 1;
+            observe(initial, a, b, t, h);
         },
     )?;
     let reports: Vec<Value> = segments
@@ -207,7 +226,7 @@ fn take(
             "max_velocity_m_s":old_function["return_max_velocity_m_s"],"felt_contact_fraction":old_function["return_felt_contact_fraction"]}});
     Ok(result)
 }
-fn convergence(a: &bridle::Take, b: &bridle::Take, repeat: usize) -> Value {
+pub(super) fn convergence(a: &bridle::Take, b: &bridle::Take, repeat: usize) -> Value {
     let boundaries = [1440, 7200, repeat, repeat + 5760, b.velocities.len()];
     let mut velocities = Vec::new();
     for window in boundaries.windows(2) {

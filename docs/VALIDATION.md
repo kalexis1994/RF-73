@@ -2733,3 +2733,34 @@ SHA-256 `59c569cd6829e9a64c0c7d652be1a13078989deb128829710cdaf0151402813e`.
 Verification passes 126 lab unit tests, 21 loaded CLI/receipt tests, strict
 Clippy and formatting. The release cache remains approximately 195 MiB;
 no new audio renders or production changes are introduced.
+
+## Loaded launch momentum and work
+
+The [launch study](LOADED-LAUNCH.md) replays all 24 repetition takes and
+observes the first 20 ms of both key-downs. All twelve pairs and 48 launch
+ledgers qualify. The original reports reproduce exactly after removing the
+added launch evidence. The 448 retained force transitions refine per port;
+no event-cap overflows occur.
+
+Independent signed pedestal, bridle, contact, spring and damper impulses
+reconstruct hammer momentum including its incoming motion. Incoming kinetic
+energy, signed work, return heat and spring storage reconstruct pre-impact
+kinetic energy. Maximum relative momentum defect is 2.447e-13 and work
+defect 1.089e-12. Maximum impulse-component refinement error is 0.001950%,
+work-term error 0.001738% and event-time difference 0.245 microseconds.
+
+The baseline soft first strike peaks at 1.548136 m/s but reaches the tine at
+0.106164 m/s, following pedestal departure, re-entry and bridle transfer.
+The short-wait repeated pre-impact kinetic increase of 0.613032 mJ includes
+only 0.044370 mJ of incoming kinetic energy, plus a 0.701499 mJ increase in
+pedestal work and other signed changes. The long-wait incoming hammer moves
+backward but still produces greater pre-impact speed. The energy and momentum
+identities locate the changed work/impulse contributions; they do not isolate
+coupled states as independent causal interventions. Functional repetition and
+first-attack limitations remain unchanged.
+
+Receipt: `references/loaded-launch-validation.json`, 1967153 bytes,
+SHA-256 `416648f1977712f75beb73f92172634fe3211106967e8eb1c65bc837ce4ba01a`.
+Verification passes 127 lab unit tests, 23 loaded CLI/receipt tests, strict
+Clippy and formatting. No new audio or default changes are introduced;
+release cache remains approximately 195 MiB.

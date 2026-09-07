@@ -105,6 +105,11 @@ mechanical and electrical state through a second key gesture. It separates
 action readiness, repeated impact consistency, unwanted contacts and felt
 lift at two recovery intervals.
 
+The [launch work and momentum study](docs/LOADED-LAUNCH.md) reconstructs the
+hammer's first and repeated pre-impact states from incoming motion, signed
+force impulses, contact work, spring storage and heat. Contact sequences
+remain visible alongside the unchanged repetition measurements.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

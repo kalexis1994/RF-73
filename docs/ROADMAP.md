@@ -129,8 +129,20 @@ not only parameter-identification diagnostics:
     of 13.51 and 6.71. Readiness passes only in the long-wait return-damping
     control, so settling alone cannot stand in for repetition testing.
 
-Next isolate pedestal/bridle launch work and incoming-state sensitivity around
-the soft-strike threshold. Address first-strike regulation while retaining
+16. **Launch work and momentum:** the [launch study](LOADED-LAUNCH.md)
+    replays the repetition matrix with independent force impulses and work
+    ledgers over the first 20 ms of each key-down. Incoming momentum and
+    kinetic/spring energy are retained. Per-port contact sequences and
+    pre-impact differences separate the accounting of received work from
+    residual motion without claiming independent causal state interventions.
+    All 24 takes reproduce the previous experiment exactly. The baseline
+    soft first strike peaks at 1.548 m/s but reaches impact at 0.106 m/s,
+    after pedestal separation, re-entry and bridle work. Its short-wait
+    repeated kinetic-energy increase is 0.613 mJ, only 0.044 mJ of which
+    is incoming kinetic energy; changed contact work remains essential.
+
+Next qualify pedestal release/re-entry and the end of prescribed drive travel
+before changing first-strike launch regulation, while retaining
 the successful repetition controls before adopting a candidate. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction

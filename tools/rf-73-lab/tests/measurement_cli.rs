@@ -10,6 +10,183 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_launch_receipt_replays_repetition_and_closes_momentum_and_work() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-launch-validation.json");
+    let prior = read("loaded-repetition-validation.json");
+    assert_eq!(r["experiment"], "loaded-launch-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 3);
+    for (case, old_case) in cases.iter().zip(prior["cases"].as_array().unwrap()) {
+        assert_eq!(case["name"], old_case["name"]);
+        let mass = case["settings"]["hammer_mass_kg"].as_f64().unwrap();
+        let rows = case["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 4);
+        for (row, old) in rows.iter().zip(old_case["rows"].as_array().unwrap()) {
+            assert_eq!(row["speed_m_s"], old["speed_m_s"]);
+            assert_eq!(
+                row["release_to_repeat_seconds"],
+                old["release_to_repeat_seconds"]
+            );
+            assert_eq!(row["measurement_qualified"], true);
+            assert_eq!(row["convergence"], old["convergence"]);
+            assert_eq!(row["launch_convergence"]["passed"], true);
+            for (take, old_take) in row["takes"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .zip(old["takes"].as_array().unwrap())
+            {
+                let mut replay = take.clone();
+                replay.as_object_mut().unwrap().remove("launches");
+                assert_eq!(replay, *old_take);
+                let launches = take["launches"].as_array().unwrap();
+                assert_eq!(launches.len(), 2);
+                for (i, launch) in launches.iter().enumerate() {
+                    assert_eq!(launch["passed"], true);
+                    assert_eq!(launch["overflow"], false);
+                    assert!(launch["max_relative_momentum_defect"].as_f64().unwrap() < 1e-8);
+                    assert!(
+                        launch["work_defects"]
+                            .as_array()
+                            .unwrap()
+                            .iter()
+                            .all(|d| d.as_f64().unwrap() < 1e-8)
+                    );
+                    assert!(
+                        (launch["end_seconds"].as_f64().unwrap()
+                            - launch["start_seconds"].as_f64().unwrap()
+                            - 0.02)
+                            .abs()
+                            < 1e-15
+                    );
+                    let initial = &launch["initial"];
+                    let h0 = &initial["hammer"];
+                    for key in ["initial", "before_contact", "end"] {
+                        let snapshot = &launch[key];
+                        let h = &snapshot["hammer"];
+                        let terms = snapshot["kinetic_work_terms_j"].as_array().unwrap();
+                        assert_eq!(terms.len(), 6);
+                        let impulses = snapshot["impulse_components_n_s"].as_array().unwrap();
+                        assert_eq!(impulses.len(), 5);
+                        let sum: f64 = terms.iter().map(|x| x.as_f64().unwrap()).sum();
+                        assert!((sum - h["hammer_kinetic_j"].as_f64().unwrap()).abs() < 1e-10);
+                        let momentum = snapshot["initial_momentum_n_s"].as_f64().unwrap()
+                            + impulses.iter().map(|x| x.as_f64().unwrap()).sum::<f64>();
+                        assert!(
+                            (momentum - mass * h["hammer_velocity_m_s"].as_f64().unwrap()).abs()
+                                < 1e-10
+                        );
+                        assert!(
+                            (snapshot["momentum_n_s"].as_f64().unwrap()
+                                - mass * h["hammer_velocity_m_s"].as_f64().unwrap())
+                            .abs()
+                                < 1e-15
+                        );
+                        assert_eq!(terms[0], h0["hammer_kinetic_j"]);
+                        let expected = [
+                            h["pedestal_to_hammer_work_j"].as_f64().unwrap(),
+                            -h["hammer_to_bridle_work_j"].as_f64().unwrap(),
+                            -h["hammer_to_contact_work_j"].as_f64().unwrap(),
+                            -h["hammer_return_heat_j"].as_f64().unwrap(),
+                            h0["hammer_return_potential_j"].as_f64().unwrap()
+                                - h["hammer_return_potential_j"].as_f64().unwrap(),
+                        ];
+                        for (term, expected) in terms[1..].iter().zip(expected) {
+                            assert!((term.as_f64().unwrap() - expected).abs() < 1e-15);
+                        }
+                        // Pedestal storage and heat are measured from this launch's incoming state.
+                        let pedestal = h["actuator_pedestal_work_j"].as_f64().unwrap()
+                            - h["pedestal_to_hammer_work_j"].as_f64().unwrap()
+                            - h["pedestal_heat_j"].as_f64().unwrap()
+                            - h["pedestal_potential_j"].as_f64().unwrap()
+                            + h0["pedestal_potential_j"].as_f64().unwrap();
+                        assert!(pedestal.abs() < 1e-10);
+                    }
+                    let entry = &take["repetition"]["phases"][i * 2]["entries"][0];
+                    let before = &launch["before_contact"];
+                    assert_eq!(
+                        before["hammer"]["hammer_velocity_m_s"],
+                        entry["before"]["velocity_m_s"][18]
+                    );
+                    assert_eq!(
+                        before["hammer"]["hammer_position_m"],
+                        entry["before"]["position_m"][18]
+                    );
+                    let dt =
+                        entry["seconds"].as_f64().unwrap() - before["seconds"].as_f64().unwrap();
+                    assert!(
+                        (dt - 1.0 / (48000.0 * take["steps_per_frame"].as_f64().unwrap())).abs()
+                            < 1e-15
+                    );
+                    assert!(
+                        before["peak_preimpact_velocity_m_s"].as_f64().unwrap()
+                            >= before["hammer"]["hammer_velocity_m_s"].as_f64().unwrap()
+                    );
+                    let events = launch["events"].as_array().unwrap();
+                    assert!(events.len() <= 64 && !events.is_empty());
+                    for event in events {
+                        let time = event["seconds"].as_f64().unwrap();
+                        assert!(
+                            time >= launch["start_seconds"].as_f64().unwrap()
+                                && time <= launch["end_seconds"].as_f64().unwrap()
+                        );
+                        assert_eq!(
+                            event["kind"] == "entry",
+                            event["force_n"].as_f64().unwrap() > 0.0
+                        );
+                    }
+                }
+            }
+            let d = &row["preimpact_difference"];
+            assert_eq!(d["available"], true);
+            let kinetic = d["second_minus_first_kinetic_work_terms_j"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .map(|x| x.as_f64().unwrap())
+                .sum::<f64>();
+            assert!(
+                (kinetic - d["preimpact_kinetic_difference_j"].as_f64().unwrap()).abs() < 1e-10
+            );
+            let velocity = d["incoming_velocity_difference_m_s"].as_f64().unwrap()
+                + d["second_minus_first_impulse_components_n_s"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .map(|x| x.as_f64().unwrap() / mass)
+                    .sum::<f64>();
+            assert!(
+                (velocity - d["preimpact_velocity_difference_m_s"].as_f64().unwrap()).abs() < 1e-8
+            );
+        }
+    }
+}
+
+#[test]
+fn loaded_launch_cli_rejects_ambiguous_arguments_and_preserves_outputs() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-launch"],
+        vec!["loaded-launch", "--output", "keep.json"],
+        vec!["loaded-launch", "--output", "bad.wav"],
+        vec!["loaded-launch", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_repetition_receipt_preserves_prefix_and_separates_second_strikes() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

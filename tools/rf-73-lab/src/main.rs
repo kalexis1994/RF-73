@@ -405,6 +405,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "loaded-repetition" {
         return transduction::repetition::run(&args);
     }
+    if args[0] == "loaded-launch" {
+        return transduction::launch::run(&args);
+    }
     if args[0] == "electromechanical-render" {
         return transduction::render(&args);
     }

@@ -147,9 +147,9 @@ half-pedal operation, full-keyboard realism or realtime performance.
 
 Neither intervention is adopted. Both inherit roughly twelvefold soft
 first-impulse changes from the preceding return experiment, despite their
-improved within-profile repetition. Next isolate how pedestal and bridle
-work depend on the incoming hammer state around the soft-strike threshold,
-then address launch regulation while retaining the successful repeated-strike
+improved within-profile repetition. The [launch study](LOADED-LAUNCH.md) now
+records pedestal/bridle work and force impulses from the incoming state.
+Next address launch regulation while retaining the successful repeated-strike
 controls. Any proposed physical change must preserve both first-strike
 dynamics and repetition; slowing the return until it meets a position limit
 alone is not sufficient evidence.
