@@ -159,25 +159,50 @@ fn take(
     speed: f64,
     repeat: usize,
 ) -> Result<bridle::Take, Box<dyn Error>> {
+    take_driven(
+        p,
+        steps,
+        speed,
+        repeat,
+        |t| repetition::target(p, t, repeat),
+        |_, _, _, _, _| {},
+    )
+}
+pub(super) fn take_driven(
+    p: ElectromechanicalProfile,
+    steps: usize,
+    speed: f64,
+    repeat: usize,
+    drive: impl Fn(f64) -> f64,
+    mut observe: impl FnMut(
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        f64,
+        f64,
+    ),
+) -> Result<bridle::Take, Box<dyn Error>> {
     let mut current: Option<Launch> = None;
     let mut reports = Vec::new();
     let mut tick = 0usize;
-    let mut result = repetition::take_observed(p, steps, speed, repeat, |_, a, b, t, h| {
-        let frame = tick / steps;
-        for start in [1440, repeat] {
-            if tick == start * steps {
-                current = Some(Launch::new(a, t));
-            }
-            if (start..start + 960).contains(&frame) {
-                let observer = current.as_mut().unwrap();
-                observer.observe(p, a, b, t, h);
-                if tick + 1 == (start + 960) * steps {
-                    reports.push(observer.report(p, b, t + h, start as f64 / 48000.0));
+    let mut result =
+        repetition::take_driven(p, steps, speed, repeat, drive, |initial, a, b, t, h| {
+            let frame = tick / steps;
+            for start in [1440, repeat] {
+                if tick == start * steps {
+                    current = Some(Launch::new(a, t));
+                }
+                if (start..start + 960).contains(&frame) {
+                    let observer = current.as_mut().unwrap();
+                    observer.observe(p, a, b, t, h);
+                    if tick + 1 == (start + 960) * steps {
+                        reports.push(observer.report(p, b, t + h, start as f64 / 48000.0));
+                    }
                 }
             }
-        }
-        tick += 1;
-    })?;
+            tick += 1;
+            observe(initial, a, b, t, h);
+        })?;
     result.report["passed"] = json!(
         result.report["passed"] == true
             && reports.len() == 2
@@ -191,7 +216,7 @@ fn scalar_error(a: &Value, b: &Value, floor: f64) -> f64 {
     let b = b.as_f64().unwrap();
     (a - b).abs() / b.abs().max(floor)
 }
-fn convergence(a: &Value, b: &Value) -> Value {
+pub(super) fn convergence(a: &Value, b: &Value) -> Value {
     let mut rows = Vec::new();
     for (index, (a, b)) in a["launches"]
         .as_array()

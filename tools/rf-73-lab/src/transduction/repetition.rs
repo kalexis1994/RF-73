@@ -29,7 +29,7 @@ fn phase(frame: usize, repeat: usize) -> usize {
         3
     }
 }
-fn target(p: ElectromechanicalProfile, t: f64, repeat: usize) -> f64 {
+pub(super) fn target(p: ElectromechanicalProfile, t: f64, repeat: usize) -> f64 {
     let start = repeat as f64 / 48000.0;
     if (0.03..0.15).contains(&t) || (start..start + 0.12).contains(&t) {
         -p.action.escapement_m
@@ -78,7 +78,7 @@ impl Segment {
             "raw_voltage_rms_v":(self.voltage_energy/(end-start)).sqrt()})
     }
 }
-fn repeated_attack(first: &Value, second: &Value) -> Value {
+pub(super) fn repeated_attack(first: &Value, second: &Value) -> Value {
     let first_entries = first["entries"].as_array().unwrap();
     let second_entries = second["entries"].as_array().unwrap();
     let errors: Vec<Option<f64>> = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
@@ -123,6 +123,22 @@ pub(super) fn take_observed(
     steps: usize,
     speed: f64,
     repeat: usize,
+    observe: impl FnMut(
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        f64,
+        f64,
+    ),
+) -> Result<bridle::Take, Box<dyn Error>> {
+    take_driven(p, steps, speed, repeat, |t| target(p, t, repeat), observe)
+}
+pub(super) fn take_driven(
+    p: ElectromechanicalProfile,
+    steps: usize,
+    speed: f64,
+    repeat: usize,
+    drive: impl Fn(f64) -> f64,
     mut observe: impl FnMut(
         ElectromechanicalProbe,
         ElectromechanicalProbe,
@@ -145,41 +161,34 @@ pub(super) fn take_observed(
     let mut lift = [f64::INFINITY; 2];
     let mut felt_ticks = [0u64; 2];
     let boundaries = [0, 7200, repeat, repeat + 5760, frames];
-    let mut result = bridle::take_driven(
-        p,
-        steps,
-        speed,
-        frames,
-        |t| target(p, t, repeat),
-        |initial, a, b, t, h| {
-            let frame = tick / steps;
-            let index = phase(frame, repeat);
-            if tick == boundaries[index] * steps {
-                segments[index].carry_in = a.mechanical.contact_force_n[0] > 0.0;
+    let mut result = bridle::take_driven(p, steps, speed, frames, drive, |initial, a, b, t, h| {
+        let frame = tick / steps;
+        let index = phase(frame, repeat);
+        if tick == boundaries[index] * steps {
+            segments[index].carry_in = a.mechanical.contact_force_n[0] > 0.0;
+        }
+        if tick == repeat * steps {
+            before_repeat = state(a);
+        }
+        segments[index].observe(a, b, t, h);
+        if (repeat - 960..repeat).contains(&frame) {
+            for i in 0..2 {
+                ready_position[i] = ready_position[i].max(
+                    (b.mechanical.position[18 + i] - initial.mechanical.position[18 + i]).abs(),
+                );
+                ready_velocity[i] = ready_velocity[i].max(b.mechanical.velocity[18 + i].abs());
             }
-            if tick == repeat * steps {
-                before_repeat = state(a);
+            ready_felt_ticks += u64::from(b.mechanical.contact_force_n[1] > 0.0);
+        }
+        for (i, start) in [1440, repeat].iter().enumerate() {
+            if (start + 2400..start + 5280).contains(&frame) {
+                lift[i] = lift[i].min(-b.mechanical.compression_m[1]);
+                felt_ticks[i] += u64::from(b.mechanical.contact_force_n[1] > 0.0);
             }
-            segments[index].observe(a, b, t, h);
-            if (repeat - 960..repeat).contains(&frame) {
-                for i in 0..2 {
-                    ready_position[i] = ready_position[i].max(
-                        (b.mechanical.position[18 + i] - initial.mechanical.position[18 + i]).abs(),
-                    );
-                    ready_velocity[i] = ready_velocity[i].max(b.mechanical.velocity[18 + i].abs());
-                }
-                ready_felt_ticks += u64::from(b.mechanical.contact_force_n[1] > 0.0);
-            }
-            for (i, start) in [1440, repeat].iter().enumerate() {
-                if (start + 2400..start + 5280).contains(&frame) {
-                    lift[i] = lift[i].min(-b.mechanical.compression_m[1]);
-                    felt_ticks[i] += u64::from(b.mechanical.contact_force_n[1] > 0.0);
-                }
-            }
-            tick += 1;
-            observe(initial, a, b, t, h);
-        },
-    )?;
+        }
+        tick += 1;
+        observe(initial, a, b, t, h);
+    })?;
     let reports: Vec<Value> = segments
         .iter()
         .enumerate()

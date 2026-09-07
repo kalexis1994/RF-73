@@ -184,9 +184,10 @@ the declared conditional model; they do not validate actual instrument
 regulation or establish perceptual realism. A change to launch geometry or
 regulation requires its own first-strike and repetition qualification.
 
-The next mechanism block should examine pedestal release/re-entry and launch
-regulation around this soft-drive region, keeping the prescribed driver's
-work explicit. Preserve the two successful repetition controls and their
+The [terminal drive study](LOADED-DRIVE-RELEASE.md) now compares a smooth
+terminal stop with the original and a matched-duration linear trajectory,
+keeping the prescribed driver's work explicit. Preserve successful repetition
+controls and their
 first-attack tradeoffs; do not treat a velocity correction or a gain change
 as a physical solution. The present abrupt end of constant-slew travel also
 needs to be distinguished from an intrinsic action response before adopting

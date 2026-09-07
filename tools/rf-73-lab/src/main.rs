@@ -408,6 +408,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "loaded-launch" {
         return transduction::launch::run(&args);
     }
+    if args[0] == "loaded-drive-release" {
+        return transduction::drive::run(&args);
+    }
     if args[0] == "electromechanical-render" {
         return transduction::render(&args);
     }

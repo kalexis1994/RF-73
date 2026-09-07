@@ -10,6 +10,189 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_drive_release_receipt_tracks_motion_and_preserves_original_controls() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-drive-release-validation.json");
+    let prior = read("loaded-launch-validation.json");
+    assert_eq!(r["experiment"], "loaded-drive-release-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let profiles = r["profiles"].as_array().unwrap();
+    assert_eq!(profiles.len(), 2);
+    for profile in profiles {
+        let old = prior["cases"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|c| c["name"] == profile["name"])
+            .unwrap();
+        let drivers = profile["drivers"].as_array().unwrap();
+        assert_eq!(drivers.len(), 3);
+        for (shape, driver) in drivers.iter().enumerate() {
+            let rows = driver["rows"].as_array().unwrap();
+            assert_eq!(rows.len(), 2);
+            for (index, row) in rows.iter().enumerate() {
+                assert_eq!(row["measurement_qualified"], true);
+                assert_eq!(row["convergence"]["passed"], true);
+                assert_eq!(row["launch_convergence"]["passed"], true);
+                let old_row = old["rows"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .find(|r| {
+                        r["speed_m_s"] == row["nominal_speed_m_s"]
+                            && r["release_to_repeat_seconds"] == 0.06
+                    })
+                    .unwrap();
+                let takes = row["takes"].as_array().unwrap();
+                assert_eq!(takes.len(), 2);
+                for (take, old_take) in takes.iter().zip(old_row["takes"].as_array().unwrap()) {
+                    let d = &take["driver"];
+                    assert_eq!(take["passed"], true);
+                    assert_eq!(d["passed"], true);
+                    if take["contact_entries"][0] == 0 {
+                        assert_eq!(take["repetition"]["two_clean_repeatable_strikes"], false);
+                        assert!(
+                            take["repetition"]["attack_repeatability"]["relative_impact_errors"]
+                                .as_array()
+                                .unwrap()
+                                .iter()
+                                .all(|v| v.is_null())
+                        );
+                        for launch in take["launches"].as_array().unwrap() {
+                            assert!(launch["before_contact"].is_null());
+                        }
+                        for phase in take["repetition"]["phases"].as_array().unwrap() {
+                            assert!(phase["entries"].as_array().unwrap().is_empty());
+                            for key in ["impulse_n_s", "peak_force_n", "active_contact_seconds"] {
+                                assert_eq!(phase["impact"][key], 0.0);
+                            }
+                        }
+                    }
+                    assert_eq!(d["shape"], driver["name"]);
+                    let speed = d["nominal_speed_m_s"].as_f64().unwrap();
+                    let length = d["travel_m"].as_f64().unwrap();
+                    let expected = length / speed * if shape == 0 { 1.0 } else { 1.2 };
+                    assert!(
+                        (d["nominal_arrival_seconds_after_key_down"]
+                            .as_f64()
+                            .unwrap()
+                            - expected)
+                            .abs()
+                            < 1e-15
+                    );
+                    for time in d["measured_arrivals_seconds_after_key_down"]
+                        .as_array()
+                        .unwrap()
+                    {
+                        assert!((time.as_f64().unwrap() - expected).abs() < 1e-5);
+                    }
+                    assert!(d["max_tracking_error_m"].as_f64().unwrap() < 1e-8);
+                    assert!(d["max_key_down_speed_m_s"].as_f64().unwrap() <= speed * (1.0 + 1e-8));
+                    assert!(d["min_key_down_speed_m_s"].as_f64().unwrap() >= -speed * 1e-8);
+                    if shape == 1 {
+                        assert!(
+                            (d["terminal_deceleration_duration_seconds"]
+                                .as_f64()
+                                .unwrap()
+                                - 0.4 * length / speed)
+                                .abs()
+                                < 1e-15
+                        );
+                        assert!(
+                            (d["terminal_peak_deceleration_m_s2"].as_f64().unwrap()
+                                - 0.75 * speed * speed / (0.2 * length))
+                                .abs()
+                                < 1e-8
+                        );
+                        // Contacts before terminal deceleration preserve the original launch prefix.
+                        let original = &drivers[0]["rows"][index]["takes"]
+                            .as_array()
+                            .unwrap()
+                            .iter()
+                            .find(|a| a["steps_per_frame"] == take["steps_per_frame"])
+                            .unwrap()["launches"][0];
+                        let cutoff = 0.03 + 0.8 * length / speed;
+                        let prefix = |l: &serde_json::Value| {
+                            l["events"]
+                                .as_array()
+                                .unwrap()
+                                .iter()
+                                .filter(|e| e["seconds"].as_f64().unwrap() < cutoff)
+                                .cloned()
+                                .collect::<Vec<_>>()
+                        };
+                        assert_eq!(prefix(&take["launches"][0]), prefix(original));
+                    } else {
+                        assert!(d["terminal_peak_deceleration_m_s2"].is_null());
+                    }
+                    if shape == 0 {
+                        let mut replay = take.clone();
+                        replay.as_object_mut().unwrap().remove("driver");
+                        assert_eq!(replay, *old_take);
+                        assert_eq!(row["convergence"], old_row["convergence"]);
+                        assert_eq!(row["launch_convergence"], old_row["launch_convergence"]);
+                    }
+                }
+                let first = &takes[1]["repetition"]["phases"][0];
+                let base = &drivers[0]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+                let a = first["entries"].as_array().unwrap();
+                let b = base["entries"].as_array().unwrap();
+                let impact_ok = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+                    .iter()
+                    .all(|key| {
+                        let reference = base["impact"][key].as_f64().unwrap();
+                        reference > 0.0
+                            && (first["impact"][key].as_f64().unwrap() / reference - 1.0).abs()
+                                < 0.05
+                    });
+                let agrees = a.len() == 1 && b.len() == 1 && impact_ok && {
+                    let va = a[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+                    let vb = b[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+                    (va / vb - 1.0).abs() < 0.05
+                        && (a[0]["seconds"].as_f64().unwrap() - b[0]["seconds"].as_f64().unwrap())
+                            .abs()
+                            < 0.001
+                };
+                assert_eq!(row["first_vs_original"]["passed"], agrees);
+            }
+        }
+        for (eased, linear) in drivers[1]["rows"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .zip(drivers[2]["rows"].as_array().unwrap())
+        {
+            assert_eq!(
+                eased["takes"][1]["driver"]["nominal_arrival_seconds_after_key_down"],
+                linear["takes"][1]["driver"]["nominal_arrival_seconds_after_key_down"]
+            );
+        }
+    }
+}
+
+#[test]
+fn loaded_drive_release_cli_preserves_outputs_and_rejects_extra_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-drive-release"],
+        vec!["loaded-drive-release", "--output", "keep.json"],
+        vec!["loaded-drive-release", "--output", "bad.wav"],
+        vec!["loaded-drive-release", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_launch_receipt_replays_repetition_and_closes_momentum_and_work() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

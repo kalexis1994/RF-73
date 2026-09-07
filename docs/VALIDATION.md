@@ -2764,3 +2764,34 @@ SHA-256 `416648f1977712f75beb73f92172634fe3211106967e8eb1c65bc837ce4ba01a`.
 Verification passes 127 lab unit tests, 23 loaded CLI/receipt tests, strict
 Clippy and formatting. No new audio or default changes are introduced;
 release cache remains approximately 195 MiB.
+
+## Loaded terminal drive release
+
+The [terminal drive matrix](LOADED-DRIVE-RELEASE.md) compares the original
+constant slew, a continuous terminal deceleration over the final 20% of
+travel and a matched-duration linear control. Original and high-pedestal-loss
+profiles cross two nominal speeds and the 60 ms repetition wait. All 24
+takes and twelve refinement pairs qualify numerically. Original trajectories
+replay the prior launch receipt, and the eased first-launch prefix remains
+exact before deceleration.
+
+Easing removes both soft strikes in both profiles. The original profile's
+matched-duration linear control still produces two contacts, demonstrating
+that arrival time alone does not summarize the trajectory change. Six takes
+are non-striking and remain explicit; eighteen retain one contact per held
+phase, and all preserve felt lift. Four paired rows pass repetition, all in
+the high-pedestal-loss profile. No modified driver preserves the original
+first attack within every frozen limit. No default is adopted.
+
+Maximum analytical position tracking error is 3.805e-14 m and arrival error
+0.163 microseconds. Maximum relative total energy defect is 2.507e-12,
+launch momentum defect 3.254e-13 and launch work defect 1.699e-12. Maximum
+velocity refinement error is 0.040978%, impact error 0.042590%, launch
+impulse error 0.010942% and kinetic-work-term error 0.017553%.
+
+Receipt: `references/loaded-drive-release-validation.json`, 1914026 bytes,
+SHA-256 `69721438a97065e8f1947a21b55ee08ad241e21e94e15b30069a6c2fa72b68d1`.
+Verification passes 129 lab unit tests, 25 loaded CLI/receipt tests, strict
+Clippy and formatting. Curve derivative/integral checks and no-contact
+decisions remain explicit. No new WAVs or production changes are introduced;
+release cache remains approximately 195 MiB.

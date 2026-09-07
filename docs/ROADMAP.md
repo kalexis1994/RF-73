@@ -141,8 +141,20 @@ not only parameter-identification diagnostics:
     repeated kinetic-energy increase is 0.613 mJ, only 0.044 mJ of which
     is incoming kinetic energy; changed contact work remains essential.
 
-Next qualify pedestal release/re-entry and the end of prescribed drive travel
-before changing first-strike launch regulation, while retaining
+17. **Terminal drive release:** the
+    [deceleration study](LOADED-DRIVE-RELEASE.md) compares constant slew,
+    terminal easing over the last 20% of travel and a matched-duration
+    linear control. Original and high-pedestal-loss profiles retain the
+    short repetition wait at both nominal speeds. Analytical trajectory
+    tracking supplements the existing launch and repetition ledgers.
+    All 24 takes converge. Easing removes soft contact in both profiles;
+    the original profile's matched-duration linear control still strikes.
+    The high-pedestal-loss profile retains strong repetition but its first
+    impulse changes substantially. No modified driver passes all original
+    first-attack preservation limits or is adopted as a default.
+
+Next qualify onset acceleration and the complete key/hammer drive before
+developing key/action coupling and launch regulation, retaining
 the successful repetition controls before adopting a candidate. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction

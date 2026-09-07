@@ -5,6 +5,7 @@ use std::{error::Error, io::BufWriter, path::Path};
 pub(crate) mod bank;
 pub(crate) mod bridle;
 pub(crate) mod calibration;
+pub(crate) mod drive;
 pub(crate) mod dynamics;
 pub(crate) mod launch;
 pub(crate) mod losses;
@@ -28,6 +29,7 @@ pub const HELP: &str = "Electromechanical audit:
   loaded-hammer-return --output REPORT.json
   loaded-repetition --output REPORT.json
   loaded-launch --output REPORT.json
+  loaded-drive-release --output REPORT.json
 Eight loaded two-plane cases; render writes one 1.2-second WAV plus its JSON receipt.
 ";
 const DURATION: f64 = 0.18;

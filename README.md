@@ -110,6 +110,11 @@ hammer's first and repeated pre-impact states from incoming motion, signed
 force impulses, contact work, spring storage and heat. Contact sequences
 remain visible alongside the unchanged repetition measurements.
 
+The [terminal drive study](docs/LOADED-DRIVE-RELEASE.md) compares the original
+pedestal stop with continuous terminal deceleration and a matched-duration
+linear control. It verifies the imposed trajectory alongside contact work,
+first-strike changes and repetition.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start
