@@ -125,3 +125,8 @@ recorded pickup audio provides those same states.
 
 No physical equation, source recording, loss preset, plugin engine or audible
 baseline changed. No host or listening test is claimed.
+
+The subsequent [dynamic pickup-state study](DYNAMIC-PICKUP-STATE.md) now tests
+that time-history reconstruction with known damping. Nine-mode noiseless
+controls pass, while three inferred modes differ materially from these oracle
+projections. No unknown loss scale is recovered by that observer yet.

@@ -421,3 +421,12 @@ projections recover the two scales within the existing criterion; one mode and
 an instantaneous pickup lift fail. Reduced-state bias persists under refinement.
 Next test dynamic reconstruction from pickup history, including noise and omitted
 modes. Oracle modal projection is not audio extraction or a reduced plugin engine.
+
+The [dynamic pickup-state study](DYNAMIC-PICKUP-STATE.md) retains 108 fits from
+one scalar mechanical velocity channel, including noise and omitted modes.
+All twelve nine-mode noiseless controls pass held-out prediction with supplied
+damping. Three-mode inference differs substantially from oracle projection;
+even nine modes with 1% noise can have 43.71% error in one weakly observed mode.
+Next profile unknown structural/damper scales with training-only nuisance-state
+fits, held-out predictions and sensitivity/wrong-operator controls. Known-damping
+state recovery is not evidence of unknown-loss or recorded-audio identification.

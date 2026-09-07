@@ -1876,3 +1876,27 @@ test reconstruction from pickup time history with noise/omitted-mode controls.
 No source recording, loss preset or DSP equation changed. Release cache is
 168.3 MiB and debug artifacts are cleaned after verification; no new WAV assets
 were generated. Source/listening files and the packaged plugin are preserved.
+## Dynamic pickup history and known-damping state recovery
+
+The [dynamic pickup-state protocol](DYNAMIC-PICKUP-STATE.md) and
+[receipt](../references/dynamic-pickup-state-validation.json) retain 108
+observations of six shared mechanical trajectories. All twelve noiseless
+nine-mode controls pass. Maximum held-out pickup relative RMSE is `4.158e-11`
+and full-state energy-norm relative RMSE is `4.070e-11` in those controls.
+The inverse receives scalar mechanical pickup velocity and supplied operator
+templates; neither simulator state nor held-out samples enter the fit.
+
+Three-mode noiseless pickup error reaches 44.88%; the earlier three-mode oracle
+loss result therefore cannot be transferred to inferred states. Six-mode
+noiseless full-state error reaches 0.2043%. With all nine modes and 1% training
+noise, aggregate state error stays below 0.941%, but one mode reaches 43.71%.
+All reductions and noise outcomes are retained without qualification gates.
+The study supplies actual damping and cannot establish unknown-loss recovery.
+
+Reproduce with `pickup-state --output NEW.json`. Receipt schema 1,
+`dynamic-pickup-state-v1`, 205598 bytes, SHA-256
+`a3be60601a0acda19db55324969e41cf3eb7a87f37b8702418ba6dd26c8ebb3a`.
+The laboratory release suite passes 110 tests (80 unit, 30 CLI), covering analytic
+propagation, history observability, rank/finite-input rejection, deterministic
+noise, all study outcomes and protection of existing output files. No DSP engine,
+source waveform, preset or audible baseline changed; no host test was run.

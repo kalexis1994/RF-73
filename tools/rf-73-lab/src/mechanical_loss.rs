@@ -1,4 +1,5 @@
 //! Known-state mechanical loss recovery from endpoint energy and velocity quadrature.
+pub mod observer;
 pub mod reduced;
 use rf_73_dsp::{ModalAssembly, ModalAssemblyProfile, ModalIntegration, TineGeometry};
 use serde::Serialize;

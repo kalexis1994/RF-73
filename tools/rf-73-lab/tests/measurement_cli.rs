@@ -10,6 +10,93 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn pickup_history_infers_states_with_held_out_prediction_and_retains_reductions() {
+    let scratch = Scratch::new();
+    let args = ["pickup-state", "--output", "state.json"];
+    scratch.success(&args);
+    let report = scratch.json("state.json");
+    assert_eq!(report["experiment"], "dynamic-pickup-state-v1");
+    assert_eq!(report["controls_passed"], true);
+    let cases = report["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut required = 0;
+    for case in cases {
+        assert_eq!(case["controls_passed"], true);
+        let observations = case["observations"].as_array().unwrap();
+        assert_eq!(observations.len(), 18);
+        for damped in [false, true] {
+            for count in [3, 6, 9] {
+                for noise in [0.0, 0.001, 0.01] {
+                    assert_eq!(
+                        observations
+                            .iter()
+                            .filter(|o| o["damper_on"] == damped
+                                && o["retained_modes"] == count
+                                && o["training_noise_relative_rms"] == noise)
+                            .count(),
+                        1
+                    );
+                }
+            }
+        }
+        for observation in observations {
+            assert_eq!(observation["contact_free"], true);
+            assert_eq!(
+                observation["training_samples"],
+                observation["held_out_samples"]
+            );
+            if observation["required_control"] == true {
+                required += 1;
+                assert_eq!(observation["required_control_passed"], true);
+                assert!(
+                    observation["fit"]["held_out_clean_pickup_relative_rmse"]
+                        .as_f64()
+                        .unwrap()
+                        < 1e-6
+                );
+                assert!(
+                    observation["fit"]["held_out_full_state_energy_norm_relative_rmse"]
+                        .as_f64()
+                        .unwrap()
+                        < 1e-5
+                );
+            } else {
+                assert!(observation["required_control_passed"].is_null());
+            }
+            if observation["fit"]["error"].is_null() {
+                assert_eq!(
+                    observation["fit"]["held_out_per_mode_energy_norm_relative_rmse"]
+                        .as_array()
+                        .unwrap()
+                        .len(),
+                    9
+                );
+                assert_eq!(
+                    observation["fit"]["inferred_initial_energy_coordinates"]
+                        .as_array()
+                        .unwrap()
+                        .len(),
+                    observation["retained_modes"].as_u64().unwrap() as usize * 2
+                );
+            }
+        }
+    }
+    assert_eq!(required, 12);
+    let saved = fs::read(scratch.0.join("state.json")).unwrap();
+    assert!(!scratch.run(&args).status.success());
+    assert_eq!(saved, fs::read(scratch.0.join("state.json")).unwrap());
+    for args in [
+        vec!["pickup-state"],
+        vec!["pickup-state", "--output", "bad.wav"],
+        vec!["pickup-state", "--output", "bad.json", "--modes", "3"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn reduced_mechanical_loss_keeps_shared_trajectory_controls_and_all_observations() {
     let scratch = Scratch::new();
     let args = ["reduced-mechanical-loss", "--output", "reduced.json"];
