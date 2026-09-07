@@ -16,9 +16,9 @@ fn transpose<const D: usize>(a: [[f64; D]; D]) -> [[f64; D]; D] {
 fn multiply<const D: usize>(a: [[f64; D]; D], b: [[f64; D]; D]) -> [[f64; D]; D] {
     core::array::from_fn(|i| core::array::from_fn(|j| (0..D).map(|k| a[i][k] * b[k][j]).sum()))
 }
-fn factor(a: Matrix) -> Result<Matrix, ModelError> {
-    let mut l = [[0.0; N]; N];
-    for i in 0..N {
+fn factor<const D: usize>(a: [[f64; D]; D]) -> Result<[[f64; D]; D], ModelError> {
+    let mut l = [[0.0; D]; D];
+    for i in 0..D {
         for j in 0..=i {
             let value = a[i][j] - (0..j).map(|k| l[i][k] * l[j][k]).sum::<f64>();
             l[i][j] = if i == j {
@@ -37,8 +37,8 @@ fn factor(a: Matrix) -> Result<Matrix, ModelError> {
     clippy::needless_range_loop,
     reason = "Triangular substitution reads completed inverse rows while writing the current row"
 )]
-fn inverse_lower(l: Matrix) -> Matrix {
-    let mut inverse = [[0.0; N]; N];
+fn inverse_lower<const D: usize>(l: [[f64; D]; D]) -> [[f64; D]; D] {
+    let mut inverse = [[0.0; D]; D];
     for (i, row) in l.iter().enumerate() {
         for j in 0..=i {
             inverse[i][j] =
@@ -47,18 +47,24 @@ fn inverse_lower(l: Matrix) -> Matrix {
     }
     inverse
 }
-pub(super) fn inverse(a: Matrix) -> Result<Matrix, ModelError> {
+pub(super) fn inverse<const D: usize>(a: [[f64; D]; D]) -> Result<[[f64; D]; D], ModelError> {
     let inv = inverse_lower(factor(a)?);
     Ok(multiply(transpose(inv), inv))
 }
 
-pub(super) struct Midpoint {
-    from_q: Matrix,
-    delta_from_v: Matrix,
-    pub response: Vector,
+pub(super) struct Midpoint<const D: usize = N> {
+    from_q: [[f64; D]; D],
+    delta_from_v: [[f64; D]; D],
+    pub response: [f64; D],
 }
-impl Midpoint {
-    pub fn prepare(m: Matrix, k: Matrix, c: Matrix, b: Vector, h: f64) -> Result<Self, ModelError> {
+impl<const D: usize> Midpoint<D> {
+    pub fn prepare(
+        m: [[f64; D]; D],
+        k: [[f64; D]; D],
+        c: [[f64; D]; D],
+        b: [f64; D],
+        h: f64,
+    ) -> Result<Self, ModelError> {
         let a = core::array::from_fn(|i| {
             core::array::from_fn(|j| m[i][j] + 0.5 * h * c[i][j] + 0.25 * h * h * k[i][j])
         });
@@ -77,7 +83,7 @@ impl Midpoint {
             response: apply(&inv, b).map(|v| h * v),
         })
     }
-    pub fn free_velocity(&self, q: Vector, v: Vector) -> Vector {
+    pub fn free_velocity(&self, q: [f64; D], v: [f64; D]) -> [f64; D] {
         let a = apply(&self.from_q, q);
         let b = apply(&self.delta_from_v, v);
         core::array::from_fn(|i| v[i] + (a[i] + b[i]))

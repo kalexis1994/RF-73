@@ -10,6 +10,19 @@ mechanism through pedestal motion, with reciprocal hammer/bridle/felt forces
 and no strike-time state replacement. Its geometry and material profile are
 provisional; its work ledger and validation scope are documented separately.
 
+The [two-plane extension](TWO-PLANE-ACTION.md) uses twenty mechanical coordinates
+and observes both transverse displacement/velocity components. It reuses the
+same action/contact solver, adding reciprocal boundary anisotropy and oblique
+contact normals. This remains an offline small-deflection model; the production
+signal path and its physical limitations below are unchanged.
+
+The offline [electromechanical extension](ELECTROMECHANICAL.md) connects that
+spatial motion to a finite-aperture flux proxy and a constant-inductance coil
+with resistive/capacitive loading. Its current applies reciprocal force to both
+planes, with separately audited mechanical/electrical exchange and heat.
+The new renderer converts output volts to mono audio using an explicit fixed
+gain. Neither this field proxy nor its electrical constants are calibrated.
+
 ```text
 MIDI velocity -> hammer initial velocity <-> unilateral contact <-> modal resonator
                                                                   ^ damper

@@ -189,6 +189,11 @@ profile bounds and continuous repeat cycles.
 
 ## Remaining work
 
+The subsequent [two-plane extension](TWO-PLANE-ACTION.md) now adds the orthogonal
+tine/support/tonebar component and spatial contact/observation ports while
+reusing this action solver. The planar validation above remains historical
+evidence and a live regression target.
+
 This establishes a coupled offline action reduction. It does not establish
 measured touch response, authentic velocity calibration, full key/pivot/bridle
 geometry, faithful half-pedal mechanics, hammer material memory, stereo motion,

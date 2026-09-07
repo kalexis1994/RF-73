@@ -30,11 +30,13 @@ mod pickup_set;
 mod pickup_sweep;
 mod pickup_transfer;
 mod pitch_reference;
+mod polarization;
 mod register_families;
 mod short_envelope;
 mod source_envelope;
 mod tine_modes;
 mod tone_comparison;
+mod transduction;
 mod wav;
 mod web_ui;
 use rf_73_dsp::{Engine, FIRST_NOTE, LAST_NOTE, Profile};
@@ -255,6 +257,8 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::resolution::weighted::HELP);
         print!("{}", felt_damper::HELP);
         print!("{}", action::HELP);
+        print!("{}", polarization::HELP);
+        print!("{}", transduction::HELP);
         print!("{}", source_envelope::short::HELP);
         print!("{}", short_envelope::HELP);
         print!("{}", partial_comparison::HELP);
@@ -365,6 +369,15 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "action-cycle" {
         return action::run(&args);
+    }
+    if args[0] == "polarized-action" {
+        return polarization::run(&args);
+    }
+    if args[0] == "electromechanical" {
+        return transduction::run(&args);
+    }
+    if args[0] == "electromechanical-render" {
+        return transduction::render(&args);
     }
     if args[0] == "magnetic-loss-weighting" {
         return mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::weighting::run(

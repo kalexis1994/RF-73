@@ -10,6 +10,189 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn electromechanical_receipt_qualifies_reciprocity_load_controls_and_output_convergence() {
+    let path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../references/electromechanical-validation.json");
+    let p: serde_json::Value = serde_json::from_slice(&fs::read(path).unwrap()).unwrap();
+    assert_eq!(p["passed"], true);
+    assert_eq!(p["steps_per_frame"], serde_json::json!([64, 128, 256]));
+    assert_eq!(p["cases"].as_array().unwrap().len(), 8);
+    for case in p["cases"].as_array().unwrap() {
+        assert_eq!(case["passed"], true);
+        let zero = case["case"] == "zero_flux";
+        let open = case["case"] == "open_capacitive";
+        assert_eq!(case["takes"].as_array().unwrap().len(), 3);
+        if !zero {
+            assert!(
+                case["feedback_velocity_rms_difference_m_s"]
+                    .as_f64()
+                    .unwrap()
+                    > 1e-12
+            );
+        }
+        for take in case["takes"].as_array().unwrap() {
+            assert_eq!(take["passed"], true);
+            assert_eq!(take["heat_monotone"], true);
+            for (field, limit) in [
+                ("max_relative_total_balance_defect", 1e-8),
+                ("max_relative_exchange_defect", 1e-10),
+                ("max_relative_circuit_balance_defect", 1e-8),
+                ("max_stationary_drive_relative_energy_growth", 1e-10),
+            ] {
+                assert!(take[field].as_f64().unwrap() < limit);
+            }
+            assert!(take["mechanical_contact_entries"][0].as_u64().unwrap() >= 2);
+            assert!(take["maximum_coupling_iterations"].as_u64().unwrap() <= 16);
+            if zero {
+                for field in [
+                    "peak_filtered_voltage_v",
+                    "peak_reaction_force_n",
+                    "coil_heat_j",
+                ] {
+                    assert_eq!(take[field], 0.0);
+                }
+            } else {
+                assert!(take["peak_filtered_voltage_v"].as_f64().unwrap() > 1e-4);
+                assert!(take["peak_reaction_force_n"].as_f64().unwrap() > 1e-8);
+                assert!(take["coil_heat_j"].as_f64().unwrap() > 0.0);
+                assert!(take["mechanical_pickup_work_j"].as_f64().unwrap() < 0.0);
+            }
+            if zero || open {
+                assert_eq!(take["load_heat_j"], 0.0);
+            } else {
+                assert!(take["load_heat_j"].as_f64().unwrap() > 0.0);
+            }
+        }
+        for comparison in ["coarse_vs_fine", "medium_vs_fine"] {
+            let windows = case[comparison]["windows"].as_array().unwrap();
+            assert_eq!(windows.len(), 4);
+            for window in windows {
+                for error in window["relative_rmse_voltage_current_vertical_horizontal"]
+                    .as_array()
+                    .unwrap()
+                {
+                    assert!(error.as_f64().unwrap() < 0.01);
+                }
+            }
+        }
+    }
+}
+
+#[test]
+fn electromechanical_cli_rejects_bad_options_and_preserves_both_render_outputs() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"receipt").unwrap();
+    fs::write(scratch.0.join("audio.wav"), b"audio").unwrap();
+    for args in [
+        vec!["electromechanical", "--output", "keep.json"],
+        vec!["electromechanical-render", "--output", "keep.wav"],
+        vec!["electromechanical-render", "--output", "audio.wav"],
+        vec!["electromechanical"],
+        vec!["electromechanical", "--output", "bad.wav"],
+        vec!["electromechanical", "--output", "bad.json", "--unknown"],
+        vec!["electromechanical", "--bad", "bad.json"],
+        vec!["electromechanical-render"],
+        vec!["electromechanical-render", "--output", "bad.json"],
+        vec![
+            "electromechanical-render",
+            "--output",
+            "bad.wav",
+            "--refined",
+        ],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"receipt");
+    assert_eq!(fs::read(scratch.0.join("audio.wav")).unwrap(), b"audio");
+    for gain in ["NaN", "inf", "0", "-0.1", "2", "invalid"] {
+        assert!(
+            !scratch
+                .run(&[
+                    "electromechanical-render",
+                    "--output",
+                    "bad.wav",
+                    "--gain",
+                    gain
+                ])
+                .status
+                .success()
+        );
+    }
+    assert!(
+        !scratch
+            .run(&["electromechanical-render", "--output", "bad.wav", "--gain"])
+            .status
+            .success()
+    );
+    for absent in ["keep.wav", "audio.json", "bad.wav", "bad.json"] {
+        assert!(!scratch.0.join(absent).exists());
+    }
+}
+
+#[test]
+fn polarized_action_receipt_closes_each_plane_and_preserves_symmetry_controls() {
+    let path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../references/polarized-action-validation.json");
+    let p: serde_json::Value = serde_json::from_slice(&fs::read(path).unwrap()).unwrap();
+    assert_eq!(p["passed"], true);
+    assert_eq!(p["steps_per_frame"], serde_json::json!([64, 128, 256]));
+    assert_eq!(p["cases"].as_array().unwrap().len(), 8);
+    for case in p["cases"].as_array().unwrap() {
+        assert_eq!(case["passed"], true);
+        for take in case["takes"].as_array().unwrap() {
+            assert_eq!(take["passed"], true);
+            assert!(take["max_relative_balance_defect"].as_f64().unwrap() < 1e-8);
+            for defect in take["max_relative_plane_work_defect"].as_array().unwrap() {
+                assert!(defect.as_f64().unwrap() < 1e-8);
+            }
+            if case["case"] == "isotropic" || case["case"] == "aligned_anisotropy" {
+                assert_eq!(take["peak_displacement_xy_m"][1], 0.0);
+                assert_eq!(take["plane_coupling_work_j"][1], 0.0);
+            } else {
+                assert!(take["peak_displacement_xy_m"][1].as_f64().unwrap() > 1e-9);
+                assert!(take["orbit_covariance_rank"].as_f64().unwrap() > 1e-3);
+            }
+            if case["case"] == "rotated_boundary" {
+                assert_eq!(take["plane_contact_work_j"][1], 0.0);
+                let coupling = take["plane_coupling_work_j"][1].as_f64().unwrap();
+                let stored = take["final_plane_diagonal_energy_j"][1].as_f64().unwrap();
+                let heat = take["plane_diagonal_heat_j"][1].as_f64().unwrap();
+                assert!(coupling > 0.0);
+                assert!((coupling - stored - heat).abs() < coupling * 1e-7);
+            }
+        }
+        for comparison in ["coarse_vs_fine", "medium_vs_fine"] {
+            for window in case[comparison]["windows"].as_array().unwrap() {
+                for error in window["velocity_xy_relative_rmse"].as_array().unwrap() {
+                    assert!(error.as_f64().unwrap() < 0.01);
+                }
+                for error in window["hammer_arm_rmse_m"].as_array().unwrap() {
+                    assert!(error.as_f64().unwrap() < 1e-5);
+                }
+            }
+        }
+    }
+}
+
+#[test]
+fn polarized_action_cli_rejects_invalid_options_and_existing_reports() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    let out = scratch.run(&["polarized-action", "--output", "keep.json"]);
+    assert!(!out.status.success());
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    for args in [
+        vec!["polarized-action"],
+        vec!["polarized-action", "--output", "bad.wav"],
+        vec!["polarized-action", "--output", "bad.json", "--unknown"],
+        vec!["polarized-action", "--bad", "bad.json"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+        assert!(!scratch.0.join("bad.json").exists());
+    }
+}
+
+#[test]
 fn action_cycle_cli_rejects_invalid_options_and_preserves_existing_reports() {
     let scratch = Scratch::new();
     fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();

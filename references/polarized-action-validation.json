@@ -1,0 +1,3582 @@
+{
+  "cases": [
+    {
+      "case": "isotropic",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              2.7802871285230706e-9,
+              2.4549706570815847e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.0004596017738798262,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              7.224047667283842e-10,
+              7.145077155786915e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              0.00005452733744581701,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              4.636391593661111e-9,
+              4.115295780777222e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.00043439339044504396,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              1.2640442011231361e-9,
+              1.3082539901827382e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              0.00010664801417447705,
+              0.0
+            ]
+          }
+        ]
+      },
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              5.524393235377777e-10,
+              4.877643814772674e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.00009182860098509933,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              1.4395311001758912e-10,
+              1.4229547693774621e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              0.00001089432659556134,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              9.243686008929745e-10,
+              8.20467658698595e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.00008678083950471243,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              2.523851576785235e-10,
+              2.6142661980984786e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              0.00002131489694927309,
+              0.0
+            ]
+          }
+        ]
+      },
+      "passed": true,
+      "polarization": {
+        "boundary_angle_rad": 0.0,
+        "felt_angle_rad": 0.0,
+        "hammer_angle_rad": 0.0,
+        "transverse_boundary_damping_ratio": 1.0,
+        "transverse_rotation_stiffness_ratio": 1.0,
+        "transverse_support_stiffness_ratio": 1.0,
+        "transverse_tonebar_frequency_ratio": 1.0
+      },
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.03767143342753104,
+          "arm_heat_j": 0.014205269160165837,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            14,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00040723201968898703,
+            0.016574996357464632,
+            0.0029663670179600555
+          ],
+          "final_mechanical_energy_j": 0.00009256146624425192,
+          "final_plane_diagonal_energy_j": [
+            0.000011655168080316752,
+            0.0
+          ],
+          "final_position": [
+            0.000014440442423115153,
+            0.0022308475448891427,
+            0.000019773534694382868,
+            4.177827443452912e-6,
+            -1.711656156918132e-8,
+            -1.3806855937402253e-8,
+            -2.798283624229612e-9,
+            -9.179677641078403e-11,
+            4.346798380706728e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.011569726107514573,
+            0.0001836139990508849
+          ],
+          "final_velocity": [
+            0.0011385858815322085,
+            0.07770219480113782,
+            0.017995216079473974,
+            -0.01585608825025053,
+            0.0004427417049709232,
+            0.000021873791414849472,
+            4.12710313954554e-6,
+            2.762672905406509e-7,
+            0.000047584918579545684,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.20055880926984546,
+            0.0011538430513176004
+          ],
+          "hammer_return_heat_j": 0.0015687079964224145,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.73258604127397e-18,
+          "max_relative_balance_defect": 2.0853693853964008e-13,
+          "max_relative_contact_work_defect": 1.720089978270775e-14,
+          "max_relative_plane_work_defect": [
+            1.4533141001450361e-13,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0015169120684349533,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03767143342753104,
+          "plane_contact_work_j": [
+            0.001921287910997697,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0019096327429119157,
+            0.0
+          ],
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            26.675115912380893,
+            24.69618064789378
+          ],
+          "structural_heat_j": 0.0019096327429174258
+        },
+        {
+          "absolute_drive_work_j": 0.03767143004159046,
+          "arm_heat_j": 0.014205284097079935,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            14,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00040723494505214074,
+            0.016575040427744887,
+            0.0029663674280363665
+          ],
+          "final_mechanical_energy_j": 0.00009256153120096696,
+          "final_plane_diagonal_energy_j": [
+            0.000011655377689686673,
+            0.0
+          ],
+          "final_position": [
+            0.000014440586299676124,
+            0.0022308692567205328,
+            0.000019772566117553866,
+            4.177155210099375e-6,
+            -1.7073411075080218e-8,
+            -1.3807456485181786e-8,
+            -2.7983338154795153e-9,
+            -9.178476031648432e-11,
+            4.3469043130844396e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01156972410749945,
+            0.00018361480298644526
+          ],
+          "final_velocity": [
+            0.0011385320794053304,
+            0.07769885317888359,
+            0.017995933760038833,
+            -0.01586355536822504,
+            0.0004424859468225562,
+            0.000021881341588890165,
+            4.126679119262806e-6,
+            2.763735987158613e-7,
+            0.000047973046668032594,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.20055862699514285,
+            0.001153842047327584
+          ],
+          "hammer_return_heat_j": 0.0015687085086269529,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7333056884068912e-18,
+          "max_relative_balance_defect": 3.7556183615942484e-13,
+          "max_relative_contact_work_defect": 1.7110322523266466e-14,
+          "max_relative_plane_work_defect": [
+            3.32663190536051e-13,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.001516910791996492,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03767143004159046,
+          "plane_contact_work_j": [
+            0.0019212218148743536,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0019095664371721187,
+            0.0
+          ],
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            26.67545930585415,
+            24.69679655173469
+          ],
+          "structural_heat_j": 0.001909566437184723
+        },
+        {
+          "absolute_drive_work_j": 0.03767142919777526,
+          "arm_heat_j": 0.014205287810682114,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            14,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0004072356709090994,
+            0.016575051378396585,
+            0.002966367531922101
+          ],
+          "final_mechanical_energy_j": 0.00009256154740072911,
+          "final_plane_diagonal_energy_j": [
+            0.000011655429966521039,
+            0.0
+          ],
+          "final_position": [
+            0.000014440622193658126,
+            0.002230874672627376,
+            0.00001977232449501164,
+            4.176987186774327e-6,
+            -1.7062623405821943e-8,
+            -1.3807606323366142e-8,
+            -2.798346390359689e-9,
+            -9.17817545113702e-11,
+            4.346930757689008e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.011569723608446563,
+            0.00018361500351141112
+          ],
+          "final_velocity": [
+            0.0011385186418672207,
+            0.07769801840593243,
+            0.017996112788959264,
+            -0.015865420167796393,
+            0.0004424216876385766,
+            0.00002188328707946082,
+            4.126558668495631e-6,
+            2.764000675289436e-7,
+            0.000048069967246570554,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.20055858153431913,
+            0.001153841796333496
+          ],
+          "hammer_return_heat_j": 0.0015687086358578428,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7326679321546128e-18,
+          "max_relative_balance_defect": 5.341025534964862e-13,
+          "max_relative_contact_work_defect": 1.713178968810686e-14,
+          "max_relative_plane_work_defect": [
+            6.058982351956558e-13,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0015169104765087528,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03767142919777526,
+          "plane_contact_work_j": [
+            0.001921205385903913,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0019095499559146306,
+            0.0
+          ],
+          "steps_per_frame": 256,
+          "strike_window_peak_n": [
+            26.675608256096883,
+            24.697012418461558
+          ],
+          "structural_heat_j": 0.0019095499559374388
+        }
+      ]
+    },
+    {
+      "case": "aligned_anisotropy",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              2.7802871285230706e-9,
+              2.4549706570815847e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.0004596017738798262,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              7.224047667283842e-10,
+              7.145077155786915e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              0.00005452733744581701,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              4.636391593661111e-9,
+              4.115295780777222e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.00043439339044504396,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              1.2640442011231361e-9,
+              1.3082539901827382e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              0.00010664801417447705,
+              0.0
+            ]
+          }
+        ]
+      },
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              5.524393235377777e-10,
+              4.877643814772674e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.00009182860098509933,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              1.4395311001758912e-10,
+              1.4229547693774621e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              0.00001089432659556134,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              9.243686008929745e-10,
+              8.20467658698595e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.00008678083950471243,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              2.523851576785235e-10,
+              2.6142661980984786e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              0.00002131489694927309,
+              0.0
+            ]
+          }
+        ]
+      },
+      "passed": true,
+      "polarization": {
+        "boundary_angle_rad": 0.0,
+        "felt_angle_rad": 0.0,
+        "hammer_angle_rad": 0.0,
+        "transverse_boundary_damping_ratio": 1.1,
+        "transverse_rotation_stiffness_ratio": 1.15,
+        "transverse_support_stiffness_ratio": 1.2,
+        "transverse_tonebar_frequency_ratio": 1.08
+      },
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.03767143342753104,
+          "arm_heat_j": 0.014205269160165837,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            14,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00040723201968898703,
+            0.016574996357464632,
+            0.0029663670179600555
+          ],
+          "final_mechanical_energy_j": 0.00009256146624425192,
+          "final_plane_diagonal_energy_j": [
+            0.000011655168080316752,
+            0.0
+          ],
+          "final_position": [
+            0.000014440442423115153,
+            0.0022308475448891427,
+            0.000019773534694382868,
+            4.177827443452912e-6,
+            -1.711656156918132e-8,
+            -1.3806855937402253e-8,
+            -2.798283624229612e-9,
+            -9.179677641078403e-11,
+            4.346798380706728e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.011569726107514573,
+            0.0001836139990508849
+          ],
+          "final_velocity": [
+            0.0011385858815322085,
+            0.07770219480113782,
+            0.017995216079473974,
+            -0.01585608825025053,
+            0.0004427417049709232,
+            0.000021873791414849472,
+            4.12710313954554e-6,
+            2.762672905406509e-7,
+            0.000047584918579545684,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.20055880926984546,
+            0.0011538430513176004
+          ],
+          "hammer_return_heat_j": 0.0015687079964224145,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.73258604127397e-18,
+          "max_relative_balance_defect": 2.0853693853964008e-13,
+          "max_relative_contact_work_defect": 1.720089978270775e-14,
+          "max_relative_plane_work_defect": [
+            1.4533141001450361e-13,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0015169120684349533,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03767143342753104,
+          "plane_contact_work_j": [
+            0.001921287910997697,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0019096327429119157,
+            0.0
+          ],
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            26.675115912380893,
+            24.69618064789378
+          ],
+          "structural_heat_j": 0.0019096327429174258
+        },
+        {
+          "absolute_drive_work_j": 0.03767143004159046,
+          "arm_heat_j": 0.014205284097079935,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            14,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00040723494505214074,
+            0.016575040427744887,
+            0.0029663674280363665
+          ],
+          "final_mechanical_energy_j": 0.00009256153120096696,
+          "final_plane_diagonal_energy_j": [
+            0.000011655377689686673,
+            0.0
+          ],
+          "final_position": [
+            0.000014440586299676124,
+            0.0022308692567205328,
+            0.000019772566117553866,
+            4.177155210099375e-6,
+            -1.7073411075080218e-8,
+            -1.3807456485181786e-8,
+            -2.7983338154795153e-9,
+            -9.178476031648432e-11,
+            4.3469043130844396e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.01156972410749945,
+            0.00018361480298644526
+          ],
+          "final_velocity": [
+            0.0011385320794053304,
+            0.07769885317888359,
+            0.017995933760038833,
+            -0.01586355536822504,
+            0.0004424859468225562,
+            0.000021881341588890165,
+            4.126679119262806e-6,
+            2.763735987158613e-7,
+            0.000047973046668032594,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.20055862699514285,
+            0.001153842047327584
+          ],
+          "hammer_return_heat_j": 0.0015687085086269529,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7333056884068912e-18,
+          "max_relative_balance_defect": 3.7556183615942484e-13,
+          "max_relative_contact_work_defect": 1.7110322523266466e-14,
+          "max_relative_plane_work_defect": [
+            3.32663190536051e-13,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.001516910791996492,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03767143004159046,
+          "plane_contact_work_j": [
+            0.0019212218148743536,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0019095664371721187,
+            0.0
+          ],
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            26.67545930585415,
+            24.69679655173469
+          ],
+          "structural_heat_j": 0.001909566437184723
+        },
+        {
+          "absolute_drive_work_j": 0.03767142919777526,
+          "arm_heat_j": 0.014205287810682114,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            14,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0004072356709090994,
+            0.016575051378396585,
+            0.002966367531922101
+          ],
+          "final_mechanical_energy_j": 0.00009256154740072911,
+          "final_plane_diagonal_energy_j": [
+            0.000011655429966521039,
+            0.0
+          ],
+          "final_position": [
+            0.000014440622193658126,
+            0.002230874672627376,
+            0.00001977232449501164,
+            4.176987186774327e-6,
+            -1.7062623405821943e-8,
+            -1.3807606323366142e-8,
+            -2.798346390359689e-9,
+            -9.17817545113702e-11,
+            4.346930757689008e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.011569723608446563,
+            0.00018361500351141112
+          ],
+          "final_velocity": [
+            0.0011385186418672207,
+            0.07769801840593243,
+            0.017996112788959264,
+            -0.015865420167796393,
+            0.0004424216876385766,
+            0.00002188328707946082,
+            4.126558668495631e-6,
+            2.764000675289436e-7,
+            0.000048069967246570554,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.20055858153431913,
+            0.001153841796333496
+          ],
+          "hammer_return_heat_j": 0.0015687086358578428,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7326679321546128e-18,
+          "max_relative_balance_defect": 5.341025534964862e-13,
+          "max_relative_contact_work_defect": 1.713178968810686e-14,
+          "max_relative_plane_work_defect": [
+            6.058982351956558e-13,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0015169104765087528,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03767142919777526,
+          "plane_contact_work_j": [
+            0.001921205385903913,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0019095499559146306,
+            0.0
+          ],
+          "steps_per_frame": 256,
+          "strike_window_peak_n": [
+            26.675608256096883,
+            24.697012418461558
+          ],
+          "structural_heat_j": 0.0019095499559374388
+        }
+      ]
+    },
+    {
+      "case": "rotated_boundary",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              2.7281396434395527e-9,
+              2.408390401075522e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.00045902676329736647,
+              0.000031487121986975824
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              7.484941451463675e-10,
+              7.131208289281438e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              0.000054235892494158776,
+              0.00004481346339488598
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              4.536489899105596e-9,
+              4.025636505549724e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.0004335309957264372,
+              0.00004092642397965051
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              1.2355060027099071e-9,
+              1.2670761561757749e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              0.00010630878384236276,
+              0.00011862167830322811
+            ]
+          }
+        ]
+      },
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              5.419982615979055e-10,
+              4.784371716584086e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.00009171364269895981,
+              6.281833866971908e-6
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              1.486902467671328e-10,
+              1.4137261129651226e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              0.000010835629228682929,
+              8.94973160544323e-6
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              9.044311541490466e-10,
+              8.025749494595594e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.00008660954981185003,
+              8.17354484602497e-6
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              2.468593021590737e-10,
+              2.5332317876869524e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              0.00002124759461403979,
+              0.00002370613369189275
+            ]
+          }
+        ]
+      },
+      "passed": true,
+      "polarization": {
+        "boundary_angle_rad": 0.3,
+        "felt_angle_rad": 0.0,
+        "hammer_angle_rad": 0.0,
+        "transverse_boundary_damping_ratio": 1.1,
+        "transverse_rotation_stiffness_ratio": 1.15,
+        "transverse_support_stiffness_ratio": 1.2,
+        "transverse_tonebar_frequency_ratio": 1.08
+      },
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.037679068407816464,
+          "arm_heat_j": 0.014203315228748452,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            16,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00040660255009684454,
+            0.016580303695289914,
+            0.0029672412439584943
+          ],
+          "final_mechanical_energy_j": 0.00009332640113675089,
+          "final_plane_diagonal_energy_j": [
+            0.000012504464239639658,
+            1.3646100368901287e-7
+          ],
+          "final_position": [
+            0.000014995748215045472,
+            0.002316908003482695,
+            0.000014920499848441674,
+            4.0161956424733185e-6,
+            -1.8026266668995037e-8,
+            -1.54045510996892e-8,
+            -3.1826149560943044e-9,
+            -9.349262374194938e-11,
+            4.613989625685862e-6,
+            -1.1347413646362217e-6,
+            -0.0002005657154585176,
+            -1.4794247683561607e-6,
+            1.8718839678500203e-7,
+            -6.245945235616689e-11,
+            5.6335399632804564e-12,
+            -7.486071218855625e-13,
+            3.297858407750095e-14,
+            -3.4842937066033275e-7,
+            -0.011565441514609998,
+            0.00018711228219416847
+          ],
+          "final_velocity": [
+            0.0010151851039307909,
+            0.06385487684202804,
+            0.019106037611406102,
+            -0.01774382112540234,
+            0.0004363646401071662,
+            0.000025166471189479465,
+            4.624638347974963e-6,
+            3.082950367773515e-7,
+            0.00010936480384369792,
+            0.00024059705633213842,
+            0.02551046074502557,
+            0.003510309707443383,
+            0.001551028738846315,
+            3.0059398593281712e-6,
+            -4.6268986876773623e-7,
+            1.163177225591962e-7,
+            -3.2858336577801536e-8,
+            -0.0003468003318151856,
+            -0.2001644523407157,
+            0.0004234212734035637
+          ],
+          "hammer_return_heat_j": 0.0015687381491704675,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7307000694773492e-18,
+          "max_relative_balance_defect": 2.0808236210685612e-13,
+          "max_relative_contact_work_defect": 1.720089978270775e-14,
+          "max_relative_plane_work_defect": [
+            1.4459568565502168e-13,
+            5.87717695194868e-15
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.9856087134455178,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0015113114953302026,
+            0.00008697485227917273
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.037679068407816464,
+          "plane_contact_work_j": [
+            0.0019256019844313408,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            -0.00004293232665245389,
+            0.000047344780995397497
+          ],
+          "plane_diagonal_heat_j": [
+            0.0018701651935337923,
+            0.000047208319991486765
+          ],
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            26.680202120933227,
+            24.775950125745364
+          ],
+          "structural_heat_j": 0.0019128744727483096
+        },
+        {
+          "absolute_drive_work_j": 0.03767906493055392,
+          "arm_heat_j": 0.01420332990251125,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            16,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00040660535457584095,
+            0.016580346982468394,
+            0.0029672414888064634
+          ],
+          "final_mechanical_energy_j": 0.00009332647611910273,
+          "final_plane_diagonal_energy_j": [
+            0.000012504676020847043,
+            1.3646367613154142e-7
+          ],
+          "final_position": [
+            0.00001499588861560732,
+            0.002316929096601325,
+            0.000014919506083293627,
+            4.015463838057929e-6,
+            -1.7984749218487806e-8,
+            -1.540515401591819e-8,
+            -3.1826892557866045e-9,
+            -9.347979347978936e-11,
+            4.614099142845542e-6,
+            -1.1347434807023424e-6,
+            -0.00020056607030449528,
+            -1.4794754776674726e-6,
+            1.8723716514054046e-7,
+            -6.236094887695292e-11,
+            5.621693828284779e-12,
+            -7.456437546302747e-13,
+            3.21345353495634e-14,
+            -3.4843236156773293e-7,
+            -0.011565439565172416,
+            0.00018711306547110093
+          ],
+          "final_velocity": [
+            0.0010151336277648864,
+            0.06385142534370222,
+            0.01910652642350072,
+            -0.017750888031742223,
+            0.0004359826983176187,
+            0.000025182064037512506,
+            4.624284851636314e-6,
+            3.083826181425303e-7,
+            0.00010973990596692624,
+            0.0002406001848689573,
+            0.025511043502063856,
+            0.0035103130851679523,
+            0.0015506248392792793,
+            3.0066140473466855e-6,
+            -4.6262258388646794e-7,
+            1.1629910005664143e-7,
+            -3.285292211598271e-8,
+            -0.00034678198257523987,
+            -0.20016427363861145,
+            0.0004234470636459862
+          ],
+          "hammer_return_heat_j": 0.0015687386444813347,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7315471024246035e-18,
+          "max_relative_balance_defect": 3.8650385020230945e-13,
+          "max_relative_contact_work_defect": 1.7110322523266466e-14,
+          "max_relative_plane_work_defect": [
+            3.328271870284886e-13,
+            1.3976389978509615e-14
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.9856088474390567,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0015113100321706614,
+            0.00008697531829611562
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03767906493055392,
+          "plane_contact_work_j": [
+            0.0019255371420417008,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            -0.00004293250810356663,
+            0.00004734499315595389
+          ],
+          "plane_diagonal_heat_j": [
+            0.0018700999579047287,
+            0.00004720852947929499
+          ],
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            26.68033232714386,
+            24.77599032281735
+          ],
+          "structural_heat_j": 0.0019128094149263226
+        },
+        {
+          "absolute_drive_work_j": 0.037679064065867775,
+          "arm_heat_j": 0.014203333548919048,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            16,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0004066060513402309,
+            0.01658035773778428,
+            0.0029672415521837517
+          ],
+          "final_mechanical_energy_j": 0.00009332649481917863,
+          "final_plane_diagonal_energy_j": [
+            0.000012504728876514692,
+            1.3646434181222756e-7
+          ],
+          "final_position": [
+            0.000014995923665970254,
+            0.0023169343614449613,
+            0.000014919258185860135,
+            4.015280936155615e-6,
+            -1.7974372018230524e-8,
+            -1.54053039354619e-8,
+            -3.182707917908134e-9,
+            -9.347658550166472e-11,
+            4.614126493499241e-6,
+            -1.1347439907723793e-6,
+            -0.00020056615590323634,
+            -1.4794881689602686e-6,
+            1.8724934373860882e-7,
+            -6.233632673656853e-11,
+            5.6187363599442125e-12,
+            -7.449039965253071e-13,
+            3.192382902462967e-14,
+            -3.484330986580343e-7,
+            -0.01156543907835376,
+            0.00018711326102825376
+          ],
+          "final_velocity": [
+            0.0010151207789923576,
+            0.06385056349862366,
+            0.01910664808705862,
+            -0.017752652872523905,
+            0.0004358869029784112,
+            0.000025186015863935476,
+            4.624184403066886e-6,
+            3.084042592232195e-7,
+            0.00010983358181235066,
+            0.00024060096828037433,
+            0.025511189416172874,
+            0.0035103139531473646,
+            0.0015505239107832473,
+            3.0067825267555116e-6,
+            -4.6260575335742486e-7,
+            1.1629444464557162e-7,
+            -3.285156909131933e-8,
+            -0.00034677739738260175,
+            -0.200164229024892,
+            0.0004234534667023324
+          ],
+          "hammer_return_heat_j": 0.0015687387675744863,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7329979772190215e-18,
+          "max_relative_balance_defect": 5.339268618670465e-13,
+          "max_relative_contact_work_defect": 1.713178968810686e-14,
+          "max_relative_plane_work_defect": [
+            5.963638191633353e-13,
+            2.7052688491231635e-14
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.9856088808329433,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0015113096627132855,
+            0.0000869754337126028
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.037679064065867775,
+          "plane_contact_work_j": [
+            0.0019255210274540188,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            -0.00004293255365456701,
+            0.00004734504638197086
+          ],
+          "plane_diagonal_heat_j": [
+            0.0018700837449006826,
+            0.00004720858203913787
+          ],
+          "steps_per_frame": 256,
+          "strike_window_peak_n": [
+            26.680625960835304,
+            24.776445971126776
+          ],
+          "structural_heat_j": 0.0019127932465744537
+        }
+      ]
+    },
+    {
+      "case": "oblique_contacts",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              2.780346665134343e-9,
+              2.455024365215846e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.00045962778117942073,
+              0.0004541874708749317
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              7.237273747785935e-10,
+              7.143009680677341e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              0.00005455030867642567,
+              0.00004074747831258792
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              4.6327901091218005e-9,
+              4.112108479430523e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.0004338750876121916,
+              0.0005637682044619813
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              1.263541860913098e-9,
+              1.306998226156881e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              0.00010657697573309922,
+              0.00008381365515136746
+            ]
+          }
+        ]
+      },
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              5.524512627250183e-10,
+              4.877751548338689e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.00009183380051543144,
+              0.00009074665253044248
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              1.4369839536538836e-10,
+              1.4148406485201043e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              0.000010898605187713363,
+              8.139952165721082e-6
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              9.237779981368438e-10,
+              8.199429412435059e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.000086678617790986,
+              0.00011262845378144565
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              2.522596716981866e-10,
+              2.605429517751446e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              0.000021301748454903047,
+              0.000016750969325759654
+            ]
+          }
+        ]
+      },
+      "passed": true,
+      "polarization": {
+        "boundary_angle_rad": 0.0,
+        "felt_angle_rad": 0.04,
+        "hammer_angle_rad": 0.08,
+        "transverse_boundary_damping_ratio": 1.0,
+        "transverse_rotation_stiffness_ratio": 1.0,
+        "transverse_support_stiffness_ratio": 1.0,
+        "transverse_tonebar_frequency_ratio": 1.0
+      },
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.03767174990811415,
+          "arm_heat_j": 0.014205335577364394,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            14,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0004068374391802489,
+            0.01657540747255487,
+            0.002966393376596442
+          ],
+          "final_mechanical_energy_j": 0.00009261318753899868,
+          "final_plane_diagonal_energy_j": [
+            0.00001159684423615307,
+            1.0106555108074723e-7
+          ],
+          "final_position": [
+            0.000014407109458930153,
+            0.002225533105385725,
+            0.000019339759602229287,
+            4.164205411723296e-6,
+            -1.705184056979323e-8,
+            -1.3788254002202023e-8,
+            -2.794944825003181e-9,
+            -9.160858555121889e-11,
+            4.343875834122238e-6,
+            9.424677928866487e-7,
+            0.00015156298705148948,
+            0.000012367126992419974,
+            3.426094994991451e-7,
+            -5.84699575420174e-10,
+            -5.709962654837796e-10,
+            -1.075227902359548e-10,
+            -4.79030564378827e-12,
+            8.592318443617655e-8,
+            -0.01156984210371409,
+            0.00018357189437459069
+          ],
+          "final_velocity": [
+            0.0011392639368828573,
+            0.07768141867809093,
+            0.017529355398643413,
+            -0.015801587136149733,
+            0.0004415203981202745,
+            0.000021846895287881242,
+            4.125758757505402e-6,
+            2.7531262891930127e-7,
+            0.00005382999942069136,
+            -4.611228516123535e-7,
+            0.0024650369150442906,
+            0.011814376620256292,
+            -0.0011426127582166326,
+            0.00001833924404928372,
+            9.961215594915464e-7,
+            1.33713470761128e-7,
+            2.016044543327947e-8,
+            -0.0001774977042202716,
+            -0.20057013422611258,
+            0.00115805012658055
+          ],
+          "hammer_return_heat_j": 0.0015687327207724619,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7310507940570717e-18,
+          "max_relative_balance_defect": 2.0853693853964008e-13,
+          "max_relative_contact_work_defect": 1.720089978270775e-14,
+          "max_relative_plane_work_defect": [
+            1.5527407746231194e-13,
+            8.00306845678781e-16
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.48731832105301737,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0015118995454720507,
+            0.00012389087120349523
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03767174990811415,
+          "plane_contact_work_j": [
+            0.0019092076167050458,
+            0.000012253760522205096
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.001897610772463061,
+            0.000012152694971094202
+          ],
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            26.675032795005524,
+            24.69774825609272
+          ],
+          "structural_heat_j": 0.0019097634674399575
+        },
+        {
+          "absolute_drive_work_j": 0.03767174651508688,
+          "arm_heat_j": 0.014205350511863127,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            14,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.000406840355370715,
+            0.016575451529567867,
+            0.0029663937821324195
+          ],
+          "final_mechanical_energy_j": 0.00009261325233103,
+          "final_plane_diagonal_energy_j": [
+            0.000011597052579082988,
+            1.0106660322766071e-7
+          ],
+          "final_position": [
+            0.000014407252721124653,
+            0.0022255547262688565,
+            0.000019338798291849003,
+            4.163535614864317e-6,
+            -1.7008825646511818e-8,
+            -1.3788851094196469e-8,
+            -2.7949945871903082e-9,
+            -9.159661226966828e-11,
+            4.3439812877839415e-6,
+            9.424789683040641e-7,
+            0.00015156459627394163,
+            0.000012366996914181231,
+            3.425570281152891e-7,
+            -5.82745518791465e-10,
+            -5.710134400348938e-10,
+            -1.075261449083377e-10,
+            -4.789438404232705e-12,
+            8.593221621772857e-8,
+            -0.011569840104318252,
+            0.0001835726969416364
+          ],
+          "final_velocity": [
+            0.0011392103586048668,
+            0.07767808608800707,
+            0.017530065103345847,
+            -0.015809029633848226,
+            0.0004412626454695679,
+            0.000021854503518855145,
+            4.125304615174051e-6,
+            2.754187095135882e-7,
+            0.00005421687891464369,
+            -4.666310694745256e-7,
+            0.0024647668274754434,
+            0.01181457991037249,
+            -0.0011432128251919044,
+            0.000018332082542397274,
+            9.96502172177056e-7,
+            1.3367982576735999e-7,
+            2.0169143536049042e-8,
+            -0.00017746822515082153,
+            -0.20056995203602174,
+            0.001158048705926713
+          ],
+          "hammer_return_heat_j": 0.0015687332324863892,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.729998206727598e-18,
+          "max_relative_balance_defect": 3.7898121554782624e-13,
+          "max_relative_contact_work_defect": 1.7110322523266466e-14,
+          "max_relative_plane_work_defect": [
+            3.2569393064979165e-13,
+            2.191391402859592e-15
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.487317227578838,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0015118982746353906,
+            0.00012389080941201585
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03767174651508688,
+          "plane_contact_work_j": [
+            0.0019091419690288776,
+            0.000012253334824530146
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0018975449164375293,
+            0.000012152268221219998
+          ],
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            26.67546985781242,
+            24.698830471259722
+          ],
+          "structural_heat_j": 0.001909697184671187
+        },
+        {
+          "absolute_drive_work_j": 0.03767174567217946,
+          "arm_heat_j": 0.014205354223058244,
+          "behavior_passed": true,
+          "contact_entries": [
+            2,
+            14,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00040684108101618965,
+            0.016575462478469003,
+            0.0029663938851268385
+          ],
+          "final_mechanical_energy_j": 0.00009261326850842512,
+          "final_plane_diagonal_energy_j": [
+            0.000011597104562835598,
+            1.0106686501747373e-7
+          ],
+          "final_position": [
+            0.000014407288467618353,
+            0.002225560121415037,
+            0.000019338558422078557,
+            4.16336819437196e-6,
+            -1.69980728906527e-8,
+            -1.3789000055932813e-8,
+            -2.7950070623674012e-9,
+            -9.159361719522735e-11,
+            4.344007616238039e-6,
+            9.424817570020159e-7,
+            0.00015156499774975264,
+            0.00001236696432702972,
+            3.425439130786599e-7,
+            -5.822568931157862e-10,
+            -5.710177200772228e-10,
+            -1.0752698483831235e-10,
+            -4.789221555300598e-12,
+            8.593447326253767e-8,
+            -0.011569839605557705,
+            0.00018357289721295235
+          ],
+          "final_velocity": [
+            0.0011391969755894953,
+            0.07767725389361395,
+            0.0175302422738162,
+            -0.01581088845346689,
+            0.0004411978624578629,
+            0.000021856462625926966,
+            4.125176808984644e-6,
+            2.7544512677606784e-7,
+            0.000054313492930241526,
+            -4.6800663052362335e-7,
+            0.0024646993903883275,
+            0.011814630618956379,
+            -0.001143362699958587,
+            0.00001833027544679682,
+            9.965992640881225e-7,
+            1.3367086659854132e-7,
+            2.017131316660505e-8,
+            -0.0001774608618378504,
+            -0.20056990659250465,
+            0.0011580483566894985
+          ],
+          "hammer_return_heat_j": 0.0015687333597235152,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.732125301672778e-18,
+          "max_relative_balance_defect": 5.335754786081672e-13,
+          "max_relative_contact_work_defect": 1.713178968810686e-14,
+          "max_relative_plane_work_defect": [
+            5.863215119596967e-13,
+            4.1772501439120975e-15
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.4873169537615728,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0015118979705700708,
+            0.0001238907939957341
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03767174567217946,
+          "plane_contact_work_j": [
+            0.0019091256520272215,
+            0.000012253229011309835
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.001897528547442412,
+            0.000012152162146135143
+          ],
+          "steps_per_frame": 256,
+          "strike_window_peak_n": [
+            26.675555154539296,
+            24.698867988107832
+          ],
+          "structural_heat_j": 0.0019096807096109759
+        }
+      ]
+    },
+    {
+      "case": "isotropic",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              1.6550965755019218e-9,
+              1.4688996087472644e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.000028415300248632927,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              2.275635798637088e-10,
+              5.075601903311528e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              9.686474056897043e-6,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              6.237199971804899e-10,
+              5.623651647452945e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.000023492889399253096,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              8.695716138183258e-11,
+              1.9220664766008833e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              6.991091642289048e-6,
+              0.0
+            ]
+          }
+        ]
+      },
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              3.310065230526616e-10,
+              2.9376874277975594e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              5.682989620681867e-6,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              4.536862941256569e-11,
+              1.0145873739445496e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              1.9372673429357096e-6,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              1.2477382224873408e-10,
+              1.125061959878086e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              4.698708791145791e-6,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              1.7294330594288736e-11,
+              3.837978312620978e-11
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              1.3979923653203222e-6,
+              0.0
+            ]
+          }
+        ]
+      },
+      "passed": true,
+      "polarization": {
+        "boundary_angle_rad": 0.0,
+        "felt_angle_rad": 0.0,
+        "hammer_angle_rad": 0.0,
+        "transverse_boundary_damping_ratio": 1.0,
+        "transverse_rotation_stiffness_ratio": 1.0,
+        "transverse_support_stiffness_ratio": 1.0,
+        "transverse_tonebar_frequency_ratio": 1.0
+      },
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.037354798230681004,
+          "arm_heat_j": 0.013902464567380916,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0002211430960820881,
+            0.016101782392461624,
+            0.002711048493666718
+          ],
+          "final_mechanical_energy_j": 0.00010939266318283463,
+          "final_plane_diagonal_energy_j": [
+            0.000016631809122414943,
+            0.0
+          ],
+          "final_position": [
+            0.000017247663244297383,
+            0.0021522405185242835,
+            -0.00010180499813492053,
+            0.000010042026605605732,
+            -2.610640109100415e-7,
+            -4.43844655103294e-9,
+            6.788480941570857e-10,
+            -2.62458667784677e-10,
+            6.49159512967302e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.011693290103045467,
+            0.0001158035861197464
+          ],
+          "final_velocity": [
+            0.0027807738851490936,
+            0.1339963037965033,
+            0.055947556770969055,
+            0.06149615957128821,
+            -0.00019677196332279704,
+            0.00005674336036331509,
+            -2.9308736424224815e-6,
+            1.571304994470412e-7,
+            0.005914346987177293,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.21405880198562777,
+            0.0210460025927047
+          ],
+          "hammer_return_heat_j": 0.001559621479515422,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7326058936086713e-18,
+          "max_relative_balance_defect": 3.714585808933431e-13,
+          "max_relative_contact_work_defect": 1.7110322523266466e-14,
+          "max_relative_plane_work_defect": [
+            2.027075311523493e-13,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.002128069273229301,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.037354798230681004,
+          "plane_contact_work_j": [
+            0.002819310680847063,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.002802678871717081,
+            0.0
+          ],
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            24.928400312251288,
+            23.172630709217437
+          ],
+          "structural_heat_j": 0.0028026788717246563
+        },
+        {
+          "absolute_drive_work_j": 0.03735479733610431,
+          "arm_heat_j": 0.01390246754420649,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0002211434183871841,
+            0.016101794830519274,
+            0.002711049390422742
+          ],
+          "final_mechanical_energy_j": 0.00010939263778617497,
+          "final_plane_diagonal_energy_j": [
+            0.00001663178002597034,
+            0.0
+          ],
+          "final_position": [
+            0.000017247663306854778,
+            0.002152241013295235,
+            -0.00010180505947684953,
+            0.00001004206440937573,
+            -2.6106040304489774e-7,
+            -4.438364256685798e-9,
+            6.788361487669091e-10,
+            -2.624586863364096e-10,
+            6.491599864807969e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.011693290220074067,
+            0.00011580372908909285
+          ],
+          "final_velocity": [
+            0.00278076760408144,
+            0.13399636867237308,
+            0.05594747660628503,
+            0.061495549152094875,
+            -0.00019677299718455664,
+            0.00005674183549675253,
+            -2.9307016501960127e-6,
+            1.5707308261234304e-7,
+            0.005914291920243398,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.21405881115742553,
+            0.021045926456641457
+          ],
+          "hammer_return_heat_j": 0.0015596216919858711,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7329202222414415e-18,
+          "max_relative_balance_defect": 5.344539367553653e-13,
+          "max_relative_contact_work_defect": 1.713178968810686e-14,
+          "max_relative_plane_work_defect": [
+            4.2629446990288545e-13,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0021280671570823514,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03735479733610431,
+          "plane_contact_work_j": [
+            0.0028192929361509993,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0028026611561091483,
+            0.0
+          ],
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            24.92908387197925,
+            23.173156853805757
+          ],
+          "structural_heat_j": 0.0028026611561252847
+        },
+        {
+          "absolute_drive_work_j": 0.03735479711254093,
+          "arm_heat_j": 0.013902468288419097,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00022114349900296238,
+            0.016101797940409505,
+            0.0027110496146183372
+          ],
+          "final_mechanical_energy_j": 0.00010939263145321858,
+          "final_plane_diagonal_energy_j": [
+            0.00001663177278457166,
+            0.0
+          ],
+          "final_position": [
+            0.00001724766334134434,
+            0.0021522411388998353,
+            -0.00010180507486767169,
+            0.000010042073872734715,
+            -2.61059505215549e-7,
+            -4.438343510614992e-9,
+            6.788331505769994e-10,
+            -2.624586916818247e-10,
+            6.491601055441293e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.011693290248915725,
+            0.00011580376477616207
+          ],
+          "final_velocity": [
+            0.002780766035215396,
+            0.13399638526996807,
+            0.055947456701883544,
+            0.06149539645617813,
+            -0.0001967732115307499,
+            0.00005674145596230584,
+            -2.9306585086134856e-6,
+            1.570587466895175e-7,
+            0.005914278145411309,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.2140588134280365,
+            0.021045907478742402
+          ],
+          "hammer_return_heat_j": 0.0015596217451321784,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7322452428615982e-18,
+          "max_relative_balance_defect": 1.155809432730929e-12,
+          "max_relative_contact_work_defect": 1.7432711801891138e-14,
+          "max_relative_plane_work_defect": [
+            1.1051009762422823e-12,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0021280666278806768,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03735479711254093,
+          "plane_contact_work_j": [
+            0.002819288499624395,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0028026567267984835,
+            0.0
+          ],
+          "steps_per_frame": 256,
+          "strike_window_peak_n": [
+            24.929213650138283,
+            23.173233248457425
+          ],
+          "structural_heat_j": 0.002802656726839619
+        }
+      ]
+    },
+    {
+      "case": "aligned_anisotropy",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              1.6550965755019218e-9,
+              1.4688996087472644e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.000028415300248632927,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              2.275635798637088e-10,
+              5.075601903311528e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              9.686474056897043e-6,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              6.237199971804899e-10,
+              5.623651647452945e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.000023492889399253096,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              8.695716138183258e-11,
+              1.9220664766008833e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              6.991091642289048e-6,
+              0.0
+            ]
+          }
+        ]
+      },
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              3.310065230526616e-10,
+              2.9376874277975594e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              5.682989620681867e-6,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              4.536862941256569e-11,
+              1.0145873739445496e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              1.9372673429357096e-6,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              1.2477382224873408e-10,
+              1.125061959878086e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              4.698708791145791e-6,
+              0.0
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              1.7294330594288736e-11,
+              3.837978312620978e-11
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              1.3979923653203222e-6,
+              0.0
+            ]
+          }
+        ]
+      },
+      "passed": true,
+      "polarization": {
+        "boundary_angle_rad": 0.0,
+        "felt_angle_rad": 0.0,
+        "hammer_angle_rad": 0.0,
+        "transverse_boundary_damping_ratio": 1.1,
+        "transverse_rotation_stiffness_ratio": 1.15,
+        "transverse_support_stiffness_ratio": 1.2,
+        "transverse_tonebar_frequency_ratio": 1.08
+      },
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.037354798230681004,
+          "arm_heat_j": 0.013902464567380916,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0002211430960820881,
+            0.016101782392461624,
+            0.002711048493666718
+          ],
+          "final_mechanical_energy_j": 0.00010939266318283463,
+          "final_plane_diagonal_energy_j": [
+            0.000016631809122414943,
+            0.0
+          ],
+          "final_position": [
+            0.000017247663244297383,
+            0.0021522405185242835,
+            -0.00010180499813492053,
+            0.000010042026605605732,
+            -2.610640109100415e-7,
+            -4.43844655103294e-9,
+            6.788480941570857e-10,
+            -2.62458667784677e-10,
+            6.49159512967302e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.011693290103045467,
+            0.0001158035861197464
+          ],
+          "final_velocity": [
+            0.0027807738851490936,
+            0.1339963037965033,
+            0.055947556770969055,
+            0.06149615957128821,
+            -0.00019677196332279704,
+            0.00005674336036331509,
+            -2.9308736424224815e-6,
+            1.571304994470412e-7,
+            0.005914346987177293,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.21405880198562777,
+            0.0210460025927047
+          ],
+          "hammer_return_heat_j": 0.001559621479515422,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7326058936086713e-18,
+          "max_relative_balance_defect": 3.714585808933431e-13,
+          "max_relative_contact_work_defect": 1.7110322523266466e-14,
+          "max_relative_plane_work_defect": [
+            2.027075311523493e-13,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.002128069273229301,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.037354798230681004,
+          "plane_contact_work_j": [
+            0.002819310680847063,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.002802678871717081,
+            0.0
+          ],
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            24.928400312251288,
+            23.172630709217437
+          ],
+          "structural_heat_j": 0.0028026788717246563
+        },
+        {
+          "absolute_drive_work_j": 0.03735479733610431,
+          "arm_heat_j": 0.01390246754420649,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0002211434183871841,
+            0.016101794830519274,
+            0.002711049390422742
+          ],
+          "final_mechanical_energy_j": 0.00010939263778617497,
+          "final_plane_diagonal_energy_j": [
+            0.00001663178002597034,
+            0.0
+          ],
+          "final_position": [
+            0.000017247663306854778,
+            0.002152241013295235,
+            -0.00010180505947684953,
+            0.00001004206440937573,
+            -2.6106040304489774e-7,
+            -4.438364256685798e-9,
+            6.788361487669091e-10,
+            -2.624586863364096e-10,
+            6.491599864807969e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.011693290220074067,
+            0.00011580372908909285
+          ],
+          "final_velocity": [
+            0.00278076760408144,
+            0.13399636867237308,
+            0.05594747660628503,
+            0.061495549152094875,
+            -0.00019677299718455664,
+            0.00005674183549675253,
+            -2.9307016501960127e-6,
+            1.5707308261234304e-7,
+            0.005914291920243398,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.21405881115742553,
+            0.021045926456641457
+          ],
+          "hammer_return_heat_j": 0.0015596216919858711,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7329202222414415e-18,
+          "max_relative_balance_defect": 5.344539367553653e-13,
+          "max_relative_contact_work_defect": 1.713178968810686e-14,
+          "max_relative_plane_work_defect": [
+            4.2629446990288545e-13,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0021280671570823514,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03735479733610431,
+          "plane_contact_work_j": [
+            0.0028192929361509993,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0028026611561091483,
+            0.0
+          ],
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            24.92908387197925,
+            23.173156853805757
+          ],
+          "structural_heat_j": 0.0028026611561252847
+        },
+        {
+          "absolute_drive_work_j": 0.03735479711254093,
+          "arm_heat_j": 0.013902468288419097,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00022114349900296238,
+            0.016101797940409505,
+            0.0027110496146183372
+          ],
+          "final_mechanical_energy_j": 0.00010939263145321858,
+          "final_plane_diagonal_energy_j": [
+            0.00001663177278457166,
+            0.0
+          ],
+          "final_position": [
+            0.00001724766334134434,
+            0.0021522411388998353,
+            -0.00010180507486767169,
+            0.000010042073872734715,
+            -2.61059505215549e-7,
+            -4.438343510614992e-9,
+            6.788331505769994e-10,
+            -2.624586916818247e-10,
+            6.491601055441293e-6,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.011693290248915725,
+            0.00011580376477616207
+          ],
+          "final_velocity": [
+            0.002780766035215396,
+            0.13399638526996807,
+            0.055947456701883544,
+            0.06149539645617813,
+            -0.0001967732115307499,
+            0.00005674145596230584,
+            -2.9306585086134856e-6,
+            1.570587466895175e-7,
+            0.005914278145411309,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.2140588134280365,
+            0.021045907478742402
+          ],
+          "hammer_return_heat_j": 0.0015596217451321784,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7322452428615982e-18,
+          "max_relative_balance_defect": 1.155809432730929e-12,
+          "max_relative_contact_work_defect": 1.7432711801891138e-14,
+          "max_relative_plane_work_defect": [
+            1.1051009762422823e-12,
+            0.0
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.0,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0021280666278806768,
+            0.0
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03735479711254093,
+          "plane_contact_work_j": [
+            0.002819288499624395,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0028026567267984835,
+            0.0
+          ],
+          "steps_per_frame": 256,
+          "strike_window_peak_n": [
+            24.929213650138283,
+            23.173233248457425
+          ],
+          "structural_heat_j": 0.002802656726839619
+        }
+      ]
+    },
+    {
+      "case": "rotated_boundary",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              1.638809200441178e-9,
+              1.4545643341379465e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.000028314711900151585,
+              0.000013635092764401872
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              2.1341608623806602e-10,
+              4.887144125741886e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              9.576465078751751e-6,
+              0.000011840751019908992
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              1.027798423672383e-9,
+              9.214822432040107e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.0000240972899256152,
+              8.76086043091828e-6
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              3.3399008411265846e-10,
+              2.6370731777878324e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              7.982380360221314e-6,
+              0.00001109824685367715
+            ]
+          }
+        ]
+      },
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              3.277488531706044e-10,
+              2.9090152063536565e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              5.662871487490612e-6,
+              2.7270022478081348e-6
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              4.283390432717066e-11,
+              9.779628287425771e-11
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              1.915282496346271e-6,
+              2.368162334100841e-6
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              2.056141279553429e-10,
+              1.8434110651212857e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              4.819316968159308e-6,
+              1.7523451987371675e-6
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              6.680868941120525e-11,
+              5.27463599235057e-11
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              1.5966401800117405e-6,
+              2.219877374777389e-6
+            ]
+          }
+        ]
+      },
+      "passed": true,
+      "polarization": {
+        "boundary_angle_rad": 0.3,
+        "felt_angle_rad": 0.0,
+        "hammer_angle_rad": 0.0,
+        "transverse_boundary_damping_ratio": 1.1,
+        "transverse_rotation_stiffness_ratio": 1.15,
+        "transverse_support_stiffness_ratio": 1.2,
+        "transverse_tonebar_frequency_ratio": 1.08
+      },
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.037364185017444054,
+          "arm_heat_j": 0.013898174943049589,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.0002220349005049758,
+            0.016103732956379672,
+            0.0027109101957012165
+          ],
+          "final_mechanical_energy_j": 0.00010982594919077898,
+          "final_plane_diagonal_energy_j": [
+            0.00001832888232070651,
+            1.230685104167967e-7
+          ],
+          "final_position": [
+            0.00001815936640147095,
+            0.002275656494990446,
+            -0.00010344128960778135,
+            0.000011896249371815338,
+            -2.4813223253158034e-7,
+            8.513177419532922e-10,
+            1.0507536513494457e-9,
+            -2.79976212443485e-10,
+            6.890979756294547e-6,
+            5.934159637152182e-7,
+            0.0000249701158178582,
+            -0.0000140137278193919,
+            -3.1382903039994122e-6,
+            -3.3748338979503987e-9,
+            2.556389695968786e-10,
+            -6.770618255247485e-11,
+            2.1341281093782866e-11,
+            6.042757681650268e-8,
+            -0.01166781426204237,
+            0.00011774701414584057
+          ],
+          "final_velocity": [
+            0.0026535024895742764,
+            0.14417380428128176,
+            0.06218869722336001,
+            0.05611157374063708,
+            0.001689415281521019,
+            8.080351813462767e-6,
+            -9.76747743901558e-7,
+            4.814008260406961e-7,
+            0.005307072154696074,
+            0.0002240976299475989,
+            -0.04042424407756737,
+            -0.006170989518896012,
+            0.00788774586378352,
+            -0.000020943497885680444,
+            5.169482992560164e-7,
+            -6.140543311602449e-8,
+            3.708029126869327e-9,
+            0.0008354607219773592,
+            -0.21242019903230105,
+            0.02220795134155819
+          ],
+          "hammer_return_heat_j": 0.0015594342042235237,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7319044444492264e-18,
+          "max_relative_balance_defect": 3.716865395192365e-13,
+          "max_relative_contact_work_defect": 1.7110322523266466e-14,
+          "max_relative_plane_work_defect": [
+            2.0629051448112136e-13,
+            1.1977414648156086e-15
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.9603993427570109,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.00212601141068435,
+            0.00017596917562388883
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.037364185017444054,
+          "plane_contact_work_j": [
+            0.0028318426223544997,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            -0.00001336767931858924,
+            0.000014674213182380142
+          ],
+          "plane_diagonal_heat_j": [
+            0.002800146060707485,
+            0.000014551144671918742
+          ],
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            24.934033308388717,
+            23.301261031874283
+          ],
+          "structural_heat_j": 0.0028134052017262583
+        },
+        {
+          "absolute_drive_work_j": 0.037364184134541435,
+          "arm_heat_j": 0.013898178350597095,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00022203528515423666,
+            0.016103747009354706,
+            0.0027109112409732304
+          ],
+          "final_mechanical_energy_j": 0.00010982593486665409,
+          "final_plane_diagonal_energy_j": [
+            0.00001832890427226466,
+            1.2306904209478224e-7
+          ],
+          "final_position": [
+            0.00001815939680490174,
+            0.0022756606717978943,
+            -0.00010344141402202478,
+            0.000011896277265276269,
+            -2.481259053949672e-7,
+            8.512670071909805e-10,
+            1.0507638690073585e-9,
+            -2.799738266961168e-10,
+            6.890992771826219e-6,
+            5.934222648532812e-7,
+            0.000024970964473622928,
+            -0.000014013723597654527,
+            -3.138244995836372e-6,
+            -3.374857642277324e-9,
+            2.556392958564792e-10,
+            -6.770592456082162e-11,
+            2.1341145614399014e-11,
+            6.043250609245626e-8,
+            -0.011667813566991522,
+            0.00011774719441162879
+          ],
+          "final_velocity": [
+            0.0026534967373448293,
+            0.14417422905984506,
+            0.06218879337256293,
+            0.0561108127375386,
+            0.0016894399864645162,
+            8.074376198814716e-6,
+            -9.782758664968777e-7,
+            4.815378589445558e-7,
+            0.005307001427348959,
+            0.0002240967050573062,
+            -0.04042439596116711,
+            -0.006171017138376817,
+            0.00788772731564218,
+            -0.000020942986477574097,
+            5.16930036504723e-7,
+            -6.140154888979608e-8,
+            3.7069701305351458e-9,
+            0.0008354526752605651,
+            -0.21242015954672588,
+            0.022207916066365675
+          ],
+          "hammer_return_heat_j": 0.001559434437437608,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7309283713264138e-18,
+          "max_relative_balance_defect": 5.339268618670465e-13,
+          "max_relative_contact_work_defect": 1.713178968810686e-14,
+          "max_relative_plane_work_defect": [
+            4.2972021917828653e-13,
+            2.9344327020345422e-15
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.960399262381835,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.002126009287460335,
+            0.00017596981109708917
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.037364184134541435,
+          "plane_contact_work_j": [
+            0.002831822652168656,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            -0.000013367697035945316,
+            0.000014674230411306912
+          ],
+          "plane_diagonal_heat_j": [
+            0.0028001260508443934,
+            0.00001455116136910234
+          ],
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            24.934533318660932,
+            23.301908711787924
+          ],
+          "structural_heat_j": 0.0028133852094887456
+        },
+        {
+          "absolute_drive_work_j": 0.03736418391280009,
+          "arm_heat_j": 0.013898179202518913,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00022203538127708847,
+            0.016103750522566865,
+            0.002710911502284947
+          ],
+          "final_mechanical_energy_j": 0.00010982593128372119,
+          "final_plane_diagonal_energy_j": [
+            0.000018328909760659518,
+            1.2306917505624847e-7
+          ],
+          "final_position": [
+            0.000018159404406174198,
+            0.002275661716086525,
+            -0.00010344144511930569,
+            0.000011896284234609684,
+            -2.48124323492488e-7,
+            8.512543142422105e-10,
+            1.0507664201341317e-9,
+            -2.7997322963243354e-10,
+            6.890996025425186e-6,
+            5.934238401664964e-7,
+            0.000024971176643425244,
+            -0.000014013722548907607,
+            -3.138233667675044e-6,
+            -3.3748635742025404e-9,
+            2.5563937714959856e-10,
+            -6.770585999576056e-11,
+            2.134111172440722e-11,
+            6.043373845803988e-8,
+            -0.011667813393191399,
+            0.00011774723947927702
+          ],
+          "final_velocity": [
+            0.0026534952992472304,
+            0.14417433529379428,
+            0.06218881740865164,
+            0.05611062246195541,
+            0.001689446162549893,
+            8.072882211305771e-6,
+            -9.786579385474712e-7,
+            4.815721114264063e-7,
+            0.0053069837433524485,
+            0.00022409647379932035,
+            -0.04042443393583125,
+            -0.006171024048157484,
+            0.00788772267511096,
+            -0.000020942858621744414,
+            5.169254698924071e-7,
+            -6.14005776895322e-8,
+            3.7067053444455435e-9,
+            0.0008354506631202568,
+            -0.21242014967237438,
+            0.022207907249150203
+          ],
+          "hammer_return_heat_j": 0.0015594344957084018,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7324950514065892e-18,
+          "max_relative_balance_defect": 1.1443830775573853e-12,
+          "max_relative_contact_work_defect": 1.7432711801891138e-14,
+          "max_relative_plane_work_defect": [
+            1.030342196202195e-12,
+            8.363454700544789e-15
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.9603992423060471,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0021260087473086785,
+            0.00017596996999897412
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03736418391280009,
+          "plane_contact_work_j": [
+            0.0028318176586862903,
+            0.0
+          ],
+          "plane_coupling_work_j": [
+            -0.000013367701465874286,
+            0.000014674234719052182
+          ],
+          "plane_diagonal_heat_j": [
+            0.002800121047421207,
+            0.00001455116554368303
+          ],
+          "steps_per_frame": 256,
+          "strike_window_peak_n": [
+            24.93462432530674,
+            23.30205418311081
+          ],
+          "structural_heat_j": 0.002813380210493501
+        }
+      ]
+    },
+    {
+      "case": "oblique_contacts",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              1.6550674573660566e-9,
+              1.4688741419828373e-9
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              0.000028414812542828475,
+              0.000028460807377702968
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              2.2713235865790585e-10,
+              5.071471682674721e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              9.678310815472999e-6,
+              0.000010573348520233798
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              6.234857438650133e-10,
+              5.621924884589453e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              0.000023493688440834783,
+              0.00002185377392136204
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              8.695534689187595e-11,
+              1.920892915369714e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              6.979239134523341e-6,
+              6.722542798097498e-6
+            ]
+          }
+        ]
+      },
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "hammer_arm_rmse_m": [
+              3.310007002261157e-10,
+              2.937636567574456e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.0,
+            "velocity_xy_relative_rmse": [
+              5.682891992616652e-6,
+              5.6920908965321104e-6
+            ]
+          },
+          {
+            "end_seconds": 0.095,
+            "hammer_arm_rmse_m": [
+              4.547098832843041e-11,
+              1.0144461765760001e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.045,
+            "velocity_xy_relative_rmse": [
+              1.9356580083687364e-6,
+              2.114631219886742e-6
+            ]
+          },
+          {
+            "end_seconds": 0.14,
+            "hammer_arm_rmse_m": [
+              1.247246131148016e-10,
+              1.1246103695186388e-10
+            ],
+            "passed": true,
+            "start_seconds": 0.095,
+            "velocity_xy_relative_rmse": [
+              4.698658543919527e-6,
+              4.370681684786675e-6
+            ]
+          },
+          {
+            "end_seconds": 0.18,
+            "hammer_arm_rmse_m": [
+              1.7388644871072994e-11,
+              3.8420149779192605e-11
+            ],
+            "passed": true,
+            "start_seconds": 0.14,
+            "velocity_xy_relative_rmse": [
+              1.3959259388767366e-6,
+              1.3445693447227416e-6
+            ]
+          }
+        ]
+      },
+      "passed": true,
+      "polarization": {
+        "boundary_angle_rad": 0.0,
+        "felt_angle_rad": 0.04,
+        "hammer_angle_rad": 0.08,
+        "transverse_boundary_damping_ratio": 1.0,
+        "transverse_rotation_stiffness_ratio": 1.0,
+        "transverse_support_stiffness_ratio": 1.0,
+        "transverse_tonebar_frequency_ratio": 1.0
+      },
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_drive_work_j": 0.03735494653960322,
+          "arm_heat_j": 0.01390251496589769,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00022103675246572062,
+            0.016101843878926134,
+            0.002711083087324604
+          ],
+          "final_mechanical_energy_j": 0.000109575693315808,
+          "final_plane_diagonal_energy_j": [
+            0.00001656860280590947,
+            2.367041770400427e-7
+          ],
+          "final_position": [
+            0.0000172133468909596,
+            0.0021450586219967562,
+            -0.00010213488648075649,
+            0.000010004905338366547,
+            -2.587774307123071e-7,
+            -4.488559113816414e-9,
+            6.822527027598279e-10,
+            -2.6219569178900334e-10,
+            6.474003183877442e-6,
+            8.62602584528253e-7,
+            0.00018164103834619527,
+            7.898642672916212e-6,
+            7.465446198438634e-7,
+            -1.07528818457034e-8,
+            -9.977260386329031e-11,
+            4.4252840692977556e-12,
+            -3.0295562098908055e-12,
+            4.2910182454574237e-7,
+            -0.011693496072859993,
+            0.00011575366195622428
+          ],
+          "final_velocity": [
+            0.002769504480616331,
+            0.1335115657960484,
+            0.05687353437754251,
+            0.061301168249663876,
+            -0.00020573565392113238,
+            0.00005606822691840536,
+            -2.9109223949371023e-6,
+            1.535623957431861e-7,
+            0.005887433203240797,
+            0.00034101626489249707,
+            0.01792808004966414,
+            -0.024338251156753015,
+            0.005095031576952656,
+            -8.034979426601116e-6,
+            2.3677224436548933e-6,
+            -1.2854784115859384e-7,
+            5.265520541848212e-9,
+            0.0006884876675067495,
+            -0.21406923567696307,
+            0.02104647923701449
+          ],
+          "hammer_return_heat_j": 0.0015596331333745524,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7299589156485017e-18,
+          "max_relative_balance_defect": 3.7510591890763796e-13,
+          "max_relative_contact_work_defect": 1.7110322523266466e-14,
+          "max_relative_plane_work_defect": [
+            2.1659535543842227e-13,
+            1.9343399606671107e-15
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.5501352248611183,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0021212678717644554,
+            0.0001700067015911036
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.03735494653960322,
+          "plane_contact_work_j": [
+            0.0028012457086926917,
+            0.000018151959923912134
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.0027846771058786845,
+            0.00001791525574679973
+          ],
+          "steps_per_frame": 64,
+          "strike_window_peak_n": [
+            24.92852293192352,
+            23.17066922545527
+          ],
+          "structural_heat_j": 0.0028025923616337442
+        },
+        {
+          "absolute_drive_work_j": 0.037354945646332086,
+          "arm_heat_j": 0.013902517942924013,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00022103707420287753,
+            0.016101856316656102,
+            0.002711083984008096
+          ],
+          "final_mechanical_energy_j": 0.00010957566888095646,
+          "final_plane_diagonal_energy_j": [
+            0.0000165685739225923,
+            2.3670494970503955e-7
+          ],
+          "final_position": [
+            0.000017213346984490307,
+            0.002145059110375832,
+            -0.00010213495238773837,
+            0.000010004943024378719,
+            -2.587738107359863e-7,
+            -4.4884788165390154e-9,
+            6.822413264387013e-10,
+            -2.62195723288219e-10,
+            6.474007927286847e-6,
+            8.626019344614386e-7,
+            0.00018164120451766882,
+            7.898768426682905e-6,
+            7.465478270498726e-7,
+            -1.0752722886245909e-8,
+            -9.976850837873838e-11,
+            4.424597097234005e-12,
+            -3.0294866464772065e-12,
+            4.2910167573582153e-7,
+            -0.01169349618945328,
+            0.00011575380467776842
+          ],
+          "final_velocity": [
+            0.0027694982070188634,
+            0.13351162862663218,
+            0.05687345740957198,
+            0.061300559835296475,
+            -0.00020573649148433837,
+            0.00005606675112117979,
+            -2.910768275187648e-6,
+            1.5350177018628725e-7,
+            0.005887378282806401,
+            0.00034101597396037406,
+            0.01792813262311249,
+            -0.024338323775620382,
+            0.0050949803705318,
+            -8.035010178588507e-6,
+            2.3676617745146215e-6,
+            -1.2854123009858323e-7,
+            5.263014642759653e-9,
+            0.0006884834803540703,
+            -0.21406924481565578,
+            0.021046403131284898
+          ],
+          "hammer_return_heat_j": 0.0015596333459188922,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7335658367095391e-18,
+          "max_relative_balance_defect": 5.342782451259258e-13,
+          "max_relative_contact_work_defect": 1.713178968810686e-14,
+          "max_relative_plane_work_defect": [
+            4.4485345915248917e-13,
+            3.8473956619040635e-15
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.5501355518237772,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.002121265761439184,
+            0.00017000653029102734
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.037354945646332086,
+          "plane_contact_work_j": [
+            0.0028012280784194816,
+            0.00001815184752539561
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.002784659504480321,
+            0.00001791514257554665
+          ],
+          "steps_per_frame": 128,
+          "strike_window_peak_n": [
+            24.929139365502333,
+            23.17130859078525
+          ],
+          "structural_heat_j": 0.002802574647072779
+        },
+        {
+          "absolute_drive_work_j": 0.037354945422402544,
+          "arm_heat_j": 0.013902518687167655,
+          "behavior_passed": true,
+          "contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "contact_heat_j": [
+            0.0,
+            0.00022103715463293053,
+            0.01610185942603627,
+            0.002711084208148122
+          ],
+          "final_mechanical_energy_j": 0.0001095756627718179,
+          "final_plane_diagonal_energy_j": [
+            0.000016568566703175748,
+            2.3670514287261836e-7
+          ],
+          "final_position": [
+            0.00001721334700894634,
+            0.002145059232617777,
+            -0.0001021349688658557,
+            0.000010004952442067554,
+            -2.5877290600475846e-7,
+            -4.488458734652588e-9,
+            6.82238481867598e-10,
+            -2.6219573127785533e-10,
+            6.474009113092268e-6,
+            8.626017719883251e-7,
+            0.0001816412460684883,
+            7.8987998683814e-6,
+            7.465486285046621e-7,
+            -1.0752683156969287e-8,
+            -9.976748420720129e-11,
+            4.424425335329293e-12,
+            -3.0294692600054777e-12,
+            4.2910163849834554e-7,
+            -0.01169349621856693,
+            0.00011575384036011738
+          ],
+          "final_velocity": [
+            0.002769496638613838,
+            0.13351164435839508,
+            0.05687343817229138,
+            0.061300407717465796,
+            -0.00020573669981096282,
+            0.00005606638226982376,
+            -2.9107297029381575e-6,
+            1.5348662098095508e-7,
+            0.005887364551417972,
+            0.0003410159012299002,
+            0.017928145770486188,
+            -0.024338341929612317,
+            0.005094967567839669,
+            -8.035017826899044e-6,
+            2.367646611102278e-6,
+            -1.2853957562959594e-7,
+            5.262388453935705e-9,
+            0.0006884824334677489,
+            -0.21406924709812356,
+            0.02104638410664298
+          ],
+          "hammer_return_heat_j": 0.001559633399042047,
+          "heat_monotone": true,
+          "initial_energy_j": 0.000053333333333333326,
+          "max_kinematic_defect": 1.7343131943929808e-18,
+          "max_relative_balance_defect": 1.1531208785724482e-12,
+          "max_relative_contact_work_defect": 1.7432711801891138e-14,
+          "max_relative_plane_work_defect": [
+            1.1388791183248687e-12,
+            8.299810395161568e-15
+          ],
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_solver_sweeps": 2,
+          "nonnegative_force": true,
+          "orbit_covariance_rank": 0.5501356336038254,
+          "passed": true,
+          "peak_displacement_xy_m": [
+            0.0021212652336934585,
+            0.00017000648745034804
+          ],
+          "pedal_work_j": 0.0,
+          "pedestal_work_j": 0.037354945422402544,
+          "plane_contact_work_j": [
+            0.0028012236703612325,
+            0.000018151819422498926
+          ],
+          "plane_coupling_work_j": [
+            0.0,
+            0.0
+          ],
+          "plane_diagonal_heat_j": [
+            0.002784655103615453,
+            0.00001791511427931587
+          ],
+          "steps_per_frame": 256,
+          "strike_window_peak_n": [
+            24.929236174701813,
+            23.171451479028615
+          ],
+          "structural_heat_j": 0.002802570217937132
+        }
+      ]
+    }
+  ],
+  "experiment": "polarized-action-v1",
+  "passed": true,
+  "protocol": "Frozen before first run. Eight cases, 24 takes: 75 mm at 48 kHz and 120 mm at 96 kHz (selected paired regimes, not a full factorial grid), each with isotropic, aligned anisotropic, rotated anisotropic and oblique-contact configurations. Repeat the same 180 ms action trajectory at three fixed resolutions. Pedestal speed 1.5 m/s, key down 10-45 and 95-130 ms; pedal closed. Circular tine and tuning inertia unchanged across axes, boundary stiffness/damping derived by reciprocal rotation; no synthetic detune, lateral seed impulse or state resets. All assembly/action/felt parameters use current library defaults; per-case polarization parameters are recorded. Require both strikes, zero lateral motion in both symmetry controls and >1 nm lateral peak with covariance rank >0.001 in coupled/oblique cases. Per-tick total energy defect <1e-8, each contact work defect <1e-9, stationary-drive energy growth <1e-10, midpoint identity <1e-14, monotone heat and nonnegative force; each plane's independent work defect <1e-8 at every output frame. Both lower resolutions versus the highest must have <1% velocity RMSE separately in both physical axes and <10 micrometer hammer/arm position RMSE in each of four windows. Failed studies are retained without changing gates.",
+  "schema_version": 1,
+  "scope": "Offline small-deflection two-plane action reduction. Boundary anisotropy and contact angles are hypotheses, not measured geometry or material constants. Does not add geometric large-deflection nonlinearities, torsion, shear/rotary inertia, 3D spring eccentricity, magnetic conversion, audio or host qualification.",
+  "steps_per_frame": [
+    64,
+    128,
+    256
+  ]
+}

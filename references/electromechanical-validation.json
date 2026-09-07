@@ -1,0 +1,2702 @@
+{
+  "cases": [
+    {
+      "case": "zero_flux",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              0.00045902676329736647,
+              0.000031487121986975824
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              0.000054235892494158776,
+              0.00004481346339488598
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              0.0004335309957264372,
+              0.00004092642397965051
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              0.00010630878384236276,
+              0.00011862167830322811
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "feedback_velocity_rms_difference_m_s": 0.0,
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              0.00009171364269895981,
+              6.281833866971908e-6
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              0.000010835629228682929,
+              8.94973160544323e-6
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              0.00008660954981185003,
+              8.17354484602497e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              0.00002124759461403979,
+              0.00002370613369189275
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "pickup_circuit": {
+        "coil_resistance_ohm": 200.0,
+        "flux_scale_wb": 0.0,
+        "gap_m": 0.0015,
+        "inductance_h": 0.2,
+        "load_resistance_ohm": 10000.0,
+        "offset_xy_m": [
+          0.0005,
+          0.0002
+        ],
+        "pole_radius_m": 0.0005,
+        "shunt_capacitance_f": 4.7e-9
+      },
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_circuit_input_work_j": 0.0,
+          "behavior_passed": true,
+          "circuit_input_work_j": 0.0,
+          "coil_heat_j": 0.0,
+          "electrical_energy_j": 0.0,
+          "final_current_a": 0.0,
+          "final_position": [
+            0.000014995748215045472,
+            0.002316908003482695,
+            0.000014920499848441674,
+            4.0161956424733185e-6,
+            -1.8026266668995037e-8,
+            -1.54045510996892e-8,
+            -3.1826149560943044e-9,
+            -9.349262374194938e-11,
+            4.613989625685862e-6,
+            -1.1347413646362217e-6,
+            -0.0002005657154585176,
+            -1.4794247683561607e-6,
+            1.8718839678500203e-7,
+            -6.245945235616689e-11,
+            5.6335399632804564e-12,
+            -7.486071218855625e-13,
+            3.297858407750095e-14,
+            -3.4842937066033275e-7,
+            -0.011565441514609998,
+            0.00018711228219416847
+          ],
+          "final_velocity": [
+            0.0010151851039307909,
+            0.06385487684202804,
+            0.019106037611406102,
+            -0.01774382112540234,
+            0.0004363646401071662,
+            0.000025166471189479465,
+            4.624638347974963e-6,
+            3.082950367773515e-7,
+            0.00010936480384369792,
+            0.00024059705633213842,
+            0.02551046074502557,
+            0.003510309707443383,
+            0.001551028738846315,
+            3.0059398593281712e-6,
+            -4.6268986876773623e-7,
+            1.163177225591962e-7,
+            -3.2858336577801536e-8,
+            -0.0003468003318151856,
+            -0.2001644523407157,
+            0.0004234212734035637
+          ],
+          "final_voltage_v": 0.0,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 0.0,
+          "max_relative_exchange_defect": 0.0,
+          "max_relative_total_balance_defect": 2.0808236210685612e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 1,
+          "mechanical_contact_entries": [
+            2,
+            16,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": 0.0,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.0,
+          "peak_reaction_force_n": 0.0,
+          "pedestal_work_j": 0.037679068407816464,
+          "steps_per_frame": 64
+        },
+        {
+          "absolute_circuit_input_work_j": 0.0,
+          "behavior_passed": true,
+          "circuit_input_work_j": 0.0,
+          "coil_heat_j": 0.0,
+          "electrical_energy_j": 0.0,
+          "final_current_a": 0.0,
+          "final_position": [
+            0.00001499588861560732,
+            0.002316929096601325,
+            0.000014919506083293627,
+            4.015463838057929e-6,
+            -1.7984749218487806e-8,
+            -1.540515401591819e-8,
+            -3.1826892557866045e-9,
+            -9.347979347978936e-11,
+            4.614099142845542e-6,
+            -1.1347434807023424e-6,
+            -0.00020056607030449528,
+            -1.4794754776674726e-6,
+            1.8723716514054046e-7,
+            -6.236094887695292e-11,
+            5.621693828284779e-12,
+            -7.456437546302747e-13,
+            3.21345353495634e-14,
+            -3.4843236156773293e-7,
+            -0.011565439565172416,
+            0.00018711306547110093
+          ],
+          "final_velocity": [
+            0.0010151336277648864,
+            0.06385142534370222,
+            0.01910652642350072,
+            -0.017750888031742223,
+            0.0004359826983176187,
+            0.000025182064037512506,
+            4.624284851636314e-6,
+            3.083826181425303e-7,
+            0.00010973990596692624,
+            0.0002406001848689573,
+            0.025511043502063856,
+            0.0035103130851679523,
+            0.0015506248392792793,
+            3.0066140473466855e-6,
+            -4.6262258388646794e-7,
+            1.1629910005664143e-7,
+            -3.285292211598271e-8,
+            -0.00034678198257523987,
+            -0.20016427363861145,
+            0.0004234470636459862
+          ],
+          "final_voltage_v": 0.0,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 0.0,
+          "max_relative_exchange_defect": 0.0,
+          "max_relative_total_balance_defect": 3.8650385020230945e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 1,
+          "mechanical_contact_entries": [
+            2,
+            16,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": 0.0,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.0,
+          "peak_reaction_force_n": 0.0,
+          "pedestal_work_j": 0.03767906493055392,
+          "steps_per_frame": 128
+        },
+        {
+          "absolute_circuit_input_work_j": 0.0,
+          "behavior_passed": true,
+          "circuit_input_work_j": 0.0,
+          "coil_heat_j": 0.0,
+          "electrical_energy_j": 0.0,
+          "final_current_a": 0.0,
+          "final_position": [
+            0.000014995923665970254,
+            0.0023169343614449613,
+            0.000014919258185860135,
+            4.015280936155615e-6,
+            -1.7974372018230524e-8,
+            -1.54053039354619e-8,
+            -3.182707917908134e-9,
+            -9.347658550166472e-11,
+            4.614126493499241e-6,
+            -1.1347439907723793e-6,
+            -0.00020056615590323634,
+            -1.4794881689602686e-6,
+            1.8724934373860882e-7,
+            -6.233632673656853e-11,
+            5.6187363599442125e-12,
+            -7.449039965253071e-13,
+            3.192382902462967e-14,
+            -3.484330986580343e-7,
+            -0.01156543907835376,
+            0.00018711326102825376
+          ],
+          "final_velocity": [
+            0.0010151207789923576,
+            0.06385056349862366,
+            0.01910664808705862,
+            -0.017752652872523905,
+            0.0004358869029784112,
+            0.000025186015863935476,
+            4.624184403066886e-6,
+            3.084042592232195e-7,
+            0.00010983358181235066,
+            0.00024060096828037433,
+            0.025511189416172874,
+            0.0035103139531473646,
+            0.0015505239107832473,
+            3.0067825267555116e-6,
+            -4.6260575335742486e-7,
+            1.1629444464557162e-7,
+            -3.285156909131933e-8,
+            -0.00034677739738260175,
+            -0.200164229024892,
+            0.0004234534667023324
+          ],
+          "final_voltage_v": 0.0,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 0.0,
+          "max_relative_exchange_defect": 0.0,
+          "max_relative_total_balance_defect": 5.339268618670465e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 1,
+          "mechanical_contact_entries": [
+            2,
+            16,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": 0.0,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.0,
+          "peak_reaction_force_n": 0.0,
+          "pedestal_work_j": 0.037679064065867775,
+          "steps_per_frame": 256
+        }
+      ]
+    },
+    {
+      "case": "load_1k",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00006440816910774227,
+              0.0000651476980256163,
+              0.0004597676193417033,
+              0.00003121766872785758
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00003632392909104054,
+              0.000037196931625208186,
+              0.00005437049247123763,
+              0.00004483443911477456
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000064772310753648,
+              0.00006562807197648557,
+              0.0004342378784623839,
+              0.00004053330955438503
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00006243868768557878,
+              0.00006990020902100621,
+              0.00010637719160572243,
+              0.00011841839686408506
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "feedback_velocity_rms_difference_m_s": 0.0019394441463383013,
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000012873365387723526,
+              0.000013020883633988887,
+              0.00009186193833342492,
+              6.228051950370324e-6
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              7.251419133441746e-6,
+              7.425836133236635e-6,
+              0.000010862925046501232,
+              8.953904247219873e-6
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000012943892273407171,
+              0.00001311470565800119,
+              0.00008675022165152608,
+              8.094672176609796e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000012475459578500452,
+              0.00001396631493290855,
+              0.00002125996277041154,
+              0.000023664908228428007
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "pickup_circuit": {
+        "coil_resistance_ohm": 200.0,
+        "flux_scale_wb": 0.001,
+        "gap_m": 0.0015,
+        "inductance_h": 0.2,
+        "load_resistance_ohm": 1000.0,
+        "offset_xy_m": [
+          0.0005,
+          0.0002
+        ],
+        "pole_radius_m": 0.0005,
+        "shunt_capacitance_f": 4.7e-9
+      },
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_circuit_input_work_j": 5.007857386048096e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 4.921559708714632e-6,
+          "coil_heat_j": 8.204280979766977e-7,
+          "electrical_energy_j": 1.4712124990051772e-11,
+          "final_current_a": 0.000011984099129231109,
+          "final_position": [
+            0.000014993052099491547,
+            0.0023160988087458593,
+            0.000014954559504882022,
+            3.978409793411219e-6,
+            -1.772986389753911e-8,
+            -1.5413692195409865e-8,
+            -3.1889562724489876e-9,
+            -9.415994198164968e-11,
+            4.613971479589166e-6,
+            -1.129869981237431e-6,
+            -0.00020007792074081302,
+            -1.6608656270110212e-6,
+            1.7827729546078813e-7,
+            -6.388190091176015e-11,
+            3.0385914036007623e-12,
+            -2.309811619905547e-12,
+            -1.8878011640576126e-13,
+            -3.435860815228816e-7,
+            -0.01156589153170557,
+            0.0001870806273665785
+          ],
+          "final_velocity": [
+            0.0010119441460651956,
+            0.06353218157828071,
+            0.019049304765498022,
+            -0.0178589075815083,
+            0.00042905163308593265,
+            0.000025047345175261603,
+            4.616503321969814e-6,
+            3.1433694759584695e-7,
+            0.00011371630801496327,
+            0.0002421861196740594,
+            0.025585202190236224,
+            0.0032436080010554472,
+            0.0015174864245458637,
+            2.773992954738826e-6,
+            -4.4103798320689783e-7,
+            1.200673017342721e-7,
+            -3.122334629361438e-8,
+            -0.0003425145780343178,
+            -0.20020904936387846,
+            0.0004310276636015254
+          ],
+          "final_voltage_v": 0.012208504118868183,
+          "heat_monotone": true,
+          "load_heat_j": 4.101116898612988e-6,
+          "max_relative_circuit_balance_defect": 2.1536396255553353e-14,
+          "max_relative_exchange_defect": 3.599242908068759e-17,
+          "max_relative_total_balance_defect": 2.0825034161065473e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            2,
+            15,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -4.921559708715916e-6,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.7709824847307081,
+          "peak_reaction_force_n": 0.0003743889964517237,
+          "pedestal_work_j": 0.03768047146770066,
+          "steps_per_frame": 64
+        },
+        {
+          "absolute_circuit_input_work_j": 5.0078599676472315e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 4.921578914807641e-6,
+          "coil_heat_j": 8.204312969514408e-7,
+          "electrical_energy_j": 1.4707378434723778e-11,
+          "final_current_a": 0.000011982164434154049,
+          "final_position": [
+            0.000014993192367623032,
+            0.0023161198794042328,
+            0.000014953572815984049,
+            3.9776751000495e-6,
+            -1.7689154536265522e-8,
+            -1.541428133454311e-8,
+            -3.1890337635208003e-9,
+            -9.414694465300732e-11,
+            4.614081006578841e-6,
+            -1.1298721625007252e-6,
+            -0.0002000782760815547,
+            -1.6609121386512782e-6,
+            1.7832523473452448e-7,
+            -6.380903668441566e-11,
+            3.027859964990327e-12,
+            -2.3067001230600005e-12,
+            -1.895596550435053e-13,
+            -3.4358905320851243e-7,
+            -0.011565889567689417,
+            0.00018708141396637297
+          ],
+          "final_velocity": [
+            0.0010118934590610828,
+            0.06352876000564096,
+            0.01904977914109264,
+            -0.017865901665932465,
+            0.0004286525805543456,
+            0.000025063434313834487,
+            4.615621629587641e-6,
+            3.144273020812073e-7,
+            0.0001140874010388855,
+            0.00024218938144100389,
+            0.02558579337724231,
+            0.0032436145345859464,
+            0.0015170999987444494,
+            2.7737493427043548e-6,
+            -4.4095194526475344e-7,
+            1.200497943700756e-7,
+            -3.1218122060834754e-8,
+            -0.00034249725191563704,
+            -0.20020886916326638,
+            0.0004310512207992138
+          ],
+          "final_voltage_v": 0.012206590163098517,
+          "heat_monotone": true,
+          "load_heat_j": 4.101132910477741e-6,
+          "max_relative_circuit_balance_defect": 1.163046403940604e-13,
+          "max_relative_exchange_defect": 4.5133728999432265e-18,
+          "max_relative_total_balance_defect": 3.723061628984808e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            2,
+            15,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -4.9215789148077924e-6,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.7709919154621219,
+          "peak_reaction_force_n": 0.0003743863676197752,
+          "pedestal_work_j": 0.03768046796697386,
+          "steps_per_frame": 128
+        },
+        {
+          "absolute_circuit_input_work_j": 5.007860518838836e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 4.921583650657055e-6,
+          "coil_heat_j": 8.204320857553928e-7,
+          "electrical_energy_j": 1.4706192715487376e-11,
+          "final_current_a": 0.000011981681086546954,
+          "final_position": [
+            0.000014993227341052698,
+            0.0023161251329190087,
+            0.000014953326778477555,
+            3.97749148009099e-6,
+            -1.767898098279749e-8,
+            -1.5414427799476447e-8,
+            -3.189053276514936e-9,
+            -9.414369486036748e-11,
+            4.614108340605497e-6,
+            -1.1298726853314564e-6,
+            -0.00020007836161104042,
+            -1.6609238188761025e-6,
+            1.783372057882189e-7,
+            -6.379083104026131e-11,
+            3.02518036095289e-12,
+            -2.3059229469334036e-12,
+            -1.8975437681669567e-13,
+            -3.435897880735774e-7,
+            -0.011565889078181906,
+            0.000187081610093429
+          ],
+          "final_velocity": [
+            0.0010118807976945523,
+            0.06352790539428409,
+            0.019049897537060767,
+            -0.017867648266763528,
+            0.00042855250201997064,
+            0.000025067508544806583,
+            4.615390869959628e-6,
+            3.1444968108893276e-7,
+            0.00011418005929256814,
+            0.00024219019538722052,
+            0.025585941042105757,
+            0.0032436160902347987,
+            0.001517003438224382,
+            2.7736884662903753e-6,
+            -4.409304534355515e-7,
+            1.2004542056153986e-7,
+            -3.121681653893166e-8,
+            -0.00034249292072138196,
+            -0.20020882426177716,
+            0.0004310570930338895
+          ],
+          "final_voltage_v": 0.012206111993860718,
+          "heat_monotone": true,
+          "load_heat_j": 4.101136858708616e-6,
+          "max_relative_circuit_balance_defect": 9.600492624556064e-14,
+          "max_relative_exchange_defect": 4.48951835025379e-19,
+          "max_relative_total_balance_defect": 5.341736581261635e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            2,
+            15,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -4.921583650657072e-6,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.7709942867815645,
+          "peak_reaction_force_n": 0.00037438558427194975,
+          "pedestal_work_j": 0.03768046709567786,
+          "steps_per_frame": 256
+        }
+      ]
+    },
+    {
+      "case": "load_10k",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00026973811844124384,
+              0.0005317871746212755,
+              0.0004591400481552663,
+              0.00003150321522776757
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00006420590978852638,
+              0.0000775787013928783,
+              0.000054223115491477885,
+              0.00004485649199839232
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0002512045001799336,
+              0.0005156818941681408,
+              0.0004336426121455412,
+              0.000040910406276234775
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0001023716845592068,
+              0.00012116783343639904,
+              0.00010627520999431247,
+              0.00011878664168455205
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "feedback_velocity_rms_difference_m_s": 0.00024557970191809857,
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00005395125990530832,
+              0.00010633171379529335,
+              0.00009173628538532922,
+              6.285030210915655e-6
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000012831590806872818,
+              0.000015510213361115765,
+              0.000010833367130607502,
+              8.958075247269415e-6
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00005023438059856677,
+              0.00010309574226158367,
+              0.00008663090043880966,
+              8.169816577194757e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00002046331207829898,
+              0.000024226396744525912,
+              0.000021240132896686308,
+              0.00002373829314150336
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "pickup_circuit": {
+        "coil_resistance_ohm": 200.0,
+        "flux_scale_wb": 0.001,
+        "gap_m": 0.0015,
+        "inductance_h": 0.2,
+        "load_resistance_ohm": 10000.0,
+        "offset_xy_m": [
+          0.0005,
+          0.0002
+        ],
+        "pole_radius_m": 0.0005,
+        "shunt_capacitance_f": 4.7e-9
+      },
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_circuit_input_work_j": 7.93631749714989e-7,
+          "behavior_passed": true,
+          "circuit_input_work_j": 7.921311509248516e-7,
+          "coil_heat_j": 1.712816030836025e-8,
+          "electrical_energy_j": 1.129806147685971e-13,
+          "final_current_a": 2.1333203648958805e-7,
+          "final_position": [
+            0.000014995244715945373,
+            0.002316786274685434,
+            0.000014923344163839406,
+            4.010104234999126e-6,
+            -1.8041108564853765e-8,
+            -1.54044678824419e-8,
+            -3.1831209992114876e-9,
+            -9.34301640769624e-11,
+            4.614016949030251e-6,
+            -1.1341720475473082e-6,
+            -0.00020050977308944278,
+            -1.5011370610023473e-6,
+            1.855361643082647e-7,
+            -7.191142567806001e-11,
+            5.777941280455006e-12,
+            -8.334215189984326e-13,
+            4.5660027463172795e-14,
+            -3.478452415268814e-7,
+            -0.011565506237348486,
+            0.00018710651549958538
+          ],
+          "final_velocity": [
+            0.0010151636250951043,
+            0.06384565841318224,
+            0.01909894008409203,
+            -0.017711994752834245,
+            0.0004351024132597736,
+            0.00002515921344308878,
+            4.627576975217714e-6,
+            3.086796931652243e-7,
+            0.0001071764492162492,
+            0.0002408971437194901,
+            0.025527871281800438,
+            0.003478591970297062,
+            0.0015592931119277175,
+            2.6795310046412985e-6,
+            -4.593814403699461e-7,
+            1.1779011618264304e-7,
+            -3.276939143922401e-8,
+            -0.0003470773934476025,
+            -0.200170799120527,
+            0.00042515294121485886
+          ],
+          "final_voltage_v": 0.0067926605882963655,
+          "heat_monotone": true,
+          "load_heat_j": 7.750028776358836e-7,
+          "max_relative_circuit_balance_defect": 2.2755588528400278e-14,
+          "max_relative_exchange_defect": 2.304654134557007e-18,
+          "max_relative_total_balance_defect": 2.085888590239546e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            2,
+            17,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -7.921311509248551e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 1.845700950614415,
+          "peak_reaction_force_n": 0.0001043098243661978,
+          "pedestal_work_j": 0.037679256444757114,
+          "steps_per_frame": 64
+        },
+        {
+          "absolute_circuit_input_work_j": 7.936395934658553e-7,
+          "behavior_passed": true,
+          "circuit_input_work_j": 7.921395070665674e-7,
+          "coil_heat_j": 1.7128382122495697e-8,
+          "electrical_energy_j": 1.1286241158152824e-13,
+          "final_current_a": 2.1302001990904238e-7,
+          "final_position": [
+            0.000014995385173281573,
+            0.002316807374005801,
+            0.00001492235090293871,
+            4.009373700582928e-6,
+            -1.799973543944135e-8,
+            -1.540506790483753e-8,
+            -3.183195539135908e-9,
+            -9.341732809275576e-11,
+            4.614126397871122e-6,
+            -1.1341741730771777e-6,
+            -0.00020051012810951956,
+            -1.5011871366511261e-6,
+            1.8558527368240636e-7,
+            -7.18500142659729e-11,
+            5.7669686552274976e-12,
+            -8.304081425211798e-13,
+            4.4817879922631825e-14,
+            -3.478482564660566e-7,
+            -0.011565504284710908,
+            0.00018710729948414752
+          ],
+          "final_velocity": [
+            0.0010151122491496474,
+            0.06384221072315044,
+            0.019099426886830105,
+            -0.017719051923458254,
+            0.00043472081286659016,
+            0.000025174861102906255,
+            4.627187957399962e-6,
+            3.0876745730454807e-7,
+            0.0001075510923431484,
+            0.00024090029621083228,
+            0.02552845588578653,
+            0.003478595765385833,
+            0.0015588919549643374,
+            2.680552814760679e-6,
+            -4.592879366608399e-7,
+            1.177710143355372e-7,
+            -3.276402957173963e-8,
+            -0.00034705918510351426,
+            -0.20017062010080366,
+            0.00042517847813727604
+          ],
+          "final_voltage_v": 0.006789374009727803,
+          "heat_monotone": true,
+          "load_heat_j": 7.750110120816617e-7,
+          "max_relative_circuit_balance_defect": 5.6009425799658633e-14,
+          "max_relative_exchange_defect": 2.899611567372985e-19,
+          "max_relative_total_balance_defect": 3.685856173155234e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            2,
+            17,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -7.921395070665654e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 1.8456508567598937,
+          "peak_reaction_force_n": 0.00010430914836266621,
+          "pedestal_work_j": 0.03767925296730481,
+          "steps_per_frame": 128
+        },
+        {
+          "absolute_circuit_input_work_j": 7.936415346815303e-7,
+          "behavior_passed": true,
+          "circuit_input_work_j": 7.921415956159037e-7,
+          "coil_heat_j": 1.7128437856835226e-8,
+          "electrical_energy_j": 1.1283289385019927e-13,
+          "final_current_a": 2.129420713118168e-7,
+          "final_position": [
+            0.000014995420190897611,
+            0.002316812633913276,
+            0.000014922103267188558,
+            4.009191122988749e-6,
+            -1.798939453444302e-8,
+            -1.5405217191965804e-8,
+            -3.183214281955149e-9,
+            -9.341411887403563e-11,
+            4.61415371090256e-6,
+            -1.134174679429771e-6,
+            -0.00020051021319274613,
+            -1.5011997270632015e-6,
+            1.8559753663152672e-7,
+            -7.183465377010387e-11,
+            5.764229675448155e-12,
+            -8.296556040420797e-13,
+            4.4607545896732483e-14,
+            -3.478490004606474e-7,
+            -0.011565503798068576,
+            0.00018710749494686455
+          ],
+          "final_velocity": [
+            0.0010150994154739888,
+            0.06384134935878517,
+            0.01909954831651069,
+            -0.017720814236547682,
+            0.0004346250864951311,
+            0.000025178826655484566,
+            4.627078945599315e-6,
+            3.0878914420372844e-7,
+            0.00010764463775343597,
+            0.0002409010821409652,
+            0.02552860174027706,
+            0.0034785966044868022,
+            0.001558791715643049,
+            2.680808493110808e-6,
+            -4.5926462781358695e-7,
+            1.1776624279983315e-7,
+            -3.27626896717895e-8,
+            -0.0003470546336246638,
+            -0.20017057549789025,
+            0.000425184826741827
+          ],
+          "final_voltage_v": 0.006788552983303916,
+          "heat_monotone": true,
+          "load_heat_j": 7.750130449261491e-7,
+          "max_relative_circuit_balance_defect": 6.081261429350992e-14,
+          "max_relative_exchange_defect": 5.040631857745013e-20,
+          "max_relative_total_balance_defect": 5.346497362041309e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            2,
+            17,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -7.921415956159027e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 1.8456383403601566,
+          "peak_reaction_force_n": 0.0001043089238613749,
+          "pedestal_work_j": 0.03767925210065252,
+          "steps_per_frame": 256
+        }
+      ]
+    },
+    {
+      "case": "open_capacitive",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00006849493103262214,
+              0.00009399843452363957,
+              0.0004591865182982384,
+              0.00003202807927006773
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00009974965555521067,
+              0.00014486726930016137,
+              0.00005417715216303841,
+              0.000045708031606690284
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00008247200869108867,
+              0.00010620262768017954,
+              0.000433690888257627,
+              0.00004158050053660034
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00012867025182747806,
+              0.00014973913774626817,
+              0.00010625444987617322,
+              0.00012117867048694629
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "feedback_velocity_rms_difference_m_s": 0.0006269395315434149,
+      "length_m": 0.075,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0000136738887039055,
+              0.000018780595765456096,
+              0.00009174553075422293,
+              6.389743666578112e-6
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000019920811844725732,
+              0.000028933605854967803,
+              0.000010823799627367663,
+              9.128527800559661e-6
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00001647742080712553,
+              0.000021225200932335357,
+              0.00008664184696262224,
+              8.304426244747716e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000025712729148491938,
+              0.000029923029816713444,
+              0.00002123687541981532,
+              0.000024217715598235675
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "pickup_circuit": {
+        "coil_resistance_ohm": 200.0,
+        "flux_scale_wb": 0.001,
+        "gap_m": 0.0015,
+        "inductance_h": 0.2,
+        "load_resistance_ohm": null,
+        "offset_xy_m": [
+          0.0005,
+          0.0002
+        ],
+        "pole_radius_m": 0.0005,
+        "shunt_capacitance_f": 4.7e-8
+      },
+      "sample_rate": 48000,
+      "takes": [
+        {
+          "absolute_circuit_input_work_j": 3.2906087869973404e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 7.445682603871333e-7,
+          "coil_heat_j": 7.445594666811809e-7,
+          "electrical_energy_j": 8.7937059151958e-12,
+          "final_current_a": -9.352574575651912e-6,
+          "final_position": [
+            0.000014995103774905955,
+            0.0023168031876356055,
+            0.000014917584272004013,
+            4.032851567836009e-6,
+            -1.7992302998604e-8,
+            -1.5395993271501107e-8,
+            -3.1781447362633406e-9,
+            -9.279119201946302e-11,
+            4.612662115472949e-6,
+            -1.1348242583766805e-6,
+            -0.00020058249387063006,
+            -1.4772035425089602e-6,
+            1.9030169792952998e-7,
+            -1.714437900692833e-11,
+            8.11079783766324e-12,
+            3.77124139942804e-13,
+            2.346175880468192e-13,
+            -3.487638368994193e-7,
+            -0.011565477187560142,
+            0.00018710455166608405
+          ],
+          "final_velocity": [
+            0.0010185240912948042,
+            0.06408586937980919,
+            0.019090803053595697,
+            -0.017351500810890885,
+            0.00043660122726679675,
+            0.000025083788053224758,
+            4.636921211915793e-6,
+            2.9976107206612575e-7,
+            0.00008720223925659408,
+            0.0002414684011277852,
+            0.025564685826779922,
+            0.003498071109490319,
+            0.0016448418126623339,
+            2.8597105057082625e-6,
+            -4.899888629838904e-7,
+            1.181627457137061e-7,
+            -3.496816410424848e-8,
+            -0.00035206464961920784,
+            -0.2001677522049192,
+            0.00042565144322477023
+          ],
+          "final_voltage_v": 0.0014087990340764525,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 1.4674551508779104e-14,
+          "max_relative_exchange_defect": 3.447458735567773e-17,
+          "max_relative_total_balance_defect": 2.0790212718838115e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            2,
+            16,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -7.445682603859122e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 2.9376784436951517,
+          "peak_reaction_force_n": 0.0005229159027568084,
+          "pedestal_work_j": 0.03767913081073881,
+          "steps_per_frame": 64
+        },
+        {
+          "absolute_circuit_input_work_j": 3.290462547420887e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 7.445476257810899e-7,
+          "coil_heat_j": 7.445388351452832e-7,
+          "electrical_energy_j": 8.790635730633548e-12,
+          "final_current_a": -9.351167143556527e-6,
+          "final_position": [
+            0.000014995244406566903,
+            0.0023168243052330627,
+            0.000014916588721402321,
+            4.032132297581809e-6,
+            -1.795078049972879e-8,
+            -1.539659966728109e-8,
+            -3.1782184203744243e-9,
+            -9.27786841347227e-11,
+            4.612770988552881e-6,
+            -1.1348263421430297e-6,
+            -0.0002005828466308376,
+            -1.4772547617353675e-6,
+            1.90353581467345e-7,
+            -1.706529634778246e-11,
+            8.098057236311097e-12,
+            3.800982560222411e-13,
+            2.3368987589206503e-13,
+            -3.487669965723864e-7,
+            -0.01156547523603674,
+            0.00018710533544236474
+          ],
+          "final_velocity": [
+            0.0010184721689883549,
+            0.06408238839169443,
+            0.019091295745845914,
+            -0.01735861414936391,
+            0.0004362203398213262,
+            0.000025099250751181786,
+            4.636626302480309e-6,
+            2.9984724281015136e-7,
+            0.00008758020844617248,
+            0.00024147145263225228,
+            0.025565263365959576,
+            0.0034980750259052994,
+            0.0016444287907528068,
+            2.8589522902602687e-6,
+            -4.899018087396302e-7,
+            1.1814189250928431e-7,
+            -3.496310970513924e-8,
+            -0.00035204575752062023,
+            -0.20016757329940862,
+            0.00042567737922940765
+          ],
+          "final_voltage_v": 0.001402172113762859,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 2.5260003401023058e-14,
+          "max_relative_exchange_defect": 4.4990512544232915e-18,
+          "max_relative_total_balance_defect": 3.7476864851001366e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            2,
+            16,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -7.445476257809278e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 2.93767797961813,
+          "peak_reaction_force_n": 0.0005228946433599834,
+          "pedestal_work_j": 0.03767912732940173,
+          "steps_per_frame": 128
+        },
+        {
+          "absolute_circuit_input_work_j": 3.2904260564858026e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 7.445424497289765e-7,
+          "coil_heat_j": 7.445336598603e-7,
+          "electrical_energy_j": 8.789868754958598e-12,
+          "final_current_a": -9.350815327977166e-6,
+          "final_position": [
+            0.000014995279494223336,
+            0.002316829574220599,
+            0.000014916340317603114,
+            4.031952523378894e-6,
+            -1.7940402998974938e-8,
+            -1.539675050917566e-8,
+            -3.178236935448683e-9,
+            -9.277555693839411e-11,
+            4.612798169860388e-6,
+            -1.134826841978983e-6,
+            -0.00020058293164618496,
+            -1.4772676237142885e-6,
+            1.9036653829348928e-7,
+            -1.704554185059046e-11,
+            8.094875446595454e-12,
+            3.8084116644807e-13,
+            2.334581099088551e-13,
+            -3.48767778641023e-7,
+            -0.01156547474929893,
+            0.0001871055309939589
+          ],
+          "final_velocity": [
+            0.0010184592011377564,
+            0.06408151926710118,
+            0.019091418750292743,
+            -0.01736039065793966,
+            0.0004361247836991647,
+            0.000025103170646747902,
+            4.636540573443313e-6,
+            2.998685278374817e-7,
+            0.00008767458803300138,
+            0.0002414722158478676,
+            0.025565408012327043,
+            0.00349807603673887,
+            0.0016443255804988522,
+            2.8587626913224387e-6,
+            -4.89880052086093e-7,
+            1.1813668196707411e-7,
+            -3.496184645115567e-8,
+            -0.0003520410354986756,
+            -0.20016752868637935,
+            0.0004256838626256577
+          ],
+          "final_voltage_v": 0.001400517004315047,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 3.028890300068161e-14,
+          "max_relative_exchange_defect": 5.441246004419706e-19,
+          "max_relative_total_balance_defect": 5.34023394566462e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            2,
+            16,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -7.445424497289563e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 2.9376778665342216,
+          "peak_reaction_force_n": 0.0005228894904019058,
+          "pedestal_work_j": 0.037679126464330824,
+          "steps_per_frame": 256
+        }
+      ]
+    },
+    {
+      "case": "zero_flux",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              0.000028314711900151585,
+              0.000013635092764401872
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              9.576465078751751e-6,
+              0.000011840751019908992
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              0.0000240972899256152,
+              8.76086043091828e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              7.982380360221314e-6,
+              0.00001109824685367715
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "feedback_velocity_rms_difference_m_s": 0.0,
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              5.662871487490612e-6,
+              2.7270022478081348e-6
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              1.915282496346271e-6,
+              2.368162334100841e-6
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              4.819316968159308e-6,
+              1.7523451987371675e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0,
+              0.0,
+              1.5966401800117405e-6,
+              2.219877374777389e-6
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "pickup_circuit": {
+        "coil_resistance_ohm": 200.0,
+        "flux_scale_wb": 0.0,
+        "gap_m": 0.0015,
+        "inductance_h": 0.2,
+        "load_resistance_ohm": 10000.0,
+        "offset_xy_m": [
+          0.0005,
+          0.0002
+        ],
+        "pole_radius_m": 0.0005,
+        "shunt_capacitance_f": 4.7e-9
+      },
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_circuit_input_work_j": 0.0,
+          "behavior_passed": true,
+          "circuit_input_work_j": 0.0,
+          "coil_heat_j": 0.0,
+          "electrical_energy_j": 0.0,
+          "final_current_a": 0.0,
+          "final_position": [
+            0.00001815936640147095,
+            0.002275656494990446,
+            -0.00010344128960778135,
+            0.000011896249371815338,
+            -2.4813223253158034e-7,
+            8.513177419532922e-10,
+            1.0507536513494457e-9,
+            -2.79976212443485e-10,
+            6.890979756294547e-6,
+            5.934159637152182e-7,
+            0.0000249701158178582,
+            -0.0000140137278193919,
+            -3.1382903039994122e-6,
+            -3.3748338979503987e-9,
+            2.556389695968786e-10,
+            -6.770618255247485e-11,
+            2.1341281093782866e-11,
+            6.042757681650268e-8,
+            -0.01166781426204237,
+            0.00011774701414584057
+          ],
+          "final_velocity": [
+            0.0026535024895742764,
+            0.14417380428128176,
+            0.06218869722336001,
+            0.05611157374063708,
+            0.001689415281521019,
+            8.080351813462767e-6,
+            -9.76747743901558e-7,
+            4.814008260406961e-7,
+            0.005307072154696074,
+            0.0002240976299475989,
+            -0.04042424407756737,
+            -0.006170989518896012,
+            0.00788774586378352,
+            -0.000020943497885680444,
+            5.169482992560164e-7,
+            -6.140543311602449e-8,
+            3.708029126869327e-9,
+            0.0008354607219773592,
+            -0.21242019903230105,
+            0.02220795134155819
+          ],
+          "final_voltage_v": 0.0,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 0.0,
+          "max_relative_exchange_defect": 0.0,
+          "max_relative_total_balance_defect": 3.716865395192365e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 1,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": 0.0,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.0,
+          "peak_reaction_force_n": 0.0,
+          "pedestal_work_j": 0.037364185017444054,
+          "steps_per_frame": 64
+        },
+        {
+          "absolute_circuit_input_work_j": 0.0,
+          "behavior_passed": true,
+          "circuit_input_work_j": 0.0,
+          "coil_heat_j": 0.0,
+          "electrical_energy_j": 0.0,
+          "final_current_a": 0.0,
+          "final_position": [
+            0.00001815939680490174,
+            0.0022756606717978943,
+            -0.00010344141402202478,
+            0.000011896277265276269,
+            -2.481259053949672e-7,
+            8.512670071909805e-10,
+            1.0507638690073585e-9,
+            -2.799738266961168e-10,
+            6.890992771826219e-6,
+            5.934222648532812e-7,
+            0.000024970964473622928,
+            -0.000014013723597654527,
+            -3.138244995836372e-6,
+            -3.374857642277324e-9,
+            2.556392958564792e-10,
+            -6.770592456082162e-11,
+            2.1341145614399014e-11,
+            6.043250609245626e-8,
+            -0.011667813566991522,
+            0.00011774719441162879
+          ],
+          "final_velocity": [
+            0.0026534967373448293,
+            0.14417422905984506,
+            0.06218879337256293,
+            0.0561108127375386,
+            0.0016894399864645162,
+            8.074376198814716e-6,
+            -9.782758664968777e-7,
+            4.815378589445558e-7,
+            0.005307001427348959,
+            0.0002240967050573062,
+            -0.04042439596116711,
+            -0.006171017138376817,
+            0.00788772731564218,
+            -0.000020942986477574097,
+            5.16930036504723e-7,
+            -6.140154888979608e-8,
+            3.7069701305351458e-9,
+            0.0008354526752605651,
+            -0.21242015954672588,
+            0.022207916066365675
+          ],
+          "final_voltage_v": 0.0,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 0.0,
+          "max_relative_exchange_defect": 0.0,
+          "max_relative_total_balance_defect": 5.339268618670465e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 1,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": 0.0,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.0,
+          "peak_reaction_force_n": 0.0,
+          "pedestal_work_j": 0.037364184134541435,
+          "steps_per_frame": 128
+        },
+        {
+          "absolute_circuit_input_work_j": 0.0,
+          "behavior_passed": true,
+          "circuit_input_work_j": 0.0,
+          "coil_heat_j": 0.0,
+          "electrical_energy_j": 0.0,
+          "final_current_a": 0.0,
+          "final_position": [
+            0.000018159404406174198,
+            0.002275661716086525,
+            -0.00010344144511930569,
+            0.000011896284234609684,
+            -2.48124323492488e-7,
+            8.512543142422105e-10,
+            1.0507664201341317e-9,
+            -2.7997322963243354e-10,
+            6.890996025425186e-6,
+            5.934238401664964e-7,
+            0.000024971176643425244,
+            -0.000014013722548907607,
+            -3.138233667675044e-6,
+            -3.3748635742025404e-9,
+            2.5563937714959856e-10,
+            -6.770585999576056e-11,
+            2.134111172440722e-11,
+            6.043373845803988e-8,
+            -0.011667813393191399,
+            0.00011774723947927702
+          ],
+          "final_velocity": [
+            0.0026534952992472304,
+            0.14417433529379428,
+            0.06218881740865164,
+            0.05611062246195541,
+            0.001689446162549893,
+            8.072882211305771e-6,
+            -9.786579385474712e-7,
+            4.815721114264063e-7,
+            0.0053069837433524485,
+            0.00022409647379932035,
+            -0.04042443393583125,
+            -0.006171024048157484,
+            0.00788772267511096,
+            -0.000020942858621744414,
+            5.169254698924071e-7,
+            -6.14005776895322e-8,
+            3.7067053444455435e-9,
+            0.0008354506631202568,
+            -0.21242014967237438,
+            0.022207907249150203
+          ],
+          "final_voltage_v": 0.0,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 0.0,
+          "max_relative_exchange_defect": 0.0,
+          "max_relative_total_balance_defect": 1.1443830775573853e-12,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 1,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": 0.0,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.0,
+          "peak_reaction_force_n": 0.0,
+          "pedestal_work_j": 0.03736418391280009,
+          "steps_per_frame": 256
+        }
+      ]
+    },
+    {
+      "case": "load_1k",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000015493206758575622,
+              0.000015522290358151075,
+              0.000028325783574724393,
+              0.000013640065710251632
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00001010680075539832,
+              0.000010079864532017523,
+              9.574320696817211e-6,
+              0.000011823277992059065
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000013083190196954227,
+              0.000013115377510748443,
+              0.00002415031276621344,
+              8.821454798203039e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              7.317551583586825e-6,
+              7.313856562032442e-6,
+              8.040734045192105e-6,
+              0.00001123112520063218
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "feedback_velocity_rms_difference_m_s": 0.0009675928176998972,
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              3.0985597282231465e-6,
+              3.1043760899535133e-6,
+              5.665131834959387e-6,
+              2.7279971028380665e-6
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              2.0211096629917177e-6,
+              2.015722862052963e-6,
+              1.9147962771779292e-6,
+              2.3646638570070626e-6
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              2.616738890319628e-6,
+              2.6231759607819577e-6,
+              4.829884797806883e-6,
+              1.7644331738747232e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              1.4636695224340682e-6,
+              1.4629307144584213e-6,
+              1.608333716378615e-6,
+              2.2464289539734417e-6
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "pickup_circuit": {
+        "coil_resistance_ohm": 200.0,
+        "flux_scale_wb": 0.001,
+        "gap_m": 0.0015,
+        "inductance_h": 0.2,
+        "load_resistance_ohm": 1000.0,
+        "offset_xy_m": [
+          0.0005,
+          0.0002
+        ],
+        "pole_radius_m": 0.0005,
+        "shunt_capacitance_f": 4.7e-9
+      },
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_circuit_input_work_j": 4.359172663067971e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 4.289025439380677e-6,
+          "coil_heat_j": 7.149086992324519e-7,
+          "electrical_energy_j": 2.55510639021228e-10,
+          "final_current_a": 0.00004996555331410038,
+          "final_position": [
+            0.000018154204432576234,
+            0.002275574583844804,
+            -0.000103195858923218,
+            0.00001190835970434476,
+            -2.49220230062134e-7,
+            7.024412570771048e-10,
+            9.75867470706418e-10,
+            -3.018435510070745e-10,
+            6.888461264902603e-6,
+            5.907405397929425e-7,
+            0.000024616075599217187,
+            -0.000013062737349807074,
+            -3.133399549766409e-6,
+            -3.3867473443678874e-9,
+            1.9183835465063189e-10,
+            -8.75049061128508e-11,
+            1.5274435422017368e-11,
+            5.3832638404617124e-8,
+            -0.011667840919186857,
+            0.00011791272388409181
+          ],
+          "final_velocity": [
+            0.0026494330685898726,
+            0.14462907173979056,
+            0.06192893174348944,
+            0.055583646013214576,
+            0.0016961810104433362,
+            5.7728180538863685e-6,
+            -1.5307713973660084e-6,
+            4.944001584597617e-7,
+            0.0052661119338520196,
+            0.00021953721394515771,
+            -0.040275002343517136,
+            -0.0057605054056971295,
+            0.007756517811888446,
+            -0.000020489683254688657,
+            4.947843151205881e-7,
+            -6.392560466650477e-8,
+            3.857831996495512e-9,
+            0.0008224591399219394,
+            -0.21241237231629312,
+            0.02217343871117201
+          ],
+          "final_voltage_v": 0.04991476659866097,
+          "heat_monotone": true,
+          "load_heat_j": 3.573861229509397e-6,
+          "max_relative_circuit_balance_defect": 4.547364932177647e-14,
+          "max_relative_exchange_defect": 1.9015260645381203e-18,
+          "max_relative_total_balance_defect": 3.726735068706999e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -4.2890254393807485e-6,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.8578260195557214,
+          "peak_reaction_force_n": 0.0003654566356235941,
+          "pedestal_work_j": 0.03736438546435441,
+          "steps_per_frame": 64
+        },
+        {
+          "absolute_circuit_input_work_j": 4.359116970217387e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 4.288971647845511e-6,
+          "coil_heat_j": 7.148997326018701e-7,
+          "electrical_energy_j": 2.555092360095145e-10,
+          "final_current_a": 0.000049965416090265616,
+          "final_position": [
+            0.00001815423618715093,
+            0.002275578925701132,
+            -0.00010319598513290427,
+            0.000011908386876403101,
+            -2.492136993055944e-7,
+            7.023830834163111e-10,
+            9.758741107811778e-10,
+            -3.0184079719191617e-10,
+            6.88847461632657e-6,
+            5.907468257408716e-7,
+            0.000024616912480527664,
+            -0.000013062742553889922,
+            -3.1333542159881236e-6,
+            -3.3867708724724857e-9,
+            1.918385817106753e-10,
+            -8.75045782511838e-11,
+            1.5274307541409144e-11,
+            5.383759557225813e-8,
+            -0.011667840188152716,
+            0.00011791290566047392
+          ],
+          "final_velocity": [
+            0.002649427327979359,
+            0.1446295046623239,
+            0.0619290375171201,
+            0.05558288221745524,
+            0.0016962077402206913,
+            5.766597913869508e-6,
+            -1.5323167599974254e-6,
+            4.945204017739937e-7,
+            0.00526604089038218,
+            0.00021953639709606322,
+            -0.04027514446230832,
+            -0.005760533502003405,
+            0.007756500416513461,
+            -0.000020489189001873783,
+            4.947663646270161e-7,
+            -6.392133130465561e-8,
+            3.8567581169911575e-9,
+            0.0008224510180449546,
+            -0.21241233067549556,
+            0.022173404900890682
+          ],
+          "final_voltage_v": 0.04991463138658187,
+          "heat_monotone": true,
+          "load_heat_j": 3.5738164060078986e-6,
+          "max_relative_circuit_balance_defect": 1.1848109837249508e-13,
+          "max_relative_exchange_defect": 2.987172898600337e-19,
+          "max_relative_total_balance_defect": 5.341366243112833e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -4.288971647845518e-6,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.857824988072008,
+          "peak_reaction_force_n": 0.00036545643317564727,
+          "pedestal_work_j": 0.037364384577403424,
+          "steps_per_frame": 128
+        },
+        {
+          "absolute_circuit_input_work_j": 4.3591030495839545e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 4.2889581996032615e-6,
+          "coil_heat_j": 7.148974908843716e-7,
+          "electrical_energy_j": 2.555088848880738e-10,
+          "final_current_a": 0.00004996538174821733,
+          "final_position": [
+            0.000018154244118437077,
+            0.0022755800104851454,
+            -0.00010319601666675259,
+            0.000011908393666018056,
+            -2.492120686806453e-7,
+            7.023685608361266e-10,
+            9.758757684507237e-10,
+            -3.0184010849907275e-10,
+            6.888477951678065e-6,
+            5.907483972439237e-7,
+            0.00002461712175979635,
+            -0.00001306274386269562,
+            -3.13334288210345e-6,
+            -3.386776739211361e-9,
+            1.9183863839244877e-10,
+            -8.750449625139012e-11,
+            1.5274275570227174e-11,
+            5.38388349315392e-8,
+            -0.011667840005528307,
+            0.0001179129511355181
+          ],
+          "final_velocity": [
+            0.0026494258922801057,
+            0.14462961275854389,
+            0.061929063895019856,
+            0.055582691281463294,
+            0.0016962144043727197,
+            5.765043751294726e-6,
+            -1.5327029750840664e-6,
+            4.945504497891118e-7,
+            0.005266023132101005,
+            0.00021953619250208707,
+            -0.04027518003280993,
+            -0.005760540528528371,
+            0.007756496063486966,
+            -0.000020489065597929154,
+            4.947618855993906e-7,
+            -6.392026493169037e-8,
+            3.856490199856371e-9,
+            0.000822448988972086,
+            -0.21241232027095053,
+            0.02217339642554165
+          ],
+          "final_voltage_v": 0.049914597547465724,
+          "heat_monotone": true,
+          "load_heat_j": 3.5738051998338746e-6,
+          "max_relative_circuit_balance_defect": 9.072833117398306e-14,
+          "max_relative_exchange_defect": 6.893475937956282e-20,
+          "max_relative_total_balance_defect": 1.149611900231933e-12,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -4.288958199603264e-6,
+          "passed": true,
+          "peak_filtered_voltage_v": 0.8578247300788618,
+          "peak_reaction_force_n": 0.00036545638190043674,
+          "pedestal_work_j": 0.03736438435466889,
+          "steps_per_frame": 256
+        }
+      ]
+    },
+    {
+      "case": "load_10k",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.00003141037347881044,
+              0.000046109802537949164,
+              0.00002831561726289019,
+              0.000013636600052389558
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000010732538877015408,
+              0.000010695755993938856,
+              9.575831177086638e-6,
+              0.000011840253754081885
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000028029524837584924,
+              0.0000470320906716835,
+              0.00002410618922252618,
+              8.775398362699066e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              7.857742051791688e-6,
+              7.911775823022258e-6,
+              7.997573652946297e-6,
+              0.000011121508237157347
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "feedback_velocity_rms_difference_m_s": 0.00012478247882559914,
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              6.281988699017001e-6,
+              9.2218102433933e-6,
+              5.663054955914509e-6,
+              2.7273040983158717e-6
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              2.146495991692528e-6,
+              2.1391340499562487e-6,
+              1.9151524154171855e-6,
+              2.368023569682356e-6
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              5.606065824289185e-6,
+              9.406277516144255e-6,
+              4.8213345824221335e-6,
+              1.7552699613951474e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              1.5718472791431124e-6,
+              1.5826574954408633e-6,
+              1.5998123738806733e-6,
+              2.224537216054152e-6
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "pickup_circuit": {
+        "coil_resistance_ohm": 200.0,
+        "flux_scale_wb": 0.001,
+        "gap_m": 0.0015,
+        "inductance_h": 0.2,
+        "load_resistance_ohm": 10000.0,
+        "offset_xy_m": [
+          0.0005,
+          0.0002
+        ],
+        "pole_radius_m": 0.0005,
+        "shunt_capacitance_f": 4.7e-9
+      },
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_circuit_input_work_j": 6.361190794824286e-7,
+          "behavior_passed": true,
+          "circuit_input_work_j": 6.357440324125587e-7,
+          "coil_heat_j": 1.3127069519645174e-8,
+          "electrical_energy_j": 1.25851067765839e-11,
+          "final_current_a": 6.074761475440959e-6,
+          "final_position": [
+            0.000018158742944903943,
+            0.00227565881613942,
+            -0.00010341598719132685,
+            0.000011886451533158714,
+            -2.4825175049406004e-7,
+            8.306678423671859e-10,
+            1.041868285208879e-9,
+            -2.82671422376119e-10,
+            6.889704290899954e-6,
+            5.929501156269294e-7,
+            0.0000249076670333926,
+            -0.000013911997896527862,
+            -3.140622873461736e-6,
+            -3.366015893867797e-9,
+            2.471551976069197e-10,
+            -7.010417968994474e-11,
+            2.060267940196957e-11,
+            5.939538857219929e-8,
+            -0.011667816547311312,
+            0.0001177650531752932
+          ],
+          "final_velocity": [
+            0.0026530892896781694,
+            0.1442298534773179,
+            0.06215783141634072,
+            0.056050221494176475,
+            0.0016892324050082359,
+            7.857281322196154e-6,
+            -1.0316144305633951e-6,
+            4.847513102673793e-7,
+            0.005302151445591603,
+            0.00022359870205212407,
+            -0.04040581900817721,
+            -0.006125934253005796,
+            0.007871948995248578,
+            -0.00002117124901114442,
+            5.21559170701723e-7,
+            -5.999929762279304e-8,
+            4.181080793349496e-9,
+            0.0008338792664393506,
+            -0.21241929301342732,
+            0.022203875375977494
+          ],
+          "final_voltage_v": 0.061522644432532345,
+          "heat_monotone": true,
+          "load_heat_j": 6.226043777861863e-7,
+          "max_relative_circuit_balance_defect": 7.808271104511448e-14,
+          "max_relative_exchange_defect": 1.1438356907959838e-19,
+          "max_relative_total_balance_defect": 3.782309166672154e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -6.357440324125571e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 1.4176331664349786,
+          "peak_reaction_force_n": 0.00007921125527250037,
+          "pedestal_work_j": 0.03736421620840972,
+          "steps_per_frame": 64
+        },
+        {
+          "absolute_circuit_input_work_j": 6.36111195954082e-7,
+          "behavior_passed": true,
+          "circuit_input_work_j": 6.357360842212283e-7,
+          "coil_heat_j": 1.3126920498025419e-8,
+          "electrical_energy_j": 1.2585005476496342e-11,
+          "final_current_a": 6.074735554848644e-6,
+          "final_position": [
+            0.000018158773649416992,
+            0.0022756630300189654,
+            -0.00010341611211445142,
+            0.00001188647949618453,
+            -2.482453798911485e-7,
+            8.306161777534467e-10,
+            1.041878140964257e-9,
+            -2.826689833654961e-10,
+            6.889717401720275e-6,
+            5.929564117263039e-7,
+            0.00002490851339873319,
+            -0.000013911994546718681,
+            -3.140577497648109e-6,
+            -3.366040215783178e-9,
+            2.4715554608021827e-10,
+            -7.010390816844452e-11,
+            2.0602545489379322e-11,
+            5.940032275308648e-8,
+            -0.011667815844392058,
+            0.0001177652339959438
+          ],
+          "final_velocity": [
+            0.00265308353635458,
+            0.14423028001498883,
+            0.06215792956635599,
+            0.05604945958002745,
+            0.0016892574447839059,
+            7.851270706151709e-6,
+            -1.0331474198061247e-6,
+            4.84886757743154e-7,
+            0.005302080614451525,
+            0.00022359779656375682,
+            -0.040405968792822634,
+            -0.006125961806047475,
+            0.007871930626410562,
+            -0.00002117073699671014,
+            5.215418925189459e-7,
+            -5.999517037971335e-8,
+            4.180003232268171e-9,
+            0.0008338711964997093,
+            -0.2124192530590437,
+            0.022203840354815128
+          ],
+          "final_voltage_v": 0.06152240301300428,
+          "heat_monotone": true,
+          "load_heat_j": 6.225965787177514e-7,
+          "max_relative_circuit_balance_defect": 8.135434513014424e-14,
+          "max_relative_exchange_defect": 3.29579775314097e-20,
+          "max_relative_total_balance_defect": 5.34254762629792e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -6.357360842212281e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 1.4176315598371447,
+          "peak_reaction_force_n": 0.00007921085980949276,
+          "pedestal_work_j": 0.037364215324188974,
+          "steps_per_frame": 128
+        },
+        {
+          "absolute_circuit_input_work_j": 6.36109224056601e-7,
+          "behavior_passed": true,
+          "circuit_input_work_j": 6.357340969995379e-7,
+          "coil_heat_j": 1.3126883238641891e-8,
+          "electrical_energy_j": 1.2584980158964483e-11,
+          "final_current_a": 6.074729076353951e-6,
+          "final_position": [
+            0.000018158781334433555,
+            0.00227566408457185,
+            -0.0001034161433621708,
+            0.000011886486488050595,
+            -2.4824378567999506e-7,
+            8.306032324943709e-10,
+            1.041880601532566e-9,
+            -2.8266837278679133e-10,
+            6.889720682168675e-6,
+            5.929579853606028e-7,
+            0.000024908724902849078,
+            -0.000013911993711550792,
+            -3.1405661515730396e-6,
+            -3.3660462933810464e-9,
+            2.471556327179061e-10,
+            -7.010384016346322e-11,
+            2.060251197315305e-11,
+            5.9401556271652614e-8,
+            -0.011667815668433758,
+            0.00011776527921482576
+          ],
+          "final_velocity": [
+            0.002653082097980897,
+            0.14423038673752545,
+            0.06215795416022737,
+            0.05604926905430258,
+            0.0016892637128828206,
+            7.84976743285154e-6,
+            -1.0335308270195589e-6,
+            4.849206186166163e-7,
+            0.005302062901382873,
+            0.00022359757074557658,
+            -0.040406006163512254,
+            -0.006125968694573818,
+            0.007871926033545857,
+            -0.000021170608886911217,
+            5.215375664533195e-7,
+            -5.999413714913092e-8,
+            4.17973344897816e-9,
+            0.0008338691776994592,
+            -0.2124192430571069,
+            0.022203831608593374
+          ],
+          "final_voltage_v": 0.06152234267685774,
+          "heat_monotone": true,
+          "load_heat_j": 6.225946287807416e-7,
+          "max_relative_circuit_balance_defect": 1.0263083115148049e-13,
+          "max_relative_exchange_defect": 7.754818242684636e-21,
+          "max_relative_total_balance_defect": 1.1468484402043424e-12,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 2,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -6.35734096999538e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 1.4176311575628229,
+          "peak_reaction_force_n": 0.0000792107550906672,
+          "pedestal_work_j": 0.037364215102817296,
+          "steps_per_frame": 256
+        }
+      ]
+    },
+    {
+      "case": "open_capacitive",
+      "coarse_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.0000208188643391006,
+              0.00002877340836371317,
+              0.000028317855723381315,
+              0.000013639818634822365
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000012173522217732338,
+              0.000022178151425362196,
+              9.577343517480813e-6,
+              0.000011847607279363893
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              0.000019215069217038186,
+              0.00002869754876796266,
+              0.000024099208300734894,
+              8.767738775278253e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              8.760773981745933e-6,
+              0.00001418550294259854,
+              7.982574099240671e-6,
+              0.000011100180457178979
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "feedback_velocity_rms_difference_m_s": 0.0001280723812818878,
+      "length_m": 0.12,
+      "medium_vs_fine": {
+        "passed": true,
+        "windows": [
+          {
+            "end_seconds": 0.045,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              4.163701944711302e-6,
+              5.7545659980636e-6,
+              5.663499380411485e-6,
+              2.7279472126050245e-6
+            ],
+            "start_seconds": 0.0
+          },
+          {
+            "end_seconds": 0.095,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              2.434505274706154e-6,
+              4.434153645557974e-6,
+              1.9154577673511366e-6,
+              2.3694782443394965e-6
+            ],
+            "start_seconds": 0.045
+          },
+          {
+            "end_seconds": 0.14,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              3.843018547068513e-6,
+              5.739408067863861e-6,
+              4.820033246324968e-6,
+              1.753746620047407e-6
+            ],
+            "start_seconds": 0.095
+          },
+          {
+            "end_seconds": 0.18,
+            "passed": true,
+            "relative_rmse_voltage_current_vertical_horizontal": [
+              1.75305120687402e-6,
+              2.840188216489861e-6,
+              1.5969587736301662e-6,
+              2.2202574208582755e-6
+            ],
+            "start_seconds": 0.14
+          }
+        ]
+      },
+      "passed": true,
+      "pickup_circuit": {
+        "coil_resistance_ohm": 200.0,
+        "flux_scale_wb": 0.001,
+        "gap_m": 0.0015,
+        "inductance_h": 0.2,
+        "load_resistance_ohm": null,
+        "offset_xy_m": [
+          0.0005,
+          0.0002
+        ],
+        "pole_radius_m": 0.0005,
+        "shunt_capacitance_f": 4.7e-8
+      },
+      "sample_rate": 96000,
+      "takes": [
+        {
+          "absolute_circuit_input_work_j": 1.3936652235856903e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 1.702316503155998e-7,
+          "coil_heat_j": 1.7013092722936107e-7,
+          "electrical_energy_j": 1.0072308623597454e-10,
+          "final_current_a": -5.011199404675721e-7,
+          "final_position": [
+            0.000018159331991879812,
+            0.0022756810713789833,
+            -0.00010345135722292055,
+            0.000011864619609818741,
+            -2.486257334516303e-7,
+            8.444381947586857e-10,
+            1.0517870162950612e-9,
+            -2.799115248008844e-10,
+            6.888162302205455e-6,
+            5.929892030925699e-7,
+            0.00002490097104636702,
+            -0.000014056942370248742,
+            -3.146719154048601e-6,
+            -3.515955720051463e-9,
+            2.5525230815074967e-10,
+            -6.736935388436445e-11,
+            2.136097042579884e-11,
+            5.973293006002254e-8,
+            -0.011667814317961652,
+            0.000117740539145558
+          ],
+          "final_velocity": [
+            0.0026539555681185617,
+            0.1441529345597407,
+            0.06219304680213042,
+            0.05614976909056266,
+            0.0016819207258062714,
+            8.11813842507403e-6,
+            -9.401875494329024e-7,
+            4.871788445701757e-7,
+            0.005309749448906239,
+            0.00022427911452264899,
+            -0.040432912053304286,
+            -0.006179517838081103,
+            0.007895834895908506,
+            -0.000023705539440683807,
+            4.996283743462299e-7,
+            -5.4489652510642e-8,
+            5.311193515895199e-9,
+            0.0008360308081241197,
+            -0.21242052490310293,
+            0.022208966630070406
+          ],
+          "final_voltage_v": 0.06546006549928178,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 4.361213594805808e-15,
+          "max_relative_exchange_defect": 1.0178198943523585e-18,
+          "max_relative_total_balance_defect": 3.727455052700917e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -1.7023165031558503e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 2.307773864235915,
+          "peak_reaction_force_n": 0.00033843480750817684,
+          "pedestal_work_j": 0.03736419966478961,
+          "steps_per_frame": 64
+        },
+        {
+          "absolute_circuit_input_work_j": 1.3936458843308143e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 1.7023022801091335e-7,
+          "coil_heat_j": 1.7012950569902027e-7,
+          "electrical_energy_j": 1.0072231190919408e-10,
+          "final_current_a": -5.011469918864223e-7,
+          "final_position": [
+            0.000018159362431919722,
+            0.0022756852513205104,
+            -0.00010345148170300318,
+            0.000011864647844778966,
+            -2.486194064631177e-7,
+            8.443869406518422e-10,
+            1.0517973401115368e-9,
+            -2.7990913349037045e-10,
+            6.8881753578525554e-6,
+            5.929955068529294e-7,
+            0.000024901820028692862,
+            -0.000014056936995097448,
+            -3.1466737480905583e-6,
+            -3.5159842368715743e-9,
+            2.5525238795788253e-10,
+            -6.736909217598022e-11,
+            2.1360838391934863e-11,
+            5.973786221875142e-8,
+            -0.011667813622243844,
+            0.000117740719325008
+          ],
+          "final_velocity": [
+            0.002653949816103799,
+            0.14415335980700583,
+            0.06219314325408508,
+            0.05614900803796227,
+            0.0016819456207137619,
+            8.11216615849731e-6,
+            -9.417158024942687e-7,
+            4.873162562478459e-7,
+            0.005309678718712561,
+            0.0002242781858430713,
+            -0.04043306408333545,
+            -0.006179545161205842,
+            0.007895816386933067,
+            -0.00002370498278954668,
+            4.996101889646824e-7,
+            -5.448579966300809e-8,
+            5.310133377798194e-9,
+            0.0008360227569158982,
+            -0.21242048538606637,
+            0.022208931450540752
+          ],
+          "final_voltage_v": 0.0654598129368021,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 1.455417520917452e-14,
+          "max_relative_exchange_defect": 1.371633476674845e-19,
+          "max_relative_total_balance_defect": 5.339437680704505e-13,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -1.7023022801091192e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 2.3077656405022755,
+          "peak_reaction_force_n": 0.00033843312767168135,
+          "pedestal_work_j": 0.03736419878087814,
+          "steps_per_frame": 128
+        },
+        {
+          "absolute_circuit_input_work_j": 1.3936410291009224e-6,
+          "behavior_passed": true,
+          "circuit_input_work_j": 1.7022987245741605e-7,
+          "coil_heat_j": 1.7012915033917202e-7,
+          "electrical_energy_j": 1.0072211822040589e-10,
+          "final_current_a": -5.01153752369859e-7,
+          "final_position": [
+            0.000018159370043697338,
+            0.0022756862968238054,
+            -0.00010345151284455152,
+            0.000011864654909101974,
+            -2.4861782615229776e-7,
+            8.443741370502635e-10,
+            1.0517999192979783e-9,
+            -2.7990853536384047e-10,
+            6.888178622932166e-6,
+            5.92997083093886e-7,
+            0.00002490203237152683,
+            -0.00001405693563975797,
+            -3.1466623949982203e-6,
+            -3.5159913399068083e-9,
+            2.552524075756973e-10,
+            -6.736902667359409e-11,
+            2.1360805361230475e-11,
+            5.973909548819112e-8,
+            -0.011667813448267107,
+            0.00011774076445427627
+          ],
+          "final_velocity": [
+            0.0026539483769413507,
+            0.14415346589458353,
+            0.06219316735451091,
+            0.0561488177805675,
+            0.0016819518250459705,
+            8.110673879197829e-6,
+            -9.420977805599215e-7,
+            4.873505977761188e-7,
+            0.005309661037232393,
+            0.0002242779539316676,
+            -0.04043310203815575,
+            -0.006179551983484845,
+            0.007895811759680871,
+            -0.000023704843780167446,
+            4.996056496684397e-7,
+            -5.448483807151807e-8,
+            5.309868780561614e-9,
+            0.0008360207455818182,
+            -0.2124204755023885,
+            0.022208922622790523
+          ],
+          "final_voltage_v": 0.06545974976129093,
+          "heat_monotone": true,
+          "load_heat_j": 0.0,
+          "max_relative_circuit_balance_defect": 1.8940843724465302e-14,
+          "max_relative_exchange_defect": 2.4718483148557275e-20,
+          "max_relative_total_balance_defect": 1.1553363837989693e-12,
+          "max_stationary_drive_relative_energy_growth": 0.0,
+          "maximum_coupling_iterations": 3,
+          "mechanical_contact_entries": [
+            18,
+            10,
+            10,
+            4
+          ],
+          "mechanical_pickup_work_j": -1.702298724574162e-7,
+          "passed": true,
+          "peak_filtered_voltage_v": 2.3077635842764415,
+          "peak_reaction_force_n": 0.00033843268965982323,
+          "pedestal_work_j": 0.03736419855985936,
+          "steps_per_frame": 256
+        }
+      ]
+    }
+  ],
+  "experiment": "reciprocal-electromechanical-v1",
+  "passed": true,
+  "protocol": "Frozen before first run. Eight selected cases, 24 takes: 75 mm at 48 kHz and 120 mm at 96 kHz, each with zero flux, 1k load, 10k load and open resistive load with tenfold shunt capacitance. Reuse default two-plane action; two strikes over 180 ms, key down 10-45 and 95-130 ms, pedestal slew 1.5 m/s, pedal closed. Finite-aperture 16-node spatial flux proxy; reciprocal coil-current force; constant-L coil plus series resistance and parallel capacitance/load. Require total energy defect <1e-8, exchange defect <1e-10, circuit energy defect <1e-8, stationary-drive total energy growth <1e-10, monotone electrical heat, two strikes, zero-flux silence and nonzero loaded voltage/reaction/coil heat. Resistive load heat is positive except in zero/open cases. Require nonzero mechanical response change versus zero-flux control. Average circuit midpoint voltage into 4x then use common 127-tap FIR. Both lower resolutions versus highest require <1% RMS error in voltage, current and each mechanical pickup velocity independently in all four time windows.",
+  "schema_version": 1,
+  "scope": "Offline uncalibrated reciprocal transducer and single-coil load reduction. No static magnet attraction, nonlinear inductance, hysteresis, eddy-current fit, measured field map, full 73-pickup wiring, amplifier, loudspeaker or realtime plugin integration. Filtered temporal convergence is not a complete aliasing bound.",
+  "steps_per_frame": [
+    64,
+    128,
+    256
+  ]
+}

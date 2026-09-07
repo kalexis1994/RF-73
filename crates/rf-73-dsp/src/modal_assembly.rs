@@ -3,6 +3,13 @@
 use crate::{ModelError, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN, TineGeometry, TineModes};
 use core::f64::consts::TAU;
 mod action;
+mod transduction;
+pub use transduction::{
+    ElectromechanicalAssembly, ElectromechanicalProbe, ElectromechanicalProfile,
+    PickupCircuitProfile, SpatialPickup, SpatialPickupProfile,
+};
+mod polarization;
+pub use polarization::{PolarizationProfile, PolarizedActionAssembly, PolarizedActionProbe};
 mod contact;
 pub use action::{ActionAssembly, ActionProbe, ActionProfile};
 mod dissipative_contact;

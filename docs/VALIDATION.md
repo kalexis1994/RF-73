@@ -2256,3 +2256,88 @@ high-resolution qualification is not a realtime performance result, calibrated
 touch response or audible plugin update. Source audio and existing renders
 are preserved, incremental compilation remains disabled and only the reused
 release cache is retained.
+
+## Two-plane action block
+
+The [twenty-coordinate extension](TWO-PLANE-ACTION.md) adds the second transverse
+component to the same persistent action. Its
+[receipt](../references/polarized-action-validation.json) passes 8/8 cases and
+24/24 takes at 64/128/256 ticks per output frame. Two selected paired regimes
+(75 mm/48 kHz and 120 mm/96 kHz) cover isotropic and aligned controls, rotated
+boundary anisotropy and oblique contact. Both symmetry controls produce exactly
+zero lateral displacement; coupled cases receive lateral energy through the
+explicit reciprocal boundary work, with zero direct lateral strike input.
+
+Maximum velocity errors are 0.0460% vertically and 0.0564% horizontally for
+64/256, against separate 1% gates in each time window. Total relative energy
+defect is below 1.156e-12; the horizontal plane's independent work defect is
+below 2.706e-14. Stationary-drive energy does not grow. No threshold was changed
+and no refinement follow-up was needed for this selected matrix.
+
+Fixed-size midpoint and action infrastructure now support both dimensions.
+Unit checks cover exact lateral silence, agreement with the planar model,
+covariance under a complete physical rotation, reciprocal positive principal
+energies, selected boundary/material corners and transactional input rejection.
+A live planar 512-step take reproduces the committed reference summary with
+identical JSON readback, including all state and event counters. The receipt
+and CLI checks retain separate per-plane work and prevent output overwrite.
+
+Verification passes 120 DSP tests, 106 laboratory unit tests, the plugin tests,
+two polarized-action CLI/receipt checks, strict Clippy and formatting. Selected
+boundary-corner tests also move the pedal, accounting for its work while both
+transverse components interact with the shared contacts.
+
+The adjacent RackForge checkout was already version 0.1.17 at revision
+`8124afc12aa0b2b2a968a6e3a1e160ea7e371cb7`; the lockfile's two path-package
+versions were refreshed offline from 0.1.16. No registry dependency was upgraded
+and the neighboring checkout was not changed. This remains an offline physics
+block, with no audio, host, measured anisotropy or large-deflection qualification.
+
+## Reciprocal spatial pickup and loaded circuit
+
+The [electromechanical block](ELECTROMECHANICAL.md) couples the twenty-coordinate
+action to a finite-aperture flux proxy, constant-L coil and parallel output
+capacitance/load. The circuit current reacts on both mechanical pickup ports
+inside the joint action solve. Independent mechanical work, electrical input,
+stored electrical energy and coil/load heat expose the complete energy exchange.
+
+The [receipt](../references/electromechanical-validation.json) passes 8/8 cases
+and 24/24 takes at 64/128/256 ticks per frame. The paired 75 mm/48 kHz and
+120 mm/96 kHz regimes each include zero flux, 1 kohm, 10 kohm and open resistive
+load with tenfold capacitance. All loaded cases change mechanical velocity
+relative to zero flux. Zero flux is exactly silent; resistive heat vanishes in
+the open control. Electrical heat is monotone and stationary-drive total energy
+never increases. At least two physical hammer contacts occur in every take.
+
+Worst relative defects are 1.156e-12 for the total balance, 3.600e-17 for
+mechanical/electrical exchange and 1.185e-13 for the circuit balance. Both lower
+resolutions pass separate voltage, current and two-axis velocity gates in every
+window. Worst RMS errors are respectively 0.0270%, 0.0532%, 0.0460% and 0.0122%,
+against the frozen 1% limits. The outer coupling solve uses at most three of
+sixteen allowed iterations. No matrix gate or physical parameter was retuned.
+
+The first unity-gain WAV failed digital headroom (peak 1.84613 FS) while passing
+energy checks. It and its failed receipt remain in `renders/`. A separate
+listening WAV applies explicit 0.1 FS/V after filtering: 1.2 seconds at 48 kHz,
+57,600 finite samples, peak 0.184613168 FS and RMS 0.016934764 FS after Rust WAV
+readback. The mechanical/electrical energy defect is unchanged by gain.
+The [protocol](ELECTROMECHANICAL.md) records filenames, commands and hashes.
+The output is a single provisional tine with two key gestures and retained
+initial preload relaxation; no pitch tuning or human listening is claimed.
+
+Verification passes 125 DSP tests (111 unit and 14 integration), eight plugin
+integration tests, 106 laboratory unit tests, two electromechanical CLI/receipt
+tests, strict Clippy and formatting. New core tests check the exact flux work
+identity and derivative limit, independent aperture quadrature, analytic complex
+circuit transfer, lossless LC energy, coupled work and atomic failure rollback,
+and exact zero-flux mechanical equivalence. The existing planar receipt replay
+still passes. CLI tests reject malformed gains and preserve existing audio and
+companion receipts before rendering.
+
+Receipt schema 1, 91847 bytes, SHA-256
+`9fe3074c7f14e74e5b9fe984a9767d860226b4d12ba53f31b9c051713ec9bc3d`.
+Builds reused release with incremental compilation disabled; final cache is
+about 193 MiB. This is offline reference physics with provisional spatial and
+circuit constants. Full field geometry, static magnetic pull, nonlinear
+inductance, keyboard wiring, complete aliasing qualification and realtime host
+integration remain open. No plugin version or Desktop session was produced.

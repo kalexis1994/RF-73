@@ -17,10 +17,20 @@ not only parameter-identification diagnostics:
    pedestal, reciprocal tension-only bridle and moving felt, with simultaneous
    contact solving throughout strike/release/restrike. Measured action geometry,
    touch calibration and realtime integration remain open.
-3. **Motion and structural coupling:** add the second tine polarization and
-   qualify the corresponding support/tonebar and observation couplings.
-4. **Magnetic and electrical conversion:** improve spatial field and loading
-   reductions and qualify the complete output chain.
+3. **Motion and structural coupling:** implemented as an offline
+   [two-plane action](TWO-PLANE-ACTION.md), with reciprocal anisotropic boundary
+   coupling, spatial contact normals and two-axis observation. Eight selected
+   cases pass symmetry, energy-transfer and temporal-refinement checks.
+   Large-deflection nonlinearities, torsion and measured anisotropy remain open.
+4. **Magnetic and electrical conversion:** implemented offline as a
+   [reciprocal spatial pickup and passive circuit](ELECTROMECHANICAL.md), with
+   current reaction on both mechanical planes and independent energy ledgers.
+   Eight cases and 24 takes pass load controls and output refinement. Measured
+   fields, magnetic bias force and full keyboard wiring remain open.
+
+The next functional block should qualify longer gestures and tuned pitch/timbre
+through this combined output, followed by measured-source comparisons and a
+computational reduction suitable for the playable plugin.
 
 Measured material/geometry calibration, listening and realtime integration
 remain cross-cutting release gates. The current damper is not a calibrated

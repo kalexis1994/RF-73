@@ -12,6 +12,11 @@ pub use modal_assembly::{
     FeltDamperProfile, MemoryContactInspection, MemoryContactStatus, MemoryContactStep,
     MemoryModalAssembly, MemoryModalCheckpoint, MemoryModalProbe, MemoryModalRk4Step,
 };
+pub use modal_assembly::{
+    ElectromechanicalAssembly, ElectromechanicalProbe, ElectromechanicalProfile,
+    PickupCircuitProfile, SpatialPickup, SpatialPickupProfile,
+};
+pub use modal_assembly::{PolarizationProfile, PolarizedActionAssembly, PolarizedActionProbe};
 mod model;
 mod pickup;
 mod tine;

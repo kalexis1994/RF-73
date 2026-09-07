@@ -3,11 +3,13 @@
 use super::dissipative_contact::RateContact;
 use super::*;
 
+#[cfg(test)]
 const D: usize = N + 2;
+#[cfg(test)]
 const H: usize = N;
+#[cfg(test)]
 const Z: usize = N + 1;
 const CONTACTS: usize = 4;
-type Coordinates = [f64; D];
 type Forces = [f64; CONTACTS];
 
 /// Hammer-tip-equivalent distances; key dip is not identified with these distances.
@@ -84,11 +86,16 @@ impl ActionProfile {
 
 /// Contact arrays are ordered: hammer/tine, felt/tine, pedestal/hammer, bridle.
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub struct ActionProbe {
-    /// Nine structural coordinates, hammer tip, damper arm. Coordinate 1 is radians.
-    pub position: Coordinates,
-    pub velocity: Coordinates,
+pub struct ActionProbe<const D: usize = 11> {
+    /// Structural coordinates followed by hammer and arm. The planar structure
+    /// has nine coordinates; the polarized structure has vertical/horizontal
+    /// blocks of nine. Root angles (index 1 in each block) are in radians.
+    pub position: [f64; D],
+    pub velocity: [f64; D],
     pub pickup_velocity_m_s: f64,
+    /// Vertical and horizontal laboratory axes; horizontal is zero in the planar model.
+    pub pickup_displacement_xy_m: [f64; 2],
+    pub pickup_velocity_xy_m_s: [f64; 2],
     pub pedestal_position_m: f64,
     pub pedal_position_m: f64,
     pub compression_m: Forces,
@@ -104,6 +111,7 @@ pub struct ActionProbe {
     pub structural_heat_j: f64,
     pub hammer_return_heat_j: f64,
     pub arm_heat_j: f64,
+    pub pickup_force_work_j: f64,
     pub pedestal_work_j: f64,
     pub pedal_work_j: f64,
     pub absolute_drive_work_j: f64,
@@ -111,9 +119,9 @@ pub struct ActionProbe {
 }
 
 #[derive(Clone, Copy)]
-struct State {
-    q: Coordinates,
-    v: Coordinates,
+pub(super) struct State<const D: usize> {
+    q: [f64; D],
+    v: [f64; D],
     pedestal: f64,
     pedal: f64,
     f: Forces,
@@ -128,24 +136,26 @@ struct State {
     arm_heat: f64,
     work: [f64; 2],
     absolute_work: f64,
+    pickup_work: f64,
 }
 
 /// Fixed-size, bounded, transactional stepping. No strike-time state reset or
 /// velocity assignment. The caller supplies continuous mechanical drive positions.
-pub struct ActionAssembly {
-    op: Operators,
-    step: Midpoint,
+pub struct ActionAssembly<const S: usize = 9, const D: usize = 11> {
+    op: ActionStructure<S>,
+    step: Midpoint<S>,
     profile: ActionProfile,
     mass: [f64; 2],
     stiffness: [f64; 2],
     damping: [f64; 2],
     inverse_a: [f64; 2],
-    ports: [Coordinates; CONTACTS],
-    responses: [Coordinates; CONTACTS],
+    ports: [[f64; D]; CONTACTS],
+    responses: [[f64; D]; CONTACTS],
+    pickup_response: [[f64; S]; 2],
     compliance: [[f64; CONTACTS]; CONTACTS],
     laws: [RateContact; CONTACTS],
     h: f64,
-    state: State,
+    state: State<D>,
     initial: f64,
 }
 
@@ -196,7 +206,7 @@ fn solve_joint(
     ))
 }
 
-impl ActionAssembly {
+impl ActionAssembly<9, 11> {
     pub fn new(
         h: f64,
         geometry: TineGeometry,
@@ -209,8 +219,53 @@ impl ActionAssembly {
         felt.validate()?;
         profile.validate()?;
         let op = Operators::prepare(geometry, assembly)?;
+        Self::prepare(h, ActionStructure::from_planar(op), assembly, felt, profile)
+    }
+}
+
+pub(super) struct ActionStructure<const S: usize> {
+    pub m: [[f64; S]; S],
+    pub k: [[f64; S]; S],
+    pub c: [[[f64; S]; S]; 1],
+    pub hammer: [f64; S],
+    pub damper: [f64; S],
+    pub pickup: [f64; S],
+    pub pickup_cross: [f64; S],
+}
+impl ActionStructure<9> {
+    fn from_planar(op: Operators) -> Self {
+        Self {
+            m: op.m,
+            k: op.k,
+            c: [op.c[0]],
+            hammer: op.hammer,
+            damper: op.damper,
+            pickup: op.pickup,
+            pickup_cross: [0.0; 9],
+        }
+    }
+}
+impl<const S: usize, const D: usize> ActionAssembly<S, D> {
+    pub(super) fn prepare(
+        h: f64,
+        op: ActionStructure<S>,
+        assembly: ModalAssemblyProfile,
+        felt: FeltDamperProfile,
+        profile: ActionProfile,
+    ) -> Result<Self, ModelError> {
+        if D != S + 2 {
+            return Err(ModelError("invalid action coordinate dimensions"));
+        }
+        bounded(h, 1e-9, 1e-4)?;
+        assembly.validate()?;
+        felt.validate()?;
+        profile.validate()?;
         let step = Midpoint::prepare(op.m, op.k, op.c[0], op.hammer, h)?;
         let ds = Midpoint::prepare(op.m, op.k, op.c[0], op.damper, h)?;
+        let pickup_response = [
+            Midpoint::prepare(op.m, op.k, op.c[0], op.pickup, h)?.response,
+            Midpoint::prepare(op.m, op.k, op.c[0], op.pickup_cross, h)?.response,
+        ];
         let mass = [assembly.hammer_mass_kg, felt.arm_mass_kg];
         let stiffness = [profile.hammer_return_n_m, felt.arm_stiffness_n_m];
         let damping = [profile.hammer_return_n_s_m, felt.arm_damping_n_s_m];
@@ -218,19 +273,19 @@ impl ActionAssembly {
             1.0 / (mass[i] + h * damping[i] / 2.0 + h * h * stiffness[i] / 4.0)
         });
         let mut ports = [[0.0; D]; CONTACTS];
-        ports[0][..N].copy_from_slice(&op.hammer.map(|x| -x));
-        ports[1][..N].copy_from_slice(&op.damper.map(|x| -x));
-        ports[0][H] = 1.0;
-        ports[1][Z] = 1.0;
-        ports[2][H] = -1.0;
-        ports[3][H] = profile.bridle_ratio;
-        ports[3][Z] = 1.0;
+        ports[0][..S].copy_from_slice(&op.hammer.map(|x| -x));
+        ports[1][..S].copy_from_slice(&op.damper.map(|x| -x));
+        ports[0][S] = 1.0;
+        ports[1][S + 1] = 1.0;
+        ports[2][S] = -1.0;
+        ports[3][S] = profile.bridle_ratio;
+        ports[3][S + 1] = 1.0;
         let mut responses = [[0.0; D]; CONTACTS];
-        responses[0][..N].copy_from_slice(&step.response);
-        responses[1][..N].copy_from_slice(&ds.response);
+        responses[0][..S].copy_from_slice(&step.response);
+        responses[1][..S].copy_from_slice(&ds.response);
         for j in 0..CONTACTS {
             for i in 0..2 {
-                responses[j][N + i] = -h * inverse_a[i] * ports[j][N + i];
+                responses[j][S + i] = -h * inverse_a[i] * ports[j][S + i];
             }
         }
         let compliance = core::array::from_fn(|i| {
@@ -253,8 +308,8 @@ impl ActionAssembly {
             rate: beta / h,
         });
         let mut q = [0.0; D];
-        q[H] = profile.hammer_rest_m;
-        q[Z] = profile.damper_closed_m;
+        q[S] = profile.hammer_rest_m;
+        q[S + 1] = profile.damper_closed_m;
         let state = State {
             q,
             v: [0.0; D],
@@ -272,6 +327,7 @@ impl ActionAssembly {
             arm_heat: 0.0,
             work: [0.0; 2],
             absolute_work: 0.0,
+            pickup_work: 0.0,
         };
         let mut result = Self {
             op,
@@ -283,6 +339,7 @@ impl ActionAssembly {
             inverse_a,
             ports,
             responses,
+            pickup_response,
             compliance,
             laws,
             h,
@@ -292,7 +349,7 @@ impl ActionAssembly {
         result.initial = result.energy(state);
         Ok(result)
     }
-    fn compression(&self, s: State) -> Forces {
+    fn compression(&self, s: State<D>) -> Forces {
         let mut d = self.ports.map(|port| dot(port, s.q));
         d[2] += s.pedestal;
         d[3] -= self.profile.bridle_ratio * self.profile.hammer_rest_m
@@ -300,20 +357,35 @@ impl ActionAssembly {
             + self.profile.bridle_slack_m;
         d
     }
-    fn energy(&self, s: State) -> f64 {
+    fn energy(&self, s: State<D>) -> f64 {
         let q = core::array::from_fn(|i| s.q[i]);
         let v = core::array::from_fn(|i| s.v[i]);
         0.5 * (dot(q, apply(&self.op.k, q)) + dot(v, apply(&self.op.m, v)))
-            + 0.5 * self.mass[0] * s.v[H].powi(2)
-            + 0.5 * self.mass[1] * s.v[Z].powi(2)
-            + 0.5 * self.stiffness[0] * (s.q[H] - self.profile.hammer_rest_m).powi(2)
-            + 0.5 * self.stiffness[1] * (s.q[Z] - s.pedal).powi(2)
+            + 0.5 * self.mass[0] * s.v[S].powi(2)
+            + 0.5 * self.mass[1] * s.v[S + 1].powi(2)
+            + 0.5 * self.stiffness[0] * (s.q[S] - self.profile.hammer_rest_m).powi(2)
+            + 0.5 * self.stiffness[1] * (s.q[S + 1] - s.pedal).powi(2)
             + self
                 .compression(s)
                 .iter()
                 .zip(&self.laws)
                 .map(|(d, law)| law.stiffness * d.max(0.0).powi(3) / 3.0)
                 .sum::<f64>()
+    }
+    pub fn structural_mass_matrix(&self) -> [[f64; S]; S] {
+        self.op.m
+    }
+    pub fn structural_stiffness_matrix(&self) -> [[f64; S]; S] {
+        self.op.k
+    }
+    pub fn structural_damping_matrix(&self) -> [[f64; S]; S] {
+        self.op.c[0]
+    }
+    pub fn structural_hammer_port(&self) -> [f64; S] {
+        self.op.hammer
+    }
+    pub fn structural_damper_port(&self) -> [f64; S] {
+        self.op.damper
     }
     pub fn advance(&mut self, pedestal_m: f64, pedal_m: f64) -> Result<(), ModelError> {
         self.advance_with_budget(pedestal_m, pedal_m, 64)
@@ -324,6 +396,32 @@ impl ActionAssembly {
         pedal: f64,
         budget: usize,
     ) -> Result<(), ModelError> {
+        self.advance_forced(pedestal, pedal, budget, [0.0; 2])
+    }
+    pub(super) fn checkpoint(&self) -> State<D> {
+        self.state
+    }
+    pub(super) fn restore(&mut self, state: State<D>) {
+        self.state = state;
+    }
+    pub(super) fn advance_with_pickup_force(
+        &mut self,
+        pedestal: f64,
+        pedal: f64,
+        force: [f64; 2],
+    ) -> Result<(), ModelError> {
+        self.advance_forced(pedestal, pedal, 64, force)
+    }
+    fn advance_forced(
+        &mut self,
+        pedestal: f64,
+        pedal: f64,
+        budget: usize,
+        pickup_force: [f64; 2],
+    ) -> Result<(), ModelError> {
+        for f in pickup_force {
+            bounded(f, -100.0, 100.0)?;
+        }
         bounded(
             pedestal,
             self.profile.hammer_rest_m,
@@ -348,11 +446,17 @@ impl ActionAssembly {
             core::array::from_fn(|i| a.q[i]),
             core::array::from_fn(|i| a.v[i]),
         );
-        b.v[..N].copy_from_slice(&vf);
+        b.v[..S].copy_from_slice(&vf);
+        if pickup_force != [0.0; 2] {
+            for (i, velocity) in b.v[..S].iter_mut().enumerate() {
+                *velocity += self.pickup_response[0][i] * pickup_force[0]
+                    + self.pickup_response[1][i] * pickup_force[1];
+            }
+        }
         let bases = [self.profile.hammer_rest_m, 0.5 * (a.pedal + pedal)];
         let base_velocity = [0.0, (pedal - a.pedal) / h];
         for i in 0..2 {
-            let j = N + i;
+            let j = S + i;
             b.v[j] = a.v[j]
                 + self.inverse_a[i]
                     * (-h * self.stiffness[i] * (a.q[j] - bases[i])
@@ -377,6 +481,12 @@ impl ActionAssembly {
             b.q[i] += 0.5 * h * dv;
         }
         let compression_b = self.compression(b);
+        if pickup_force != [0.0; 2] {
+            let qa = core::array::from_fn(|i| a.q[i]);
+            let qb = core::array::from_fn(|i| b.q[i]);
+            b.pickup_work += pickup_force[0] * (dot(self.op.pickup, qb) - dot(self.op.pickup, qa))
+                + pickup_force[1] * (dot(self.op.pickup_cross, qb) - dot(self.op.pickup_cross, qa));
+        }
         for i in 0..CONTACTS {
             // Re-evaluate the material heat from actual endpoints, independently
             // of the joint force residual and global energy bookkeeping.
@@ -391,15 +501,15 @@ impl ActionAssembly {
         b.simultaneous = b
             .simultaneous
             .saturating_add(u64::from(force[0] > 0.0 && force[1] > 0.0));
-        let vm: Coordinates = core::array::from_fn(|i| 0.5 * (a.v[i] + b.v[i]));
+        let vm: [f64; D] = core::array::from_fn(|i| 0.5 * (a.v[i] + b.v[i]));
         let sv = core::array::from_fn(|i| vm[i]);
         b.structure_heat += h * dot(sv, apply(&self.op.c[0], sv));
-        b.hammer_heat += h * self.damping[0] * vm[H].powi(2);
-        b.arm_heat += h * self.damping[1] * (vm[Z] - base_velocity[1]).powi(2);
+        b.hammer_heat += h * self.damping[0] * vm[S].powi(2);
+        b.arm_heat += h * self.damping[1] * (vm[S + 1] - base_velocity[1]).powi(2);
         let work = [
             force[2] * (pedestal - a.pedestal),
-            -(self.stiffness[1] * (0.5 * (a.q[Z] + b.q[Z]) - bases[1])
-                + self.damping[1] * (vm[Z] - base_velocity[1]))
+            -(self.stiffness[1] * (0.5 * (a.q[S + 1] + b.q[S + 1]) - bases[1])
+                + self.damping[1] * (vm[S + 1] - base_velocity[1]))
                 * (pedal - a.pedal),
         ];
         for (i, w) in work.into_iter().enumerate() {
@@ -416,6 +526,7 @@ impl ActionAssembly {
                 b.hammer_heat,
                 b.arm_heat,
                 b.absolute_work,
+                b.pickup_work,
                 self.energy(b),
             ])
             .any(|x| !x.is_finite())
@@ -426,13 +537,21 @@ impl ActionAssembly {
         self.state = b;
         Ok(())
     }
-    pub fn probe(&self) -> ActionProbe {
+    pub fn probe(&self) -> ActionProbe<D> {
         let s = self.state;
         let energy = self.energy(s);
         ActionProbe {
             position: s.q,
             velocity: s.v,
             pickup_velocity_m_s: dot(self.op.pickup, core::array::from_fn(|i| s.v[i])),
+            pickup_displacement_xy_m: [
+                dot(self.op.pickup, core::array::from_fn(|i| s.q[i])),
+                dot(self.op.pickup_cross, core::array::from_fn(|i| s.q[i])),
+            ],
+            pickup_velocity_xy_m_s: [
+                dot(self.op.pickup, core::array::from_fn(|i| s.v[i])),
+                dot(self.op.pickup_cross, core::array::from_fn(|i| s.v[i])),
+            ],
             pedestal_position_m: s.pedestal,
             pedal_position_m: s.pedal,
             compression_m: self.compression(s),
@@ -448,6 +567,7 @@ impl ActionAssembly {
             structural_heat_j: s.structure_heat,
             hammer_return_heat_j: s.hammer_heat,
             arm_heat_j: s.arm_heat,
+            pickup_force_work_j: s.pickup_work,
             pedestal_work_j: s.work[0],
             pedal_work_j: s.work[1],
             absolute_drive_work_j: s.absolute_work,
@@ -457,7 +577,8 @@ impl ActionAssembly {
                 + s.hammer_heat
                 + s.arm_heat
                 - self.initial
-                - s.work.iter().sum::<f64>(),
+                - s.work.iter().sum::<f64>()
+                - s.pickup_work,
         }
     }
 }

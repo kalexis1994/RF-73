@@ -10,6 +10,7 @@ pub const HELP: &str = "Persistent action audit:
 16 strike/release/restrike cases; joint contacts, reciprocal bridle and drive work.
 ";
 const DURATION: f64 = 0.18;
+
 const NAMES: [&str; 4] = ["repeat", "pedal_repeat", "partial_release", "slack_bridle"];
 struct Take {
     samples: Vec<[f64; 3]>,
@@ -241,4 +242,22 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         return Err("action cycle retained failed qualification".into());
     }
     Ok(())
+}
+
+#[cfg(test)]
+mod regression {
+    #[test]
+    fn generic_action_replays_the_committed_planar_reference_exactly() {
+        let expected: serde_json::Value = serde_json::from_str(include_str!(
+            "../../../references/persistent-action-cycle-reference-validation.json"
+        ))
+        .unwrap();
+        let observed = super::take(0.075, 48000, 512, 0, 1.5).unwrap();
+        // Apply the same JSON readback to both sides. Without float_roundtrip,
+        // serde_json's reader can round a stored decimal by one ulp relative
+        // to Value::from(f64); that is not a mechanical-state difference.
+        let observed: serde_json::Value =
+            serde_json::from_slice(&serde_json::to_vec(&observed.summary).unwrap()).unwrap();
+        assert_eq!(observed, expected["cases"][0]["takes"][0]);
+    }
 }

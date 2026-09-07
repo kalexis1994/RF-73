@@ -35,6 +35,19 @@ repeated strikes preserve all mechanical state. Its reference matrix passes
 16 cases and 48 takes; earlier failed studies remain recorded. This is an
 offline action reduction with provisional geometry and materials.
 
+The [two-plane action](docs/TWO-PLANE-ACTION.md) now adds a second transverse
+component of the tine, reciprocal anisotropic support/tonebar coupling and
+spatial hammer/felt contact normals. Its eight-case audit passes with independent
+work ledgers for both planes. The symmetric control reproduces planar motion;
+material calibration and large-deflection mechanics remain open.
+
+The [reciprocal pickup and circuit](docs/ELECTROMECHANICAL.md) now connect both
+motion components to spatial flux, coil current and a passive electrical load.
+Current reaction feeds back into the joint action solve. Eight cases and 24
+takes pass energy, load-control and output-refinement checks; a short offline
+WAV renderer makes the combined model audible. Field/circuit calibration and
+realtime plugin integration remain open.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start
