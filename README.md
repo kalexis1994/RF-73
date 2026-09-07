@@ -95,6 +95,11 @@ The [bridle/damper study](docs/LOADED-BRIDLE.md) follows that work through
 linkage storage, arm motion and dissipation, then checks felt lift and key
 return under controlled slack, ratio and arm-loading changes.
 
+The [hammer return study](docs/LOADED-HAMMER-RETURN.md) extends that gesture
+to 800 ms, traces pedestal contacts and checks free hammer motion against
+an independent analytical solution. Return damping and contact loss controls
+retain separate attack, felt-lift and settling decisions.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

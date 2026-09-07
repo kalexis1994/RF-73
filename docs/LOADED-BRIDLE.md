@@ -175,9 +175,9 @@ is 664379 bytes, SHA-256
 The release cache remains approximately 194 MiB. No additional audio files or
 production defaults are introduced.
 
-Next trace hammer return and pedestal contact events over a longer tail,
-including signed work and residual energy. Compare return damping and contact
-loss controls while preserving the already measured attack and felt lift.
+The [hammer return study](LOADED-HAMMER-RETURN.md) now traces hammer return
+and pedestal contact over a longer tail, comparing return damping and contact
+loss controls with explicit attack and felt-lift checks.
 Qualify repetition from the resulting mechanical state before adopting a
 parameter change. The present fixed-pedal test does not establish a half-pedal
 model or a complete playable action.

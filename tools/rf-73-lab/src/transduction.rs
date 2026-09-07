@@ -8,6 +8,7 @@ pub(crate) mod calibration;
 pub(crate) mod dynamics;
 pub(crate) mod losses;
 pub(crate) mod rest;
+pub(crate) mod return_motion;
 pub(crate) mod threshold;
 pub(crate) mod tuning;
 pub(crate) mod voicing;
@@ -22,6 +23,7 @@ pub const HELP: &str = "Electromechanical audit:
   loaded-dynamics MANIFEST.json --output REPORT.json
   loaded-strike-threshold --output REPORT.json
   loaded-bridle --output REPORT.json
+  loaded-hammer-return --output REPORT.json
 Eight loaded two-plane cases; render writes one 1.2-second WAV plus its JSON receipt.
 ";
 const DURATION: f64 = 0.18;

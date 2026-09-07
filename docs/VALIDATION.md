@@ -2671,3 +2671,34 @@ strict Clippy and formatting, including independent work and functional checks.
 No WAVs or production defaults are added; release cache remains approximately
 194 MiB. Longer return, repetition, moving-pedal behavior and source fidelity
 remain unqualified by this experiment.
+
+## Loaded hammer return and pedestal events
+
+The [800 ms hammer-return matrix](LOADED-HAMMER-RETURN.md) retains twelve
+takes across baseline, constant return damping 0.1 Ns/m and pedestal rate
+loss 10 s/m, at 1.125/1.5 m/s and 128/256 internal ticks. All takes and six
+refinement pairs qualify numerically. Baseline snapshots through 400 ms and
+pre-impact states replay the bridle receipt exactly.
+
+The post-release diagnostic retains bounded pedestal entry/exit sequences
+and compares 112 force-free hammer intervals against the exact continuous
+damped-oscillator solution. Maximum relative state error is 5.378e-11; tests
+reconstruct interval energy loss and return heat. Maximum total energy defect
+is 4.001e-12, independent coupling defect 4.175e-12, velocity refinement error
+0.008404%, impact refinement error 0.042590% and event-time difference
+0.163 microseconds. All functional decisions agree across resolutions.
+
+All takes preserve one hammer strike and held felt lift. The baseline still
+fails the 750–800 ms hammer return gate. Higher return damping passes that
+gate but changes soft impulse by a factor of 12.362 and strong impulse by
+18.58%. Higher pedestal loss changes strong impulse by only 0.4024% but leaves
+late position errors of 0.1365–0.1495 mm, outside the 0.1 mm limit. It also
+changes soft impulse by a factor of 12.577. Every combined attack/lift/return
+decision fails. No default changes, physical calibration or listening
+equivalence are claimed. Next qualify repetition from these actual states.
+
+Receipt: `references/loaded-hammer-return-validation.json`, 895795 bytes,
+SHA-256 `52579de65a5d83a57de3ade283ce9a1eaeffbbc2b88421f4220d7f139ca1952a`.
+Verification passes 124 lab unit tests, nineteen loaded CLI/receipt tests,
+strict Clippy and formatting. No new WAVs are generated; release cache remains
+approximately 194 MiB.

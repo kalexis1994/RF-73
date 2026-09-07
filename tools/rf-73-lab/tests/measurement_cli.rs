@@ -10,6 +10,180 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_hammer_return_receipt_checks_free_motion_and_replays_bridle_prefix() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-hammer-return-validation.json");
+    let prior = read("loaded-bridle-validation.json");
+    assert_eq!(r["experiment"], "loaded-hammer-return-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 3);
+    for case in cases {
+        let m = case["settings"]["hammer_mass_kg"].as_f64().unwrap();
+        let k = case["settings"]["return_stiffness_n_m"].as_f64().unwrap();
+        let rows = case["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 2);
+        for row in rows {
+            assert_eq!(row["measurement_qualified"], true);
+            assert_eq!(row["convergence"]["passed"], true);
+            assert_eq!(row["event_convergence"]["passed"], true);
+            assert_eq!(row["convergence"]["velocity"].as_array().unwrap().len(), 16);
+            let takes = row["takes"].as_array().unwrap();
+            assert_eq!(takes.len(), 2);
+            for (take, steps) in takes.iter().zip([128, 256]) {
+                assert_eq!(take["steps_per_frame"], steps);
+                assert_eq!(take["duration_seconds"], 0.8);
+                assert_eq!(take["passed"], true);
+                let trace = &take["return_trace"];
+                assert_eq!(trace["qualified"], true);
+                assert_eq!(trace["overflow"], false);
+                assert!(trace["max_free_relative_state_error"].as_f64().unwrap() < 1e-6);
+                let flights = trace["free_intervals"].as_array().unwrap();
+                assert!(!flights.is_empty());
+                for flight in flights {
+                    let n = |key: &str| flight[key].as_f64().unwrap();
+                    assert!(n("end_seconds") - n("start_seconds") >= 0.001);
+                    let energy = |x: f64, v: f64| 0.5 * k * x * x + 0.5 * m * v * v;
+                    let initial = energy(n("initial_offset_m"), n("initial_velocity_m_s"));
+                    let final_energy = energy(n("actual_offset_m"), n("actual_velocity_m_s"));
+                    assert!((initial - n("initial_energy_j")).abs() < 1e-14);
+                    assert!((final_energy - n("final_energy_j")).abs() < 1e-14);
+                    assert!((final_energy - initial + n("return_heat_j")).abs() < 1e-12);
+                    let error = ((k / m
+                        * (n("actual_offset_m") - n("predicted_offset_m")).powi(2)
+                        + (n("actual_velocity_m_s") - n("predicted_velocity_m_s")).powi(2))
+                        / (2.0 * initial / m).max(1e-16))
+                    .sqrt();
+                    assert!((error - n("relative_state_error")).abs() < 1e-12 && error < 1e-6);
+                }
+                let mut previous_time = 0.15;
+                for event in trace["pedestal_events"].as_array().unwrap() {
+                    let time = event["seconds"].as_f64().unwrap();
+                    assert!(time > previous_time && time <= 0.8);
+                    previous_time = time;
+                    let before = event["before"]["force_n"][2].as_f64().unwrap() > 0.0;
+                    let after = event["after"]["force_n"][2].as_f64().unwrap() > 0.0;
+                    assert_ne!(before, after);
+                    assert_eq!(event["kind"], if after { "entry" } else { "exit" });
+                }
+                let f = &take["function"];
+                let returned = f["return_max_position_error_m"]
+                    .as_array()
+                    .unwrap()
+                    .iter()
+                    .all(|v| v.as_f64().unwrap() < 0.0001)
+                    && f["return_max_velocity_m_s"]
+                        .as_array()
+                        .unwrap()
+                        .iter()
+                        .all(|v| v.as_f64().unwrap() < 0.01)
+                    && f["return_felt_contact_fraction"].as_f64().unwrap() >= 0.9;
+                assert_eq!(f["return_passed"], returned);
+                assert_eq!(
+                    f["single_strike_lift_return_passed"],
+                    returned && f["held_lift_passed"] == true && take["contact_entries"][0] == 1
+                );
+            }
+            assert_eq!(
+                row["attack_lift_return_passed"],
+                row["attack_vs_baseline"]["passed"] == true
+                    && takes[1]["function"]["single_strike_lift_return_passed"] == true
+            );
+        }
+    }
+    for row in cases[0]["rows"].as_array().unwrap() {
+        let old = prior["cases"][0]["rows"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|r| r["speed_m_s"] == row["speed_m_s"])
+            .unwrap();
+        for (take, old) in row["takes"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .zip(old["takes"].as_array().unwrap())
+        {
+            assert_eq!(take["first_contact"], old["first_contact"]);
+            for (a, b) in take["snapshots"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .zip(old["snapshots"].as_array().unwrap())
+            {
+                assert_eq!(a, b);
+            }
+        }
+    }
+    for case in cases {
+        for (index, row) in case["rows"].as_array().unwrap().iter().enumerate() {
+            let take = &row["takes"][1];
+            let base = &cases[0]["rows"][index]["takes"][1];
+            let impact_errors: Vec<f64> = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+                .iter()
+                .map(|key| {
+                    (take["impact"][key].as_f64().unwrap() / base["impact"][key].as_f64().unwrap()
+                        - 1.0)
+                        .abs()
+                })
+                .collect();
+            for (actual, recorded) in impact_errors.iter().zip(
+                row["attack_vs_baseline"]["relative_impact_errors"]
+                    .as_array()
+                    .unwrap(),
+            ) {
+                assert!((actual - recorded.as_f64().unwrap()).abs() < 1e-12);
+            }
+            let velocity = take["first_contact"]["before_hammer"]["hammer_velocity_m_s"].as_f64();
+            let base_velocity = base["first_contact"]["before_hammer"]["hammer_velocity_m_s"]
+                .as_f64()
+                .unwrap();
+            let speed_ok = velocity.is_some_and(|v| (v / base_velocity - 1.0).abs() < 0.05);
+            let time_ok = take["first_contact"]["seconds"].as_f64().is_some_and(|t| {
+                (t - base["first_contact"]["seconds"].as_f64().unwrap()).abs() < 0.001
+            });
+            assert_eq!(
+                row["attack_vs_baseline"]["passed"],
+                take["contact_entries"][0] == 1
+                    && impact_errors.iter().all(|e| *e < 0.05)
+                    && speed_ok
+                    && time_ok
+            );
+            for key in [
+                "return_passed",
+                "held_lift_passed",
+                "single_strike_lift_return_passed",
+            ] {
+                assert_eq!(row["takes"][0]["function"][key], take["function"][key]);
+            }
+        }
+    }
+}
+
+#[test]
+fn loaded_hammer_return_cli_preserves_existing_outputs() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-hammer-return"],
+        vec!["loaded-hammer-return", "--output", "keep.json"],
+        vec!["loaded-hammer-return", "--output", "bad.wav"],
+        vec!["loaded-hammer-return", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists());
+    assert!(!scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_bridle_receipt_closes_coupling_and_preserves_strike_prefix() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

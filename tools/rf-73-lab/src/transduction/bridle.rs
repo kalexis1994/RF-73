@@ -108,11 +108,33 @@ fn target(p: ElectromechanicalProfile, time: f64) -> f64 {
         p.action.hammer_rest_m
     }
 }
-struct Take {
-    report: Value,
+pub(super) struct Take {
+    pub(super) report: Value,
     velocities: Vec<[f64; 4]>,
 }
 fn take(p: ElectromechanicalProfile, steps: usize, speed: f64) -> Result<Take, Box<dyn Error>> {
+    take_observed(p, steps, speed, FRAMES, |_, _, _, _, _| {})
+}
+pub(super) fn take_observed(
+    p: ElectromechanicalProfile,
+    steps: usize,
+    speed: f64,
+    frames: usize,
+    mut observe: impl FnMut(
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        f64,
+        f64,
+    ),
+) -> Result<Take, Box<dyn Error>> {
+    if ![128, 256].contains(&steps)
+        || !speed.is_finite()
+        || !(0.1..=2.0).contains(&speed)
+        || !(FRAMES..=48000).contains(&frames)
+    {
+        return Err("invalid observed action protocol".into());
+    }
     let h = 1.0 / (48000.0 * steps as f64);
     let mut model = ElectromechanicalAssembly::new_at_rest(h, p)?;
     let initial = model.probe();
@@ -135,8 +157,8 @@ fn take(p: ElectromechanicalProfile, steps: usize, speed: f64) -> Result<Take, B
     let mut return_ticks = 0_u64;
     let mut return_position = [0.0_f64; 2];
     let mut return_speed = [0.0_f64; 2];
-    let mut velocities = Vec::with_capacity(FRAMES);
-    for frame in 0..FRAMES {
+    let mut velocities = Vec::with_capacity(frames);
+    for frame in 0..frames {
         for sub in 0..steps {
             let t = (frame * steps + sub) as f64 * h;
             x += (target(p, t) - x).clamp(-speed * h, speed * h);
@@ -147,6 +169,7 @@ fn take(p: ElectromechanicalProfile, steps: usize, speed: f64) -> Result<Take, B
             }
             hammer.observe(p, initial, old, b, h);
             coupling.observe(p, initial, old, b, h);
+            observe(initial, old, b, t, h);
             let f = b.mechanical.contact_force_n[0];
             impact[0] += h * f;
             impact[1] = impact[1].max(f);
@@ -173,7 +196,7 @@ fn take(p: ElectromechanicalProfile, steps: usize, speed: f64) -> Result<Take, B
                 lift = lift.min(-b.mechanical.compression_m[1]);
                 held_felt_ticks += u64::from(b.mechanical.contact_force_n[1] > 0.0);
             }
-            if frame >= 16800 {
+            if frame >= frames - 2400 {
                 return_ticks += 1;
                 return_contacts += u64::from(b.mechanical.contact_force_n[1] > 0.0);
                 for i in 0..2 {
@@ -191,7 +214,7 @@ fn take(p: ElectromechanicalProfile, steps: usize, speed: f64) -> Result<Take, B
             old.mechanical.pickup_velocity_xy_m_s[0],
             old.mechanical.pickup_velocity_xy_m_s[1],
         ]);
-        if [5760, 7200, 10560, 19200].contains(&(frame + 1)) {
+        if [5760, 7200, 10560, 19200, frames].contains(&(frame + 1)) {
             snapshots.push(json!({"seconds":(frame+1) as f64/48000.0,"hammer":hammer.snapshot(p,old,(frame+1) as f64/48000.0),
                 "coupling":coupling.snapshot(p,old),"contact_entries":old.mechanical.contact_entries}));
         }
@@ -211,7 +234,7 @@ fn take(p: ElectromechanicalProfile, steps: usize, speed: f64) -> Result<Take, B
         && coupling.defects[3..].iter().all(|x| *x < 1e-10);
     Ok(Take {
         velocities,
-        report: json!({"passed":passed,"steps_per_frame":steps,"duration_seconds":0.4,
+        report: json!({"passed":passed,"steps_per_frame":steps,"duration_seconds":frames as f64/48000.0,
         "initial_coupling":initial_coupling,"first_contact":first_contact,"snapshots":snapshots,"contact_entries":old.mechanical.contact_entries,
         "impact":{"impulse_n_s":impact[0],"peak_force_n":impact[1],"active_contact_seconds":impact[2]},
         "max_relative_energy_defect":balance,"max_relative_exchange_defect":exchange,"hammer_work_defects":hammer.defects(),
@@ -222,9 +245,13 @@ fn take(p: ElectromechanicalProfile, steps: usize, speed: f64) -> Result<Take, B
             "single_strike_lift_return_passed":old.mechanical.contact_entries[0]==1 && lifted && returned}}),
     })
 }
-fn convergence(a: &Take, b: &Take) -> Value {
+pub(super) fn convergence(a: &Take, b: &Take) -> Value {
     let mut rows = Vec::new();
-    for (lo, hi) in [(1440, 7200), (7200, 10560), (10560, 19200)] {
+    let mut windows = vec![(1440, 7200), (7200, 10560), (10560, 19200)];
+    if b.velocities.len() > FRAMES {
+        windows.push((FRAMES, b.velocities.len()));
+    }
+    for (lo, hi) in windows {
         for (i, name) in ["hammer", "arm", "pickup_vertical", "pickup_horizontal"]
             .iter()
             .enumerate()

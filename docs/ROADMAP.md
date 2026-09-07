@@ -106,11 +106,21 @@ not only parameter-identification diagnostics:
     4 mm slack intervention retains a non-monotone contact/no-contact/contact
     response across the three sampled speeds.
 
-Next trace hammer return and pedestal contact over a longer tail, compare
-return/contact loss controls and qualify repetition without hiding changes to
-the attack. Investigate spatial recontact and preserve loss uncertainty
-and qualify release/repetition before adopting a candidate. Retain the physical
-non-striking threshold and
+14. **Hammer return and support contacts:** the
+    [800 ms return study](LOADED-HAMMER-RETURN.md) traces post-release pedestal
+    entries/exits and checks free hammer intervals against the continuous
+    damped-oscillator solution. Constant return damping and pedestal contact
+    loss controls are compared at two speeds. Numerical refinement, held felt
+    lift, final settling and preservation of attack are separate decisions.
+    All twelve takes qualify numerically and reproduce the baseline prefix.
+    Return damping 0.1 Ns/m meets settling limits but changes soft impulse
+    by a factor of 12.36; higher pedestal loss preserves the strong attack
+    but still fails late position limits. No intervention is adopted.
+
+Next qualify repetition from the returned mechanical state, retaining
+the measured attack tradeoffs and investigating spatial recontact before
+adopting a candidate. Preserve loss uncertainty and the physical
+non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.
 
