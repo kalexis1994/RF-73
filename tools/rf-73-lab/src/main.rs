@@ -24,6 +24,7 @@ mod package;
 mod partial_comparison;
 mod pickup_convergence;
 mod pickup_decay;
+mod pickup_harmonics;
 mod pickup_listening;
 mod pickup_mixing;
 mod pickup_pair;
@@ -217,6 +218,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{HELP}");
         print!("{}", analysis::HELP);
         print!("{}", midi_render::HELP);
+        print!("{}", pickup_harmonics::HELP);
         print!("{}", component_envelope::HELP);
         print!("{}", source_envelope::HELP);
         print!("{}", band_envelope::HELP);
@@ -370,6 +372,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "render-midi" {
         return midi_render::run(&args);
+    }
+    if args[0] == "pickup-harmonics" {
+        return pickup_harmonics::run(&args);
     }
     if args[0] == "felt-damper" {
         return felt_damper::run(&args);

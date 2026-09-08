@@ -282,7 +282,18 @@ The [playable G3 diagnostic](PLAYABLE-G3-DIAGNOSTIC.md) measured the plugin's
 for the reduced real-time engine: the pickup's velocity-dependent harmonic
 generation first, then per-partial losses with the calibrated first-mode T60,
 then the second bar partial tuned to 6.0 times the fundamental, and only then
-the baked action tables. Preserve
+the baked action tables.
+
+The [pickup harmonics study](PICKUP-HARMONICS.md) then showed that the
+engine's harmonic balance is exactly the static pickup transfer acting on its
+existing tine motion, and that the laboratory's finite-aperture flux law at a
+0.5 mm gap, 0.5 mm offset and 2 mm pole radius reproduces the recorded loud,
+medium and soft balances at the engine's own amplitudes within a few decibels.
+Next put that law and geometry into the playable engine as a selectable
+pickup path beside the retained ones, level-match it, render the diagnostic
+strikes and the nocturne through it, and compare balance, level-dependent
+brightness and listening against the retained paths before any default
+changes. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

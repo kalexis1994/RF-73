@@ -10,6 +10,128 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn pickup_harmonics_receipt_explains_the_engine_and_finds_an_aperture_geometry() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("pickup-harmonics-validation.json");
+    assert_eq!(r["experiment"], "pickup-harmonics-v1");
+    assert_eq!(r["passed"], true);
+    // Targets are the diagnostic's reference balance in the 96 ms attack window.
+    for (dynamic, file) in [
+        ("loud", "tone-v1.0-L1.json"),
+        ("medium", "tone-v0.6-L3.json"),
+        ("soft", "tone-v0.25-L5.json"),
+    ] {
+        let tone = read(&format!("g3-playable-diagnostic/{file}"));
+        let attack = tone["tone_comparison"]["windows"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|w| w["label"] == "attack_96_ms")
+            .unwrap();
+        let target = r["targets"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|t| t["dynamic"] == dynamic)
+            .unwrap();
+        for h in target["harmonics"].as_array().unwrap() {
+            let n = h["harmonic"].as_u64().unwrap();
+            assert!((2..=5).contains(&n), "harmonic 6 and above are excluded");
+            let measured = attack["harmonics"]
+                .as_array()
+                .unwrap()
+                .iter()
+                .find(|x| x["harmonic"] == n)
+                .unwrap()["reference_relative_to_fundamental_db"]
+                .as_f64()
+                .unwrap();
+            assert!((h["db_relative_to_fundamental"].as_f64().unwrap() - measured).abs() < 0.05);
+        }
+    }
+    let geometries = r["geometries"].as_array().unwrap();
+    assert_eq!(geometries.len(), 6 * 6 * (1 + 1 + 4));
+    // The production law at the default geometry predicts the diagnostic's
+    // engine balance at the engine's traced amplitudes within 0.5 dB.
+    let default = geometries
+        .iter()
+        .find(|g| {
+            g["law"] == "production_inverse_sqrt" && g["gap_mm"] == 1.5 && g["offset_mm"] == 0.5
+        })
+        .unwrap();
+    let measured_engine: [&[f64]; 3] = [
+        &[-3.3, -12.4, -32.8, -32.9],
+        &[-10.6, -24.5, -56.2, -57.6],
+        &[-21.6, -45.7],
+    ];
+    for (i, row) in default["at_engine_amplitudes"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .enumerate()
+    {
+        let predicted = row["ratios_db_h2_to_h8"].as_array().unwrap();
+        for (j, m) in measured_engine[i].iter().enumerate() {
+            assert!((predicted[j].as_f64().unwrap() - m).abs() < 0.5, "{i} {j}");
+        }
+    }
+    let best = r["best_per_law"].as_array().unwrap();
+    assert_eq!(best.len(), 3);
+    let aperture = best
+        .iter()
+        .find(|b| b["law"] == "finite_aperture_16_node")
+        .unwrap();
+    assert_eq!(aperture["gap_mm"], 0.5);
+    assert_eq!(aperture["offset_mm"], 0.5);
+    assert_eq!(aperture["pole_radius_mm"], 2.0);
+    assert!(aperture["combined_rms_error_db"].as_f64().unwrap() < 2.5);
+    assert_eq!(aperture["amplitudes_monotone_with_dynamics"], true);
+    let engine = r["engine_amplitudes_mm"].as_array().unwrap();
+    for (i, d) in aperture["dynamics"].as_array().unwrap().iter().enumerate() {
+        let ratio = d["amplitude_m"].as_f64().unwrap() * 1e3 / engine[i].as_f64().unwrap();
+        assert!(
+            (ratio - 1.0).abs() < 0.15,
+            "dynamic {i} amplitude ratio {ratio}"
+        );
+    }
+    // Both point laws need more than twice the engine's loud amplitude.
+    for law in ["production_inverse_sqrt", "point_pole_inverse_cube"] {
+        let b = best.iter().find(|b| b["law"] == law).unwrap();
+        let loud = b["dynamics"][0]["amplitude_m"].as_f64().unwrap() * 1e3;
+        assert!(
+            loud > 2.0 * engine[0].as_f64().unwrap(),
+            "{law} loud {loud}"
+        );
+        assert!(
+            b["combined_rms_error_db"].as_f64().unwrap()
+                > aperture["combined_rms_error_db"].as_f64().unwrap()
+        );
+    }
+    // Every best geometry reaches a loud third harmonic above the fundamental.
+    for b in best {
+        assert!(b["dynamics"][0]["ratios_db_h2_to_h8"][1].as_f64().unwrap() > 5.0);
+    }
+}
+
+#[test]
+fn pickup_harmonics_cli_rejects_invalid_arguments_and_preserves_outputs() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["pickup-harmonics"],
+        vec!["pickup-harmonics", "--output", "keep.json"],
+        vec!["pickup-harmonics", "--output", "bad.wav"],
+        vec!["pickup-harmonics", "--output", "bad.json", "--extra"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists());
+}
+
+#[test]
 fn playable_g3_diagnostic_receipts_hold_their_hashes_and_measured_deficits() {
     let root =
         PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references/g3-playable-diagnostic");

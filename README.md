@@ -154,6 +154,13 @@ own landing on the tine and the damping onset it produces. The felt lands
 bounce without changing the strike, and the lift geometry that throws the
 felt back becomes the next question.
 
+The [playable G3 diagnostic](docs/PLAYABLE-G3-DIAGNOSTIC.md) measures the
+plugin's engine against the retained recordings, and the
+[pickup harmonics study](docs/PICKUP-HARMONICS.md) shows that its darkness is
+the pickup transfer alone: the laboratory's finite-aperture law at a close,
+wide pole reproduces the recorded harmonic balance from the engine's own tine
+motion.
+
 The [damper lift study](docs/LOADED-DAMPER-LIFT.md) changes the bridle ratio,
 bridle slack and arm spring that set that lift. The linkage geometry turns
 out to govern both the soft threshold and the damping onset: a lower ratio
