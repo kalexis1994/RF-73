@@ -3239,3 +3239,39 @@ lab unit tests in release, the affected CLI tests in release, strict Clippy
 for the workspace and the wasm32 UI, and formatting. No production default
 changes; the package archive is rebuilt for audition.
 
+## Voicing physics and level compensation
+
+The [voicing physics block](VOICING-PHYSICS.md) adds `pickup_law`
+(Production or Aperture), `pickup_pole_radius_m` and `velocity_exponent` to
+the playable profile, with defaults that keep every retained render
+byte-identical, and a level compensation: the ratio of the default pickup's
+reference-motion RMS sensitivity to the profile's, a sine of 0.4 mm at
+196 Hz sampled over one period, applied to the engine output only when
+enabled, with the 5 ms gain smoothing, and exactly one for the default; the
+raw engine and every retained render stay unchanged at any geometry. A voice with the aperture
+law at the Close Aperture geometry reproduces the laboratory path's voltage
+sample for sample. The laboratory engines keep the production law and
+reject the aperture law as they reject moved geometry.
+
+`voicing-level` renders G3 at 0.25/0.6/1.0 and D3/B3 at 0.6 for both laws
+over six gaps and six offsets with each engine's own compensation. The
+reference note holds within 2.33 dB in all 72 cells, within 1 dB in every
+off-centre production cell, and exactly 0 dB at the default; D3 holds within
+0.5 dB and B3 drifts to 4.4 dB low at centred pickups. Centred pickups play
+the soft note 9 to 13 dB below and the loud note 2 to 6 dB above the
+reference at every gap and both laws, the law's own amplitude dependence.
+The Close Aperture geometry's compensation, 2.62, sits within 5% of the
+path's frozen factor 2.4996.
+
+Receipt: `references/voicing-level-validation.json`, 86265 bytes, SHA-256
+`264cb67f28b999402fb07ffc4eabcee596e92c3085a62c24273941b1ba7527f9`. A receipt
+test holds the reference cell's zero, the reference note's bound, the
+centred cells' dynamic spread, the monotone compensation over the gap and
+the aperture agreement; a DSP test holds the fields, the aperture voice's
+identity with the path, the velocity exponent's effect, the smoothing and a
+compensated wide-gap note within 3 dB; CLI tests hold the study's arguments
+and the renderer options. Verification passes 118 DSP unit tests, 18 DSP
+integration tests, the plugin's 9 tests, 154 lab unit tests in release, the
+affected CLI tests in release, strict Clippy for the workspace and the wasm32
+UI, and formatting. No production default changes.
+

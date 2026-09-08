@@ -1,20 +1,23 @@
 //! Render a Standard MIDI File through the playable 0.1.2 engine. Format 0/1
 //! files, tempo map, note on/off, sustain (CC 64) and all-notes-off are
 //! honoured; every non-drum channel is merged into one instrument.
-use rf_73_dsp::{Engine, FIRST_NOTE, LAST_NOTE, PICKUP_NAMES, Profile};
+use rf_73_dsp::{Engine, FIRST_NOTE, LAST_NOTE, PICKUP_NAMES, PickupLaw, Profile};
 use serde_json::json;
 use std::{error::Error, fs, io::BufWriter, path::Path, time::Instant};
 
 pub const HELP: &str = "MIDI render:
   render-midi INPUT.mid --output AUDIO.wav [--gain G] [--normalize] [--sample-rate HZ] [--tail S]
     [--pickup I] [--sustain original|calibrated] [--bar-ratio R] [--contact-stiffness K]
-    [--bar-strike W]
+    [--bar-strike W] [--law production|aperture] [--pole-radius-mm R] [--velocity-exponent E]
+    [--compensate]
 Uncalibrated playable engine (0.1.2 mechanics, default pickup). --pickup 0..3 renders the
 laboratory engine's level-matched path instead (3 is Close Aperture). --sustain calibrated
 uses the recording-derived first/bar partial T60 (20 s / 2.3 s at A3); --bar-ratio sets the
 second partial over the fundamental (default 6.267, recordings 6.0) and --contact-stiffness
 the quadratic contact coefficient (default 4e10); --bar-strike the second partial's strike
-weight (default -0.3). Gain 0.05..2 scales the
+weight (default -0.3); --law, --pole-radius-mm and --velocity-exponent set the pickup law and
+the hammer speed curve; --compensate applies the profile's pickup level compensation, which is
+otherwise reported but not applied. Gain 0.05..2 scales the
 engine output before the WAV (default 1). --normalize also writes AUDIO-norm.wav peaking
 at -1 dBFS. Tail 0..30 s after the last event (default 4). A JSON receipt accompanies
 the WAV. Existing files are never overwritten.
@@ -170,6 +173,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let output = Path::new(&args[3]);
     let mut gain = 1.0_f64;
     let mut normalize = false;
+    let mut compensate = false;
     let mut rate = 48000u32;
     let mut tail = 4.0_f64;
     let mut pickup: Option<usize> = None;
@@ -177,10 +181,14 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let mut bar_ratio: Option<f64> = None;
     let mut contact_stiffness: Option<f64> = None;
     let mut bar_strike: Option<f64> = None;
+    let mut aperture_law = false;
+    let mut pole_radius_mm: Option<f64> = None;
+    let mut velocity_exponent: Option<f64> = None;
     let mut k = 4;
     while k < args.len() {
         match args[k].as_str() {
             "--normalize" => normalize = true,
+            "--compensate" => compensate = true,
             "--gain"
             | "--sample-rate"
             | "--tail"
@@ -189,6 +197,9 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             | "--bar-ratio"
             | "--contact-stiffness"
             | "--bar-strike"
+            | "--law"
+            | "--pole-radius-mm"
+            | "--velocity-exponent"
                 if k + 1 < args.len() =>
             {
                 let value = &args[k + 1];
@@ -199,6 +210,15 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                     "--bar-ratio" => bar_ratio = Some(value.parse()?),
                     "--contact-stiffness" => contact_stiffness = Some(value.parse()?),
                     "--bar-strike" => bar_strike = Some(value.parse()?),
+                    "--law" => {
+                        aperture_law = match value.as_str() {
+                            "production" => false,
+                            "aperture" => true,
+                            _ => return Err("law must be production or aperture".into()),
+                        }
+                    }
+                    "--pole-radius-mm" => pole_radius_mm = Some(value.parse()?),
+                    "--velocity-exponent" => velocity_exponent = Some(value.parse()?),
                     "--sustain" => {
                         calibrated = match value.as_str() {
                             "original" => false,
@@ -266,6 +286,13 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         bar_partial_ratio: bar_ratio.unwrap_or(base.bar_partial_ratio),
         contact_stiffness: contact_stiffness.unwrap_or(base.contact_stiffness),
         bar_partial_strike_weight: bar_strike.unwrap_or(base.bar_partial_strike_weight),
+        pickup_law: if aperture_law {
+            PickupLaw::Aperture
+        } else {
+            PickupLaw::Production
+        },
+        pickup_pole_radius_m: pole_radius_mm.map_or(base.pickup_pole_radius_m, |r| r * 0.001),
+        velocity_exponent: velocity_exponent.unwrap_or(base.velocity_exponent),
         ..base
     };
     let mut engine = match pickup {
@@ -280,6 +307,10 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         None => Engine::new(f64::from(rate), profile)?,
     };
     engine.set_gain(1.0);
+    if compensate {
+        engine.set_level_compensation(true);
+        engine.reset();
+    }
     let mut samples = Vec::with_capacity(frames as usize);
     let mut next = 0usize;
     let mut notes = 0u64;
@@ -349,6 +380,9 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         "sustain":if calibrated {"calibrated"} else {"original"},
         "bar_partial_ratio":profile.bar_partial_ratio,"contact_stiffness":profile.contact_stiffness,
         "bar_partial_strike_weight":profile.bar_partial_strike_weight,
+        "pickup_law":if aperture_law {"aperture"} else {"production"},"pickup_pole_radius_mm":profile.pickup_pole_radius_m*1e3,
+        "velocity_exponent":profile.velocity_exponent,"level_compensation":profile.level_compensation(),
+        "level_compensated":compensate,
         "gain":gain,"peak":peak,"rms":(square/f64::from(frames)).sqrt(),"peak_dbfs":20.0*peak.max(1e-12).log10(),
         "normalized_output":normalize_gain.map(|_|normalized.display().to_string()),"normalize_gain":normalize_gain,
         "normalized_peak_dbfs":normalize_gain.map(|_|-1.0),"faults":engine.faults(),

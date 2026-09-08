@@ -39,9 +39,10 @@ mod source_envelope;
 mod tine_modes;
 mod tone_comparison;
 mod transduction;
+mod voicing_level;
 mod wav;
 mod web_ui;
-use rf_73_dsp::{Engine, FIRST_NOTE, LAST_NOTE, PICKUP_NAMES, Profile};
+use rf_73_dsp::{Engine, FIRST_NOTE, LAST_NOTE, PICKUP_NAMES, PickupLaw, Profile};
 use std::{
     error::Error,
     fs::{self, File, OpenOptions},
@@ -68,6 +69,7 @@ Render options:
   --gap-mm X        Pickup gap 0.5..5 mm (default 1.5)
   --offset-mm X     Pickup offset -3..3 mm (default 0.5)
   --trace           Export output-rate physical probes as CSV
+  --compensate      Apply the profile's pickup level compensation (raw otherwise)
   --pickup I        Render through laboratory pickup path I (0..3) instead of the
                     raw engine; needs the default gap/offset. Names: rf-73-lab help
   --sustain S       original (default) or calibrated: first/bar partial T60 from
@@ -77,6 +79,9 @@ Render options:
   --contact-stiffness K  Quadratic contact law coefficient, 1e8..1e12 N/m^2
                     (default 4e10)
   --bar-strike W    Second partial strike weight, -1..1 (default -0.3)
+  --law L           Pickup law: production (default) or aperture
+  --pole-radius-mm R  Aperture pole radius 0.2..3 mm (default 2)
+  --velocity-exponent E  Hammer speed follows velocity^E, 0.5..3 (default 1.4)
 WAV is mono IEEE float, without normalization or clipping. Existing files are
 never overwritten. Every render writes a JSON report. Parameters are uncalibrated.
 Demo: three A3 intensities and a sustained E-minor chord, ten seconds.
@@ -97,12 +102,16 @@ struct Options {
     gap_mm: f64,
     offset_mm: f64,
     trace: bool,
+    compensate: bool,
     laboratory: bool,
     pickup: Option<usize>,
     calibrated_sustain: bool,
     bar_ratio: Option<f64>,
     contact_stiffness: Option<f64>,
     bar_strike: Option<f64>,
+    aperture_law: bool,
+    pole_radius_mm: Option<f64>,
+    velocity_exponent: Option<f64>,
 }
 
 impl Options {
@@ -124,12 +133,16 @@ impl Options {
             gap_mm: 1.5,
             offset_mm: 0.5,
             trace: false,
+            compensate: false,
             laboratory: false,
             pickup: None,
             calibrated_sustain: false,
             bar_ratio: None,
             contact_stiffness: None,
             bar_strike: None,
+            aperture_law: false,
+            pole_radius_mm: None,
+            velocity_exponent: None,
         };
         let mut seen = std::collections::BTreeSet::new();
         let mut i = 1;
@@ -154,6 +167,14 @@ impl Options {
                 i += 1;
                 continue;
             }
+            if flag == "--compensate" {
+                if command != "render" {
+                    return Err("--compensate is a render option".into());
+                }
+                o.compensate = true;
+                i += 1;
+                continue;
+            }
             let allowed = match command.as_str() {
                 "stress" => flag == "--sample-rate",
                 "demo" => matches!(flag, "--sample-rate" | "--output"),
@@ -172,6 +193,9 @@ impl Options {
                         | "--bar-ratio"
                         | "--contact-stiffness"
                         | "--bar-strike"
+                        | "--law"
+                        | "--pole-radius-mm"
+                        | "--velocity-exponent"
                 ),
             };
             if !allowed {
@@ -193,6 +217,19 @@ impl Options {
                 "--pickup" => o.pickup = Some(value.parse().map_err(|_| invalid())?),
                 "--bar-ratio" => o.bar_ratio = Some(value.parse().map_err(|_| invalid())?),
                 "--bar-strike" => o.bar_strike = Some(value.parse().map_err(|_| invalid())?),
+                "--law" => {
+                    o.aperture_law = match value.as_str() {
+                        "production" => false,
+                        "aperture" => true,
+                        _ => return Err(invalid()),
+                    }
+                }
+                "--pole-radius-mm" => {
+                    o.pole_radius_mm = Some(value.parse().map_err(|_| invalid())?)
+                }
+                "--velocity-exponent" => {
+                    o.velocity_exponent = Some(value.parse().map_err(|_| invalid())?)
+                }
                 "--contact-stiffness" => {
                     o.contact_stiffness = Some(value.parse().map_err(|_| invalid())?)
                 }
@@ -256,6 +293,15 @@ impl Options {
             bar_partial_ratio: self.bar_ratio.unwrap_or(base.bar_partial_ratio),
             contact_stiffness: self.contact_stiffness.unwrap_or(base.contact_stiffness),
             bar_partial_strike_weight: self.bar_strike.unwrap_or(base.bar_partial_strike_weight),
+            pickup_law: if self.aperture_law {
+                PickupLaw::Aperture
+            } else {
+                PickupLaw::Production
+            },
+            pickup_pole_radius_m: self
+                .pole_radius_mm
+                .map_or(base.pickup_pole_radius_m, |r| r * 0.001),
+            velocity_exponent: self.velocity_exponent.unwrap_or(base.velocity_exponent),
             ..base
         }
     }
@@ -275,6 +321,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         print!("{}", analysis::HELP);
         print!("{}", midi_render::HELP);
         print!("{}", pickup_harmonics::HELP);
+        print!("{}", voicing_level::HELP);
         print!("{}", component_envelope::HELP);
         print!("{}", source_envelope::HELP);
         print!("{}", band_envelope::HELP);
@@ -428,6 +475,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "render-midi" {
         return midi_render::run(&args);
+    }
+    if args[0] == "voicing-level" {
+        return voicing_level::run(&args);
     }
     if args[0] == "pickup-harmonics" {
         return pickup_harmonics::run(&args);
@@ -735,6 +785,10 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
         }
         None => Engine::new(o.rate as f64, o.profile())?,
     };
+    if o.compensate {
+        engine.set_level_compensation(true);
+        engine.reset();
+    }
     let mut audio = wav::FloatWav::new(BufWriter::new(new_file(output)?), o.rate, frames)?;
     let mut trace = if o.trace {
         Some(BufWriter::new(new_file(&trace_path)?))
@@ -810,7 +864,7 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
     }
     let elapsed = started.elapsed().as_secs_f64();
     let report = format!(
-        "{{\n  \"schema_version\": 1,\n  \"model\": \"research-0.1.1-uncalibrated\",\n  \"mode\": \"{}\",\n  \"sample_rate\": {},\n  \"frames\": {},\n  \"note\": {},\n  \"velocity\": {},\n  \"hold_seconds\": {},\n  \"pickup_gap_mm\": {},\n  \"pickup_offset_mm\": {},\n  \"pickup_path\": {},\n  \"pickup_name\": {},\n  \"sustain\": \"{}\",\n  \"bar_partial_ratio\": {},\n  \"contact_stiffness\": {:e},\n  \"bar_partial_strike_weight\": {},\n  \"oversampling\": 4,\n  \"peak\": {:.9},\n  \"rms\": {:.9},\n  \"faults\": {},\n  \"render_wall_seconds_including_io\": {:.6}\n}}\n",
+        "{{\n  \"schema_version\": 1,\n  \"model\": \"research-0.1.1-uncalibrated\",\n  \"mode\": \"{}\",\n  \"sample_rate\": {},\n  \"frames\": {},\n  \"note\": {},\n  \"velocity\": {},\n  \"hold_seconds\": {},\n  \"pickup_gap_mm\": {},\n  \"pickup_offset_mm\": {},\n  \"pickup_path\": {},\n  \"pickup_name\": {},\n  \"sustain\": \"{}\",\n  \"bar_partial_ratio\": {},\n  \"contact_stiffness\": {:e},\n  \"bar_partial_strike_weight\": {},\n  \"pickup_law\": \"{}\",\n  \"pickup_pole_radius_mm\": {},\n  \"velocity_exponent\": {},\n  \"level_compensation\": {:.9},\n  \"level_compensated\": {},\n  \"oversampling\": 4,\n  \"peak\": {:.9},\n  \"rms\": {:.9},\n  \"faults\": {},\n  \"render_wall_seconds_including_io\": {:.6}\n}}\n",
         o.command,
         o.rate,
         frames,
@@ -830,6 +884,15 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
         o.profile().bar_partial_ratio,
         o.profile().contact_stiffness,
         o.profile().bar_partial_strike_weight,
+        if o.aperture_law {
+            "aperture"
+        } else {
+            "production"
+        },
+        o.profile().pickup_pole_radius_m * 1e3,
+        o.profile().velocity_exponent,
+        o.profile().level_compensation(),
+        o.compensate,
         peak,
         (square_sum / frames as f64).sqrt(),
         engine.faults(),

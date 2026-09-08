@@ -10,6 +10,197 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn voicing_level_receipt_holds_the_reference_note_and_shows_the_laws_amplitude_dependence() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let r: serde_json::Value =
+        serde_json::from_slice(&fs::read(root.join("voicing-level-validation.json")).unwrap())
+            .unwrap();
+    assert_eq!(r["experiment"], "voicing-level-v1");
+    assert_eq!(r["passed"], true);
+    assert!(r["worst_reference_relative_db"].as_f64().unwrap() < 3.0);
+    let cells = r["cells"].as_array().unwrap();
+    assert_eq!(cells.len(), 72);
+    let level = |cell: &serde_json::Value, note: u64, velocity: f64| -> f64 {
+        cell["notes"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|n| n["note"] == note && n["velocity"] == velocity)
+            .unwrap()["relative_db"]
+            .as_f64()
+            .unwrap()
+    };
+    let find = |law: &str, gap: f64, offset: f64| -> &serde_json::Value {
+        cells
+            .iter()
+            .find(|c| c["law"] == law && c["gap_mm"] == gap && c["offset_mm"] == offset)
+            .unwrap()
+    };
+    // The default pickup is the reference: compensation exactly one, every note 0 dB.
+    let default = find("production", 1.5, 0.5);
+    assert_eq!(default["level_compensation"], 1.0);
+    for (note, velocity) in [(55, 0.25), (55, 0.6), (55, 1.0), (50, 0.6), (59, 0.6)] {
+        assert_eq!(level(default, note, velocity), 0.0);
+    }
+    for cell in cells {
+        let compensation = cell["level_compensation"].as_f64().unwrap();
+        assert!(compensation.is_finite() && compensation > 0.0);
+        // The reference note holds within 3 dB in every cell; off-centre cells of
+        // the production law hold it within 1 dB.
+        let reference = level(cell, 55, 0.6);
+        assert!(reference.abs() < 3.0, "{cell}");
+        if cell["law"] == "production" && cell["offset_mm"] != 0.0 && cell["offset_mm"] != 0.25 {
+            assert!(reference.abs() < 1.0, "{cell}");
+        }
+        // Compensation equalizes the medium note, not the dynamics: a centred pickup
+        // plays the soft note 9 dB or more below the reference and the loud note above it.
+        if cell["offset_mm"] == 0.0 {
+            assert!(level(cell, 55, 0.25) < -9.0, "{cell}");
+            assert!(level(cell, 55, 1.0) > 0.0, "{cell}");
+        }
+    }
+    // The production law's compensation grows with the gap at the default offset.
+    let mut previous = 0.0;
+    for gap in [0.5, 0.75, 1.0, 1.5, 2.0, 3.0] {
+        let compensation = find("production", gap, 0.5)["level_compensation"]
+            .as_f64()
+            .unwrap();
+        assert!(compensation > previous, "gap {gap}");
+        previous = compensation;
+    }
+    // The Close Aperture geometry's compensation matches the frozen level factor
+    // of the laboratory path within the difference between a reference sine and the
+    // 24-second performance.
+    let aperture = find("aperture", 0.5, 0.5)["level_compensation"]
+        .as_f64()
+        .unwrap();
+    let frozen = rf_73_dsp::PICKUP_LEVEL_MATCH[3];
+    assert!(
+        (aperture / frozen - 1.0).abs() < 0.1,
+        "{aperture} vs {frozen}"
+    );
+}
+
+#[test]
+fn voicing_level_cli_rejects_invalid_arguments_and_preserves_outputs() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["voicing-level"],
+        vec!["voicing-level", "--output", "keep.json"],
+        vec!["voicing-level", "--output", "bad.wav"],
+        vec!["voicing-level", "--output", "bad.json", "--extra"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists());
+}
+
+#[test]
+fn render_pickup_law_and_velocity_exponent_options_reach_the_profile() {
+    let scratch = Scratch::new();
+    let base = [
+        "render",
+        "--note",
+        "55",
+        "--velocity",
+        "0.7",
+        "--sample-rate",
+        "44100",
+        "--seconds",
+        "0.5",
+        "--hold",
+        "0.4",
+    ];
+    let with = |extra: &[&str]| {
+        let mut args: Vec<&str> = base.to_vec();
+        args.extend(extra);
+        args.iter().map(|s| s.to_string()).collect::<Vec<_>>()
+    };
+    for extra in [
+        vec!["--output", "default.wav"],
+        vec![
+            "--output",
+            "explicit.wav",
+            "--law",
+            "production",
+            "--velocity-exponent",
+            "1.4",
+        ],
+        vec![
+            "--output",
+            "aperture.wav",
+            "--law",
+            "aperture",
+            "--gap-mm",
+            "0.5",
+            "--offset-mm",
+            "0.5",
+        ],
+        vec![
+            "--output",
+            "radius.wav",
+            "--law",
+            "aperture",
+            "--pole-radius-mm",
+            "1",
+        ],
+        vec!["--output", "curve.wav", "--velocity-exponent", "2"],
+        vec!["--output", "wide.wav", "--gap-mm", "3", "--compensate"],
+        vec!["--output", "wide-raw.wav", "--gap-mm", "3"],
+    ] {
+        let owned = with(&extra);
+        scratch.success(&owned.iter().map(String::as_str).collect::<Vec<_>>());
+    }
+    let default = fs::read(scratch.0.join("default.wav")).unwrap();
+    assert_eq!(fs::read(scratch.0.join("explicit.wav")).unwrap(), default);
+    for name in ["aperture.wav", "radius.wav", "curve.wav", "wide.wav"] {
+        assert_ne!(fs::read(scratch.0.join(name)).unwrap(), default, "{name}");
+    }
+    let report = scratch.json("default.json");
+    assert_eq!(report["pickup_law"], "production");
+    assert_eq!(report["velocity_exponent"], 1.4);
+    assert_eq!(report["level_compensation"], 1.0);
+    assert_eq!(report["level_compensated"], false);
+    let aperture = scratch.json("aperture.json");
+    assert_eq!(aperture["pickup_law"], "aperture");
+    assert_eq!(aperture["pickup_pole_radius_mm"], 2.0);
+    assert!(aperture["level_compensation"].as_f64().unwrap() > 1.5);
+    assert_eq!(scratch.json("radius.json")["pickup_pole_radius_mm"], 1.0);
+    assert_eq!(scratch.json("curve.json")["velocity_exponent"], 2.0);
+    // A compensated wide gap keeps the medium note's RMS near the default's.
+    let wide = scratch.json("wide.json");
+    assert!(wide["level_compensation"].as_f64().unwrap() > 2.0);
+    assert_eq!(wide["level_compensated"], true);
+    let ratio = wide["rms"].as_f64().unwrap() / report["rms"].as_f64().unwrap();
+    assert!((0.7..1.42).contains(&ratio), "{ratio}");
+    // Without the flag the wide gap renders raw and quieter, as it always did.
+    let raw = scratch.json("wide-raw.json");
+    assert_eq!(raw["level_compensated"], false);
+    assert_eq!(raw["level_compensation"], wide["level_compensation"]);
+    assert!(raw["rms"].as_f64().unwrap() < 0.6 * wide["rms"].as_f64().unwrap());
+    for extra in [
+        vec!["--law", "coil"],
+        vec!["--pole-radius-mm", "0.1"],
+        vec!["--velocity-exponent", "0.1"],
+        vec!["--velocity-exponent", "x"],
+        vec!["--law", "aperture", "--pickup", "3"],
+    ] {
+        let mut args = with(&["--output", "bad.wav"]);
+        args.extend(extra.iter().map(|s| s.to_string()));
+        assert!(
+            !scratch
+                .run(&args.iter().map(String::as_str).collect::<Vec<_>>())
+                .status
+                .success(),
+            "{extra:?}"
+        );
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn playable_bar_partial_receipt_bounds_the_second_partial_and_identifies_the_sixth_harmonic() {
     let root =
         PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references/playable-bar-partial");

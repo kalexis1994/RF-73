@@ -232,11 +232,15 @@ mod tests {
                         gap_mm: gap,
                         offset_mm: offset,
                         trace: false,
+                        compensate: false,
                         pickup: None,
                         calibrated_sustain: false,
                         bar_ratio: None,
                         contact_stiffness: None,
                         bar_strike: None,
+                        aperture_law: false,
+                        pole_radius_mm: None,
+                        velocity_exponent: None,
                     };
                     let pair = render_pair(&options).unwrap();
                     let mut engine = Engine::new(rate as f64, options.profile()).unwrap();

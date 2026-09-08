@@ -173,7 +173,11 @@ not a bending partial, and that the engine's second partial was over-excited
 by 20 to 35 dB; `Profile::calibrated` strikes it fifteen times more softly.
 The plugin now exposes the three profiles as a **Profile** parameter beside
 the four pickups, switchable while notes ring, so the calibrated mechanics
-can be auditioned in RackForge before any default changes.
+can be auditioned in RackForge before any default changes. The
+[voicing physics](docs/VOICING-PHYSICS.md) block then gives the voice its
+own pickup law, a velocity exponent and a level compensation derived from
+the pickup law, measured over 72 geometries, so continuous voicing controls
+can move the pickup without moving the loudness.
 
 The [damper lift study](docs/LOADED-DAMPER-LIFT.md) changes the bridle ratio,
 bridle slack and arm spring that set that lift. The linkage geometry turns
@@ -269,6 +273,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Close Aperture pickup path](docs/PICKUP-APERTURE-PATH.md): the finite-aperture law as a fourth level-matched plugin pickup, measured on the G3 strikes, the nocturne and the all-keys stress.
 - [Calibrated sustain](docs/PLAYABLE-SUSTAIN.md): per-partial T60 in the playable profile, derived from fifteen recordings and measured on D3, G3 and B3 renders.
 - [Bar partial](docs/PLAYABLE-BAR-PARTIAL.md): the six-times line identified as the pickup's sixth harmonic, the second partial's strike weight and ratio as profile fields, and the impulsive contact measured.
+- [Voicing physics](docs/VOICING-PHYSICS.md): pickup law and velocity exponent in the profile, and a reference-motion level compensation measured over gap, offset and law.
 - [Numerical convergence](docs/CONVERGENCE.md): the treble-contact correction, experiment and residual errors.
 - [Desktop audition](docs/AUDITION.md): build, install and launch each test version.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.

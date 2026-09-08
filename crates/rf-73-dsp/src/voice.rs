@@ -1,3 +1,4 @@
+use crate::laboratory::{AxialAperture, aperture_voltage};
 use crate::{FIRST_NOTE, LAST_NOTE, MagneticPickup, ModelError, OVERSAMPLE, Profile};
 use core::f64::consts::TAU;
 
@@ -91,6 +92,7 @@ pub struct Voice {
     note: u8,
     profile: Profile,
     pickup: MagneticPickup,
+    aperture: Option<AxialAperture>,
     dt: f64,
     contact_steps: usize,
     hammer_mass: f64,
@@ -182,6 +184,7 @@ impl Voice {
             note,
             profile,
             pickup: MagneticPickup::from_validated_profile(profile),
+            aperture: profile.aperture(),
             dt,
             contact_steps,
             hammer_mass: profile.hammer_mass_kg * scale.sqrt(),
@@ -220,6 +223,7 @@ impl Voice {
         self.hammer_weights = [1.0, profile.bar_partial_strike_weight, 0.12];
         self.hammer_mass = profile.hammer_mass_kg * scale.sqrt();
         self.pickup = MagneticPickup::from_validated_profile(profile);
+        self.aperture = profile.aperture();
         self.profile = profile;
     }
 
@@ -229,7 +233,8 @@ impl Voice {
             return false;
         }
         self.hammer_x = self.contact_position();
-        self.hammer_v = self.profile.maximum_hammer_speed_m_s * velocity.powf(1.4);
+        self.hammer_v =
+            self.profile.maximum_hammer_speed_m_s * velocity.powf(self.profile.velocity_exponent);
         self.contact = true;
         self.damped = false;
         self.active = true;
@@ -279,7 +284,10 @@ impl Voice {
         // Smooth, bounded flux linkage surrogate. Gap never reaches zero.
         // Phi = 1 / sqrt(1 + ((offset + position) / gap)^2).
         // Output follows -dPhi/dt, not displacement and not a post-mix clipper.
-        self.signal = self.pickup.voltage(position, velocity);
+        self.signal = match &self.aperture {
+            Some(aperture) => aperture_voltage(aperture, position, velocity),
+            None => self.pickup.voltage(position, velocity),
+        };
         if !self.contact && self.modes.iter().map(Mode::energy).sum::<f64>() < 1e-18 {
             self.reset();
         }

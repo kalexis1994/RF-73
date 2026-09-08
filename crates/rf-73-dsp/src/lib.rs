@@ -37,7 +37,10 @@ pub use modal_assembly::{
     ModalAssembly, ModalAssemblyProfile, ModalIntegration, ModalProbe, ModalSpectrum,
     StructuralMode,
 };
-pub use model::{ModelError, PROFILE_NAMES, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
+pub use model::{
+    LEVEL_REFERENCE_AMPLITUDE_M, LEVEL_REFERENCE_FREQUENCY_HZ, ModelError, PROFILE_NAMES,
+    PickupLaw, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN,
+};
 pub use pickup::MagneticPickup;
 pub use tine::{TINE_MODE_COUNT, TineGeometry, TineMode, TineModes};
 pub use voice::{Probe, Voice};
@@ -60,6 +63,10 @@ pub struct Engine {
     gain: f64,
     target_gain: f64,
     gain_step: f64,
+    profile: Profile,
+    compensating: bool,
+    compensation: f64,
+    target_compensation: f64,
     faults: u64,
 }
 
@@ -80,6 +87,10 @@ impl Engine {
             gain: 0.7,
             target_gain: 0.7,
             gain_step: 1.0 - (-1.0 / (0.005 * sample_rate)).exp(),
+            profile,
+            compensating: false,
+            compensation: 1.0,
+            target_compensation: 1.0,
             faults: 0,
         })
     }
@@ -97,9 +108,10 @@ impl Engine {
         let default = Profile::default();
         if profile.pickup_gap_m != default.pickup_gap_m
             || profile.pickup_offset_m != default.pickup_offset_m
+            || profile.pickup_law != default.pickup_law
         {
             return Err(ModelError(
-                "laboratory level matching needs the default pickup geometry",
+                "laboratory level matching needs the default pickup geometry and law",
             ));
         }
         let mut engine = Self::new(sample_rate, profile)?;
@@ -118,14 +130,38 @@ impl Engine {
         let default = Profile::default();
         if self.laboratory.is_some()
             && (profile.pickup_gap_m != default.pickup_gap_m
-                || profile.pickup_offset_m != default.pickup_offset_m)
+                || profile.pickup_offset_m != default.pickup_offset_m
+                || profile.pickup_law != default.pickup_law)
         {
             return false;
         }
         for voice in &mut self.voices {
             voice.set_profile(profile);
         }
+        self.profile = profile;
+        self.target_compensation = if self.compensating {
+            profile.level_compensation()
+        } else {
+            1.0
+        };
         true
+    }
+
+    /// Enable the pickup level compensation, `Profile::level_compensation` of
+    /// the current profile, smoothed like the gain; off by default so the raw
+    /// engine keeps its retained output at every geometry. `reset` jumps to it.
+    pub fn set_level_compensation(&mut self, enabled: bool) {
+        self.compensating = enabled;
+        self.target_compensation = if enabled {
+            self.profile.level_compensation()
+        } else {
+            1.0
+        };
+    }
+
+    /// The pickup level compensation currently applied, smoothed like the gain.
+    pub fn level_compensation(&self) -> f64 {
+        self.compensation
     }
 
     /// Select a matched pickup with a 20 ms linear crossfade. No voice resets.
@@ -262,11 +298,12 @@ impl Engine {
             }
         }
         self.gain += self.gain_step * (self.target_gain - self.gain);
+        self.compensation += self.gain_step * (self.target_compensation - self.compensation);
         let mut signal = self.decimator.output();
         if let Some(lab) = &mut self.laboratory {
             signal = lab.mix(signal);
         }
-        (signal * self.gain * 0.12) as f32
+        (signal * self.gain * self.compensation * 0.12) as f32
     }
 
     pub fn probe(&self, note: u8) -> Option<Probe> {
@@ -290,6 +327,7 @@ impl Engine {
             lab.reset();
         }
         self.gain = self.target_gain;
+        self.compensation = self.target_compensation;
     }
 }
 

@@ -316,7 +316,15 @@ engine must take the aperture transfer as a table, not as node sums, and
 the contact law's velocity dependence remains a laboratory question. The
 plugin's [Profile parameter](PICKUP-LAB-UI.md) now offers Original,
 Calibrated Sustain and Calibrated beside the four pickups, keeping ringing
-notes across switches, so the default can be chosen by ear. Preserve
+notes across switches, so the default can be chosen by ear. The
+[voicing physics](VOICING-PHYSICS.md) block adds the pickup law, pole radius
+and velocity exponent to the profile and a level compensation from the
+reference-motion sensitivity, exactly one by default, that holds the
+reference note within 2.3 dB over 72 geometries while leaving the laws'
+dynamics untouched. Next build the plugin's Sound page on these: pickup
+distance, tine alignment, hammer hardness, sustain, bell and dynamics as
+smoothed continuous parameters with the compensation applied, then the
+Model page with the raw profile fields. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

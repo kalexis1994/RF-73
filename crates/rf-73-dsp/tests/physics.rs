@@ -367,3 +367,127 @@ fn bar_partial_ratio_and_strike_weight_are_validated_profile_fields() {
     let ratio = strong / weak;
     assert!((ratio / 225.0 - 1.0).abs() < 0.2, "energy ratio {ratio}");
 }
+
+#[test]
+fn pickup_law_velocity_exponent_and_level_compensation_behave() {
+    use rf_73_dsp::{APERTURE_PICKUP, AxialAperture, PickupLaw, aperture_voltage};
+    let default = Profile::default();
+    // The default pickup compensates to exactly one, so retained renders stand.
+    assert_eq!(default.level_compensation(), 1.0);
+    assert_eq!(default.pickup_law, PickupLaw::Production);
+    assert_eq!(default.velocity_exponent, 1.4);
+    // The production law is even in the offset and falls with the gap.
+    let with = |gap: f64, offset: f64, law: PickupLaw| Profile {
+        pickup_gap_m: gap,
+        pickup_offset_m: offset,
+        pickup_law: law,
+        ..default
+    };
+    let production =
+        |gap: f64, offset: f64| with(gap, offset, PickupLaw::Production).pickup_sensitivity();
+    assert_eq!(production(0.0015, 0.0005), production(0.0015, -0.0005));
+    assert!(production(0.0005, 0.0005) > production(0.0015, 0.0005));
+    assert!(production(0.0015, 0.0005) > production(0.003, 0.0005));
+    // A centred production pickup still senses the reference swing through its
+    // even harmonics, so the compensation stays finite.
+    let centred = with(0.0015, 0.0, PickupLaw::Production).level_compensation();
+    assert!(
+        centred.is_finite() && centred > 1.0 && centred < 100.0,
+        "{centred}"
+    );
+    // The aperture law at the Close Aperture geometry reproduces the laboratory
+    // path's voltage from the voice's own tip motion, sample for sample.
+    let aperture_profile = with(0.0005, 0.0005, PickupLaw::Aperture);
+    assert_eq!(
+        aperture_profile.pickup_pole_radius_m,
+        APERTURE_PICKUP.pole_radius_m
+    );
+    let mut voice = Voice::new(48_000.0, 55, aperture_profile).unwrap();
+    let mut shadow = Voice::new(48_000.0, 55, default).unwrap();
+    let pickup = AxialAperture::new(APERTURE_PICKUP).unwrap();
+    voice.strike(0.7);
+    shadow.strike(0.7);
+    for _ in 0..4096 {
+        let signal = voice.tick();
+        shadow.tick();
+        let p = shadow.probe();
+        assert_eq!(
+            signal,
+            aperture_voltage(&pickup, p.displacement_m, p.velocity_m_s)
+        );
+    }
+    // The compensation of that geometry is the reference sine's RMS ratio.
+    let compensation = aperture_profile.level_compensation();
+    assert!((1.5..4.0).contains(&compensation), "{compensation}");
+    // A larger velocity exponent launches a soft strike more slowly.
+    let launch = |exponent: f64| {
+        let mut voice = Voice::new(
+            48_000.0,
+            55,
+            Profile {
+                velocity_exponent: exponent,
+                ..default
+            },
+        )
+        .unwrap();
+        voice.strike(0.3);
+        voice.probe().mechanical_energy_j
+    };
+    assert!(launch(2.0) < launch(1.4) && launch(1.4) < launch(1.0));
+    // Invalid fields are rejected; the laboratory engine keeps the production law.
+    assert!(
+        Profile {
+            pickup_pole_radius_m: 0.0001,
+            ..default
+        }
+        .validate(48_000.0)
+        .is_err()
+    );
+    assert!(
+        Profile {
+            velocity_exponent: 0.1,
+            ..default
+        }
+        .validate(48_000.0)
+        .is_err()
+    );
+    assert!(
+        Engine::new_laboratory_with(48_000.0, with(0.0015, 0.0005, PickupLaw::Aperture)).is_err()
+    );
+    // The engine smooths the compensation toward its target after a profile change.
+    let mut engine = Engine::new(48_000.0, default).unwrap();
+    assert_eq!(engine.level_compensation(), 1.0);
+    let wide = with(0.003, 0.0005, PickupLaw::Production);
+    let target = wide.level_compensation();
+    assert!(target > 2.0, "{target}");
+    // Raw engines never compensate, whatever the profile.
+    assert!(engine.set_profile(wide));
+    for _ in 0..100 {
+        engine.next_sample();
+    }
+    assert_eq!(engine.level_compensation(), 1.0);
+    engine.set_level_compensation(true);
+    engine.next_sample();
+    let first = engine.level_compensation();
+    assert!(first > 1.0 && first < target);
+    for _ in 0..4800 {
+        engine.next_sample();
+    }
+    assert!((engine.level_compensation() - target).abs() < 1e-6 * target);
+    engine.reset();
+    assert_eq!(engine.level_compensation(), target);
+    // The compensated wide-gap engine plays a medium note within 3 dB of the default.
+    let rms = |profile: Profile| {
+        let mut engine = Engine::new(48_000.0, profile).unwrap();
+        engine.set_level_compensation(true);
+        engine.reset();
+        engine.note_on(0, 55, 0.6);
+        let mut power = 0.0;
+        for _ in 0..24_000 {
+            power += f64::from(engine.next_sample()).powi(2);
+        }
+        (power / 24_000.0).sqrt()
+    };
+    let ratio = rms(wide) / rms(default);
+    assert!((0.7..1.42).contains(&ratio), "{ratio}");
+}

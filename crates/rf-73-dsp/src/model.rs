@@ -1,3 +1,6 @@
+use crate::laboratory::{AxialAperture, aperture_voltage};
+use crate::{MagneticPickup, SpatialPickupProfile};
+use core::f64::consts::TAU;
 use core::fmt;
 
 pub const SAMPLE_RATE_MIN: f64 = 44_100.0;
@@ -12,6 +15,22 @@ impl fmt::Display for ModelError {
     }
 }
 impl std::error::Error for ModelError {}
+
+/// Which transfer law turns tip motion into the pickup voltage.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum PickupLaw {
+    /// The original flux surrogate, -0.015 d/dt (1 + z^2)^(-1/2).
+    Production,
+    /// The laboratory's 16-node finite-aperture flux on the tine axis, with
+    /// `pickup_pole_radius_m`; the law of the Close Aperture path.
+    Aperture,
+}
+
+/// Reference tip motion for level compensation: a sine of this amplitude at
+/// this frequency, the engine's traced G3 swing at velocity 0.6.
+pub const LEVEL_REFERENCE_AMPLITUDE_M: f64 = 0.0004;
+pub const LEVEL_REFERENCE_FREQUENCY_HZ: f64 = 196.0;
+const LEVEL_REFERENCE_SAMPLES: usize = 256;
 
 /// SI-valued research constants. Defaults are design assumptions, NOT measured
 /// Rhodes dimensions. A profile is immutable for the lifetime of a prepared engine.
@@ -33,6 +52,12 @@ pub struct Profile {
     /// Second bending partial frequency over the fundamental. The uniform
     /// clamped bar gives 6.267; the retained recordings show 6.01.
     pub bar_partial_ratio: f64,
+    /// Transfer law of the voice's own pickup.
+    pub pickup_law: PickupLaw,
+    /// Pole radius of the aperture law; unused by the production law.
+    pub pickup_pole_radius_m: f64,
+    /// Hammer speed follows normalized velocity to this power.
+    pub velocity_exponent: f64,
     /// Second bending partial's displacement at the strike point per unit modal
     /// coordinate, relative to the first partial's 1.0; negative because the
     /// second mode shape is inverted there. Sets how hard the hammer excites it.
@@ -53,6 +78,9 @@ impl Default for Profile {
             third_partial_decay_seconds: 0.055,
             bar_partial_ratio: 6.267,
             bar_partial_strike_weight: -0.3,
+            pickup_law: PickupLaw::Production,
+            pickup_pole_radius_m: 0.002,
+            velocity_exponent: 1.4,
         }
     }
 }
@@ -93,6 +121,47 @@ impl Profile {
             bar_partial_strike_weight: -0.02,
             ..Self::calibrated_sustain()
         }
+    }
+
+    /// The aperture pickup of this profile's geometry, when its law is Aperture.
+    pub(crate) fn aperture(&self) -> Option<AxialAperture> {
+        (self.pickup_law == PickupLaw::Aperture).then(|| {
+            AxialAperture::new(SpatialPickupProfile {
+                gap_m: self.pickup_gap_m,
+                offset_xy_m: [self.pickup_offset_m, 0.0],
+                pole_radius_m: self.pickup_pole_radius_m,
+                flux_scale_wb: 0.001,
+            })
+            .expect("validated aperture geometry")
+        })
+    }
+
+    /// RMS pickup voltage for the reference tip motion, a sine of
+    /// `LEVEL_REFERENCE_AMPLITUDE_M` at `LEVEL_REFERENCE_FREQUENCY_HZ`, sampled
+    /// over one period. A pure function of the pickup law and geometry.
+    pub fn pickup_sensitivity(&self) -> f64 {
+        let pickup = MagneticPickup::from_validated_profile(*self);
+        let aperture = self.aperture();
+        let omega = TAU * LEVEL_REFERENCE_FREQUENCY_HZ;
+        let mut sum = 0.0;
+        for i in 0..LEVEL_REFERENCE_SAMPLES {
+            let phase = TAU * i as f64 / LEVEL_REFERENCE_SAMPLES as f64;
+            let x = LEVEL_REFERENCE_AMPLITUDE_M * phase.sin();
+            let v = LEVEL_REFERENCE_AMPLITUDE_M * omega * phase.cos();
+            let voltage = match &aperture {
+                Some(aperture) => aperture_voltage(aperture, x, v),
+                None => pickup.voltage(x, v),
+            };
+            sum += voltage * voltage;
+        }
+        (sum / LEVEL_REFERENCE_SAMPLES as f64).sqrt()
+    }
+
+    /// Gain that brings this profile's reference-motion RMS to the default
+    /// profile's. Exactly 1 for the default pickup, so retained renders are
+    /// unchanged; it equalizes a medium note, not the timbre.
+    pub fn level_compensation(&self) -> f64 {
+        Self::default().pickup_sensitivity() / self.pickup_sensitivity()
     }
 
     pub fn validate(self, sample_rate: f64) -> Result<(), ModelError> {
@@ -167,6 +236,18 @@ impl Profile {
                 -1.0,
                 1.0,
                 "bar partial strike weight outside -1..1",
+            ),
+            (
+                self.pickup_pole_radius_m,
+                0.0002,
+                0.003,
+                "pickup pole radius outside 0.0002..0.003 m",
+            ),
+            (
+                self.velocity_exponent,
+                0.5,
+                3.0,
+                "velocity exponent outside 0.5..3",
             ),
         ] {
             if !value.is_finite() || !(minimum..=maximum).contains(&value) {
