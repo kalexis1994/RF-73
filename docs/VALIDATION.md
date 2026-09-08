@@ -3058,3 +3058,39 @@ Verification passes 147 lab unit tests, 116 DSP unit tests, 91 loaded
 CLI/receipt tests, strict Clippy and formatting. Synthetic-decay and
 declared-coefficient tests remain explicit. No new WAVs or production
 changes are introduced; release cache remains approximately 183 MiB.
+
+## Loaded damper lift geometry
+
+The [damper lift matrix](LOADED-DAMPER-LIFT.md) compares bridle ratio 0.5,
+bridle slack 4 mm, a 100 N/m damper-arm spring whose base is moved so the
+settled rest arm position and felt force are unchanged, and ratio 0.5 with
+the soft arm, on the settled hammer under the sharp let-off, with the
+gravity-free control as replay anchor, at two nominal speeds and the 60 ms
+repetition wait. The retained damper observer is kept and a lift observer
+adds rest forces and compressions, held felt lift and arm speed. All 24
+takes and twelve refinement pairs qualify. The control and the settled
+hammer replay the damper seating receipt exactly after removing the lift
+record, and the soft arm reproduces the settled rest felt force within 1e-6.
+
+Ratio 0.5 lifts the felt 4.3 instead of 7.1 mm, cuts the bridle flight toll
+from 1.94 to 0.73 mJ, raises the strong first impulse by 52% and admits a
+5.15 mNs soft strike; 4 mm slack cuts the toll by a fifth and the soft arm
+by a third. The felt lands 22 to 32 ms after key-up in every case because
+the bridle holds it up until the hammer descends; extra slack releases it
+4.6 ms earlier, seats it 97.8% of the last 20 ms and reaches -40 dB at
+56 ms in the soft row. Ten rows repeat; every geometry case fails the
+first-attack limits, and readiness fails only on the hammer's 0.023 m/s
+residual vibration in the slack case. No case is adopted.
+
+Maximum relative total energy defect is 3.934e-12, launch momentum defect
+1.309e-11, key energy defect 6.463e-13 and flight hammer defect 4.188e-14.
+Rest quantities agree exactly; held lift and arm speed refine within
+0.0014%, felt timing within 0.732 microseconds. Maximum velocity refinement
+error is 0.17628% and impact error 0.14278%.
+
+Receipt: `references/loaded-damper-lift-validation.json`, 2540380 bytes,
+SHA-256 `86a9b2ffaca516ed5d550e731b8bdf524e1a28c988a3364809841748a7d33b73`.
+Verification passes 149 lab unit tests, 116 DSP unit tests, 93 loaded
+CLI/receipt tests, strict Clippy and formatting. Geometry and exact-seating
+tests remain explicit. No new WAVs or production changes are introduced;
+release cache remains approximately 183 MiB.

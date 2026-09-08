@@ -256,11 +256,26 @@ not only parameter-identification diagnostics:
     Readiness still fails on residual hammer vibration and felt seating. No
     case is adopted.
 
-Next model the damper lift geometry: the bridle ratio and slack set how far
-the felt lifts and a softer arm spring with the same seating force sets how
-fast it returns. Compare smaller lifts and matched seating forces under the
-settled hammer and requalify damping onset, readiness and the first strike
-against the retained control with the felt landing evidence explicit. Preserve
+25. **Damper lift geometry:** the [damper lift study](LOADED-DAMPER-LIFT.md)
+    compares bridle ratio 0.5, bridle slack 4 mm, a 100 N/m arm spring with
+    exactly matched seating force and ratio 0.5 with the soft arm on the
+    settled hammer, retaining held felt lift, arm speed, rest forces and the
+    full damper observer. All 24 takes converge and the control and settled
+    hammer replay the seating receipt. The lift geometry is the largest lever
+    on the strike found so far: ratio 0.5 halves the felt lift, cuts the
+    bridle toll from 1.94 to 0.73 mJ, raises the strong strike 52% and admits
+    a 5.15 mNs soft strike. The felt still lands 22 to 32 ms after key-up in
+    every case because the bridle holds it up until the hammer falls; extra
+    slack releases it 4.6 ms earlier and seats it 97.8% of the time, leaving
+    only the hammer's 0.023 m/s residual vibration against readiness. No
+    case is adopted.
+
+Next assemble an audible action candidate from the retained findings, the
+weighted 4 g hammer on the let-off key with pedestal loss 30, felt loss 40
+and 4 mm bridle slack, render soft, strong and repeated strikes through the
+retained pickup and circuit alongside the gravity-free control, and qualify
+the renders with the existing energy, refinement and headroom gates so the
+action work can be heard before it is calibrated. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

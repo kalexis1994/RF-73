@@ -154,6 +154,12 @@ own landing on the tine and the damping onset it produces. The felt lands
 bounce without changing the strike, and the lift geometry that throws the
 felt back becomes the next question.
 
+The [damper lift study](docs/LOADED-DAMPER-LIFT.md) changes the bridle ratio,
+bridle slack and arm spring that set that lift. The linkage geometry turns
+out to govern both the soft threshold and the damping onset: a lower ratio
+halves the flight toll, and extra slack seats the felt in time for the next
+gesture.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

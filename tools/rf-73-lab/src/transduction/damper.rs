@@ -180,11 +180,26 @@ fn take(
     steps: usize,
     speed: f64,
 ) -> Result<bridle::Take, Box<dyn Error>> {
+    take_observed(p, steps, speed, |_, _, _, _, _| {})
+}
+pub(super) fn take_observed(
+    p: ElectromechanicalProfile,
+    steps: usize,
+    speed: f64,
+    mut observe: impl FnMut(
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        f64,
+        f64,
+    ),
+) -> Result<bridle::Take, Box<dyn Error>> {
     let mut observer = Observer::new();
-    let mut result = flight::take_observed(p, steps, speed, |_, a, b, t, h| {
+    let mut result = flight::take_observed(p, steps, speed, |initial, a, b, t, h| {
         for w in &mut observer.windows {
             w.observe(a, b, t, h);
         }
+        observe(initial, a, b, t, h);
     })?;
     let damper = observer.report();
     result.report["passed"] = json!(result.report["passed"] == true && damper["passed"] == true);
@@ -240,7 +255,7 @@ pub(super) fn damper_convergence(a: &Value, b: &Value) -> Value {
     }
     json!({"passed":rows.len()==2 && rows.iter().all(|r|r["passed"]==true),"windows":rows})
 }
-fn flight_qualification(f: &Value) -> Value {
+pub(super) fn flight_qualification(f: &Value) -> Value {
     let launches: Vec<Value> = f["launches"]
         .as_array()
         .unwrap()

@@ -14,6 +14,7 @@ pub(crate) mod key;
 pub(crate) mod landing;
 pub(crate) mod launch;
 pub(crate) mod letoff;
+pub(crate) mod lift;
 pub(crate) mod losses;
 pub(crate) mod onset;
 pub(crate) mod repetition;
@@ -44,6 +45,7 @@ pub const HELP: &str = "Electromechanical audit:
   loaded-gravity --output REPORT.json
   loaded-landing --output REPORT.json
   loaded-damper-seating --output REPORT.json
+  loaded-damper-lift --output REPORT.json
 Eight loaded two-plane cases; render writes one 1.2-second WAV plus its JSON receipt.
 ";
 const DURATION: f64 = 0.18;

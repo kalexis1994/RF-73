@@ -10,6 +10,149 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_damper_lift_receipt_traces_lift_geometry_and_replays_the_settled_hammer() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-damper-lift-validation.json");
+    let prior = read("loaded-damper-seating-validation.json");
+    assert_eq!(r["experiment"], "loaded-damper-lift-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let attack = |first: &serde_json::Value, base: &serde_json::Value| -> bool {
+        let a = first["entries"].as_array().unwrap();
+        let b = base["entries"].as_array().unwrap();
+        let impact_ok = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+            .iter()
+            .all(|key| {
+                let reference = base["impact"][key].as_f64().unwrap();
+                reference > 0.0
+                    && (first["impact"][key].as_f64().unwrap() / reference - 1.0).abs() < 0.05
+            });
+        a.len() == 1 && b.len() == 1 && impact_ok && {
+            let va = a[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            let vb = b[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            (va / vb - 1.0).abs() < 0.05
+                && (a[0]["seconds"].as_f64().unwrap() - b[0]["seconds"].as_f64().unwrap()).abs()
+                    < 0.001
+        }
+    };
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut takes_seen = 0;
+    let settled_felt = cases[1]["rows"][0]["takes"][1]["lift"]["rest"]["felt_force_n"]
+        .as_f64()
+        .unwrap();
+    for (case_index, case) in cases.iter().enumerate() {
+        // The control and the settled hammer replay the damper seating study.
+        let old = &prior["cases"][if case_index == 0 { 0 } else { 1 }];
+        let s = &case["settings"];
+        assert_eq!(s["gravity_m_s2"], if case_index == 0 { 0.0 } else { 9.81 });
+        assert_eq!(
+            s["pedestal_rate_loss_s_m"],
+            if case_index == 0 { 2.0 } else { 30.0 }
+        );
+        let ratio = [0.8, 0.8, 0.5, 0.8, 0.8, 0.5][case_index];
+        let slack = [0.002, 0.002, 0.002, 0.004, 0.002, 0.002][case_index];
+        let stiffness = [200.0, 200.0, 200.0, 200.0, 100.0, 100.0][case_index];
+        assert_eq!(s["bridle_ratio"], ratio);
+        assert_eq!(s["bridle_slack_m"], slack);
+        assert_eq!(s["arm_stiffness_n_m"], stiffness);
+        let soft = stiffness == 100.0;
+        assert_eq!(s["damper_closed_m"] == 0.0002, !soft);
+        let rows = case["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 2);
+        for (index, row) in rows.iter().enumerate() {
+            assert_eq!(row["measurement_qualified"], true);
+            for key in [
+                "convergence",
+                "launch_convergence",
+                "key_convergence",
+                "letoff_convergence",
+                "flight_qualification",
+                "damper_convergence",
+                "lift_convergence",
+            ] {
+                assert_eq!(row[key]["passed"], true);
+            }
+            let old_row = &old["rows"][index];
+            assert_eq!(old_row["nominal_speed_m_s"], row["nominal_speed_m_s"]);
+            let takes = row["takes"].as_array().unwrap();
+            assert_eq!(takes.len(), 2);
+            for (take, old_take) in takes.iter().zip(old_row["takes"].as_array().unwrap()) {
+                takes_seen += 1;
+                assert_eq!(take["passed"], true);
+                if case_index <= 1 {
+                    let mut replay = take.clone();
+                    replay.as_object_mut().unwrap().remove("lift");
+                    assert_eq!(replay, *old_take);
+                    for key in ["convergence", "launch_convergence", "damper_convergence"] {
+                        assert_eq!(row[key], old_row[key]);
+                    }
+                }
+                let lift = &take["lift"];
+                let rest = &lift["rest"];
+                let felt = rest["felt_force_n"].as_f64().unwrap();
+                assert!(felt > 0.0);
+                if soft {
+                    // Matched seating keeps the settled rest felt force.
+                    assert!((felt / settled_felt - 1.0).abs() < 1e-6);
+                }
+                assert!(rest["bridle_compression_m"].as_f64().unwrap() < 0.0);
+                for i in 0..2 {
+                    let held = lift["held_max_felt_lift_m"][i].as_f64().unwrap();
+                    assert!(held > 0.001 && held < 0.02);
+                    assert!(lift["held_max_arm_speed_m_s"][i].as_f64().unwrap() > 0.0);
+                    assert!(lift["held_min_felt_force_n"][i].as_f64().unwrap() >= 0.0);
+                }
+                // A smaller bridle ratio or a larger slack lifts the felt less.
+                if case_index == 2 || case_index == 3 {
+                    let settled = &cases[1]["rows"][index]["takes"]
+                        [if take["steps_per_frame"] == 128 { 0 } else { 1 }]["lift"];
+                    assert!(
+                        lift["held_max_felt_lift_m"][0].as_f64().unwrap()
+                            < settled["held_max_felt_lift_m"][0].as_f64().unwrap()
+                    );
+                }
+                assert_eq!(take["damper"]["passed"], true);
+            }
+            let first = &takes[1]["repetition"]["phases"][0];
+            let base = &cases[0]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+            assert_eq!(row["first_vs_control"]["passed"], attack(first, base));
+            if case_index >= 2 {
+                let settled = &cases[1]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+                assert_eq!(
+                    row["first_vs_settled_hammer"]["passed"],
+                    attack(first, settled)
+                );
+            } else {
+                assert!(row["first_vs_settled_hammer"].is_null());
+            }
+        }
+    }
+    assert_eq!(takes_seen, 24);
+}
+
+#[test]
+fn loaded_damper_lift_cli_preserves_outputs_and_rejects_extra_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-damper-lift"],
+        vec!["loaded-damper-lift", "--output", "keep.json"],
+        vec!["loaded-damper-lift", "--output", "bad.wav"],
+        vec!["loaded-damper-lift", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_damper_seating_receipt_traces_felt_reseating_and_replays_the_settled_hammer() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

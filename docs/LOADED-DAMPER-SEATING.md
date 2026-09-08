@@ -150,9 +150,6 @@ profile and one repetition wait are covered.
 
 The felt's landing is set by its 6.5 mm lift and the 200 N/m arm spring that
 throws it back at 0.36 m/s, and no contact or damping coefficient can make
-the tine quiet before it arrives. Next model the damper lift geometry: the
-bridle ratio and slack set how far the felt lifts, and a softer arm spring
-with the same seating force sets how fast it returns. Compare smaller lifts
-and matched seating forces under the settled hammer, and requalify damping
-onset, readiness and the first strike against the retained control with the
-felt landing evidence kept explicit.
+the tine quiet before it arrives. The [damper lift study](LOADED-DAMPER-LIFT.md)
+now changes the bridle ratio, bridle slack and arm spring that set that lift
+and return, with the seating force matched.
