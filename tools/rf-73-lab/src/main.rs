@@ -15,6 +15,7 @@ mod memory_free_check;
 mod memory_hammer_check;
 mod memory_modal_check;
 mod memory_modal_timing;
+mod midi_render;
 mod modal_assembly_check;
 mod modal_families;
 mod modal_observation;
@@ -215,6 +216,7 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args.is_empty() || matches!(args[0].as_str(), "--help" | "-h") {
         print!("{HELP}");
         print!("{}", analysis::HELP);
+        print!("{}", midi_render::HELP);
         print!("{}", component_envelope::HELP);
         print!("{}", source_envelope::HELP);
         print!("{}", band_envelope::HELP);
@@ -365,6 +367,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     }
     if args[0] == "magnetic-weighted-loss-resolution" {
         return mechanical_loss::observer::loss::magnetic::nonlinear::loss_profile::resolution::weighted::run(&args);
+    }
+    if args[0] == "render-midi" {
+        return midi_render::run(&args);
     }
     if args[0] == "felt-damper" {
         return felt_damper::run(&args);

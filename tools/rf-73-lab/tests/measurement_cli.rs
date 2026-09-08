@@ -10,6 +10,95 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn midi_render_renders_a_small_file_with_receipt_and_rejects_invalid_or_existing_outputs() {
+    let scratch = Scratch::new();
+    // Format 0 file: 120 bpm, C4 for one quarter with sustain, then release.
+    let mut midi = b"MThd".to_vec();
+    midi.extend_from_slice(&6u32.to_be_bytes());
+    midi.extend_from_slice(&0u16.to_be_bytes());
+    midi.extend_from_slice(&1u16.to_be_bytes());
+    midi.extend_from_slice(&96u16.to_be_bytes());
+    let body: Vec<u8> = vec![
+        0x00, 0xFF, 0x51, 0x03, 0x07, 0xA1, 0x20, // tempo 500000 us
+        0x00, 0xB0, 64, 127, // sustain down
+        0x00, 0x90, 60, 100, // C4 on
+        0x60, 0x80, 60, 0, // C4 off after 96 ticks (0.5 s)
+        0x60, 0xB0, 64, 0, // sustain up at 1.0 s
+        0x00, 0xFF, 0x2F, 0x00,
+    ];
+    midi.extend_from_slice(b"MTrk");
+    midi.extend_from_slice(&(body.len() as u32).to_be_bytes());
+    midi.extend_from_slice(&body);
+    fs::write(scratch.0.join("tiny.mid"), &midi).unwrap();
+    fs::write(scratch.0.join("keep.wav"), b"preserve").unwrap();
+    for args in [
+        vec!["render-midi"],
+        vec!["render-midi", "tiny.mid"],
+        vec!["render-midi", "tiny.mid", "--output", "keep.wav"],
+        vec!["render-midi", "tiny.mid", "--output", "bad.json"],
+        vec![
+            "render-midi",
+            "tiny.mid",
+            "--output",
+            "bad.wav",
+            "--gain",
+            "9",
+        ],
+        vec![
+            "render-midi",
+            "tiny.mid",
+            "--output",
+            "bad.wav",
+            "--tail",
+            "40",
+        ],
+        vec![
+            "render-midi",
+            "tiny.mid",
+            "--output",
+            "bad.wav",
+            "--unknown",
+        ],
+        vec!["render-midi", "missing.mid", "--output", "bad.wav"],
+    ] {
+        assert!(!scratch.run(&args).status.success(), "{args:?}");
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.wav")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.wav").exists() && !scratch.0.join("bad.json").exists());
+    scratch.success(&[
+        "render-midi",
+        "tiny.mid",
+        "--output",
+        "out.wav",
+        "--normalize",
+        "--tail",
+        "0.5",
+    ]);
+    let receipt: serde_json::Value =
+        serde_json::from_slice(&fs::read(scratch.0.join("out.json")).unwrap()).unwrap();
+    assert_eq!(receipt["experiment"], "midi-render-v1");
+    assert_eq!(receipt["notes_played"], 1);
+    assert_eq!(receipt["sustain_events"], 2);
+    assert_eq!(receipt["notes_outside_range_dropped"], 0);
+    assert_eq!(receipt["faults"], 0);
+    assert_eq!(receipt["sample_rate"], 48000);
+    assert!((receipt["seconds"].as_f64().unwrap() - 1.5).abs() < 1e-4);
+    let peak = receipt["peak"].as_f64().unwrap();
+    assert!(peak > 0.0 && peak < 1.0);
+    assert!((receipt["normalized_peak_dbfs"].as_f64().unwrap() + 1.0).abs() < 1e-12);
+    assert!(scratch.0.join("out-norm.wav").exists());
+    let wav = fs::read(scratch.0.join("out.wav")).unwrap();
+    assert_eq!(&wav[..4], b"RIFF");
+    // Reruns never overwrite.
+    assert!(
+        !scratch
+            .run(&["render-midi", "tiny.mid", "--output", "out.wav"])
+            .status
+            .success()
+    );
+}
+
+#[test]
 fn loaded_damper_lift_receipt_traces_lift_geometry_and_replays_the_settled_hammer() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {
