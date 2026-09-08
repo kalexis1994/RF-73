@@ -232,6 +232,7 @@ mod tests {
                         gap_mm: gap,
                         offset_mm: offset,
                         trace: false,
+                        pickup: None,
                     };
                     let pair = render_pair(&options).unwrap();
                     let mut engine = Engine::new(rate as f64, options.profile()).unwrap();

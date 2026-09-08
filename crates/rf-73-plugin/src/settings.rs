@@ -1,4 +1,5 @@
 use crate::{PARAMETER_A, PARAMETER_B, PARAMETER_GAIN, PARAMETER_LISTEN_B};
+use rf_73_dsp::PICKUP_NAMES;
 use serde::{Deserialize, Serialize};
 
 /// Conservative starting gain for the measured ten-key repeated-strike case.
@@ -27,7 +28,10 @@ impl Default for Settings {
 
 impl Settings {
     pub fn valid(self) -> bool {
-        self.gain.is_finite() && (0.0..=2.0).contains(&self.gain) && self.a < 3 && self.b < 3
+        self.gain.is_finite()
+            && (0.0..=2.0).contains(&self.gain)
+            && usize::from(self.a) < PICKUP_NAMES.len()
+            && usize::from(self.b) < PICKUP_NAMES.len()
     }
 
     pub fn selected(self) -> usize {
@@ -50,7 +54,9 @@ impl Settings {
         }
         match index {
             PARAMETER_GAIN if (0.0..=2.0).contains(&value) => self.gain = value,
-            PARAMETER_A | PARAMETER_B if [0.0, 1.0, 2.0].contains(&value) => {
+            PARAMETER_A | PARAMETER_B
+                if value.fract() == 0.0 && (0.0..PICKUP_NAMES.len() as f64).contains(&value) =>
+            {
                 if index == PARAMETER_A {
                     self.a = value as u8;
                 } else {

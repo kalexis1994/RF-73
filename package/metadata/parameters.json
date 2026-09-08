@@ -9,13 +9,15 @@
   }, {
     "index": 1, "id": "pickup-a", "name": "Pickup A", "page": "comparison", "order": 0,
     "kind": { "type": "enum", "default": 0, "choices": [
-      { "value": 0, "name": "Current" }, { "value": 1, "name": "Close Original" }, { "value": 2, "name": "Close Point Pole" }
+      { "value": 0, "name": "Current" }, { "value": 1, "name": "Close Original" }, { "value": 2, "name": "Close Point Pole" },
+      { "value": 3, "name": "Close Aperture" }
     ] },
     "flags": { "automatable": true }, "suggested_control": "list"
   }, {
     "index": 2, "id": "pickup-b", "name": "Pickup B", "page": "comparison", "order": 1,
     "kind": { "type": "enum", "default": 2, "choices": [
-      { "value": 0, "name": "Current" }, { "value": 1, "name": "Close Original" }, { "value": 2, "name": "Close Point Pole" }
+      { "value": 0, "name": "Current" }, { "value": 1, "name": "Close Original" }, { "value": 2, "name": "Close Point Pole" },
+      { "value": 3, "name": "Close Aperture" }
     ] },
     "flags": { "automatable": true }, "suggested_control": "list"
   }, {

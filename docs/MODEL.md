@@ -1,6 +1,6 @@
 # Physical model ledger
 
-Status: research prototype 0.1.2. The default mechanical profile is unchanged from 0.1.1; the plugin adds three matched pickup paths and a [laboratory UI](PICKUP-LAB-UI.md). All constants are provisional unless explicitly marked as measured. No real-instrument calibration has been performed.
+Status: research prototype 0.1.2. The default mechanical profile is unchanged from 0.1.1; the plugin adds four matched pickup paths and a [laboratory UI](PICKUP-LAB-UI.md). All constants are provisional unless explicitly marked as measured. No real-instrument calibration has been performed.
 
 ## Signal path
 
@@ -104,7 +104,7 @@ The analytical gradient is multiplied by tip velocity, with an arbitrary electri
 
 Conversion occurs separately for every key, before summation. This keeps pickup intermodulation within that key; a nonlinear amplifier across the mix would be a separate circuit. Gabrielli and colleagues specifically analyze attack modes and their pickup intermodulation. Their abstract was consulted; full modal tables remain to be obtained. [JASA 2020](https://iris.univpm.it/handle/11566/286030).
 
-`MagneticPickup` owns the original transfer and an explicitly experimental point-pole field proxy. [Isolated pickup transfer](PICKUP-TRANSFER.md) defines its additional assumptions and ideal-band aliasing diagnostic. Version 0.1.2 exposes both laws through the three matched laboratory paths; the original `Voice` and raw renderer remain unchanged. Selecting a candidate is an audition choice, not a claim that its field model has been physically identified.
+`MagneticPickup` owns the original transfer and an explicitly experimental point-pole field proxy. [Isolated pickup transfer](PICKUP-TRANSFER.md) defines its additional assumptions and ideal-band aliasing diagnostic. Version 0.1.2 exposes both laws through the matched laboratory paths, and a fourth path, [Close Aperture](PICKUP-APERTURE-PATH.md), carries the laboratory's finite-aperture flux law reduced to the tine axis; the original `Voice` and raw renderer remain unchanged. Selecting a candidate is an audition choice, not a claim that its field model has been physically identified.
 
 ## Antialiasing, output and numerical limits
 

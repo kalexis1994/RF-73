@@ -1,6 +1,6 @@
 # Pickup listening and observed headroom
 
-`pickup-listening` prepares three versions of the same 24-second performance and measures full-keyboard/stress peaks. The purpose is to listen to the candidate without its larger raw gain deciding the comparison. It follows the [convergence study](PICKUP-CONVERGENCE.md); it does not select a new plugin profile.
+`pickup-listening` prepares four versions of the same 24-second performance and measures full-keyboard/stress peaks. The purpose is to listen to the candidate without its larger raw gain deciding the comparison. It follows the [convergence study](PICKUP-CONVERGENCE.md); it does not select a new plugin profile.
 
 ## Reproduce
 
@@ -16,6 +16,7 @@ Outputs use this order:
 1. `current.wav`: production transfer at the current default 1.5/0.5 mm geometry.
 2. `close-original.wav`: production transfer at the candidate geometry.
 3. `close-point-pole.wav`: experimental transfer at that same candidate geometry.
+4. `close-aperture.wav`: the finite-aperture law on the tine axis at gap 0.5 mm, offset 0.5 mm, pole radius 2 mm, fixed independently of the candidate geometry options.
 
 The `close-*` filenames describe the default close geometry; custom geometry is recorded explicitly in the receipt. Current versus close-original reveals the geometry change; close-original versus close-point-pole reveals the transfer-law change. These are labeled exploratory comparisons, not blinded listening-test results. No acquired reference-bank samples are used in the performance.
 
@@ -23,7 +24,7 @@ The `close-*` filenames describe the default close geometry; custom geometry is 
 
 The first 16 seconds contain notes MIDI 40, 55 and 88, each at velocities 0.2/0.5/0.9. Notes begin at 0.25 seconds with 1.75-second spacing and 1.1-second key holds. At 16.5 seconds a six-note E-minor voicing begins under sustain; three chord notes are struck again at 18 seconds. The pedal lifts at 20 seconds. A final G3 strike at 21 seconds tests key release and late-pedal recapture, with pedal up at 22.5 seconds and a tail through 24 seconds. The exact sorted event list is included in the report.
 
-One set of production voices supplies all three pickup signals. Each signal has its own actual production decimator and the default `filtered * 0.7 * 0.12` output scale. The offline single-channel note/pedal evaluator preserves ringing motion through repeated strikes. A regression fixture compares the current track sample-for-sample against `Engine` through overlapping notes, release, retrigger and late pedal. This helper is not a new real-time plugin engine or a general MIDI implementation.
+One set of production voices supplies all four pickup signals. Each signal has its own actual production decimator and the default `filtered * 0.7 * 0.12` output scale. The offline single-channel note/pedal evaluator preserves ringing motion through repeated strikes. A regression fixture compares the current track sample-for-sample against `Engine` through overlapping notes, release, retrigger and late pedal. This helper is not a new real-time plugin engine or a general MIDI implementation.
 
 ## Matching method
 
@@ -77,5 +78,9 @@ Observed raw headroom results, before matching or attenuation:
 The raw electrical scale is arbitrary. These large stress peaks are unexported diagnostics, not the amplitude of the listening WAVs. Both the current and candidate models need an explicit gain/headroom policy for dense playing; matching an isolated note or a musical program cannot establish that policy. The highest isolated-note index changes with rate because the sample grid and numerical trajectory also change. No maximum across all possible rates, gestures or parameter values is inferred.
 
 The three 24-second mono float WAVs are under `renders/pickup-listening-20260904-234759/`, totaling 12,700,974 bytes. The 192 kHz directory `renders/pickup-listening-20260904-234759-192k/` contains only its receipt. `references/pickup-listening-summary.json` preserves both complete reports, source-report hashes and SHA-256 hashes of all three WAVs; audio remains ignored by Git.
+
+## Four-track rerun
+
+Date: 2026-09-08. The same protocol ran again with the fourth track after the [Close Aperture path](PICKUP-APERTURE-PATH.md) was added, at 44.1 kHz with audio and at 192 kHz with `--measure-only`, zero faults in both. The first three RMS gains reproduce the 2026-09-04 factors exactly; the aperture track's raw RMS is 0.022328 against Current's 0.055813, so its frozen factor is 2.4996279723549004, and the 192 kHz factor differs by 0.0012%. Its raw isolated, ten-key and 73-key peaks are 0.169394, 1.258530 and 7.531146, below Current's. The common attenuation of that export is 0.482046, set by the matched aperture track. `references/pickup-aperture-listening-summary.json` preserves both reports and the four WAV hashes under `renders/pickup-listening-20260908-aperture/`.
 
 These artifacts are ready for human comparison. No human listening result or preference is claimed. The plugin remains the current 0.1.1 research profile; the next instrument version still needs a deliberate gain/headroom decision and a RackForge audition.

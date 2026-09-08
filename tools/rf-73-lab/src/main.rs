@@ -41,7 +41,7 @@ mod tone_comparison;
 mod transduction;
 mod wav;
 mod web_ui;
-use rf_73_dsp::{Engine, FIRST_NOTE, LAST_NOTE, Profile};
+use rf_73_dsp::{Engine, FIRST_NOTE, LAST_NOTE, PICKUP_NAMES, Profile};
 use std::{
     error::Error,
     fs::{self, File, OpenOptions},
@@ -68,11 +68,14 @@ Render options:
   --gap-mm X        Pickup gap 0.5..5 mm (default 1.5)
   --offset-mm X     Pickup offset -3..3 mm (default 0.5)
   --trace           Export output-rate physical probes as CSV
+  --pickup I        Render through laboratory pickup path I (0..3) instead of the
+                    raw engine; needs the default gap/offset. Names: rf-73-lab help
 WAV is mono IEEE float, without normalization or clipping. Existing files are
 never overwritten. Every render writes a JSON report. Parameters are uncalibrated.
 Demo: three A3 intensities and a sustained E-minor chord, ten seconds.
 Stress: 73 keys, 128-frame blocks, three seconds. No audio device is opened.
---laboratory measures the three-path pickup engine with frequent interrupted fades.
+--laboratory measures the four-path pickup engine with frequent interrupted fades.
+Laboratory pickup paths: 0 Current, 1 Close Original, 2 Close Point Pole, 3 Close Aperture.
 ";
 
 #[derive(Debug)]
@@ -88,6 +91,7 @@ struct Options {
     offset_mm: f64,
     trace: bool,
     laboratory: bool,
+    pickup: Option<usize>,
 }
 
 impl Options {
@@ -110,6 +114,7 @@ impl Options {
             offset_mm: 0.5,
             trace: false,
             laboratory: false,
+            pickup: None,
         };
         let mut seen = std::collections::BTreeSet::new();
         let mut i = 1;
@@ -147,6 +152,7 @@ impl Options {
                         | "--hold"
                         | "--gap-mm"
                         | "--offset-mm"
+                        | "--pickup"
                 ),
             };
             if !allowed {
@@ -165,6 +171,7 @@ impl Options {
                 "--hold" => o.hold = value.parse().map_err(|_| invalid())?,
                 "--gap-mm" => o.gap_mm = value.parse().map_err(|_| invalid())?,
                 "--offset-mm" => o.offset_mm = value.parse().map_err(|_| invalid())?,
+                "--pickup" => o.pickup = Some(value.parse().map_err(|_| invalid())?),
                 _ => unreachable!(),
             }
             i += 2;
@@ -190,6 +197,16 @@ impl Options {
             || o.hold >= o.seconds
         {
             return Err("note, velocity, duration or hold is outside its allowed range".into());
+        }
+        if let Some(index) = o.pickup {
+            if command != "render" || index >= PICKUP_NAMES.len() {
+                return Err("--pickup is a render option with a path index 0..3".into());
+            }
+            if o.gap_mm != 1.5 || o.offset_mm != 0.5 {
+                return Err(
+                    "--pickup renders the laboratory engine at the default geometry".into(),
+                );
+            }
         }
         o.profile()
             .validate(o.rate as f64)
@@ -668,7 +685,17 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
     let demo = o.command == "demo";
     let seconds = if demo { 10.0 } else { o.seconds };
     let frames = (seconds * o.rate as f64).round() as u32;
-    let mut engine = Engine::new(o.rate as f64, o.profile())?;
+    let mut engine = match o.pickup {
+        Some(index) => {
+            let mut engine = Engine::new_laboratory(o.rate as f64)?;
+            if !engine.set_pickup(index) {
+                return Err("invalid laboratory pickup path".into());
+            }
+            engine.reset();
+            engine
+        }
+        None => Engine::new(o.rate as f64, o.profile())?,
+    };
     let mut audio = wav::FloatWav::new(BufWriter::new(new_file(output)?), o.rate, frames)?;
     let mut trace = if o.trace {
         Some(BufWriter::new(new_file(&trace_path)?))
@@ -744,7 +771,7 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
     }
     let elapsed = started.elapsed().as_secs_f64();
     let report = format!(
-        "{{\n  \"schema_version\": 1,\n  \"model\": \"research-0.1.1-uncalibrated\",\n  \"mode\": \"{}\",\n  \"sample_rate\": {},\n  \"frames\": {},\n  \"note\": {},\n  \"velocity\": {},\n  \"hold_seconds\": {},\n  \"pickup_gap_mm\": {},\n  \"pickup_offset_mm\": {},\n  \"oversampling\": 4,\n  \"peak\": {:.9},\n  \"rms\": {:.9},\n  \"faults\": {},\n  \"render_wall_seconds_including_io\": {:.6}\n}}\n",
+        "{{\n  \"schema_version\": 1,\n  \"model\": \"research-0.1.1-uncalibrated\",\n  \"mode\": \"{}\",\n  \"sample_rate\": {},\n  \"frames\": {},\n  \"note\": {},\n  \"velocity\": {},\n  \"hold_seconds\": {},\n  \"pickup_gap_mm\": {},\n  \"pickup_offset_mm\": {},\n  \"pickup_path\": {},\n  \"pickup_name\": {},\n  \"oversampling\": 4,\n  \"peak\": {:.9},\n  \"rms\": {:.9},\n  \"faults\": {},\n  \"render_wall_seconds_including_io\": {:.6}\n}}\n",
         o.command,
         o.rate,
         frames,
@@ -753,6 +780,9 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
         o.hold,
         o.gap_mm,
         o.offset_mm,
+        o.pickup.map_or("null".to_string(), |i| i.to_string()),
+        o.pickup
+            .map_or("null".to_string(), |i| format!("\"{}\"", PICKUP_NAMES[i])),
         peak,
         (square_sum / frames as f64).sqrt(),
         engine.faults(),
@@ -789,7 +819,7 @@ fn stress(o: &Options) -> Result<(), Box<dyn Error>> {
     for block in 0..blocks {
         let start = Instant::now();
         if o.laboratory && block % 3 == 0 {
-            engine.set_pickup((block / 3) % 3);
+            engine.set_pickup((block / 3) % PICKUP_NAMES.len());
         }
         if block % 188 == 0 {
             engine.control_change(0, 64, 1.0);

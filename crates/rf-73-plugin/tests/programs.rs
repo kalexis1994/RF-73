@@ -84,11 +84,22 @@ fn malformed_programs_and_parameter_domains_reject_atomically() {
     let mut plugin = Rf73Processor::default();
     let draft = begin(&mut plugin, None);
     let before = state(&plugin);
+    // The fourth path is a valid choice for both slots; the state round-trips it.
+    assert!(plugin.set_parameter(1, 3.0) && plugin.set_parameter(2, 3.0));
+    assert_eq!(plugin.get_parameter(1), Some(3.0));
+    assert_eq!(plugin.get_parameter(2), Some(3.0));
+    let fourth = state(&plugin);
+    assert!(plugin.set_parameter(1, 0.0) && plugin.set_parameter(2, 2.0));
+    assert!(plugin.load_state(&fourth));
+    assert_eq!(plugin.get_parameter(1), Some(3.0));
+    assert!(plugin.set_parameter(1, 0.0) && plugin.set_parameter(2, 2.0));
+    assert_eq!(state(&plugin), before);
     for (index, value) in [
         (0, f64::NAN),
         (0, -0.1),
         (1, 0.5),
-        (2, 3.0),
+        (2, 4.0),
+        (2, 2.5),
         (3, 0.5),
         (4, 0.0),
     ] {
@@ -99,7 +110,7 @@ fn malformed_programs_and_parameter_domains_reject_atomically() {
     malformed.storage_path = "../outside.json".into();
     assert!(!plugin.install_program(&serde_json::to_vec(&malformed).unwrap()));
     malformed = draft.clone();
-    malformed.document.payload["a"] = serde_json::json!(3);
+    malformed.document.payload["a"] = serde_json::json!(4);
     assert!(!plugin.preview_program(&serde_json::to_vec(&malformed).unwrap()));
     malformed = draft.clone();
     malformed.document.plugin_id = "org.example.other".into();
@@ -171,7 +182,7 @@ fn legacy_state_keeps_original_gain_and_pickup_and_new_state_rejects_every_inval
     assert_eq!(plugin.get_parameter(1), Some(0.0));
     assert_eq!(plugin.get_parameter(3), Some(0.0));
     let before = state(&plugin);
-    for (index, value) in [(0, 0), (4, 3), (16, 3), (17, 3), (18, 2), (19, 1)] {
+    for (index, value) in [(0, 0), (4, 3), (16, 4), (17, 4), (18, 2), (19, 1)] {
         let mut malformed = before;
         malformed[index] = value;
         assert!(!plugin.load_state(&malformed));

@@ -1,0 +1,4082 @@
+{
+  "candidate": "C:/Users/kalex/AppData/Local/Temp/claude/C--Users-kalex-OneDrive-Documents-RF-73/a8268f5e-ad5f-4834-90da-8e3b675a93b6/scratchpad/g3ap/g3-v0.25.wav",
+  "candidate_audio": {
+    "frames": 352800,
+    "sample_rate": 44100,
+    "selected_channel": 0,
+    "source_bits_per_sample": 32,
+    "source_channels": 1,
+    "source_format": "ieee_float"
+  },
+  "partial_comparison": {
+    "candidate_gain_to_match_reference": 25.15182866706149,
+    "candidate_level_minus_reference_db": -28.01139131956287,
+    "candidate_observations": {
+      "ambiguous_match": 0,
+      "excluded": 0,
+      "matched": 103,
+      "no_counterpart": 5,
+      "total": 108
+    },
+    "candidate_region": {
+      "end_frame_exclusive": 44982,
+      "end_seconds": 1.02,
+      "start_frame": 882,
+      "start_seconds": 0.02
+    },
+    "candidate_tracking": {
+      "bin_spacing_hz": 2.691650390625,
+      "dropped_track_observations": 0,
+      "fft_size": 16384,
+      "frames": [
+        {
+          "accepted_peaks": 8,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.06400226757369615,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1163
+        },
+        {
+          "accepted_peaks": 6,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.09599773242630386,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 13,
+          "rejected_weak_peaks": 1306
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.12799319727891156,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 13,
+          "rejected_weak_peaks": 1533
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.15998866213151927,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1265
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.19198412698412698,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 13,
+          "rejected_weak_peaks": 1626
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.2239795918367347,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 13,
+          "rejected_weak_peaks": 1365
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.2559750566893424,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1625
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.28797052154195013,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1289
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.3199659863945578,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1654
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.35196145124716555,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 13,
+          "rejected_weak_peaks": 1416
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.3839569160997732,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1545
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.41595238095238096,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1468
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.44794784580498864,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 13,
+          "rejected_weak_peaks": 1525
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.4799433106575964,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 13,
+          "rejected_weak_peaks": 1559
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.5119387755102041,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 11,
+          "rejected_weak_peaks": 1389
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.5439342403628118,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 11,
+          "rejected_weak_peaks": 1564
+        },
+        {
+          "accepted_peaks": 4,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.5759297052154195,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1315
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.6079251700680273,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1580
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.6399206349206349,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 11,
+          "rejected_weak_peaks": 1318
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.6719160997732426,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 11,
+          "rejected_weak_peaks": 1576
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.7039115646258504,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1392
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.7359070294784581,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 11,
+          "rejected_weak_peaks": 1647
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.7679024943310657,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 11,
+          "rejected_weak_peaks": 1458
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.7998979591836735,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 12,
+          "rejected_weak_peaks": 1594
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.8318934240362812,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 11,
+          "rejected_weak_peaks": 1575
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.8638888888888889,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 11,
+          "rejected_weak_peaks": 1475
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.8958843537414966,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 11,
+          "rejected_weak_peaks": 1580
+        },
+        {
+          "accepted_peaks": 3,
+          "background_dbfs": -180.0,
+          "center_seconds": 0.9278798185941043,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 11,
+          "rejected_weak_peaks": 1356
+        }
+      ],
+      "hop_seconds": 0.03199546485260771,
+      "matching_tolerance_hz": 5.859167404782994,
+      "max_peaks_per_frame": 32,
+      "max_tracks": 2048,
+      "method": "free-peaks-v1; median-background; hann-leakage-guard; contiguous-nearest",
+      "minimum_separation_hz": 15.62444641275465,
+      "noise_margin_db": 18.0,
+      "observation_resolution_hz": 7.812223206377325,
+      "observed_samples": 5645,
+      "tracks": [
+        {
+          "decay": {
+            "early_slope_db_per_second": -11.23465452724452,
+            "estimate": {
+              "end_seconds": 0.9278798185941043,
+              "extrapolated_t60_seconds": 5.324904048657541,
+              "fitted_drop_db": 8.291931853256626,
+              "points": 24,
+              "r_squared": 0.9999980455973907,
+              "slope_db_per_second": -11.267808668801566,
+              "start_seconds": 0.19198412698412698
+            },
+            "late_slope_db_per_second": -11.294509911298547,
+            "rejection_reasons": [],
+            "residual_rms_db": 0.003488820526045277
+          },
+          "id": 0,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -28.963178095517303,
+              "background_dbfs": -103.76078032872586,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 195.99428084324174,
+              "margin_above_background_db": 74.79760223320855
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -29.319011277138625,
+              "background_dbfs": -104.32417455202598,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 195.99433722505586,
+              "margin_above_background_db": 75.00516327488735
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -29.675450077359276,
+              "background_dbfs": -104.5716373642569,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 195.99430257120835,
+              "margin_above_background_db": 74.89618728689763
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -30.032399619828958,
+              "background_dbfs": -104.76698021148721,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 195.99429803654795,
+              "margin_above_background_db": 74.73458059165824
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -30.389882237106683,
+              "background_dbfs": -105.3975527553262,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 195.99426301199796,
+              "margin_above_background_db": 75.00767051821953
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -30.74775878219897,
+              "background_dbfs": -106.53235584121353,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 195.9943636777106,
+              "margin_above_background_db": 75.78459705901456
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -31.10606917345235,
+              "background_dbfs": -106.48736313626905,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 195.99426566224787,
+              "margin_above_background_db": 75.3812939628167
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -31.464700882523353,
+              "background_dbfs": -106.15833760586396,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 195.99430709516778,
+              "margin_above_background_db": 74.6936367233406
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -31.823705952920363,
+              "background_dbfs": -107.53652098929591,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 195.9942738168412,
+              "margin_above_background_db": 75.71281503637555
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -32.1829654622685,
+              "background_dbfs": -107.97780573418054,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 195.99434746633014,
+              "margin_above_background_db": 75.79484027191204
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -32.54251512912858,
+              "background_dbfs": -107.9021485429829,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 195.99426993063415,
+              "margin_above_background_db": 75.35963341385431
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -32.902302102181785,
+              "background_dbfs": -108.13357510935023,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 195.99428946980748,
+              "margin_above_background_db": 75.23127300716845
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -33.26231739993293,
+              "background_dbfs": -109.26966323657399,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 195.99431230644018,
+              "margin_above_background_db": 76.00734583664106
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -33.622535751501054,
+              "background_dbfs": -109.81754768349894,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 195.9943012191245,
+              "margin_above_background_db": 76.1950119319979
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -33.982918612307806,
+              "background_dbfs": -109.59356668755629,
+              "capacity_limited": false,
+              "center_seconds": 0.5119387755102041,
+              "frame": 14,
+              "frequency_hz": 195.99429820920838,
+              "margin_above_background_db": 75.61064807524849
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -34.343505971786044,
+              "background_dbfs": -110.0411108449419,
+              "capacity_limited": false,
+              "center_seconds": 0.5439342403628118,
+              "frame": 15,
+              "frequency_hz": 195.99426469732575,
+              "margin_above_background_db": 75.69760487315585
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -34.70420825834964,
+              "background_dbfs": -110.84962079917119,
+              "capacity_limited": false,
+              "center_seconds": 0.5759297052154195,
+              "frame": 16,
+              "frequency_hz": 195.9943458728602,
+              "margin_above_background_db": 76.14541254082155
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -35.06508735444148,
+              "background_dbfs": -111.40985210628928,
+              "capacity_limited": false,
+              "center_seconds": 0.6079251700680273,
+              "frame": 17,
+              "frequency_hz": 195.9942649023235,
+              "margin_above_background_db": 76.3447647518478
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -35.42605269823988,
+              "background_dbfs": -111.03799803123385,
+              "capacity_limited": false,
+              "center_seconds": 0.6399206349206349,
+              "frame": 18,
+              "frequency_hz": 195.9943148297497,
+              "margin_above_background_db": 75.61194533299397
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -35.78718335761897,
+              "background_dbfs": -112.14878275806022,
+              "capacity_limited": false,
+              "center_seconds": 0.6719160997732426,
+              "frame": 19,
+              "frequency_hz": 195.9942640413324,
+              "margin_above_background_db": 76.36159940044125
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -36.14837677182795,
+              "background_dbfs": -112.46861066898056,
+              "capacity_limited": false,
+              "center_seconds": 0.7039115646258504,
+              "frame": 20,
+              "frequency_hz": 195.99434239031345,
+              "margin_above_background_db": 76.3202338971526
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -36.50969819066607,
+              "background_dbfs": -112.82376679345838,
+              "capacity_limited": false,
+              "center_seconds": 0.7359070294784581,
+              "frame": 21,
+              "frequency_hz": 195.9942663847505,
+              "margin_above_background_db": 76.3140686027923
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -36.87108952942904,
+              "background_dbfs": -112.93831152781814,
+              "capacity_limited": false,
+              "center_seconds": 0.7679024943310657,
+              "frame": 22,
+              "frequency_hz": 195.99430068171134,
+              "margin_above_background_db": 76.0672219983891
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -37.23257858227414,
+              "background_dbfs": -113.75041174130988,
+              "capacity_limited": false,
+              "center_seconds": 0.7998979591836735,
+              "frame": 23,
+              "frequency_hz": 195.99429561981535,
+              "margin_above_background_db": 76.51783315903575
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -37.594135665665284,
+              "background_dbfs": -114.04662678078489,
+              "capacity_limited": false,
+              "center_seconds": 0.8318934240362812,
+              "frame": 24,
+              "frequency_hz": 195.9943043568538,
+              "margin_above_background_db": 76.45249111511961
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -37.955751132460435,
+              "background_dbfs": -114.09575619497751,
+              "capacity_limited": false,
+              "center_seconds": 0.8638888888888889,
+              "frame": 25,
+              "frequency_hz": 195.99429619808265,
+              "margin_above_background_db": 76.14000506251708
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -38.31745482644519,
+              "background_dbfs": -114.67857027619294,
+              "capacity_limited": false,
+              "center_seconds": 0.8958843537414966,
+              "frame": 26,
+              "frequency_hz": 195.9942711645656,
+              "margin_above_background_db": 76.36111544974776
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -38.67918558033899,
+              "background_dbfs": -115.04248612537212,
+              "capacity_limited": false,
+              "center_seconds": 0.9278798185941043,
+              "frame": 27,
+              "frequency_hz": 195.99433261592503,
+              "margin_above_background_db": 76.36330054503313
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": -22.156095849883872,
+            "estimate": {
+              "end_seconds": 0.9278798185941043,
+              "extrapolated_t60_seconds": 2.686610665765101,
+              "fitted_drop_db": 16.43473766379335,
+              "points": 24,
+              "r_squared": 0.9999858113777352,
+              "slope_db_per_second": -22.332971712115576,
+              "start_seconds": 0.19198412698412698
+            },
+            "late_slope_db_per_second": -22.476009085578255,
+            "rejection_reasons": [],
+            "residual_rms_db": 0.018631655004276305
+          },
+          "id": 1,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -48.480315078592575,
+              "background_dbfs": -107.69961079243315,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 391.99408428128254,
+              "margin_above_background_db": 59.21929571384057
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -49.171642431287424,
+              "background_dbfs": -110.80821097856526,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 391.9890148041653,
+              "margin_above_background_db": 61.63656854727783
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -49.86483873764903,
+              "background_dbfs": -111.48528388228458,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 391.9898192058741,
+              "margin_above_background_db": 61.620445144635546
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -50.560306692649355,
+              "background_dbfs": -108.88832994716935,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 391.99500308300554,
+              "margin_above_background_db": 58.32802325452
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -51.25945008883023,
+              "background_dbfs": -110.53404410237006,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 391.99278025258934,
+              "margin_above_background_db": 59.27459401353983
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -51.96088113890309,
+              "background_dbfs": -113.2444134357008,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 391.98789608260256,
+              "margin_above_background_db": 61.283532296797716
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -52.66302550599302,
+              "background_dbfs": -112.22558892492044,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 391.99166708027724,
+              "margin_above_background_db": 59.562563418927425
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -53.367372286328504,
+              "background_dbfs": -110.78927953256607,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 391.99580165114276,
+              "margin_above_background_db": 57.421907246237566
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -54.07474660733768,
+              "background_dbfs": -113.53870387860995,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 391.99048310707656,
+              "margin_above_background_db": 59.46395727127227
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -54.78283100742569,
+              "background_dbfs": -116.00791801326017,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 391.98747778405607,
+              "margin_above_background_db": 61.225087005834474
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -55.49102749781075,
+              "background_dbfs": -113.28158048145636,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 391.9942013478904,
+              "margin_above_background_db": 57.79055298364561
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -56.20177032579836,
+              "background_dbfs": -113.73963831309355,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 391.9956875311679,
+              "margin_above_background_db": 57.53786798729519
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -56.914828881921196,
+              "background_dbfs": -116.56921959541964,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 391.9879110774297,
+              "margin_above_background_db": 59.654390713498444
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -57.62732542800355,
+              "background_dbfs": -117.40584492088799,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 391.9882703547596,
+              "margin_above_background_db": 59.778519492884435
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -58.339960191852526,
+              "background_dbfs": -116.09635949729036,
+              "capacity_limited": false,
+              "center_seconds": 0.5119387755102041,
+              "frame": 14,
+              "frequency_hz": 391.9965583146892,
+              "margin_above_background_db": 57.75639930543784
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -59.05540372991545,
+              "background_dbfs": -117.2832399348431,
+              "capacity_limited": false,
+              "center_seconds": 0.5439342403628118,
+              "frame": 15,
+              "frequency_hz": 391.9940422998422,
+              "margin_above_background_db": 58.22783620492765
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -59.77203284204303,
+              "background_dbfs": -119.10474995391459,
+              "capacity_limited": false,
+              "center_seconds": 0.5759297052154195,
+              "frame": 16,
+              "frequency_hz": 391.9858918598805,
+              "margin_above_background_db": 59.33271711187156
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -60.48733943719684,
+              "background_dbfs": -118.71323964668866,
+              "capacity_limited": false,
+              "center_seconds": 0.6079251700680273,
+              "frame": 17,
+              "frequency_hz": 391.9908435140081,
+              "margin_above_background_db": 58.225900209491826
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -61.203603177897634,
+              "background_dbfs": -118.61671566584577,
+              "capacity_limited": false,
+              "center_seconds": 0.6399206349206349,
+              "frame": 18,
+              "frequency_hz": 391.9981211552525,
+              "margin_above_background_db": 57.41311248794814
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -61.922676972548864,
+              "background_dbfs": -119.13909015147465,
+              "capacity_limited": false,
+              "center_seconds": 0.6719160997732426,
+              "frame": 19,
+              "frequency_hz": 391.9906427940835,
+              "margin_above_background_db": 57.216413178925784
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -62.64131448136505,
+              "background_dbfs": -120.93531840082517,
+              "capacity_limited": false,
+              "center_seconds": 0.7039115646258504,
+              "frame": 20,
+              "frequency_hz": 391.984886751914,
+              "margin_above_background_db": 58.29400391946012
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -63.35833938959896,
+              "background_dbfs": -120.0067537200184,
+              "capacity_limited": false,
+              "center_seconds": 0.7359070294784581,
+              "frame": 21,
+              "frequency_hz": 391.9948181617113,
+              "margin_above_background_db": 56.648414330419435
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -64.07760428229862,
+              "background_dbfs": -120.23353388019308,
+              "capacity_limited": false,
+              "center_seconds": 0.7679024943310657,
+              "frame": 22,
+              "frequency_hz": 391.9983807224889,
+              "margin_above_background_db": 56.155929597894456
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -64.7993148134887,
+              "background_dbfs": -121.69305125946457,
+              "capacity_limited": false,
+              "center_seconds": 0.7998979591836735,
+              "frame": 23,
+              "frequency_hz": 391.9864340023525,
+              "margin_above_background_db": 56.89373644597586
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.5190144411219,
+              "background_dbfs": -122.3230927496671,
+              "capacity_limited": false,
+              "center_seconds": 0.8318934240362812,
+              "frame": 24,
+              "frequency_hz": 391.9856155201761,
+              "margin_above_background_db": 56.8040783085452
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.23747209773906,
+              "background_dbfs": -121.58960374020958,
+              "capacity_limited": false,
+              "center_seconds": 0.8638888888888889,
+              "frame": 25,
+              "frequency_hz": 391.99883955148846,
+              "margin_above_background_db": 55.352131642470525
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.95921733887897,
+              "background_dbfs": -122.10430196312488,
+              "capacity_limited": false,
+              "center_seconds": 0.8958843537414966,
+              "frame": 26,
+              "frequency_hz": 391.9963681420747,
+              "margin_above_background_db": 55.14508462424591
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -67.68224609742894,
+              "background_dbfs": -124.15169234724983,
+              "capacity_limited": false,
+              "center_seconds": 0.9278798185941043,
+              "frame": 27,
+              "frequency_hz": 391.98284800407873,
+              "margin_above_background_db": 56.46944624982089
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 2,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.70077375455735,
+              "background_dbfs": -120.18113849067554,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 1228.3010299983337,
+              "margin_above_background_db": 53.48036473611819
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -78.01084618217241,
+              "background_dbfs": -131.94552156647185,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 1228.3006741341494,
+              "margin_above_background_db": 53.93467538429944
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -89.32191235849942,
+              "background_dbfs": -144.71366322164343,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 1228.30063652141,
+              "margin_above_background_db": 55.39175086314401
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": -35.27180435033586,
+            "estimate": {
+              "end_seconds": 0.9278798185941043,
+              "extrapolated_t60_seconds": 1.7224073100203998,
+              "fitted_drop_db": 25.63490136144144,
+              "points": 24,
+              "r_squared": 0.9999632527520411,
+              "slope_db_per_second": -34.83496595197879,
+              "start_seconds": 0.19198412698412698
+            },
+            "late_slope_db_per_second": -34.46412691551718,
+            "rejection_reasons": [],
+            "residual_rms_db": 0.04677001440090737
+          },
+          "id": 3,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -69.73477003870133,
+              "background_dbfs": -127.13951879546087,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 587.9918243307222,
+              "margin_above_background_db": 57.404748756759545
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -70.90024088428817,
+              "background_dbfs": -126.10908544238401,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 587.9992777557704,
+              "margin_above_background_db": 55.20884455809585
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -72.06372818425335,
+              "background_dbfs": -126.44476714693609,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 587.994683282848,
+              "margin_above_background_db": 54.38103896268274
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -73.21846468840499,
+              "background_dbfs": -131.77341826073098,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 587.9940863605693,
+              "margin_above_background_db": 58.554953572325985
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -74.37173449689446,
+              "background_dbfs": -131.17228165828362,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 587.9876230668877,
+              "margin_above_background_db": 56.80054716138916
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -75.5148560973082,
+              "background_dbfs": -128.75639005725427,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 588.0058356031834,
+              "margin_above_background_db": 53.24153395994607
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -76.66194007683538,
+              "background_dbfs": -132.0059640015035,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 587.9869000436612,
+              "margin_above_background_db": 55.34402392466811
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -77.79645282818377,
+              "background_dbfs": -136.15839557537737,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 587.9959405256545,
+              "margin_above_background_db": 58.361942747193595
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -78.93329805570357,
+              "background_dbfs": -133.69795898764923,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 587.9881274911393,
+              "margin_above_background_db": 54.764660931945656
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -80.0610226322969,
+              "background_dbfs": -131.6300619775688,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 588.0072571578138,
+              "margin_above_background_db": 51.569039345271904
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -81.19203065023115,
+              "background_dbfs": -136.72703802863316,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 587.9865907922449,
+              "margin_above_background_db": 55.535007378402014
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -82.31487673290262,
+              "background_dbfs": -139.7479683511947,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 587.9922876231313,
+              "margin_above_background_db": 57.43309161829207
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -83.4348732729277,
+              "background_dbfs": -134.51270627858491,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 588.0007823035241,
+              "margin_above_background_db": 51.07783300565721
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -84.55753036437784,
+              "background_dbfs": -135.33484081531668,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 587.9965148888544,
+              "margin_above_background_db": 50.77731045093884
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -85.67149083807071,
+              "background_dbfs": -142.2318183452468,
+              "capacity_limited": false,
+              "center_seconds": 0.5119387755102041,
+              "frame": 14,
+              "frequency_hz": 587.995756404818,
+              "margin_above_background_db": 56.5603275071761
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -86.79129023248974,
+              "background_dbfs": -141.47920784066426,
+              "capacity_limited": false,
+              "center_seconds": 0.5439342403628118,
+              "frame": 15,
+              "frequency_hz": 587.9794392039051,
+              "margin_above_background_db": 54.687917608174516
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -87.89538455974092,
+              "background_dbfs": -136.81006612692835,
+              "capacity_limited": false,
+              "center_seconds": 0.5759297052154195,
+              "frame": 16,
+              "frequency_hz": 588.017934056969,
+              "margin_above_background_db": 48.91468156718743
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -89.01762854291923,
+              "background_dbfs": -139.9191030822517,
+              "capacity_limited": false,
+              "center_seconds": 0.6079251700680273,
+              "frame": 17,
+              "frequency_hz": 587.9760207925198,
+              "margin_above_background_db": 50.90147453933247
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -90.11630892476626,
+              "background_dbfs": -147.985681616055,
+              "capacity_limited": false,
+              "center_seconds": 0.6399206349206349,
+              "frame": 18,
+              "frequency_hz": 588.0042415058585,
+              "margin_above_background_db": 57.86937269128873
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -91.23195968822901,
+              "background_dbfs": -141.49911520629033,
+              "capacity_limited": false,
+              "center_seconds": 0.6719160997732426,
+              "frame": 19,
+              "frequency_hz": 587.9725509467892,
+              "margin_above_background_db": 50.267155518061315
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -92.32673754887664,
+              "background_dbfs": -139.78008029062744,
+              "capacity_limited": false,
+              "center_seconds": 0.7039115646258504,
+              "frame": 20,
+              "frequency_hz": 588.0250575570542,
+              "margin_above_background_db": 47.4533427417508
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -93.44085728219012,
+              "background_dbfs": -145.02571953192285,
+              "capacity_limited": false,
+              "center_seconds": 0.7359070294784581,
+              "frame": 21,
+              "frequency_hz": 587.9721449217703,
+              "margin_above_background_db": 51.58486224973272
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -94.53605528114515,
+              "background_dbfs": -150.75129229445048,
+              "capacity_limited": false,
+              "center_seconds": 0.7679024943310657,
+              "frame": 22,
+              "frequency_hz": 587.9991650380493,
+              "margin_above_background_db": 56.21523701330533
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -95.63720591528002,
+              "background_dbfs": -142.74378310419922,
+              "capacity_limited": false,
+              "center_seconds": 0.7998979591836735,
+              "frame": 23,
+              "frequency_hz": 587.9969954876727,
+              "margin_above_background_db": 47.1065771889192
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -96.74070595723707,
+              "background_dbfs": -143.90848507961027,
+              "capacity_limited": false,
+              "center_seconds": 0.8318934240362812,
+              "frame": 24,
+              "frequency_hz": 588.0045156602097,
+              "margin_above_background_db": 47.167779122373204
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -97.8355200755105,
+              "background_dbfs": -150.1801134642947,
+              "capacity_limited": false,
+              "center_seconds": 0.8638888888888889,
+              "frame": 25,
+              "frequency_hz": 587.9979311055554,
+              "margin_above_background_db": 52.34459338878419
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -98.94509709859408,
+              "background_dbfs": -149.5180151456405,
+              "capacity_limited": false,
+              "center_seconds": 0.8958843537414966,
+              "frame": 26,
+              "frequency_hz": 587.9663039407164,
+              "margin_above_background_db": 50.57291804704643
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -100.02438076531057,
+              "background_dbfs": -145.59183667679287,
+              "capacity_limited": false,
+              "center_seconds": 0.9278798185941043,
+              "frame": 27,
+              "frequency_hz": 588.0410137588665,
+              "margin_above_background_db": 45.5674559114823
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": -45.78356979667696,
+            "estimate": {
+              "end_seconds": 0.5759297052154195,
+              "extrapolated_t60_seconds": 1.3143433507962836,
+              "fitted_drop_db": 17.52718167586951,
+              "points": 13,
+              "r_squared": 0.9999970707149273,
+              "slope_db_per_second": -45.650171976485076,
+              "start_seconds": 0.19198412698412698
+            },
+            "late_slope_db_per_second": -45.549243513876945,
+            "rejection_reasons": [],
+            "residual_rms_db": 0.009353546624772337
+          },
+          "id": 4,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -80.69526958467263,
+              "background_dbfs": -134.05233285839574,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 783.996006344376,
+              "margin_above_background_db": 53.357063273723114
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -82.16602324654542,
+              "background_dbfs": -140.92192074730312,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 783.9918011987274,
+              "margin_above_background_db": 58.7558975007577
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -83.63952447925095,
+              "background_dbfs": -143.18286724881307,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 783.988594416928,
+              "margin_above_background_db": 59.543342769562116
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -85.10620142315653,
+              "background_dbfs": -145.78501801021048,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 783.9947738264382,
+              "margin_above_background_db": 60.678816587053944
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -86.57122343210395,
+              "background_dbfs": -144.04201959701362,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 783.9973828233417,
+              "margin_above_background_db": 57.47079616490967
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -88.03660636629496,
+              "background_dbfs": -149.78128101972507,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 784.0008569601498,
+              "margin_above_background_db": 61.74467465343011
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -89.50443610055773,
+              "background_dbfs": -146.24866817578726,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 783.9916053655318,
+              "margin_above_background_db": 56.74423207522953
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -90.9706103250701,
+              "background_dbfs": -152.30043683356942,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 783.991418284547,
+              "margin_above_background_db": 61.32982650849932
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -92.43789367532247,
+              "background_dbfs": -148.50024318034824,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 783.9838826266979,
+              "margin_above_background_db": 56.062349505025765
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -93.8912823895804,
+              "background_dbfs": -152.680007270386,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 783.999477505683,
+              "margin_above_background_db": 58.7887248808056
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -95.34811994091028,
+              "background_dbfs": -149.79715539325622,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 784.0058540846068,
+              "margin_above_background_db": 54.44903545234594
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -96.81368614220075,
+              "background_dbfs": -154.43110350249438,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 784.0014887633117,
+              "margin_above_background_db": 57.61741736029363
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -98.27752858918313,
+              "background_dbfs": -153.3949136996274,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 783.9828074631074,
+              "margin_above_background_db": 55.117385110444275
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -99.74333272256658,
+              "background_dbfs": -153.6879499279,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 783.9755474098425,
+              "margin_above_background_db": 53.94461720533343
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -101.19419414715198,
+              "background_dbfs": -156.04221679627537,
+              "capacity_limited": false,
+              "center_seconds": 0.5119387755102041,
+              "frame": 14,
+              "frequency_hz": 783.9965261003707,
+              "margin_above_background_db": 54.84802264912339
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -102.63761213556161,
+              "background_dbfs": -155.08383519247477,
+              "capacity_limited": false,
+              "center_seconds": 0.5439342403628118,
+              "frame": 15,
+              "frequency_hz": 784.0136077141092,
+              "margin_above_background_db": 52.446223056913155
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -104.09539347851721,
+              "background_dbfs": -157.39786302522378,
+              "capacity_limited": false,
+              "center_seconds": 0.5759297052154195,
+              "frame": 16,
+              "frequency_hz": 784.0161531599937,
+              "margin_above_background_db": 53.302469546706575
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 5,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -84.87632481446056,
+              "background_dbfs": -126.87551599137534,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 1424.309967158946,
+              "margin_above_background_db": 41.99919117691478
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -96.51072632337919,
+              "background_dbfs": -138.7850443253375,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 1424.2927482821626,
+              "margin_above_background_db": 42.27431800195832
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 6,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -87.67125501295199,
+              "background_dbfs": -125.78703318162779,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 1032.2810080905188,
+              "margin_above_background_db": 38.1157781686758
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 7,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -97.98066198798657,
+              "background_dbfs": -125.78703318162779,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 980.0813321624853,
+              "margin_above_background_db": 27.806371193641226
+            }
+          ]
+        }
+      ],
+      "window_seconds": 0.1280045351473923
+    },
+    "detection_complete": true,
+    "match_cents": 50.0,
+    "matches": [
+      {
+        "candidate_track_id": 0,
+        "decay": {
+          "candidate_minus_reference_slope_db_per_second": null,
+          "candidate_minus_reference_t60_seconds": null,
+          "status": "unqualified_track"
+        },
+        "level_matched_mean_candidate_minus_reference_db": -1.0625969518122211,
+        "level_matched_rms_level_error_db": 2.524260520602973,
+        "mean_candidate_frequency_hz": 195.9942990820419,
+        "mean_candidate_minus_reference_cents": -3.1150766945961363,
+        "mean_candidate_minus_reference_db": -29.07398827137509,
+        "mean_reference_frequency_hz": 196.34728443113258,
+        "paired_center_seconds": [
+          0.06400226757369615,
+          0.09599773242630386,
+          0.12799319727891156,
+          0.15998866213151927,
+          0.19198412698412698,
+          0.2239795918367347,
+          0.2559750566893424,
+          0.28797052154195013,
+          0.3199659863945578,
+          0.35196145124716555,
+          0.3839569160997732,
+          0.41595238095238096,
+          0.44794784580498864,
+          0.4799433106575964,
+          0.5119387755102041,
+          0.5439342403628118,
+          0.5759297052154195,
+          0.6079251700680273,
+          0.6399206349206349,
+          0.6719160997732426,
+          0.7039115646258504,
+          0.7359070294784581,
+          0.7679024943310657,
+          0.7998979591836735,
+          0.8318934240362812,
+          0.8638888888888889,
+          0.8958843537414966,
+          0.9278798185941043
+        ],
+        "reference_track_id": 0,
+        "rms_frequency_error_cents": 3.1526904994637848,
+        "rms_level_error_db": 29.164011605023244
+      },
+      {
+        "candidate_track_id": 1,
+        "decay": {
+          "candidate_minus_reference_slope_db_per_second": null,
+          "candidate_minus_reference_t60_seconds": null,
+          "status": "unqualified_track"
+        },
+        "level_matched_mean_candidate_minus_reference_db": -1.6755026442557153,
+        "level_matched_rms_level_error_db": 4.684852527546584,
+        "mean_candidate_frequency_hz": 391.99149274652143,
+        "mean_candidate_minus_reference_cents": -2.9763179333586467,
+        "mean_candidate_minus_reference_db": -29.686893963818584,
+        "mean_reference_frequency_hz": 392.6661950834212,
+        "paired_center_seconds": [
+          0.09599773242630386,
+          0.12799319727891156,
+          0.15998866213151927,
+          0.19198412698412698,
+          0.2239795918367347,
+          0.2559750566893424,
+          0.28797052154195013,
+          0.3199659863945578,
+          0.35196145124716555,
+          0.3839569160997732,
+          0.41595238095238096,
+          0.44794784580498864,
+          0.4799433106575964,
+          0.5119387755102041,
+          0.5439342403628118,
+          0.5759297052154195,
+          0.6079251700680273,
+          0.6399206349206349,
+          0.6719160997732426,
+          0.7039115646258504,
+          0.7359070294784581,
+          0.7679024943310657,
+          0.7998979591836735,
+          0.8318934240362812,
+          0.8638888888888889,
+          0.8958843537414966,
+          0.9278798185941043
+        ],
+        "reference_track_id": 1,
+        "rms_frequency_error_cents": 3.486126415436312,
+        "rms_level_error_db": 30.007535842067405
+      },
+      {
+        "candidate_track_id": 3,
+        "decay": {
+          "candidate_minus_reference_slope_db_per_second": null,
+          "candidate_minus_reference_t60_seconds": null,
+          "status": "unqualified_track"
+        },
+        "level_matched_mean_candidate_minus_reference_db": -10.32124293808348,
+        "level_matched_rms_level_error_db": 12.470637832930427,
+        "mean_candidate_frequency_hz": 587.9956000573842,
+        "mean_candidate_minus_reference_cents": -2.784913520135936,
+        "mean_candidate_minus_reference_db": -38.33263425764635,
+        "mean_reference_frequency_hz": 588.9423611203443,
+        "paired_center_seconds": [
+          0.06400226757369615,
+          0.09599773242630386,
+          0.12799319727891156,
+          0.15998866213151927,
+          0.19198412698412698,
+          0.2239795918367347,
+          0.2559750566893424,
+          0.28797052154195013,
+          0.3199659863945578,
+          0.35196145124716555,
+          0.3839569160997732,
+          0.41595238095238096,
+          0.44794784580498864,
+          0.4799433106575964,
+          0.5119387755102041,
+          0.5439342403628118,
+          0.5759297052154195,
+          0.6079251700680273,
+          0.6399206349206349,
+          0.6719160997732426,
+          0.7039115646258504,
+          0.7359070294784581,
+          0.7679024943310657,
+          0.7998979591836735,
+          0.8318934240362812,
+          0.8638888888888889,
+          0.8958843537414966,
+          0.9278798185941043
+        ],
+        "reference_track_id": 3,
+        "rms_frequency_error_cents": 3.0188039563089717,
+        "rms_level_error_db": 38.96639066302728
+      },
+      {
+        "candidate_track_id": 5,
+        "decay": {
+          "candidate_minus_reference_slope_db_per_second": null,
+          "candidate_minus_reference_t60_seconds": null,
+          "status": "unqualified_track"
+        },
+        "level_matched_mean_candidate_minus_reference_db": -6.354773241380599,
+        "level_matched_rms_level_error_db": 8.066242223114115,
+        "mean_candidate_frequency_hz": 1424.3013577205543,
+        "mean_candidate_minus_reference_cents": -2.3443831885639197,
+        "mean_candidate_minus_reference_db": -34.36616456094347,
+        "mean_reference_frequency_hz": 1426.2314217251692,
+        "paired_center_seconds": [
+          0.06400226757369615,
+          0.09599773242630386
+        ],
+        "reference_track_id": 6,
+        "rms_frequency_error_cents": 2.3570811015297197,
+        "rms_level_error_db": 34.72339826806168
+      },
+      {
+        "candidate_track_id": 4,
+        "decay": {
+          "candidate_minus_reference_slope_db_per_second": null,
+          "candidate_minus_reference_t60_seconds": null,
+          "status": "unqualified_track"
+        },
+        "level_matched_mean_candidate_minus_reference_db": -3.40637761436043,
+        "level_matched_rms_level_error_db": 6.518450246080949,
+        "mean_candidate_frequency_hz": 783.9957520028095,
+        "mean_candidate_minus_reference_cents": -2.8570844193304916,
+        "mean_candidate_minus_reference_db": -31.4177689339233,
+        "mean_reference_frequency_hz": 785.2907078170466,
+        "paired_center_seconds": [
+          0.06400226757369615,
+          0.09599773242630386,
+          0.12799319727891156,
+          0.15998866213151927,
+          0.19198412698412698,
+          0.2239795918367347,
+          0.2559750566893424,
+          0.28797052154195013,
+          0.3199659863945578,
+          0.35196145124716555,
+          0.3839569160997732,
+          0.41595238095238096,
+          0.44794784580498864,
+          0.4799433106575964,
+          0.5119387755102041,
+          0.5439342403628118,
+          0.5759297052154195
+        ],
+        "reference_track_id": 7,
+        "rms_frequency_error_cents": 2.9173320674021763,
+        "rms_level_error_db": 31.905532278029977
+      },
+      {
+        "candidate_track_id": 7,
+        "decay": {
+          "candidate_minus_reference_slope_db_per_second": null,
+          "candidate_minus_reference_t60_seconds": null,
+          "status": "unqualified_track"
+        },
+        "level_matched_mean_candidate_minus_reference_db": -4.471667533913454,
+        "level_matched_rms_level_error_db": 4.4716675339134575,
+        "mean_candidate_frequency_hz": 980.0813321624853,
+        "mean_candidate_minus_reference_cents": -5.545639350345537,
+        "mean_candidate_minus_reference_db": -32.48305885347632,
+        "mean_reference_frequency_hz": 983.225847558466,
+        "paired_center_seconds": [
+          0.06400226757369615
+        ],
+        "reference_track_id": 8,
+        "rms_frequency_error_cents": 5.545639350345537,
+        "rms_level_error_db": 32.48305885347632
+      }
+    ],
+    "method": "explicit-equal-regions; simultaneous-mutual-unique-peaks-v1",
+    "reference_observations": {
+      "ambiguous_match": 0,
+      "excluded": 4,
+      "matched": 103,
+      "no_counterpart": 77,
+      "total": 184
+    },
+    "reference_region": {
+      "end_frame_exclusive": 44982,
+      "end_seconds": 1.02,
+      "start_frame": 882,
+      "start_seconds": 0.02
+    },
+    "reference_tracking": {
+      "bin_spacing_hz": 2.691650390625,
+      "dropped_track_observations": 0,
+      "fft_size": 16384,
+      "frames": [
+        {
+          "accepted_peaks": 11,
+          "background_dbfs": -109.40376944283679,
+          "center_seconds": 0.06400226757369615,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 2,
+          "rejected_weak_peaks": 849
+        },
+        {
+          "accepted_peaks": 9,
+          "background_dbfs": -109.59056216649105,
+          "center_seconds": 0.09599773242630386,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 2,
+          "rejected_weak_peaks": 840
+        },
+        {
+          "accepted_peaks": 8,
+          "background_dbfs": -109.92666001407207,
+          "center_seconds": 0.12799319727891156,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 2,
+          "rejected_weak_peaks": 830
+        },
+        {
+          "accepted_peaks": 8,
+          "background_dbfs": -109.70378019297189,
+          "center_seconds": 0.15998866213151927,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 5,
+          "rejected_weak_peaks": 835
+        },
+        {
+          "accepted_peaks": 9,
+          "background_dbfs": -109.57994831588937,
+          "center_seconds": 0.19198412698412698,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 6,
+          "rejected_weak_peaks": 861
+        },
+        {
+          "accepted_peaks": 8,
+          "background_dbfs": -109.84088023886203,
+          "center_seconds": 0.2239795918367347,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 5,
+          "rejected_weak_peaks": 847
+        },
+        {
+          "accepted_peaks": 8,
+          "background_dbfs": -110.11174954366739,
+          "center_seconds": 0.2559750566893424,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 6,
+          "rejected_weak_peaks": 865
+        },
+        {
+          "accepted_peaks": 8,
+          "background_dbfs": -109.84219174182022,
+          "center_seconds": 0.28797052154195013,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 5,
+          "rejected_weak_peaks": 872
+        },
+        {
+          "accepted_peaks": 8,
+          "background_dbfs": -109.6615430741621,
+          "center_seconds": 0.3199659863945578,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 5,
+          "rejected_weak_peaks": 809
+        },
+        {
+          "accepted_peaks": 8,
+          "background_dbfs": -110.16426794318679,
+          "center_seconds": 0.35196145124716555,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 6,
+          "rejected_weak_peaks": 894
+        },
+        {
+          "accepted_peaks": 8,
+          "background_dbfs": -110.23188714771143,
+          "center_seconds": 0.3839569160997732,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 6,
+          "rejected_weak_peaks": 861
+        },
+        {
+          "accepted_peaks": 7,
+          "background_dbfs": -110.18006559602094,
+          "center_seconds": 0.41595238095238096,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 6,
+          "rejected_weak_peaks": 857
+        },
+        {
+          "accepted_peaks": 7,
+          "background_dbfs": -110.42352816777772,
+          "center_seconds": 0.44794784580498864,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 6,
+          "rejected_weak_peaks": 883
+        },
+        {
+          "accepted_peaks": 7,
+          "background_dbfs": -110.14949868853266,
+          "center_seconds": 0.4799433106575964,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 6,
+          "rejected_weak_peaks": 833
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.05165340561999,
+          "center_seconds": 0.5119387755102041,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 6,
+          "rejected_weak_peaks": 858
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.41209227244829,
+          "center_seconds": 0.5439342403628118,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 7,
+          "rejected_weak_peaks": 864
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.4135035038046,
+          "center_seconds": 0.5759297052154195,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 8,
+          "rejected_weak_peaks": 872
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -109.96550174732015,
+          "center_seconds": 0.6079251700680273,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 9,
+          "rejected_weak_peaks": 869
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.07561542564858,
+          "center_seconds": 0.6399206349206349,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 10,
+          "rejected_weak_peaks": 852
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.49318507620427,
+          "center_seconds": 0.6719160997732426,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 8,
+          "rejected_weak_peaks": 840
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.57313532095556,
+          "center_seconds": 0.7039115646258504,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 8,
+          "rejected_weak_peaks": 860
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.70353157300462,
+          "center_seconds": 0.7359070294784581,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 9,
+          "rejected_weak_peaks": 880
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.26455451290713,
+          "center_seconds": 0.7679024943310657,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 8,
+          "rejected_weak_peaks": 861
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.09554524194905,
+          "center_seconds": 0.7998979591836735,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 9,
+          "rejected_weak_peaks": 870
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.31143338037435,
+          "center_seconds": 0.8318934240362812,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 10,
+          "rejected_weak_peaks": 872
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.30217705473511,
+          "center_seconds": 0.8638888888888889,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 10,
+          "rejected_weak_peaks": 856
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.27052803330733,
+          "center_seconds": 0.8958843537414966,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 9,
+          "rejected_weak_peaks": 869
+        },
+        {
+          "accepted_peaks": 5,
+          "background_dbfs": -110.51107536143421,
+          "center_seconds": 0.9278798185941043,
+          "dropped_capacity_peaks": 0,
+          "rejected_leakage_peaks": 9,
+          "rejected_weak_peaks": 851
+        }
+      ],
+      "hop_seconds": 0.03199546485260771,
+      "matching_tolerance_hz": 5.859167404782994,
+      "max_peaks_per_frame": 32,
+      "max_tracks": 2048,
+      "method": "free-peaks-v1; median-background; hann-leakage-guard; contiguous-nearest",
+      "minimum_separation_hz": 15.62444641275465,
+      "noise_margin_db": 18.0,
+      "observation_resolution_hz": 7.812223206377325,
+      "observed_samples": 5645,
+      "tracks": [
+        {
+          "decay": {
+            "early_slope_db_per_second": -2.440835447712809,
+            "estimate": {
+              "end_seconds": 0.9278798185941043,
+              "extrapolated_t60_seconds": null,
+              "fitted_drop_db": 1.7952857043441952,
+              "points": 24,
+              "r_squared": 0.9892904588503865,
+              "slope_db_per_second": -2.439592628156997,
+              "start_seconds": 0.19198412698412698
+            },
+            "late_slope_db_per_second": -2.399027817141809,
+            "rejection_reasons": [
+              "insufficient_drop"
+            ],
+            "residual_rms_db": 0.05621763320662079
+          },
+          "id": 0,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -3.901287991381078,
+              "background_dbfs": -58.58858562248579,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 196.51112775921,
+              "margin_above_background_db": 54.68729763110471
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -3.9222228125767953,
+              "background_dbfs": -61.77154060065469,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 196.4476250269645,
+              "margin_above_background_db": 57.84931778807789
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -3.770184479348414,
+              "background_dbfs": -62.267175441802145,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 196.29398212526615,
+              "margin_above_background_db": 58.49699096245373
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -3.712901562615711,
+              "background_dbfs": -65.36483181413291,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 196.2217359647408,
+              "margin_above_background_db": 61.6519302515172
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -3.854217932541902,
+              "background_dbfs": -65.43699976756294,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 196.2727846361893,
+              "margin_above_background_db": 61.58278183502104
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.099525036402864,
+              "background_dbfs": -65.89727364280651,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 196.37773985129746,
+              "margin_above_background_db": 61.797748606403644
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.276680738319439,
+              "background_dbfs": -65.5558916960147,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 196.4310397854168,
+              "margin_above_background_db": 61.279210957695256
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.304244634436548,
+              "background_dbfs": -66.64945514915941,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 196.38822048369687,
+              "margin_above_background_db": 62.34521051472286
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.261881213959233,
+              "background_dbfs": -67.2732255265094,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 196.31119614294084,
+              "margin_above_background_db": 63.01134431255017
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.27747951595023,
+              "background_dbfs": -70.50706813828847,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 196.27855176654356,
+              "margin_above_background_db": 66.22958862233824
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.397485654808937,
+              "background_dbfs": -69.67339125018124,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 196.3103774018007,
+              "margin_above_background_db": 65.27590559537231
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.565005886065079,
+              "background_dbfs": -68.67557310688406,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 196.36697566497057,
+              "margin_above_background_db": 64.11056722081898
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.688647602866058,
+              "background_dbfs": -64.00619049224093,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 196.39023763326674,
+              "margin_above_background_db": 59.31754288937488
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.733980693645468,
+              "background_dbfs": -66.76671030636827,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 196.36433058664417,
+              "margin_above_background_db": 62.0327296127228
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.747403460467286,
+              "background_dbfs": -65.88039575708332,
+              "capacity_limited": false,
+              "center_seconds": 0.5119387755102041,
+              "frame": 14,
+              "frequency_hz": 196.32326145318996,
+              "margin_above_background_db": 61.13299229661604
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.795305171215206,
+              "background_dbfs": -70.51428775105938,
+              "capacity_limited": false,
+              "center_seconds": 0.5439342403628118,
+              "frame": 15,
+              "frequency_hz": 196.30871409496046,
+              "margin_above_background_db": 65.71898257984418
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -4.899005310939218,
+              "background_dbfs": -73.21198663463957,
+              "capacity_limited": false,
+              "center_seconds": 0.5759297052154195,
+              "frame": 16,
+              "frequency_hz": 196.32763108657176,
+              "margin_above_background_db": 68.31298132370036
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.0246563663590775,
+              "background_dbfs": -75.24089789153787,
+              "capacity_limited": false,
+              "center_seconds": 0.6079251700680273,
+              "frame": 17,
+              "frequency_hz": 196.35785851155293,
+              "margin_above_background_db": 70.21624152517879
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.1238248123555605,
+              "background_dbfs": -75.61321769174587,
+              "capacity_limited": false,
+              "center_seconds": 0.6399206349206349,
+              "frame": 18,
+              "frequency_hz": 196.3681174340728,
+              "margin_above_background_db": 70.48939287939031
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.18167961301954,
+              "background_dbfs": -73.32252470303051,
+              "capacity_limited": false,
+              "center_seconds": 0.6719160997732426,
+              "frame": 19,
+              "frequency_hz": 196.35337867011333,
+              "margin_above_background_db": 68.14084509001097
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.224918329677901,
+              "background_dbfs": -75.25890545373811,
+              "capacity_limited": false,
+              "center_seconds": 0.7039115646258504,
+              "frame": 20,
+              "frequency_hz": 196.3315875097348,
+              "margin_above_background_db": 70.0339871240602
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.28778193213463,
+              "background_dbfs": -76.80636729848375,
+              "capacity_limited": false,
+              "center_seconds": 0.7359070294784581,
+              "frame": 21,
+              "frequency_hz": 196.32493750327794,
+              "margin_above_background_db": 71.51858536634911
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.380330172394929,
+              "background_dbfs": -76.3098132385754,
+              "capacity_limited": false,
+              "center_seconds": 0.7679024943310657,
+              "frame": 22,
+              "frequency_hz": 196.33560443982148,
+              "margin_above_background_db": 70.92948306618047
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.483043795230467,
+              "background_dbfs": -77.30596547817969,
+              "capacity_limited": false,
+              "center_seconds": 0.7998979591836735,
+              "frame": 23,
+              "frequency_hz": 196.35181195612458,
+              "margin_above_background_db": 71.82292168294921
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.570864482449107,
+              "background_dbfs": -77.75191818641505,
+              "capacity_limited": false,
+              "center_seconds": 0.8318934240362812,
+              "frame": 24,
+              "frequency_hz": 196.35660110363813,
+              "margin_above_background_db": 72.18105370396594
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.6365772046304565,
+              "background_dbfs": -78.13212263873999,
+              "capacity_limited": false,
+              "center_seconds": 0.8638888888888889,
+              "frame": 25,
+              "frequency_hz": 196.34857714065384,
+              "margin_above_background_db": 72.49554543410953
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.694837135459743,
+              "background_dbfs": -78.01779041817692,
+              "capacity_limited": false,
+              "center_seconds": 0.8958843537414966,
+              "frame": 26,
+              "frequency_hz": 196.33652927037167,
+              "margin_above_background_db": 72.32295328271718
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -5.764373335156268,
+              "background_dbfs": -77.02819476558597,
+              "capacity_limited": false,
+              "center_seconds": 0.9278798185941043,
+              "frame": 27,
+              "frequency_hz": 196.3334290686798,
+              "margin_above_background_db": 71.2638214304297
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": -5.063725241106512,
+            "estimate": {
+              "end_seconds": 0.9278798185941043,
+              "extrapolated_t60_seconds": null,
+              "fitted_drop_db": 3.624898845142089,
+              "points": 24,
+              "r_squared": 0.8377538389641939,
+              "slope_db_per_second": -4.925832405964507,
+              "start_seconds": 0.19198412698412698
+            },
+            "late_slope_db_per_second": -4.713512072627797,
+            "rejection_reasons": [
+              "insufficient_drop",
+              "poor_fit"
+            ],
+            "residual_rms_db": 0.4801095631424482
+          },
+          "id": 1,
+          "observations": [
+            {
+              "ambiguous_neighbor": true,
+              "amplitude_dbfs": -28.368777162364232,
+              "background_dbfs": -70.35178010217179,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 394.1645851632445,
+              "margin_above_background_db": 41.983002939807555
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -28.341882910642102,
+              "background_dbfs": -73.81512883954996,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 393.729722481882,
+              "margin_above_background_db": 45.47324592890786
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -26.380753414473674,
+              "background_dbfs": -76.07841944660348,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 392.1059176775741,
+              "margin_above_background_db": 49.6976660321298
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -25.500452076330024,
+              "background_dbfs": -78.73445822635222,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 391.7818393356516,
+              "margin_above_background_db": 53.234006150022196
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -25.96347853633013,
+              "background_dbfs": -79.97085614964449,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 392.00632477416127,
+              "margin_above_background_db": 54.00737761331436
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -27.36365244304419,
+              "background_dbfs": -80.11527454568017,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 392.751965404701,
+              "margin_above_background_db": 52.75162210263598
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -28.577220190451957,
+              "background_dbfs": -79.99464201581792,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 393.51360570091384,
+              "margin_above_background_db": 51.41742182536596
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -28.405041784734085,
+              "background_dbfs": -80.96506663760637,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 393.1319544627412,
+              "margin_above_background_db": 52.56002485287229
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -27.49847369742418,
+              "background_dbfs": -80.87151992636755,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 392.4020437887706,
+              "margin_above_background_db": 53.37304622894337
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -27.111194061426943,
+              "background_dbfs": -83.64106572058974,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 392.17423569470316,
+              "margin_above_background_db": 56.529871659162794
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -27.51122070601069,
+              "background_dbfs": -84.65560980392686,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 392.3493509487507,
+              "margin_above_background_db": 57.144389097916175
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -28.38057577109332,
+              "background_dbfs": -85.0110919794696,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 392.8038523602096,
+              "margin_above_background_db": 56.63051620837628
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -29.015210734179373,
+              "background_dbfs": -83.50346200441953,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 393.12462951392644,
+              "margin_above_background_db": 54.488251270240156
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -28.944713942795296,
+              "background_dbfs": -84.10648311536232,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 392.90497316676596,
+              "margin_above_background_db": 55.16176917256703
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -28.546738345608567,
+              "background_dbfs": -85.49055560864376,
+              "capacity_limited": false,
+              "center_seconds": 0.5119387755102041,
+              "frame": 14,
+              "frequency_hz": 392.526520845194,
+              "margin_above_background_db": 56.94381726303519
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -28.41977294438233,
+              "background_dbfs": -84.93901109209587,
+              "capacity_limited": false,
+              "center_seconds": 0.5439342403628118,
+              "frame": 15,
+              "frequency_hz": 392.3993483642452,
+              "margin_above_background_db": 56.51923814771354
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -28.735401254219735,
+              "background_dbfs": -84.89933668228198,
+              "capacity_limited": false,
+              "center_seconds": 0.5759297052154195,
+              "frame": 16,
+              "frequency_hz": 392.52750612499244,
+              "margin_above_background_db": 56.163935428062246
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -29.284863933172538,
+              "background_dbfs": -86.02748084715641,
+              "capacity_limited": false,
+              "center_seconds": 0.6079251700680273,
+              "frame": 17,
+              "frequency_hz": 392.7766323656393,
+              "margin_above_background_db": 56.74261691398387
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -29.66963880252529,
+              "background_dbfs": -87.23672559634961,
+              "capacity_limited": false,
+              "center_seconds": 0.6399206349206349,
+              "frame": 18,
+              "frequency_hz": 392.91099110020593,
+              "margin_above_background_db": 57.56708679382432
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -29.684143615513925,
+              "background_dbfs": -84.65641992790194,
+              "capacity_limited": false,
+              "center_seconds": 0.6719160997732426,
+              "frame": 19,
+              "frequency_hz": 392.7977868261071,
+              "margin_above_background_db": 54.97227631238801
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -29.54115006907628,
+              "background_dbfs": -85.86155893533153,
+              "capacity_limited": false,
+              "center_seconds": 0.7039115646258504,
+              "frame": 20,
+              "frequency_hz": 392.60222734345916,
+              "margin_above_background_db": 56.32040886625525
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -29.55032246030964,
+              "background_dbfs": -89.43883809762374,
+              "capacity_limited": false,
+              "center_seconds": 0.7359070294784581,
+              "frame": 21,
+              "frequency_hz": 392.52121141854303,
+              "margin_above_background_db": 59.8885156373141
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -29.806524652990063,
+              "background_dbfs": -85.74846809112213,
+              "capacity_limited": false,
+              "center_seconds": 0.7679024943310657,
+              "frame": 22,
+              "frequency_hz": 392.60356321291556,
+              "margin_above_background_db": 55.94194343813207
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -30.17648552002163,
+              "background_dbfs": -84.5271485348768,
+              "capacity_limited": false,
+              "center_seconds": 0.7998979591836735,
+              "frame": 23,
+              "frequency_hz": 392.7526062291632,
+              "margin_above_background_db": 54.35066301485517
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -30.442588980481712,
+              "background_dbfs": -86.98005808009509,
+              "capacity_limited": false,
+              "center_seconds": 0.8318934240362812,
+              "frame": 24,
+              "frequency_hz": 392.80817634563095,
+              "margin_above_background_db": 56.537469099613375
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -30.513121575506712,
+              "background_dbfs": -89.1552335687445,
+              "capacity_limited": false,
+              "center_seconds": 0.8638888888888889,
+              "frame": 25,
+              "frequency_hz": 392.73662141267715,
+              "margin_above_background_db": 58.64211199323779
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -30.503384010341033,
+              "background_dbfs": -85.4540666277831,
+              "capacity_limited": false,
+              "center_seconds": 0.8958843537414966,
+              "frame": 26,
+              "frequency_hz": 392.6405394759558,
+              "margin_above_background_db": 54.95068261744207
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -30.581442467125203,
+              "background_dbfs": -85.72184848460381,
+              "capacity_limited": false,
+              "center_seconds": 0.9278798185941043,
+              "frame": 27,
+              "frequency_hz": 392.60312087689204,
+              "margin_above_background_db": 55.14040601747861
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 2,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -34.76173413557096,
+              "background_dbfs": -54.67680737515299,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 109.10363025785328,
+              "margin_above_background_db": 19.91507323958203
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -32.74212818228357,
+              "background_dbfs": -56.947158334732265,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 105.9879851004549,
+              "margin_above_background_db": 24.205030152448693
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -30.82996411708439,
+              "background_dbfs": -60.12957587209889,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 103.5734345637127,
+              "margin_above_background_db": 29.2996117550145
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -33.60991085299196,
+              "background_dbfs": -63.62387761169914,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 104.9320319108582,
+              "margin_above_background_db": 30.013966758707184
+            },
+            {
+              "ambiguous_neighbor": true,
+              "amplitude_dbfs": -40.80906655956642,
+              "background_dbfs": -64.01364987643721,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 107.89227088339958,
+              "margin_above_background_db": 23.204583316870796
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": -6.73851869628933,
+            "estimate": {
+              "end_seconds": 0.9278798185941043,
+              "extrapolated_t60_seconds": null,
+              "fitted_drop_db": 5.367255005279363,
+              "points": 24,
+              "r_squared": 0.939153305430559,
+              "slope_db_per_second": -7.2934996990361425,
+              "start_seconds": 0.19198412698412698
+            },
+            "late_slope_db_per_second": -7.1731748717134876,
+            "rejection_reasons": [
+              "poor_fit"
+            ],
+            "residual_rms_db": 0.41116670784708825
+          },
+          "id": 3,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -42.276031171817074,
+              "background_dbfs": -80.95409036180946,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 587.7586227011968,
+              "margin_above_background_db": 38.67805918999239
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -42.07782986990352,
+              "background_dbfs": -87.57245804496542,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 587.9891397794382,
+              "margin_above_background_db": 45.4946281750619
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -43.465415916786675,
+              "background_dbfs": -89.40731176212005,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 588.8829468308248,
+              "margin_above_background_db": 45.94189584533337
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -45.052833908029,
+              "background_dbfs": -93.32864864020206,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 589.5858126445546,
+              "margin_above_background_db": 48.27581473217306
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -45.67294619151143,
+              "background_dbfs": -94.7623251189883,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 589.6914229741171,
+              "margin_above_background_db": 49.08937892747687
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -45.035415489062906,
+              "background_dbfs": -95.06101915993356,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 589.059934527506,
+              "margin_above_background_db": 50.02560367087066
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -44.26408949515855,
+              "background_dbfs": -96.2982556086931,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 588.4481060531028,
+              "margin_above_background_db": 52.034166113534546
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -44.3776727931717,
+              "background_dbfs": -95.70413630773828,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 588.522075503014,
+              "margin_above_background_db": 51.32646351456658
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -45.255678448443376,
+              "background_dbfs": -96.51517021789752,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 588.9847248826047,
+              "margin_above_background_db": 51.259491769454144
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -46.20885922777804,
+              "background_dbfs": -96.4485272930294,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 589.3360467792222,
+              "margin_above_background_db": 50.23966806525136
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -46.58512108959783,
+              "background_dbfs": -98.62680888931807,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 589.3505124899448,
+              "margin_above_background_db": 52.04168779972024
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -46.329338596022986,
+              "background_dbfs": -98.6664759125736,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 589.0388553147625,
+              "margin_above_background_db": 52.33713731655062
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -46.07273162950007,
+              "background_dbfs": -99.7039778342523,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 588.6985217828262,
+              "margin_above_background_db": 53.63124620475223
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -46.252390052274066,
+              "background_dbfs": -99.90495656017559,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 588.7432186959524,
+              "margin_above_background_db": 53.652566507901525
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -46.82562005671305,
+              "background_dbfs": -99.90463452768728,
+              "capacity_limited": false,
+              "center_seconds": 0.5119387755102041,
+              "frame": 14,
+              "frequency_hz": 589.016225634646,
+              "margin_above_background_db": 53.07901447097423
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -47.451100864546746,
+              "background_dbfs": -99.70651358655965,
+              "capacity_limited": false,
+              "center_seconds": 0.5439342403628118,
+              "frame": 15,
+              "frequency_hz": 589.1912643205382,
+              "margin_above_background_db": 52.255412722012906
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -47.71256149381731,
+              "background_dbfs": -102.8294962114103,
+              "capacity_limited": false,
+              "center_seconds": 0.5759297052154195,
+              "frame": 16,
+              "frequency_hz": 589.205564017439,
+              "margin_above_background_db": 55.11693471759299
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -47.68668410403088,
+              "background_dbfs": -101.92138482637941,
+              "capacity_limited": false,
+              "center_seconds": 0.6079251700680273,
+              "frame": 17,
+              "frequency_hz": 589.0264930772213,
+              "margin_above_background_db": 54.23470072234853
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -47.677773585141004,
+              "background_dbfs": -100.07247987339399,
+              "capacity_limited": false,
+              "center_seconds": 0.6399206349206349,
+              "frame": 18,
+              "frequency_hz": 588.832282582552,
+              "margin_above_background_db": 52.39470628825298
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -47.86794162082462,
+              "background_dbfs": -101.58990912511143,
+              "capacity_limited": false,
+              "center_seconds": 0.6719160997732426,
+              "frame": 19,
+              "frequency_hz": 588.8854189850073,
+              "margin_above_background_db": 53.721967504286816
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -48.295501544070945,
+              "background_dbfs": -102.01949125747915,
+              "capacity_limited": false,
+              "center_seconds": 0.7039115646258504,
+              "frame": 20,
+              "frequency_hz": 589.011453494319,
+              "margin_above_background_db": 53.7239897134082
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -48.756074538469186,
+              "background_dbfs": -102.63657115070637,
+              "capacity_limited": false,
+              "center_seconds": 0.7359070294784581,
+              "frame": 21,
+              "frequency_hz": 589.0732587069408,
+              "margin_above_background_db": 53.88049661223719
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -48.985639006865405,
+              "background_dbfs": -100.89459138815194,
+              "capacity_limited": false,
+              "center_seconds": 0.7679024943310657,
+              "frame": 22,
+              "frequency_hz": 589.1231500175434,
+              "margin_above_background_db": 51.90895238128653
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -49.078413841193644,
+              "background_dbfs": -102.32327267967983,
+              "capacity_limited": false,
+              "center_seconds": 0.7998979591836735,
+              "frame": 23,
+              "frequency_hz": 589.0155234174917,
+              "margin_above_background_db": 53.24485883848619
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -49.1853342168211,
+              "background_dbfs": -102.80692820339578,
+              "capacity_limited": false,
+              "center_seconds": 0.8318934240362812,
+              "frame": 24,
+              "frequency_hz": 588.9018904146305,
+              "margin_above_background_db": 53.62159398657469
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -49.379253462527295,
+              "background_dbfs": -101.10147057311613,
+              "capacity_limited": false,
+              "center_seconds": 0.8638888888888889,
+              "frame": 25,
+              "frequency_hz": 588.9594455591603,
+              "margin_above_background_db": 51.722217110588836
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -49.743215404802456,
+              "background_dbfs": -101.90391695538634,
+              "capacity_limited": false,
+              "center_seconds": 0.8958843537414966,
+              "frame": 26,
+              "frequency_hz": 588.9980922991787,
+              "margin_above_background_db": 52.16070155058388
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -50.08121488069069,
+              "background_dbfs": -102.22101680060516,
+              "capacity_limited": false,
+              "center_seconds": 0.9278798185941043,
+              "frame": 27,
+              "frequency_hz": 589.0561078839046,
+              "margin_above_background_db": 52.13980191991447
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 4,
+          "observations": [
+            {
+              "ambiguous_neighbor": true,
+              "amplitude_dbfs": -43.457535208384286,
+              "background_dbfs": -70.35178010217179,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 379.6689258326549,
+              "margin_above_background_db": 26.8942448937875
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 5,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -52.477424774186545,
+              "background_dbfs": -103.00301429426897,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 3915.733442588835,
+              "margin_above_background_db": 50.52558952008242
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -54.09552957287894,
+              "background_dbfs": -105.98100929246533,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 3915.6826683401227,
+              "margin_above_background_db": 51.88547971958639
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -55.770547340220006,
+              "background_dbfs": -108.80414477209126,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 3915.765124189169,
+              "margin_above_background_db": 53.03359743187126
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -57.26206501865773,
+              "background_dbfs": -108.44826766423023,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 3915.733373968116,
+              "margin_above_background_db": 51.1862026455725
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -58.70346381281891,
+              "background_dbfs": -107.71479238882876,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 3915.713075196368,
+              "margin_above_background_db": 49.011328576009845
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -60.11083400714076,
+              "background_dbfs": -107.88461695533874,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 3915.842984383814,
+              "margin_above_background_db": 47.77378294819798
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -61.57773961874737,
+              "background_dbfs": -107.98144726242148,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 3915.7621373573425,
+              "margin_above_background_db": 46.40370764367411
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -63.55335125732206,
+              "background_dbfs": -108.72149488314875,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 3915.7715570344003,
+              "margin_above_background_db": 45.16814362582669
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.55404325151409,
+              "background_dbfs": -108.06584852370106,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 3915.7547091567535,
+              "margin_above_background_db": 42.511805272186976
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -67.17073534991174,
+              "background_dbfs": -108.3224726120031,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 3915.7551824248903,
+              "margin_above_background_db": 41.15173726209136
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -68.57512954285971,
+              "background_dbfs": -109.56156393912568,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 3915.6025179742423,
+              "margin_above_background_db": 40.98643439626596
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -70.51775566285755,
+              "background_dbfs": -109.35758378287565,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 3915.935334852562,
+              "margin_above_background_db": 38.8398281200181
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -72.78521612004926,
+              "background_dbfs": -110.42352816777772,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 3916.370809835883,
+              "margin_above_background_db": 37.63831204772846
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -74.60525926714843,
+              "background_dbfs": -110.14949868853266,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 3916.0541944341057,
+              "margin_above_background_db": 35.54423942138423
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 6,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -55.47816998102187,
+              "background_dbfs": -105.51590541445941,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 1426.03875526032,
+              "margin_above_background_db": 50.03773543343754
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -57.17655203493094,
+              "background_dbfs": -105.68685799279378,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 1426.4240881900187,
+              "margin_above_background_db": 48.51030595786283
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -58.39888762331426,
+              "background_dbfs": -107.0647798327276,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 1426.6167592089625,
+              "margin_above_background_db": 48.665892209413336
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -59.51144233436682,
+              "background_dbfs": -108.03604421494286,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 1426.5796143619111,
+              "margin_above_background_db": 48.52460188057604
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -60.79505994782062,
+              "background_dbfs": -109.57994831588937,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 1426.6275319510942,
+              "margin_above_background_db": 48.78488836806875
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -62.21883495360623,
+              "background_dbfs": -108.62218998964008,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 1426.5438943078707,
+              "margin_above_background_db": 46.403355036033844
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -63.642476609312666,
+              "background_dbfs": -109.52437845482392,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 1426.6290961675486,
+              "margin_above_background_db": 45.88190184551125
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.10945252662042,
+              "background_dbfs": -109.84219174182022,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 1426.5805483214888,
+              "margin_above_background_db": 44.7327392151998
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.44536209021086,
+              "background_dbfs": -109.6615430741621,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 1426.5061314677705,
+              "margin_above_background_db": 43.21618098395123
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -67.77032956255314,
+              "background_dbfs": -110.16426794318679,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 1426.380023835984,
+              "margin_above_background_db": 42.39393838063364
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -69.12875196699687,
+              "background_dbfs": -110.23188714771143,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 1426.6302455179991,
+              "margin_above_background_db": 41.10313518071456
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -70.51239815698506,
+              "background_dbfs": -110.18006559602094,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 1426.545613082232,
+              "margin_above_background_db": 39.66766743903588
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -72.0555151484038,
+              "background_dbfs": -110.42352816777772,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 1426.4771402950817,
+              "margin_above_background_db": 38.36801301937392
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -73.57440084637221,
+              "background_dbfs": -110.14949868853266,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 1426.7638661134556,
+              "margin_above_background_db": 36.575097842160446
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": -8.488690427561995,
+            "estimate": {
+              "end_seconds": 0.9278798185941043,
+              "extrapolated_t60_seconds": null,
+              "fitted_drop_db": 7.144460926194457,
+              "points": 24,
+              "r_squared": 0.9572238804707337,
+              "slope_db_per_second": -9.708523922138957,
+              "start_seconds": 0.19198412698412698
+            },
+            "late_slope_db_per_second": -8.880800033369235,
+            "rejection_reasons": [
+              "poor_fit"
+            ],
+            "residual_rms_db": 0.45454706580373283
+          },
+          "id": 7,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -59.18026088657601,
+              "background_dbfs": -95.56569714154742,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 785.5803645661613,
+              "margin_above_background_db": 36.38543625497141
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -58.16582046623564,
+              "background_dbfs": -103.03763397863973,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 784.9918941884822,
+              "margin_above_background_db": 44.871813512404096
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -58.081511523233175,
+              "background_dbfs": -103.34124658069312,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 784.95956197914,
+              "margin_above_background_db": 45.25973505745995
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -58.7622404853495,
+              "background_dbfs": -104.38416721756931,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 784.9785252724158,
+              "margin_above_background_db": 45.62192673221981
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -60.0476079815094,
+              "background_dbfs": -106.01777470584122,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 785.4284656043907,
+              "margin_above_background_db": 45.97016672433182
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -61.00898273180565,
+              "background_dbfs": -106.0051409688009,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 785.8016910126488,
+              "margin_above_background_db": 44.99615823699525
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -60.829820201393076,
+              "background_dbfs": -104.16541476614618,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 785.5243108550067,
+              "margin_above_background_db": 43.33559456475311
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -60.34252334600195,
+              "background_dbfs": -106.74602571201393,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 785.1376883165332,
+              "margin_above_background_db": 46.403502366011985
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -60.323533280225284,
+              "background_dbfs": -109.47763360163214,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 785.0031386397724,
+              "margin_above_background_db": 49.15410032140685
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -60.97516198961314,
+              "background_dbfs": -106.95400613786904,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 785.119141716149,
+              "margin_above_background_db": 45.9788441482559
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -62.0328716196575,
+              "background_dbfs": -108.25591337329146,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 785.4781438935065,
+              "margin_above_background_db": 46.223041753633964
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -62.662452693938555,
+              "background_dbfs": -107.22272302801153,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 785.6588940513313,
+              "margin_above_background_db": 44.560270334072975
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -62.587071293482815,
+              "background_dbfs": -106.20795813176758,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 785.5141012444136,
+              "margin_above_background_db": 43.62088683828477
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -62.321477393073685,
+              "background_dbfs": -107.89526501959887,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 785.2055372593164,
+              "margin_above_background_db": 45.57378762652518
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -62.486494405895726,
+              "background_dbfs": -109.56253438648429,
+              "capacity_limited": false,
+              "center_seconds": 0.5119387755102041,
+              "frame": 14,
+              "frequency_hz": 785.0021970028018,
+              "margin_above_background_db": 47.07603998058856
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -63.19679629984382,
+              "background_dbfs": -109.04400470252318,
+              "capacity_limited": false,
+              "center_seconds": 0.5439342403628118,
+              "frame": 15,
+              "frequency_hz": 785.08267863751,
+              "margin_above_background_db": 45.847208402679364
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -64.02223970411559,
+              "background_dbfs": -109.92799992202464,
+              "capacity_limited": false,
+              "center_seconds": 0.5759297052154195,
+              "frame": 16,
+              "frequency_hz": 785.4756986502135,
+              "margin_above_background_db": 45.90576021790905
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -64.49995424499546,
+              "background_dbfs": -109.2689803763511,
+              "capacity_limited": false,
+              "center_seconds": 0.6079251700680273,
+              "frame": 17,
+              "frequency_hz": 785.6694427785895,
+              "margin_above_background_db": 44.76902613135563
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -64.457900557966,
+              "background_dbfs": -109.8013961558803,
+              "capacity_limited": false,
+              "center_seconds": 0.6399206349206349,
+              "frame": 18,
+              "frequency_hz": 785.520482135229,
+              "margin_above_background_db": 45.3434955979143
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -64.19790352930114,
+              "background_dbfs": -110.49318507620427,
+              "capacity_limited": false,
+              "center_seconds": 0.6719160997732426,
+              "frame": 19,
+              "frequency_hz": 785.1096251270143,
+              "margin_above_background_db": 46.29528154690313
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -64.30487007362517,
+              "background_dbfs": -109.40258276718819,
+              "capacity_limited": false,
+              "center_seconds": 0.7039115646258504,
+              "frame": 20,
+              "frequency_hz": 785.0602965623217,
+              "margin_above_background_db": 45.097712693563025
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.02063681277212,
+              "background_dbfs": -109.38427581698717,
+              "capacity_limited": false,
+              "center_seconds": 0.7359070294784581,
+              "frame": 21,
+              "frequency_hz": 785.2079355607517,
+              "margin_above_background_db": 44.363639004215045
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.00684053049085,
+              "background_dbfs": -109.06038864765733,
+              "capacity_limited": false,
+              "center_seconds": 0.7679024943310657,
+              "frame": 22,
+              "frequency_hz": 785.5280825030226,
+              "margin_above_background_db": 43.053548117166486
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.58219539426766,
+              "background_dbfs": -109.6483099595381,
+              "capacity_limited": false,
+              "center_seconds": 0.7998979591836735,
+              "frame": 23,
+              "frequency_hz": 785.6403140951537,
+              "margin_above_background_db": 43.06611456527044
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.42268144478636,
+              "background_dbfs": -109.02112765292527,
+              "capacity_limited": false,
+              "center_seconds": 0.8318934240362812,
+              "frame": 24,
+              "frequency_hz": 785.4565570182762,
+              "margin_above_background_db": 42.59844620813891
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.13281716485724,
+              "background_dbfs": -110.30217705473511,
+              "capacity_limited": false,
+              "center_seconds": 0.8638888888888889,
+              "frame": 25,
+              "frequency_hz": 785.2223251806329,
+              "margin_above_background_db": 44.16935988987787
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.3510568585399,
+              "background_dbfs": -109.80898541345991,
+              "capacity_limited": false,
+              "center_seconds": 0.8958843537414966,
+              "frame": 26,
+              "frequency_hz": 784.9302531008518,
+              "margin_above_background_db": 43.45792855492
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -67.10761734205832,
+              "background_dbfs": -110.12140543836226,
+              "capacity_limited": false,
+              "center_seconds": 0.9278798185941043,
+              "frame": 27,
+              "frequency_hz": 785.2376778314098,
+              "margin_above_background_db": 43.01378809630394
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": -5.42733233795534,
+            "estimate": {
+              "end_seconds": 0.9278798185941043,
+              "extrapolated_t60_seconds": null,
+              "fitted_drop_db": 4.470417928620019,
+              "points": 24,
+              "r_squared": 0.9710387519649109,
+              "slope_db_per_second": -6.074798343824696,
+              "start_seconds": 0.19198412698412698
+            },
+            "late_slope_db_per_second": -5.722482777407119,
+            "rejection_reasons": [
+              "insufficient_drop",
+              "poor_fit"
+            ],
+            "residual_rms_db": 0.23235602864607277
+          },
+          "id": 8,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.49760313451024,
+              "background_dbfs": -106.87366129729732,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 983.225847558466,
+              "margin_above_background_db": 41.376058162787075
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -64.83457883570067,
+              "background_dbfs": -109.59056216649105,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 982.3992516416109,
+              "margin_above_background_db": 44.755983330790386
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -64.01972698036512,
+              "background_dbfs": -109.92666001407207,
+              "capacity_limited": false,
+              "center_seconds": 0.12799319727891156,
+              "frame": 2,
+              "frequency_hz": 981.2068681266559,
+              "margin_above_background_db": 45.90693303370695
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -63.99108181501341,
+              "background_dbfs": -109.70378019297189,
+              "capacity_limited": false,
+              "center_seconds": 0.15998866213151927,
+              "frame": 3,
+              "frequency_hz": 980.6892067377235,
+              "margin_above_background_db": 45.71269837795848
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -64.62124394793477,
+              "background_dbfs": -109.57994831588937,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 981.030602727511,
+              "margin_above_background_db": 44.958704367954596
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.51779240371219,
+              "background_dbfs": -109.84088023886203,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 982.0000245347366,
+              "margin_above_background_db": 44.323087835149835
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.9017787844864,
+              "background_dbfs": -110.11174954366739,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 982.4436312133461,
+              "margin_above_background_db": 44.20997075918099
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.5048911235909,
+              "background_dbfs": -109.84219174182022,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 982.1109106350241,
+              "margin_above_background_db": 44.33730061822932
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.24654454790875,
+              "background_dbfs": -109.6615430741621,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 981.4039755488426,
+              "margin_above_background_db": 44.41499852625334
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.51310581465489,
+              "background_dbfs": -110.16426794318679,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 981.1271663622512,
+              "margin_above_background_db": 44.651162128531894
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -65.97443473334629,
+              "background_dbfs": -110.23188714771143,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 981.4363239197436,
+              "margin_above_background_db": 44.25745241436515
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.40943922786155,
+              "background_dbfs": -110.18006559602094,
+              "capacity_limited": false,
+              "center_seconds": 0.41595238095238096,
+              "frame": 11,
+              "frequency_hz": 981.9000447326964,
+              "margin_above_background_db": 43.770626368159384
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.6846657051225,
+              "background_dbfs": -110.42352816777772,
+              "capacity_limited": false,
+              "center_seconds": 0.44794784580498864,
+              "frame": 12,
+              "frequency_hz": 982.1378927514061,
+              "margin_above_background_db": 43.73886246265522
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.69761883856856,
+              "background_dbfs": -110.14949868853266,
+              "capacity_limited": false,
+              "center_seconds": 0.4799433106575964,
+              "frame": 13,
+              "frequency_hz": 981.7979191196879,
+              "margin_above_background_db": 43.4518798499641
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.62512531681986,
+              "background_dbfs": -110.05165340561999,
+              "capacity_limited": false,
+              "center_seconds": 0.5119387755102041,
+              "frame": 14,
+              "frequency_hz": 981.3865713875815,
+              "margin_above_background_db": 43.426528088800126
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -66.82834790803612,
+              "background_dbfs": -110.41209227244829,
+              "capacity_limited": false,
+              "center_seconds": 0.5439342403628118,
+              "frame": 15,
+              "frequency_hz": 981.3832960422682,
+              "margin_above_background_db": 43.58374436441217
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -67.33356094088656,
+              "background_dbfs": -110.4135035038046,
+              "capacity_limited": false,
+              "center_seconds": 0.5759297052154195,
+              "frame": 16,
+              "frequency_hz": 981.5660315436808,
+              "margin_above_background_db": 43.07994256291805
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -67.66576163428468,
+              "background_dbfs": -109.96550174732015,
+              "capacity_limited": false,
+              "center_seconds": 0.6079251700680273,
+              "frame": 17,
+              "frequency_hz": 981.9620590538583,
+              "margin_above_background_db": 42.29974011303547
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -67.62429080717685,
+              "background_dbfs": -110.07561542564858,
+              "capacity_limited": false,
+              "center_seconds": 0.6399206349206349,
+              "frame": 18,
+              "frequency_hz": 981.8923524633435,
+              "margin_above_background_db": 42.45132461847173
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -67.76701238579834,
+              "background_dbfs": -110.49318507620427,
+              "capacity_limited": false,
+              "center_seconds": 0.6719160997732426,
+              "frame": 19,
+              "frequency_hz": 981.8023936603314,
+              "margin_above_background_db": 42.72617269040593
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -68.12406910277666,
+              "background_dbfs": -110.57313532095556,
+              "capacity_limited": false,
+              "center_seconds": 0.7039115646258504,
+              "frame": 20,
+              "frequency_hz": 981.6179456056867,
+              "margin_above_background_db": 42.4490662181789
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -68.40714416340663,
+              "background_dbfs": -110.70353157300462,
+              "capacity_limited": false,
+              "center_seconds": 0.7359070294784581,
+              "frame": 21,
+              "frequency_hz": 981.4996126084038,
+              "margin_above_background_db": 42.296387409598
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -68.5402797388919,
+              "background_dbfs": -110.26455451290713,
+              "capacity_limited": false,
+              "center_seconds": 0.7679024943310657,
+              "frame": 22,
+              "frequency_hz": 981.5975639632724,
+              "margin_above_background_db": 41.72427477401523
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -68.55778934473304,
+              "background_dbfs": -110.09554524194905,
+              "capacity_limited": false,
+              "center_seconds": 0.7998979591836735,
+              "frame": 23,
+              "frequency_hz": 981.7518362908514,
+              "margin_above_background_db": 41.537755897216016
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -68.69031101344189,
+              "background_dbfs": -110.31143338037435,
+              "capacity_limited": false,
+              "center_seconds": 0.8318934240362812,
+              "frame": 24,
+              "frequency_hz": 981.8494068899522,
+              "margin_above_background_db": 41.62112236693247
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -68.86948573755949,
+              "background_dbfs": -110.30217705473511,
+              "capacity_limited": false,
+              "center_seconds": 0.8638888888888889,
+              "frame": 25,
+              "frequency_hz": 981.7997134345258,
+              "margin_above_background_db": 41.432691317175625
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -69.20077921871685,
+              "background_dbfs": -110.27052803330733,
+              "capacity_limited": false,
+              "center_seconds": 0.8958843537414966,
+              "frame": 26,
+              "frequency_hz": 981.6062827208184,
+              "margin_above_background_db": 41.06974881459048
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -69.49559983252983,
+              "background_dbfs": -110.51107536143421,
+              "capacity_limited": false,
+              "center_seconds": 0.9278798185941043,
+              "frame": 27,
+              "frequency_hz": 981.6017382508996,
+              "margin_above_background_db": 41.015475528904375
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 9,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -72.86919005340566,
+              "background_dbfs": -107.51223615223313,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 1620.4349725877912,
+              "margin_above_background_db": 34.64304609882747
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 10,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -73.80011160820665,
+              "background_dbfs": -106.3521028100131,
+              "capacity_limited": false,
+              "center_seconds": 0.06400226757369615,
+              "frame": 0,
+              "frequency_hz": 7108.678129400509,
+              "margin_above_background_db": 32.551991201806445
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 11,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -61.80151620567581,
+              "background_dbfs": -83.76425443160826,
+              "capacity_limited": false,
+              "center_seconds": 0.09599773242630386,
+              "frame": 1,
+              "frequency_hz": 498.82388787877767,
+              "margin_above_background_db": 21.962738225932455
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 12,
+          "observations": [
+            {
+              "ambiguous_neighbor": true,
+              "amplitude_dbfs": -41.409716024048485,
+              "background_dbfs": -63.68892122523607,
+              "capacity_limited": false,
+              "center_seconds": 0.19198412698412698,
+              "frame": 4,
+              "frequency_hz": 99.928009392569,
+              "margin_above_background_db": 22.279205201187587
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 13,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -40.183817817443625,
+              "background_dbfs": -61.76295398781185,
+              "capacity_limited": false,
+              "center_seconds": 0.2239795918367347,
+              "frame": 5,
+              "frequency_hz": 93.1848365537121,
+              "margin_above_background_db": 21.579136170368223
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 14,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -39.485170176110756,
+              "background_dbfs": -61.060916414710235,
+              "capacity_limited": false,
+              "center_seconds": 0.2559750566893424,
+              "frame": 6,
+              "frequency_hz": 101.91806101123312,
+              "margin_above_background_db": 21.57574623859948
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -40.900367484578865,
+              "background_dbfs": -61.993666575344065,
+              "capacity_limited": false,
+              "center_seconds": 0.28797052154195013,
+              "frame": 7,
+              "frequency_hz": 104.08001146521836,
+              "margin_above_background_db": 21.0932990907652
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -42.36433344738206,
+              "background_dbfs": -65.85992395337615,
+              "capacity_limited": false,
+              "center_seconds": 0.3199659863945578,
+              "frame": 8,
+              "frequency_hz": 98.54751083692423,
+              "margin_above_background_db": 23.495590505994095
+            },
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -44.89133972271459,
+              "background_dbfs": -67.40525973192265,
+              "capacity_limited": false,
+              "center_seconds": 0.35196145124716555,
+              "frame": 9,
+              "frequency_hz": 95.4691058352759,
+              "margin_above_background_db": 22.513920009208064
+            }
+          ]
+        },
+        {
+          "decay": {
+            "early_slope_db_per_second": null,
+            "estimate": null,
+            "late_slope_db_per_second": null,
+            "rejection_reasons": [
+              "insufficient_points"
+            ],
+            "residual_rms_db": null
+          },
+          "id": 15,
+          "observations": [
+            {
+              "ambiguous_neighbor": false,
+              "amplitude_dbfs": -49.37664308961956,
+              "background_dbfs": -68.09942328758082,
+              "capacity_limited": false,
+              "center_seconds": 0.3839569160997732,
+              "frame": 10,
+              "frequency_hz": 103.53321670897279,
+              "margin_above_background_db": 18.722780197961256
+            }
+          ]
+        }
+      ],
+      "window_seconds": 0.1280045351473923
+    },
+    "sample_rate": 44100,
+    "schema_version": 1
+  },
+  "reference": "references/audio/jrhodes-g3-a886e6c/A_055__G3_5.wav",
+  "reference_audio": {
+    "frames": 899663,
+    "sample_rate": 44100,
+    "selected_channel": 0,
+    "source_bits_per_sample": 16,
+    "source_channels": 1,
+    "source_format": "pcm"
+  }
+}

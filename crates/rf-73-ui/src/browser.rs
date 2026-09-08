@@ -64,7 +64,12 @@ impl App {
                 .element(id)
                 .set_attribute("aria-pressed", if selected { "true" } else { "false" });
         }
-        let names = ["Current", "Close Original", "Close Point Pole"];
+        let names = [
+            "Current",
+            "Close Original",
+            "Close Point Pole",
+            "Close Aperture",
+        ];
         let selected = self.client.display(if side { 2 } else { 1 }) as usize;
         self.text(
             "now-playing",

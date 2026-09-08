@@ -1,5 +1,6 @@
 use rf_73_dsp::{
-    Engine, MagneticPickup, OVERSAMPLE, PICKUP_LEVEL_MATCH, ProductionDecimator, Profile, Voice,
+    APERTURE_PICKUP, AxialAperture, Engine, MagneticPickup, OVERSAMPLE, PICKUP_LEVEL_MATCH,
+    PICKUP_NAMES, ProductionDecimator, Profile, Voice, aperture_voltage,
 };
 
 #[test]
@@ -12,6 +13,7 @@ fn each_matched_path_agrees_with_independent_voice_and_filter() {
                 engine.reset();
                 let mut voice = Voice::new(rate, note, Profile::default()).unwrap();
                 let pickup = MagneticPickup::new(0.0005, 0.00025).unwrap();
+                let aperture = AxialAperture::new(APERTURE_PICKUP).unwrap();
                 let mut filter = ProductionDecimator::new();
                 engine.note_on(0, note, 0.9);
                 voice.strike(0.9);
@@ -30,9 +32,10 @@ fn each_matched_path_agrees_with_independent_voice_and_filter() {
                         filter.push(match index {
                             0 => current,
                             1 => pickup.voltage(p.displacement_m, p.velocity_m_s),
-                            _ => {
+                            2 => {
                                 pickup.research_point_pole_voltage(p.displacement_m, p.velocity_m_s)
                             }
+                            _ => aperture_voltage(&aperture, p.displacement_m, p.velocity_m_s),
                         });
                     }
                     let expected = (filter.output() * compensation * 0.7 * 0.12) as f32;
@@ -53,7 +56,8 @@ fn switching_and_interrupted_fades_preserve_mechanics_and_pedal() {
     let mut baseline = Engine::new(48000.0, Profile::default()).unwrap();
     let mut lab = Engine::new_laboratory(48000.0).unwrap();
     assert!(!baseline.set_pickup(1));
-    assert!(!lab.set_pickup(3));
+    assert_eq!(PICKUP_NAMES.len(), 4);
+    assert!(!lab.set_pickup(PICKUP_NAMES.len()));
     for frame in 0..6000 {
         for engine in [&mut baseline, &mut lab] {
             match frame {
@@ -79,7 +83,7 @@ fn switching_and_interrupted_fades_preserve_mechanics_and_pedal() {
             }
         }
         if [500, 800, 1000, 1700, 2100, 3100].contains(&frame) {
-            lab.set_pickup((frame / 100) % 3);
+            lab.set_pickup((frame / 100) % PICKUP_NAMES.len());
         }
         if frame == 4000 {
             lab.set_pickup(0);

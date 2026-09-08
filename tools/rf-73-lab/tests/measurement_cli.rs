@@ -10,6 +10,310 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn aperture_listening_receipt_freezes_the_fourth_level_match_and_reproduces_the_retained_three() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("pickup-aperture-listening-summary.json");
+    let prior = read("pickup-listening-summary.json");
+    assert_eq!(r["retained_paths_reproduced_exactly"], true);
+    let frozen = r["frozen_level_match"].as_array().unwrap();
+    assert_eq!(frozen.len(), rf_73_dsp::PICKUP_LEVEL_MATCH.len());
+    for (value, constant) in frozen.iter().zip(rf_73_dsp::PICKUP_LEVEL_MATCH) {
+        assert_eq!(
+            value.as_f64().unwrap(),
+            constant,
+            "frozen factor is the constant"
+        );
+    }
+    let prior_gain = prior["studies"][0]["report"]["matching"]["rms_gain"]
+        .as_array()
+        .unwrap();
+    for (value, previous) in frozen.iter().zip(prior_gain) {
+        assert_eq!(value, previous);
+    }
+    let studies = r["studies"].as_array().unwrap();
+    assert_eq!(studies.len(), 2);
+    for (study, rate) in studies.iter().zip([44100, 192000]) {
+        let report = &study["report"];
+        assert_eq!(report["sample_rate"], rate);
+        assert_eq!(report["faults"], 0);
+        assert_eq!(
+            report["track_order"],
+            serde_json::json!([
+                "current",
+                "close-original",
+                "close-point-pole",
+                "close-aperture"
+            ])
+        );
+        let geometry = &report["aperture_geometry_mm"];
+        assert_eq!(geometry["gap"], 0.5);
+        assert_eq!(geometry["offset"], 0.5);
+        assert_eq!(geometry["pole_radius"], 2.0);
+        assert_eq!(
+            report["matching"]["rms_gain"],
+            report["matching"]["rms_gain"]
+        );
+        // The raw aperture track is the quietest and needs the only gain above unity.
+        let raw = report["raw_program_levels"].as_array().unwrap();
+        let rms = |i: usize| raw[i]["rms"].as_f64().unwrap();
+        assert!(rms(3) < rms(0) && rms(0) < rms(1) && rms(1) < rms(2));
+        let gain = report["matching"]["rms_gain"][3].as_f64().unwrap();
+        assert!((2.4..2.6).contains(&gain), "{gain}");
+        // Isolated and stress peaks of the raw aperture track stay below the current track's.
+        let peaks = report["diagnostics"]["maximum_isolated_peaks"]
+            .as_array()
+            .unwrap();
+        assert!(peaks[3].as_f64().unwrap() < peaks[0].as_f64().unwrap());
+        for key in ["repeated_chord_levels", "repeated_all_73_keys_levels"] {
+            let levels = report["diagnostics"][key].as_array().unwrap();
+            assert!(levels[3]["peak"].as_f64().unwrap() < levels[0]["peak"].as_f64().unwrap());
+        }
+    }
+    // 192 kHz reproduces the 44.1 kHz factor within 0.002%.
+    for difference in r["level_match_192k_relative_difference"]
+        .as_array()
+        .unwrap()
+    {
+        assert!(difference.as_f64().unwrap().abs() < 2e-5);
+    }
+    let audio = r["audio_files"].as_array().unwrap();
+    assert_eq!(audio.len(), 4);
+    for file in audio {
+        assert_eq!(file["sha256"].as_str().unwrap().len(), 64);
+        assert_eq!(file["bytes"], 4233658);
+    }
+}
+
+#[test]
+fn g3_aperture_pickup_receipts_hold_their_hashes_and_recover_the_recorded_harmonic_balance() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let manifest = read("g3-aperture-pickup/manifest.json");
+    assert_eq!(manifest["pickup_path"], 3);
+    let files = manifest["files"].as_array().unwrap();
+    assert_eq!(files.len(), 12);
+    for entry in files {
+        let name = entry["file"].as_str().unwrap();
+        let bytes = fs::read(root.join("g3-aperture-pickup").join(name)).unwrap();
+        assert_eq!(
+            bytes.len() as u64,
+            entry["bytes"].as_u64().unwrap(),
+            "{name}"
+        );
+        assert_eq!(
+            sha256_hex(&bytes),
+            entry["sha256"].as_str().unwrap(),
+            "{name}"
+        );
+    }
+    let attack = |dir: &str, velocity: &str, layer: u8| -> serde_json::Value {
+        read(&format!("{dir}/tone-v{velocity}-L{layer}.json"))["tone_comparison"]["windows"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|w| w["label"] == "attack_96_ms")
+            .unwrap()
+            .clone()
+    };
+    let level = |window: &serde_json::Value, harmonic: u64, key: &str| -> Option<f64> {
+        window["harmonics"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|h| h["harmonic"] == harmonic)
+            .and_then(|h| h[key].as_f64())
+    };
+    for (velocity, layer, limit) in [("1.0", 1, 5.5), ("0.6", 3, 5.0), ("0.25", 5, 5.5)] {
+        let render = read(&format!("g3-aperture-pickup/render-v{velocity}.json"));
+        assert_eq!(render["pickup_path"], 3);
+        assert_eq!(render["pickup_name"], "Close Aperture");
+        assert_eq!(render["faults"], 0);
+        assert_eq!(render["sample_rate"], 44100);
+        let new = attack("g3-aperture-pickup", velocity, layer);
+        let old = attack("g3-playable-diagnostic", velocity, layer);
+        // Same recording on both sides.
+        for h in 2..=4 {
+            assert_eq!(
+                level(&new, h, "reference_relative_to_fundamental_db"),
+                level(&old, h, "reference_relative_to_fundamental_db")
+            );
+        }
+        let last = if layer == 5 { 4 } else { 5 };
+        for h in 2..=last {
+            let balance = level(&new, h, "candidate_minus_reference_balance_db").unwrap();
+            assert!(balance.abs() < limit, "v{velocity} H{h} balance {balance}");
+            if let Some(previous) = level(&old, h, "candidate_minus_reference_balance_db")
+                && layer != 5
+                && h >= 3
+            {
+                assert!(balance.abs() < previous.abs(), "v{velocity} H{h}");
+            }
+        }
+    }
+    // The loud third harmonic rises above the fundamental, as in the recording.
+    let loud = attack("g3-aperture-pickup", "1.0", 1);
+    assert!(level(&loud, 3, "candidate_relative_to_fundamental_db").unwrap() > 5.0);
+    assert!(level(&loud, 6, "candidate_relative_to_fundamental_db").unwrap() > -4.0);
+    // The soft attack stays within 2.6 dB on the second and third harmonics.
+    let soft = attack("g3-aperture-pickup", "0.25", 5);
+    for h in [2, 3] {
+        let balance = level(&soft, h, "candidate_minus_reference_balance_db").unwrap();
+        assert!(balance.abs() < 2.6, "soft H{h} {balance}");
+    }
+}
+
+#[test]
+fn render_pickup_path_zero_replays_the_raw_engine_and_other_paths_differ() {
+    let scratch = Scratch::new();
+    let base = [
+        "render",
+        "--note",
+        "55",
+        "--velocity",
+        "0.9",
+        "--sample-rate",
+        "44100",
+        "--seconds",
+        "0.3",
+        "--hold",
+        "0.2",
+    ];
+    let with = |output: &str, extra: &[&str]| {
+        let mut args: Vec<&str> = base.to_vec();
+        args.extend(["--output", output]);
+        args.extend(extra);
+        args.iter().map(|s| s.to_string()).collect::<Vec<_>>()
+    };
+    let owned = with("raw.wav", &[]);
+    scratch.success(&owned.iter().map(String::as_str).collect::<Vec<_>>());
+    let mut wavs = Vec::new();
+    for index in 0..4 {
+        let output = format!("path{index}.wav");
+        let owned = with(&output, &["--pickup", &index.to_string()]);
+        scratch.success(&owned.iter().map(String::as_str).collect::<Vec<_>>());
+        let report = scratch.json(&format!("path{index}.json"));
+        assert_eq!(report["pickup_path"], index);
+        assert_eq!(report["pickup_name"], rf_73_dsp::PICKUP_NAMES[index]);
+        assert_eq!(report["faults"], 0);
+        wavs.push(fs::read(scratch.0.join(output)).unwrap());
+    }
+    let raw = fs::read(scratch.0.join("raw.wav")).unwrap();
+    assert_eq!(
+        scratch.json("raw.json")["pickup_path"],
+        serde_json::Value::Null
+    );
+    assert_eq!(wavs[0], raw, "path 0 is the raw engine sample for sample");
+    for (i, wav) in wavs.iter().enumerate().skip(1) {
+        assert_ne!(*wav, raw, "path {i}");
+        assert_eq!(wav.len(), raw.len());
+        let power = |bytes: &[u8]| {
+            bytes[58..]
+                .as_chunks::<4>()
+                .0
+                .iter()
+                .map(|c| f64::from(f32::from_le_bytes(*c)).powi(2))
+                .sum::<f64>()
+        };
+        // Level matching keeps every path within one order of magnitude of the raw engine.
+        let ratio = (power(wav) / power(&raw)).sqrt();
+        assert!((0.1..10.0).contains(&ratio), "path {i} rms ratio {ratio}");
+    }
+    for extra in [
+        vec!["--pickup", "4"],
+        vec!["--pickup", "-1"],
+        vec!["--pickup", "x"],
+        vec!["--pickup", "3", "--gap-mm", "1.0"],
+        vec!["--pickup", "3", "--offset-mm", "0.25"],
+    ] {
+        let owned = with("bad.wav", &extra);
+        assert!(
+            !scratch
+                .run(&owned.iter().map(String::as_str).collect::<Vec<_>>())
+                .status
+                .success(),
+            "{extra:?}"
+        );
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+    assert!(
+        !scratch
+            .run(&["demo", "--output", "demo.wav", "--pickup", "1"])
+            .status
+            .success()
+    );
+}
+
+#[test]
+fn render_midi_pickup_path_selects_a_laboratory_path() {
+    let scratch = Scratch::new();
+    let mut track = vec![0x00, 0xFF, 0x51, 0x03, 0x07, 0xA1, 0x20];
+    track.extend([
+        0x00, 0x90, 55, 100, 0x60, 0x80, 55, 0, 0x00, 0xFF, 0x2F, 0x00,
+    ]);
+    let mut midi = b"MThd".to_vec();
+    midi.extend(6u32.to_be_bytes());
+    midi.extend(0u16.to_be_bytes());
+    midi.extend(1u16.to_be_bytes());
+    midi.extend(96u16.to_be_bytes());
+    midi.extend(b"MTrk");
+    midi.extend((track.len() as u32).to_be_bytes());
+    midi.extend(track);
+    fs::write(scratch.0.join("one.mid"), &midi).unwrap();
+    // The input and --output must lead; the remaining options follow.
+    let tail = ["--tail", "0.2", "--sample-rate", "44100"];
+    let mut args = vec!["render-midi", "one.mid", "--output", "raw.wav"];
+    args.extend(tail);
+    scratch.success(&args);
+    let mut args = vec![
+        "render-midi",
+        "one.mid",
+        "--output",
+        "zero.wav",
+        "--pickup",
+        "0",
+    ];
+    args.extend(tail);
+    scratch.success(&args);
+    let mut args = vec![
+        "render-midi",
+        "one.mid",
+        "--output",
+        "aperture.wav",
+        "--pickup",
+        "3",
+    ];
+    args.extend(tail);
+    scratch.success(&args);
+    let raw = fs::read(scratch.0.join("raw.wav")).unwrap();
+    assert_eq!(fs::read(scratch.0.join("zero.wav")).unwrap(), raw);
+    assert_ne!(fs::read(scratch.0.join("aperture.wav")).unwrap(), raw);
+    let receipt = scratch.json("aperture.json");
+    assert_eq!(receipt["pickup_path"], 3);
+    assert_eq!(receipt["pickup_name"], "Close Aperture");
+    assert_eq!(receipt["faults"], 0);
+    assert_eq!(
+        scratch.json("raw.json")["pickup_path"],
+        serde_json::Value::Null
+    );
+    for bad in [
+        vec!["--pickup", "4"],
+        vec!["--pickup", "a"],
+        vec!["--pickup"],
+    ] {
+        let mut args = vec!["render-midi", "one.mid", "--output", "bad.wav"];
+        args.extend(tail);
+        args.extend(bad.clone());
+        assert!(!scratch.run(&args).status.success(), "{bad:?}");
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn pickup_harmonics_receipt_explains_the_engine_and_finds_an_aperture_geometry() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {
@@ -6270,7 +6574,12 @@ fn listening_wavs_match_global_rms_stay_below_ceiling_and_preserve_outputs() {
     );
     assert_eq!(report["frames"], 24 * 44100);
     let mut observed_rms = Vec::new();
-    for name in ["current", "close-original", "close-point-pole"] {
+    for name in [
+        "current",
+        "close-original",
+        "close-point-pole",
+        "close-aperture",
+    ] {
         let path = format!("study/{name}.wav");
         scratch.success(&["inspect", &path]);
         let bytes = fs::read(scratch.0.join(path)).unwrap();

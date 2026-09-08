@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-08",
+  "experiment": "g3-aperture-pickup-v1",
+  "pickup_path": 3,
+  "pickup_name": "Close Aperture",
+  "protocol": "Same renders and comparisons as references/g3-playable-diagnostic (44.1 kHz, 8 s, hold 7.5 s, velocities 1.0/0.6/0.25 against jRhodes layers 1/3/5), rendered with render --pickup 3.",
+  "files": [
+    {
+      "file": "attack-v0.25-L5.json",
+      "bytes": 156847,
+      "sha256": "e60b704754f74c617caa80284a21f82f9df7df675c145158e6d41aa8fe7e4a35"
+    },
+    {
+      "file": "attack-v0.6-L3.json",
+      "bytes": 276335,
+      "sha256": "a2745eead2eee5707e9e5619362e4d1774dd874c21ba9f4278b8aa1e9f90dc90"
+    },
+    {
+      "file": "attack-v1.0-L1.json",
+      "bytes": 547309,
+      "sha256": "0eaee8380529cbd782f7737fa49c71c2002f6f4a273c74a43c9cc9977e7dc1bf"
+    },
+    {
+      "file": "render-v0.25.json",
+      "bytes": 424,
+      "sha256": "212c52653efe1a3a85f35a3420147bdc9f89fde1ac86feebaaf0cbd3bfefd801"
+    },
+    {
+      "file": "render-v0.6.json",
+      "bytes": 423,
+      "sha256": "34237c69258b2c6ce2fc004a110bf4fc9bdc51f2c2b20d9ff7667aeb75c5be42"
+    },
+    {
+      "file": "render-v1.0.json",
+      "bytes": 421,
+      "sha256": "dc7c9637984d2bdf28954a76061aab91ed82c89a80ecd129c22aeb2a1166497e"
+    },
+    {
+      "file": "sustain-v0.25-L5.json",
+      "bytes": 112438,
+      "sha256": "a22739c071993fb75216f948d95b78d06caa7e9b99843966f881ddd6f090e9da"
+    },
+    {
+      "file": "sustain-v0.6-L3.json",
+      "bytes": 151965,
+      "sha256": "7568a13f2f12cfe503764fa7ccc6e8011e19ec45bf6694b97626cec4be949e8d"
+    },
+    {
+      "file": "sustain-v1.0-L1.json",
+      "bytes": 232024,
+      "sha256": "1452889f83bee845d9aac50bdccdf289799b6cee90ec08ecb22cffd81b8443d8"
+    },
+    {
+      "file": "tone-v0.25-L5.json",
+      "bytes": 39674,
+      "sha256": "2d689bd66c97d4e02773371afc5696366de24cdf6c9f972308a72737be9a5364"
+    },
+    {
+      "file": "tone-v0.6-L3.json",
+      "bytes": 45046,
+      "sha256": "2bbb462270129b1816b0b2fc05d806490765f933f998269c9f7935d2fd1c179f"
+    },
+    {
+      "file": "tone-v1.0-L1.json",
+      "bytes": 48075,
+      "sha256": "b70ee1df18007f9bd88cf5c149e086b2b1eab55a60565dc2dd04d4db458c9b6b"
+    }
+  ]
+}

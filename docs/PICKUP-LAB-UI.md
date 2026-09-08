@@ -13,8 +13,9 @@ On LITTLE controllers, open CONTROLS / **Pickup Comparison**. **Pickup A** and *
 | Current | 1.5 / 0.5 mm | Original flux surrogate | 1 |
 | Close Original | 0.5 / 0.25 mm | Original flux surrogate | 0.2967936920096338 |
 | Close Point Pole | 0.5 / 0.25 mm | Experimental point-pole proxy | 0.1361600848962658 |
+| Close Aperture | 0.5 / 0.5 mm, 2 mm pole radius | Finite-aperture 16-node flux on the tine axis | 2.4996279723549004 |
 
-The initial comparison is Current (A) against Close Point Pole (B), listening to A. Use identical MIDI gestures or a repeated MIDI phrase for controlled comparisons. Sustained-note switching is useful for body tone; replay the phrase to compare attacks. Listen for attack hardness, bell/bark balance, decay and continuity between velocities and registers. A preferred sound does not establish measured physical calibration.
+The initial comparison is Current (A) against Close Point Pole (B), listening to A. Close Aperture is the fourth choice, added by the [aperture path block](PICKUP-APERTURE-PATH.md); its factor comes from the same protocol rerun with four tracks, which reproduced the first three factors exactly. Use identical MIDI gestures or a repeated MIDI phrase for controlled comparisons. Sustained-note switching is useful for body tone; replay the phrase to compare attacks. Listen for attack hardness, bell/bark balance, decay and continuity between velocities and registers. A preferred sound does not establish measured physical calibration.
 
 The controller PROGRAMS create/edit workflow opens the declarative **RF-73 Pickup Lab** editor, with the same four fields and live preview. RackForge owns draft audition, save/cancel and files. Opening this editor starts a host audition lease and may reset existing notes; subsequent field previews preserve ringing motion. The screen PLAY panel uses direct parameter controls and host PRESETS; it does not duplicate the controller custom-program workflow.
 
@@ -28,13 +29,13 @@ Binary state schema 2 contains `RFRH`, little-endian version 2, an f64 gain, A a
 
 ## Transition and level policy
 
-One 73-key mechanical engine drives all three pickups. The two close variants read exactly the same displacement and velocity as Current; selecting a pickup never changes hammer, modal, damper or channel ownership state. All three FIR histories run continuously. A 20 ms linear crossfade mixes their filtered outputs with convex weights. A request during a fade begins from the current weights; editing an inaudible slot does not restart the active fade. This avoids stale-filter bursts and abrupt selector jumps without introducing an equal-power boost between correlated signals. Gain retains the existing 5 ms exponential smoothing.
+One 73-key mechanical engine drives all four pickups. The three close variants read exactly the same displacement and velocity as Current; selecting a pickup never changes hammer, modal, damper or channel ownership state. All four FIR histories run continuously. A 20 ms linear crossfade mixes their filtered outputs with convex weights. A request during a fade begins from the current weights; editing an inaudible slot does not restart the active fade. This avoids stale-filter bursts and abrupt selector jumps without introducing an equal-power boost between correlated signals. Gain retains the existing 5 ms exponential smoothing.
 
 The level factors are frozen from the entire 24-second, 44.1 kHz [listening performance](PICKUP-LISTENING.md), with the same factors at every supported rate. There is no per-note, per-velocity, per-window or adaptive normalization. The offline listening program's extra common peak attenuation is not embedded in these factors.
 
 New programs use **0.100x output gain**, compared with the previous 0.700x default. This provides starting headroom for the measured repeated ten-key chord with fixed compensation. It does not guarantee a peak bound: dense full-keyboard retriggers can still exceed full scale, and the gain control permits up to 2x. RackForge supplies the output meters; watch them and lower gain for dense gestures. No limiter, compressor or hidden soft clipper changes the research signal. Measurements are sample peaks, not true peaks. Existing live gain checkpoints can override the new default; explicitly load Pickup Lab to reset the comparison.
 
-The original `Engine::new(rate, profile)` and offline raw render commands retain their previous signal path and default gain. Only `Engine::new_laboratory(rate)` enables the three matched routes. This keeps reference measurements reproducible.
+The original `Engine::new(rate, profile)` and offline raw render commands retain their previous signal path and default gain. Only `Engine::new_laboratory(rate)` enables the four matched routes. This keeps reference measurements reproducible.
 
 ## Reproduction
 
@@ -48,6 +49,6 @@ cargo run --locked --release -p rf-73-lab -- stress --laboratory --sample-rate 1
 cargo run --locked --release -p rf-73-lab -- audition
 ```
 
-The laboratory stress command sustains and restrikes all 73 keys, changes pickup every three 128-frame blocks, and reports observed timing, sample peak and numerical faults. It does not qualify every host/device or establish perceptual realism. The package workflow additionally exercises the actual WASM component and its declarative editor through RackForge's smoke command.
+The laboratory stress command sustains and restrikes all 73 keys, changes pickup every three 128-frame blocks, and reports observed timing, sample peak and numerical faults. It does not qualify every host/device or establish perceptual realism. With the fourth path it misses 8 of 1125 deadlines at 48 kHz on the reference desktop (p99 2.21 ms, worst 4.72 ms), so the all-keys stress is not qualified for the four-path laboratory engine; see the [aperture path](PICKUP-APERTURE-PATH.md) cost section. The package workflow additionally exercises the actual WASM component and its declarative editor through RackForge's smoke command.
 
 Install `wasm-bindgen-cli` exactly 0.2.127 with `cargo install wasm-bindgen-cli --version 0.2.127 --locked`. Both `package` and `audition` rebuild the UI and generate `package/web/app.js` and `app_bg.wasm`. These generated files are ignored by Git and included in the final archive. The package serves all assets locally through RackForge; it requires no separate UI server or network service.

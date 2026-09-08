@@ -90,11 +90,9 @@ too few harmonics. The laboratory's finite-aperture law, at a close gap and
 a wide pole, turns the same motion into the recorded balance across three
 dynamics within a few decibels, and it does so with velocity-dependent
 brightness that the production law cannot supply at these amplitudes. The
-next step is to put that law and geometry into the playable engine as a
-selectable pickup path beside the retained ones, match its level, render the
-diagnostic's G3 strikes and the nocturne through it, and compare the
-harmonic balance, the level-dependent brightness and the listening result
-against the retained paths before any default changes.
+[Close Aperture path](PICKUP-APERTURE-PATH.md) puts that law and geometry
+into the playable engine as a fourth selectable pickup, matches its level
+and measures the G3 strikes and the nocturne through it.
 
 ## Scope
 

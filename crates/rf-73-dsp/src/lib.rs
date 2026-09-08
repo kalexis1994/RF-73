@@ -26,7 +26,9 @@ mod voice;
 pub use assembly::{AssemblyParameters, AssemblyProbe, AssemblyVoice};
 pub use filter::Decimator as ProductionDecimator;
 pub use hammer_memory::{HammerMemory, HammerMemoryProbe, HammerMemoryProfile};
-pub use laboratory::{PICKUP_LEVEL_MATCH, PICKUP_NAMES};
+pub use laboratory::{
+    APERTURE_PICKUP, AxialAperture, PICKUP_LEVEL_MATCH, PICKUP_NAMES, aperture_voltage,
+};
 pub use memory_hammer::{
     MemoryHammer, MemoryHammerContactStatus, MemoryHammerContactStep, MemoryHammerProbe,
     MemoryHammerProfile,
@@ -80,7 +82,7 @@ impl Engine {
         })
     }
 
-    /// Three continuously filtered pickups on one mechanical instrument.
+    /// Four continuously filtered pickups on one mechanical instrument.
     /// Fixed level matching is tied to the documented default/close geometries.
     pub fn new_laboratory(sample_rate: f64) -> Result<Self, ModelError> {
         let mut engine = Self::new(sample_rate, Profile::default())?;
@@ -199,7 +201,7 @@ impl Engine {
     pub fn next_sample(&mut self) -> f32 {
         for _ in 0..OVERSAMPLE {
             let mut sum = 0.0;
-            let mut close = [0.0; 2];
+            let mut close = [0.0; 3];
             for voice in &mut self.voices {
                 sum += voice.tick();
                 if let Some(lab) = &self.laboratory
@@ -208,6 +210,7 @@ impl Engine {
                     let (q, v) = voice.tip();
                     close[0] += lab.pickup.voltage(q, v);
                     close[1] += lab.pickup.research_point_pole_voltage(q, v);
+                    close[2] += laboratory::aperture_voltage(&lab.aperture, q, v);
                 }
             }
             if !sum.is_finite() || close.iter().any(|value| !value.is_finite()) {

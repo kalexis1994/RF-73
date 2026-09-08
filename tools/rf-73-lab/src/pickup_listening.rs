@@ -1,6 +1,6 @@
 use rf_73_dsp::{
-    FIRST_NOTE, KEY_COUNT, LAST_NOTE, MagneticPickup, OVERSAMPLE, ProductionDecimator, Profile,
-    Voice,
+    APERTURE_PICKUP, AxialAperture, FIRST_NOTE, KEY_COUNT, LAST_NOTE, MagneticPickup, OVERSAMPLE,
+    ProductionDecimator, Profile, Voice, aperture_voltage,
 };
 use serde::Serialize;
 use serde_json::json;
@@ -9,13 +9,20 @@ use std::{collections::BTreeMap, error::Error, io::BufWriter, path::PathBuf};
 pub const HELP: &str = "Pickup listening and headroom:
   pickup-listening --output NEW_DIRECTORY [--sample-rate 44100]
     [--gap-mm 0.5] [--offset-mm 0.25] [--ceiling-dbfs -6] [--measure-only]
-Three laws/geometries on one performance; one full-program RMS gain per track.
+Four laws/geometries on one performance; one full-program RMS gain per track.
+The fourth track is the finite-aperture law at gap 0.5 mm, offset 0.5 mm, pole 2 mm.
 Common peak attenuation, no compression or per-note normalization. Sample peaks only.
 Also measures all 73 isolated keys and repeated 10/73-key strikes at full velocity.
-Writes report.json and three 24-second mono WAVs; --measure-only omits WAVs.
+Writes report.json and four 24-second mono WAVs; --measure-only omits WAVs.
 ";
 
-const NAMES: [&str; 3] = ["current", "close-original", "close-point-pole"];
+const NAMES: [&str; 4] = [
+    "current",
+    "close-original",
+    "close-point-pole",
+    "close-aperture",
+];
+const TRACKS: usize = NAMES.len();
 const PROGRAM_SECONDS: u32 = 24;
 
 struct Options {
@@ -87,7 +94,8 @@ struct Mix {
     activated: Vec<usize>,
     pedal: bool,
     pickup: MagneticPickup,
-    filters: [ProductionDecimator; 3],
+    aperture: AxialAperture,
+    filters: [ProductionDecimator; TRACKS],
 }
 impl Mix {
     fn new(rate: u32, gap: f64, offset: f64) -> Result<Self, Box<dyn Error>> {
@@ -100,6 +108,7 @@ impl Mix {
             activated: Vec::with_capacity(KEY_COUNT),
             pedal: false,
             pickup: MagneticPickup::new(gap * 0.001, offset * 0.001)?,
+            aperture: AxialAperture::new(APERTURE_PICKUP)?,
             filters: std::array::from_fn(|_| ProductionDecimator::new()),
         })
     }
@@ -127,9 +136,9 @@ impl Mix {
             }
         }
     }
-    fn next(&mut self) -> Result<[f32; 3], Box<dyn Error>> {
+    fn next(&mut self) -> Result<[f32; TRACKS], Box<dyn Error>> {
         for _ in 0..OVERSAMPLE {
-            let mut sum = [0.0; 3];
+            let mut sum = [0.0; TRACKS];
             for &i in &self.activated {
                 sum[0] += self.voices[i].tick();
                 let p = self.voices[i].probe();
@@ -137,6 +146,7 @@ impl Mix {
                 sum[2] += self
                     .pickup
                     .research_point_pole_voltage(p.displacement_m, p.velocity_m_s);
+                sum[3] += aperture_voltage(&self.aperture, p.displacement_m, p.velocity_m_s);
             }
             if sum.iter().any(|v| !v.is_finite()) {
                 return Err("non-finite listening mix".into());
@@ -240,12 +250,12 @@ fn levels(samples: &[f32]) -> Level {
 
 #[derive(Serialize)]
 struct Matching {
-    rms_gain: [f64; 3],
+    rms_gain: [f64; TRACKS],
     common_attenuation: f64,
-    applied_gain: [f64; 3],
+    applied_gain: [f64; TRACKS],
     sample_ceiling: f64,
 }
-fn matching(input: &[Level; 3], ceiling: f64) -> Result<Matching, Box<dyn Error>> {
+fn matching(input: &[Level; TRACKS], ceiling: f64) -> Result<Matching, Box<dyn Error>> {
     if !ceiling.is_finite()
         || !(0.0..=1.0).contains(&ceiling)
         || ceiling == 0.0
@@ -275,11 +285,11 @@ fn diagnostic(
     options: &Options,
     notes: &[u8],
     repeated: bool,
-) -> Result<[Level; 3], Box<dyn Error>> {
+) -> Result<[Level; TRACKS], Box<dyn Error>> {
     let mut mix = Mix::new(options.rate, options.gap, options.offset)?;
     let frames = options.rate as usize;
-    let mut peak = [0.0_f64; 3];
-    let mut energy = [0.0; 3];
+    let mut peak = [0.0_f64; TRACKS];
+    let mut energy = [0.0; TRACKS];
     for frame in 0..frames {
         if frame == 0 || (repeated && (frame == frames * 3 / 10 || frame == frames * 6 / 10)) {
             for &note in notes {
@@ -305,7 +315,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let events = program(options.rate);
     let frames = PROGRAM_SECONDS as usize * options.rate as usize;
     let mut mix = Mix::new(options.rate, options.gap, options.offset)?;
-    let mut signals: [Vec<f32>; 3] = std::array::from_fn(|_| Vec::with_capacity(frames));
+    let mut signals: [Vec<f32>; TRACKS] = std::array::from_fn(|_| Vec::with_capacity(frames));
     let mut next_event = 0;
     for frame in 0..frames {
         while events.get(next_event).is_some_and(|e| e.frame == frame) {
@@ -319,7 +329,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let raw_levels = signals.each_ref().map(|s| levels(s));
     let gains = matching(&raw_levels, 10.0_f64.powf(options.ceiling_dbfs / 20.0))?;
     let mut isolated = Vec::new();
-    let mut maximum_isolated = [0.0_f64; 3];
+    let mut maximum_isolated = [0.0_f64; TRACKS];
     for note in FIRST_NOTE..=LAST_NOTE {
         let result = diagnostic(&options, &[note], false)?;
         for (maximum, level) in maximum_isolated.iter_mut().zip(result) {
@@ -348,6 +358,8 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         "model": "research-0.1.1-uncalibrated", "sample_rate": options.rate, "frames": frames,
         "track_order": NAMES, "current_geometry_mm": { "gap": 1.5, "offset": 0.5 },
         "candidate_geometry_mm": { "gap": options.gap, "offset": options.offset },
+        "aperture_geometry_mm": { "gap": APERTURE_PICKUP.gap_m * 1e3, "offset": APERTURE_PICKUP.offset_xy_m[0] * 1e3,
+            "pole_radius": APERTURE_PICKUP.pole_radius_m * 1e3, "law": "finite_aperture_16_node" },
         "program_seconds": PROGRAM_SECONDS, "events": events, "faults": 0,
         "raw_program_levels": raw_levels, "matching": gains, "export_levels": export_levels,
         "wav_files_written": !options.measure_only,
@@ -356,7 +368,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
             "maximum_isolated_peaks": maximum_isolated,
             "repeated_strike_seconds": [0.0,0.3,0.6], "repeated_chord_notes": chord_notes,
             "repeated_chord_levels": repeated_chord, "repeated_all_73_keys_levels": repeated_all_keys,
-            "observed_set_gain_to_sample_ceiling_not_applied": std::array::from_fn::<_,3,_>(|i| {
+            "observed_set_gain_to_sample_ceiling_not_applied": std::array::from_fn::<_,TRACKS,_>(|i| {
                 gains.sample_ceiling / maximum_isolated[i].max(repeated_chord[i].peak).max(repeated_all_keys[i].peak)
             }),
         },
@@ -413,9 +425,13 @@ mod tests {
                 peak: 3.0,
                 rms: 0.3,
             },
+            Level {
+                peak: 2.0,
+                rms: 0.4,
+            },
         ];
         let result = matching(&input, 0.5).unwrap();
-        for (actual, expected) in result.rms_gain.into_iter().zip([1.0, 0.5, 1.0 / 3.0]) {
+        for (actual, expected) in result.rms_gain.into_iter().zip([1.0, 0.5, 1.0 / 3.0, 0.25]) {
             assert!((actual - expected).abs() < 1e-14);
         }
         for (level, gain) in input.into_iter().zip(result.applied_gain) {
@@ -423,7 +439,7 @@ mod tests {
             assert!(level.peak * gain < 0.5);
             assert_eq!((0.2 * gain) / (0.1 * gain), 2.0);
         }
-        assert!(matching(&[Level::default(); 3], 0.5).is_err());
+        assert!(matching(&[Level::default(); TRACKS], 0.5).is_err());
     }
     #[test]
     fn performance_has_ordered_bounded_events_and_a_release_tail() {

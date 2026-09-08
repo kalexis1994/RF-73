@@ -3094,3 +3094,40 @@ Verification passes 149 lab unit tests, 116 DSP unit tests, 93 loaded
 CLI/receipt tests, strict Clippy and formatting. Geometry and exact-seating
 tests remain explicit. No new WAVs or production changes are introduced;
 release cache remains approximately 183 MiB.
+
+## Close Aperture pickup path
+
+The [aperture path block](PICKUP-APERTURE-PATH.md) adds the laboratory's
+finite-aperture flux law at gap 0.5 mm, lateral offset 0.5 mm and pole
+radius 2 mm as a fourth continuously filtered pickup in the playable engine,
+reduced to the tine axis with the exact analytic node slope, and exposes it
+in the plugin, the package metadata, the PLAY panel and the lab renderers.
+The listening protocol rerun with four tracks reproduces the three frozen
+factors exactly and freezes the fourth at 2.4996279723549004, with the
+192 kHz factor within 0.0012%. Both runs had zero faults, and the matched
+aperture stress peaks sit within 11% of Current's.
+
+Repeating the G3 diagnostic through the path puts the loud third harmonic at
++8.4 dB against the recording's +7.0 dB, where the engine had −12.4 dB, and
+brings every measured harmonic within 5.5 dB at the three dynamics; the
+engine's balance agrees with the static prediction within 0.7 dB. Fundamental
+decay slopes, the matched T60 deficits and the bar partial are unchanged.
+
+The 73-key laboratory stress at 48 kHz now reports p99 2.21 ms, worst 4.72 ms
+and 8 deadline misses of 1125 with zero faults, against p99 0.993 ms and no
+misses with three paths; the raw engine is unchanged at p99 0.73 ms. The
+four-path laboratory engine is therefore not qualified for the all-keys
+stress. Path 0 of `render --pickup` reproduces the raw engine's WAV byte for
+byte.
+
+Receipts: `references/pickup-aperture-listening-summary.json`, 110145 bytes,
+SHA-256
+`f6b47b33dc8c77ad3d19fe97c9e1640a2c81f13f02ca7d7a07074113c3c71fb9`, and
+`references/g3-aperture-pickup/` with twelve hashed files. Verification
+passes 118 DSP unit tests, 14 DSP integration tests, 154 lab unit tests in
+release, 101 loaded CLI/receipt tests, strict Clippy for the workspace and
+the wasm32 UI, and formatting. One pre-existing lab unit test, the
+persistent action-cycle replay against its committed reference, matches only
+in release builds: in debug builds it differs in the last bits from
+debug-versus-release rounding and fails, at every commit since it was added.
+No production default changes; release cache remains approximately 183 MiB.

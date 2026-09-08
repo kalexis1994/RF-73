@@ -289,11 +289,16 @@ engine's harmonic balance is exactly the static pickup transfer acting on its
 existing tine motion, and that the laboratory's finite-aperture flux law at a
 0.5 mm gap, 0.5 mm offset and 2 mm pole radius reproduces the recorded loud,
 medium and soft balances at the engine's own amplitudes within a few decibels.
-Next put that law and geometry into the playable engine as a selectable
-pickup path beside the retained ones, level-match it, render the diagnostic
-strikes and the nocturne through it, and compare balance, level-dependent
-brightness and listening against the retained paths before any default
-changes. Preserve
+
+The [Close Aperture path](PICKUP-APERTURE-PATH.md) puts that law into the
+playable engine as a fourth level-matched pickup. The G3 harmonic balance
+now sits within a few decibels of the recordings at every dynamic and agrees
+with the static prediction within 0.7 dB, the sustain is untouched, and the
+73-key laboratory stress misses 8 of 1125 deadlines. Next give the playable
+engine per-partial losses with the calibrated first-mode T60 and a slow
+second harmonic, then the second bar partial at 6.0 times the fundamental,
+then bake the action tables; the reduced engine must take the aperture
+transfer as a table, not as node sums. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

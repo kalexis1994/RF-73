@@ -1,13 +1,15 @@
 //! Render a Standard MIDI File through the playable 0.1.2 engine. Format 0/1
 //! files, tempo map, note on/off, sustain (CC 64) and all-notes-off are
 //! honoured; every non-drum channel is merged into one instrument.
-use rf_73_dsp::{Engine, FIRST_NOTE, LAST_NOTE, Profile};
+use rf_73_dsp::{Engine, FIRST_NOTE, LAST_NOTE, PICKUP_NAMES, Profile};
 use serde_json::json;
 use std::{error::Error, fs, io::BufWriter, path::Path, time::Instant};
 
 pub const HELP: &str = "MIDI render:
   render-midi INPUT.mid --output AUDIO.wav [--gain G] [--normalize] [--sample-rate HZ] [--tail S]
-Uncalibrated playable engine (0.1.2 mechanics, default pickup). Gain 0.05..2 scales the
+    [--pickup I]
+Uncalibrated playable engine (0.1.2 mechanics, default pickup). --pickup 0..3 renders the
+laboratory engine's level-matched path instead (3 is Close Aperture). Gain 0.05..2 scales the
 engine output before the WAV (default 1). --normalize also writes AUDIO-norm.wav peaking
 at -1 dBFS. Tail 0..30 s after the last event (default 4). A JSON receipt accompanies
 the WAV. Existing files are never overwritten.
@@ -165,15 +167,17 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let mut normalize = false;
     let mut rate = 48000u32;
     let mut tail = 4.0_f64;
+    let mut pickup: Option<usize> = None;
     let mut k = 4;
     while k < args.len() {
         match args[k].as_str() {
             "--normalize" => normalize = true,
-            "--gain" | "--sample-rate" | "--tail" if k + 1 < args.len() => {
+            "--gain" | "--sample-rate" | "--tail" | "--pickup" if k + 1 < args.len() => {
                 let value = &args[k + 1];
                 match args[k].as_str() {
                     "--gain" => gain = value.parse()?,
                     "--sample-rate" => rate = value.parse()?,
+                    "--pickup" => pickup = Some(value.parse()?),
                     _ => tail = value.parse()?,
                 }
                 k += 1;
@@ -190,6 +194,9 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     }
     if !tail.is_finite() || !(0.0..=30.0).contains(&tail) {
         return Err("tail must be within 0..=30 seconds".into());
+    }
+    if pickup.is_some_and(|i| i >= PICKUP_NAMES.len()) {
+        return Err("pickup path must be 0..=3".into());
     }
     if output.extension().is_none_or(|x| x != "wav") {
         return Err("output must be a new .wav path".into());
@@ -222,7 +229,17 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     if frames == 0 || f64::from(frames) / f64::from(rate) > 1800.0 {
         return Err("render length must be positive and at most 30 minutes".into());
     }
-    let mut engine = Engine::new(f64::from(rate), Profile::default())?;
+    let mut engine = match pickup {
+        Some(index) => {
+            let mut engine = Engine::new_laboratory(f64::from(rate))?;
+            if !engine.set_pickup(index) {
+                return Err("invalid laboratory pickup path".into());
+            }
+            engine.reset();
+            engine
+        }
+        None => Engine::new(f64::from(rate), Profile::default())?,
+    };
     engine.set_gain(1.0);
     let mut samples = Vec::with_capacity(frames as usize);
     let mut next = 0usize;
@@ -289,11 +306,12 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         "model":"research-0.1.2-uncalibrated","sample_rate":rate,"frames":frames,"seconds":f64::from(frames)/f64::from(rate),
         "division_ticks_per_quarter":division,"tempo_changes":tempos.len(),"events":events.len(),"notes_played":notes,
         "notes_outside_range_dropped":dropped,"sustain_events":pedal,"last_event_seconds":last,"tail_seconds":tail,
+        "pickup_path":pickup,"pickup_name":pickup.map(|i| PICKUP_NAMES[i]),
         "gain":gain,"peak":peak,"rms":(square/f64::from(frames)).sqrt(),"peak_dbfs":20.0*peak.max(1e-12).log10(),
         "normalized_output":normalize_gain.map(|_|normalized.display().to_string()),"normalize_gain":normalize_gain,
         "normalized_peak_dbfs":normalize_gain.map(|_|-1.0),"faults":engine.faults(),
         "render_wall_seconds":elapsed,"realtime_ratio":elapsed/(f64::from(frames)/f64::from(rate)),
-        "scope":"Playable 0.1.2 research engine with default pickup and no limiter, reverb or amplifier; uncalibrated. Channels merged, drums excluded, CC 66/67 ignored. Normalization is a separate explicitly requested file."});
+        "scope":"Playable 0.1.2 research engine with the default pickup, or one level-matched laboratory path when --pickup is given, and no limiter, reverb or amplifier; uncalibrated. Channels merged, drums excluded, CC 66/67 ignored. Normalization is a separate explicitly requested file."});
     crate::analysis::write_report(&receipt, &report)?;
     println!(
         "Rendered {} ({} notes, peak {:.3} dBFS, {:.2}x realtime)",

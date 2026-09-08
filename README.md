@@ -6,7 +6,7 @@ A Rust physical-model electric piano research project for RackForge.
 
 The first working prototype includes a nonlinear hammer-contact solver, a three-mode resonator per key, a geometry-dependent magnetic pickup, sustain and sample-accurate MIDI. It renders audio offline and compiles to a portable RackForge WASM plugin.
 
-Version 0.1.2 adds a Rust pickup laboratory editor in RackForge: three continuously filtered variants, fixed level matching, smooth A/B selection and complete saved settings. The physical profile remains provisional.
+Version 0.1.2 adds a Rust pickup laboratory editor in RackForge: four continuously filtered variants, fixed level matching, smooth A/B selection and complete saved settings. The physical profile remains provisional.
 
 The offline [coupled assembly experiment](docs/COUPLED-ASSEMBLY.md) now models a tine, tonebar and compliant common support with reciprocal forces, nonlinear hammer contact and a complete energy ledger. Its parameters remain provisional; high-resolution validation precedes plugin integration.
 
@@ -159,7 +159,10 @@ plugin's engine against the retained recordings, and the
 [pickup harmonics study](docs/PICKUP-HARMONICS.md) shows that its darkness is
 the pickup transfer alone: the laboratory's finite-aperture law at a close,
 wide pole reproduces the recorded harmonic balance from the engine's own tine
-motion.
+motion. The [Close Aperture path](docs/PICKUP-APERTURE-PATH.md) puts that
+law into the playable engine as a fourth level-matched pickup: the loud G3
+third harmonic rises to +8.4 dB against the recording's +7.0 dB, the sustain
+is unchanged, and the all-keys stress now misses a few deadlines.
 
 The [damper lift study](docs/LOADED-DAMPER-LIFT.md) changes the bridle ratio,
 bridle slack and arm spring that set that lift. The linkage geometry turns
@@ -251,7 +254,8 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Isolated pickup transfer](docs/PICKUP-TRANSFER.md): compare two magnetic laws under identical motion and measure internal sampling error.
 - [Mechanical pickup pairs](docs/PICKUP-PAIR.md): compare the two laws on the production trajectory and filter, with a complete G3 reference matrix.
 - [Pickup convergence](docs/PICKUP-CONVERGENCE.md): separate mechanical and pickup/filter sampling residuals across registers, with finite 128x/256x references.
-- [Pickup listening](docs/PICKUP-LISTENING.md): three performances with fixed global RMS matching, sample-peak control and measured full-keyboard headroom.
+- [Pickup listening](docs/PICKUP-LISTENING.md): four performances with fixed global RMS matching, sample-peak control and measured full-keyboard headroom.
+- [Close Aperture pickup path](docs/PICKUP-APERTURE-PATH.md): the finite-aperture law as a fourth level-matched plugin pickup, measured on the G3 strikes, the nocturne and the all-keys stress.
 - [Numerical convergence](docs/CONVERGENCE.md): the treble-contact correction, experiment and residual errors.
 - [Desktop audition](docs/AUDITION.md): build, install and launch each test version.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.
