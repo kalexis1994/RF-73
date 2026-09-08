@@ -168,8 +168,6 @@ wait cannot establish playing realism. Nominal speeds remain free-key labels.
 
 The launch is now geometric and independent of the key bed, and the soft
 threshold is set by the hammer speed at release against the bridle load
-during a 1.5 mm flight. Next identify the hammer mass and the bridle and
-damper-arm load through the flight ledger: vary hammer mass and bridle
-stiffness, slack and arm loading under the sharp let-off, retain the flight
-energy budget from release to impact, and requalify first-strike and
-repetition against the retained constant-slew and sharp let-off controls.
+during a 1.5 mm flight. The [flight budget study](LOADED-FLIGHT-BUDGET.md)
+now measures that flight with hammer, bridle and damper-arm identities and
+varies hammer mass and the bridle and arm loads under the sharp let-off.

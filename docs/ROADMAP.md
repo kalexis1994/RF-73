@@ -197,10 +197,23 @@ not only parameter-identification diagnostics:
     loses it too and cuts the strong strike by 43%. From release to impact
     the bridle takes 1.74 of the hammer's 1.86 mJ. No let-off is adopted.
 
-Next identify the hammer mass and the bridle and damper-arm load through the
-flight ledger under the sharp let-off, retaining the release-to-impact energy
-budget, and requalify first-strike and repetition against the retained
-constant-slew and sharp let-off controls. Preserve
+21. **Flight budget and load identification:** the
+    [flight budget study](LOADED-FLIGHT-BUDGET.md) adds an independent
+    release-to-impact observer with hammer, bridle and damper-arm identities
+    and varies hammer mass, arm damping, bridle rate loss and arm mass under
+    the sharp let-off. All 24 takes converge and the control replays the
+    let-off receipt. The flight is a nearly fixed toll of 1.74 to 2.21 mJ
+    over 1.6 mm across a fivefold range of release energy, set by the
+    damper-arm spring (1.44 mJ) and arm damping (0.34 mJ), not by bridle
+    loss. The soft threshold is release kinetic energy above that toll: the
+    retained 4 g soft strike sits 0.5% above it, and 8 or 12 g hammers raise
+    the soft impulse 31- and 47-fold but fail repetition because the weak,
+    gravity-free return cannot bring them back in 60 ms. No case is adopted.
+
+Next give the hammer and damper arm their gravitational weight and a return
+law consistent with a measured Rhodes hammer mass, retune the arm spring so
+the damper still seats, and requalify the soft threshold, first strike and
+repetition against the retained control with the flight budget explicit. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

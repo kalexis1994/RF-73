@@ -31,7 +31,7 @@ fn arm_energy(p: ElectromechanicalProfile, b: ElectromechanicalProbe) -> f64 {
             * (b.mechanical.position[19] - b.mechanical.pedal_position_m).powi(2)
 }
 #[derive(Default)]
-struct Coupling {
+pub(super) struct Coupling {
     hammer_to_bridle: f64,
     bridle_to_arm: f64,
     arm_to_felt: f64,
@@ -41,7 +41,10 @@ struct Coupling {
     defects: [f64; 5],
 }
 impl Coupling {
-    fn observe(
+    pub(super) fn defects(&self) -> [f64; 5] {
+        self.defects
+    }
+    pub(super) fn observe(
         &mut self,
         p: ElectromechanicalProfile,
         initial: ElectromechanicalProbe,
@@ -90,7 +93,7 @@ impl Coupling {
             *m = m.max(d.abs() / scale);
         }
     }
-    fn snapshot(&self, p: ElectromechanicalProfile, b: ElectromechanicalProbe) -> Value {
+    pub(super) fn snapshot(&self, p: ElectromechanicalProfile, b: ElectromechanicalProbe) -> Value {
         json!({"hammer_to_bridle_work_j":self.hammer_to_bridle,"bridle_to_arm_work_j":self.bridle_to_arm,
             "arm_to_felt_work_j":self.arm_to_felt,"felt_to_structure_work_j":self.felt_to_structure,
             "arm_heat_j":self.arm_heat,"pedal_work_j":self.pedal_work,"arm_energy_j":arm_energy(p,b),

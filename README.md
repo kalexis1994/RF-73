@@ -133,6 +133,11 @@ let-off reproduces the hard-stop launch while freeing the key; a 0.6 mm
 roll-off or a 1 mm earlier release removes the soft strike, and the bridle
 load consumes most of the hammer's flight energy.
 
+The [flight budget study](docs/LOADED-FLIGHT-BUDGET.md) measures that flight
+with hammer, bridle and damper-arm identities and varies hammer mass and the
+bridle and arm loads. The flight is a nearly fixed energy toll set by the
+damper-arm spring, and the soft threshold is release energy above it.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

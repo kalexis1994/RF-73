@@ -2,7 +2,7 @@
 //! before key bottom, with the key continuing into aftertouch.
 use super::key::{self, LetOff, REPEAT, SPEED_BOUND, Sim, WINDOW};
 use super::{bridle, launch, repetition, tuning};
-use rf_73_dsp::ElectromechanicalProfile;
+use rf_73_dsp::{ElectromechanicalProbe, ElectromechanicalProfile};
 use serde_json::{Value, json};
 use std::{cell::RefCell, error::Error, path::Path};
 
@@ -34,6 +34,21 @@ fn take(
     speed: f64,
     index: usize,
 ) -> Result<bridle::Take, Box<dyn Error>> {
+    take_observed(p, steps, speed, index, |_, _, _, _, _| {})
+}
+pub(super) fn take_observed(
+    p: ElectromechanicalProfile,
+    steps: usize,
+    speed: f64,
+    index: usize,
+    mut observe: impl FnMut(
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        f64,
+        f64,
+    ),
+) -> Result<bridle::Take, Box<dyn Error>> {
     let h = 1.0 / (48000.0 * steps as f64);
     let Some(l) = letoff(p, index) else {
         let mut result = launch::take_driven(
@@ -43,7 +58,7 @@ fn take(
             REPEAT,
             WINDOW,
             |t| repetition::target(p, t, REPEAT),
-            |_, _, _, _, _| {},
+            &mut observe,
         )?;
         result.report["driver"] = json!({"shape":NAMES[0],"nominal_speed_m_s":speed});
         result.report["key"] = Value::Null;
@@ -61,7 +76,10 @@ fn take(
         REPEAT,
         WINDOW,
         |t| sim.borrow_mut().step(t, h),
-        |_, _, b, _, _| sim.borrow_mut().observe(b),
+        |initial, a, b, t, h| {
+            sim.borrow_mut().observe(b);
+            observe(initial, a, b, t, h);
+        },
     )?;
     let frames = REPEAT + 9120;
     let key_report = sim

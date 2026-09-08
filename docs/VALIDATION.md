@@ -2908,3 +2908,40 @@ Verification passes 139 lab unit tests, 83 loaded CLI/receipt tests, strict
 Clippy and formatting. Map, ratio and free let-off tests remain explicit. No
 new WAVs or production changes are introduced; release cache remains
 approximately 183 MiB.
+
+## Loaded flight budget
+
+The [flight budget matrix](LOADED-FLIGHT-BUDGET.md) adds an independent
+release-to-impact observer under the retained sharp let-off and varies the
+hammer mass (0.004, 0.008, 0.012 kg), damper-arm damping, bridle rate loss
+and damper-arm mass one factor at a time on the original profile at two
+nominal speeds and the 60 ms repetition wait. The hammer identity (release
+kinetic minus arrival kinetic against bridle, return, pedestal and contact
+terms), the bridle identity (storage, heat, arm transfer) and the arm
+identity (arm energy, arm heat, felt transfer) close within 1e-8 in every
+budget. All 24 takes and twelve refinement pairs qualify, and the control
+replays the let-off receipt exactly.
+
+The flight is a nearly fixed toll of 1.744 to 2.213 mJ over 1.58 to 1.62 mm
+across a fivefold range of release energy, made of 1.44 mJ of damper-arm
+spring lift and 0.34 mJ of arm damping; bridle storage is returned and
+bridle heat is 0.002 mJ. The soft threshold is release kinetic energy above
+that toll: the 4 g control releases at 0.964 m/s against a 0.959 m/s
+threshold. Heavier hammers raise the soft impulse 31- and 47-fold but fail
+repetition because the gravity-free return is too slow; the 12 g second
+gesture is launched by a pedestal collision 0.64 mm below the let-off, which
+the receipt retains. Halving arm damping repeats the soft strike; halving arm
+mass loses it. Two paired rows pass repetition and no case is adopted.
+
+Maximum flight hammer defect is 4.650e-14, bridle defect 1.322e-13, arm
+defect 9.235e-14 and coupling defect 3.675e-14. Maximum relative total
+energy defect is 4.629e-12, launch momentum defect 1.309e-11 and key energy
+defect 5.782e-13. Maximum velocity refinement error is 0.17628%, impact
+error 0.14278%, budget term error 0.27320% and coupling term error 0.36238%.
+
+Receipt: `references/loaded-flight-budget-validation.json`, 2251707 bytes,
+SHA-256 `e19058328a660af052bcecb0dd9acd130bb2067056095d5ab392df90bc7eb42d`.
+Verification passes 141 lab unit tests, 85 loaded CLI/receipt tests, strict
+Clippy and formatting. Forced-release identity, wrong-mass detection and
+full control-take tests remain explicit. No new WAVs or production changes
+are introduced; release cache remains approximately 183 MiB.

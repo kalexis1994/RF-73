@@ -10,6 +10,200 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_flight_budget_receipt_closes_release_to_impact_identities_and_replays_control() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-flight-budget-validation.json");
+    let prior = read("loaded-letoff-validation.json");
+    assert_eq!(r["experiment"], "loaded-flight-budget-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let attack = |first: &serde_json::Value, base: &serde_json::Value| -> bool {
+        let a = first["entries"].as_array().unwrap();
+        let b = base["entries"].as_array().unwrap();
+        let impact_ok = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+            .iter()
+            .all(|key| {
+                let reference = base["impact"][key].as_f64().unwrap();
+                reference > 0.0
+                    && (first["impact"][key].as_f64().unwrap() / reference - 1.0).abs() < 0.05
+            });
+        a.len() == 1 && b.len() == 1 && impact_ok && {
+            let va = a[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            let vb = b[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            (va / vb - 1.0).abs() < 0.05
+                && (a[0]["seconds"].as_f64().unwrap() - b[0]["seconds"].as_f64().unwrap()).abs()
+                    < 0.001
+        }
+    };
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let old = prior["profiles"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|c| c["name"] == "baseline")
+        .unwrap();
+    let mut takes_seen = 0;
+    for (case_index, case) in cases.iter().enumerate() {
+        let s = &case["settings"];
+        let mass = s["hammer_mass_kg"].as_f64().unwrap();
+        assert_eq!(mass, [0.004, 0.008, 0.012, 0.004, 0.004, 0.004][case_index]);
+        assert_eq!(
+            s["arm_damping_n_s_m"],
+            if case_index == 3 { 0.25 } else { 0.5 }
+        );
+        assert_eq!(
+            s["bridle_rate_loss_s_m"],
+            if case_index == 4 { 1.0 } else { 2.0 }
+        );
+        assert_eq!(
+            s["arm_mass_kg"],
+            if case_index == 5 { 0.0005 } else { 0.001 }
+        );
+        let rows = case["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 2);
+        for (index, row) in rows.iter().enumerate() {
+            assert_eq!(row["measurement_qualified"], true);
+            for key in [
+                "convergence",
+                "launch_convergence",
+                "key_convergence",
+                "letoff_convergence",
+                "flight_convergence",
+            ] {
+                assert_eq!(row[key]["passed"], true);
+            }
+            let old_row = &old["drivers"][1]["rows"][index];
+            assert_eq!(old_row["nominal_speed_m_s"], row["nominal_speed_m_s"]);
+            let takes = row["takes"].as_array().unwrap();
+            assert_eq!(takes.len(), 2);
+            for (take, old_take) in takes.iter().zip(old_row["takes"].as_array().unwrap()) {
+                takes_seen += 1;
+                assert_eq!(take["passed"], true);
+                assert_eq!(take["driver"]["shape"], "key_letoff_sharp");
+                if case_index == 0 {
+                    let mut replay = take.clone();
+                    replay.as_object_mut().unwrap().remove("flight");
+                    assert_eq!(replay, *old_take);
+                    for key in ["convergence", "launch_convergence", "key_convergence"] {
+                        assert_eq!(row[key], old_row[key]);
+                    }
+                }
+                let flight = &take["flight"];
+                assert_eq!(flight["passed"], true);
+                let launches = flight["launches"].as_array().unwrap();
+                assert_eq!(launches.len(), 2);
+                for (launch, start) in launches.iter().zip([0.03, 0.21]) {
+                    assert_eq!(launch["passed"], true);
+                    assert_eq!(launch["released"], true);
+                    assert_eq!(launch["observed"], true);
+                    assert_eq!(launch["start_seconds"], start);
+                    let release = launch["release_seconds"].as_f64().unwrap();
+                    assert!(release > start + 0.005 && release < start + 0.03);
+                    let speed = launch["release_speed_m_s"].as_f64().unwrap();
+                    assert!(speed > 0.5 && speed < 2.0);
+                    // Release near the let-off top lies within the contact compression; a
+                    // collision launch below it is retained as functional evidence.
+                    let position = launch["release_position_m"].as_f64().unwrap();
+                    assert!(position <= -0.0015);
+                    assert_eq!(launch["released_at_letoff"], position >= -0.0021);
+                    if launch["released_at_letoff"] == true {
+                        assert!(position > -0.0018);
+                    }
+                    for d in launch["max_coupling_defects"].as_array().unwrap() {
+                        assert!(d.as_f64().unwrap() < 1e-8);
+                    }
+                    let check = |b: &serde_json::Value, pre_impact: bool| {
+                        let terms: Vec<f64> = b["terms_j"]
+                            .as_array()
+                            .unwrap()
+                            .iter()
+                            .map(|x| x.as_f64().unwrap())
+                            .collect();
+                        let coupling: Vec<f64> = b["coupling_j"]
+                            .as_array()
+                            .unwrap()
+                            .iter()
+                            .map(|x| x.as_f64().unwrap())
+                            .collect();
+                        let from = b["release_kinetic_j"].as_f64().unwrap();
+                        let to = b["arrival_kinetic_j"].as_f64().unwrap();
+                        let sum: f64 = terms.iter().sum();
+                        let scale = from + terms.iter().map(|x| x.abs()).sum::<f64>();
+                        assert!((from - to - sum).abs() <= 1e-8 * scale);
+                        let coupling_scale =
+                            terms[0].abs() + coupling.iter().map(|x| x.abs()).sum::<f64>();
+                        assert!(
+                            (terms[0] - coupling[0] - coupling[1] - coupling[2]).abs()
+                                <= 1e-8 * coupling_scale
+                        );
+                        assert!(
+                            (coupling[2] - coupling[3] - coupling[4] - coupling[5]).abs()
+                                <= 1e-8 * coupling_scale
+                        );
+                        assert!((from - 0.5 * mass * speed * speed).abs() < 1e-12);
+                        for key in [
+                            "relative_hammer_defect",
+                            "relative_bridle_defect",
+                            "relative_arm_defect",
+                        ] {
+                            assert!(b[key].as_f64().unwrap() < 1e-8);
+                        }
+                        // Before impact the hammer is in free flight: no pedestal or tine work.
+                        if pre_impact {
+                            assert_eq!(terms[3], 0.0);
+                            assert_eq!(terms[4], 0.0);
+                        }
+                        assert!(b["flight_seconds"].as_f64().unwrap() > 0.0);
+                    };
+                    check(&launch["release_to_window_end"], false);
+                    if launch["struck"] == true {
+                        let flight = &launch["release_to_impact"];
+                        check(flight, true);
+                        assert!(flight["arrival_speed_m_s"].as_f64().unwrap() > 0.0);
+                        assert!(flight["distance_m"].as_f64().unwrap() > 0.001);
+                        assert!(flight["bridle_share_of_release_kinetic"].as_f64().unwrap() > 0.0);
+                    } else {
+                        assert!(launch["release_to_impact"].is_null());
+                    }
+                }
+                // A strike in the first phase implies a struck first launch and vice versa.
+                let struck = launches[0]["struck"] == true;
+                let entries = take["repetition"]["phases"][0]["entries"]
+                    .as_array()
+                    .unwrap();
+                assert_eq!(struck, !entries.is_empty());
+            }
+            let first = &takes[1]["repetition"]["phases"][0];
+            let base = &cases[0]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+            assert_eq!(row["first_vs_control"]["passed"], attack(first, base));
+        }
+    }
+    assert_eq!(takes_seen, 24);
+}
+
+#[test]
+fn loaded_flight_budget_cli_preserves_outputs_and_rejects_extra_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-flight-budget"],
+        vec!["loaded-flight-budget", "--output", "keep.json"],
+        vec!["loaded-flight-budget", "--output", "bad.wav"],
+        vec!["loaded-flight-budget", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_letoff_receipt_maps_the_pedestal_and_replays_prescribed_controls() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {
