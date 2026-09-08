@@ -1,5 +1,12 @@
 # Pickup Lab UI (0.1.2)
 
+**Superseded.** State schema 4 replaced the pickup slots, the listen switch
+and the profile parameter with the physical [Sound page](SOUND-PAGE.md);
+older snapshots load onto the voicing they were listening to. This document
+is kept as the record of the 0.1.2 laboratory surface and its level policy.
+The four-path engine and its receipts remain in the DSP crate and the
+offline laboratory.
+
 This is an audition and model-development panel, not a final instrument design. All handwritten executable plugin and UI logic is Rust. The PLAY panel uses a separate Rust WebAssembly module with static HTML/CSS; wasm-bindgen generates its JavaScript browser bindings and bootstrap. Audio processing remains in the independent DSP component. RackForge also consumes the platform-neutral editor and parameter schema for controller navigation.
 
 ## Playing and comparing

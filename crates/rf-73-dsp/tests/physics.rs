@@ -224,7 +224,7 @@ fn calibrated_sustain_profile_validates_and_rings_longer_on_both_partials() {
     assert_eq!(calibrated.pickup_gap_m, default.pickup_gap_m);
     for bad in [
         Profile {
-            decay_seconds: 60.5,
+            decay_seconds: 80.5,
             ..default
         },
         Profile {

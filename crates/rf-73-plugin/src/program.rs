@@ -72,12 +72,16 @@ pub fn begin(plugin: &Rf73Processor, request: &[u8], destination: &mut [u8]) -> 
     {
         return write(&envelope(plugin.programs.get(id)?.clone())?, destination);
     }
-    if request
+    let factory = request
         .program_id
         .as_deref()
-        .is_some_and(|id| id != "research-direct")
-        || plugin.programs.len() >= MAX_PROGRAMS
-    {
+        .map(|id| crate::settings::presets().into_iter().find(|p| p.0 == id));
+    let base = match factory {
+        None => plugin.settings,
+        Some(Some(preset)) => preset.3,
+        Some(None) => return None,
+    };
+    if plugin.programs.len() >= MAX_PROGRAMS {
         return None;
     }
     let id = (1..=MAX_PROGRAMS)
@@ -86,14 +90,14 @@ pub fn begin(plugin: &Rf73Processor, request: &[u8], destination: &mut [u8]) -> 
     let document = ProgramDocument {
         schema_version: 1,
         id,
-        name: "Pickup Comparison".into(),
+        name: "Voicing".into(),
         plugin_id: PLUGIN_ID.into(),
         plugin_version: env!("CARGO_PKG_VERSION").into(),
         plugin_state_version: STATE_VERSION,
         payload_version: 1,
         category: Some("Electric Piano".into()),
         tags: vec!["uncalibrated".into()],
-        payload: serde_json::to_value(plugin.settings).ok()?,
+        payload: serde_json::to_value(base).ok()?,
     };
     write(&envelope(document)?, destination)
 }
@@ -125,53 +129,155 @@ pub fn catalog(
     let mut catalog: serde_json::Value =
         serde_json::from_str(include_str!("../../../package/metadata/presets.json")).ok()?;
     let entries = catalog["presets"].as_array_mut()?;
+    let factory = entries.len();
     for (i, document) in programs.values().enumerate() {
         entries.push(
             json!({"id": format!("custom.{}", document.id), "name": document.name,
-            "bank": "research", "category": "Electric Piano", "order": i + 1,
+            "bank": "research", "category": "Electric Piano", "order": factory + i,
             "tags": ["custom", "uncalibrated"], "editable": true,
-            "description": "Saved pickup comparison. Fixed level matching; no limiter."}),
+            "description": "Saved voicing. Level compensated pickup; no limiter."}),
         );
     }
     write(&catalog, destination)
 }
 
+/// Editor fields carry integers: hundredths of a millimetre for the distances,
+/// thousandths for the unit controls and millionths for the gain.
+type Field = (
+    &'static str,
+    &'static str,
+    &'static str,
+    u32,
+    f64,
+    i64,
+    i64,
+    u32,
+    &'static str,
+);
+const FIELDS: [Field; 8] = [
+    (
+        "distance",
+        "Pickup Distance",
+        "Gap 0.50..3.00 mm; compensated level.",
+        2,
+        100.0,
+        50,
+        300,
+        2,
+        "mm",
+    ),
+    (
+        "alignment",
+        "Tine Alignment",
+        "Offset -1.00..1.50 mm; centre is hollow.",
+        3,
+        100.0,
+        -100,
+        150,
+        2,
+        "mm",
+    ),
+    (
+        "hardness",
+        "Hammer Hardness",
+        "Contact stiffness, 0.500 is the original.",
+        4,
+        1000.0,
+        0,
+        1000,
+        3,
+        "",
+    ),
+    (
+        "sustain",
+        "Sustain",
+        "0 original 5 s, 0.5 calibrated 20 s, 1 is 80 s.",
+        5,
+        1000.0,
+        0,
+        1000,
+        3,
+        "",
+    ),
+    (
+        "bell",
+        "Bell",
+        "Second partial strike, 1 original, 0.258 calibrated.",
+        6,
+        1000.0,
+        0,
+        1000,
+        3,
+        "",
+    ),
+    (
+        "dynamics",
+        "Dynamics",
+        "Velocity curve, 0.5 is the original 1.4 power.",
+        7,
+        1000.0,
+        0,
+        1000,
+        3,
+        "",
+    ),
+    (
+        "gain",
+        "Output Gain",
+        "Start at 0.100x. Watch host meters; no limiter.",
+        0,
+        1_000_000.0,
+        0,
+        2_000_000,
+        6,
+        "x",
+    ),
+    (
+        "law",
+        "Pickup Law",
+        "Production surrogate or finite aperture, 2 mm pole.",
+        1,
+        1.0,
+        0,
+        1,
+        0,
+        "",
+    ),
+];
+
 pub fn view(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
     let document: ProgramDocument = read(bytes)?;
     let settings = settings(&document)?;
-    let choices: Vec<_> = rf_73_dsp::PICKUP_NAMES
+    let laws: Vec<_> = crate::settings::LAW_NAMES
         .iter()
         .enumerate()
         .map(|(i, name)| json!({"value": i.to_string(), "label": name}))
         .collect();
-    let profiles: Vec<_> = rf_73_dsp::PROFILE_NAMES
-        .iter()
-        .enumerate()
-        .map(|(i, name)| json!({"value": i.to_string(), "label": name}))
-        .collect();
+    let mut fields = Vec::new();
+    for (id, label, detail, index, scale, minimum, maximum, decimals, unit) in FIELDS {
+        let value = settings.parameter(index)?;
+        fields.push(if id == "law" {
+            json!({"id": id, "label": label, "detail": detail,
+                "value": {"type": "choice", "value": (value as u8).to_string()},
+                "kind": {"type": "choice", "options": laws}, "live_preview": true})
+        } else {
+            let mut kind = json!({"type": "number", "minimum": minimum, "maximum": maximum,
+                "step": if decimals == 6 { 10_000 } else { 1 }, "decimals": decimals});
+            if !unit.is_empty() {
+                kind["unit"] = json!(unit);
+            }
+            json!({"id": id, "label": label, "detail": detail,
+                "value": {"type": "integer", "value": (value * scale).round() as i64},
+                "kind": kind, "live_preview": true})
+        });
+    }
     let view: ProgramEditorView = serde_json::from_value(json!({
-        "schema_version": 1, "title": "RF-73 Pickup Lab",
-        "pages": [{"id": "comparison", "label": "Pickup Comparison",
-            "detail": "Fixed level matching. Shared mechanics. 20 ms pickup crossfade.",
-            "fields": [
-                {"id": "a", "label": "Pickup A", "detail": "Current gap / offset: 1.5 / 0.5 mm.",
-                    "value": {"type": "choice", "value": settings.a.to_string()},
-                    "kind": {"type": "choice", "options": choices}, "live_preview": true},
-                {"id": "b", "label": "Pickup B", "detail": "Close: 0.5 / 0.25 mm. Point Pole is experimental.",
-                    "value": {"type": "choice", "value": settings.b.to_string()},
-                    "kind": {"type": "choice", "options": choices}, "live_preview": true},
-                {"id": "listen_b", "label": "Listen to B", "detail": "Off: A. On: B. Held notes and pedal continue.",
-                    "value": {"type": "boolean", "value": settings.listen_b},
-                    "kind": {"type": "toggle"}, "live_preview": true},
-                {"id": "profile", "label": "Profile", "detail": "Original / calibrated sustain / plus the soft second partial.",
-                    "value": {"type": "choice", "value": settings.profile.to_string()},
-                    "kind": {"type": "choice", "options": profiles}, "live_preview": true},
-                {"id": "gain", "label": "Output Gain", "detail": "Start at 0.100x. Watch host meters; no limiter.",
-                    "value": {"type": "integer", "value": (settings.gain * 1_000_000.0).round() as i64},
-                    "kind": {"type": "number", "minimum": 0, "maximum": 2_000_000, "step": 10_000,
-                        "decimals": 6, "unit": "x"}, "live_preview": true}
-            ]}]
-    })).ok()?;
+        "schema_version": 1, "title": "RF-73 Voicing",
+        "pages": [{"id": "sound", "label": "Sound",
+            "detail": "Physical voicing; the pickup keeps its level.",
+            "fields": fields}]
+    }))
+    .ok()?;
     view.validate().ok()?;
     write(&view, destination)
 }
@@ -180,27 +286,14 @@ pub fn edit(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
     let request: ProgramFieldEditRequest = read(bytes)?;
     request.validate().ok()?;
     let current = settings(&request.document)?;
-    let (index, value) = match (request.field_id.as_str(), &request.value) {
-        ("a" | "b", ProgramEditorValue::Choice(value))
-            if value
-                .parse::<usize>()
-                .is_ok_and(|i| i < rf_73_dsp::PICKUP_NAMES.len()) =>
-        {
-            (
-                if request.field_id == "a" { 1 } else { 2 },
-                value.parse().ok()?,
-            )
-        }
-        ("profile", ProgramEditorValue::Choice(value))
-            if value
-                .parse::<usize>()
-                .is_ok_and(|i| i < rf_73_dsp::PROFILE_NAMES.len()) =>
-        {
-            (4, value.parse().ok()?)
-        }
-        ("listen_b", ProgramEditorValue::Boolean(value)) => (3, f64::from(u8::from(*value))),
-        ("gain", ProgramEditorValue::Integer(value)) if (0..=2_000_000).contains(value) => {
-            (0, *value as f64 / 1_000_000.0)
+    let field = FIELDS.iter().find(|f| f.0 == request.field_id)?;
+    let (index, value) = match (&request.value, field.0) {
+        (ProgramEditorValue::Choice(value), "law") => (field.3, value.parse::<u8>().ok()? as f64),
+        (ProgramEditorValue::Integer(value), id) if id != "law" => {
+            if !(field.5..=field.6).contains(value) {
+                return None;
+            }
+            (field.3, *value as f64 / field.4)
         }
         _ => return None,
     };

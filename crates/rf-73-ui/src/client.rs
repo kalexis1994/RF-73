@@ -1,8 +1,9 @@
 use serde_json::{Value, json};
 
 pub const PROTOCOL: &str = "rackforge.plugin.web@1";
-/// Gain, pickup A, pickup B, listen B, profile.
-pub const PARAMETERS: usize = 5;
+/// Gain, pickup law, distance, alignment, hardness, sustain, bell, dynamics.
+pub const PARAMETERS: usize = 8;
+pub const DEFAULTS: [f64; PARAMETERS] = [0.1, 0.0, 1.5, 0.5, 0.5, 0.0, 1.0, 0.5];
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Operation {
@@ -22,7 +23,7 @@ pub struct Client {
 impl Default for Client {
     fn default() -> Self {
         Self {
-            values: [0.1, 0.0, 2.0, 0.0, 0.0],
+            values: DEFAULTS,
             loaded: false,
             status: "Connecting to RackForge...".into(),
             queued: [None; PARAMETERS],
@@ -36,9 +37,10 @@ pub fn valid(index: usize, value: f64) -> bool {
     value.is_finite()
         && match index {
             0 => (0.0..=2.0).contains(&value),
-            1 | 2 => [0.0, 1.0, 2.0, 3.0].contains(&value),
-            3 => [0.0, 1.0].contains(&value),
-            4 => [0.0, 1.0, 2.0].contains(&value),
+            1 => [0.0, 1.0].contains(&value),
+            2 => (0.5..=3.0).contains(&value),
+            3 => (-1.0..=1.5).contains(&value),
+            4..=7 => (0.0..=1.0).contains(&value),
             _ => false,
         }
 }
@@ -145,7 +147,11 @@ fn snapshot(result: &Value) -> Option<[f64; PARAMETERS]> {
             return None;
         }
     }
-    Some([values[0]?, values[1]?, values[2]?, values[3]?, values[4]?])
+    let mut complete = [0.0; PARAMETERS];
+    for (slot, value) in complete.iter_mut().zip(values) {
+        *slot = value?;
+    }
+    Some(complete)
 }
 
 #[cfg(test)]
@@ -156,11 +162,12 @@ mod tests {
     }
     fn connect(client: &mut Client) {
         let request = client.next(0.0, true).unwrap();
-        client.response(&reply(
-            &request,
-            json!({"values":[{"index":0,"value":0.1},
-            {"index":1,"value":0},{"index":2,"value":2},{"index":3,"value":0},{"index":4,"value":0}]}),
-        ));
+        let values: Vec<Value> = DEFAULTS
+            .iter()
+            .enumerate()
+            .map(|(i, v)| json!({"index": i, "value": v}))
+            .collect();
+        client.response(&reply(&request, json!({"values": values})));
         assert!(client.loaded);
     }
     #[test]
@@ -171,7 +178,7 @@ mod tests {
         let first = client.next(1.0, false).unwrap();
         client.queue(0, 0.3);
         client.queue(0, 0.4);
-        client.queue(3, 1.0);
+        client.queue(5, 1.0);
         assert!(client.next(2.0, true).is_none());
         client.response(&reply(&first, json!({"value": 0.2})));
         assert_eq!(client.display(0), 0.4);
@@ -182,7 +189,7 @@ mod tests {
         client.response(&reply(&second, json!({"value": 0.4})));
         assert_eq!(
             client.next(5.0, false).unwrap()["params"]["parameter_index"],
-            3
+            5
         );
     }
     #[test]
@@ -203,10 +210,11 @@ mod tests {
     #[test]
     fn snapshots_require_all_parameters_with_valid_domains_and_no_duplicates() {
         assert!(snapshot(&json!({"values":[{"index":1,"value":0.5}]})).is_none());
-        assert!(!valid(3, 0.5));
+        assert!(!valid(1, 0.5));
         assert!(!valid(0, f64::NAN));
-        assert!(!valid(5, 0.0));
-        assert!(valid(4, 2.0) && !valid(4, 3.0) && valid(1, 3.0));
+        assert!(!valid(8, 0.0));
+        assert!(valid(2, 0.5) && !valid(2, 0.4) && valid(3, -1.0) && !valid(3, 1.6));
+        assert!(valid(7, 1.0) && !valid(4, 1.5));
         let mut client = Client::default();
         client.queue(0, 0.9);
         assert!(client.next(0.0, false).is_none());

@@ -6,7 +6,7 @@ A Rust physical-model electric piano research project for RackForge.
 
 The first working prototype includes a nonlinear hammer-contact solver, a three-mode resonator per key, a geometry-dependent magnetic pickup, sustain and sample-accurate MIDI. It renders audio offline and compiles to a portable RackForge WASM plugin.
 
-Version 0.1.2 adds a Rust pickup laboratory editor in RackForge: four continuously filtered variants, fixed level matching, smooth A/B selection and complete saved settings. The physical profile remains provisional.
+Version 0.1.2 grew from a Rust pickup laboratory editor in RackForge into a voiced instrument: a Sound page of physical parameters over a level-compensated pickup, four factory presets and complete saved settings. The physical profile remains provisional.
 
 The offline [coupled assembly experiment](docs/COUPLED-ASSEMBLY.md) now models a tine, tonebar and compliant common support with reciprocal forces, nonlinear hammer contact and a complete energy ledger. Its parameters remain provisional; high-resolution validation precedes plugin integration.
 
@@ -177,7 +177,11 @@ can be auditioned in RackForge before any default changes. The
 [voicing physics](docs/VOICING-PHYSICS.md) block then gives the voice its
 own pickup law, a velocity exponent and a level compensation derived from
 the pickup law, measured over 72 geometries, so continuous voicing controls
-can move the pickup without moving the loudness.
+can move the pickup without moving the loudness. The [Sound page](docs/SOUND-PAGE.md)
+then makes the plugin an instrument: pickup law, distance and alignment,
+hammer hardness, sustain, bell and dynamics as physical parameters with the
+compensated pickup, four factory presets, and state schema 4 that maps the
+old pickup slots and profiles onto the voicing they were listening to.
 
 The [damper lift study](docs/LOADED-DAMPER-LIFT.md) changes the bridle ratio,
 bridle slack and arm spring that set that lift. The linkage geometry turns
@@ -274,6 +278,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Calibrated sustain](docs/PLAYABLE-SUSTAIN.md): per-partial T60 in the playable profile, derived from fifteen recordings and measured on D3, G3 and B3 renders.
 - [Bar partial](docs/PLAYABLE-BAR-PARTIAL.md): the six-times line identified as the pickup's sixth harmonic, the second partial's strike weight and ratio as profile fields, and the impulsive contact measured.
 - [Voicing physics](docs/VOICING-PHYSICS.md): pickup law and velocity exponent in the profile, and a reference-motion level compensation measured over gap, offset and law.
+- [Sound page](docs/SOUND-PAGE.md): the plugin's physical voicing parameters, presets, surfaces and state schema 4.
 - [Numerical convergence](docs/CONVERGENCE.md): the treble-contact correction, experiment and residual errors.
 - [Desktop audition](docs/AUDITION.md): build, install and launch each test version.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.

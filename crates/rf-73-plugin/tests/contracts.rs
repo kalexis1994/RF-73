@@ -31,15 +31,15 @@ fn render(block: usize, note: u8) -> Vec<f32> {
                 length: 3,
             })
             .collect();
-        // Includes interrupted fades, silent-slot edits and simultaneous MIDI/parameters.
+        // Includes law, geometry and loss changes while notes ring, with simultaneous MIDI.
         let parameters: Vec<_> = [
-            (230, 3, 1.0),
-            (477, 3, 0.0),
-            (510, 1, 1.0),
-            (800, 2, 0.0),
-            (997, 3, 1.0),
+            (230, 1, 1.0),
+            (477, 1, 0.0),
+            (510, 2, 0.8),
+            (800, 3, 0.0),
+            (997, 5, 0.5),
             (1234, 0, 0.3),
-            (2100, 3, 0.0),
+            (2100, 6, 0.3),
         ]
         .into_iter()
         .filter(|(t, _, _)| (start..start + frames).contains(t))
@@ -87,7 +87,7 @@ fn state_is_versioned_and_rejected_atomically() {
     state[8..16].copy_from_slice(&f64::NAN.to_le_bytes());
     assert!(!plugin.load_state(&state));
     assert_eq!(plugin.get_parameter(0), Some(0.4));
-    state[4] = 4;
+    state[4] = 5;
     assert!(!plugin.load_state(&state));
     assert!(!plugin.load_preset("unknown"));
 }

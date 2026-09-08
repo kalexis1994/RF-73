@@ -16,6 +16,17 @@ struct App {
 }
 type Shared = Rc<RefCell<App>>;
 
+/// Sound-page controls: element id, parameter index, displayed decimals, unit.
+const CONTROLS: [(&str, usize, usize, &str); 7] = [
+    ("law", 1, 0, ""),
+    ("distance", 2, 2, " mm"),
+    ("alignment", 3, 2, " mm"),
+    ("hardness", 4, 3, ""),
+    ("sustain", 5, 3, ""),
+    ("bell", 6, 3, ""),
+    ("dynamics", 7, 3, ""),
+];
+
 impl App {
     fn element(&self, id: &str) -> Element {
         self.document
@@ -27,15 +38,7 @@ impl App {
     }
     fn render(&self) {
         let ready = self.connected && self.client.loaded;
-        for id in [
-            "pickup-a",
-            "pickup-b",
-            "profile",
-            "listen-a",
-            "listen-b",
-            "gain",
-            "gain-number",
-        ] {
+        for id in CONTROLS.iter().map(|c| c.0).chain(["gain", "gain-number"]) {
             let element = self.element(id);
             if ready {
                 let _ = element.remove_attribute("disabled");
@@ -44,10 +47,30 @@ impl App {
             }
         }
         let focused = self.document.active_element().map(|element| element.id());
-        for (id, index) in [("pickup-a", 1), ("pickup-b", 2), ("profile", 4)] {
-            self.element(id)
-                .unchecked_into::<HtmlSelectElement>()
-                .set_value(&format!("{}", self.client.display(index)));
+        for (id, index, decimals, unit) in CONTROLS {
+            let value = self.client.display(index);
+            let element = self.element(id);
+            if id == "law" {
+                element
+                    .unchecked_into::<HtmlSelectElement>()
+                    .set_value(&format!("{value}"));
+                self.text(
+                    "law-value",
+                    if value == 1.0 {
+                        "Aperture"
+                    } else {
+                        "Production"
+                    },
+                );
+            } else {
+                // A control being dragged keeps its own value until the host answers.
+                if focused.as_deref() != Some(id) {
+                    element
+                        .unchecked_into::<HtmlInputElement>()
+                        .set_value_as_number(value);
+                }
+                self.text(&format!("{id}-value"), &format!("{value:.decimals$}{unit}"));
+            }
         }
         let gain = self.client.display(0);
         for id in ["gain", "gain-number"] {
@@ -59,30 +82,6 @@ impl App {
                     .set_value_as_number(gain);
             }
         }
-        let side = self.client.display(3) == 1.0;
-        for (id, selected) in [("listen-a", !side), ("listen-b", side)] {
-            let _ = self
-                .element(id)
-                .set_attribute("aria-pressed", if selected { "true" } else { "false" });
-        }
-        let names = [
-            "Current",
-            "Close Original",
-            "Close Point Pole",
-            "Close Aperture",
-        ];
-        let selected = self.client.display(if side { 2 } else { 1 }) as usize;
-        let profiles = ["Original", "Calibrated Sustain", "Calibrated"];
-        let profile = self.client.display(4) as usize;
-        self.text(
-            "now-playing",
-            &format!(
-                "{} / {} · {}",
-                if side { "B" } else { "A" },
-                names[selected],
-                profiles[profile.min(profiles.len() - 1)]
-            ),
-        );
         self.text(
             "gain-db",
             &if gain > 0.0 {
@@ -162,25 +161,12 @@ pub fn start() -> Result<(), JsValue> {
         connected: false,
         client: Client::default(),
     }));
-    for (id, index, event) in [
-        ("pickup-a", 1, "change"),
-        ("pickup-b", 2, "change"),
-        ("profile", 4, "change"),
-        ("gain", 0, "input"),
-        ("gain-number", 0, "change"),
-    ] {
+    for (id, index, event) in CONTROLS
+        .iter()
+        .map(|c| (c.0, c.1, if c.0 == "law" { "change" } else { "input" }))
+        .chain([("gain", 0, "input"), ("gain-number", 0, "change")])
+    {
         parameter_event(&app, id, index, event)?;
-    }
-    for (id, value) in [("listen-a", 0.0), ("listen-b", 1.0)] {
-        let element = app.borrow().element(id);
-        let app = app.clone();
-        let callback = Closure::<dyn FnMut(Event)>::new(move |_| {
-            let mut app = app.borrow_mut();
-            app.client.queue(3, value);
-            app.pump(false);
-        });
-        element.add_event_listener_with_callback("click", callback.as_ref().unchecked_ref())?;
-        callback.forget();
     }
     let messages = app.clone();
     let callback = Closure::<dyn FnMut(MessageEvent)>::new(move |event: MessageEvent| {

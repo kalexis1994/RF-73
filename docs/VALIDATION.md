@@ -3275,3 +3275,32 @@ integration tests, the plugin's 9 tests, 154 lab unit tests in release, the
 affected CLI tests in release, strict Clippy for the workspace and the wasm32
 UI, and formatting. No production default changes.
 
+## Sound page
+
+The [Sound page](SOUND-PAGE.md) replaces the plugin's pickup slots, listen
+switch and profile parameter with eight physical parameters, gain, pickup
+law, distance, alignment, hammer hardness, sustain, bell and dynamics,
+mapped onto `Profile` so that the defaults reproduce the retained 0.1.2
+engine field for field and Sustain 0.5 with Bell 0.258 reproduces
+`Profile::calibrated`. The plugin runs the raw engine with the level
+compensation enabled, applies every change through `Engine::set_profile`
+while notes ring, and offers four factory presets, Original, Close Original,
+Close Aperture and Calibrated. State schema 4 (68 bytes) carries the page;
+schemas 3 and 2 load onto the voicing they were listening to and schema 1
+keeps its gain. The PLAY panel, the controller editor, the package metadata
+and the UI client were rewritten for the eight parameters; the `decay`
+profile range grows to 80 s for Sustain at 1.
+
+Tests hold the default mapping, the presets' validity and the profile's
+ranges at every parameter extreme, editor round trips for all eight fields,
+preset loading and seeding, atomic rejection of invalid parameters, payloads
+and edits, schema 1 to 4 loading and every corrupted schema 4 field, catalog
+bounds, block-size invariance under law, geometry and loss automation, audio
+continuity across every control during a ringing note, and the UI client's
+domains. Verification passes 118 DSP unit tests, 18 DSP integration tests,
+the plugin's 11 tests, the UI client's 3 tests, 154 lab unit tests in
+release, the affected CLI tests in release, strict Clippy for the workspace
+and the wasm32 UI, and formatting; the host smoke test validates the package
+with eight parameters. The default voicing is the retained engine; no
+production default changes.
+

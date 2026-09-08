@@ -210,8 +210,8 @@ impl Profile {
             (
                 self.decay_seconds,
                 0.25,
-                60.0,
-                "decay outside 0.25..60 seconds",
+                80.0,
+                "decay outside 0.25..80 seconds",
             ),
             (
                 self.bar_partial_decay_seconds,

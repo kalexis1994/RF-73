@@ -6,19 +6,23 @@ use rackforge_plugin_sdk::{
     MIDI2_KIND_NOTE_OFF, MIDI2_KIND_NOTE_ON, MidiEvent, MidiEvent2, ParameterEvent, Processor,
     export_processor,
 };
-use rf_73_dsp::{Engine, Profile};
-pub use settings::{DEFAULT_GAIN, Settings};
+use rf_73_dsp::Engine;
+pub use settings::{DEFAULT_GAIN, LAW_NAMES, PARAMETERS, Settings, presets};
 use std::collections::BTreeMap;
 
 pub const MAX_FRAMES: u32 = 4096;
 pub const MAX_EVENTS: usize = 256;
-pub const STATE_VERSION: u32 = 3;
-pub const STATE_BYTES: usize = 20;
+pub const STATE_VERSION: u32 = 4;
+/// Magic, version, seven f64 fields, the law byte and three reserved zero bytes.
+pub const STATE_BYTES: usize = 68;
 pub const PARAMETER_GAIN: u32 = 0;
-pub const PARAMETER_A: u32 = 1;
-pub const PARAMETER_B: u32 = 2;
-pub const PARAMETER_LISTEN_B: u32 = 3;
-pub const PARAMETER_PROFILE: u32 = 4;
+pub const PARAMETER_LAW: u32 = 1;
+pub const PARAMETER_DISTANCE: u32 = 2;
+pub const PARAMETER_ALIGNMENT: u32 = 3;
+pub const PARAMETER_HARDNESS: u32 = 4;
+pub const PARAMETER_SUSTAIN: u32 = 5;
+pub const PARAMETER_BELL: u32 = 6;
+pub const PARAMETER_DYNAMICS: u32 = 7;
 
 #[derive(Default)]
 pub struct Rf73Processor {
@@ -37,10 +41,7 @@ impl Rf73Processor {
         self.settings = settings;
         if let Some(engine) = &mut self.engine {
             engine.set_gain(settings.gain);
-            engine.set_pickup(settings.selected());
-            if let Some(profile) = Profile::named(usize::from(settings.profile)) {
-                engine.set_profile(profile);
-            }
+            engine.set_profile(settings.profile());
         }
         true
     }
@@ -99,14 +100,11 @@ impl Processor for Rf73Processor {
         if frames == 0 || frames > MAX_FRAMES || inputs != 0 || !(1..=2).contains(&outputs) {
             return false;
         }
-        let Ok(mut engine) = Engine::new_laboratory(rate) else {
+        let Ok(mut engine) = Engine::new(rate, self.settings.profile()) else {
             return false;
         };
         engine.set_gain(self.settings.gain);
-        engine.set_pickup(self.settings.selected());
-        if let Some(profile) = Profile::named(usize::from(self.settings.profile)) {
-            engine.set_profile(profile);
-        }
+        engine.set_level_compensation(true);
         engine.reset();
         self.engine = Some(Box::new(engine));
         self.maximum_frames = frames;
@@ -132,8 +130,8 @@ impl Processor for Rf73Processor {
     }
 
     fn load_preset(&mut self, id: &str) -> bool {
-        if id == "research-direct" {
-            return self.apply_settings(Settings::default());
+        if let Some(preset) = presets().into_iter().find(|p| p.0 == id) {
+            return self.apply_settings(preset.3);
         }
         let Some(settings) = id
             .strip_prefix("custom.")
@@ -149,41 +147,79 @@ impl Processor for Rf73Processor {
         let bytes = destination.get_mut(..STATE_BYTES)?;
         bytes[..4].copy_from_slice(b"RFRH");
         bytes[4..8].copy_from_slice(&STATE_VERSION.to_le_bytes());
-        bytes[8..16].copy_from_slice(&self.settings.gain.to_le_bytes());
-        bytes[16..20].copy_from_slice(&[
-            self.settings.a,
-            self.settings.b,
-            u8::from(self.settings.listen_b),
-            self.settings.profile,
-        ]);
+        let s = self.settings;
+        for (i, value) in [
+            s.gain,
+            s.distance_mm,
+            s.alignment_mm,
+            s.hardness,
+            s.sustain,
+            s.bell,
+            s.dynamics,
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            bytes[8 + 8 * i..16 + 8 * i].copy_from_slice(&value.to_le_bytes());
+        }
+        bytes[64..68].copy_from_slice(&[s.law, 0, 0, 0]);
         Some(STATE_BYTES)
     }
 
     fn load_state(&mut self, state: &[u8]) -> bool {
-        if ![16, STATE_BYTES].contains(&state.len()) || &state[..4] != b"RFRH" {
+        if ![16, 20, STATE_BYTES].contains(&state.len()) || &state[..4] != b"RFRH" {
             return false;
         }
         let version = u32::from_le_bytes(state[4..8].try_into().expect("validated state length"));
-        let gain = f64::from_le_bytes(state[8..16].try_into().expect("validated state length"));
+        let field = |i: usize| {
+            f64::from_le_bytes(
+                state[8 + 8 * i..16 + 8 * i]
+                    .try_into()
+                    .expect("validated state length"),
+            )
+        };
+        let gain = field(0);
         let settings = match (version, state.len()) {
             (1, 16) => Settings {
                 gain,
                 ..Settings::default()
             },
-            // Schema 2 kept byte 19 reserved at zero; schema 3 stores the profile there.
-            (2, STATE_BYTES) if state[18] <= 1 && state[19] == 0 => Settings {
+            // Schemas 2 and 3 held two pickup paths, the listened side and, in 3,
+            // a profile index; they map onto the voicing they were listening to.
+            (2 | 3, 20) if state[16] < 4 && state[17] < 4 && state[18] <= 1 && state[19] < 3 => {
+                if version == 2 && state[19] != 0 {
+                    return false;
+                }
+                let path = if state[18] == 1 { state[17] } else { state[16] };
+                let (law, distance_mm, alignment_mm) = match path {
+                    0 => (0, 1.5, 0.5),
+                    3 => (1, 0.5, 0.5),
+                    _ => (0, 0.5, 0.25),
+                };
+                let (sustain, bell) = match state[19] {
+                    0 => (0.0, 1.0),
+                    1 => (0.5, 1.0),
+                    _ => (0.5, 0.2582),
+                };
+                Settings {
+                    gain,
+                    law,
+                    distance_mm,
+                    alignment_mm,
+                    sustain,
+                    bell,
+                    ..Settings::default()
+                }
+            }
+            (STATE_VERSION, STATE_BYTES) if state[65..68] == [0, 0, 0] => Settings {
                 gain,
-                a: state[16],
-                b: state[17],
-                listen_b: state[18] == 1,
-                profile: 0,
-            },
-            (STATE_VERSION, STATE_BYTES) if state[18] <= 1 => Settings {
-                gain,
-                a: state[16],
-                b: state[17],
-                listen_b: state[18] == 1,
-                profile: state[19],
+                law: state[64],
+                distance_mm: field(1),
+                alignment_mm: field(2),
+                hardness: field(3),
+                sustain: field(4),
+                bell: field(5),
+                dynamics: field(6),
             },
             _ => return false,
         };

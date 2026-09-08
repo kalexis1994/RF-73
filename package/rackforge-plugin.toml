@@ -5,9 +5,9 @@ id = "org.rackforge.rhodes"
 name = "RF-73 Research"
 vendor = "RackForge"
 version = "0.1.2"
-description = "Physical-model pickup laboratory: four matched pickups, three mechanical profiles, smooth A/B and a portable Rust editor"
+description = "Physical-model Rhodes voicing: pickup law, distance and alignment, hammer hardness, sustain, bell and dynamics with a level-compensated pickup"
 kind = "instrument"
-state_version = 3
+state_version = 4
 capabilities = ["audio_output", "midi_input", "presets", "state"]
 ui_layouts = ["little@1"]
 

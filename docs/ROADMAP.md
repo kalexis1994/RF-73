@@ -324,7 +324,14 @@ reference note within 2.3 dB over 72 geometries while leaving the laws'
 dynamics untouched. Next build the plugin's Sound page on these: pickup
 distance, tine alignment, hammer hardness, sustain, bell and dynamics as
 smoothed continuous parameters with the compensation applied, then the
-Model page with the raw profile fields. Preserve
+Model page with the raw profile fields.
+
+The [Sound page](SOUND-PAGE.md) is built: eight physical parameters over the
+raw engine with the compensated pickup, four factory presets, a rewritten
+PLAY panel and controller editor, and state schema 4 mapping the old slots
+and profiles. Next the Model page with the raw profile fields, then the gain
+and headroom policy for the calibrated voicings, then the baked action
+tables and the reduced engine's CPU gate on the Raspberry Pi. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

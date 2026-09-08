@@ -22,6 +22,11 @@ button[aria-pressed="true"] { background:var(--accent); color:var(--on-accent); 
 .hint { grid-column:1/-1; padding-top:12px; }
 .output { display:grid; grid-template-columns:160px 1fr 165px; align-items:center; gap:18px; border-bottom:1px solid var(--line); padding:30px 0 24px; }
 input[type="range"] { width:100%; accent-color:var(--accent); cursor:pointer; min-height:32px; }
+.sound { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--line); }
+.control { padding:18px 24px 14px; border-bottom:1px solid var(--line); } .control:nth-child(odd) { border-right:1px solid var(--line); }
+.control label { display:flex; justify-content:space-between; align-items:baseline; font-weight:600; margin-bottom:8px; } .control output { color:var(--muted); font-size:13px; font-variant-numeric:tabular-nums; }
+.control p { color:var(--muted); font-size:12px; margin-top:6px; }
+@media(max-width:650px) { .sound { grid-template-columns:1fr; } .control:nth-child(odd) { border-right:none; } }
 .gain-value { display:flex; align-items:center; flex-wrap:wrap; gap:5px; justify-content:flex-end; }
 input[type="number"] { width:94px; background:var(--inset); color:var(--ink); border:1px solid var(--line); padding:8px; border-radius:7px; font:inherit; font-variant-numeric:tabular-nums; }
 .gain-value span,#gain-db { color:var(--muted); font-size:12px; } #gain-db { width:100%; text-align:right; }

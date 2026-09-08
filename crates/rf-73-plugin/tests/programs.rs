@@ -3,13 +3,18 @@ use rackforge_program_api::{
     PreparedProgram, ProgramEditRequest, ProgramEditorValue, ProgramEditorView,
     ProgramFieldEditRequest,
 };
-use rf_73_plugin::{Rf73Processor, STATE_BYTES, Settings};
+use rf_73_plugin::{Rf73Processor, STATE_BYTES, Settings, presets};
 
 fn begin(plugin: &mut Rf73Processor, id: Option<&str>) -> PreparedProgram {
-    let request = serde_json::to_vec(&ProgramEditRequest::new(id.map(str::to_owned))).unwrap();
-    let mut bytes = [0; 4096];
-    let len = plugin.begin_program_edit(&request, &mut bytes).unwrap();
-    serde_json::from_slice(&bytes[..len]).unwrap()
+    let request = ProgramEditRequest {
+        schema_version: 1,
+        program_id: id.map(str::to_string),
+    };
+    let mut destination = [0; 4096];
+    let len = plugin
+        .begin_program_edit(&serde_json::to_vec(&request).unwrap(), &mut destination)
+        .unwrap();
+    serde_json::from_slice(&destination[..len]).unwrap()
 }
 
 fn state(plugin: &Rf73Processor) -> [u8; STATE_BYTES] {
@@ -24,9 +29,13 @@ fn editor_preview_install_catalog_reload_and_snapshot_agree() {
     let mut draft = begin(&mut plugin, Some("research-direct"));
     let mut destination = [0; 4096];
     for (field, value, parameter, expected) in [
-        ("a", ProgramEditorValue::Choice("1".into()), 1, 1.0),
-        ("b", ProgramEditorValue::Choice("0".into()), 2, 0.0),
-        ("listen_b", ProgramEditorValue::Boolean(true), 3, 1.0),
+        ("law", ProgramEditorValue::Choice("1".into()), 1, 1.0),
+        ("distance", ProgramEditorValue::Integer(75), 2, 0.75),
+        ("alignment", ProgramEditorValue::Integer(-25), 3, -0.25),
+        ("hardness", ProgramEditorValue::Integer(300), 4, 0.3),
+        ("sustain", ProgramEditorValue::Integer(500), 5, 0.5),
+        ("bell", ProgramEditorValue::Integer(258), 6, 0.258),
+        ("dynamics", ProgramEditorValue::Integer(1000), 7, 1.0),
         ("gain", ProgramEditorValue::Integer(123456), 0, 0.123456),
     ] {
         let before = state(&plugin);
@@ -54,7 +63,7 @@ fn editor_preview_install_catalog_reload_and_snapshot_agree() {
         .unwrap();
     let view: ProgramEditorView = serde_json::from_slice(&destination[..len]).unwrap();
     view.validate().unwrap();
-    assert_eq!(view.pages[0].fields.len(), 5);
+    assert_eq!(view.pages[0].fields.len(), 8);
     assert!(view.pages[0].fields.iter().all(|field| field.live_preview));
     let len = plugin
         .prepare_program_save(&document, &mut destination)
@@ -68,7 +77,8 @@ fn editor_preview_install_catalog_reload_and_snapshot_agree() {
     assert_eq!(begin(&mut plugin, Some(&draft.preview_sound_id)), draft);
     let len = plugin.write_program_catalog(&mut destination).unwrap();
     let catalog: serde_json::Value = serde_json::from_slice(&destination[..len]).unwrap();
-    assert_eq!(catalog["presets"][1]["id"], draft.preview_sound_id);
+    assert_eq!(catalog["presets"].as_array().unwrap().len(), 5);
+    assert_eq!(catalog["presets"][4]["id"], draft.preview_sound_id);
     // The host replays stored program documents into fresh instances.
     let mut restored = Rf73Processor::default();
     assert!(restored.install_program(&prepared));
@@ -80,44 +90,84 @@ fn editor_preview_install_catalog_reload_and_snapshot_agree() {
 }
 
 #[test]
+fn factory_presets_load_and_seed_drafts() {
+    let mut plugin = Rf73Processor::default();
+    for (id, _, _, settings) in presets() {
+        assert!(plugin.load_preset(id), "{id}");
+        for index in 0..8 {
+            assert_eq!(
+                plugin.get_parameter(index),
+                settings.parameter(index),
+                "{id} {index}"
+            );
+        }
+        let draft = begin(&mut plugin, Some(id));
+        let seeded: Settings = serde_json::from_value(draft.document.payload).unwrap();
+        assert_eq!(seeded, settings);
+    }
+    assert!(plugin.load_preset("calibrated"));
+    assert_eq!(plugin.get_parameter(1), Some(1.0));
+    assert_eq!(plugin.get_parameter(5), Some(0.5));
+    assert!(!plugin.load_preset("unknown"));
+    let request = ProgramEditRequest {
+        schema_version: 1,
+        program_id: Some("unknown".into()),
+    };
+    assert!(
+        plugin
+            .begin_program_edit(&serde_json::to_vec(&request).unwrap(), &mut [0; 4096])
+            .is_none()
+    );
+}
+
+#[test]
 fn malformed_programs_and_parameter_domains_reject_atomically() {
     let mut plugin = Rf73Processor::default();
     let draft = begin(&mut plugin, None);
     let before = state(&plugin);
-    // The fourth path is a valid choice for both slots; the state round-trips it.
-    assert!(plugin.set_parameter(1, 3.0) && plugin.set_parameter(2, 3.0));
-    assert_eq!(plugin.get_parameter(1), Some(3.0));
-    assert_eq!(plugin.get_parameter(2), Some(3.0));
-    let fourth = state(&plugin);
-    assert!(plugin.set_parameter(1, 0.0) && plugin.set_parameter(2, 2.0));
-    assert!(plugin.load_state(&fourth));
-    assert_eq!(plugin.get_parameter(1), Some(3.0));
-    assert!(plugin.set_parameter(1, 0.0) && plugin.set_parameter(2, 2.0));
-    assert_eq!(state(&plugin), before);
     for (index, value) in [
         (0, f64::NAN),
         (0, -0.1),
         (1, 0.5),
-        (2, 4.0),
-        (2, 2.5),
-        (3, 0.5),
-        (4, 3.0),
-        (4, 0.5),
-        (5, 0.0),
+        (1, 2.0),
+        (2, 0.4),
+        (2, 3.1),
+        (3, -1.1),
+        (3, 1.6),
+        (4, 1.5),
+        (5, -0.1),
+        (6, f64::INFINITY),
+        (7, 1.01),
+        (8, 0.0),
     ] {
-        assert!(!plugin.set_parameter(index, value));
+        assert!(!plugin.set_parameter(index, value), "{index} {value}");
         assert_eq!(state(&plugin), before);
     }
     let mut malformed = draft.clone();
     malformed.storage_path = "../outside.json".into();
     assert!(!plugin.install_program(&serde_json::to_vec(&malformed).unwrap()));
     malformed = draft.clone();
-    malformed.document.payload["a"] = serde_json::json!(4);
+    malformed.document.payload["law"] = serde_json::json!(5);
+    assert!(!plugin.preview_program(&serde_json::to_vec(&malformed).unwrap()));
+    malformed = draft.clone();
+    malformed.document.payload["distance_mm"] = serde_json::json!(9.0);
     assert!(!plugin.preview_program(&serde_json::to_vec(&malformed).unwrap()));
     malformed = draft.clone();
     malformed.document.plugin_id = "org.example.other".into();
     assert!(!plugin.install_program(&serde_json::to_vec(&malformed).unwrap()));
     assert_eq!(state(&plugin), before);
+    // An editor value outside its field range is rejected.
+    let request = ProgramFieldEditRequest {
+        schema_version: 1,
+        document: draft.document.clone(),
+        field_id: "distance".into(),
+        value: ProgramEditorValue::Integer(400),
+    };
+    assert!(
+        plugin
+            .apply_program_edit(&serde_json::to_vec(&request).unwrap(), &mut [0; 4096])
+            .is_none()
+    );
     assert!(plugin.prepare(48000.0, 128, 0, 2));
     let mut out = [1.0; 256];
     plugin.process(
@@ -137,7 +187,7 @@ fn malformed_programs_and_parameter_domains_reject_atomically() {
             ParameterEvent {
                 frame: 10,
                 index: 2,
-                value: 1.5,
+                value: 4.0,
             },
         ],
         128,
@@ -161,7 +211,7 @@ fn bounded_catalog_fits_transfer_and_rejects_overflow_without_losing_entries() {
     let mut out = [0; 4096];
     let len = plugin.write_program_catalog(&mut out).unwrap();
     let catalog: serde_json::Value = serde_json::from_slice(&out[..len]).unwrap();
-    assert_eq!(catalog["presets"].as_array().unwrap().len(), 9);
+    assert_eq!(catalog["presets"].as_array().unwrap().len(), 12);
     let mut draft = last.unwrap();
     assert!(plugin.install_program(&serde_json::to_vec(&draft).unwrap()));
     draft.document.id = "overflow".into();
@@ -172,88 +222,70 @@ fn bounded_catalog_fits_transfer_and_rejects_overflow_without_losing_entries() {
 }
 
 #[test]
-fn legacy_state_keeps_original_gain_and_pickup_and_new_state_rejects_every_invalid_field() {
+fn older_state_schemas_map_onto_the_voicing_they_were_listening_to() {
     let mut plugin = Rf73Processor::default();
     let mut legacy = [0; 16];
     legacy[..4].copy_from_slice(b"RFRH");
     legacy[4..8].copy_from_slice(&1u32.to_le_bytes());
     legacy[8..].copy_from_slice(&0.7f64.to_le_bytes());
-    assert!(plugin.set_parameter(3, 1.0));
+    assert!(plugin.set_parameter(5, 1.0));
     assert!(plugin.load_state(&legacy));
     assert_eq!(plugin.get_parameter(0), Some(0.7));
+    assert_eq!(plugin.get_parameter(5), Some(0.0));
+    // Schema 3: A = Current, B = Close Aperture, listening to B, Calibrated profile.
+    let mut v3 = [0; 20];
+    v3[..4].copy_from_slice(b"RFRH");
+    v3[4..8].copy_from_slice(&3u32.to_le_bytes());
+    v3[8..16].copy_from_slice(&0.25f64.to_le_bytes());
+    v3[16..20].copy_from_slice(&[0, 3, 1, 2]);
+    assert!(plugin.load_state(&v3));
+    assert_eq!(plugin.get_parameter(0), Some(0.25));
+    assert_eq!(plugin.get_parameter(1), Some(1.0));
+    assert_eq!(plugin.get_parameter(2), Some(0.5));
+    assert_eq!(plugin.get_parameter(3), Some(0.5));
+    assert_eq!(plugin.get_parameter(5), Some(0.5));
+    assert_eq!(plugin.get_parameter(6), Some(0.2582));
+    // Listening to A instead: Current geometry with the same profile.
+    v3[18] = 0;
+    assert!(plugin.load_state(&v3));
     assert_eq!(plugin.get_parameter(1), Some(0.0));
-    assert_eq!(plugin.get_parameter(3), Some(0.0));
+    assert_eq!(plugin.get_parameter(2), Some(1.5));
+    // Schema 2 required the reserved byte to be zero; the point-pole path maps to
+    // the close production geometry.
+    let mut v2 = v3;
+    v2[4..8].copy_from_slice(&2u32.to_le_bytes());
+    assert!(!plugin.load_state(&v2));
+    v2[19] = 0;
+    v2[16] = 2;
+    assert!(plugin.load_state(&v2));
+    assert_eq!(plugin.get_parameter(2), Some(0.5));
+    assert_eq!(plugin.get_parameter(3), Some(0.25));
+    assert_eq!(plugin.get_parameter(5), Some(0.0));
+    // Schema 4 rejects every corrupted field atomically.
+    assert!(plugin.set_parameter(1, 1.0));
     let before = state(&plugin);
-    for (index, value) in [(0, 0), (4, 4), (16, 4), (17, 4), (18, 2), (19, 3)] {
+    for (index, value) in [(0, 0), (4, 5), (64, 2), (65, 1), (67, 9)] {
         let mut malformed = before;
         malformed[index] = value;
-        assert!(!plugin.load_state(&malformed));
+        assert!(!plugin.load_state(&malformed), "{index}");
         assert_eq!(state(&plugin), before);
     }
+    let mut malformed = before;
+    malformed[16..24].copy_from_slice(&4.0f64.to_le_bytes());
+    assert!(!plugin.load_state(&malformed));
+    malformed = before;
+    malformed[48..56].copy_from_slice(&f64::NAN.to_le_bytes());
+    assert!(!plugin.load_state(&malformed));
+    assert_eq!(state(&plugin), before);
     let mut destination = [42; STATE_BYTES - 1];
     assert_eq!(plugin.save_state(&mut destination), None);
     assert_eq!(destination, [42; STATE_BYTES - 1]);
 }
 
 #[test]
-fn profile_parameter_round_trips_through_state_programs_and_audio() {
+fn voicing_changes_keep_ringing_notes_and_stay_finite() {
     let mut plugin = Rf73Processor::default();
     assert!(plugin.prepare(48000.0, 128, 0, 2));
-    assert_eq!(plugin.get_parameter(4), Some(0.0));
-    assert!(plugin.set_parameter(4, 2.0));
-    assert_eq!(plugin.get_parameter(4), Some(2.0));
-    let saved = state(&plugin);
-    assert_eq!(saved[4..8], 3u32.to_le_bytes());
-    assert_eq!(saved[19], 2);
-    // A schema 2 snapshot loads with the original profile; schema 3 carries it.
-    let mut legacy = saved;
-    legacy[4..8].copy_from_slice(&2u32.to_le_bytes());
-    legacy[19] = 0;
-    assert!(plugin.load_state(&legacy));
-    assert_eq!(plugin.get_parameter(4), Some(0.0));
-    legacy[19] = 1;
-    assert!(!plugin.load_state(&legacy));
-    assert!(plugin.load_state(&saved));
-    assert_eq!(plugin.get_parameter(4), Some(2.0));
-    // The editor exposes the profile and accepts every named choice.
-    let draft = begin(&mut plugin, None);
-    let mut view = vec![0; 4096];
-    let length = plugin
-        .program_editor_view(&serde_json::to_vec(&draft.document).unwrap(), &mut view)
-        .unwrap();
-    let view: serde_json::Value = serde_json::from_slice(&view[..length]).unwrap();
-    let fields = view["pages"][0]["fields"].as_array().unwrap();
-    let profile = fields.iter().find(|f| f["id"] == "profile").unwrap();
-    assert_eq!(profile["kind"]["options"].as_array().unwrap().len(), 3);
-    assert_eq!(profile["value"]["value"], "2");
-    let pickup = fields.iter().find(|f| f["id"] == "b").unwrap();
-    assert_eq!(pickup["kind"]["options"].as_array().unwrap().len(), 4);
-    for (field, value, expected) in [
-        ("profile", "1", Some(1.0)),
-        ("profile", "3", None),
-        ("b", "3", Some(3.0)),
-    ] {
-        let request = ProgramFieldEditRequest {
-            schema_version: 1,
-            document: draft.document.clone(),
-            field_id: field.into(),
-            value: ProgramEditorValue::Choice(value.into()),
-        };
-        let mut out = vec![0; 4096];
-        let result = plugin.apply_program_edit(&serde_json::to_vec(&request).unwrap(), &mut out);
-        match expected {
-            None => assert!(result.is_none(), "{field} {value}"),
-            Some(v) => {
-                let length = result.unwrap();
-                let prepared: PreparedProgram = serde_json::from_slice(&out[..length]).unwrap();
-                let index = if field == "profile" { 4 } else { 2 };
-                let settings: Settings = serde_json::from_value(prepared.document.payload).unwrap();
-                assert_eq!(settings.parameter(index), Some(v));
-            }
-        }
-    }
-    // Switching the profile while a note rings keeps the audio finite and the
-    // held note ringing.
     let mut out = vec![0.0f32; 256];
     plugin.process(
         &[],
@@ -268,14 +300,24 @@ fn profile_parameter_round_trips_through_state_programs_and_audio() {
         0,
         2,
     );
-    for value in [0.0, 1.0, 2.0] {
+    let mut previous = out[254];
+    for (index, value) in [
+        (1, 1.0),
+        (2, 0.5),
+        (3, 0.0),
+        (4, 1.0),
+        (5, 1.0),
+        (6, 0.0),
+        (7, 0.0),
+        (1, 0.0),
+    ] {
         plugin.process(
             &[],
             &mut out,
             &[],
             &[ParameterEvent {
                 frame: 5,
-                index: 4,
+                index,
                 value,
             }],
             128,
@@ -283,7 +325,11 @@ fn profile_parameter_round_trips_through_state_programs_and_audio() {
             2,
         );
         assert!(out.iter().all(|s| s.is_finite()));
-        assert!(out.iter().any(|s| *s != 0.0));
-        assert_eq!(plugin.get_parameter(4), Some(value));
+        assert!(out.iter().any(|s| *s != 0.0), "{index}");
+        assert_eq!(plugin.get_parameter(index), Some(value));
+        // The block joins the previous one without a jump larger than the signal.
+        let peak = out.iter().fold(0.0f32, |m, s| m.max(s.abs()));
+        assert!((out[0] - previous).abs() <= peak.max(1e-6), "{index}");
+        previous = out[254];
     }
 }
