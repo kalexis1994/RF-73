@@ -35,7 +35,9 @@ counted and dropped. The raw WAV is unnormalized float; `--normalize` writes a
 separate `-norm.wav` peaking at -1 dBFS. `--pickup 0..3` renders the
 laboratory engine's level-matched pickup path instead of the raw engine; path
 3 is [Close Aperture](PICKUP-APERTURE-PATH.md). `--sustain calibrated` uses the
-[recording-derived per-partial T60](PLAYABLE-SUSTAIN.md). `--gain`,
+[recording-derived per-partial T60](PLAYABLE-SUSTAIN.md); `--bar-ratio`,
+`--bar-strike` and `--contact-stiffness` set the [second partial's](PLAYABLE-BAR-PARTIAL.md)
+ratio and strike weight and the contact coefficient. `--gain`,
 `--sample-rate` and `--tail` are documented in `--help`. The JSON receipt records note counts, peak, RMS,
 faults and the render speed. The engine is uncalibrated and has no limiter.
 

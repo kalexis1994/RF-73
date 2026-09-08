@@ -302,11 +302,18 @@ per-partial T60 and derives the first and bar partial values, 20 s and
 fundamental T60 now matches the recordings within 5 s at every qualified
 pair, the second harmonic decays at the recorded rate on its own, and the
 bar partial rings for seconds but sits 25 dB low at the uniform 6.27 ratio.
-Next tune the second bar partial to 6.0 times the fundamental with its own
-excitation level, then decide the plugin's profile and gain policy with the
-aperture pickup and calibrated sustain together, then bake the action
-tables; the reduced engine must take the aperture transfer as a table, not
-as node sums. Preserve
+
+The [bar partial block](PLAYABLE-BAR-PARTIAL.md) set out to retune that
+partial to 6.0 and found the recordings' six-times line to be the pickup's
+sixth harmonic by its ratio, decay and level swing; the engine's second
+partial is instead over-excited by 20 to 35 dB at medium and soft strikes,
+because its contact is impulsive at every velocity and softening it does
+not help. `Profile::calibrated` combines the calibrated sustain with a
+strike weight of −0.02; the ratio stays 6.267 for want of evidence. Next
+decide the plugin's profile and gain policy with the aperture pickup and
+the calibrated profile together, then bake the action tables; the reduced
+engine must take the aperture transfer as a table, not as node sums, and
+the contact law's velocity dependence remains a laboratory question. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

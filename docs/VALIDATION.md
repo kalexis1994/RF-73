@@ -3170,3 +3170,44 @@ with the two new ones), strict Clippy for the workspace and the wasm32 UI,
 and formatting; the complete CLI suite runs after the commit and its result
 is recorded in the next block. No production default changes.
 
+## Second partial strike weight and the sixth harmonic
+
+The [bar partial block](PLAYABLE-BAR-PARTIAL.md) adds `bar_partial_ratio`
+and `bar_partial_strike_weight` to the playable profile, with defaults equal
+to the former constants 6.267 and −0.3 so every retained render is unchanged,
+and `Profile::calibrated`, the calibrated sustain with the weight −0.02.
+`render` and `render-midi` take `--bar-ratio`, `--bar-strike` and
+`--contact-stiffness`. The recordings' line at six times the fundamental is
+identified as the pickup's sixth harmonic: it sits at 6.007 to 6.027 times
+the fundamental at D3, G3 and B3, decays six to eight times faster than the
+fundamental, and swings 50 dB in level across the layers. The engine's own
+sixth harmonic through the aperture pickup lands within 2.5 to 11.3 dB of it
+at the loud dynamic.
+
+A 36-case sweep of strike weights −0.3, −0.1, −0.05 and −0.02 at three notes
+and three velocities shows the engine's 6.27 partial at −22 to −28 dB with
+the default weight, nearly independent of velocity, falling 20 dB per decade
+of weight to −44 to −55 dB at −0.02. Contact durations traced at 192 kHz are
+0.09 to 0.34 ms with the default stiffness and shorten with velocity; a
+hundredfold softer contact reaches 1.0 ms at velocity 0.25 and lowers the
+soft partial by 5 to 9 dB only. The diagnostic's sustained-bar-partial
+finding and the sustain block's 2.3 s anchor are marked as readings of the
+harmonic. The calibrated nocturne peaks at +7.5 dBFS raw with the RMS of
+the calibrated sustain.
+
+Receipt: `references/playable-bar-partial/summary.json`, 47206 bytes,
+SHA-256
+`83b7715581c09a4911d8b77da53e882f5d6128b4b9e5577f24a8ae333343a668`, with
+18 hashed render receipts and attack comparisons for the chosen weight. A
+receipt test holds the hashes, the harmonic's ratio, the partial's monotone
+fall and chosen level, the loud sixth harmonic against the recording and the
+contact-duration table; a DSP test holds the fields' validation, the ratio's
+effect on the second partial's frequency and the weight's square-law on its
+energy; a CLI test holds the options and the byte-identical default.
+Verification passes 118 DSP unit tests, 16 DSP integration tests, 154 lab
+unit tests in release, the affected CLI tests in release (105 in the suite
+with the two new ones), strict Clippy for the workspace and the wasm32 UI,
+and formatting. The complete debug CLI suite of the preceding commit was
+still running when this block was verified; its result is recorded in the
+next block. No production default changes.
+

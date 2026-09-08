@@ -79,7 +79,8 @@ separately; measured assembly identification remains outstanding.
 | Contact stiffness | 4e10 N/m^2 | Assumed, quadratic force law |
 | Maximum hammer speed | 0.8 m/s | Assumed |
 | Speed mapping | maximum speed * normalized velocity^1.4 | Empirical design choice |
-| Modal frequency ratios | 1, 6.267, 17.55 | Ideal uniform cantilever approximation |
+| Modal frequency ratios | 1, 6.267, 17.55; the second is the profile field `bar_partial_ratio` | Ideal uniform cantilever approximation; no measured second-partial ratio yet, see [bar partial](PLAYABLE-BAR-PARTIAL.md) |
+| Second partial strike weight | −0.3 (default); −0.02 in `Profile::calibrated` | Strike-point participation, bounded from above by the D3/G3/B3 recordings |
 | A3 modal T60 | 5 s, 160 ms, 55 ms (default); 20 s, 2.3 s, 55 ms in `Profile::calibrated_sustain` | Default assumed; [calibrated first and bar partial](PLAYABLE-SUSTAIN.md) from the D3/G3/B3 recordings |
 | Pickup gap / offset | 1.5 / 0.5 mm | Initial study coordinates, not measured |
 | Extra damper decay rate | 55/s | Assumed binary damper |

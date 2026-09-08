@@ -73,6 +73,11 @@ tine T60 for the loaded assembly; the playable engine never received it.
 
 ### The bar partial is there, but wrong and brief
 
+Revised by the [bar partial block](PLAYABLE-BAR-PARTIAL.md): the recording's
+line at six times the fundamental behaves as the pickup's sixth harmonic, not
+as a bending partial, and the engine's second partial is over-excited rather
+than too brief. The paragraph below is kept as written at the time.
+
 The recording carries the tine's second bending partial at 1178 to 1179 Hz,
 6.0 times the fundamental, at −9.7 dB in the loud attack and audible through
 the whole 4 s sustain window at the medium dynamic. The engine's second

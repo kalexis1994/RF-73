@@ -44,7 +44,9 @@ sqrt(220 / f0) to refer it to A3:
 The geometric mean anchor is 19.9 s, rounded to 20 s. The sqrt law fits the
 three notes within about 8%; D3 and G3 decay alike while B3 decays faster than
 the law predicts, so a steeper pitch dependence remains possible with more
-notes. The bar partial at 6.01 times the fundamental is tracked through the
+notes. The line at 6.01 times the fundamental, read here as the bar partial
+and identified afterwards as the pickup's sixth harmonic by the
+[bar partial block](PLAYABLE-BAR-PARTIAL.md), is tracked through the
 sustain window in six recordings, D3 layers 1 to 4 and G3 layers 1 and 2,
 with late slopes of −18 to −23 dB/s, T60 2.6 to 3.3 s, and an A3 anchor whose
 geometric mean is 2.5 s; in the first second it decays faster, near
@@ -73,8 +75,10 @@ during the first second before it decays, so those early slopes are shallow
 on both sides. The engine's second harmonic now decays at 5 dB/s at G3
 against the recording's 5 dB/s. The bar partial, still at the uniform 6.27
 ratio, decays at 20 to 27 dB/s across the three notes instead of vanishing,
-but it sits 25 dB below the recording's 6.01 partial at the medium dynamic:
-its tuning and excitation are the next block, not its loss.
+but it sits 25 dB below the recording's 6.01 line at the medium dynamic:
+its tuning and excitation are the next block, not its loss. That block found
+the 6.01 line to be the pickup's sixth harmonic and the engine's partial to be
+too strong, not too weak; see [PLAYABLE-BAR-PARTIAL.md](PLAYABLE-BAR-PARTIAL.md).
 
 The default pickup with the calibrated sustain gives the same fundamental
 decay, so the two changes are independent as intended.

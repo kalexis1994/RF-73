@@ -234,6 +234,9 @@ mod tests {
                         trace: false,
                         pickup: None,
                         calibrated_sustain: false,
+                        bar_ratio: None,
+                        contact_stiffness: None,
+                        bar_strike: None,
                     };
                     let pair = render_pair(&options).unwrap();
                     let mut engine = Engine::new(rate as f64, options.profile()).unwrap();

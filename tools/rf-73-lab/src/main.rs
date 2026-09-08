@@ -72,6 +72,11 @@ Render options:
                     raw engine; needs the default gap/offset. Names: rf-73-lab help
   --sustain S       original (default) or calibrated: first/bar partial T60 from
                     the retained recordings, 20 s / 2.3 s at A3
+  --bar-ratio R     Second partial over the fundamental, 2..12 (default 6.267;
+                    the recordings show 6.0)
+  --contact-stiffness K  Quadratic contact law coefficient, 1e8..1e12 N/m^2
+                    (default 4e10)
+  --bar-strike W    Second partial strike weight, -1..1 (default -0.3)
 WAV is mono IEEE float, without normalization or clipping. Existing files are
 never overwritten. Every render writes a JSON report. Parameters are uncalibrated.
 Demo: three A3 intensities and a sustained E-minor chord, ten seconds.
@@ -95,6 +100,9 @@ struct Options {
     laboratory: bool,
     pickup: Option<usize>,
     calibrated_sustain: bool,
+    bar_ratio: Option<f64>,
+    contact_stiffness: Option<f64>,
+    bar_strike: Option<f64>,
 }
 
 impl Options {
@@ -119,6 +127,9 @@ impl Options {
             laboratory: false,
             pickup: None,
             calibrated_sustain: false,
+            bar_ratio: None,
+            contact_stiffness: None,
+            bar_strike: None,
         };
         let mut seen = std::collections::BTreeSet::new();
         let mut i = 1;
@@ -158,6 +169,9 @@ impl Options {
                         | "--offset-mm"
                         | "--pickup"
                         | "--sustain"
+                        | "--bar-ratio"
+                        | "--contact-stiffness"
+                        | "--bar-strike"
                 ),
             };
             if !allowed {
@@ -177,6 +191,11 @@ impl Options {
                 "--gap-mm" => o.gap_mm = value.parse().map_err(|_| invalid())?,
                 "--offset-mm" => o.offset_mm = value.parse().map_err(|_| invalid())?,
                 "--pickup" => o.pickup = Some(value.parse().map_err(|_| invalid())?),
+                "--bar-ratio" => o.bar_ratio = Some(value.parse().map_err(|_| invalid())?),
+                "--bar-strike" => o.bar_strike = Some(value.parse().map_err(|_| invalid())?),
+                "--contact-stiffness" => {
+                    o.contact_stiffness = Some(value.parse().map_err(|_| invalid())?)
+                }
                 "--sustain" => {
                     o.calibrated_sustain = match value.as_str() {
                         "original" => false,
@@ -226,14 +245,18 @@ impl Options {
         Ok(o)
     }
     fn profile(&self) -> Profile {
+        let base = if self.calibrated_sustain {
+            Profile::calibrated_sustain()
+        } else {
+            Profile::default()
+        };
         Profile {
             pickup_gap_m: self.gap_mm * 0.001,
             pickup_offset_m: self.offset_mm * 0.001,
-            ..if self.calibrated_sustain {
-                Profile::calibrated_sustain()
-            } else {
-                Profile::default()
-            }
+            bar_partial_ratio: self.bar_ratio.unwrap_or(base.bar_partial_ratio),
+            contact_stiffness: self.contact_stiffness.unwrap_or(base.contact_stiffness),
+            bar_partial_strike_weight: self.bar_strike.unwrap_or(base.bar_partial_strike_weight),
+            ..base
         }
     }
 }
@@ -787,7 +810,7 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
     }
     let elapsed = started.elapsed().as_secs_f64();
     let report = format!(
-        "{{\n  \"schema_version\": 1,\n  \"model\": \"research-0.1.1-uncalibrated\",\n  \"mode\": \"{}\",\n  \"sample_rate\": {},\n  \"frames\": {},\n  \"note\": {},\n  \"velocity\": {},\n  \"hold_seconds\": {},\n  \"pickup_gap_mm\": {},\n  \"pickup_offset_mm\": {},\n  \"pickup_path\": {},\n  \"pickup_name\": {},\n  \"sustain\": \"{}\",\n  \"oversampling\": 4,\n  \"peak\": {:.9},\n  \"rms\": {:.9},\n  \"faults\": {},\n  \"render_wall_seconds_including_io\": {:.6}\n}}\n",
+        "{{\n  \"schema_version\": 1,\n  \"model\": \"research-0.1.1-uncalibrated\",\n  \"mode\": \"{}\",\n  \"sample_rate\": {},\n  \"frames\": {},\n  \"note\": {},\n  \"velocity\": {},\n  \"hold_seconds\": {},\n  \"pickup_gap_mm\": {},\n  \"pickup_offset_mm\": {},\n  \"pickup_path\": {},\n  \"pickup_name\": {},\n  \"sustain\": \"{}\",\n  \"bar_partial_ratio\": {},\n  \"contact_stiffness\": {:e},\n  \"bar_partial_strike_weight\": {},\n  \"oversampling\": 4,\n  \"peak\": {:.9},\n  \"rms\": {:.9},\n  \"faults\": {},\n  \"render_wall_seconds_including_io\": {:.6}\n}}\n",
         o.command,
         o.rate,
         frames,
@@ -804,6 +827,9 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
         } else {
             "original"
         },
+        o.profile().bar_partial_ratio,
+        o.profile().contact_stiffness,
+        o.profile().bar_partial_strike_weight,
         peak,
         (square_sum / frames as f64).sqrt(),
         engine.faults(),

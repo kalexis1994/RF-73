@@ -2,7 +2,6 @@ use crate::{FIRST_NOTE, LAST_NOTE, MagneticPickup, ModelError, OVERSAMPLE, Profi
 use core::f64::consts::TAU;
 
 const MODES: usize = 3;
-const HAMMER_WEIGHTS: [f64; MODES] = [1.0, -0.3, 0.12];
 const PICKUP_WEIGHTS: [f64; MODES] = [1.0, 0.8, 0.6];
 
 #[derive(Debug, Clone, Copy, Default)]
@@ -77,6 +76,7 @@ impl Mode {
 /// hammer contact, and an analytic flux surrogate. No measured tonebar fit yet.
 pub struct Voice {
     modes: [Mode; MODES],
+    hammer_weights: [f64; MODES],
     profile: Profile,
     pickup: MagneticPickup,
     dt: f64,
@@ -138,8 +138,8 @@ impl Voice {
         let frequency = 440.0 * 2.0_f64.powf((note as f64 - 69.0) / 12.0);
         let dt = 1.0 / (sample_rate * substeps as f64);
         let scale = (220.0 / frequency).clamp(0.15, 4.0);
-        // Ideal uniform cantilever ratios, not measurements of a Rhodes assembly.
-        let ratios = [1.0, 6.267, 17.55];
+        // Uniform cantilever ratios by default; the second is a profile field.
+        let ratios = [1.0, profile.bar_partial_ratio, 17.55];
         // Bound the fastest mode's phase advance during midpoint contact.
         // At supported rates/notes this requires at most 16 bounded microsteps.
         let contact_steps = if refine_contact {
@@ -166,6 +166,7 @@ impl Voice {
         });
         Self {
             modes,
+            hammer_weights: [1.0, profile.bar_partial_strike_weight, 0.12],
             profile,
             pickup: MagneticPickup::from_validated_profile(profile),
             dt,
@@ -259,9 +260,10 @@ impl Voice {
                 - h * mode.omega * mode.omega * mode.q)
                 / denominator;
             free_q[i] = mode.q + 0.5 * h * (mode.v + free_v[i]);
-            response_v[i] = h * HAMMER_WEIGHTS[i] / (mode.mass * denominator);
-            delta_free -= HAMMER_WEIGHTS[i] * free_q[i];
-            compliance += 0.5 * h * HAMMER_WEIGHTS[i] * response_v[i];
+            let weight = self.hammer_weights[i];
+            response_v[i] = h * weight / (mode.mass * denominator);
+            delta_free -= weight * free_q[i];
+            compliance += 0.5 * h * weight * response_v[i];
         }
         let stiffness = self.profile.contact_stiffness;
         let maximum_delta = delta0.max(delta_free).max(0.0);
@@ -289,7 +291,7 @@ impl Voice {
         let contact_v: f64 = self
             .modes
             .iter()
-            .zip(HAMMER_WEIGHTS)
+            .zip(self.hammer_weights)
             .map(|(m, b)| m.v * b)
             .sum();
         if delta1 <= 0.0 && self.hammer_v <= contact_v {
@@ -302,7 +304,7 @@ impl Voice {
     fn contact_position(&self) -> f64 {
         self.modes
             .iter()
-            .zip(HAMMER_WEIGHTS)
+            .zip(self.hammer_weights)
             .map(|(m, b)| m.q * b)
             .sum()
     }

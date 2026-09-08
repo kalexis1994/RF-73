@@ -10,6 +10,238 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn playable_bar_partial_receipt_bounds_the_second_partial_and_identifies_the_sixth_harmonic() {
+    let root =
+        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references/playable-bar-partial");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let summary = read("summary.json");
+    assert_eq!(summary["experiment"], "playable-bar-partial-v1");
+    let retained = summary["retained_files"].as_array().unwrap();
+    assert_eq!(retained.len(), 18);
+    for entry in retained {
+        let name = entry["file"].as_str().unwrap();
+        let bytes = fs::read(root.join(name)).unwrap();
+        assert_eq!(
+            bytes.len() as u64,
+            entry["bytes"].as_u64().unwrap(),
+            "{name}"
+        );
+        assert_eq!(
+            sha256_hex(&bytes),
+            entry["sha256"].as_str().unwrap(),
+            "{name}"
+        );
+    }
+    let chosen = summary["chosen_strike_weight"].as_f64().unwrap();
+    assert_eq!(
+        chosen,
+        rf_73_dsp::Profile::calibrated().bar_partial_strike_weight
+    );
+    assert_eq!(
+        rf_73_dsp::Profile::calibrated().bar_partial_ratio,
+        rf_73_dsp::Profile::default().bar_partial_ratio
+    );
+    // The recordings' line sits at six times the fundamental within 0.5% at all
+    // three notes: a harmonic of the pickup, not a bending partial with its own ratio.
+    for note in ["d3", "g3", "b3"] {
+        for ratio in summary["recording_line_6_0_ratios"][note]
+            .as_array()
+            .unwrap()
+        {
+            let ratio = ratio.as_f64().unwrap();
+            assert!((5.99..=6.03).contains(&ratio), "{note} {ratio}");
+        }
+    }
+    let sweep = summary["sweep"].as_array().unwrap();
+    assert_eq!(sweep.len(), 36);
+    let level = |x: &serde_json::Value, side: &str, key: &str| x[side][key].as_f64();
+    for note in ["d3", "g3", "b3"] {
+        for velocity in [1.0, 0.6, 0.25] {
+            let rows: Vec<&serde_json::Value> = sweep
+                .iter()
+                .filter(|x| x["note"] == note && x["velocity"] == velocity)
+                .collect();
+            assert_eq!(rows.len(), 4);
+            // At the medium and soft dynamics the engine's 6.27 partial falls
+            // monotonically as the strike weight shrinks and ends at least 43 dB below
+            // the fundamental with the chosen weight; at the loud dynamic it is buried
+            // under the sixth harmonic and only its bound is held.
+            let mut previous = f64::INFINITY;
+            for row in &rows {
+                if let Some(mode) = level(row, "engine", "line_6_27_relative_db") {
+                    if velocity < 1.0 {
+                        assert!(
+                            mode < previous + 0.5,
+                            "{note} v{velocity} {mode} after {previous}"
+                        );
+                        previous = mode;
+                    }
+                    if row["strike_weight"] == chosen {
+                        assert!(mode < -43.0, "{note} v{velocity} chosen {mode}");
+                    }
+                }
+            }
+            let default_row = rows.iter().find(|r| r["strike_weight"] == -0.3).unwrap();
+            let default_mode = level(default_row, "engine", "line_6_27_relative_db").unwrap();
+            // At the medium and soft dynamics the default partial stands 20 to 35 dB
+            // above anything in the recording at that frequency.
+            if velocity < 1.0 {
+                assert!(
+                    default_mode > -30.0,
+                    "{note} v{velocity} default {default_mode}"
+                );
+                if let Some(recorded) = level(default_row, "recording", "line_6_0_relative_db") {
+                    assert!(default_mode - recorded > 3.0, "{note} v{velocity}");
+                }
+            }
+            // The engine's own sixth harmonic at the loud dynamic is within 12 dB of the
+            // recording's line, whatever the strike weight.
+            if velocity == 1.0 {
+                for row in &rows {
+                    let engine = level(row, "engine", "line_6_0_relative_db").unwrap();
+                    let recorded = level(row, "recording", "line_6_0_relative_db").unwrap();
+                    assert!(
+                        (engine - recorded).abs() < 12.0,
+                        "{note} {engine} vs {recorded}"
+                    );
+                }
+            }
+        }
+    }
+    // Contact durations: the default contact lasts 0.09 to 0.34 ms and shortens with
+    // velocity; a hundredfold softer contact only reaches a millisecond at soft strikes.
+    let contact = summary["contact_durations"].as_array().unwrap();
+    let duration = |file: &str| {
+        contact.iter().find(|c| c["file"] == file).unwrap()["contact_ms"]
+            .as_f64()
+            .unwrap()
+    };
+    for note in [50, 55, 59] {
+        let mut previous = f64::INFINITY;
+        for velocity in ["0.1", "0.25", "0.6", "1.0"] {
+            let d = duration(&format!("n{note}-v{velocity}"));
+            assert!(
+                (0.09..=0.34).contains(&d) && d < previous,
+                "n{note} v{velocity} {d}"
+            );
+            previous = d;
+        }
+    }
+    assert!(duration("k4e8-v0.25") > 1.0 && duration("k4e8-v1.0") < 0.6);
+    assert!(duration("k1e8-v0.25") > 4.0);
+    for note in ["d3", "g3", "b3"] {
+        for (velocity, layer) in [("1.0", 1), ("0.6", 3), ("0.25", 5)] {
+            let render = read(&format!("engine/render-{note}-v{velocity}.json"));
+            assert_eq!(render["bar_partial_strike_weight"], chosen);
+            assert_eq!(render["bar_partial_ratio"], 6.267);
+            assert_eq!(render["sustain"], "calibrated");
+            assert_eq!(render["pickup_path"], 3);
+            assert_eq!(render["faults"], 0);
+            let attack = read(&format!("engine/attack-{note}-v{velocity}-L{layer}.json"));
+            assert!(
+                attack["partial_comparison"]["candidate_tracking"]["tracks"]
+                    .as_array()
+                    .unwrap()
+                    .len()
+                    > 3
+            );
+        }
+    }
+}
+
+#[test]
+fn render_bar_partial_options_reach_the_profile_and_default_to_the_retained_engine() {
+    let scratch = Scratch::new();
+    let base = [
+        "render",
+        "--note",
+        "55",
+        "--velocity",
+        "0.7",
+        "--sample-rate",
+        "44100",
+        "--seconds",
+        "0.5",
+        "--hold",
+        "0.4",
+    ];
+    let with = |extra: &[&str]| {
+        let mut args: Vec<&str> = base.to_vec();
+        args.extend(extra);
+        args.iter().map(|s| s.to_string()).collect::<Vec<_>>()
+    };
+    for extra in [
+        vec!["--output", "default.wav"],
+        vec![
+            "--output",
+            "uniform.wav",
+            "--bar-ratio",
+            "6.267",
+            "--bar-strike",
+            "-0.3",
+        ],
+        vec!["--output", "tuned.wav", "--bar-ratio", "6.0"],
+        vec!["--output", "soft.wav", "--contact-stiffness", "4e9"],
+        vec!["--output", "quiet.wav", "--bar-strike", "-0.02"],
+        vec![
+            "--output",
+            "calibrated.wav",
+            "--sustain",
+            "calibrated",
+            "--bar-strike",
+            "-0.02",
+            "--pickup",
+            "3",
+        ],
+    ] {
+        let owned = with(&extra);
+        scratch.success(&owned.iter().map(String::as_str).collect::<Vec<_>>());
+    }
+    let default = fs::read(scratch.0.join("default.wav")).unwrap();
+    assert_eq!(fs::read(scratch.0.join("uniform.wav")).unwrap(), default);
+    for name in ["tuned.wav", "soft.wav", "quiet.wav"] {
+        assert_ne!(fs::read(scratch.0.join(name)).unwrap(), default, "{name}");
+    }
+    let report = scratch.json("default.json");
+    assert_eq!(report["bar_partial_ratio"], 6.267);
+    assert_eq!(report["contact_stiffness"], 4.0e10);
+    assert_eq!(report["bar_partial_strike_weight"], -0.3);
+    assert_eq!(scratch.json("tuned.json")["bar_partial_ratio"], 6.0);
+    assert_eq!(scratch.json("soft.json")["contact_stiffness"], 4.0e9);
+    assert_eq!(
+        scratch.json("quiet.json")["bar_partial_strike_weight"],
+        -0.02
+    );
+    let calibrated = scratch.json("calibrated.json");
+    assert_eq!(calibrated["bar_partial_strike_weight"], -0.02);
+    assert_eq!(calibrated["sustain"], "calibrated");
+    assert_eq!(calibrated["pickup_path"], 3);
+    for extra in [
+        vec!["--bar-ratio", "1.5"],
+        vec!["--bar-ratio", "13"],
+        vec!["--bar-ratio", "x"],
+        vec!["--contact-stiffness", "1e7"],
+        vec!["--contact-stiffness", "nan"],
+        vec!["--contact-stiffness"],
+        vec!["--bar-strike", "1.5"],
+        vec!["--bar-strike", "inf"],
+    ] {
+        let mut args = with(&["--output", "bad.wav"]);
+        args.extend(extra.iter().map(|s| s.to_string()));
+        assert!(
+            !scratch
+                .run(&args.iter().map(String::as_str).collect::<Vec<_>>())
+                .status
+                .success(),
+            "{extra:?}"
+        );
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn playable_sustain_receipts_derive_the_calibrated_t60_anchors_and_close_the_decay_gap() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references/playable-sustain");
     let read = |name: &str| -> serde_json::Value {

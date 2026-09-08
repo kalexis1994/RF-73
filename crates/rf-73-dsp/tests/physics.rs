@@ -280,3 +280,90 @@ fn calibrated_sustain_profile_validates_and_rings_longer_on_both_partials() {
         .is_err()
     );
 }
+
+#[test]
+fn bar_partial_ratio_and_strike_weight_are_validated_profile_fields() {
+    let calibrated = Profile::calibrated();
+    calibrated.validate(48_000.0).unwrap();
+    assert_eq!(calibrated.bar_partial_strike_weight, -0.02);
+    assert_eq!(calibrated.bar_partial_ratio, 6.267);
+    assert_eq!(
+        calibrated.decay_seconds,
+        Profile::calibrated_sustain().decay_seconds
+    );
+    let default = Profile::default();
+    assert_eq!(default.bar_partial_ratio, 6.267);
+    assert_eq!(default.bar_partial_strike_weight, -0.3);
+    for bad in [
+        Profile {
+            bar_partial_ratio: 1.9,
+            ..default
+        },
+        Profile {
+            bar_partial_ratio: 12.1,
+            ..default
+        },
+        Profile {
+            bar_partial_strike_weight: -1.5,
+            ..default
+        },
+        Profile {
+            bar_partial_strike_weight: f64::NAN,
+            ..default
+        },
+    ] {
+        assert!(bad.validate(48_000.0).is_err());
+    }
+    // Excite the second partial alone by damping the first and third quickly, then
+    // count zero crossings of the tip over 0.5 s: the frequency follows the ratio.
+    let rate = 192_000.0;
+    let isolated = |ratio: f64, weight: f64| Profile {
+        bar_partial_ratio: ratio,
+        bar_partial_strike_weight: weight,
+        decay_seconds: 0.25,
+        third_partial_decay_seconds: 0.005,
+        bar_partial_decay_seconds: 10.0,
+        ..default
+    };
+    let crossings = |ratio: f64| {
+        let mut voice = Voice::new(rate, 55, isolated(ratio, -0.3)).unwrap();
+        voice.strike(0.8);
+        let settle = (rate * OVERSAMPLE as f64 * 1.5) as usize;
+        let count_window = (rate * OVERSAMPLE as f64 * 0.5) as usize;
+        let mut previous = 0.0;
+        let mut count = 0u32;
+        for i in 0..settle + count_window {
+            voice.tick();
+            let x = voice.probe().displacement_m;
+            if i >= settle && (x > 0.0) != (previous > 0.0) {
+                count += 1;
+            }
+            previous = x;
+        }
+        count
+    };
+    let fundamental = 440.0 * 2.0_f64.powf((55.0 - 69.0) / 12.0);
+    for ratio in [6.0, 6.267] {
+        let expected = 2.0 * ratio * fundamental * 0.5;
+        let observed = f64::from(crossings(ratio));
+        assert!(
+            (observed - expected).abs() <= 0.02 * expected + 2.0,
+            "ratio {ratio}: {observed} crossings, expected {expected}"
+        );
+    }
+    // The second partial's remaining energy after the first has died scales with
+    // the square of its strike weight.
+    let residual = |weight: f64| {
+        let mut voice = Voice::new(rate, 55, isolated(6.267, weight)).unwrap();
+        voice.strike(0.8);
+        for _ in 0..(rate * OVERSAMPLE as f64 * 1.5) as usize {
+            voice.tick();
+        }
+        voice.probe().mechanical_energy_j
+    };
+    let strong = residual(-0.3);
+    let weak = residual(-0.02);
+    assert!(strong > 0.0 && weak > 0.0);
+    let ratio = strong / weak;
+    assert!((ratio / 225.0 - 1.0).abs() < 0.2, "energy ratio {ratio}");
+}

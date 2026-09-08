@@ -1,0 +1,1770 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-08",
+  "experiment": "playable-bar-partial-v1",
+  "question": "Is the recordings' line at six times the fundamental the tine's second bending partial, and how strongly should the playable engine's second partial be struck?",
+  "protocol": {
+    "renders": "render --note N --velocity V --sample-rate 44100 --seconds 3 --hold 2.5 --pickup 3 --sustain calibrated --bar-strike W, N in 50/55/59, V in 1.0/0.6/0.25, W in -0.3/-0.1/-0.05/-0.02; bar ratio at the default 6.267",
+    "comparison": "compare-partials LAYER.wav RENDER.wav --seconds 1 --reference-start 0.02 --candidate-start 0.02 --partial-window-ms 128, layers 1/3/5",
+    "lines": "fundamental within 3%; line_6_0 within 5.95..6.06 x f0 (the pickup's sixth harmonic, and any partial tuned there); line_6_27 within 6.2..6.35 x f0 (the engine's uniform-bar second partial)",
+    "contact": "render --trace at 192 kHz, 50 ms, hold 40 ms; contact duration is the span of contact_active samples"
+  },
+  "recording_line_6_0_ratios": {
+    "d3": [
+      6.01,
+      6.02,
+      6.027
+    ],
+    "g3": [
+      6.012,
+      6.015
+    ],
+    "b3": [
+      6.007,
+      6.008
+    ]
+  },
+  "chosen_strike_weight": -0.02,
+  "sweep": [
+    {
+      "note": "d3",
+      "strike_weight": -0.3,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -26.57,
+          "observations": 28,
+          "early_slope_db_per_second": 4.7
+        },
+        "line_6_0": {
+          "ratio": 6.01,
+          "amplitude_dbfs": -31.21,
+          "observations": 28,
+          "early_slope_db_per_second": -23.19
+        },
+        "line_6_0_relative_db": -4.64,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -31.2,
+          "observations": 28,
+          "early_slope_db_per_second": 10.51
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -26.51,
+          "observations": 28,
+          "early_slope_db_per_second": 1.51
+        },
+        "line_6_0_relative_db": 4.69,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -50.21,
+          "observations": 28,
+          "early_slope_db_per_second": -20.2
+        },
+        "line_6_27_relative_db": -19.01
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.3,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.003,
+          "amplitude_dbfs": -12.35,
+          "observations": 28,
+          "early_slope_db_per_second": 0.56
+        },
+        "line_6_0": {
+          "ratio": 6.02,
+          "amplitude_dbfs": -43.82,
+          "observations": 22,
+          "early_slope_db_per_second": 16.95
+        },
+        "line_6_0_relative_db": -31.47,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -21.9,
+          "observations": 28,
+          "early_slope_db_per_second": 0.13
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -53.06,
+          "observations": 28,
+          "early_slope_db_per_second": -18.68
+        },
+        "line_6_0_relative_db": -31.16,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -49.98,
+          "observations": 28,
+          "early_slope_db_per_second": -11.31
+        },
+        "line_6_27_relative_db": -28.08
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.3,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.005,
+          "amplitude_dbfs": -5.38,
+          "observations": 28,
+          "early_slope_db_per_second": -1.84
+        },
+        "line_6_0": {
+          "ratio": 6.027,
+          "amplitude_dbfs": -60.2,
+          "observations": 28,
+          "early_slope_db_per_second": -17.98
+        },
+        "line_6_0_relative_db": -54.82,
+        "line_6_27": {
+          "ratio": 6.332,
+          "amplitude_dbfs": -63.26,
+          "observations": 7,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -57.88
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -29.71,
+          "observations": 28,
+          "early_slope_db_per_second": -2.37
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -52.16,
+          "observations": 28,
+          "early_slope_db_per_second": -21.12
+        },
+        "line_6_27_relative_db": -22.45
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.1,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -26.57,
+          "observations": 28,
+          "early_slope_db_per_second": 4.7
+        },
+        "line_6_0": {
+          "ratio": 6.01,
+          "amplitude_dbfs": -31.21,
+          "observations": 28,
+          "early_slope_db_per_second": -23.19
+        },
+        "line_6_0_relative_db": -4.64,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -33.25,
+          "observations": 28,
+          "early_slope_db_per_second": 13.31
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -26.81,
+          "observations": 28,
+          "early_slope_db_per_second": 4.83
+        },
+        "line_6_0_relative_db": 6.44,
+        "line_6_27": {
+          "ratio": 6.26,
+          "amplitude_dbfs": -65.91,
+          "observations": 5,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -32.66
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.1,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.003,
+          "amplitude_dbfs": -12.35,
+          "observations": 28,
+          "early_slope_db_per_second": 0.56
+        },
+        "line_6_0": {
+          "ratio": 6.02,
+          "amplitude_dbfs": -43.82,
+          "observations": 22,
+          "early_slope_db_per_second": 16.95
+        },
+        "line_6_0_relative_db": -31.47,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -21.91,
+          "observations": 28,
+          "early_slope_db_per_second": 0.5
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -49.58,
+          "observations": 28,
+          "early_slope_db_per_second": -17.36
+        },
+        "line_6_0_relative_db": -27.67,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -60.96,
+          "observations": 28,
+          "early_slope_db_per_second": -8.41
+        },
+        "line_6_27_relative_db": -39.05
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.1,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.005,
+          "amplitude_dbfs": -5.38,
+          "observations": 28,
+          "early_slope_db_per_second": -1.84
+        },
+        "line_6_0": {
+          "ratio": 6.027,
+          "amplitude_dbfs": -60.2,
+          "observations": 28,
+          "early_slope_db_per_second": -17.98
+        },
+        "line_6_0_relative_db": -54.82,
+        "line_6_27": {
+          "ratio": 6.332,
+          "amplitude_dbfs": -63.26,
+          "observations": 7,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -57.88
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -29.28,
+          "observations": 28,
+          "early_slope_db_per_second": -2.36
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -61.31,
+          "observations": 28,
+          "early_slope_db_per_second": -21.1
+        },
+        "line_6_27_relative_db": -32.03
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.05,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -26.57,
+          "observations": 28,
+          "early_slope_db_per_second": 4.7
+        },
+        "line_6_0": {
+          "ratio": 6.01,
+          "amplitude_dbfs": -31.21,
+          "observations": 28,
+          "early_slope_db_per_second": -23.19
+        },
+        "line_6_0_relative_db": -4.64,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -33.48,
+          "observations": 28,
+          "early_slope_db_per_second": 13.69
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -26.87,
+          "observations": 28,
+          "early_slope_db_per_second": 5.25
+        },
+        "line_6_0_relative_db": 6.61,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.05,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.003,
+          "amplitude_dbfs": -12.35,
+          "observations": 28,
+          "early_slope_db_per_second": 0.56
+        },
+        "line_6_0": {
+          "ratio": 6.02,
+          "amplitude_dbfs": -43.82,
+          "observations": 22,
+          "early_slope_db_per_second": 16.95
+        },
+        "line_6_0_relative_db": -31.47,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -21.92,
+          "observations": 28,
+          "early_slope_db_per_second": 0.54
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -49.26,
+          "observations": 28,
+          "early_slope_db_per_second": -17.24
+        },
+        "line_6_0_relative_db": -27.34,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -67.14,
+          "observations": 28,
+          "early_slope_db_per_second": -8.06
+        },
+        "line_6_27_relative_db": -45.22
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.05,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.005,
+          "amplitude_dbfs": -5.38,
+          "observations": 28,
+          "early_slope_db_per_second": -1.84
+        },
+        "line_6_0": {
+          "ratio": 6.027,
+          "amplitude_dbfs": -60.2,
+          "observations": 28,
+          "early_slope_db_per_second": -17.98
+        },
+        "line_6_0_relative_db": -54.82,
+        "line_6_27": {
+          "ratio": 6.332,
+          "amplitude_dbfs": -63.26,
+          "observations": 7,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -57.88
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -29.24,
+          "observations": 28,
+          "early_slope_db_per_second": -2.36
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -67.29,
+          "observations": 28,
+          "early_slope_db_per_second": -21.1
+        },
+        "line_6_27_relative_db": -38.05
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.02,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -26.57,
+          "observations": 28,
+          "early_slope_db_per_second": 4.7
+        },
+        "line_6_0": {
+          "ratio": 6.01,
+          "amplitude_dbfs": -31.21,
+          "observations": 28,
+          "early_slope_db_per_second": -23.19
+        },
+        "line_6_0_relative_db": -4.64,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -33.55,
+          "observations": 28,
+          "early_slope_db_per_second": 13.8
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -26.89,
+          "observations": 28,
+          "early_slope_db_per_second": 5.37
+        },
+        "line_6_0_relative_db": 6.66,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.02,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.003,
+          "amplitude_dbfs": -12.35,
+          "observations": 28,
+          "early_slope_db_per_second": 0.56
+        },
+        "line_6_0": {
+          "ratio": 6.02,
+          "amplitude_dbfs": -43.82,
+          "observations": 22,
+          "early_slope_db_per_second": 16.95
+        },
+        "line_6_0_relative_db": -31.47,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -21.92,
+          "observations": 28,
+          "early_slope_db_per_second": 0.55
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -49.17,
+          "observations": 28,
+          "early_slope_db_per_second": -17.2
+        },
+        "line_6_0_relative_db": -27.25,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -75.1,
+          "observations": 28,
+          "early_slope_db_per_second": -8.07
+        },
+        "line_6_27_relative_db": -53.18
+      }
+    },
+    {
+      "note": "d3",
+      "strike_weight": -0.02,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.005,
+          "amplitude_dbfs": -5.38,
+          "observations": 28,
+          "early_slope_db_per_second": -1.84
+        },
+        "line_6_0": {
+          "ratio": 6.027,
+          "amplitude_dbfs": -60.2,
+          "observations": 28,
+          "early_slope_db_per_second": -17.98
+        },
+        "line_6_0_relative_db": -54.82,
+        "line_6_27": {
+          "ratio": 6.332,
+          "amplitude_dbfs": -63.26,
+          "observations": 7,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -57.88
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -29.23,
+          "observations": 28,
+          "early_slope_db_per_second": -2.36
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -75.24,
+          "observations": 28,
+          "early_slope_db_per_second": -21.09
+        },
+        "line_6_27_relative_db": -46.01
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.3,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -17.23,
+          "observations": 28,
+          "early_slope_db_per_second": 2.85
+        },
+        "line_6_0": {
+          "ratio": 6.015,
+          "amplitude_dbfs": -26.96,
+          "observations": 28,
+          "early_slope_db_per_second": -18.46
+        },
+        "line_6_0_relative_db": -9.73,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -22.37,
+          "observations": 28,
+          "early_slope_db_per_second": 5.66
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -28.48,
+          "observations": 28,
+          "early_slope_db_per_second": -8.51
+        },
+        "line_6_0_relative_db": -6.11,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -52.35,
+          "observations": 23,
+          "early_slope_db_per_second": -31.82
+        },
+        "line_6_27_relative_db": -29.98
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.3,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -6.59,
+          "observations": 28,
+          "early_slope_db_per_second": -2.65
+        },
+        "line_6_0": {
+          "ratio": 6.012,
+          "amplitude_dbfs": -45.18,
+          "observations": 28,
+          "early_slope_db_per_second": -13.12
+        },
+        "line_6_0_relative_db": -38.59,
+        "line_6_27": {
+          "ratio": 6.275,
+          "amplitude_dbfs": -72.3,
+          "observations": 3,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -65.71
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -20.17,
+          "observations": 28,
+          "early_slope_db_per_second": -1.43
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -71.91,
+          "observations": 22,
+          "early_slope_db_per_second": -34.17
+        },
+        "line_6_0_relative_db": -51.74,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -46.14,
+          "observations": 28,
+          "early_slope_db_per_second": -20.47
+        },
+        "line_6_27_relative_db": -25.97
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.3,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -4.74,
+          "observations": 28,
+          "early_slope_db_per_second": -2.44
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -29.47,
+          "observations": 28,
+          "early_slope_db_per_second": -2.78
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -53.48,
+          "observations": 28,
+          "early_slope_db_per_second": -24.51
+        },
+        "line_6_27_relative_db": -24.01
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.1,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -17.23,
+          "observations": 28,
+          "early_slope_db_per_second": 2.85
+        },
+        "line_6_0": {
+          "ratio": 6.015,
+          "amplitude_dbfs": -26.96,
+          "observations": 28,
+          "early_slope_db_per_second": -18.46
+        },
+        "line_6_0_relative_db": -9.73,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -23.27,
+          "observations": 28,
+          "early_slope_db_per_second": 6.6
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -26.97,
+          "observations": 28,
+          "early_slope_db_per_second": -6.93
+        },
+        "line_6_0_relative_db": -3.7,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -58.18,
+          "observations": 20,
+          "early_slope_db_per_second": -28.18
+        },
+        "line_6_27_relative_db": -34.91
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.1,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -6.59,
+          "observations": 28,
+          "early_slope_db_per_second": -2.65
+        },
+        "line_6_0": {
+          "ratio": 6.012,
+          "amplitude_dbfs": -45.18,
+          "observations": 28,
+          "early_slope_db_per_second": -13.12
+        },
+        "line_6_0_relative_db": -38.59,
+        "line_6_27": {
+          "ratio": 6.275,
+          "amplitude_dbfs": -72.3,
+          "observations": 3,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -65.71
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -19.93,
+          "observations": 28,
+          "early_slope_db_per_second": -1.2
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -69.17,
+          "observations": 27,
+          "early_slope_db_per_second": -30.42
+        },
+        "line_6_0_relative_db": -49.24,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -55.9,
+          "observations": 28,
+          "early_slope_db_per_second": -19.61
+        },
+        "line_6_27_relative_db": -35.97
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.1,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -4.74,
+          "observations": 28,
+          "early_slope_db_per_second": -2.44
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -29.04,
+          "observations": 28,
+          "early_slope_db_per_second": -2.77
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -62.6,
+          "observations": 28,
+          "early_slope_db_per_second": -24.5
+        },
+        "line_6_27_relative_db": -33.56
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.05,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -17.23,
+          "observations": 28,
+          "early_slope_db_per_second": 2.85
+        },
+        "line_6_0": {
+          "ratio": 6.015,
+          "amplitude_dbfs": -26.96,
+          "observations": 28,
+          "early_slope_db_per_second": -18.46
+        },
+        "line_6_0_relative_db": -9.73,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -23.37,
+          "observations": 28,
+          "early_slope_db_per_second": 6.7
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -26.84,
+          "observations": 28,
+          "early_slope_db_per_second": -6.78
+        },
+        "line_6_0_relative_db": -3.47,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -62.53,
+          "observations": 17,
+          "early_slope_db_per_second": -26.79
+        },
+        "line_6_27_relative_db": -39.16
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.05,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -6.59,
+          "observations": 28,
+          "early_slope_db_per_second": -2.65
+        },
+        "line_6_0": {
+          "ratio": 6.012,
+          "amplitude_dbfs": -45.18,
+          "observations": 28,
+          "early_slope_db_per_second": -13.12
+        },
+        "line_6_0_relative_db": -38.59,
+        "line_6_27": {
+          "ratio": 6.275,
+          "amplitude_dbfs": -72.3,
+          "observations": 3,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -65.71
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -19.91,
+          "observations": 28,
+          "early_slope_db_per_second": -1.18
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -69.32,
+          "observations": 28,
+          "early_slope_db_per_second": -30.47
+        },
+        "line_6_0_relative_db": -49.41,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -61.94,
+          "observations": 28,
+          "early_slope_db_per_second": -19.51
+        },
+        "line_6_27_relative_db": -42.03
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.05,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -4.74,
+          "observations": 28,
+          "early_slope_db_per_second": -2.44
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -28.99,
+          "observations": 28,
+          "early_slope_db_per_second": -2.77
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -68.58,
+          "observations": 28,
+          "early_slope_db_per_second": -24.49
+        },
+        "line_6_27_relative_db": -39.59
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.02,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -17.23,
+          "observations": 28,
+          "early_slope_db_per_second": 2.85
+        },
+        "line_6_0": {
+          "ratio": 6.015,
+          "amplitude_dbfs": -26.96,
+          "observations": 28,
+          "early_slope_db_per_second": -18.46
+        },
+        "line_6_0_relative_db": -9.73,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -23.39,
+          "observations": 28,
+          "early_slope_db_per_second": 6.73
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -26.81,
+          "observations": 28,
+          "early_slope_db_per_second": -6.74
+        },
+        "line_6_0_relative_db": -3.42,
+        "line_6_27": {
+          "ratio": 6.268,
+          "amplitude_dbfs": -67.15,
+          "observations": 10,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -43.76
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.02,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -6.59,
+          "observations": 28,
+          "early_slope_db_per_second": -2.65
+        },
+        "line_6_0": {
+          "ratio": 6.012,
+          "amplitude_dbfs": -45.18,
+          "observations": 28,
+          "early_slope_db_per_second": -13.12
+        },
+        "line_6_0_relative_db": -38.59,
+        "line_6_27": {
+          "ratio": 6.275,
+          "amplitude_dbfs": -72.3,
+          "observations": 3,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -65.71
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -19.9,
+          "observations": 28,
+          "early_slope_db_per_second": -1.17
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -69.14,
+          "observations": 28,
+          "early_slope_db_per_second": -30.37
+        },
+        "line_6_0_relative_db": -49.24,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -69.91,
+          "observations": 28,
+          "early_slope_db_per_second": -19.49
+        },
+        "line_6_27_relative_db": -50.01
+      }
+    },
+    {
+      "note": "g3",
+      "strike_weight": -0.02,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.002,
+          "amplitude_dbfs": -4.74,
+          "observations": 28,
+          "early_slope_db_per_second": -2.44
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -28.98,
+          "observations": 28,
+          "early_slope_db_per_second": -2.77
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -76.53,
+          "observations": 28,
+          "early_slope_db_per_second": -24.49
+        },
+        "line_6_27_relative_db": -47.55
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.3,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -17.15,
+          "observations": 28,
+          "early_slope_db_per_second": 2.61
+        },
+        "line_6_0": {
+          "ratio": 6.007,
+          "amplitude_dbfs": -33.6,
+          "observations": 28,
+          "early_slope_db_per_second": -22.03
+        },
+        "line_6_0_relative_db": -16.45,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -18.05,
+          "observations": 28,
+          "early_slope_db_per_second": 2.84
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -35.41,
+          "observations": 28,
+          "early_slope_db_per_second": -16.7
+        },
+        "line_6_0_relative_db": -17.36,
+        "line_6_27": {
+          "ratio": 6.265,
+          "amplitude_dbfs": -61.29,
+          "observations": 21,
+          "early_slope_db_per_second": 61.89
+        },
+        "line_6_27_relative_db": -43.24
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.3,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -8.87,
+          "observations": 28,
+          "early_slope_db_per_second": -4.39
+        },
+        "line_6_0": {
+          "ratio": 6.008,
+          "amplitude_dbfs": -65.77,
+          "observations": 25,
+          "early_slope_db_per_second": -39.21
+        },
+        "line_6_0_relative_db": -56.9,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -19.46,
+          "observations": 28,
+          "early_slope_db_per_second": -2.35
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -86.27,
+          "observations": 19,
+          "early_slope_db_per_second": 16.46
+        },
+        "line_6_0_relative_db": -66.81,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -45.73,
+          "observations": 28,
+          "early_slope_db_per_second": -25.41
+        },
+        "line_6_27_relative_db": -26.27
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.3,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -5.87,
+          "observations": 28,
+          "early_slope_db_per_second": -3.7
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -29.34,
+          "observations": 28,
+          "early_slope_db_per_second": -3.14
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -54.82,
+          "observations": 28,
+          "early_slope_db_per_second": -27.56
+        },
+        "line_6_27_relative_db": -25.48
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.1,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -17.15,
+          "observations": 28,
+          "early_slope_db_per_second": 2.61
+        },
+        "line_6_0": {
+          "ratio": 6.007,
+          "amplitude_dbfs": -33.6,
+          "observations": 28,
+          "early_slope_db_per_second": -22.03
+        },
+        "line_6_0_relative_db": -16.45,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -18.45,
+          "observations": 28,
+          "early_slope_db_per_second": 3.63
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -32.79,
+          "observations": 28,
+          "early_slope_db_per_second": -14.99
+        },
+        "line_6_0_relative_db": -14.34,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -73.03,
+          "observations": 14,
+          "early_slope_db_per_second": 41.71
+        },
+        "line_6_27_relative_db": -54.58
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.1,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -8.87,
+          "observations": 28,
+          "early_slope_db_per_second": -4.39
+        },
+        "line_6_0": {
+          "ratio": 6.008,
+          "amplitude_dbfs": -65.77,
+          "observations": 25,
+          "early_slope_db_per_second": -39.21
+        },
+        "line_6_0_relative_db": -56.9,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -19.11,
+          "observations": 28,
+          "early_slope_db_per_second": -2.21
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -86.0,
+          "observations": 14,
+          "early_slope_db_per_second": 14.15
+        },
+        "line_6_0_relative_db": -66.89,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -55.13,
+          "observations": 28,
+          "early_slope_db_per_second": -24.96
+        },
+        "line_6_27_relative_db": -36.02
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.1,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -5.87,
+          "observations": 28,
+          "early_slope_db_per_second": -3.7
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -28.9,
+          "observations": 28,
+          "early_slope_db_per_second": -3.14
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -63.94,
+          "observations": 28,
+          "early_slope_db_per_second": -27.55
+        },
+        "line_6_27_relative_db": -35.04
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.05,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -17.15,
+          "observations": 28,
+          "early_slope_db_per_second": 2.61
+        },
+        "line_6_0": {
+          "ratio": 6.007,
+          "amplitude_dbfs": -33.6,
+          "observations": 28,
+          "early_slope_db_per_second": -22.03
+        },
+        "line_6_0_relative_db": -16.45,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -18.49,
+          "observations": 28,
+          "early_slope_db_per_second": 3.71
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -32.55,
+          "observations": 28,
+          "early_slope_db_per_second": -14.83
+        },
+        "line_6_0_relative_db": -14.06,
+        "line_6_27": {
+          "ratio": 6.264,
+          "amplitude_dbfs": -79.19,
+          "observations": 13,
+          "early_slope_db_per_second": 45.41
+        },
+        "line_6_27_relative_db": -60.7
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.05,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -8.87,
+          "observations": 28,
+          "early_slope_db_per_second": -4.39
+        },
+        "line_6_0": {
+          "ratio": 6.008,
+          "amplitude_dbfs": -65.77,
+          "observations": 25,
+          "early_slope_db_per_second": -39.21
+        },
+        "line_6_0_relative_db": -56.9,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -19.07,
+          "observations": 28,
+          "early_slope_db_per_second": -2.2
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -86.12,
+          "observations": 14,
+          "early_slope_db_per_second": 17.05
+        },
+        "line_6_0_relative_db": -67.05,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -61.14,
+          "observations": 28,
+          "early_slope_db_per_second": -24.92
+        },
+        "line_6_27_relative_db": -42.07
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.05,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -5.87,
+          "observations": 28,
+          "early_slope_db_per_second": -3.7
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -28.86,
+          "observations": 28,
+          "early_slope_db_per_second": -3.14
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -69.92,
+          "observations": 28,
+          "early_slope_db_per_second": -27.55
+        },
+        "line_6_27_relative_db": -41.06
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.02,
+      "velocity": 1.0,
+      "layer": 1,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -17.15,
+          "observations": 28,
+          "early_slope_db_per_second": 2.61
+        },
+        "line_6_0": {
+          "ratio": 6.007,
+          "amplitude_dbfs": -33.6,
+          "observations": 28,
+          "early_slope_db_per_second": -22.03
+        },
+        "line_6_0_relative_db": -16.45,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -18.51,
+          "observations": 28,
+          "early_slope_db_per_second": 3.73
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -32.48,
+          "observations": 28,
+          "early_slope_db_per_second": -14.78
+        },
+        "line_6_0_relative_db": -13.97,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -73.05,
+          "observations": 9,
+          "early_slope_db_per_second": null
+        },
+        "line_6_27_relative_db": -54.54
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.02,
+      "velocity": 0.6,
+      "layer": 3,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -8.87,
+          "observations": 28,
+          "early_slope_db_per_second": -4.39
+        },
+        "line_6_0": {
+          "ratio": 6.008,
+          "amplitude_dbfs": -65.77,
+          "observations": 25,
+          "early_slope_db_per_second": -39.21
+        },
+        "line_6_0_relative_db": -56.9,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -19.06,
+          "observations": 28,
+          "early_slope_db_per_second": -2.19
+        },
+        "line_6_0": {
+          "ratio": 6.0,
+          "amplitude_dbfs": -85.93,
+          "observations": 13,
+          "early_slope_db_per_second": 14.78
+        },
+        "line_6_0_relative_db": -66.87,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -69.09,
+          "observations": 28,
+          "early_slope_db_per_second": -24.9
+        },
+        "line_6_27_relative_db": -50.03
+      }
+    },
+    {
+      "note": "b3",
+      "strike_weight": -0.02,
+      "velocity": 0.25,
+      "layer": 5,
+      "recording": {
+        "fundamental": {
+          "ratio": 1.001,
+          "amplitude_dbfs": -5.87,
+          "observations": 28,
+          "early_slope_db_per_second": -3.7
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": null,
+        "line_6_27_relative_db": null
+      },
+      "engine": {
+        "fundamental": {
+          "ratio": 1.0,
+          "amplitude_dbfs": -28.85,
+          "observations": 28,
+          "early_slope_db_per_second": -3.14
+        },
+        "line_6_0": null,
+        "line_6_0_relative_db": null,
+        "line_6_27": {
+          "ratio": 6.267,
+          "amplitude_dbfs": -77.87,
+          "observations": 28,
+          "early_slope_db_per_second": -27.55
+        },
+        "line_6_27_relative_db": -49.02
+      }
+    }
+  ],
+  "contact_durations": [
+    {
+      "file": "n50-v0.1",
+      "set": "default 4e10",
+      "contact_ms": 0.3385,
+      "peak_force_n": 0.578
+    },
+    {
+      "file": "n50-v0.25",
+      "set": "default 4e10",
+      "contact_ms": 0.2188,
+      "peak_force_n": 3.192
+    },
+    {
+      "file": "n50-v0.6",
+      "set": "default 4e10",
+      "contact_ms": 0.1406,
+      "peak_force_n": 16.345
+    },
+    {
+      "file": "n50-v1.0",
+      "set": "default 4e10",
+      "contact_ms": 0.1094,
+      "peak_force_n": 42.388
+    },
+    {
+      "file": "n55-v0.1",
+      "set": "default 4e10",
+      "contact_ms": 0.3125,
+      "peak_force_n": 0.491
+    },
+    {
+      "file": "n55-v0.25",
+      "set": "default 4e10",
+      "contact_ms": 0.2031,
+      "peak_force_n": 2.703
+    },
+    {
+      "file": "n55-v0.6",
+      "set": "default 4e10",
+      "contact_ms": 0.1302,
+      "peak_force_n": 13.853
+    },
+    {
+      "file": "n55-v1.0",
+      "set": "default 4e10",
+      "contact_ms": 0.1042,
+      "peak_force_n": 35.88
+    },
+    {
+      "file": "n59-v0.1",
+      "set": "default 4e10",
+      "contact_ms": 0.2969,
+      "peak_force_n": 0.43
+    },
+    {
+      "file": "n59-v0.25",
+      "set": "default 4e10",
+      "contact_ms": 0.1875,
+      "peak_force_n": 2.368
+    },
+    {
+      "file": "n59-v0.6",
+      "set": "default 4e10",
+      "contact_ms": 0.125,
+      "peak_force_n": 12.113
+    },
+    {
+      "file": "n59-v1.0",
+      "set": "default 4e10",
+      "contact_ms": 0.0938,
+      "peak_force_n": 31.218
+    },
+    {
+      "file": "k1e8-v0.25",
+      "set": "softer",
+      "contact_ms": 4.0469,
+      "peak_force_n": 0.608
+    },
+    {
+      "file": "k1e8-v1.0",
+      "set": "softer",
+      "contact_ms": 0.8385,
+      "peak_force_n": 4.99
+    },
+    {
+      "file": "k4e8-v0.25",
+      "set": "softer",
+      "contact_ms": 1.026,
+      "peak_force_n": 0.6
+    },
+    {
+      "file": "k4e8-v1.0",
+      "set": "softer",
+      "contact_ms": 0.5104,
+      "peak_force_n": 7.829
+    }
+  ],
+  "retained_files": [
+    {
+      "file": "engine/attack-d3-v1.0-L1.json",
+      "bytes": 708015,
+      "sha256": "6f9795bd361a59d8f6dcce8876b15bf85834a1fed73f1893f864d27d503fe3a9"
+    },
+    {
+      "file": "engine/render-d3-v1.0.json",
+      "bytes": 545,
+      "sha256": "88a177114f8cd0a1ecfa9651cd1b9bf7209c1b54049098fe24aca5e2f0273820"
+    },
+    {
+      "file": "engine/attack-d3-v0.6-L3.json",
+      "bytes": 438404,
+      "sha256": "77ef7d993fc03f0cb9034650f574e25fdcec2655128843a364d182f1f64b487a"
+    },
+    {
+      "file": "engine/render-d3-v0.6.json",
+      "bytes": 547,
+      "sha256": "5728875d4b4d2002d9be6253bf7391d7cacd8efc75df7ccffb101cf8529c559e"
+    },
+    {
+      "file": "engine/attack-d3-v0.25-L5.json",
+      "bytes": 250521,
+      "sha256": "6cbd55e9c3a6543c1eba3c9ce92527b90cb9fd917a3d31c4b90f61806c5c9d8a"
+    },
+    {
+      "file": "engine/render-d3-v0.25.json",
+      "bytes": 548,
+      "sha256": "6510b71e5ae5e521abb8fa7c182714d2ec2f570cf03fafdd080564f75bd341b2"
+    },
+    {
+      "file": "engine/attack-g3-v1.0-L1.json",
+      "bytes": 703499,
+      "sha256": "58806670dcf51f86db14cc17ec3f83832203d065e74595935e43c29e840b4caf"
+    },
+    {
+      "file": "engine/render-g3-v1.0.json",
+      "bytes": 545,
+      "sha256": "4c68fe82e07bc56197f7ebe875c37ef7d43bd6ae5379b1e176a44997ab051d59"
+    },
+    {
+      "file": "engine/attack-g3-v0.6-L3.json",
+      "bytes": 355975,
+      "sha256": "3c3dd1bbccdee419b07766d3727c257abc829d875d57430d7bdcf82fed62743a"
+    },
+    {
+      "file": "engine/render-g3-v0.6.json",
+      "bytes": 547,
+      "sha256": "cee24a5b52c5149e7208533d454dcb4626953f6723770beb6ccc46a0986305f1"
+    },
+    {
+      "file": "engine/attack-g3-v0.25-L5.json",
+      "bytes": 192708,
+      "sha256": "701a7e2f733cdbc42473501b399cebe543e3055baf21fd79985c163f217975ae"
+    },
+    {
+      "file": "engine/render-g3-v0.25.json",
+      "bytes": 548,
+      "sha256": "8f8251ba3791187bfcd46da108ea50c010451371e80cffb463d849dbf4d4b729"
+    },
+    {
+      "file": "engine/attack-b3-v1.0-L1.json",
+      "bytes": 608273,
+      "sha256": "b2d17c924fdc27a1a3b56e44c6beb35366d6b09535b3854dd7988f9ac9001ecb"
+    },
+    {
+      "file": "engine/render-b3-v1.0.json",
+      "bytes": 545,
+      "sha256": "d91a4333e1a6c59117342f0ec46573fc4df38681305ad2b51933cb09598738da"
+    },
+    {
+      "file": "engine/attack-b3-v0.6-L3.json",
+      "bytes": 311684,
+      "sha256": "39dcd014b42d94f45fb5133d742cfbb07c345d5d4840aaff94e915bdd52bc998"
+    },
+    {
+      "file": "engine/render-b3-v0.6.json",
+      "bytes": 547,
+      "sha256": "64434df762e33d7de22006137573ee561345f609baf0f7b1cb7dcd7c4cc3e9b7"
+    },
+    {
+      "file": "engine/attack-b3-v0.25-L5.json",
+      "bytes": 185549,
+      "sha256": "c069d6266897de8a252150b17a2f82c2cb069f6249774f0cb17efa04440280ad"
+    },
+    {
+      "file": "engine/render-b3-v0.25.json",
+      "bytes": 548,
+      "sha256": "a00ce554fae41cf5dc6ac34e6cd88ad7a5b11d7e52aa6ef7e975d310c1a581aa"
+    }
+  ]
+}

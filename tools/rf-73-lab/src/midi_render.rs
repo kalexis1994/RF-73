@@ -7,10 +7,14 @@ use std::{error::Error, fs, io::BufWriter, path::Path, time::Instant};
 
 pub const HELP: &str = "MIDI render:
   render-midi INPUT.mid --output AUDIO.wav [--gain G] [--normalize] [--sample-rate HZ] [--tail S]
-    [--pickup I] [--sustain original|calibrated]
+    [--pickup I] [--sustain original|calibrated] [--bar-ratio R] [--contact-stiffness K]
+    [--bar-strike W]
 Uncalibrated playable engine (0.1.2 mechanics, default pickup). --pickup 0..3 renders the
 laboratory engine's level-matched path instead (3 is Close Aperture). --sustain calibrated
-uses the recording-derived first/bar partial T60 (20 s / 2.3 s at A3). Gain 0.05..2 scales the
+uses the recording-derived first/bar partial T60 (20 s / 2.3 s at A3); --bar-ratio sets the
+second partial over the fundamental (default 6.267, recordings 6.0) and --contact-stiffness
+the quadratic contact coefficient (default 4e10); --bar-strike the second partial's strike
+weight (default -0.3). Gain 0.05..2 scales the
 engine output before the WAV (default 1). --normalize also writes AUDIO-norm.wav peaking
 at -1 dBFS. Tail 0..30 s after the last event (default 4). A JSON receipt accompanies
 the WAV. Existing files are never overwritten.
@@ -170,11 +174,21 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let mut tail = 4.0_f64;
     let mut pickup: Option<usize> = None;
     let mut calibrated = false;
+    let mut bar_ratio: Option<f64> = None;
+    let mut contact_stiffness: Option<f64> = None;
+    let mut bar_strike: Option<f64> = None;
     let mut k = 4;
     while k < args.len() {
         match args[k].as_str() {
             "--normalize" => normalize = true,
-            "--gain" | "--sample-rate" | "--tail" | "--pickup" | "--sustain"
+            "--gain"
+            | "--sample-rate"
+            | "--tail"
+            | "--pickup"
+            | "--sustain"
+            | "--bar-ratio"
+            | "--contact-stiffness"
+            | "--bar-strike"
                 if k + 1 < args.len() =>
             {
                 let value = &args[k + 1];
@@ -182,6 +196,9 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
                     "--gain" => gain = value.parse()?,
                     "--sample-rate" => rate = value.parse()?,
                     "--pickup" => pickup = Some(value.parse()?),
+                    "--bar-ratio" => bar_ratio = Some(value.parse()?),
+                    "--contact-stiffness" => contact_stiffness = Some(value.parse()?),
+                    "--bar-strike" => bar_strike = Some(value.parse()?),
                     "--sustain" => {
                         calibrated = match value.as_str() {
                             "original" => false,
@@ -240,10 +257,16 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     if frames == 0 || f64::from(frames) / f64::from(rate) > 1800.0 {
         return Err("render length must be positive and at most 30 minutes".into());
     }
-    let profile = if calibrated {
+    let base = if calibrated {
         Profile::calibrated_sustain()
     } else {
         Profile::default()
+    };
+    let profile = Profile {
+        bar_partial_ratio: bar_ratio.unwrap_or(base.bar_partial_ratio),
+        contact_stiffness: contact_stiffness.unwrap_or(base.contact_stiffness),
+        bar_partial_strike_weight: bar_strike.unwrap_or(base.bar_partial_strike_weight),
+        ..base
     };
     let mut engine = match pickup {
         Some(index) => {
@@ -324,6 +347,8 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         "notes_outside_range_dropped":dropped,"sustain_events":pedal,"last_event_seconds":last,"tail_seconds":tail,
         "pickup_path":pickup,"pickup_name":pickup.map(|i| PICKUP_NAMES[i]),
         "sustain":if calibrated {"calibrated"} else {"original"},
+        "bar_partial_ratio":profile.bar_partial_ratio,"contact_stiffness":profile.contact_stiffness,
+        "bar_partial_strike_weight":profile.bar_partial_strike_weight,
         "gain":gain,"peak":peak,"rms":(square/f64::from(frames)).sqrt(),"peak_dbfs":20.0*peak.max(1e-12).log10(),
         "normalized_output":normalize_gain.map(|_|normalized.display().to_string()),"normalize_gain":normalize_gain,
         "normalized_peak_dbfs":normalize_gain.map(|_|-1.0),"faults":engine.faults(),

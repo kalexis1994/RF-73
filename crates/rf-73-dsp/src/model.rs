@@ -30,6 +30,13 @@ pub struct Profile {
     pub bar_partial_decay_seconds: f64,
     /// Third bending partial T60 at A3.
     pub third_partial_decay_seconds: f64,
+    /// Second bending partial frequency over the fundamental. The uniform
+    /// clamped bar gives 6.267; the retained recordings show 6.01.
+    pub bar_partial_ratio: f64,
+    /// Second bending partial's displacement at the strike point per unit modal
+    /// coordinate, relative to the first partial's 1.0; negative because the
+    /// second mode shape is inverted there. Sets how hard the hammer excites it.
+    pub bar_partial_strike_weight: f64,
 }
 
 impl Default for Profile {
@@ -44,6 +51,8 @@ impl Default for Profile {
             decay_seconds: 5.0,
             bar_partial_decay_seconds: 0.16,
             third_partial_decay_seconds: 0.055,
+            bar_partial_ratio: 6.267,
+            bar_partial_strike_weight: -0.3,
         }
     }
 }
@@ -58,6 +67,18 @@ impl Profile {
             decay_seconds: 20.0,
             bar_partial_decay_seconds: 2.3,
             ..Self::default()
+        }
+    }
+
+    /// The calibrated sustain with the second bending partial's strike weight
+    /// reduced to -0.02: the retained recordings bound that partial 20 to 35 dB
+    /// below the default's excitation at medium and soft dynamics, and their
+    /// line at six times the fundamental is the pickup's sixth harmonic
+    /// (docs/PLAYABLE-BAR-PARTIAL.md). Ratio, contact and pickup are unchanged.
+    pub fn calibrated() -> Self {
+        Self {
+            bar_partial_strike_weight: -0.02,
+            ..Self::calibrated_sustain()
         }
     }
 
@@ -121,6 +142,18 @@ impl Profile {
                 0.005,
                 5.0,
                 "third partial decay outside 0.005..5 seconds",
+            ),
+            (
+                self.bar_partial_ratio,
+                2.0,
+                12.0,
+                "bar partial ratio outside 2..12",
+            ),
+            (
+                self.bar_partial_strike_weight,
+                -1.0,
+                1.0,
+                "bar partial strike weight outside -1..1",
             ),
         ] {
             if !value.is_finite() || !(minimum..=maximum).contains(&value) {
