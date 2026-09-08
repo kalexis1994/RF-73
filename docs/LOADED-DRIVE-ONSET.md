@@ -196,10 +196,10 @@ gestures, full-keyboard realism or realtime operation.
 
 The evidence points at the drive, not the return regulation, as the origin
 of the original soft-strike collision, while the abrupt stop remains the
-mechanism that launches the soft strike. Next replace the prescribed pedestal
-trajectory with a finite-inertia key/pedestal driven by a prescribed finger
-force, so that onset, arrival and release follow from mass, return and
-contact laws rather than from a chosen ramp. Requalify first-strike and
+mechanism that launches the soft strike. The [key inertia study](LOADED-KEY-INERTIA.md)
+now replaces the prescribed pedestal trajectory with a finite-inertia key
+driven by a prescribed finger force, so that onset, arrival and release
+follow from mass, return and contact laws rather than from a chosen ramp. Requalify first-strike and
 repetition evidence against the retained constant-slew and high-pedestal-loss
 controls, and keep the driver's supplied work explicit so a contact
 adjustment cannot compensate for an unqualified forcing trajectory.

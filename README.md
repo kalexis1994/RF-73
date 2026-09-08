@@ -121,6 +121,12 @@ gesture into onset, cruise, stop and hold segments with independent pedestal
 work and impulse. It shows that the abrupt onset, not the return regulation,
 produces the original soft-strike collision and its repetition anomaly.
 
+The [key inertia study](docs/LOADED-KEY-INERTIA.md) replaces the prescribed
+pedestal with a lumped key under a step finger force, inelastic or felt-bed
+stops and an exact key energy ledger. It shows that the hammer rides the key
+and is launched only by the stop, that a compliant bed removes the soft
+strike, and that key mass is a first-order parameter of the action.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

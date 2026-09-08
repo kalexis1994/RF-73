@@ -414,6 +414,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "loaded-drive-onset" {
         return transduction::onset::run(&args);
     }
+    if args[0] == "loaded-key-inertia" {
+        return transduction::key::run(&args);
+    }
     if args[0] == "electromechanical-render" {
         return transduction::render(&args);
     }

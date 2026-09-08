@@ -164,6 +164,7 @@ fn take(
         steps,
         speed,
         repeat,
+        960,
         |t| repetition::target(p, t, repeat),
         |_, _, _, _, _| {},
     )
@@ -173,6 +174,7 @@ pub(super) fn take_driven(
     steps: usize,
     speed: f64,
     repeat: usize,
+    window: usize,
     drive: impl Fn(f64) -> f64,
     mut observe: impl FnMut(
         ElectromechanicalProbe,
@@ -192,10 +194,10 @@ pub(super) fn take_driven(
                 if tick == start * steps {
                     current = Some(Launch::new(a, t));
                 }
-                if (start..start + 960).contains(&frame) {
+                if (start..start + window).contains(&frame) {
                     let observer = current.as_mut().unwrap();
                     observer.observe(p, a, b, t, h);
-                    if tick + 1 == (start + 960) * steps {
+                    if tick + 1 == (start + window) * steps {
                         reports.push(observer.report(p, b, t + h, start as f64 / 48000.0));
                     }
                 }

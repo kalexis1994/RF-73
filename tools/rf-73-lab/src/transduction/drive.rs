@@ -82,6 +82,7 @@ fn take(
         steps,
         speed,
         REPEAT,
+        960,
         |t| target(p, t, h, speed, shape),
         |_, a, b, t, h| {
             if let Some((i, start)) = onset(p, t) {

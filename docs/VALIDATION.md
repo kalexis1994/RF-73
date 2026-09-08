@@ -2834,3 +2834,41 @@ Verification passes 134 lab unit tests, 79 loaded CLI/receipt tests, strict
 Clippy and formatting. Curve, boundary-split and segment-normalization tests
 remain explicit. No new WAVs or production changes are introduced; release
 cache remains approximately 182 MiB.
+
+## Loaded key inertia
+
+The [key inertia matrix](LOADED-KEY-INERTIA.md) replaces the prescribed
+pedestal with a lumped 0.05 or 0.1 kg key driven by a step finger force
+against a 1 N return, with inelastic or felt-bed stops, coupled to the
+action through the pedestal contact force and carrying an exact key energy
+ledger. Original and high-pedestal-loss profiles cross two nominal speeds,
+the retained constant-slew control and the 60 ms repetition wait. All 32
+takes and sixteen refinement pairs qualify. Constant-slew takes replay the
+prior onset receipt apart from the longer 30 ms launch window, whose 20 ms
+prefix is identical.
+
+The hammer rides the key without any collision and is released only when
+the key hits its stop. At 0.964 m/s release the light key reproduces the
+original 0.100 m/s soft strike (0.209443 against 0.237325 mNs), and its
+repeated soft gesture misses entirely. Less than a fifth of finger work
+reaches the action; the inelastic stop destroys the largest share. A felt
+bed that stops the key in about 0.2 ms removes the soft strike in both
+profiles while repeating the strong strike within 0.0001%. The
+pedestal-loss control loses its earlier benefit. Doubling the key mass
+changes every first strike by more than 5%. Two takes are non-striking and
+two miss their second strike; eight paired rows pass repetition. No key is
+adopted.
+
+Maximum key tracking error is zero, key energy defect 2.282e-12 and
+pedestal work lag 2.809e-5. Maximum relative total energy defect is
+5.000e-12, launch momentum defect 1.309e-11 and launch work defect
+4.110e-12. Maximum velocity refinement error is 0.41312%, impact error
+0.48747%, kinetic-work-term error 0.86782%, key arrival-time error 0.081
+microseconds and window term error 0.019299%.
+
+Receipt: `references/loaded-key-inertia-validation.json`, 2666300 bytes,
+SHA-256 `860b73920390a540a3329ed3fe765811373bf3d4140280af0b133b9229c7d8d3`.
+Verification passes 137 lab unit tests, 81 loaded CLI/receipt tests, strict
+Clippy and formatting. Free-key, felt-bed, reaction and discrete-gradient
+tests remain explicit. No new WAVs or production changes are introduced;
+release cache remains approximately 182 MiB.

@@ -10,6 +10,223 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_key_inertia_receipt_closes_key_energy_and_replays_prescribed_controls() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-key-inertia-validation.json");
+    let prior = read("loaded-drive-onset-validation.json");
+    assert_eq!(r["experiment"], "loaded-key-inertia-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let terms = r["key_term_order"].as_array().unwrap();
+    assert_eq!(terms.len(), 8);
+    let attack = |first: &serde_json::Value, base: &serde_json::Value| -> bool {
+        let a = first["entries"].as_array().unwrap();
+        let b = base["entries"].as_array().unwrap();
+        let impact_ok = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+            .iter()
+            .all(|key| {
+                let reference = base["impact"][key].as_f64().unwrap();
+                reference > 0.0
+                    && (first["impact"][key].as_f64().unwrap() / reference - 1.0).abs() < 0.05
+            });
+        a.len() == 1 && b.len() == 1 && impact_ok && {
+            let va = a[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            let vb = b[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            (va / vb - 1.0).abs() < 0.05
+                && (a[0]["seconds"].as_f64().unwrap() - b[0]["seconds"].as_f64().unwrap()).abs()
+                    < 0.001
+        }
+    };
+    let profiles = r["profiles"].as_array().unwrap();
+    assert_eq!(profiles.len(), 2);
+    let mut takes_seen = 0;
+    for profile in profiles {
+        let old = prior["profiles"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|c| c["name"] == profile["name"])
+            .unwrap();
+        let drivers = profile["drivers"].as_array().unwrap();
+        assert_eq!(drivers.len(), 4);
+        for (shape, driver) in drivers.iter().enumerate() {
+            let rows = driver["rows"].as_array().unwrap();
+            assert_eq!(rows.len(), 2);
+            for (index, row) in rows.iter().enumerate() {
+                assert_eq!(row["measurement_qualified"], true);
+                for key in ["convergence", "launch_convergence", "key_convergence"] {
+                    assert_eq!(row[key]["passed"], true);
+                }
+                assert_eq!(row["key_convergence"]["prescribed"], shape == 0);
+                let old_row = &old["drivers"][0]["rows"][index];
+                assert_eq!(old_row["nominal_speed_m_s"], row["nominal_speed_m_s"]);
+                let speed = row["nominal_speed_m_s"].as_f64().unwrap();
+                let takes = row["takes"].as_array().unwrap();
+                assert_eq!(takes.len(), 2);
+                for (take, old_take) in takes.iter().zip(old_row["takes"].as_array().unwrap()) {
+                    takes_seen += 1;
+                    assert_eq!(take["passed"], true);
+                    assert_eq!(take["driver"]["shape"], driver["name"]);
+                    assert_eq!(
+                        take["driver"]["nominal_speed_m_s"],
+                        row["nominal_speed_m_s"]
+                    );
+                    for launch in take["launches"].as_array().unwrap() {
+                        let start = launch["start_seconds"].as_f64().unwrap();
+                        assert!(
+                            (launch["end_seconds"].as_f64().unwrap() - start - 0.03).abs() < 1e-9
+                        );
+                    }
+                    if shape == 0 {
+                        assert!(take["key"].is_null());
+                        // Everything except the longer launch window replays the prior receipt.
+                        let mut replay = take.clone();
+                        let object = replay.as_object_mut().unwrap();
+                        object.remove("driver");
+                        object.remove("key");
+                        let launches = object.remove("launches").unwrap();
+                        let mut old_replay = old_take.clone();
+                        let old_object = old_replay.as_object_mut().unwrap();
+                        old_object.remove("driver");
+                        old_object.remove("drive_segments");
+                        let old_launches = old_object.remove("launches").unwrap();
+                        assert_eq!(replay, old_replay);
+                        assert_eq!(row["convergence"], old_row["convergence"]);
+                        for (new, old) in launches
+                            .as_array()
+                            .unwrap()
+                            .iter()
+                            .zip(old_launches.as_array().unwrap())
+                        {
+                            assert_eq!(new["before_contact"], old["before_contact"]);
+                            assert_eq!(new["initial"], old["initial"]);
+                            let cutoff = old["end_seconds"].as_f64().unwrap();
+                            let prefix = |l: &serde_json::Value| {
+                                l["events"]
+                                    .as_array()
+                                    .unwrap()
+                                    .iter()
+                                    .filter(|e| e["seconds"].as_f64().unwrap() <= cutoff)
+                                    .cloned()
+                                    .collect::<Vec<_>>()
+                            };
+                            assert_eq!(prefix(new), prefix(old));
+                        }
+                        continue;
+                    }
+                    let k = &take["key"];
+                    assert_eq!(k["passed"], true);
+                    let mass = k["mass_kg"].as_f64().unwrap();
+                    assert_eq!(mass, if shape == 3 { 0.1 } else { 0.05 });
+                    assert_eq!(k["return_force_n"], 1.0);
+                    let length = 0.0105;
+                    let finger = 1.0 + mass * speed * speed / (2.0 * length);
+                    assert!((k["finger_force_n"].as_f64().unwrap() - finger).abs() < 1e-12);
+                    assert_eq!(k["nominal_free_arrival_speed_m_s"].as_f64().unwrap(), speed);
+                    assert!(k["max_key_speed_m_s"].as_f64().unwrap() < 2.0);
+                    assert!(k["max_tracking_error_m"].as_f64().unwrap() < 1e-9);
+                    assert!(k["max_relative_energy_defect"].as_f64().unwrap() < 1e-8);
+                    assert!(k["max_relative_pedestal_work_lag"].as_f64().unwrap() < 1e-3);
+                    assert_eq!(k["hard_limit_engaged"], false);
+                    if shape == 2 {
+                        let bed = &k["bed"];
+                        assert_eq!(bed["depth_m"], 0.00025);
+                        assert_eq!(bed["heat_monotone"], true);
+                        let penetration = bed["max_penetration_m"].as_f64().unwrap();
+                        assert!(penetration > 0.0 && penetration < 0.00025);
+                    } else {
+                        assert!(k["bed"].is_null());
+                    }
+                    let gestures = k["gestures"].as_array().unwrap();
+                    assert_eq!(gestures.len(), 2);
+                    for (g, start) in gestures.iter().zip([0.03, 0.21]) {
+                        assert_eq!(g["start_seconds"], start);
+                        let arrival = g["arrival_seconds_after_key_down"].as_f64().unwrap();
+                        assert!(arrival > 0.0 && arrival < 0.12);
+                        let arrival_speed = g["arrival_speed_m_s"].as_f64().unwrap();
+                        // The hammer reaction can only slow the key below its free speed.
+                        assert!(arrival_speed > 0.0 && arrival_speed < speed * (1.0 + 1e-9));
+                        // Peak speed tracks end-of-tick velocities; an inelastic arrival speed is
+                        // evaluated inside the final partial tick and can exceed it slightly.
+                        assert!(g["peak_key_speed_m_s"].as_f64().unwrap() >= arrival_speed - 1e-4);
+                        let w = &g["window"];
+                        assert!((w["start_seconds"].as_f64().unwrap() - start).abs() < 1e-12);
+                        assert!((w["end_seconds"].as_f64().unwrap() - start - 0.12).abs() < 1e-9);
+                        assert!(w["relative_defect"].as_f64().unwrap() < 1e-8);
+                        let t: Vec<f64> = w["terms_j"]
+                            .as_array()
+                            .unwrap()
+                            .iter()
+                            .map(|x| x.as_f64().unwrap())
+                            .collect();
+                        let sum: f64 = t[..7].iter().sum();
+                        assert!(
+                            (sum - t[7]).abs() <= 1e-8 * t.iter().map(|x| x.abs()).sum::<f64>()
+                        );
+                        assert!(t[0] > 0.0 && t[1] < 0.0 && t[2] < 0.0);
+                        if shape == 2 {
+                            assert!(t[4] < 0.0 && t[5] == 0.0);
+                        } else {
+                            assert!(t[3] == 0.0 && t[4] == 0.0 && t[5] < 0.0);
+                        }
+                        let held = w["end_position_m"].as_f64().unwrap();
+                        if shape == 2 {
+                            assert!(held > -0.00175 && held < -0.0015);
+                        } else {
+                            assert_eq!(held, -0.0015);
+                        }
+                    }
+                    let recoveries = k["recoveries"].as_array().unwrap();
+                    assert_eq!(recoveries.len(), 2);
+                    let landing = recoveries[0]["landing_seconds_after_key_up"]
+                        .as_f64()
+                        .unwrap();
+                    assert!(landing > 0.0 && landing < 0.06);
+                    assert!(recoveries[0]["landing_speed_m_s"].as_f64().unwrap() > 0.0);
+                    assert!(recoveries[0]["window"]["terms_j"][6].as_f64().unwrap() < 0.0);
+                    assert_eq!(recoveries[0]["window"]["end_position_m"], -0.012);
+                    assert_eq!(recoveries[0]["window"]["end_velocity_m_s"], 0.0);
+                }
+                let first = &takes[1]["repetition"]["phases"][0];
+                let base = &drivers[0]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+                assert_eq!(row["first_vs_original"]["passed"], attack(first, base));
+                if shape == 3 {
+                    let light = &drivers[1]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+                    assert_eq!(
+                        row["first_vs_light_hard_stop"]["passed"],
+                        attack(first, light)
+                    );
+                } else {
+                    assert!(row["first_vs_light_hard_stop"].is_null());
+                }
+            }
+        }
+    }
+    assert_eq!(takes_seen, 32);
+}
+
+#[test]
+fn loaded_key_inertia_cli_preserves_outputs_and_rejects_extra_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-key-inertia"],
+        vec!["loaded-key-inertia", "--output", "keep.json"],
+        vec!["loaded-key-inertia", "--output", "bad.wav"],
+        vec!["loaded-key-inertia", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_drive_onset_receipt_splits_pedestal_work_and_replays_original_controls() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

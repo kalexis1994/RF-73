@@ -170,10 +170,25 @@ not only parameter-identification diagnostics:
     constant-acceleration onsets agree within 5% in every row. Full easing
     still removes the soft strike. No driver is adopted as a default.
 
-Next replace the prescribed pedestal with a finite-inertia key/pedestal
-under a prescribed finger force, so onset and arrival follow from mass,
-return and contact laws rather than a chosen ramp, and requalify
-first-strike and repetition evidence against the retained controls. Preserve
+19. **Finite-inertia key under finger force:** the
+    [key inertia study](LOADED-KEY-INERTIA.md) replaces the prescribed
+    pedestal with a 0.05 or 0.1 kg lumped key driven by a step finger force
+    against a 1 N return, with inelastic or felt-bed stops and an exact
+    key energy ledger coupled through the pedestal contact force. All 32
+    takes converge and the constant-slew rows replay the previous receipt.
+    The hammer rides the key without any collision and is released only
+    when the key hits its stop; at 0.96 m/s release it reproduces the
+    original 0.1 m/s soft strike, so hammer speed at pedestal stop sets
+    the soft strike. Less than a fifth of finger work reaches the action.
+    A 0.2 ms felt bed removes the soft strike in both profiles, the
+    pedestal-loss control loses its benefit, and doubling key mass changes
+    every first strike by more than 5%. No key is adopted as a default.
+
+Next model the escapement release, in which the pedestal cam rolls off the
+hammer at a regulated let-off point before key bottom, so the hammer is
+launched by geometry rather than by an abrupt stop, and requalify
+first-strike and repetition against the retained constant-slew and
+light-key controls with the key energy ledger explicit. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.
