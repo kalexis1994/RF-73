@@ -85,7 +85,22 @@ impl Engine {
     /// Four continuously filtered pickups on one mechanical instrument.
     /// Fixed level matching is tied to the documented default/close geometries.
     pub fn new_laboratory(sample_rate: f64) -> Result<Self, ModelError> {
-        let mut engine = Self::new(sample_rate, Profile::default())?;
+        Self::new_laboratory_with(sample_rate, Profile::default())
+    }
+
+    /// The four matched pickups over a chosen mechanical profile. The level
+    /// factors were frozen on the default profile's pickup geometry, so the
+    /// profile must keep it; sustain and contact fields are free.
+    pub fn new_laboratory_with(sample_rate: f64, profile: Profile) -> Result<Self, ModelError> {
+        let default = Profile::default();
+        if profile.pickup_gap_m != default.pickup_gap_m
+            || profile.pickup_offset_m != default.pickup_offset_m
+        {
+            return Err(ModelError(
+                "laboratory level matching needs the default pickup geometry",
+            ));
+        }
+        let mut engine = Self::new(sample_rate, profile)?;
         engine.laboratory = Some(laboratory::Laboratory::new(sample_rate));
         Ok(engine)
     }

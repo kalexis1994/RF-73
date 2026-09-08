@@ -233,6 +233,7 @@ mod tests {
                         offset_mm: offset,
                         trace: false,
                         pickup: None,
+                        calibrated_sustain: false,
                     };
                     let pair = render_pair(&options).unwrap();
                     let mut engine = Engine::new(rate as f64, options.profile()).unwrap();

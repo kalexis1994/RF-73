@@ -1,0 +1,1371 @@
+{
+  "candidate": "C:/Users/kalex/AppData/Local/Temp/claude/C--Users-kalex-OneDrive-Documents-RF-73/a8268f5e-ad5f-4834-90da-8e3b675a93b6/scratchpad/sus/d3-v1.0.wav",
+  "candidate_audio": {
+    "frames": 352800,
+    "sample_rate": 44100,
+    "selected_channel": 0,
+    "source_bits_per_sample": 32,
+    "source_channels": 1,
+    "source_format": "ieee_float"
+  },
+  "reference": "references/audio/jrhodes-neighbors-a886e6c/A_050__D3_1.wav",
+  "reference_audio": {
+    "frames": 643890,
+    "sample_rate": 44100,
+    "selected_channel": 0,
+    "source_bits_per_sample": 16,
+    "source_channels": 1,
+    "source_format": "pcm"
+  },
+  "tone_comparison": {
+    "candidate_anchor_frame": 0,
+    "method": "tone-v1; explicit-full-windows; harmonic-balance-relative-to-H1; no-decay-fit",
+    "note": 50,
+    "reference_anchor_frame": 0,
+    "sample_rate": 44100,
+    "schema_version": 1,
+    "windows": [
+      {
+        "candidate": {
+          "bin_spacing_hz": 10.7666015625,
+          "fft_size": 4096,
+          "harmonics": [
+            {
+              "harmonic": 1,
+              "peak": {
+                "amplitude_dbfs": -37.157609005478584,
+                "frequency_hz": 145.94246021684665
+              },
+              "target_hz": 146.8323839587038
+            },
+            {
+              "harmonic": 2,
+              "peak": null,
+              "target_hz": 293.6647679174076
+            },
+            {
+              "harmonic": 3,
+              "peak": {
+                "amplitude_dbfs": -17.63237036617073,
+                "frequency_hz": 441.0536265290777
+              },
+              "target_hz": 440.4971518761114
+            },
+            {
+              "harmonic": 4,
+              "peak": {
+                "amplitude_dbfs": -24.71789354389646,
+                "frequency_hz": 588.7443254126559
+              },
+              "target_hz": 587.3295358348151
+            },
+            {
+              "harmonic": 5,
+              "peak": {
+                "amplitude_dbfs": -19.383770427705542,
+                "frequency_hz": 733.0539727084733
+              },
+              "target_hz": 734.1619197935189
+            },
+            {
+              "harmonic": 6,
+              "peak": {
+                "amplitude_dbfs": -27.65206494537014,
+                "frequency_hz": 884.7339253702921
+              },
+              "target_hz": 880.9943037522228
+            },
+            {
+              "harmonic": 7,
+              "peak": {
+                "amplitude_dbfs": -26.804143545824992,
+                "frequency_hz": 1032.7121481780905
+              },
+              "target_hz": 1027.8266877109265
+            },
+            {
+              "harmonic": 8,
+              "peak": {
+                "amplitude_dbfs": -26.526705641960888,
+                "frequency_hz": 1171.4646941925585
+              },
+              "target_hz": 1174.6590716696303
+            },
+            {
+              "harmonic": 9,
+              "peak": null,
+              "target_hz": 1321.491455628334
+            },
+            {
+              "harmonic": 10,
+              "peak": {
+                "amplitude_dbfs": -34.98217927976474,
+                "frequency_hz": 1460.9911192122602
+              },
+              "target_hz": 1468.3238395870378
+            },
+            {
+              "harmonic": 11,
+              "peak": {
+                "amplitude_dbfs": -37.613503636254805,
+                "frequency_hz": 1613.2127826740489
+              },
+              "target_hz": 1615.1562235457416
+            },
+            {
+              "harmonic": 12,
+              "peak": null,
+              "target_hz": 1761.9886075044456
+            }
+          ],
+          "observation_resolution_hz": 31.25442948263643,
+          "observed_samples": 1411,
+          "peaks": [
+            {
+              "amplitude_dbfs": -17.63237036617073,
+              "frequency_hz": 441.0536265290777
+            },
+            {
+              "amplitude_dbfs": -19.383770427705542,
+              "frequency_hz": 733.0539727084733
+            },
+            {
+              "amplitude_dbfs": -24.71789354389646,
+              "frequency_hz": 588.7443254126559
+            },
+            {
+              "amplitude_dbfs": -26.526705641960888,
+              "frequency_hz": 1171.4646941925585
+            },
+            {
+              "amplitude_dbfs": -26.804143545824992,
+              "frequency_hz": 1032.7121481780905
+            },
+            {
+              "amplitude_dbfs": -27.65206494537014,
+              "frequency_hz": 884.7339253702921
+            },
+            {
+              "amplitude_dbfs": -32.72980352440226,
+              "frequency_hz": 1513.188082960495
+            },
+            {
+              "amplitude_dbfs": -32.98233820786414,
+              "frequency_hz": 1356.5020745118493
+            },
+            {
+              "amplitude_dbfs": -35.050934369068344,
+              "frequency_hz": 1803.7047039034337
+            },
+            {
+              "amplitude_dbfs": -36.44378998633924,
+              "frequency_hz": 1951.8573505365284
+            },
+            {
+              "amplitude_dbfs": -37.157609005478584,
+              "frequency_hz": 145.94246021684665
+            },
+            {
+              "amplitude_dbfs": -37.613503636254805,
+              "frequency_hz": 1613.2127826740489
+            },
+            {
+              "amplitude_dbfs": -41.27092321462278,
+              "frequency_hz": 2243.1083986037584
+            },
+            {
+              "amplitude_dbfs": -42.843895790073454,
+              "frequency_hz": 329.56521729478743
+            },
+            {
+              "amplitude_dbfs": -46.223654446424185,
+              "frequency_hz": 2400.235367391996
+            },
+            {
+              "amplitude_dbfs": -48.686124099021036,
+              "frequency_hz": 2681.614587377586
+            }
+          ],
+          "power_centroid_hz": 690.604759992836,
+          "start_seconds": 0.0
+        },
+        "candidate_minus_reference_rms_db": -4.976901896151542,
+        "candidate_rms_dbfs": -16.72144629359558,
+        "candidate_start_frame": 0,
+        "enough_fundamental_cycles": true,
+        "harmonics": [
+          {
+            "candidate_minus_reference_balance_db": 0.0,
+            "candidate_minus_reference_cents": -7.554688538086438,
+            "candidate_minus_reference_raw_db": -6.103404173659673,
+            "candidate_relative_to_fundamental_db": 0.0,
+            "harmonic": 1,
+            "reference_relative_to_fundamental_db": 0.0
+          },
+          {
+            "candidate_minus_reference_balance_db": null,
+            "candidate_minus_reference_cents": null,
+            "candidate_minus_reference_raw_db": null,
+            "candidate_relative_to_fundamental_db": null,
+            "harmonic": 2,
+            "reference_relative_to_fundamental_db": 17.11604958959484
+          },
+          {
+            "candidate_minus_reference_balance_db": 8.999833631293384,
+            "candidate_minus_reference_cents": -7.6935303335611875,
+            "candidate_minus_reference_raw_db": 2.8964294576337117,
+            "candidate_relative_to_fundamental_db": 19.525238639307855,
+            "harmonic": 3,
+            "reference_relative_to_fundamental_db": 10.52540500801447
+          },
+          {
+            "candidate_minus_reference_balance_db": -4.35392461843238,
+            "candidate_minus_reference_cents": -4.544895501901683,
+            "candidate_minus_reference_raw_db": -10.457328792092051,
+            "candidate_relative_to_fundamental_db": 12.439715461582125,
+            "harmonic": 4,
+            "reference_relative_to_fundamental_db": 16.793640080014505
+          },
+          {
+            "candidate_minus_reference_balance_db": 5.302909096738016,
+            "candidate_minus_reference_cents": -12.387367174142879,
+            "candidate_minus_reference_raw_db": -0.8004950769216563,
+            "candidate_relative_to_fundamental_db": 17.77383857777304,
+            "harmonic": 5,
+            "reference_relative_to_fundamental_db": 12.470929481035025
+          },
+          {
+            "candidate_minus_reference_balance_db": -2.918153338417305,
+            "candidate_minus_reference_cents": -1.641665237663944,
+            "candidate_minus_reference_raw_db": -9.021557512076978,
+            "candidate_relative_to_fundamental_db": 9.505544060108445,
+            "harmonic": 6,
+            "reference_relative_to_fundamental_db": 12.42369739852575
+          },
+          {
+            "candidate_minus_reference_balance_db": -0.9495915090525315,
+            "candidate_minus_reference_cents": -1.406942216737188,
+            "candidate_minus_reference_raw_db": -7.052995682712204,
+            "candidate_relative_to_fundamental_db": 10.353465459653592,
+            "harmonic": 7,
+            "reference_relative_to_fundamental_db": 11.303056968706123
+          },
+          {
+            "candidate_minus_reference_balance_db": 4.77914897890442,
+            "candidate_minus_reference_cents": -13.561950573549892,
+            "candidate_minus_reference_raw_db": -1.3242551947552528,
+            "candidate_relative_to_fundamental_db": 10.630903363517696,
+            "harmonic": 8,
+            "reference_relative_to_fundamental_db": 5.851754384613276
+          },
+          {
+            "candidate_minus_reference_balance_db": null,
+            "candidate_minus_reference_cents": null,
+            "candidate_minus_reference_raw_db": null,
+            "candidate_relative_to_fundamental_db": null,
+            "harmonic": 9,
+            "reference_relative_to_fundamental_db": 8.765112385909752
+          },
+          {
+            "candidate_minus_reference_balance_db": 5.89003824792891,
+            "candidate_minus_reference_cents": -18.238740439092286,
+            "candidate_minus_reference_raw_db": -0.21336592573076274,
+            "candidate_relative_to_fundamental_db": 2.1754297257138404,
+            "harmonic": 10,
+            "reference_relative_to_fundamental_db": -3.7146085222150695
+          },
+          {
+            "candidate_minus_reference_balance_db": -5.8649224540966465,
+            "candidate_minus_reference_cents": -11.530108928578189,
+            "candidate_minus_reference_raw_db": -11.96832662775632,
+            "candidate_relative_to_fundamental_db": -0.4558946307762213,
+            "harmonic": 11,
+            "reference_relative_to_fundamental_db": 5.409027823320425
+          },
+          {
+            "candidate_minus_reference_balance_db": null,
+            "candidate_minus_reference_cents": null,
+            "candidate_minus_reference_raw_db": null,
+            "candidate_relative_to_fundamental_db": null,
+            "harmonic": 12,
+            "reference_relative_to_fundamental_db": null
+          }
+        ],
+        "label": "attack_32_ms",
+        "reference": {
+          "bin_spacing_hz": 10.7666015625,
+          "fft_size": 4096,
+          "harmonics": [
+            {
+              "harmonic": 1,
+              "peak": {
+                "amplitude_dbfs": -31.05420483181891,
+                "frequency_hz": 146.5807095431173
+              },
+              "target_hz": 146.8323839587038
+            },
+            {
+              "harmonic": 2,
+              "peak": {
+                "amplitude_dbfs": -13.93815524222407,
+                "frequency_hz": 295.344448219824
+              },
+              "target_hz": 293.6647679174076
+            },
+            {
+              "harmonic": 3,
+              "peak": {
+                "amplitude_dbfs": -20.52879982380444,
+                "frequency_hz": 443.01801163787303
+              },
+              "target_hz": 440.4971518761114
+            },
+            {
+              "harmonic": 4,
+              "peak": {
+                "amplitude_dbfs": -14.260564751804408,
+                "frequency_hz": 590.2919479252233
+              },
+              "target_hz": 587.3295358348151
+            },
+            {
+              "harmonic": 5,
+              "peak": {
+                "amplitude_dbfs": -18.583275350783886,
+                "frequency_hz": 738.317947986608
+              },
+              "target_hz": 734.1619197935189
+            },
+            {
+              "harmonic": 6,
+              "peak": {
+                "amplitude_dbfs": -18.63050743329316,
+                "frequency_hz": 885.5732837427137
+              },
+              "target_hz": 880.9943037522228
+            },
+            {
+              "harmonic": 7,
+              "peak": {
+                "amplitude_dbfs": -19.751147863112788,
+                "frequency_hz": 1033.5517555548772
+              },
+              "target_hz": 1027.8266877109265
+            },
+            {
+              "harmonic": 8,
+              "peak": {
+                "amplitude_dbfs": -25.202450447205635,
+                "frequency_hz": 1180.6776237629367
+              },
+              "target_hz": 1174.6590716696303
+            },
+            {
+              "harmonic": 9,
+              "peak": {
+                "amplitude_dbfs": -22.28909244590916,
+                "frequency_hz": 1328.753285422941
+              },
+              "target_hz": 1321.491455628334
+            },
+            {
+              "harmonic": 10,
+              "peak": {
+                "amplitude_dbfs": -34.76881335403398,
+                "frequency_hz": 1476.4641828683325
+              },
+              "target_hz": 1468.3238395870378
+            },
+            {
+              "harmonic": 11,
+              "peak": {
+                "amplitude_dbfs": -25.645177008498486,
+                "frequency_hz": 1623.992721452321
+              },
+              "target_hz": 1615.1562235457416
+            },
+            {
+              "harmonic": 12,
+              "peak": null,
+              "target_hz": 1761.9886075044456
+            }
+          ],
+          "observation_resolution_hz": 31.25442948263643,
+          "observed_samples": 1411,
+          "peaks": [
+            {
+              "amplitude_dbfs": -13.93815524222407,
+              "frequency_hz": 295.344448219824
+            },
+            {
+              "amplitude_dbfs": -14.260564751804408,
+              "frequency_hz": 590.2919479252233
+            },
+            {
+              "amplitude_dbfs": -18.63050743329316,
+              "frequency_hz": 885.5732837427137
+            },
+            {
+              "amplitude_dbfs": -18.583275350783886,
+              "frequency_hz": 738.317947986608
+            },
+            {
+              "amplitude_dbfs": -19.751147863112788,
+              "frequency_hz": 1033.5517555548772
+            },
+            {
+              "amplitude_dbfs": -20.52879982380444,
+              "frequency_hz": 443.01801163787303
+            },
+            {
+              "amplitude_dbfs": -22.28909244590916,
+              "frequency_hz": 1328.753285422941
+            },
+            {
+              "amplitude_dbfs": -25.202450447205635,
+              "frequency_hz": 1180.6776237629367
+            },
+            {
+              "amplitude_dbfs": -25.645177008498486,
+              "frequency_hz": 1623.992721452321
+            },
+            {
+              "amplitude_dbfs": -29.617731859201843,
+              "frequency_hz": 1919.2730503634375
+            },
+            {
+              "amplitude_dbfs": -31.05420483181891,
+              "frequency_hz": 146.5807095431173
+            },
+            {
+              "amplitude_dbfs": -34.395642064436416,
+              "frequency_hz": 2214.16389142484
+            },
+            {
+              "amplitude_dbfs": -34.76881335403398,
+              "frequency_hz": 1476.4641828683325
+            },
+            {
+              "amplitude_dbfs": -35.00215422224101,
+              "frequency_hz": 962.332910979436
+            },
+            {
+              "amplitude_dbfs": -36.599366675456864,
+              "frequency_hz": 667.8011196637426
+            },
+            {
+              "amplitude_dbfs": -38.55041380589637,
+              "frequency_hz": 369.34963546390077
+            }
+          ],
+          "power_centroid_hz": 668.2015727998868,
+          "start_seconds": 0.0
+        },
+        "reference_rms_dbfs": -11.744544397444038,
+        "reference_start_frame": 0
+      },
+      {
+        "candidate": {
+          "bin_spacing_hz": 2.691650390625,
+          "fft_size": 16384,
+          "harmonics": [
+            {
+              "harmonic": 1,
+              "peak": {
+                "amplitude_dbfs": -36.63034048144469,
+                "frequency_hz": 146.82605900725122
+              },
+              "target_hz": 146.8323839587038
+            },
+            {
+              "harmonic": 2,
+              "peak": {
+                "amplitude_dbfs": -46.72665044911083,
+                "frequency_hz": 293.79794912024965
+              },
+              "target_hz": 293.6647679174076
+            },
+            {
+              "harmonic": 3,
+              "peak": {
+                "amplitude_dbfs": -17.738921361530867,
+                "frequency_hz": 440.4995522568023
+              },
+              "target_hz": 440.4971518761114
+            },
+            {
+              "harmonic": 4,
+              "peak": {
+                "amplitude_dbfs": -25.355605215101065,
+                "frequency_hz": 587.3483329527827
+              },
+              "target_hz": 587.3295358348151
+            },
+            {
+              "harmonic": 5,
+              "peak": {
+                "amplitude_dbfs": -19.304194300262285,
+                "frequency_hz": 734.1496974759267
+              },
+              "target_hz": 734.1619197935189
+            },
+            {
+              "harmonic": 6,
+              "peak": {
+                "amplitude_dbfs": -27.834866599260906,
+                "frequency_hz": 881.0180594374199
+              },
+              "target_hz": 880.9943037522228
+            },
+            {
+              "harmonic": 7,
+              "peak": {
+                "amplitude_dbfs": -28.003986248836334,
+                "frequency_hz": 1027.8585246238995
+              },
+              "target_hz": 1027.8266877109265
+            },
+            {
+              "harmonic": 8,
+              "peak": {
+                "amplitude_dbfs": -26.20274542496998,
+                "frequency_hz": 1174.6239011122736
+              },
+              "target_hz": 1174.6590716696303
+            },
+            {
+              "harmonic": 9,
+              "peak": {
+                "amplitude_dbfs": -43.73749349123695,
+                "frequency_hz": 1321.7711262446599
+              },
+              "target_hz": 1321.491455628334
+            },
+            {
+              "harmonic": 10,
+              "peak": {
+                "amplitude_dbfs": -33.945336748190286,
+                "frequency_hz": 1468.1872327982803
+              },
+              "target_hz": 1468.3238395870378
+            },
+            {
+              "harmonic": 11,
+              "peak": {
+                "amplitude_dbfs": -37.34021235718782,
+                "frequency_hz": 1615.1271772497016
+              },
+              "target_hz": 1615.1562235457416
+            },
+            {
+              "harmonic": 12,
+              "peak": {
+                "amplitude_dbfs": -49.253039326030475,
+                "frequency_hz": 1761.4759312015835
+              },
+              "target_hz": 1761.9886075044456
+            }
+          ],
+          "observation_resolution_hz": 10.415682569674066,
+          "observed_samples": 4234,
+          "peaks": [
+            {
+              "amplitude_dbfs": -17.738921361530867,
+              "frequency_hz": 440.4995522568023
+            },
+            {
+              "amplitude_dbfs": -19.304194300262285,
+              "frequency_hz": 734.1496974759267
+            },
+            {
+              "amplitude_dbfs": -25.355605215101065,
+              "frequency_hz": 587.3483329527827
+            },
+            {
+              "amplitude_dbfs": -26.20274542496998,
+              "frequency_hz": 1174.6239011122736
+            },
+            {
+              "amplitude_dbfs": -27.834866599260906,
+              "frequency_hz": 881.0180594374199
+            },
+            {
+              "amplitude_dbfs": -28.003986248836334,
+              "frequency_hz": 1027.8585246238995
+            },
+            {
+              "amplitude_dbfs": -32.154213860528586,
+              "frequency_hz": 1507.6076537363606
+            },
+            {
+              "amplitude_dbfs": -33.945336748190286,
+              "frequency_hz": 1468.1872327982803
+            },
+            {
+              "amplitude_dbfs": -34.12653630424091,
+              "frequency_hz": 1360.6571741622545
+            },
+            {
+              "amplitude_dbfs": -35.513674066826766,
+              "frequency_hz": 1214.1605185324888
+            },
+            {
+              "amplitude_dbfs": -35.759314072635796,
+              "frequency_hz": 1801.2222083478016
+            },
+            {
+              "amplitude_dbfs": -36.36673630820474,
+              "frequency_hz": 1948.067277097074
+            },
+            {
+              "amplitude_dbfs": -36.63034048144469,
+              "frequency_hz": 146.82605900725122
+            },
+            {
+              "amplitude_dbfs": -36.81802572826576,
+              "frequency_hz": 1066.7542331065874
+            },
+            {
+              "amplitude_dbfs": -37.34021235718782,
+              "frequency_hz": 1615.1271772497016
+            },
+            {
+              "amplitude_dbfs": -39.946684925172875,
+              "frequency_hz": 774.5019107924642
+            }
+          ],
+          "power_centroid_hz": 699.2200406088749,
+          "start_seconds": 0.0
+        },
+        "candidate_minus_reference_rms_db": -4.625782866193177,
+        "candidate_rms_dbfs": -16.91061821936984,
+        "candidate_start_frame": 0,
+        "enough_fundamental_cycles": true,
+        "harmonics": [
+          {
+            "candidate_minus_reference_balance_db": 0.0,
+            "candidate_minus_reference_cents": 3.118719080588659,
+            "candidate_minus_reference_raw_db": -6.782262663102678,
+            "candidate_relative_to_fundamental_db": 0.0,
+            "harmonic": 1,
+            "reference_relative_to_fundamental_db": 0.0
+          },
+          {
+            "candidate_minus_reference_balance_db": -25.89107345427025,
+            "candidate_minus_reference_cents": -3.8500146653812704,
+            "candidate_minus_reference_raw_db": -32.673336117372926,
+            "candidate_relative_to_fundamental_db": -10.096309967666137,
+            "harmonic": 2,
+            "reference_relative_to_fundamental_db": 15.79476348660411
+          },
+          {
+            "candidate_minus_reference_balance_db": 10.043267096978273,
+            "candidate_minus_reference_cents": -3.9620154875970632,
+            "candidate_minus_reference_raw_db": 3.261004433875595,
+            "candidate_relative_to_fundamental_db": 18.891419119913824,
+            "harmonic": 3,
+            "reference_relative_to_fundamental_db": 8.848152022935551
+          },
+          {
+            "candidate_minus_reference_balance_db": -3.4362552277509533,
+            "candidate_minus_reference_cents": -4.599939279322275,
+            "candidate_minus_reference_raw_db": -10.218517890853631,
+            "candidate_relative_to_fundamental_db": 11.274735266343626,
+            "harmonic": 4,
+            "reference_relative_to_fundamental_db": 14.71099049409458
+          },
+          {
+            "candidate_minus_reference_balance_db": 7.118421374634192,
+            "candidate_minus_reference_cents": -4.466226857597178,
+            "candidate_minus_reference_raw_db": 0.3361587115315139,
+            "candidate_relative_to_fundamental_db": 17.326146181182406,
+            "harmonic": 5,
+            "reference_relative_to_fundamental_db": 10.207724806548214
+          },
+          {
+            "candidate_minus_reference_balance_db": -0.8512303358526871,
+            "candidate_minus_reference_cents": -4.862260862183003,
+            "candidate_minus_reference_raw_db": -7.633492998955365,
+            "candidate_relative_to_fundamental_db": 8.795473882183785,
+            "harmonic": 6,
+            "reference_relative_to_fundamental_db": 9.646704218036472
+          },
+          {
+            "candidate_minus_reference_balance_db": 0.17265274554386423,
+            "candidate_minus_reference_cents": -4.633617585537302,
+            "candidate_minus_reference_raw_db": -6.609609917558814,
+            "candidate_relative_to_fundamental_db": 8.626354232608357,
+            "harmonic": 7,
+            "reference_relative_to_fundamental_db": 8.453701487064492
+          },
+          {
+            "candidate_minus_reference_balance_db": 8.0714726970775,
+            "candidate_minus_reference_cents": -4.943686176016484,
+            "candidate_minus_reference_raw_db": 1.2892100339748218,
+            "candidate_relative_to_fundamental_db": 10.427595056474711,
+            "harmonic": 8,
+            "reference_relative_to_fundamental_db": 2.3561223593972116
+          },
+          {
+            "candidate_minus_reference_balance_db": -12.501768665110909,
+            "candidate_minus_reference_cents": -4.447112721689435,
+            "candidate_minus_reference_raw_db": -19.284031328213587,
+            "candidate_relative_to_fundamental_db": -7.107153009792256,
+            "harmonic": 9,
+            "reference_relative_to_fundamental_db": 5.394615655318653
+          },
+          {
+            "candidate_minus_reference_balance_db": 11.047073424346074,
+            "candidate_minus_reference_cents": -5.090591982749006,
+            "candidate_minus_reference_raw_db": 4.264810761243396,
+            "candidate_relative_to_fundamental_db": 2.685003733254405,
+            "harmonic": 10,
+            "reference_relative_to_fundamental_db": -8.36206969109167
+          },
+          {
+            "candidate_minus_reference_balance_db": -2.247181364386396,
+            "candidate_minus_reference_cents": -4.9030074857096455,
+            "candidate_minus_reference_raw_db": -9.029444027489074,
+            "candidate_relative_to_fundamental_db": -0.7098718757431328,
+            "harmonic": 11,
+            "reference_relative_to_fundamental_db": 1.5373094886432632
+          },
+          {
+            "candidate_minus_reference_balance_db": 15.522224998866172,
+            "candidate_minus_reference_cents": -4.485776417708182,
+            "candidate_minus_reference_raw_db": 8.739962335763494,
+            "candidate_relative_to_fundamental_db": -12.622698844585784,
+            "harmonic": 12,
+            "reference_relative_to_fundamental_db": -28.144923843451956
+          }
+        ],
+        "label": "attack_96_ms",
+        "reference": {
+          "bin_spacing_hz": 2.691650390625,
+          "fft_size": 16384,
+          "harmonics": [
+            {
+              "harmonic": 1,
+              "peak": {
+                "amplitude_dbfs": -29.848077818342013,
+                "frequency_hz": 146.56179835981527
+              },
+              "target_hz": 146.8323839587038
+            },
+            {
+              "harmonic": 2,
+              "peak": {
+                "amplitude_dbfs": -14.053314331737903,
+                "frequency_hz": 294.45204038952926
+              },
+              "target_hz": 293.6647679174076
+            },
+            {
+              "harmonic": 3,
+              "peak": {
+                "amplitude_dbfs": -20.99992579540646,
+                "frequency_hz": 441.50881188741334
+              },
+              "target_hz": 440.4971518761114
+            },
+            {
+              "harmonic": 4,
+              "peak": {
+                "amplitude_dbfs": -15.137087324247434,
+                "frequency_hz": 588.9110096956002
+              },
+              "target_hz": 587.3295358348151
+            },
+            {
+              "harmonic": 5,
+              "peak": {
+                "amplitude_dbfs": -19.6403530117938,
+                "frequency_hz": 736.046097418766
+              },
+              "target_hz": 734.1619197935189
+            },
+            {
+              "harmonic": 6,
+              "peak": {
+                "amplitude_dbfs": -20.20137360030554,
+                "frequency_hz": 883.4959224507875
+              },
+              "target_hz": 880.9943037522228
+            },
+            {
+              "harmonic": 7,
+              "peak": {
+                "amplitude_dbfs": -21.39437633127752,
+                "frequency_hz": 1030.613254796768
+              },
+              "target_hz": 1027.8266877109265
+            },
+            {
+              "harmonic": 8,
+              "peak": {
+                "amplitude_dbfs": -27.4919554589448,
+                "frequency_hz": 1177.9829333552339
+              },
+              "target_hz": 1174.6590716696303
+            },
+            {
+              "harmonic": 9,
+              "peak": {
+                "amplitude_dbfs": -24.45346216302336,
+                "frequency_hz": 1325.1707944243094
+              },
+              "target_hz": 1321.491455628334
+            },
+            {
+              "harmonic": 10,
+              "peak": {
+                "amplitude_dbfs": -38.21014750943368,
+                "frequency_hz": 1472.510704418108
+              },
+              "target_hz": 1468.3238395870378
+            },
+            {
+              "harmonic": 11,
+              "peak": {
+                "amplitude_dbfs": -28.31076832969875,
+                "frequency_hz": 1619.7078431994767
+              },
+              "target_hz": 1615.1562235457416
+            },
+            {
+              "harmonic": 12,
+              "peak": {
+                "amplitude_dbfs": -57.99300166179397,
+                "frequency_hz": 1766.0459850832551
+              },
+              "target_hz": 1761.9886075044456
+            }
+          ],
+          "observation_resolution_hz": 10.415682569674066,
+          "observed_samples": 4234,
+          "peaks": [
+            {
+              "amplitude_dbfs": -14.053314331737903,
+              "frequency_hz": 294.45204038952926
+            },
+            {
+              "amplitude_dbfs": -15.137087324247434,
+              "frequency_hz": 588.9110096956002
+            },
+            {
+              "amplitude_dbfs": -19.6403530117938,
+              "frequency_hz": 736.046097418766
+            },
+            {
+              "amplitude_dbfs": -20.20137360030554,
+              "frequency_hz": 883.4959224507875
+            },
+            {
+              "amplitude_dbfs": -20.99992579540646,
+              "frequency_hz": 441.50881188741334
+            },
+            {
+              "amplitude_dbfs": -21.39437633127752,
+              "frequency_hz": 1030.613254796768
+            },
+            {
+              "amplitude_dbfs": -24.45346216302336,
+              "frequency_hz": 1325.1707944243094
+            },
+            {
+              "amplitude_dbfs": -27.4919554589448,
+              "frequency_hz": 1177.9829333552339
+            },
+            {
+              "amplitude_dbfs": -28.31076832969875,
+              "frequency_hz": 1619.7078431994767
+            },
+            {
+              "amplitude_dbfs": -29.848077818342013,
+              "frequency_hz": 146.56179835981527
+            },
+            {
+              "amplitude_dbfs": -32.867377403980484,
+              "frequency_hz": 1914.2740974651792
+            },
+            {
+              "amplitude_dbfs": -35.747817125581506,
+              "frequency_hz": 534.7028575938645
+            },
+            {
+              "amplitude_dbfs": -35.96778653361652,
+              "frequency_hz": 86.99421661276149
+            },
+            {
+              "amplitude_dbfs": -36.18657874111654,
+              "frequency_hz": 829.4628445000051
+            },
+            {
+              "amplitude_dbfs": -38.21014750943368,
+              "frequency_hz": 1472.510704418108
+            },
+            {
+              "amplitude_dbfs": -38.24924439595764,
+              "frequency_hz": 2208.8778922657493
+            }
+          ],
+          "power_centroid_hz": 603.2762646084587,
+          "start_seconds": 0.0
+        },
+        "reference_rms_dbfs": -12.284835353176664,
+        "reference_start_frame": 0
+      },
+      {
+        "candidate": {
+          "bin_spacing_hz": 1.3458251953125,
+          "fft_size": 32768,
+          "harmonics": [
+            {
+              "harmonic": 1,
+              "peak": {
+                "amplitude_dbfs": -31.775090838283617,
+                "frequency_hz": 146.83449538121675
+              },
+              "target_hz": 146.8323839587038
+            },
+            {
+              "harmonic": 2,
+              "peak": {
+                "amplitude_dbfs": -32.05070838694743,
+                "frequency_hz": 293.668528645734
+              },
+              "target_hz": 293.6647679174076
+            },
+            {
+              "harmonic": 3,
+              "peak": {
+                "amplitude_dbfs": -17.558547058405583,
+                "frequency_hz": 440.5009878511567
+              },
+              "target_hz": 440.4971518761114
+            },
+            {
+              "harmonic": 4,
+              "peak": {
+                "amplitude_dbfs": -32.57801586498477,
+                "frequency_hz": 587.3324072463932
+              },
+              "target_hz": 587.3295358348151
+            },
+            {
+              "harmonic": 5,
+              "peak": {
+                "amplitude_dbfs": -21.10089777346528,
+                "frequency_hz": 734.1614850843571
+              },
+              "target_hz": 734.1619197935189
+            },
+            {
+              "harmonic": 6,
+              "peak": {
+                "amplitude_dbfs": -26.10709544267305,
+                "frequency_hz": 880.9912876326318
+              },
+              "target_hz": 880.9943037522228
+            },
+            {
+              "harmonic": 7,
+              "peak": {
+                "amplitude_dbfs": -35.68071374867022,
+                "frequency_hz": 1027.8234179853732
+              },
+              "target_hz": 1027.8266877109265
+            },
+            {
+              "harmonic": 8,
+              "peak": {
+                "amplitude_dbfs": -29.08487186767546,
+                "frequency_hz": 1174.6557957413036
+              },
+              "target_hz": 1174.6590716696303
+            },
+            {
+              "harmonic": 9,
+              "peak": {
+                "amplitude_dbfs": -38.451386275101086,
+                "frequency_hz": 1321.4902502216637
+              },
+              "target_hz": 1321.491455628334
+            },
+            {
+              "harmonic": 10,
+              "peak": {
+                "amplitude_dbfs": -40.28375075137309,
+                "frequency_hz": 1468.3236775962876
+              },
+              "target_hz": 1468.3238395870378
+            },
+            {
+              "harmonic": 11,
+              "peak": {
+                "amplitude_dbfs": -39.39525599548201,
+                "frequency_hz": 1615.158306580777
+              },
+              "target_hz": 1615.1562235457416
+            },
+            {
+              "harmonic": 12,
+              "peak": {
+                "amplitude_dbfs": -59.41960485680332,
+                "frequency_hz": 1761.9963393353785
+              },
+              "target_hz": 1761.9886075044456
+            }
+          ],
+          "observation_resolution_hz": 2.857142857142857,
+          "observed_samples": 15435,
+          "peaks": [
+            {
+              "amplitude_dbfs": -17.558547058405583,
+              "frequency_hz": 440.5009878511567
+            },
+            {
+              "amplitude_dbfs": -21.10089777346528,
+              "frequency_hz": 734.1614850843571
+            },
+            {
+              "amplitude_dbfs": -26.10709544267305,
+              "frequency_hz": 880.9912876326318
+            },
+            {
+              "amplitude_dbfs": -29.08487186767546,
+              "frequency_hz": 1174.6557957413036
+            },
+            {
+              "amplitude_dbfs": -31.775090838283617,
+              "frequency_hz": 146.83449538121675
+            },
+            {
+              "amplitude_dbfs": -32.05070838694743,
+              "frequency_hz": 293.668528645734
+            },
+            {
+              "amplitude_dbfs": -32.57801586498477,
+              "frequency_hz": 587.3324072463932
+            },
+            {
+              "amplitude_dbfs": -35.68071374867022,
+              "frequency_hz": 1027.8234179853732
+            },
+            {
+              "amplitude_dbfs": -38.451386275101086,
+              "frequency_hz": 1321.4902502216637
+            },
+            {
+              "amplitude_dbfs": -39.39525599548201,
+              "frequency_hz": 1615.158306580777
+            },
+            {
+              "amplitude_dbfs": -39.56903116765894,
+              "frequency_hz": 1507.531077733795
+            },
+            {
+              "amplitude_dbfs": -40.28375075137309,
+              "frequency_hz": 1468.3236775962876
+            },
+            {
+              "amplitude_dbfs": -41.66505362373471,
+              "frequency_hz": 1213.8638423246607
+            },
+            {
+              "amplitude_dbfs": -43.45175398083854,
+              "frequency_hz": 1360.6960220872313
+            },
+            {
+              "amplitude_dbfs": -45.49232815067296,
+              "frequency_hz": 1948.0269676478026
+            },
+            {
+              "amplitude_dbfs": -47.20749087609984,
+              "frequency_hz": 1908.8237770372516
+            }
+          ],
+          "power_centroid_hz": 596.3760583477177,
+          "start_seconds": 0.25
+        },
+        "candidate_minus_reference_rms_db": -3.0413009186602444,
+        "candidate_rms_dbfs": -17.973308046192212,
+        "candidate_start_frame": 11025,
+        "enough_fundamental_cycles": true,
+        "harmonics": [
+          {
+            "candidate_minus_reference_balance_db": 0.0,
+            "candidate_minus_reference_cents": -2.586965653923076,
+            "candidate_minus_reference_raw_db": -4.8952781462797255,
+            "candidate_relative_to_fundamental_db": 0.0,
+            "harmonic": 1,
+            "reference_relative_to_fundamental_db": 0.0
+          },
+          {
+            "candidate_minus_reference_balance_db": -11.97941304757205,
+            "candidate_minus_reference_cents": -2.595591328757043,
+            "candidate_minus_reference_raw_db": -16.874691193851774,
+            "candidate_relative_to_fundamental_db": -0.27561754866380994,
+            "harmonic": 2,
+            "reference_relative_to_fundamental_db": 11.70379549890824
+          },
+          {
+            "candidate_minus_reference_balance_db": 8.196087301447946,
+            "candidate_minus_reference_cents": -2.5341484102017158,
+            "candidate_minus_reference_raw_db": 3.3008091551682206,
+            "candidate_relative_to_fundamental_db": 14.216543779878034,
+            "harmonic": 3,
+            "reference_relative_to_fundamental_db": 6.020456478430088
+          },
+          {
+            "candidate_minus_reference_balance_db": -8.313545339024078,
+            "candidate_minus_reference_cents": -2.6110571076992297,
+            "candidate_minus_reference_raw_db": -13.208823485303803,
+            "candidate_relative_to_fundamental_db": -0.8029250267011534,
+            "harmonic": 4,
+            "reference_relative_to_fundamental_db": 7.510620312322924
+          },
+          {
+            "candidate_minus_reference_balance_db": 5.891383875332508,
+            "candidate_minus_reference_cents": -2.6019064530765057,
+            "candidate_minus_reference_raw_db": 0.9961057290527826,
+            "candidate_relative_to_fundamental_db": 10.674193064818336,
+            "harmonic": 5,
+            "reference_relative_to_fundamental_db": 4.782809189485828
+          },
+          {
+            "candidate_minus_reference_balance_db": 6.777372634952034,
+            "candidate_minus_reference_cents": -2.6218895040636876,
+            "candidate_minus_reference_raw_db": 1.8820944886723083,
+            "candidate_relative_to_fundamental_db": 5.667995395610568,
+            "harmonic": 6,
+            "reference_relative_to_fundamental_db": -1.109377239341466
+          },
+          {
+            "candidate_minus_reference_balance_db": -4.768926870022813,
+            "candidate_minus_reference_cents": -2.6069129186159015,
+            "candidate_minus_reference_raw_db": -9.664205016302539,
+            "candidate_relative_to_fundamental_db": -3.9056229103866045,
+            "harmonic": 7,
+            "reference_relative_to_fundamental_db": 0.8633039596362089
+          },
+          {
+            "candidate_minus_reference_balance_db": 17.99130829881894,
+            "candidate_minus_reference_cents": -2.589651101717496,
+            "candidate_minus_reference_raw_db": 13.096030152539214,
+            "candidate_relative_to_fundamental_db": 2.690218970608157,
+            "harmonic": 8,
+            "reference_relative_to_fundamental_db": -15.301089328210782
+          },
+          {
+            "candidate_minus_reference_balance_db": -2.384803793375724,
+            "candidate_minus_reference_cents": -2.613278673766918,
+            "candidate_minus_reference_raw_db": -7.2800819396554495,
+            "candidate_relative_to_fundamental_db": -6.676295436817469,
+            "harmonic": 9,
+            "reference_relative_to_fundamental_db": -4.291491643441745
+          },
+          {
+            "candidate_minus_reference_balance_db": 14.480554332629442,
+            "candidate_minus_reference_cents": -2.5810913149963612,
+            "candidate_minus_reference_raw_db": 9.585276186349716,
+            "candidate_relative_to_fundamental_db": -8.508659913089474,
+            "harmonic": 10,
+            "reference_relative_to_fundamental_db": -22.989214245718916
+          },
+          {
+            "candidate_minus_reference_balance_db": 2.903122031375279,
+            "candidate_minus_reference_cents": -2.6038827705416048,
+            "candidate_minus_reference_raw_db": -1.9921561149044464,
+            "candidate_relative_to_fundamental_db": -7.620165157198393,
+            "harmonic": 11,
+            "reference_relative_to_fundamental_db": -10.523287188573672
+          },
+          {
+            "candidate_minus_reference_balance_db": -8.881250010721896,
+            "candidate_minus_reference_cents": -2.606667509307404,
+            "candidate_minus_reference_raw_db": -13.776528157001621,
+            "candidate_relative_to_fundamental_db": -27.6445140185197,
+            "harmonic": 12,
+            "reference_relative_to_fundamental_db": -18.763264007797805
+          }
+        ],
+        "label": "body_350_ms",
+        "reference": {
+          "bin_spacing_hz": 1.3458251953125,
+          "fft_size": 32768,
+          "harmonics": [
+            {
+              "harmonic": 1,
+              "peak": {
+                "amplitude_dbfs": -26.879812692003892,
+                "frequency_hz": 147.0540727083462
+              },
+              "target_hz": 146.8323839587038
+            },
+            {
+              "harmonic": 2,
+              "peak": {
+                "amplitude_dbfs": -15.176017193095651,
+                "frequency_hz": 294.10914797034405
+              },
+              "target_hz": 293.6647679174076
+            },
+            {
+              "harmonic": 3,
+              "peak": {
+                "amplitude_dbfs": -20.859356213573804,
+                "frequency_hz": 441.14625720878644
+              },
+              "target_hz": 440.4971518761114
+            },
+            {
+              "harmonic": 4,
+              "peak": {
+                "amplitude_dbfs": -19.369192379680968,
+                "frequency_hz": 588.2188936806142
+              },
+              "target_hz": 587.3295358348151
+            },
+            {
+              "harmonic": 5,
+              "peak": {
+                "amplitude_dbfs": -22.097003502518064,
+                "frequency_hz": 735.2657007042571
+              },
+              "target_hz": 734.1619197935189
+            },
+            {
+              "harmonic": 6,
+              "peak": {
+                "amplitude_dbfs": -27.989189931345358,
+                "frequency_hz": 882.3265269635759
+              },
+              "target_hz": 880.9943037522228
+            },
+            {
+              "harmonic": 7,
+              "peak": {
+                "amplitude_dbfs": -26.016508732367683,
+                "frequency_hz": 1029.3722926345492
+              },
+              "target_hz": 1027.8266877109265
+            },
+            {
+              "harmonic": 8,
+              "peak": {
+                "amplitude_dbfs": -42.180902020214674,
+                "frequency_hz": 1176.4142090234573
+              },
+              "target_hz": 1174.6590716696303
+            },
+            {
+              "harmonic": 9,
+              "peak": {
+                "amplitude_dbfs": -31.171304335445637,
+                "frequency_hz": 1323.4865314603107
+              },
+              "target_hz": 1321.491455628334
+            },
+            {
+              "harmonic": 10,
+              "peak": {
+                "amplitude_dbfs": -49.86902693772281,
+                "frequency_hz": 1470.5144293646845
+              },
+              "target_hz": 1468.3238395870378
+            },
+            {
+              "harmonic": 11,
+              "peak": {
+                "amplitude_dbfs": -37.403099880577564,
+                "frequency_hz": 1617.5894320995703
+              },
+              "target_hz": 1615.1562235457416
+            },
+            {
+              "harmonic": 12,
+              "peak": {
+                "amplitude_dbfs": -45.643076699801696,
+                "frequency_hz": 1764.6513229715774
+              },
+              "target_hz": 1761.9886075044456
+            }
+          ],
+          "observation_resolution_hz": 2.857142857142857,
+          "observed_samples": 15435,
+          "peaks": [
+            {
+              "amplitude_dbfs": -15.176017193095651,
+              "frequency_hz": 294.10914797034405
+            },
+            {
+              "amplitude_dbfs": -19.369192379680968,
+              "frequency_hz": 588.2188936806142
+            },
+            {
+              "amplitude_dbfs": -20.859356213573804,
+              "frequency_hz": 441.14625720878644
+            },
+            {
+              "amplitude_dbfs": -22.097003502518064,
+              "frequency_hz": 735.2657007042571
+            },
+            {
+              "amplitude_dbfs": -26.016508732367683,
+              "frequency_hz": 1029.3722926345492
+            },
+            {
+              "amplitude_dbfs": -26.879812692003892,
+              "frequency_hz": 147.0540727083462
+            },
+            {
+              "amplitude_dbfs": -27.989189931345358,
+              "frequency_hz": 882.3265269635759
+            },
+            {
+              "amplitude_dbfs": -31.171304335445637,
+              "frequency_hz": 1323.4865314603107
+            },
+            {
+              "amplitude_dbfs": -37.403099880577564,
+              "frequency_hz": 1617.5894320995703
+            },
+            {
+              "amplitude_dbfs": -42.180902020214674,
+              "frequency_hz": 1176.4142090234573
+            },
+            {
+              "amplitude_dbfs": -44.95707138470693,
+              "frequency_hz": 1911.694744741797
+            },
+            {
+              "amplitude_dbfs": -45.643076699801696,
+              "frequency_hz": 1764.6513229715774
+            },
+            {
+              "amplitude_dbfs": -47.8684864247192,
+              "frequency_hz": 2058.7513994757196
+            },
+            {
+              "amplitude_dbfs": -46.57389950542497,
+              "frequency_hz": 300.9673803059284
+            },
+            {
+              "amplitude_dbfs": -47.62133987045703,
+              "frequency_hz": 287.2440279265818
+            },
+            {
+              "amplitude_dbfs": -49.86902693772281,
+              "frequency_hz": 1470.5144293646845
+            }
+          ],
+          "power_centroid_hz": 468.4257455994718,
+          "start_seconds": 0.25
+        },
+        "reference_rms_dbfs": -14.932007127531968,
+        "reference_start_frame": 11025
+      }
+    ]
+  }
+}

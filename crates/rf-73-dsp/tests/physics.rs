@@ -209,3 +209,74 @@ fn sustained_fundamental_tracks_target_pitch_at_all_output_rates() {
         }
     }
 }
+
+#[test]
+fn calibrated_sustain_profile_validates_and_rings_longer_on_both_partials() {
+    let calibrated = Profile::calibrated_sustain();
+    calibrated.validate(48_000.0).unwrap();
+    assert_eq!(calibrated.decay_seconds, 20.0);
+    assert_eq!(calibrated.bar_partial_decay_seconds, 2.3);
+    let default = Profile::default();
+    assert_eq!(
+        calibrated.third_partial_decay_seconds,
+        default.third_partial_decay_seconds
+    );
+    assert_eq!(calibrated.pickup_gap_m, default.pickup_gap_m);
+    for bad in [
+        Profile {
+            decay_seconds: 60.5,
+            ..default
+        },
+        Profile {
+            bar_partial_decay_seconds: 0.0,
+            ..default
+        },
+        Profile {
+            third_partial_decay_seconds: f64::NAN,
+            ..default
+        },
+    ] {
+        assert!(bad.validate(48_000.0).is_err());
+    }
+    // Energy after one second of free ringing follows the first-partial T60.
+    let energy_after = |profile: Profile, seconds: f64| {
+        let mut voice = Voice::new(48_000.0, 55, profile).unwrap();
+        voice.strike(0.7);
+        let mut energy = 0.0;
+        for _ in 0..(48_000.0 * OVERSAMPLE as f64 * seconds) as usize {
+            voice.tick();
+            energy = voice.probe().mechanical_energy_j;
+        }
+        energy
+    };
+    let long = energy_after(calibrated, 1.0);
+    let short = energy_after(default, 1.0);
+    assert!(long > 2.0 * short, "{long} vs {short}");
+    // Only the bar partial changed: its energy at 300 ms is far larger while the
+    // first partial alone would differ by under 4%.
+    let bar_only = Profile {
+        bar_partial_decay_seconds: 2.3,
+        ..default
+    };
+    let first_only = Profile {
+        decay_seconds: 20.0,
+        ..default
+    };
+    let bar = energy_after(bar_only, 0.3);
+    let first = energy_after(first_only, 0.3);
+    let base = energy_after(default, 0.3);
+    assert!(bar > base && first > base, "{bar} {first} {base}");
+    assert!(energy_after(calibrated, 0.3) > first);
+    // The laboratory engine accepts the calibrated profile but not another geometry.
+    assert!(Engine::new_laboratory_with(48_000.0, calibrated).is_ok());
+    assert!(
+        Engine::new_laboratory_with(
+            48_000.0,
+            Profile {
+                pickup_gap_m: 0.001,
+                ..default
+            }
+        )
+        .is_err()
+    );
+}

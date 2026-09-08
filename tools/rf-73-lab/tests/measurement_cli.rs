@@ -10,6 +10,216 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn playable_sustain_receipts_derive_the_calibrated_t60_anchors_and_close_the_decay_gap() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references/playable-sustain");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let manifest = read("manifest.json");
+    let files = manifest["files"].as_array().unwrap();
+    assert_eq!(files.len(), 15 + 10 + 9 + 10);
+    for entry in files {
+        let name = entry["file"].as_str().unwrap();
+        let bytes = fs::read(root.join(name)).unwrap();
+        assert_eq!(
+            bytes.len() as u64,
+            entry["bytes"].as_u64().unwrap(),
+            "{name}"
+        );
+        assert_eq!(
+            sha256_hex(&bytes),
+            entry["sha256"].as_str().unwrap(),
+            "{name}"
+        );
+    }
+    let profile = rf_73_dsp::Profile::calibrated_sustain();
+    assert_eq!(
+        manifest["profile"]["decay_seconds_at_a3"],
+        profile.decay_seconds
+    );
+    assert_eq!(
+        manifest["profile"]["bar_partial_decay_seconds_at_a3"],
+        profile.bar_partial_decay_seconds
+    );
+    let mean = |track: &serde_json::Value, key: &str| -> Option<f64> {
+        let values: Vec<f64> = track["observations"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .filter_map(|o| o[key].as_f64())
+            .collect();
+        (!values.is_empty()).then(|| values.iter().sum::<f64>() / values.len() as f64)
+    };
+    // Anchors from the recordings: late slope of the 0.5..4.5 s window, T60 = 60/|slope|,
+    // divided by sqrt(220 / f0) to refer every note to A3.
+    let mut fundamental = Vec::new();
+    let mut bar = Vec::new();
+    for (note, f0, dir) in [(50u8, 146.83, "D3"), (55, 196.0, "G3"), (59, 246.94, "B3")] {
+        for layer in 1..=5 {
+            let report = read(&format!("recordings/A_0{note}__{dir}_{layer}-sustain.json"));
+            let tracking = &report["partial_comparison"]["reference_tracking"];
+            for track in tracking["tracks"].as_array().unwrap() {
+                let Some(frequency) = mean(track, "frequency_hz") else {
+                    continue;
+                };
+                let Some(late) = track["decay"]["late_slope_db_per_second"].as_f64() else {
+                    continue;
+                };
+                if track["observations"].as_array().unwrap().len() < 10 || late >= 0.0 {
+                    continue;
+                }
+                let anchor = (60.0 / -late) / (220.0_f64 / f0).sqrt();
+                let ratio = frequency / f0;
+                if (ratio - 1.0).abs() < 0.03 {
+                    fundamental.push(anchor);
+                } else if (5.9..6.1).contains(&ratio) {
+                    bar.push(anchor);
+                }
+            }
+        }
+    }
+    let geomean =
+        |values: &[f64]| (values.iter().map(|v| v.ln()).sum::<f64>() / values.len() as f64).exp();
+    assert!(fundamental.len() >= 12, "{}", fundamental.len());
+    assert!(bar.len() >= 5, "{}", bar.len());
+    let fundamental_anchor = geomean(&fundamental);
+    let bar_anchor = geomean(&bar);
+    assert!(
+        (fundamental_anchor / profile.decay_seconds - 1.0).abs() < 0.15,
+        "{fundamental_anchor}"
+    );
+    assert!(
+        (bar_anchor / profile.bar_partial_decay_seconds - 1.0).abs() < 0.15,
+        "{bar_anchor}"
+    );
+    // The default profile's 5 s first partial is a quarter of the recordings'.
+    assert!(fundamental_anchor > 3.5 * rf_73_dsp::Profile::default().decay_seconds);
+    // Engine against the recordings: qualified matched fundamental T60 differences
+    // sit within 5 s where the diagnostic had 17 to 21 s deficits.
+    let mut qualified = 0;
+    for (tag, f0) in [("g3", 196.0), ("d3", 146.83), ("b3", 246.94)] {
+        for (velocity, layer) in [("1.0", 1), ("0.6", 3), ("0.25", 5)] {
+            let render = read(&format!("engine/render-{tag}-v{velocity}.json"));
+            assert_eq!(render["sustain"], "calibrated");
+            assert_eq!(render["pickup_path"], 3);
+            assert_eq!(render["faults"], 0);
+            let p = &read(&format!("engine/sustain-{tag}-v{velocity}-L{layer}.json"))["partial_comparison"];
+            for m in p["matches"].as_array().map(|m| m.as_slice()).unwrap_or(&[]) {
+                let ratio = m["mean_reference_frequency_hz"].as_f64().unwrap() / f0;
+                if (ratio - 1.0).abs() < 0.03 && m["decay"]["status"] == "qualified" {
+                    let difference = m["decay"]["candidate_minus_reference_t60_seconds"]
+                        .as_f64()
+                        .unwrap();
+                    assert!(difference.abs() < 5.0, "{tag} v{velocity} {difference}");
+                    qualified += 1;
+                }
+            }
+            // The engine's fundamental now decays between 2 and 3.5 dB/s in the
+            // sustain window at the medium and soft dynamics; at the loud one both
+            // sides still rise during the first second, so its slope is not bounded.
+            let tracks = p["candidate_tracking"]["tracks"].as_array().unwrap();
+            let slope = tracks
+                .iter()
+                .filter(|t| mean(t, "frequency_hz").is_some_and(|f| (f / f0 - 1.0).abs() < 0.03))
+                .filter_map(|t| t["decay"]["late_slope_db_per_second"].as_f64())
+                .next()
+                .unwrap();
+            assert!(
+                velocity == "1.0" || (-3.5..=-2.0).contains(&slope),
+                "{tag} v{velocity} slope {slope}"
+            );
+            // The bar partial, still at the uniform 6.27 ratio, decays at 15 to 30 dB/s
+            // instead of vanishing inside the first window.
+            if velocity != "1.0" {
+                let bar_slope = tracks
+                    .iter()
+                    .filter(|t| {
+                        mean(t, "frequency_hz").is_some_and(|f| (6.2..6.35).contains(&(f / f0)))
+                    })
+                    .filter_map(|t| t["decay"]["late_slope_db_per_second"].as_f64())
+                    .next()
+                    .unwrap();
+                assert!(
+                    (-30.0..=-15.0).contains(&bar_slope),
+                    "{tag} v{velocity} bar {bar_slope}"
+                );
+            }
+        }
+    }
+    assert!(qualified >= 4, "{qualified}");
+    // The default pickup with calibrated sustain shows the same fundamental decay.
+    let default = read("engine/render-g3-v0.6-default-pickup.json");
+    assert_eq!(default["pickup_path"], serde_json::Value::Null);
+    assert_eq!(default["sustain"], "calibrated");
+}
+
+#[test]
+fn render_sustain_option_selects_the_calibrated_profile() {
+    let scratch = Scratch::new();
+    let base = [
+        "render",
+        "--note",
+        "55",
+        "--velocity",
+        "0.7",
+        "--sample-rate",
+        "44100",
+        "--seconds",
+        "0.5",
+        "--hold",
+        "0.4",
+    ];
+    let with = |extra: &[&str]| {
+        let mut args: Vec<&str> = base.to_vec();
+        args.extend(extra);
+        args.iter().map(|s| s.to_string()).collect::<Vec<_>>()
+    };
+    for extra in [
+        vec!["--output", "original.wav"],
+        vec!["--output", "explicit.wav", "--sustain", "original"],
+        vec!["--output", "calibrated.wav", "--sustain", "calibrated"],
+        vec![
+            "--output",
+            "both.wav",
+            "--sustain",
+            "calibrated",
+            "--pickup",
+            "3",
+        ],
+    ] {
+        let owned = with(&extra);
+        scratch.success(&owned.iter().map(String::as_str).collect::<Vec<_>>());
+    }
+    let original = fs::read(scratch.0.join("original.wav")).unwrap();
+    assert_eq!(fs::read(scratch.0.join("explicit.wav")).unwrap(), original);
+    let calibrated = fs::read(scratch.0.join("calibrated.wav")).unwrap();
+    assert_ne!(calibrated, original);
+    assert_eq!(scratch.json("original.json")["sustain"], "original");
+    assert_eq!(scratch.json("calibrated.json")["sustain"], "calibrated");
+    assert_eq!(scratch.json("both.json")["pickup_path"], 3);
+    // Longer sustain leaves more energy at the end of the render.
+    let tail_power = |bytes: &[u8]| {
+        let samples = bytes[58..].as_chunks::<4>().0;
+        samples[samples.len() * 3 / 4..]
+            .iter()
+            .map(|c| f64::from(f32::from_le_bytes(*c)).powi(2))
+            .sum::<f64>()
+    };
+    assert!(tail_power(&calibrated) > tail_power(&original));
+    for extra in [vec!["--sustain", "long"], vec!["--sustain"]] {
+        let mut args = with(&["--output", "bad.wav"]);
+        args.extend(extra.iter().map(|s| s.to_string()));
+        assert!(
+            !scratch
+                .run(&args.iter().map(String::as_str).collect::<Vec<_>>())
+                .status
+                .success()
+        );
+        assert!(!scratch.0.join("bad.wav").exists());
+    }
+}
+
+#[test]
 fn aperture_listening_receipt_freezes_the_fourth_level_match_and_reproduces_the_retained_three() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

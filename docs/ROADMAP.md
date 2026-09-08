@@ -294,11 +294,19 @@ The [Close Aperture path](PICKUP-APERTURE-PATH.md) puts that law into the
 playable engine as a fourth level-matched pickup. The G3 harmonic balance
 now sits within a few decibels of the recordings at every dynamic and agrees
 with the static prediction within 0.7 dB, the sustain is untouched, and the
-73-key laboratory stress misses 8 of 1125 deadlines. Next give the playable
-engine per-partial losses with the calibrated first-mode T60 and a slow
-second harmonic, then the second bar partial at 6.0 times the fundamental,
-then bake the action tables; the reduced engine must take the aperture
-transfer as a table, not as node sums. Preserve
+73-key laboratory stress misses 8 of 1125 deadlines.
+
+The [calibrated sustain](PLAYABLE-SUSTAIN.md) gives the playable profile
+per-partial T60 and derives the first and bar partial values, 20 s and
+2.3 s at A3, from the fifteen D3, G3 and B3 recordings; the engine's
+fundamental T60 now matches the recordings within 5 s at every qualified
+pair, the second harmonic decays at the recorded rate on its own, and the
+bar partial rings for seconds but sits 25 dB low at the uniform 6.27 ratio.
+Next tune the second bar partial to 6.0 times the fundamental with its own
+excitation level, then decide the plugin's profile and gain policy with the
+aperture pickup and calibrated sustain together, then bake the action
+tables; the reduced engine must take the aperture transfer as a table, not
+as node sums. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

@@ -25,14 +25,18 @@ When disk space is limited, set `$env:CARGO_INCREMENTAL = '0'` in the build shel
 
 ```text
 cargo run --locked --release -p rf-73-lab -- render-midi SONG.mid --output renders/song.wav --normalize
+cargo run --locked --release -p rf-73-lab -- render-midi SONG.mid --output renders/song-lab.wav --normalize --pickup 3 --sustain calibrated
 ```
 
 Format 0/1 files with their tempo map are rendered through the playable 0.1.2
 engine at 48 kHz: every non-drum channel is merged, note on/off, sustain
 (CC 64) and all-notes-off are honoured, and notes outside the 73-key range are
 counted and dropped. The raw WAV is unnormalized float; `--normalize` writes a
-separate `-norm.wav` peaking at -1 dBFS. `--gain`, `--sample-rate` and `--tail`
-are documented in `--help`. The JSON receipt records note counts, peak, RMS,
+separate `-norm.wav` peaking at -1 dBFS. `--pickup 0..3` renders the
+laboratory engine's level-matched pickup path instead of the raw engine; path
+3 is [Close Aperture](PICKUP-APERTURE-PATH.md). `--sustain calibrated` uses the
+[recording-derived per-partial T60](PLAYABLE-SUSTAIN.md). `--gain`,
+`--sample-rate` and `--tail` are documented in `--help`. The JSON receipt records note counts, peak, RMS,
 faults and the render speed. The engine is uncalibrated and has no limiter.
 
 ## Render and inspect

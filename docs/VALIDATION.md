@@ -3131,3 +3131,42 @@ persistent action-cycle replay against its committed reference, matches only
 in release builds: in debug builds it differs in the last bits from
 debug-versus-release rounding and fails, at every commit since it was added.
 No production default changes; release cache remains approximately 183 MiB.
+
+## Calibrated playable sustain
+
+The [calibrated sustain block](PLAYABLE-SUSTAIN.md) moves the playable
+voice's second and third partial T60 constants into `Profile` beside the
+first, with defaults equal to the old constants so every retained render is
+unchanged, and adds `Profile::calibrated_sustain` with 20 s and 2.3 s at A3
+for the first and bar partials. The anchors come from the fifteen retained
+D3, G3 and B3 recordings tracked against themselves over 0.5 to 4.5 s: the
+fundamental's late slopes give A3 anchors of 17 to 25 s with geometric mean
+19.9 s, and the bar partial, tracked in six recordings, 2.1 to 2.7 s with
+geometric mean 2.5 s. `render` and `render-midi` take `--sustain calibrated`,
+and the laboratory engine accepts a profile with the default pickup
+geometry.
+
+D3, G3 and B3 rendered at velocities 1.0, 0.6 and 0.25 with the calibrated
+sustain through the aperture pickup decay at 2.0 to 3.2 dB/s in the sustain
+window against the recordings' 2.3 to 3.8 dB/s; the five qualified matched
+fundamental T60 differences lie between −4.7 and +3.2 s where the diagnostic
+had −17 to −21 s. The second harmonic decays at twice the fundamental's rate
+on both sides. The bar partial at the uniform 6.27 ratio now decays at 20 to
+27 dB/s but stays 25 dB below the recording's 6.01 partial at the medium
+dynamic. The nocturne with both changes peaks at +6.9 dBFS raw with 58%
+higher RMS than the aperture pickup alone, so the gain policy remains open.
+
+Receipts: `references/playable-sustain/` with 44 hashed files under a
+manifest, 15 recording tracking reports, 10 render receipts, 9 tone and 10
+sustain comparisons. A receipt test re-derives both anchors and holds the
+profile constants within 15% of them, the engine's medium and soft
+fundamental slopes, the qualified T60 differences and the bar partial's
+decay; a DSP test holds the profile's validation ranges and the longer
+ringing of each partial; a CLI test holds the option and its byte-identical
+default. Verification passes 118 DSP unit tests, 15 DSP integration tests,
+154 lab unit tests in release, the render, MIDI, pickup, sustain, listening,
+G3, aperture, harmonics, stress and diagnostic CLI tests (103 in the suite
+with the two new ones), strict Clippy for the workspace and the wasm32 UI,
+and formatting; the complete CLI suite runs after the commit and its result
+is recorded in the next block. No production default changes.
+

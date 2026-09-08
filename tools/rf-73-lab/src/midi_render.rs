@@ -7,9 +7,10 @@ use std::{error::Error, fs, io::BufWriter, path::Path, time::Instant};
 
 pub const HELP: &str = "MIDI render:
   render-midi INPUT.mid --output AUDIO.wav [--gain G] [--normalize] [--sample-rate HZ] [--tail S]
-    [--pickup I]
+    [--pickup I] [--sustain original|calibrated]
 Uncalibrated playable engine (0.1.2 mechanics, default pickup). --pickup 0..3 renders the
-laboratory engine's level-matched path instead (3 is Close Aperture). Gain 0.05..2 scales the
+laboratory engine's level-matched path instead (3 is Close Aperture). --sustain calibrated
+uses the recording-derived first/bar partial T60 (20 s / 2.3 s at A3). Gain 0.05..2 scales the
 engine output before the WAV (default 1). --normalize also writes AUDIO-norm.wav peaking
 at -1 dBFS. Tail 0..30 s after the last event (default 4). A JSON receipt accompanies
 the WAV. Existing files are never overwritten.
@@ -168,16 +169,26 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     let mut rate = 48000u32;
     let mut tail = 4.0_f64;
     let mut pickup: Option<usize> = None;
+    let mut calibrated = false;
     let mut k = 4;
     while k < args.len() {
         match args[k].as_str() {
             "--normalize" => normalize = true,
-            "--gain" | "--sample-rate" | "--tail" | "--pickup" if k + 1 < args.len() => {
+            "--gain" | "--sample-rate" | "--tail" | "--pickup" | "--sustain"
+                if k + 1 < args.len() =>
+            {
                 let value = &args[k + 1];
                 match args[k].as_str() {
                     "--gain" => gain = value.parse()?,
                     "--sample-rate" => rate = value.parse()?,
                     "--pickup" => pickup = Some(value.parse()?),
+                    "--sustain" => {
+                        calibrated = match value.as_str() {
+                            "original" => false,
+                            "calibrated" => true,
+                            _ => return Err("sustain must be original or calibrated".into()),
+                        }
+                    }
                     _ => tail = value.parse()?,
                 }
                 k += 1;
@@ -229,16 +240,21 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
     if frames == 0 || f64::from(frames) / f64::from(rate) > 1800.0 {
         return Err("render length must be positive and at most 30 minutes".into());
     }
+    let profile = if calibrated {
+        Profile::calibrated_sustain()
+    } else {
+        Profile::default()
+    };
     let mut engine = match pickup {
         Some(index) => {
-            let mut engine = Engine::new_laboratory(f64::from(rate))?;
+            let mut engine = Engine::new_laboratory_with(f64::from(rate), profile)?;
             if !engine.set_pickup(index) {
                 return Err("invalid laboratory pickup path".into());
             }
             engine.reset();
             engine
         }
-        None => Engine::new(f64::from(rate), Profile::default())?,
+        None => Engine::new(f64::from(rate), profile)?,
     };
     engine.set_gain(1.0);
     let mut samples = Vec::with_capacity(frames as usize);
@@ -307,6 +323,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
         "division_ticks_per_quarter":division,"tempo_changes":tempos.len(),"events":events.len(),"notes_played":notes,
         "notes_outside_range_dropped":dropped,"sustain_events":pedal,"last_event_seconds":last,"tail_seconds":tail,
         "pickup_path":pickup,"pickup_name":pickup.map(|i| PICKUP_NAMES[i]),
+        "sustain":if calibrated {"calibrated"} else {"original"},
         "gain":gain,"peak":peak,"rms":(square/f64::from(frames)).sqrt(),"peak_dbfs":20.0*peak.max(1e-12).log10(),
         "normalized_output":normalize_gain.map(|_|normalized.display().to_string()),"normalize_gain":normalize_gain,
         "normalized_peak_dbfs":normalize_gain.map(|_|-1.0),"faults":engine.faults(),

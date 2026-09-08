@@ -95,7 +95,8 @@ harmonic decays at 22 dB/s, twice the fundamental's rate, because a pickup
 generates it from the square of the fundamental's amplitude; the recording's
 second harmonic decays at 5 dB/s, twice its fundamental's 2.5 dB/s. The
 harmonic decay ratio is already right; only the fundamental's loss is wrong,
-which confirms the order of work.
+which confirms the order of work. The [calibrated sustain](PLAYABLE-SUSTAIN.md)
+takes that step next.
 
 ## Listening
 

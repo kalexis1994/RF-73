@@ -152,8 +152,8 @@ impl Voice {
         };
         let t60 = [
             profile.decay_seconds * scale.sqrt(),
-            0.16 * scale.sqrt(),
-            0.055 * scale.sqrt(),
+            profile.bar_partial_decay_seconds * scale.sqrt(),
+            profile.third_partial_decay_seconds * scale.sqrt(),
         ];
         let modes = core::array::from_fn(|i| {
             Mode::new(

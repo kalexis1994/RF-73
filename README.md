@@ -162,7 +162,11 @@ wide pole reproduces the recorded harmonic balance from the engine's own tine
 motion. The [Close Aperture path](docs/PICKUP-APERTURE-PATH.md) puts that
 law into the playable engine as a fourth level-matched pickup: the loud G3
 third harmonic rises to +8.4 dB against the recording's +7.0 dB, the sustain
-is unchanged, and the all-keys stress now misses a few deadlines.
+is unchanged, and the all-keys stress now misses a few deadlines. The
+[calibrated sustain](docs/PLAYABLE-SUSTAIN.md) then gives the engine
+per-partial losses from the D3, G3 and B3 recordings, 20 s and 2.3 s at A3
+for the first and bar partials, and closes the 17 to 21 s fundamental T60
+deficit to within 5 s without touching the defaults.
 
 The [damper lift study](docs/LOADED-DAMPER-LIFT.md) changes the bridle ratio,
 bridle slack and arm spring that set that lift. The linkage geometry turns
@@ -256,6 +260,7 @@ The rendering and parameter-automation paths use no allocation, locks or I/O. Th
 - [Pickup convergence](docs/PICKUP-CONVERGENCE.md): separate mechanical and pickup/filter sampling residuals across registers, with finite 128x/256x references.
 - [Pickup listening](docs/PICKUP-LISTENING.md): four performances with fixed global RMS matching, sample-peak control and measured full-keyboard headroom.
 - [Close Aperture pickup path](docs/PICKUP-APERTURE-PATH.md): the finite-aperture law as a fourth level-matched plugin pickup, measured on the G3 strikes, the nocturne and the all-keys stress.
+- [Calibrated sustain](docs/PLAYABLE-SUSTAIN.md): per-partial T60 in the playable profile, derived from fifteen recordings and measured on D3, G3 and B3 renders.
 - [Numerical convergence](docs/CONVERGENCE.md): the treble-contact correction, experiment and residual errors.
 - [Desktop audition](docs/AUDITION.md): build, install and launch each test version.
 - [Sources](docs/SOURCES.md): primary research and evidence scope.

@@ -70,6 +70,8 @@ Render options:
   --trace           Export output-rate physical probes as CSV
   --pickup I        Render through laboratory pickup path I (0..3) instead of the
                     raw engine; needs the default gap/offset. Names: rf-73-lab help
+  --sustain S       original (default) or calibrated: first/bar partial T60 from
+                    the retained recordings, 20 s / 2.3 s at A3
 WAV is mono IEEE float, without normalization or clipping. Existing files are
 never overwritten. Every render writes a JSON report. Parameters are uncalibrated.
 Demo: three A3 intensities and a sustained E-minor chord, ten seconds.
@@ -92,6 +94,7 @@ struct Options {
     trace: bool,
     laboratory: bool,
     pickup: Option<usize>,
+    calibrated_sustain: bool,
 }
 
 impl Options {
@@ -115,6 +118,7 @@ impl Options {
             trace: false,
             laboratory: false,
             pickup: None,
+            calibrated_sustain: false,
         };
         let mut seen = std::collections::BTreeSet::new();
         let mut i = 1;
@@ -153,6 +157,7 @@ impl Options {
                         | "--gap-mm"
                         | "--offset-mm"
                         | "--pickup"
+                        | "--sustain"
                 ),
             };
             if !allowed {
@@ -172,6 +177,13 @@ impl Options {
                 "--gap-mm" => o.gap_mm = value.parse().map_err(|_| invalid())?,
                 "--offset-mm" => o.offset_mm = value.parse().map_err(|_| invalid())?,
                 "--pickup" => o.pickup = Some(value.parse().map_err(|_| invalid())?),
+                "--sustain" => {
+                    o.calibrated_sustain = match value.as_str() {
+                        "original" => false,
+                        "calibrated" => true,
+                        _ => return Err(invalid()),
+                    }
+                }
                 _ => unreachable!(),
             }
             i += 2;
@@ -217,7 +229,11 @@ impl Options {
         Profile {
             pickup_gap_m: self.gap_mm * 0.001,
             pickup_offset_m: self.offset_mm * 0.001,
-            ..Profile::default()
+            ..if self.calibrated_sustain {
+                Profile::calibrated_sustain()
+            } else {
+                Profile::default()
+            }
         }
     }
 }
@@ -687,7 +703,7 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
     let frames = (seconds * o.rate as f64).round() as u32;
     let mut engine = match o.pickup {
         Some(index) => {
-            let mut engine = Engine::new_laboratory(o.rate as f64)?;
+            let mut engine = Engine::new_laboratory_with(o.rate as f64, o.profile())?;
             if !engine.set_pickup(index) {
                 return Err("invalid laboratory pickup path".into());
             }
@@ -771,7 +787,7 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
     }
     let elapsed = started.elapsed().as_secs_f64();
     let report = format!(
-        "{{\n  \"schema_version\": 1,\n  \"model\": \"research-0.1.1-uncalibrated\",\n  \"mode\": \"{}\",\n  \"sample_rate\": {},\n  \"frames\": {},\n  \"note\": {},\n  \"velocity\": {},\n  \"hold_seconds\": {},\n  \"pickup_gap_mm\": {},\n  \"pickup_offset_mm\": {},\n  \"pickup_path\": {},\n  \"pickup_name\": {},\n  \"oversampling\": 4,\n  \"peak\": {:.9},\n  \"rms\": {:.9},\n  \"faults\": {},\n  \"render_wall_seconds_including_io\": {:.6}\n}}\n",
+        "{{\n  \"schema_version\": 1,\n  \"model\": \"research-0.1.1-uncalibrated\",\n  \"mode\": \"{}\",\n  \"sample_rate\": {},\n  \"frames\": {},\n  \"note\": {},\n  \"velocity\": {},\n  \"hold_seconds\": {},\n  \"pickup_gap_mm\": {},\n  \"pickup_offset_mm\": {},\n  \"pickup_path\": {},\n  \"pickup_name\": {},\n  \"sustain\": \"{}\",\n  \"oversampling\": 4,\n  \"peak\": {:.9},\n  \"rms\": {:.9},\n  \"faults\": {},\n  \"render_wall_seconds_including_io\": {:.6}\n}}\n",
         o.command,
         o.rate,
         frames,
@@ -783,6 +799,11 @@ fn render(o: &Options) -> Result<(), Box<dyn Error>> {
         o.pickup.map_or("null".to_string(), |i| i.to_string()),
         o.pickup
             .map_or("null".to_string(), |i| format!("\"{}\"", PICKUP_NAMES[i])),
+        if o.calibrated_sustain {
+            "calibrated"
+        } else {
+            "original"
+        },
         peak,
         (square_sum / frames as f64).sqrt(),
         engine.faults(),

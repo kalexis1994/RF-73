@@ -24,7 +24,12 @@ pub struct Profile {
     pub maximum_hammer_speed_m_s: f64,
     pub pickup_gap_m: f64,
     pub pickup_offset_m: f64,
+    /// First-partial T60 at A3; every partial scales with sqrt(220 Hz / f).
     pub decay_seconds: f64,
+    /// Second bending partial (the bar partial) T60 at A3.
+    pub bar_partial_decay_seconds: f64,
+    /// Third bending partial T60 at A3.
+    pub third_partial_decay_seconds: f64,
 }
 
 impl Default for Profile {
@@ -37,11 +42,25 @@ impl Default for Profile {
             pickup_gap_m: 0.0015,
             pickup_offset_m: 0.0005,
             decay_seconds: 5.0,
+            bar_partial_decay_seconds: 0.16,
+            third_partial_decay_seconds: 0.055,
         }
     }
 }
 
 impl Profile {
+    /// The default profile with the first and bar partial T60 set from the
+    /// retained D3, G3 and B3 recordings' sustain slopes (docs/PLAYABLE-SUSTAIN.md):
+    /// 20 s and 2.3 s at A3 under the shared sqrt(220 Hz / f) pitch scaling.
+    /// Mechanics, pickup and the third partial are unchanged.
+    pub fn calibrated_sustain() -> Self {
+        Self {
+            decay_seconds: 20.0,
+            bar_partial_decay_seconds: 2.3,
+            ..Self::default()
+        }
+    }
+
     pub fn validate(self, sample_rate: f64) -> Result<(), ModelError> {
         if !sample_rate.is_finite() || !(SAMPLE_RATE_MIN..=SAMPLE_RATE_MAX).contains(&sample_rate) {
             return Err(ModelError(
@@ -88,8 +107,20 @@ impl Profile {
             (
                 self.decay_seconds,
                 0.25,
-                20.0,
-                "decay outside 0.25..20 seconds",
+                60.0,
+                "decay outside 0.25..60 seconds",
+            ),
+            (
+                self.bar_partial_decay_seconds,
+                0.01,
+                10.0,
+                "bar partial decay outside 0.01..10 seconds",
+            ),
+            (
+                self.third_partial_decay_seconds,
+                0.005,
+                5.0,
+                "third partial decay outside 0.005..5 seconds",
             ),
         ] {
             if !value.is_finite() || !(minimum..=maximum).contains(&value) {
