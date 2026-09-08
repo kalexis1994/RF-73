@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "diagnostic": "playable-0.1.2-g3-against-jrhodes-layers",
+  "generated_on": "2026-09-08",
+  "engine": "research-0.1.2-uncalibrated, default pickup, 44.1 kHz, note 55, 8 s, hold 7.5 s",
+  "reference": "references/audio/jrhodes-g3-a886e6c layers 1, 3 and 5 (processed recordings, uncalibrated capture gain)",
+  "pairs": [
+    {
+      "render": "g3-v1.0",
+      "layer": 1
+    },
+    {
+      "render": "g3-v0.6",
+      "layer": 3
+    },
+    {
+      "render": "g3-v0.25",
+      "layer": 5
+    }
+  ],
+  "regions": {
+    "attack": "compare-partials --seconds 1 --start 0.02 --partial-window-ms 128",
+    "sustain": "compare-partials --seconds 4 --start 0.5 --partial-window-ms 512",
+    "tone": "compare-tone --note 55 anchors at file start"
+  },
+  "files": [
+    {
+      "file": "attack-v0.25-L5.json",
+      "bytes": 146232,
+      "sha256": "f9478104716ef76f54036e9050d49f03b89d345640d56f7e9c39910ede8bf6c6"
+    },
+    {
+      "file": "attack-v0.6-L3.json",
+      "bytes": 239761,
+      "sha256": "f9a3687b70fe9b979b48bf9f6976296a26537e9b0a42e86f282d53890a5ee30b"
+    },
+    {
+      "file": "attack-v1.0-L1.json",
+      "bytes": 469279,
+      "sha256": "c69e4b79b3cad95c1669cb426e191aa164a14da0ad635d7b23da10fe6ef4ae72"
+    },
+    {
+      "file": "g3-v0.25.json",
+      "bytes": 369,
+      "sha256": "281eb1774b24a429a1ca237dcd1f83e32c54d64148c4d6d28c45f09bd99d13ab"
+    },
+    {
+      "file": "g3-v0.6.json",
+      "bytes": 368,
+      "sha256": "87202e3fe735ff1937cff17283fbc6342d81b0201ed9e9a5f5b96335b2a7081e"
+    },
+    {
+      "file": "g3-v1.0.json",
+      "bytes": 366,
+      "sha256": "8ee1dc253914820c2f5d22db2111069e7ebb29449fd62728e90a0fb02cdc376c"
+    },
+    {
+      "file": "sustain-v0.25-L5.json",
+      "bytes": 111984,
+      "sha256": "4ef7aba6f5b4501ee94a95bc4b43444a5b6e1f198ee6d898cb867a2835debc54"
+    },
+    {
+      "file": "sustain-v0.6-L3.json",
+      "bytes": 144855,
+      "sha256": "8c39bf10b3b56e854666ddada15bd94e96d14b7d94ee7c0c7055af451c1dd7a0"
+    },
+    {
+      "file": "sustain-v1.0-L1.json",
+      "bytes": 220005,
+      "sha256": "f935adbc9a6f44d4bf22665f2f9a6b4b6d2fbea369cfded79dd55dca79d91444"
+    },
+    {
+      "file": "tone-v0.25-L5.json",
+      "bytes": 38938,
+      "sha256": "bdf65bdeea3ee0deb4a27e817276919993d75e1e727cbdf97f09930fdc5c6530"
+    },
+    {
+      "file": "tone-v0.6-L3.json",
+      "bytes": 43290,
+      "sha256": "e4d05c637bbde22f87b9b2f3c67ee1a47059ff7d19b15cea474529200eceea3f"
+    },
+    {
+      "file": "tone-v1.0-L1.json",
+      "bytes": 44694,
+      "sha256": "3524b13aa7b5450344bfd8cf8bd9b1b338b7406c559d275e9c5b385631a7779a"
+    }
+  ]
+}

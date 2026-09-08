@@ -275,7 +275,14 @@ weighted 4 g hammer on the let-off key with pedestal loss 30, felt loss 40
 and 4 mm bridle slack, render soft, strong and repeated strikes through the
 retained pickup and circuit alongside the gravity-free control, and qualify
 the renders with the existing energy, refinement and headroom gates so the
-action work can be heard before it is calibrated. Preserve
+action work can be heard before it is calibrated.
+
+The [playable G3 diagnostic](PLAYABLE-G3-DIAGNOSTIC.md) measured the plugin's
+0.1.2 engine against the retained G3 recordings and fixes the order of work
+for the reduced real-time engine: the pickup's velocity-dependent harmonic
+generation first, then per-partial losses with the calibrated first-mode T60,
+then the second bar partial tuned to 6.0 times the fundamental, and only then
+the baked action tables. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.
