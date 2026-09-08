@@ -27,6 +27,21 @@ struct Mode {
 
 impl Mode {
     fn new(frequency: f64, mass: f64, gamma: f64, dt: f64, contact_dt: f64) -> Self {
+        let mut mode = Self {
+            q: 0.0,
+            v: 0.0,
+            mass,
+            omega: 0.0,
+            gamma,
+            free: [[0.0; 4]; 2],
+            contact_free: [[0.0; 4]; 2],
+        };
+        mode.set(frequency, mass, gamma, dt, contact_dt);
+        mode
+    }
+
+    /// Replace frequency, mass and loss while keeping the modal state.
+    fn set(&mut self, frequency: f64, mass: f64, gamma: f64, dt: f64, contact_dt: f64) {
         let omega = TAU * frequency;
         let transitions = |dt: f64| {
             [gamma, gamma + 55.0].map(|g| {
@@ -42,15 +57,11 @@ impl Mode {
                 ]
             })
         };
-        Self {
-            q: 0.0,
-            v: 0.0,
-            mass,
-            omega,
-            gamma,
-            free: transitions(dt),
-            contact_free: transitions(contact_dt),
-        }
+        self.mass = mass;
+        self.omega = omega;
+        self.gamma = gamma;
+        self.free = transitions(dt);
+        self.contact_free = transitions(contact_dt);
     }
 
     fn advance_free(&mut self, damped: bool) {
@@ -77,6 +88,7 @@ impl Mode {
 pub struct Voice {
     modes: [Mode; MODES],
     hammer_weights: [f64; MODES],
+    note: u8,
     profile: Profile,
     pickup: MagneticPickup,
     dt: f64,
@@ -167,6 +179,7 @@ impl Voice {
         Self {
             modes,
             hammer_weights: [1.0, profile.bar_partial_strike_weight, 0.12],
+            note,
             profile,
             pickup: MagneticPickup::from_validated_profile(profile),
             dt,
@@ -181,6 +194,33 @@ impl Voice {
             signal: 0.0,
             last_channel: 0,
         }
+    }
+
+    /// Replace the mechanical profile while every modal and hammer state is kept.
+    /// The contact subdivision stays as prepared; it depends on the fixed third
+    /// ratio only. The caller validates the profile for its sample rate.
+    pub(crate) fn set_profile(&mut self, profile: Profile) {
+        let frequency = 440.0 * 2.0_f64.powf((self.note as f64 - 69.0) / 12.0);
+        let scale = (220.0 / frequency).clamp(0.15, 4.0);
+        let ratios = [1.0, profile.bar_partial_ratio, 17.55];
+        let t60 = [
+            profile.decay_seconds * scale.sqrt(),
+            profile.bar_partial_decay_seconds * scale.sqrt(),
+            profile.third_partial_decay_seconds * scale.sqrt(),
+        ];
+        for (i, mode) in self.modes.iter_mut().enumerate() {
+            mode.set(
+                frequency * ratios[i],
+                profile.modal_mass_kg * scale,
+                1000.0_f64.ln() / t60[i],
+                self.dt,
+                self.dt / self.contact_steps as f64,
+            );
+        }
+        self.hammer_weights = [1.0, profile.bar_partial_strike_weight, 0.12];
+        self.hammer_mass = profile.hammer_mass_kg * scale.sqrt();
+        self.pickup = MagneticPickup::from_validated_profile(profile);
+        self.profile = profile;
     }
 
     /// Retriggering retains every resonator coordinate and its velocity.

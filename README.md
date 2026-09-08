@@ -171,6 +171,9 @@ deficit to within 5 s without touching the defaults. The
 recordings' line at six times the fundamental is the pickup's sixth harmonic,
 not a bending partial, and that the engine's second partial was over-excited
 by 20 to 35 dB; `Profile::calibrated` strikes it fifteen times more softly.
+The plugin now exposes the three profiles as a **Profile** parameter beside
+the four pickups, switchable while notes ring, so the calibrated mechanics
+can be auditioned in RackForge before any default changes.
 
 The [damper lift study](docs/LOADED-DAMPER-LIFT.md) changes the bridle ratio,
 bridle slack and arm spring that set that lift. The linkage geometry turns

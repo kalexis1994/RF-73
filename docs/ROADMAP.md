@@ -313,7 +313,10 @@ strike weight of −0.02; the ratio stays 6.267 for want of evidence. Next
 decide the plugin's profile and gain policy with the aperture pickup and
 the calibrated profile together, then bake the action tables; the reduced
 engine must take the aperture transfer as a table, not as node sums, and
-the contact law's velocity dependence remains a laboratory question. Preserve
+the contact law's velocity dependence remains a laboratory question. The
+plugin's [Profile parameter](PICKUP-LAB-UI.md) now offers Original,
+Calibrated Sustain and Calibrated beside the four pickups, keeping ringing
+notes across switches, so the default can be chosen by ear. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

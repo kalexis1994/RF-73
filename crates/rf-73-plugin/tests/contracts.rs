@@ -87,7 +87,7 @@ fn state_is_versioned_and_rejected_atomically() {
     state[8..16].copy_from_slice(&f64::NAN.to_le_bytes());
     assert!(!plugin.load_state(&state));
     assert_eq!(plugin.get_parameter(0), Some(0.4));
-    state[4] = 3;
+    state[4] = 4;
     assert!(!plugin.load_state(&state));
     assert!(!plugin.load_preset("unknown"));
 }

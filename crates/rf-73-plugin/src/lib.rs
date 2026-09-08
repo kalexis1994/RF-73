@@ -6,18 +6,19 @@ use rackforge_plugin_sdk::{
     MIDI2_KIND_NOTE_OFF, MIDI2_KIND_NOTE_ON, MidiEvent, MidiEvent2, ParameterEvent, Processor,
     export_processor,
 };
-use rf_73_dsp::Engine;
+use rf_73_dsp::{Engine, Profile};
 pub use settings::{DEFAULT_GAIN, Settings};
 use std::collections::BTreeMap;
 
 pub const MAX_FRAMES: u32 = 4096;
 pub const MAX_EVENTS: usize = 256;
-pub const STATE_VERSION: u32 = 2;
+pub const STATE_VERSION: u32 = 3;
 pub const STATE_BYTES: usize = 20;
 pub const PARAMETER_GAIN: u32 = 0;
 pub const PARAMETER_A: u32 = 1;
 pub const PARAMETER_B: u32 = 2;
 pub const PARAMETER_LISTEN_B: u32 = 3;
+pub const PARAMETER_PROFILE: u32 = 4;
 
 #[derive(Default)]
 pub struct Rf73Processor {
@@ -37,6 +38,9 @@ impl Rf73Processor {
         if let Some(engine) = &mut self.engine {
             engine.set_gain(settings.gain);
             engine.set_pickup(settings.selected());
+            if let Some(profile) = Profile::named(usize::from(settings.profile)) {
+                engine.set_profile(profile);
+            }
         }
         true
     }
@@ -100,6 +104,9 @@ impl Processor for Rf73Processor {
         };
         engine.set_gain(self.settings.gain);
         engine.set_pickup(self.settings.selected());
+        if let Some(profile) = Profile::named(usize::from(self.settings.profile)) {
+            engine.set_profile(profile);
+        }
         engine.reset();
         self.engine = Some(Box::new(engine));
         self.maximum_frames = frames;
@@ -147,7 +154,7 @@ impl Processor for Rf73Processor {
             self.settings.a,
             self.settings.b,
             u8::from(self.settings.listen_b),
-            0,
+            self.settings.profile,
         ]);
         Some(STATE_BYTES)
     }
@@ -163,11 +170,20 @@ impl Processor for Rf73Processor {
                 gain,
                 ..Settings::default()
             },
-            (STATE_VERSION, STATE_BYTES) if state[18] <= 1 && state[19] == 0 => Settings {
+            // Schema 2 kept byte 19 reserved at zero; schema 3 stores the profile there.
+            (2, STATE_BYTES) if state[18] <= 1 && state[19] == 0 => Settings {
                 gain,
                 a: state[16],
                 b: state[17],
                 listen_b: state[18] == 1,
+                profile: 0,
+            },
+            (STATE_VERSION, STATE_BYTES) if state[18] <= 1 => Settings {
+                gain,
+                a: state[16],
+                b: state[17],
+                listen_b: state[18] == 1,
+                profile: state[19],
             },
             _ => return false,
         };

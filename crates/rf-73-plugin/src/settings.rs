@@ -1,5 +1,5 @@
-use crate::{PARAMETER_A, PARAMETER_B, PARAMETER_GAIN, PARAMETER_LISTEN_B};
-use rf_73_dsp::PICKUP_NAMES;
+use crate::{PARAMETER_A, PARAMETER_B, PARAMETER_GAIN, PARAMETER_LISTEN_B, PARAMETER_PROFILE};
+use rf_73_dsp::{PICKUP_NAMES, PROFILE_NAMES};
 use serde::{Deserialize, Serialize};
 
 /// Conservative starting gain for the measured ten-key repeated-strike case.
@@ -13,6 +13,9 @@ pub struct Settings {
     pub a: u8,
     pub b: u8,
     pub listen_b: bool,
+    /// Index into `PROFILE_NAMES`; absent in older program documents.
+    #[serde(default)]
+    pub profile: u8,
 }
 
 impl Default for Settings {
@@ -22,6 +25,7 @@ impl Default for Settings {
             a: 0,
             b: 2,
             listen_b: false,
+            profile: 0,
         }
     }
 }
@@ -32,6 +36,7 @@ impl Settings {
             && (0.0..=2.0).contains(&self.gain)
             && usize::from(self.a) < PICKUP_NAMES.len()
             && usize::from(self.b) < PICKUP_NAMES.len()
+            && usize::from(self.profile) < PROFILE_NAMES.len()
     }
 
     pub fn selected(self) -> usize {
@@ -44,6 +49,7 @@ impl Settings {
             PARAMETER_A => f64::from(self.a),
             PARAMETER_B => f64::from(self.b),
             PARAMETER_LISTEN_B => f64::from(u8::from(self.listen_b)),
+            PARAMETER_PROFILE => f64::from(self.profile),
             _ => return None,
         })
     }
@@ -64,6 +70,11 @@ impl Settings {
                 }
             }
             PARAMETER_LISTEN_B if [0.0, 1.0].contains(&value) => self.listen_b = value == 1.0,
+            PARAMETER_PROFILE
+                if value.fract() == 0.0 && (0.0..PROFILE_NAMES.len() as f64).contains(&value) =>
+            {
+                self.profile = value as u8
+            }
             _ => return None,
         }
         Some(self)

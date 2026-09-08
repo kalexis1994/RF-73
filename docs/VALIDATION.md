@@ -3211,3 +3211,31 @@ and formatting. The complete debug CLI suite of the preceding commit was
 still running when this block was verified; its result is recorded in the
 next block. No production default changes.
 
+## Plugin profile parameter
+
+The plugin now exposes the three named mechanical profiles, Original,
+Calibrated Sustain and Calibrated, as parameter 4 beside the four pickups
+(see [Pickup Lab UI](PICKUP-LAB-UI.md)). `Engine::set_profile` replaces every
+voice's frequencies, losses, strike weights, contact law and hammer mass
+while keeping modal and hammer states, so a held note continues across a
+switch; a laboratory engine rejects a profile that moves the frozen pickup
+geometry. State schema 3 stores the profile in the byte schema 2 reserved at
+zero; schema 2 and schema 1 snapshots still load with the Original profile.
+Program documents gain an optional `profile` field, the declarative editor a
+fifth choice field, and the editor's pickup choices now accept the fourth
+pickup, which the previous block had left limited to three. The package
+metadata, the PLAY panel and the UI client carry the new parameter; the
+default profile is Original, so nothing changes until the selector moves.
+
+Tests: a DSP test holds that setting a profile before playing equals
+building with it sample for sample at every named profile, that switches
+during a ringing note stay finite and continuous with no fault, and that
+invalid or geometry-moving profiles are rejected; a plugin test round-trips
+the parameter through state (schemas 2 and 3), the editor view and edits,
+and audio blocks with the parameter changing mid-note; the UI client tests
+cover the fifth parameter's domain. Verification passes 118 DSP unit tests,
+17 DSP integration tests, the plugin's 9 tests, the UI client's 3 tests, 154
+lab unit tests in release, the affected CLI tests in release, strict Clippy
+for the workspace and the wasm32 UI, and formatting. No production default
+changes; the package archive is rebuilt for audition.
+

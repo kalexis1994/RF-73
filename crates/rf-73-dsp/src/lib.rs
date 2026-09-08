@@ -37,7 +37,7 @@ pub use modal_assembly::{
     ModalAssembly, ModalAssemblyProfile, ModalIntegration, ModalProbe, ModalSpectrum,
     StructuralMode,
 };
-pub use model::{ModelError, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
+pub use model::{ModelError, PROFILE_NAMES, Profile, SAMPLE_RATE_MAX, SAMPLE_RATE_MIN};
 pub use pickup::MagneticPickup;
 pub use tine::{TINE_MODE_COUNT, TineGeometry, TineMode, TineModes};
 pub use voice::{Probe, Voice};
@@ -56,6 +56,7 @@ pub struct Engine {
     pedals: u16,
     decimator: filter::Decimator,
     laboratory: Option<laboratory::Laboratory>,
+    sample_rate: f64,
     gain: f64,
     target_gain: f64,
     gain_step: f64,
@@ -75,6 +76,7 @@ impl Engine {
             pedals: 0,
             decimator: filter::Decimator::new(),
             laboratory: None,
+            sample_rate,
             gain: 0.7,
             target_gain: 0.7,
             gain_step: 1.0 - (-1.0 / (0.005 * sample_rate)).exp(),
@@ -103,6 +105,27 @@ impl Engine {
         let mut engine = Self::new(sample_rate, profile)?;
         engine.laboratory = Some(laboratory::Laboratory::new(sample_rate));
         Ok(engine)
+    }
+
+    /// Replace the mechanical profile of every voice while notes keep ringing:
+    /// modal and hammer states are kept, only frequencies, losses, strike weights
+    /// and contact law change. A laboratory engine keeps its frozen pickup
+    /// geometry, so a profile that moves it is rejected.
+    pub fn set_profile(&mut self, profile: Profile) -> bool {
+        if profile.validate(self.sample_rate).is_err() {
+            return false;
+        }
+        let default = Profile::default();
+        if self.laboratory.is_some()
+            && (profile.pickup_gap_m != default.pickup_gap_m
+                || profile.pickup_offset_m != default.pickup_offset_m)
+        {
+            return false;
+        }
+        for voice in &mut self.voices {
+            voice.set_profile(profile);
+        }
+        true
     }
 
     /// Select a matched pickup with a 20 ms linear crossfade. No voice resets.

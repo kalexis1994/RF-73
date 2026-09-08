@@ -1,6 +1,8 @@
 use serde_json::{Value, json};
 
 pub const PROTOCOL: &str = "rackforge.plugin.web@1";
+/// Gain, pickup A, pickup B, listen B, profile.
+pub const PARAMETERS: usize = 5;
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum Operation {
@@ -9,10 +11,10 @@ pub enum Operation {
 }
 
 pub struct Client {
-    pub values: [f64; 4],
+    pub values: [f64; PARAMETERS],
     pub loaded: bool,
     pub status: String,
-    queued: [Option<f64>; 4],
+    queued: [Option<f64>; PARAMETERS],
     pending: Option<(String, Operation, f64)>,
     serial: u64,
 }
@@ -20,10 +22,10 @@ pub struct Client {
 impl Default for Client {
     fn default() -> Self {
         Self {
-            values: [0.1, 0.0, 2.0, 0.0],
+            values: [0.1, 0.0, 2.0, 0.0, 0.0],
             loaded: false,
             status: "Connecting to RackForge...".into(),
-            queued: [None; 4],
+            queued: [None; PARAMETERS],
             pending: None,
             serial: 0,
         }
@@ -34,8 +36,9 @@ pub fn valid(index: usize, value: f64) -> bool {
     value.is_finite()
         && match index {
             0 => (0.0..=2.0).contains(&value),
-            1 | 2 => [0.0, 1.0, 2.0].contains(&value),
+            1 | 2 => [0.0, 1.0, 2.0, 3.0].contains(&value),
             3 => [0.0, 1.0].contains(&value),
+            4 => [0.0, 1.0, 2.0].contains(&value),
             _ => false,
         }
 }
@@ -130,11 +133,11 @@ impl Client {
     }
 }
 
-fn snapshot(result: &Value) -> Option<[f64; 4]> {
-    let mut values = [None; 4];
+fn snapshot(result: &Value) -> Option<[f64; PARAMETERS]> {
+    let mut values = [None; PARAMETERS];
     for entry in result["values"].as_array()? {
         let index = usize::try_from(entry["index"].as_u64()?).ok()?;
-        if index >= 4 {
+        if index >= PARAMETERS {
             continue;
         }
         let value = entry["value"].as_f64()?;
@@ -142,7 +145,7 @@ fn snapshot(result: &Value) -> Option<[f64; 4]> {
             return None;
         }
     }
-    Some([values[0]?, values[1]?, values[2]?, values[3]?])
+    Some([values[0]?, values[1]?, values[2]?, values[3]?, values[4]?])
 }
 
 #[cfg(test)]
@@ -156,7 +159,7 @@ mod tests {
         client.response(&reply(
             &request,
             json!({"values":[{"index":0,"value":0.1},
-            {"index":1,"value":0},{"index":2,"value":2},{"index":3,"value":0}]}),
+            {"index":1,"value":0},{"index":2,"value":2},{"index":3,"value":0},{"index":4,"value":0}]}),
         ));
         assert!(client.loaded);
     }
@@ -202,7 +205,8 @@ mod tests {
         assert!(snapshot(&json!({"values":[{"index":1,"value":0.5}]})).is_none());
         assert!(!valid(3, 0.5));
         assert!(!valid(0, f64::NAN));
-        assert!(!valid(4, 0.0));
+        assert!(!valid(5, 0.0));
+        assert!(valid(4, 2.0) && !valid(4, 3.0) && valid(1, 3.0));
         let mut client = Client::default();
         client.queue(0, 0.9);
         assert!(client.next(0.0, false).is_none());

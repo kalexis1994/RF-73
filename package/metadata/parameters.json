@@ -24,5 +24,11 @@
     "index": 3, "id": "listen-b", "name": "Listen to B", "page": "comparison", "order": 2,
     "kind": { "type": "boolean", "default": false },
     "flags": { "automatable": true }, "suggested_control": "toggle"
+  }, {
+    "index": 4, "id": "profile", "name": "Profile", "page": "comparison", "order": 3,
+    "kind": { "type": "enum", "default": 0, "choices": [
+      { "value": 0, "name": "Original" }, { "value": 1, "name": "Calibrated Sustain" }, { "value": 2, "name": "Calibrated" }
+    ] },
+    "flags": { "automatable": true }, "suggested_control": "list"
   }]
 }

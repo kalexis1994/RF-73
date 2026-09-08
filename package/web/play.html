@@ -9,7 +9,7 @@
 <body>
   <main>
     <header><div><p class="eyebrow">RF-73 <span>RESEARCH / 0.1.2</span></p><h1>Pickup Lab</h1>
-      <p class="intro">One instrument. Four pickup models. Play, compare, refine.</p></div>
+      <p class="intro">One instrument. Four pickup models. Three profiles. Play, compare, refine.</p></div>
       <p class="connection" id="status" role="status">Loading the Rust interface...</p></header>
     <section class="comparison" aria-label="Pickup comparison">
       <div class="slot"><label for="pickup-a"><span class="letter">A</span> Reference</label>
@@ -18,7 +18,10 @@
       <div class="slot"><label for="pickup-b"><span class="letter">B</span> Candidate</label>
         <select id="pickup-b" disabled data-rackforge-parameter-index="2"><option value="0">Current</option><option value="1">Close Original</option><option value="2" selected>Close Point Pole</option><option value="3">Close Aperture</option></select>
         <p>Explore geometry and pickup response.</p></div>
-      <div class="listen"><p class="eyebrow">LISTENING TO</p><p id="now-playing">A / Current</p>
+      <div class="slot"><label for="profile"><span class="letter">P</span> Profile</label>
+        <select id="profile" disabled data-rackforge-parameter-index="4"><option value="0" selected>Original</option><option value="1">Calibrated Sustain</option><option value="2">Calibrated</option></select>
+        <p>Mechanics shared by A and B: original losses, or the recording-derived sustain, or that plus the soft second partial.</p></div>
+      <div class="listen"><p class="eyebrow">LISTENING TO</p><p id="now-playing">A / Current · Original</p>
         <div class="switch" data-rackforge-parameter-index="3" role="group" aria-label="Listen to pickup"><button id="listen-a" aria-pressed="true" disabled>Listen to A</button><button id="listen-b" aria-pressed="false" disabled>Listen to B</button></div>
         <p class="hint">Switch while holding a note. Replay a phrase to compare attacks.</p></div>
     </section>

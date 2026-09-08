@@ -144,6 +144,11 @@ pub fn view(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
         .enumerate()
         .map(|(i, name)| json!({"value": i.to_string(), "label": name}))
         .collect();
+    let profiles: Vec<_> = rf_73_dsp::PROFILE_NAMES
+        .iter()
+        .enumerate()
+        .map(|(i, name)| json!({"value": i.to_string(), "label": name}))
+        .collect();
     let view: ProgramEditorView = serde_json::from_value(json!({
         "schema_version": 1, "title": "RF-73 Pickup Lab",
         "pages": [{"id": "comparison", "label": "Pickup Comparison",
@@ -158,6 +163,9 @@ pub fn view(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
                 {"id": "listen_b", "label": "Listen to B", "detail": "Off: A. On: B. Held notes and pedal continue.",
                     "value": {"type": "boolean", "value": settings.listen_b},
                     "kind": {"type": "toggle"}, "live_preview": true},
+                {"id": "profile", "label": "Profile", "detail": "Original / calibrated sustain / plus the soft second partial.",
+                    "value": {"type": "choice", "value": settings.profile.to_string()},
+                    "kind": {"type": "choice", "options": profiles}, "live_preview": true},
                 {"id": "gain", "label": "Output Gain", "detail": "Start at 0.100x. Watch host meters; no limiter.",
                     "value": {"type": "integer", "value": (settings.gain * 1_000_000.0).round() as i64},
                     "kind": {"type": "number", "minimum": 0, "maximum": 2_000_000, "step": 10_000,
@@ -174,12 +182,21 @@ pub fn edit(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
     let current = settings(&request.document)?;
     let (index, value) = match (request.field_id.as_str(), &request.value) {
         ("a" | "b", ProgramEditorValue::Choice(value))
-            if ["0", "1", "2"].contains(&value.as_str()) =>
+            if value
+                .parse::<usize>()
+                .is_ok_and(|i| i < rf_73_dsp::PICKUP_NAMES.len()) =>
         {
             (
                 if request.field_id == "a" { 1 } else { 2 },
                 value.parse().ok()?,
             )
+        }
+        ("profile", ProgramEditorValue::Choice(value))
+            if value
+                .parse::<usize>()
+                .is_ok_and(|i| i < rf_73_dsp::PROFILE_NAMES.len()) =>
+        {
+            (4, value.parse().ok()?)
         }
         ("listen_b", ProgramEditorValue::Boolean(value)) => (3, f64::from(u8::from(*value))),
         ("gain", ProgramEditorValue::Integer(value)) if (0..=2_000_000).contains(value) => {

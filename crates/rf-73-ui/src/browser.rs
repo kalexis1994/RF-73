@@ -30,6 +30,7 @@ impl App {
         for id in [
             "pickup-a",
             "pickup-b",
+            "profile",
             "listen-a",
             "listen-b",
             "gain",
@@ -43,7 +44,7 @@ impl App {
             }
         }
         let focused = self.document.active_element().map(|element| element.id());
-        for (id, index) in [("pickup-a", 1), ("pickup-b", 2)] {
+        for (id, index) in [("pickup-a", 1), ("pickup-b", 2), ("profile", 4)] {
             self.element(id)
                 .unchecked_into::<HtmlSelectElement>()
                 .set_value(&format!("{}", self.client.display(index)));
@@ -71,9 +72,16 @@ impl App {
             "Close Aperture",
         ];
         let selected = self.client.display(if side { 2 } else { 1 }) as usize;
+        let profiles = ["Original", "Calibrated Sustain", "Calibrated"];
+        let profile = self.client.display(4) as usize;
         self.text(
             "now-playing",
-            &format!("{} / {}", if side { "B" } else { "A" }, names[selected]),
+            &format!(
+                "{} / {} · {}",
+                if side { "B" } else { "A" },
+                names[selected],
+                profiles[profile.min(profiles.len() - 1)]
+            ),
         );
         self.text(
             "gain-db",
@@ -157,6 +165,7 @@ pub fn start() -> Result<(), JsValue> {
     for (id, index, event) in [
         ("pickup-a", 1, "change"),
         ("pickup-b", 2, "change"),
+        ("profile", 4, "change"),
         ("gain", 0, "input"),
         ("gain-number", 0, "change"),
     ] {

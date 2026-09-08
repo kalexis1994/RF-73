@@ -57,7 +57,20 @@ impl Default for Profile {
     }
 }
 
+/// Named profiles the plugin exposes for audition, in parameter order.
+pub const PROFILE_NAMES: [&str; 3] = ["Original", "Calibrated Sustain", "Calibrated"];
+
 impl Profile {
+    /// The named profile at `index` in `PROFILE_NAMES` order.
+    pub fn named(index: usize) -> Option<Self> {
+        Some(match index {
+            0 => Self::default(),
+            1 => Self::calibrated_sustain(),
+            2 => Self::calibrated(),
+            _ => return None,
+        })
+    }
+
     /// The default profile with the first and bar partial T60 set from the
     /// retained D3, G3 and B3 recordings' sustain slopes (docs/PLAYABLE-SUSTAIN.md):
     /// 20 s and 2.3 s at A3 under the shared sqrt(220 Hz / f) pitch scaling.
