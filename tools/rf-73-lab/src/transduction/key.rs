@@ -5,10 +5,10 @@ use rf_73_dsp::{ElectromechanicalProbe, ElectromechanicalProfile};
 use serde_json::{Value, json};
 use std::{cell::RefCell, error::Error, path::Path};
 
-const REPEAT: usize = 10080;
-const WINDOW: usize = 1440; // 30 ms launch observation after each key-down.
-const SPEED_BOUND: f64 = 2.0;
-const RETURN_FORCE: f64 = 1.0;
+pub(super) const REPEAT: usize = 10080;
+pub(super) const WINDOW: usize = 1440; // 30 ms launch observation after each key-down.
+pub(super) const SPEED_BOUND: f64 = 2.0;
+pub(super) const RETURN_FORCE: f64 = 1.0;
 const NAMES: [&str; 4] = [
     "constant_slew",
     "key_hard_stop",
@@ -27,7 +27,7 @@ const TERMS: [&str; 8] = [
 ];
 
 #[derive(Clone, Copy)]
-struct Key {
+pub(super) struct Key {
     mass: f64,
     finger_force: f64,
     bed_depth: f64,
@@ -36,7 +36,7 @@ struct Key {
 }
 // The finger force is chosen so that a free key without pedestal reaction
 // would reach the nominal speed exactly at the end of travel.
-fn key(index: usize, speed: f64, length: f64) -> Option<Key> {
+pub(super) fn key(index: usize, speed: f64, length: f64) -> Option<Key> {
     if index == 0 {
         return None;
     }
@@ -63,6 +63,59 @@ fn gradient(k: f64, p0: f64, p1: f64) -> f64 {
         (potential(k, p1) - potential(k, p0)) / (p1 - p0)
     } else {
         k * p0.max(0.0).powi(2)
+    }
+}
+// Effective pedestal height as a function of key position. A sharp let-off
+// clamps the pedestal at its top; a rolled let-off decelerates it smoothly over
+// a band of key travel with unit slope at entry and zero slope at the top.
+#[derive(Clone, Copy)]
+pub(super) struct LetOff {
+    pub(super) top: f64,
+    pub(super) band: f64,
+}
+impl LetOff {
+    pub(super) fn start(&self) -> f64 {
+        if self.band > 0.0 {
+            self.top - 2.0 * self.band / 3.0
+        } else {
+            self.top
+        }
+    }
+    pub(super) fn complete(&self) -> f64 {
+        self.start() + self.band
+    }
+    pub(super) fn map(&self, x: f64) -> f64 {
+        if self.band <= 0.0 {
+            return x.min(self.top);
+        }
+        let start = self.start();
+        if x <= start {
+            x
+        } else if x >= start + self.band {
+            self.top
+        } else {
+            let u = (x - start) / self.band;
+            start + self.band * (u - u * u * u / 3.0)
+        }
+    }
+    pub(super) fn slope(&self, x: f64) -> f64 {
+        if x < self.start() {
+            1.0
+        } else if x >= self.complete() {
+            0.0
+        } else {
+            let u = (x - self.start()) / self.band;
+            1.0 - u * u
+        }
+    }
+    // Average slope over a key step: the reaction on the key times the key
+    // displacement then equals the pedestal force times the pedestal displacement.
+    pub(super) fn ratio(&self, x0: f64, x1: f64) -> f64 {
+        if x1 == x0 {
+            self.slope(x0)
+        } else {
+            (self.map(x1) - self.map(x0)) / (x1 - x0)
+        }
     }
 }
 #[derive(Clone, Copy, Default)]
@@ -101,12 +154,19 @@ struct Gesture {
     arrival: Option<(f64, f64)>,
     peak_speed: f64,
     end_departures: u32,
+    letoff_begin: Option<(f64, f64)>,
+    letoff_complete: Option<(f64, f64)>,
+    finger_at_letoff: Option<f64>,
+    hammer_at_letoff: Value,
 }
-struct Sim {
+pub(super) struct Sim {
+    travel_end: f64,
+    letoff: Option<LetOff>,
+    pending_letoff: bool,
     p: ElectromechanicalProfile,
     key: Key,
     sums: Sums,
-    pedestal_force: f64,
+    pub(super) pedestal_force: f64,
     commanded: bool,
     snapshots: Vec<Sums>,
     gestures: Vec<Gesture>,
@@ -119,8 +179,19 @@ struct Sim {
     tracking: f64,
 }
 impl Sim {
-    fn new(p: ElectromechanicalProfile, key: Key) -> Self {
+    pub(super) fn new(p: ElectromechanicalProfile, key: Key) -> Self {
+        Self::with_letoff(p, key, -p.action.escapement_m, None)
+    }
+    pub(super) fn with_letoff(
+        p: ElectromechanicalProfile,
+        key: Key,
+        travel_end: f64,
+        letoff: Option<LetOff>,
+    ) -> Self {
         Self {
+            travel_end,
+            letoff,
+            pending_letoff: false,
             p,
             key,
             sums: Sums {
@@ -152,9 +223,9 @@ impl Sim {
         ((g + self.key.bed_damping * vm).max(0.0), g, vm)
     }
     // Returns the pedestal position after this tick.
-    fn step(&mut self, t: f64, h: f64) -> f64 {
+    pub(super) fn step(&mut self, t: f64, h: f64) -> f64 {
         let rest = self.p.action.hammer_rest_m;
-        let end = -self.p.action.escapement_m;
+        let end = self.travel_end;
         let m = self.key.mass;
         let commanded = repetition::target(self.p, t, REPEAT) != rest;
         if commanded != self.commanded {
@@ -167,6 +238,10 @@ impl Sim {
                     arrival: None,
                     peak_speed: 0.0,
                     end_departures: 0,
+                    letoff_begin: None,
+                    letoff_complete: None,
+                    finger_at_letoff: None,
+                    hammer_at_letoff: Value::Null,
                 });
             } else {
                 self.landings.push(None);
@@ -179,11 +254,42 @@ impl Sim {
             0.0
         };
         let f_ped = self.pedestal_force;
-        let other = finger - RETURN_FORCE - f_ped;
+        let mut other = finger - RETURN_FORCE - f_ped;
         let (x, v) = (self.sums.x, self.sums.v);
         let mut a = other / m;
         let mut bed = (0.0, 0.0, 0.0);
-        if self.key.bed_depth > 0.0 {
+        let mut ratio = 1.0;
+        if let Some(l) = self.letoff {
+            // The cam reaction ratio and any bed force both depend on the step, so
+            // the acceleration is bracketed and bisected; g is nondecreasing in a.
+            let eval = |a: f64| {
+                let bed = if self.key.bed_depth > 0.0 {
+                    self.bed_force(x, v, h, a)
+                } else {
+                    (0.0, 0.0, 0.0)
+                };
+                let r = l.ratio(x, x + h * (v + 0.5 * h * a));
+                (m * a - finger + RETURN_FORCE + f_ped * r + bed.0, bed, r)
+            };
+            let mut hi = (finger - RETURN_FORCE) / m;
+            let mut lo = (finger - RETURN_FORCE - f_ped.max(0.0) - eval(hi).1.0) / m;
+            for _ in 0..200 {
+                let mid = 0.5 * (lo + hi);
+                if eval(mid).0 > 0.0 {
+                    hi = mid;
+                } else {
+                    lo = mid;
+                }
+                if hi - lo <= 1e-13 * hi.abs().max(lo.abs()).max(1.0) {
+                    break;
+                }
+            }
+            a = 0.5 * (lo + hi);
+            let e = eval(a);
+            bed = e.1;
+            ratio = e.2;
+            other = finger - RETURN_FORCE - f_ped * ratio;
+        } else if self.key.bed_depth > 0.0 {
             let p0 = x - self.bed_origin();
             let p_free = p0 + h * (v + 0.5 * h * a);
             if p0 > 0.0 || p_free > 0.0 {
@@ -274,7 +380,7 @@ impl Sim {
         let s = &mut self.sums;
         s.finger += finger * dx;
         s.return_work += RETURN_FORCE * dx;
-        s.pedestal += f_ped * dx;
+        s.pedestal += f_ped * ratio * dx;
         s.bed_stored += stored;
         s.bed_heat += bed_heat;
         s.end_loss += end_loss;
@@ -287,16 +393,40 @@ impl Sim {
         let residual = terms[7] - terms[..7].iter().sum::<f64>();
         let scale = terms.iter().map(|x| x.abs()).sum::<f64>().max(1e-20);
         self.max_defect = self.max_defect.max(residual.abs() / scale);
-        new_x
+        let Some(l) = self.letoff else {
+            return new_x;
+        };
+        if let Some(g) = self.gestures.last_mut()
+            && commanded
+        {
+            if g.letoff_begin.is_none() && new_x >= l.start() {
+                g.letoff_begin = Some((t + h - g.start, new_v));
+                g.finger_at_letoff = Some(self.sums.finger);
+                self.pending_letoff = true;
+            }
+            if g.letoff_complete.is_none() && new_x >= l.complete() {
+                g.letoff_complete = Some((t + h - g.start, new_v));
+            }
+        }
+        l.map(new_x)
     }
-    fn observe(&mut self, b: ElectromechanicalProbe) {
+    pub(super) fn observe(&mut self, b: ElectromechanicalProbe) {
+        let expected = self.letoff.map_or(self.sums.x, |l| l.map(self.sums.x));
         self.tracking = self
             .tracking
-            .max((b.mechanical.pedestal_position_m - self.sums.x).abs());
+            .max((b.mechanical.pedestal_position_m - expected).abs());
         self.pedestal_force = b.mechanical.contact_force_n[2];
         self.sums.assembly_pedestal = b.mechanical.pedestal_work_j;
+        if self.pending_letoff
+            && let Some(g) = self.gestures.last_mut()
+        {
+            g.hammer_at_letoff = json!({"hammer_position_m":b.mechanical.position[18],
+                "hammer_velocity_m_s":b.mechanical.velocity[18],"pedestal_force_n":b.mechanical.contact_force_n[2],
+                "pedestal_compression_m":b.mechanical.compression_m[2],"arm_velocity_m_s":b.mechanical.velocity[19]});
+            self.pending_letoff = false;
+        }
     }
-    fn report(&self, shape: usize, speed: f64, final_seconds: f64) -> Value {
+    pub(super) fn report(&self, shape: &str, speed: f64, final_seconds: f64) -> Value {
         let m = self.key.mass;
         let mut snapshots = self.snapshots.clone();
         let mut last = self.sums;
@@ -323,9 +453,18 @@ impl Sim {
             }
             if i % 2 == 0 {
                 let g = &self.gestures[i / 2];
-                gestures.push(json!({"start_seconds":g.start,
+                let mut gesture = json!({"start_seconds":g.start,
                     "arrival_seconds_after_key_down":g.arrival.map(|a|a.0),"arrival_speed_m_s":g.arrival.map(|a|a.1),
-                    "peak_key_speed_m_s":g.peak_speed,"end_stop_departures":g.end_departures,"window":w}));
+                    "peak_key_speed_m_s":g.peak_speed,"end_stop_departures":g.end_departures,"window":w});
+                if self.letoff.is_some() {
+                    gesture["letoff"] = json!({"begin_seconds_after_key_down":g.letoff_begin.map(|b|b.0),
+                        "key_speed_at_begin_m_s":g.letoff_begin.map(|b|b.1),
+                        "complete_seconds_after_key_down":g.letoff_complete.map(|c|c.0),
+                        "key_speed_at_complete_m_s":g.letoff_complete.map(|c|c.1),
+                        "hammer_at_begin":g.hammer_at_letoff,
+                        "finger_work_after_begin_j":g.finger_at_letoff.map(|f|pair[1].finger-f)});
+                }
+                gestures.push(gesture);
             } else {
                 let l = self.landings[i / 2];
                 recoveries.push(
@@ -334,7 +473,12 @@ impl Sim {
                 );
             }
         }
-        let arrived = self.gestures.len() == 2 && self.gestures.iter().all(|g| g.arrival.is_some());
+        let arrived = self.gestures.len() == 2
+            && self.gestures.iter().all(|g| {
+                g.arrival.is_some()
+                    && (self.letoff.is_none()
+                        || (g.letoff_complete.is_some() && !g.hammer_at_letoff.is_null()))
+            });
         let landed = self.landings.len() == 2 && self.landings[0].is_some();
         let passed = self.tracking < 1e-9
             && self.max_defect < 1e-8
@@ -344,13 +488,18 @@ impl Sim {
             && lag < 1e-3
             && arrived
             && landed;
-        json!({"passed":passed,"shape":NAMES[shape],"mass_kg":m,"return_force_n":RETURN_FORCE,
+        let mut report = json!({"passed":passed,"shape":shape,"mass_kg":m,"return_force_n":RETURN_FORCE,
             "finger_force_n":self.key.finger_force,"nominal_free_arrival_speed_m_s":speed,
             "bed":(self.key.bed_depth>0.0).then(||json!({"depth_m":self.key.bed_depth,"stiffness_n_m2":self.key.bed_stiffness,
                 "damping_n_s_m":self.key.bed_damping,"max_penetration_m":self.max_penetration,"heat_monotone":self.bed_heat_monotone})),
             "speed_bound_m_s":SPEED_BOUND,"max_key_speed_m_s":self.max_speed,"max_tracking_error_m":self.tracking,
             "hard_limit_engaged":self.hard_limit_engaged,"max_relative_energy_defect":self.max_defect,
-            "max_relative_pedestal_work_lag":lag,"term_order":TERMS,"gestures":gestures,"recoveries":recoveries})
+            "max_relative_pedestal_work_lag":lag,"term_order":TERMS,"gestures":gestures,"recoveries":recoveries});
+        if let Some(l) = self.letoff {
+            report["travel_end_m"] = json!(self.travel_end);
+            report["letoff"] = json!({"top_m":l.top,"band_m":l.band,"start_m":l.start(),"complete_m":l.complete()});
+        }
+        report
     }
 }
 fn take(
@@ -386,7 +535,9 @@ fn take(
         |_, _, b, _, _| sim.borrow_mut().observe(b),
     )?;
     let frames = REPEAT + 9120;
-    let key_report = sim.borrow().report(index, speed, frames as f64 / 48000.0);
+    let key_report = sim
+        .borrow()
+        .report(NAMES[index], speed, frames as f64 / 48000.0);
     result.report["driver"] = json!({"shape":NAMES[index],"nominal_speed_m_s":speed});
     result.report["passed"] =
         json!(result.report["passed"] == true && key_report["passed"] == true);
@@ -472,7 +623,7 @@ pub(super) fn key_convergence(a: &Value, b: &Value) -> Value {
     json!({"passed":rows.len()==2 && recoveries.len()==2 && rows.iter().chain(recoveries.iter()).all(|r|r["passed"]==true),
         "prescribed":false,"gestures":rows,"recoveries":recoveries})
 }
-fn compare_first(candidate: &Value, reference: &Value) -> Value {
+pub(super) fn compare_first(candidate: &Value, reference: &Value) -> Value {
     let mut first = candidate["repetition"]["phases"][0].clone();
     first["start_seconds"] = json!(0.03);
     repetition::repeated_attack(&reference["repetition"]["phases"][0], &first)

@@ -127,6 +127,12 @@ stops and an exact key energy ledger. It shows that the hammer rides the key
 and is launched only by the stop, that a compliant bed removes the soft
 strike, and that key mass is a first-order parameter of the action.
 
+The [let-off study](docs/LOADED-LETOFF.md) adds a regulated escapement to
+that key, so the hammer is released by geometry before key bottom. A sharp
+let-off reproduces the hard-stop launch while freeing the key; a 0.6 mm
+roll-off or a 1 mm earlier release removes the soft strike, and the bridle
+load consumes most of the hammer's flight energy.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

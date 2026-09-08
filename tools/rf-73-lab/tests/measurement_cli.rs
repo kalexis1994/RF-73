@@ -10,6 +10,192 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_letoff_receipt_maps_the_pedestal_and_replays_prescribed_controls() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-letoff-validation.json");
+    let prior = read("loaded-key-inertia-validation.json");
+    assert_eq!(r["experiment"], "loaded-letoff-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let attack = |first: &serde_json::Value, base: &serde_json::Value| -> bool {
+        let a = first["entries"].as_array().unwrap();
+        let b = base["entries"].as_array().unwrap();
+        let impact_ok = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+            .iter()
+            .all(|key| {
+                let reference = base["impact"][key].as_f64().unwrap();
+                reference > 0.0
+                    && (first["impact"][key].as_f64().unwrap() / reference - 1.0).abs() < 0.05
+            });
+        a.len() == 1 && b.len() == 1 && impact_ok && {
+            let va = a[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            let vb = b[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            (va / vb - 1.0).abs() < 0.05
+                && (a[0]["seconds"].as_f64().unwrap() - b[0]["seconds"].as_f64().unwrap()).abs()
+                    < 0.001
+        }
+    };
+    let profiles = r["profiles"].as_array().unwrap();
+    assert_eq!(profiles.len(), 2);
+    let mut takes_seen = 0;
+    for profile in profiles {
+        let old = prior["profiles"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|c| c["name"] == profile["name"])
+            .unwrap();
+        let drivers = profile["drivers"].as_array().unwrap();
+        assert_eq!(drivers.len(), 4);
+        for (shape, driver) in drivers.iter().enumerate() {
+            let rows = driver["rows"].as_array().unwrap();
+            assert_eq!(rows.len(), 2);
+            for (index, row) in rows.iter().enumerate() {
+                assert_eq!(row["measurement_qualified"], true);
+                for key in [
+                    "convergence",
+                    "launch_convergence",
+                    "key_convergence",
+                    "letoff_convergence",
+                ] {
+                    assert_eq!(row[key]["passed"], true);
+                }
+                assert_eq!(row["letoff_convergence"]["prescribed"], shape == 0);
+                let old_row = &old["drivers"][0]["rows"][index];
+                assert_eq!(old_row["nominal_speed_m_s"], row["nominal_speed_m_s"]);
+                let speed = row["nominal_speed_m_s"].as_f64().unwrap();
+                let takes = row["takes"].as_array().unwrap();
+                assert_eq!(takes.len(), 2);
+                for (take, old_take) in takes.iter().zip(old_row["takes"].as_array().unwrap()) {
+                    takes_seen += 1;
+                    assert_eq!(take["passed"], true);
+                    let d = &take["driver"];
+                    assert_eq!(d["shape"], driver["name"]);
+                    if shape == 0 {
+                        // Same window as the key study: the control replays it exactly.
+                        assert!(take["key"].is_null());
+                        assert_eq!(take, old_take);
+                        assert_eq!(row["convergence"], old_row["convergence"]);
+                        assert_eq!(row["launch_convergence"], old_row["launch_convergence"]);
+                        continue;
+                    }
+                    let top = if shape == 3 { -0.0025 } else { -0.0015 };
+                    let band = if shape == 2 { 0.0006 } else { 0.0 };
+                    let start = if shape == 2 {
+                        top - 2.0 * band / 3.0
+                    } else {
+                        top
+                    };
+                    assert!((d["letoff_top_m"].as_f64().unwrap() - top).abs() < 1e-15);
+                    assert_eq!(d["letoff_band_m"], band);
+                    assert!((d["letoff_start_m"].as_f64().unwrap() - start).abs() < 1e-15);
+                    assert!((d["key_bed_m"].as_f64().unwrap() + 0.0005).abs() < 1e-15);
+                    let travel = start + 0.012;
+                    assert!((d["letoff_travel_m"].as_f64().unwrap() - travel).abs() < 1e-15);
+                    let k = &take["key"];
+                    assert_eq!(k["passed"], true);
+                    assert_eq!(k["mass_kg"], 0.05);
+                    assert!(k["bed"].is_null());
+                    let finger = 1.0 + 0.05 * speed * speed / (2.0 * travel);
+                    assert!((k["finger_force_n"].as_f64().unwrap() - finger).abs() < 1e-12);
+                    assert!(k["max_key_speed_m_s"].as_f64().unwrap() < 2.0);
+                    assert!(k["max_tracking_error_m"].as_f64().unwrap() < 1e-9);
+                    assert!(k["max_relative_energy_defect"].as_f64().unwrap() < 1e-8);
+                    assert!(k["max_relative_pedestal_work_lag"].as_f64().unwrap() < 1e-3);
+                    assert_eq!(k["hard_limit_engaged"], false);
+                    assert!((k["travel_end_m"].as_f64().unwrap() + 0.0005).abs() < 1e-15);
+                    assert!((k["letoff"]["top_m"].as_f64().unwrap() - top).abs() < 1e-15);
+                    let gestures = k["gestures"].as_array().unwrap();
+                    assert_eq!(gestures.len(), 2);
+                    for (g, start_seconds) in gestures.iter().zip([0.03, 0.21]) {
+                        assert_eq!(g["start_seconds"], start_seconds);
+                        let l = &g["letoff"];
+                        let begin = l["begin_seconds_after_key_down"].as_f64().unwrap();
+                        let complete = l["complete_seconds_after_key_down"].as_f64().unwrap();
+                        let arrival = g["arrival_seconds_after_key_down"].as_f64().unwrap();
+                        // Let-off precedes the key bed; a sharp let-off completes at once.
+                        assert!(begin > 0.0 && begin <= complete && complete < arrival);
+                        if band == 0.0 {
+                            assert_eq!(begin, complete);
+                        }
+                        let key_speed = l["key_speed_at_begin_m_s"].as_f64().unwrap();
+                        assert!(key_speed > 0.0 && key_speed < speed * (1.0 + 1e-9));
+                        let hammer = &l["hammer_at_begin"];
+                        assert!(hammer["hammer_velocity_m_s"].as_f64().unwrap() > 0.0);
+                        assert!(hammer["hammer_position_m"].as_f64().unwrap() <= top + 1e-4);
+                        let after = l["finger_work_after_begin_j"].as_f64().unwrap();
+                        assert!(after > 0.0);
+                        let w = &g["window"];
+                        assert!(w["relative_defect"].as_f64().unwrap() < 1e-8);
+                        let t: Vec<f64> = w["terms_j"]
+                            .as_array()
+                            .unwrap()
+                            .iter()
+                            .map(|x| x.as_f64().unwrap())
+                            .collect();
+                        assert!(after < t[0]);
+                        let sum: f64 = t[..7].iter().sum();
+                        assert!(
+                            (sum - t[7]).abs() <= 1e-8 * t.iter().map(|x| x.abs()).sum::<f64>()
+                        );
+                        assert!(t[0] > 0.0 && t[1] < 0.0 && t[2] < 0.0 && t[5] < 0.0);
+                        assert!(t[3] == 0.0 && t[4] == 0.0);
+                        assert!((w["end_position_m"].as_f64().unwrap() + 0.0005).abs() < 1e-15);
+                    }
+                    let recoveries = k["recoveries"].as_array().unwrap();
+                    assert_eq!(recoveries.len(), 2);
+                    let landing = recoveries[0]["landing_seconds_after_key_up"]
+                        .as_f64()
+                        .unwrap();
+                    assert!(landing > 0.0 && landing < 0.06);
+                    assert_eq!(recoveries[0]["window"]["end_position_m"], -0.012);
+                    // The pedestal never exceeds the let-off top in the assembly.
+                    for launch in take["launches"].as_array().unwrap() {
+                        for event in launch["events"].as_array().unwrap() {
+                            if event["port"] == 2 {
+                                let position = event["hammer_position_m"][1].as_f64().unwrap();
+                                assert!(position <= top + 0.0002);
+                            }
+                        }
+                    }
+                }
+                let first = &takes[1]["repetition"]["phases"][0];
+                let base = &drivers[0]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+                assert_eq!(row["first_vs_original"]["passed"], attack(first, base));
+                if shape >= 2 {
+                    let sharp = &drivers[1]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+                    assert_eq!(row["first_vs_sharp_letoff"]["passed"], attack(first, sharp));
+                } else {
+                    assert!(row["first_vs_sharp_letoff"].is_null());
+                }
+            }
+        }
+    }
+    assert_eq!(takes_seen, 32);
+}
+
+#[test]
+fn loaded_letoff_cli_preserves_outputs_and_rejects_extra_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-letoff"],
+        vec!["loaded-letoff", "--output", "keep.json"],
+        vec!["loaded-letoff", "--output", "bad.wav"],
+        vec!["loaded-letoff", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_key_inertia_receipt_closes_key_energy_and_replays_prescribed_controls() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

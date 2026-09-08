@@ -2872,3 +2872,39 @@ Verification passes 137 lab unit tests, 81 loaded CLI/receipt tests, strict
 Clippy and formatting. Free-key, felt-bed, reaction and discrete-gradient
 tests remain explicit. No new WAVs or production changes are introduced;
 release cache remains approximately 182 MiB.
+
+## Loaded escapement let-off
+
+The [let-off matrix](LOADED-LETOFF.md) makes the pedestal height seen by the
+assembly a monotone map of the finite-inertia key position that stops rising
+at a regulated let-off while the key continues 1 mm into aftertouch. Sharp,
+0.6 mm rolled and 1 mm early let-offs cross the original and
+high-pedestal-loss profiles, two nominal speeds and the 60 ms repetition
+wait, with the retained constant slew as control. The cam reaction ratio
+keeps the key energy identity exact through the release. All 32 takes and
+sixteen refinement pairs qualify. The control replays the key inertia
+receipt exactly, and rerunning that study with the generalized key code
+reproduces its receipt byte for byte.
+
+A sharp let-off at the retained top reproduces the hard-stop hammer launch
+within 1.03e-5 relative while the key runs on to its bed, where only the
+finger work spent in aftertouch is destroyed. The rolled let-off releases
+the hammer inside its band 5% slower and loses the soft strike in both
+profiles; the early let-off loses it too and cuts the strong strike by 42.8%.
+From release to impact the bridle takes 1.744 of the soft hammer's 1.860 mJ.
+Four takes never strike, two miss their second strike, five paired rows pass
+repetition and no let-off is adopted.
+
+Maximum key tracking error is zero, key energy defect 6.579e-13 and pedestal
+work lag 4.716e-5. Maximum relative total energy defect is 5.004e-12, launch
+momentum defect 1.345e-11 and launch work defect 4.275e-12. Maximum velocity
+refinement error is 0.41312%, impact error 0.48747%, kinetic-work-term error
+0.86782%, let-off time error 0.081 microseconds and aftertouch work error
+0.012657%.
+
+Receipt: `references/loaded-letoff-validation.json`, 2605966 bytes,
+SHA-256 `9af66ba9a2f7194593636cd2d550b9069233d1464877eed6fc63e3006b4f7da8`.
+Verification passes 139 lab unit tests, 83 loaded CLI/receipt tests, strict
+Clippy and formatting. Map, ratio and free let-off tests remain explicit. No
+new WAVs or production changes are introduced; release cache remains
+approximately 183 MiB.

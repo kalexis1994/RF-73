@@ -184,11 +184,23 @@ not only parameter-identification diagnostics:
     pedestal-loss control loses its benefit, and doubling key mass changes
     every first strike by more than 5%. No key is adopted as a default.
 
-Next model the escapement release, in which the pedestal cam rolls off the
-hammer at a regulated let-off point before key bottom, so the hammer is
-launched by geometry rather than by an abrupt stop, and requalify
-first-strike and repetition against the retained constant-slew and
-light-key controls with the key energy ledger explicit. Preserve
+20. **Escapement let-off:** the [let-off study](LOADED-LETOFF.md) makes the
+    pedestal height a monotone map of key position that stops rising at a
+    regulated let-off while the key continues 1 mm into aftertouch. Sharp,
+    0.6 mm rolled and 1 mm early let-offs are compared with the retained
+    constant slew, with the cam reaction ratio keeping the key energy ledger
+    exact. All 32 takes converge; the control replays the key receipt and
+    the generalized key code reproduces it byte for byte. A sharp let-off
+    reproduces the hard-stop launch within 1e-5 while the bed only destroys
+    the finger work spent in aftertouch. The rolled let-off releases 5%
+    slower and loses the soft strike in both profiles; the early let-off
+    loses it too and cuts the strong strike by 43%. From release to impact
+    the bridle takes 1.74 of the hammer's 1.86 mJ. No let-off is adopted.
+
+Next identify the hammer mass and the bridle and damper-arm load through the
+flight ledger under the sharp let-off, retaining the release-to-impact energy
+budget, and requalify first-strike and repetition against the retained
+constant-slew and sharp let-off controls. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

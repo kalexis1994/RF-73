@@ -194,8 +194,6 @@ establish playing realism.
 The soft strike in this action model is a coast after an abrupt stop of the
 pedestal, and it disappears under any compliant stop. A real Rhodes action
 launches the hammer through the escapement geometry before the key reaches
-its bed, and the key bed is felt. Next model the escapement release, in which
-the pedestal cam rolls off the hammer at a regulated let-off point before key
-bottom, and requalify first-strike and repetition against the retained
-constant-slew and light-key controls with the key energy ledger kept
-explicit.
+its bed, and the key bed is felt. The [let-off study](LOADED-LETOFF.md) now
+models that release as a regulated map of key position, with the key energy
+ledger kept explicit through the cam reaction ratio.
