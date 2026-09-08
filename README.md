@@ -115,6 +115,12 @@ pedestal stop with continuous terminal deceleration and a matched-duration
 linear control. It verifies the imposed trajectory alongside contact work,
 first-strike changes and repetition.
 
+The [drive onset study](docs/LOADED-DRIVE-ONSET.md) adds smooth and
+constant-acceleration onset ramps and a fully eased key drive, splitting each
+gesture into onset, cruise, stop and hold segments with independent pedestal
+work and impulse. It shows that the abrupt onset, not the return regulation,
+produces the original soft-strike collision and its repetition anomaly.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

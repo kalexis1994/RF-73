@@ -153,9 +153,27 @@ not only parameter-identification diagnostics:
     impulse changes substantially. No modified driver passes all original
     first-attack preservation limits or is adopted as a default.
 
-Next qualify onset acceleration and the complete key/hammer drive before
-developing key/action coupling and launch regulation, retaining
-the successful repetition controls before adopting a candidate. Preserve
+18. **Onset acceleration and complete key drive:** the
+    [drive onset study](LOADED-DRIVE-ONSET.md) compares constant slew,
+    smooth and constant-acceleration onset ramps over the first 20% of
+    travel at a shared arrival time, and a fully eased drive. Each key-down
+    is split into onset, cruise, stop and hold segments with independent
+    pedestal work, impulse, exits and end states, plus a per-gesture
+    pedestal port identity. All 32 takes converge and the constant-slew
+    rows replay the previous receipt. The abrupt onset throws the hammer
+    off the pedestal within 1.1 ms; every ramped onset keeps it seated
+    through the ramp with a fivefold to elevenfold lower peak pedestal force.
+    In the original profile the soft first impulse rises from 0.237 to
+    3.11 mNs and the 13.5 second/first ratio falls to 1.12. In the
+    high-pedestal-loss profile ramped onsets change the first impulse by
+    less than 0.2% at both speeds and keep repetition. Smooth and
+    constant-acceleration onsets agree within 5% in every row. Full easing
+    still removes the soft strike. No driver is adopted as a default.
+
+Next replace the prescribed pedestal with a finite-inertia key/pedestal
+under a prescribed finger force, so onset and arrival follow from mass,
+return and contact laws rather than a chosen ramp, and requalify
+first-strike and repetition evidence against the retained controls. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

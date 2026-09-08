@@ -9,6 +9,7 @@ pub(crate) mod drive;
 pub(crate) mod dynamics;
 pub(crate) mod launch;
 pub(crate) mod losses;
+pub(crate) mod onset;
 pub(crate) mod repetition;
 pub(crate) mod rest;
 pub(crate) mod return_motion;
@@ -30,6 +31,7 @@ pub const HELP: &str = "Electromechanical audit:
   loaded-repetition --output REPORT.json
   loaded-launch --output REPORT.json
   loaded-drive-release --output REPORT.json
+  loaded-drive-onset --output REPORT.json
 Eight loaded two-plane cases; render writes one 1.2-second WAV plus its JSON receipt.
 ";
 const DURATION: f64 = 0.18;

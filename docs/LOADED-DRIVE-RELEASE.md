@@ -159,8 +159,9 @@ agreement, arbitrary gestures, full-keyboard realism or realtime operation.
 
 The new trajectory is retained as a diagnostic control. Terminal smoothing
 alone does not resolve soft-strike behavior and makes the previously successful
-soft repetition disappear. Next qualify onset acceleration and the complete
-key/hammer drive, then use that evidence to develop the key/action coupling
+soft repetition disappear. The [drive onset study](LOADED-DRIVE-ONSET.md) now
+qualifies onset acceleration and a fully eased drive with segment-wise
+pedestal work, and uses that evidence to direct the key/action coupling
 and launch regulation. Keep driver work and first-strike/repetition checks
 explicit so a contact adjustment cannot silently compensate for a particular
 unqualified forcing trajectory.

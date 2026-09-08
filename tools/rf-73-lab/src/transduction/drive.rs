@@ -17,7 +17,7 @@ fn duration(length: f64, speed: f64, shape: usize) -> f64 {
 }
 // Position, right-hand velocity and acceleration after a key-down command.
 // Only the terminal stop is smoothed; initial onset and key-up remain abrupt.
-fn stroke(t: f64, length: f64, speed: f64, shape: usize) -> [f64; 3] {
+pub(super) fn stroke(t: f64, length: f64, speed: f64, shape: usize) -> [f64; 3] {
     if t < 0.0 {
         return [0.0; 3];
     }

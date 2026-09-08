@@ -10,6 +10,255 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_drive_onset_receipt_splits_pedestal_work_and_replays_original_controls() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-drive-onset-validation.json");
+    let prior = read("loaded-drive-release-validation.json");
+    assert_eq!(r["experiment"], "loaded-drive-onset-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    assert_eq!(
+        r["segment_order"],
+        serde_json::json!(["onset", "cruise", "stop", "hold"])
+    );
+    let attack = |first: &serde_json::Value, base: &serde_json::Value| -> bool {
+        let a = first["entries"].as_array().unwrap();
+        let b = base["entries"].as_array().unwrap();
+        let impact_ok = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+            .iter()
+            .all(|key| {
+                let reference = base["impact"][key].as_f64().unwrap();
+                reference > 0.0
+                    && (first["impact"][key].as_f64().unwrap() / reference - 1.0).abs() < 0.05
+            });
+        a.len() == 1 && b.len() == 1 && impact_ok && {
+            let va = a[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            let vb = b[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            (va / vb - 1.0).abs() < 0.05
+                && (a[0]["seconds"].as_f64().unwrap() - b[0]["seconds"].as_f64().unwrap()).abs()
+                    < 0.001
+        }
+    };
+    let profiles = r["profiles"].as_array().unwrap();
+    assert_eq!(profiles.len(), 2);
+    let mut striking = 0;
+    let mut silent = 0;
+    for profile in profiles {
+        let old = prior["profiles"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|c| c["name"] == profile["name"])
+            .unwrap();
+        let drivers = profile["drivers"].as_array().unwrap();
+        assert_eq!(drivers.len(), 4);
+        for (shape, driver) in drivers.iter().enumerate() {
+            let rows = driver["rows"].as_array().unwrap();
+            assert_eq!(rows.len(), 2);
+            for (index, row) in rows.iter().enumerate() {
+                assert_eq!(row["measurement_qualified"], true);
+                for key in ["convergence", "launch_convergence", "segment_convergence"] {
+                    assert_eq!(row[key]["passed"], true);
+                }
+                let old_row = &old["drivers"][0]["rows"][index];
+                assert_eq!(old_row["nominal_speed_m_s"], row["nominal_speed_m_s"]);
+                let takes = row["takes"].as_array().unwrap();
+                assert_eq!(takes.len(), 2);
+                for (take, old_take) in takes.iter().zip(old_row["takes"].as_array().unwrap()) {
+                    let d = &take["driver"];
+                    assert_eq!(take["passed"], true);
+                    assert_eq!(d["passed"], true);
+                    assert_eq!(d["shape"], driver["name"]);
+                    let speed = d["nominal_speed_m_s"].as_f64().unwrap();
+                    let length = d["travel_m"].as_f64().unwrap();
+                    let factor = [1.0, 1.2, 1.2, 1.4][shape];
+                    let expected = factor * length / speed;
+                    let ramp = 0.4 * length / speed;
+                    assert!(
+                        (d["nominal_arrival_seconds_after_key_down"]
+                            .as_f64()
+                            .unwrap()
+                            - expected)
+                            .abs()
+                            < 1e-15
+                    );
+                    for time in d["measured_arrivals_seconds_after_key_down"]
+                        .as_array()
+                        .unwrap()
+                    {
+                        assert!((time.as_f64().unwrap() - expected).abs() < 1e-5);
+                    }
+                    assert!(d["max_tracking_error_m"].as_f64().unwrap() < 1e-8);
+                    assert!(d["max_key_down_speed_m_s"].as_f64().unwrap() <= speed * (1.0 + 1e-8));
+                    assert!(d["min_key_down_speed_m_s"].as_f64().unwrap() >= -speed * 1e-8);
+                    let bounds = d["boundaries_seconds_after_key_down"].as_array().unwrap();
+                    let onset_end = if shape == 0 { 0.0 } else { ramp };
+                    assert!((bounds[0].as_f64().unwrap() - onset_end).abs() < 1e-15);
+                    assert!((bounds[2].as_f64().unwrap() - expected).abs() < 1e-15);
+                    let stop = if shape == 3 { ramp } else { 0.0 };
+                    assert!(
+                        (bounds[2].as_f64().unwrap() - bounds[1].as_f64().unwrap() - stop).abs()
+                            < 1e-15
+                    );
+                    let peak = 0.75 * speed * speed / (0.2 * length);
+                    match shape {
+                        0 => assert!(d["onset_peak_acceleration_m_s2"].is_null()),
+                        2 => assert!(
+                            (d["onset_peak_acceleration_m_s2"].as_f64().unwrap() - peak / 1.5)
+                                .abs()
+                                < 1e-8
+                        ),
+                        _ => assert!(
+                            (d["onset_peak_acceleration_m_s2"].as_f64().unwrap() - peak).abs()
+                                < 1e-8
+                        ),
+                    }
+                    assert_eq!(d["smooth_stop"], shape == 3);
+                    assert_eq!(d["terminal_peak_deceleration_m_s2"].is_null(), shape != 3);
+                    let segments = &take["drive_segments"];
+                    assert_eq!(segments["passed"], true);
+                    let keys = segments["key_downs"].as_array().unwrap();
+                    assert_eq!(keys.len(), 2);
+                    for (k, key) in keys.iter().enumerate() {
+                        assert_eq!(key["passed"], true);
+                        assert_eq!(key["start_seconds"], [0.03, 0.21][k]);
+                        assert!(key["relative_pedestal_port_defect"].as_f64().unwrap() < 1e-8);
+                        assert!((key["observed_seconds"].as_f64().unwrap() - 0.12).abs() < 1e-6);
+                        let parts = key["segments"].as_array().unwrap();
+                        assert_eq!(parts.len(), 4);
+                        let sum = |name: &str| -> f64 {
+                            parts.iter().map(|s| s[name].as_f64().unwrap()).sum()
+                        };
+                        let actuator = key["actuator_pedestal_work_j"].as_f64().unwrap();
+                        assert!(
+                            (sum("actuator_pedestal_work_j") - actuator).abs()
+                                <= 1e-12 * actuator.abs().max(1e-12)
+                        );
+                        assert!(
+                            (sum("pedestal_force_hammer_displacement_work_j")
+                                - key["pedestal_force_hammer_displacement_work_j"]
+                                    .as_f64()
+                                    .unwrap())
+                            .abs()
+                                < 1e-15
+                        );
+                        assert!((sum("observed_seconds") - 0.12).abs() < 1e-6);
+                        // The independent pedestal port identity reconstructs from retained terms.
+                        let identity = actuator
+                            - key["pedestal_force_hammer_displacement_work_j"]
+                                .as_f64()
+                                .unwrap()
+                            - key["pedestal_stored_change_j"].as_f64().unwrap()
+                            - key["pedestal_heat_change_j"].as_f64().unwrap();
+                        assert!(identity.abs() < 1e-8 * actuator.abs().max(1e-6));
+                        for (j, part) in parts.iter().enumerate() {
+                            let empty = (j == 0 && shape == 0) || (j == 2 && shape != 3);
+                            assert_eq!(part["observed_seconds"] == 0.0, empty);
+                            assert_eq!(part["end"].is_null(), empty);
+                            if empty {
+                                assert_eq!(part["actuator_pedestal_work_j"], 0.0);
+                            } else {
+                                assert!(
+                                    (part["end"]["seconds_after_key_down"].as_f64().unwrap()
+                                        - part["end_seconds_after_key_down"].as_f64().unwrap())
+                                    .abs()
+                                        < 2.0 / (48000.0 * 128.0)
+                                );
+                            }
+                        }
+                        for ramp_row in key["ramp_acceleration"].as_array().unwrap() {
+                            assert_eq!(ramp_row["passed"], true);
+                            if ramp_row["analytical_peak_m_s2"].is_null() {
+                                assert!(ramp_row["measured_peak_m_s2"].is_null());
+                            } else {
+                                assert!(ramp_row["relative_error"].as_f64().unwrap() < 1e-3);
+                            }
+                        }
+                    }
+                    if take["contact_entries"][0] == 0 {
+                        silent += 1;
+                        assert_eq!(take["repetition"]["two_clean_repeatable_strikes"], false);
+                        assert!(
+                            take["repetition"]["attack_repeatability"]["relative_impact_errors"]
+                                .as_array()
+                                .unwrap()
+                                .iter()
+                                .all(|v| v.is_null())
+                        );
+                        for launch in take["launches"].as_array().unwrap() {
+                            assert!(launch["before_contact"].is_null());
+                        }
+                    } else {
+                        striking += 1;
+                    }
+                    if shape == 0 {
+                        let mut replay = take.clone();
+                        let object = replay.as_object_mut().unwrap();
+                        object.remove("driver");
+                        object.remove("drive_segments");
+                        let mut old_replay = old_take.clone();
+                        old_replay.as_object_mut().unwrap().remove("driver");
+                        assert_eq!(replay, old_replay);
+                        assert_eq!(row["convergence"], old_row["convergence"]);
+                        assert_eq!(row["launch_convergence"], old_row["launch_convergence"]);
+                    }
+                    if shape == 1 || shape == 2 {
+                        // Both onset ramps share the retained terminal-ease arrival time.
+                        let shared = old["drivers"][1]["rows"][index]["takes"][1]["driver"]
+                            ["nominal_arrival_seconds_after_key_down"]
+                            .as_f64()
+                            .unwrap();
+                        assert!(
+                            (d["nominal_arrival_seconds_after_key_down"]
+                                .as_f64()
+                                .unwrap()
+                                - shared)
+                                .abs()
+                                < 1e-15
+                        );
+                    }
+                }
+                let first = &takes[1]["repetition"]["phases"][0];
+                let base = &drivers[0]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+                assert_eq!(row["first_vs_original"]["passed"], attack(first, base));
+                if shape == 2 {
+                    let ease = &drivers[1]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+                    assert_eq!(
+                        row["first_vs_onset_ease_same_arrival"]["passed"],
+                        attack(first, ease)
+                    );
+                } else {
+                    assert!(row["first_vs_onset_ease_same_arrival"].is_null());
+                }
+            }
+        }
+    }
+    assert_eq!(striking + silent, 32);
+    assert!(striking >= 8);
+}
+
+#[test]
+fn loaded_drive_onset_cli_preserves_outputs_and_rejects_extra_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-drive-onset"],
+        vec!["loaded-drive-onset", "--output", "keep.json"],
+        vec!["loaded-drive-onset", "--output", "bad.wav"],
+        vec!["loaded-drive-onset", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_drive_release_receipt_tracks_motion_and_preserves_original_controls() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

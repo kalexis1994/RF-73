@@ -2795,3 +2795,42 @@ Verification passes 129 lab unit tests, 25 loaded CLI/receipt tests, strict
 Clippy and formatting. Curve derivative/integral checks and no-contact
 decisions remain explicit. No new WAVs or production changes are introduced;
 release cache remains approximately 195 MiB.
+
+## Loaded drive onset
+
+The [drive onset matrix](LOADED-DRIVE-ONSET.md) compares the original
+constant slew, a smooth onset ramp and a constant-acceleration onset ramp
+over the first 20% of travel at a shared arrival time, and a fully eased
+drive. Original and high-pedestal-loss profiles cross two nominal speeds and
+the 60 ms repetition wait. Each key-down is divided into onset, cruise, stop
+and hold segments with independent pedestal work, impulse, exits and end
+states, and a per-gesture pedestal port identity. All 32 takes and sixteen
+refinement pairs qualify numerically. Constant-slew takes replay the prior
+drive-release receipt exactly.
+
+The abrupt onset throws the hammer off the pedestal within 1.1 ms at
+1.547 m/s; every ramped onset keeps it seated through the ramp with a
+fivefold to elevenfold lower peak pedestal force. In the original profile the
+soft first impulse rises from 0.237325 to 3.113393 mNs and the second/first
+ratio falls from 13.509446 to 1.117125. In the high-pedestal-loss profile
+ramped onsets change the first impulse by less than 0.2% at both speeds and
+keep repetition. Smooth and constant-acceleration onsets agree within 5% in
+every same-arrival row. Full easing removes the soft strike in both
+profiles. Two takes are non-striking and remain explicit. Nine paired rows
+pass repetition. No modified driver preserves the original 1 ms latency
+limit, and no default is adopted.
+
+Maximum analytical position tracking error is 3.805e-14 m and arrival error
+0.163 microseconds. Maximum relative total energy defect is 3.161e-12,
+launch momentum defect 1.530e-11, launch work defect 2.825e-12 and pedestal
+port defect 4.497e-13. Maximum velocity refinement error is 0.045171%,
+impact error 0.042589%, launch impulse error 0.011028%, kinetic-work-term
+error 0.020411%, segment work error 0.22132% and segment impulse error
+0.003721%.
+
+Receipt: `references/loaded-drive-onset-validation.json`, 3048021 bytes,
+SHA-256 `8ad965e9c0988a208d475eeb970b53c5d981cc7fe79532dbc214c80e8c054bed`.
+Verification passes 134 lab unit tests, 79 loaded CLI/receipt tests, strict
+Clippy and formatting. Curve, boundary-split and segment-normalization tests
+remain explicit. No new WAVs or production changes are introduced; release
+cache remains approximately 182 MiB.
