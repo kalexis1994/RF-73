@@ -10,6 +10,164 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_landing_receipt_traces_reseating_and_replays_the_control() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-landing-validation.json");
+    let prior = read("loaded-gravity-validation.json");
+    assert_eq!(r["experiment"], "loaded-landing-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let attack = |first: &serde_json::Value, base: &serde_json::Value| -> bool {
+        let a = first["entries"].as_array().unwrap();
+        let b = base["entries"].as_array().unwrap();
+        let impact_ok = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+            .iter()
+            .all(|key| {
+                let reference = base["impact"][key].as_f64().unwrap();
+                reference > 0.0
+                    && (first["impact"][key].as_f64().unwrap() / reference - 1.0).abs() < 0.05
+            });
+        a.len() == 1 && b.len() == 1 && impact_ok && {
+            let va = a[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            let vb = b[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            (va / vb - 1.0).abs() < 0.05
+                && (a[0]["seconds"].as_f64().unwrap() - b[0]["seconds"].as_f64().unwrap()).abs()
+                    < 0.001
+        }
+    };
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut takes_seen = 0;
+    for (case_index, case) in cases.iter().enumerate() {
+        // The control and the weighted 4 g case replay the gravity study.
+        let old = &prior["cases"][if case_index == 0 { 0 } else { 1 }];
+        let s = &case["settings"];
+        assert_eq!(s["gravity_m_s2"], if case_index == 0 { 0.0 } else { 9.81 });
+        assert_eq!(s["hammer_mass_kg"], 0.004);
+        let loss = [2.0, 2.0, 10.0, 30.0, 2.0, 30.0][case_index];
+        let damping = [0.025, 0.025, 0.025, 0.025, 0.1, 0.1][case_index];
+        assert_eq!(s["pedestal_rate_loss_s_m"], loss);
+        assert_eq!(s["return_damping_n_s_m"], damping);
+        let rows = case["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 2);
+        for (index, row) in rows.iter().enumerate() {
+            assert_eq!(row["measurement_qualified"], true);
+            for key in [
+                "convergence",
+                "launch_convergence",
+                "key_convergence",
+                "letoff_convergence",
+                "flight_qualification",
+                "landing_convergence",
+            ] {
+                assert_eq!(row[key]["passed"], true);
+            }
+            let old_row = &old["rows"][index];
+            assert_eq!(old_row["nominal_speed_m_s"], row["nominal_speed_m_s"]);
+            let takes = row["takes"].as_array().unwrap();
+            assert_eq!(takes.len(), 2);
+            for (take, old_take) in takes.iter().zip(old_row["takes"].as_array().unwrap()) {
+                takes_seen += 1;
+                assert_eq!(take["passed"], true);
+                if case_index <= 1 {
+                    let mut replay = take.clone();
+                    replay.as_object_mut().unwrap().remove("landing");
+                    let mut old_replay = old_take.clone();
+                    old_replay.as_object_mut().unwrap().remove("gravity");
+                    assert_eq!(replay, old_replay);
+                    for key in ["convergence", "launch_convergence", "flight_convergence"] {
+                        assert_eq!(row[key], old_row[key]);
+                    }
+                }
+                let landing = &take["landing"];
+                assert_eq!(landing["passed"], true);
+                let windows = landing["windows"].as_array().unwrap();
+                assert_eq!(windows.len(), 2);
+                assert_eq!(windows[0]["key_up_seconds"], 0.15);
+                assert_eq!(windows[0]["end_seconds"], 0.21);
+                assert_eq!(windows[1]["key_up_seconds"], 0.33);
+                assert_eq!(windows[1]["end_seconds"], 0.4);
+                for w in windows {
+                    assert_eq!(w["overflow"], false);
+                    let events = w["events"].as_array().unwrap();
+                    assert!(events.len() <= 32);
+                    // The hammer rests on the held pedestal at key-up, so the first event
+                    // is an exit; events then alternate.
+                    let mut expect_entry = false;
+                    for event in events {
+                        assert_eq!(event["kind"], if expect_entry { "entry" } else { "exit" });
+                        expect_entry = !expect_entry;
+                    }
+                    if let Some(t) = w["first_reseat_seconds_after_key_up"].as_f64() {
+                        assert!(t > 0.0 && t < 0.07);
+                        let landing_speed = w["landing_speed_m_s"].as_f64().unwrap();
+                        let rebound = w["rebound_speed_m_s"].as_f64().unwrap();
+                        assert!(landing_speed > 0.0 && rebound >= 0.0);
+                        assert!(
+                            (w["restitution"].as_f64().unwrap() - rebound / landing_speed).abs()
+                                < 1e-12
+                        );
+                        // The first reseat happens with the pedestal back at rest.
+                        let reseat = events
+                            .iter()
+                            .find(|e| {
+                                e["kind"] == "entry"
+                                    && (e["seconds"].as_f64().unwrap() - 0.15 - t).abs() < 1e-12
+                                    || e["kind"] == "entry"
+                                        && (e["seconds"].as_f64().unwrap() - 0.33 - t).abs() < 1e-12
+                            })
+                            .unwrap();
+                        assert_eq!(reseat["pedestal_position_m"], -0.012);
+                    } else {
+                        assert!(w["landing_speed_m_s"].is_null());
+                        assert_eq!(w["pedestal_exits_after_reseat"], 0);
+                    }
+                    if let Some(settled) = w["settled_seconds_after_key_up"].as_f64() {
+                        let reseat = w["first_reseat_seconds_after_key_up"].as_f64().unwrap();
+                        assert!(settled >= reseat - 1e-12);
+                    }
+                    assert!(w["lowest_hammer_position_m"].as_f64().unwrap() >= -0.0125);
+                }
+                // Readiness requires a settled hammer before the repeat command.
+                let ready = take["repetition"]["readiness"]["passed"] == true;
+                if ready {
+                    assert!(
+                        windows[0]["settled_seconds_after_key_up"]
+                            .as_f64()
+                            .is_some()
+                    );
+                }
+            }
+            let first = &takes[1]["repetition"]["phases"][0];
+            let base = &cases[0]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+            assert_eq!(row["first_vs_control"]["passed"], attack(first, base));
+        }
+    }
+    assert_eq!(takes_seen, 24);
+}
+
+#[test]
+fn loaded_landing_cli_preserves_outputs_and_rejects_extra_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-landing"],
+        vec!["loaded-landing", "--output", "keep.json"],
+        vec!["loaded-landing", "--output", "bad.wav"],
+        vec!["loaded-landing", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_gravity_receipt_seats_weighted_rests_and_replays_the_flight_control() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

@@ -143,6 +143,11 @@ their weight with an exact potential in every ledger and a weighted rest.
 Weight seats the hammer, adds a small mass-proportional flight toll and
 leaves the return bounce as the remaining repetition defect.
 
+The [landing study](docs/LOADED-LANDING.md) traces the hammer's landing on
+the returned pedestal. A strongly dissipative pedestal contact settles the
+hammer within 40 ms of release without changing the strike, and the damper
+felt's own bounce becomes the remaining readiness defect.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

@@ -173,8 +173,6 @@ key, one let-off, one profile and one repetition wait are covered.
 
 Return timing is now set by the key, and the remaining repetition defect is
 the hammer's bounce on the returned pedestal: a nearly elastic pedestal
-contact with 0.025 Ns/m of return damping and no check. Next model the
-hammer landing, comparing pedestal contact loss, return damping and a
-back-check that captures the hammer after its first bounce, and requalify
-readiness, second-strike consistency and the first strike against the
-retained control with the flight budget kept explicit.
+contact with 0.025 Ns/m of return damping and no check. The
+[landing study](LOADED-LANDING.md) now traces that landing and compares
+pedestal contact loss and return damping on the weighted hammer.

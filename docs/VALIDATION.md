@@ -2984,3 +2984,40 @@ CLI/receipt tests, strict Clippy and formatting. Weighted rest, exact
 balance and negative-gravity rejection tests remain explicit. No new WAVs or
 production changes are introduced; release cache remains approximately
 183 MiB.
+
+## Loaded hammer landing
+
+The [landing matrix](LOADED-LANDING.md) traces pedestal contact events after
+each key-up with landing speed, rebound speed, restitution, exits after
+reseating, settling time and lowest position, and compares pedestal rate
+loss 10 and 30 s/m, hammer return damping 0.1 Ns/m and their combination on
+the weighted 4 g hammer under the sharp let-off, with the gravity-free
+control as replay anchor, at two nominal speeds and the 60 ms repetition
+wait. All 24 takes and twelve refinement pairs qualify. The control and the
+weighted 4 g case replay the gravity receipt exactly after removing the
+landing record. A first matrix on the gravity-free hammer was discarded
+before freezing because nothing returns a bounced gravity-free hammer within
+the wait.
+
+The hammer lands on the resting pedestal 31.5 to 32.2 ms after key-up at
+0.57 to 0.66 m/s and rebounds with restitution 0.52 to 0.55 under the
+retained contact. Pedestal loss 10 cuts restitution to 0.15 with two
+bounces; loss 30 cuts it to 0.05, settles the hammer 39.5 ms after key-up
+and leaves it 12 um from rest at 0.023 m/s, while changing the strong first
+impulse by 1%. Return damping damps the flight instead, cutting the strong
+impulse by 6.5%. Every weighted strong row repeats within 1.2%; no row
+passes readiness, which now fails on residual hammer vibration and on a
+damper felt seated only 75% of the time before the repeat.
+
+Maximum relative total energy defect is 5.528e-12, launch momentum defect
+1.309e-11, key energy defect 4.310e-13 and flight hammer defect 9.617e-14.
+Maximum reseat and settling time errors are 0.081 microseconds, landing
+speed error 0.000153% and lowest-position error 0.11 nm. Maximum velocity
+refinement error is 0.17628% and impact error 0.14278%.
+
+Receipt: `references/loaded-landing-validation.json`, 2147835 bytes,
+SHA-256 `44e45c538c6768fe5798c3ae7c0b6ba15dcf5708a403c80dbf4fbacb6ec04e23`.
+Verification passes 145 lab unit tests, 116 DSP unit tests, 89 loaded
+CLI/receipt tests, strict Clippy and formatting. Synthetic-bounce and
+declared-coefficient tests remain explicit. No new WAVs or production changes
+are introduced; release cache remains approximately 183 MiB.

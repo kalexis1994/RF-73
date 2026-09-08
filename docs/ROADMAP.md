@@ -226,10 +226,25 @@ not only parameter-identification diagnostics:
     strong rows now repeat within 0.12%, the 12 g rows do not. No case is
     adopted.
 
-Next model the hammer landing on the returned pedestal, comparing pedestal
-contact loss, return damping and a back-check that captures the hammer after
-its first bounce, and requalify readiness, second-strike consistency and the
-first strike against the retained control with the flight budget explicit. Preserve
+23. **Hammer landing:** the [landing study](LOADED-LANDING.md) traces
+    pedestal contact events after each key-up with landing speed, rebound,
+    restitution, exit count and settling time, and compares pedestal rate
+    loss 10 and 30 s/m, return damping 0.1 Ns/m and their combination on
+    the weighted 4 g hammer, with the gravity-free control as replay anchor.
+    All 24 takes converge and the control and weighted cases replay the
+    gravity receipt. The hammer lands at 0.57 to 0.66 m/s about 32 ms after
+    key-up and rebounds at half that speed with the retained contact; loss
+    30 cuts restitution to 0.05, settles the hammer 39.5 ms after key-up and
+    leaves it 12 um from rest while changing the strong first impulse by 1%.
+    Return damping damps the flight, not the landing. Readiness still fails
+    on residual hammer vibration and on the damper felt, which is seated only
+    75% of the time before the repeat. Every weighted strong row repeats
+    within 1.2%. No case is adopted.
+
+Next model the damper felt re-seating, comparing felt rate loss, arm damping
+and arm mass under the settled hammer, and requalify readiness, damping onset
+after key-up and the first strike against the retained control with the
+landing evidence explicit. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.
