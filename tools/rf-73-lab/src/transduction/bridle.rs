@@ -24,11 +24,15 @@ fn profile(position: f64, case: usize) -> ElectromechanicalProfile {
     }
     p
 }
+// Arm energy includes the gravitational potential of the arm weight.
 fn arm_energy(p: ElectromechanicalProfile, b: ElectromechanicalProbe) -> f64 {
     0.5 * p.felt.arm_mass_kg * b.mechanical.velocity[19].powi(2)
         + 0.5
             * p.felt.arm_stiffness_n_m
             * (b.mechanical.position[19] - b.mechanical.pedal_position_m).powi(2)
+        + p.felt.arm_mass_kg
+            * p.action.gravity_m_s2
+            * (b.mechanical.position[19] - p.action.damper_closed_m)
 }
 #[derive(Default)]
 pub(super) struct Coupling {

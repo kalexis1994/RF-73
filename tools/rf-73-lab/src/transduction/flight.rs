@@ -1,7 +1,7 @@
 //! Hammer flight budget from escapement release to impact, with hammer mass
 //! and bridle/damper-arm load interventions under the sharp let-off.
 use super::key::REPEAT;
-use super::{bridle, key, launch, letoff, repetition, tuning};
+use super::{bridle, key, launch, letoff, repetition, threshold, tuning};
 use rf_73_dsp::{ElectromechanicalProbe, ElectromechanicalProfile};
 use serde_json::{Value, json};
 use std::{error::Error, path::Path};
@@ -99,9 +99,7 @@ impl Observer {
             velocity: v,
             position: q,
             kinetic: 0.5 * self.p.assembly.hammer_mass_kg * v * v,
-            potential: 0.5
-                * self.p.action.hammer_return_n_m
-                * (q - self.p.action.hammer_rest_m).powi(2),
+            potential: threshold::hammer_potential(self.p, q),
             hammer_to_bridle: self.hammer_to_bridle,
             return_heat: self.return_heat,
             pedestal_work: self.pedestal_work,
@@ -185,12 +183,22 @@ impl Observer {
         let arm_residual = coupling[2] - coupling[3] - coupling[4] - coupling[5];
         let coupling_scale =
             (terms[0].abs() + coupling.iter().map(|x| x.abs()).sum::<f64>()).max(1e-20);
-        json!({"from_seconds":from.seconds,"to_seconds":to.seconds,"flight_seconds":to.seconds-from.seconds,
+        let mut budget = json!({"from_seconds":from.seconds,"to_seconds":to.seconds,"flight_seconds":to.seconds-from.seconds,
             "distance_m":to.position-from.position,"release_speed_m_s":from.velocity,"arrival_speed_m_s":to.velocity,
             "release_kinetic_j":from.kinetic,"arrival_kinetic_j":to.kinetic,"terms_j":terms,
             "relative_hammer_defect":residual.abs()/scale,"coupling_j":coupling,
             "relative_bridle_defect":bridle_residual.abs()/coupling_scale,"relative_arm_defect":arm_residual.abs()/coupling_scale,
-            "bridle_share_of_release_kinetic":terms[0]/from.kinetic.max(1e-20)})
+            "bridle_share_of_release_kinetic":terms[0]/from.kinetic.max(1e-20)});
+        if self.p.action.gravity_m_s2 > 0.0 {
+            // The potential term above already contains this share; it is split
+            // out only when gravity is active so gravity-free receipts are unchanged.
+            budget["gravity_potential_change_j"] = json!(
+                self.p.assembly.hammer_mass_kg
+                    * self.p.action.gravity_m_s2
+                    * (to.position - from.position)
+            );
+        }
+        budget
     }
     fn report(&self) -> Value {
         let Some(end) = &self.end else {
@@ -230,6 +238,20 @@ fn take(
     steps: usize,
     speed: f64,
 ) -> Result<bridle::Take, Box<dyn Error>> {
+    take_observed(p, steps, speed, |_, _, _, _, _| {})
+}
+pub(super) fn take_observed(
+    p: ElectromechanicalProfile,
+    steps: usize,
+    speed: f64,
+    mut observe: impl FnMut(
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        ElectromechanicalProbe,
+        f64,
+        f64,
+    ),
+) -> Result<bridle::Take, Box<dyn Error>> {
     let window = key::WINDOW as f64 / 48000.0;
     let mut observers = [
         Observer::new(p, 0.03, window),
@@ -239,6 +261,7 @@ fn take(
         for o in &mut observers {
             o.observe(initial, a, b, t, h);
         }
+        observe(initial, a, b, t, h);
     })?;
     let flights: Vec<Value> = observers.iter().map(|o| o.report()).collect();
     let passed = flights.iter().all(|f| f["passed"] == true);

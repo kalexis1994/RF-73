@@ -423,6 +423,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "loaded-flight-budget" {
         return transduction::flight::run(&args);
     }
+    if args[0] == "loaded-gravity" {
+        return transduction::gravity::run(&args);
+    }
     if args[0] == "electromechanical-render" {
         return transduction::render(&args);
     }

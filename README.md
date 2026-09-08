@@ -138,6 +138,11 @@ with hammer, bridle and damper-arm identities and varies hammer mass and the
 bridle and arm loads. The flight is a nearly fixed energy toll set by the
 damper-arm spring, and the soft threshold is release energy above it.
 
+The [gravity study](docs/LOADED-GRAVITY.md) gives the hammer and damper arm
+their weight with an exact potential in every ledger and a weighted rest.
+Weight seats the hammer, adds a small mass-proportional flight toll and
+leaves the return bounce as the remaining repetition defect.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

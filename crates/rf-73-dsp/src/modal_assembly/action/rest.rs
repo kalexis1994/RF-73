@@ -45,7 +45,12 @@ impl<const S: usize, const D: usize> ActionAssembly<S, D> {
         let mut candidate = self.state;
         // Only constructors call this method. No time history or external work
         // is replaced by a public live-state reset API.
-        let free = candidate.q;
+        // Unloaded positions under weight: the linear springs sag before contact.
+        let mut free = candidate.q;
+        for i in 0..2 {
+            free[S + i] += self.weight[i] / self.stiffness[i];
+        }
+        candidate.q = free;
         let gaps = self.compression(candidate);
         let mut forces = [0.0; CONTACTS];
         for sweep in 1..=budget {
@@ -104,8 +109,9 @@ impl<const S: usize, const D: usize> ActionAssembly<S, D> {
                     } else {
                         candidate.pedal
                     };
-                    let force = self.stiffness[i - S] * (candidate.q[i] - base);
-                    (force, force.abs())
+                    let spring = self.stiffness[i - S] * (candidate.q[i] - base);
+                    let weight = self.weight[i - S];
+                    (spring - weight, spring.abs() + weight.abs())
                 };
                 let contact = (0..CONTACTS)
                     .map(|j| self.ports[j][i] * forces[j])
@@ -119,6 +125,8 @@ impl<const S: usize, const D: usize> ActionAssembly<S, D> {
                 }
                 force_defect = force_defect.max((elastic + contact).abs() / scale.max(1e-12));
             }
+            let reference = self.gravity_reference;
+            self.gravity_reference = [candidate.q[S], candidate.q[S + 1]];
             let energy = self.energy(candidate);
             if !energy.is_finite()
                 || candidate
@@ -130,6 +138,7 @@ impl<const S: usize, const D: usize> ActionAssembly<S, D> {
                 || !force_defect.is_finite()
                 || force_defect > 1e-10
             {
+                self.gravity_reference = reference;
                 return Err(ModelError("static rest force qualification failed"));
             }
             self.state = candidate;

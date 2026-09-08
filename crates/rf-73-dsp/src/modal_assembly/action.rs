@@ -29,6 +29,9 @@ pub struct ActionProfile {
     pub bridle_rate_loss_s_m: f64,
     pub damper_closed_m: f64,
     pub pedal_travel_m: f64,
+    /// Downward gravitational acceleration along the hammer and damper-arm
+    /// coordinates. Zero keeps the retained gravity-free reduction exactly.
+    pub gravity_m_s2: f64,
 }
 impl Default for ActionProfile {
     fn default() -> Self {
@@ -45,6 +48,7 @@ impl Default for ActionProfile {
             bridle_rate_loss_s_m: 2.0,
             damper_closed_m: 0.0002,
             pedal_travel_m: 0.01,
+            gravity_m_s2: 0.0,
         }
     }
 }
@@ -63,6 +67,7 @@ impl ActionProfile {
             (self.bridle_rate_loss_s_m, 0.0, 100.0),
             (self.damper_closed_m, -0.001, 0.001),
             (self.pedal_travel_m, 0.0001, 0.015),
+            (self.gravity_m_s2, 0.0, 20.0),
         ] {
             bounded(v, lo, hi)?;
         }
@@ -150,6 +155,10 @@ pub struct ActionAssembly<const S: usize = 9, const D: usize = 11> {
     mass: [f64; 2],
     stiffness: [f64; 2],
     damping: [f64; 2],
+    weight: [f64; 2],
+    // Positions where the gravitational potential is zero: the prepared rest,
+    // so the initial energy stays a positive measure of stored energy.
+    gravity_reference: [f64; 2],
     inverse_a: [f64; 2],
     ports: [[f64; D]; CONTACTS],
     responses: [[f64; D]; CONTACTS],
@@ -271,6 +280,12 @@ impl<const S: usize, const D: usize> ActionAssembly<S, D> {
         let mass = [assembly.hammer_mass_kg, felt.arm_mass_kg];
         let stiffness = [profile.hammer_return_n_m, felt.arm_stiffness_n_m];
         let damping = [profile.hammer_return_n_s_m, felt.arm_damping_n_s_m];
+        // Constant weights along the coordinates; their potential is part of the
+        // mechanical energy so the discrete balance stays exact.
+        let weight = [
+            -assembly.hammer_mass_kg * profile.gravity_m_s2,
+            -felt.arm_mass_kg * profile.gravity_m_s2,
+        ];
         let inverse_a: [f64; 2] = core::array::from_fn(|i| {
             1.0 / (mass[i] + h * damping[i] / 2.0 + h * h * stiffness[i] / 4.0)
         });
@@ -338,6 +353,8 @@ impl<const S: usize, const D: usize> ActionAssembly<S, D> {
             mass,
             stiffness,
             damping,
+            weight,
+            gravity_reference: [profile.hammer_rest_m, profile.damper_closed_m],
             inverse_a,
             ports,
             responses,
@@ -367,6 +384,8 @@ impl<const S: usize, const D: usize> ActionAssembly<S, D> {
             + 0.5 * self.mass[1] * s.v[S + 1].powi(2)
             + 0.5 * self.stiffness[0] * (s.q[S] - self.profile.hammer_rest_m).powi(2)
             + 0.5 * self.stiffness[1] * (s.q[S + 1] - s.pedal).powi(2)
+            - self.weight[0] * (s.q[S] - self.gravity_reference[0])
+            - self.weight[1] * (s.q[S + 1] - self.gravity_reference[1])
             + self
                 .compression(s)
                 .iter()
@@ -463,7 +482,8 @@ impl<const S: usize, const D: usize> ActionAssembly<S, D> {
                 + self.inverse_a[i]
                     * (-h * self.stiffness[i] * (a.q[j] - bases[i])
                         - h * self.damping[i] * (a.v[j] - base_velocity[i])
-                        - 0.5 * h * h * self.stiffness[i] * a.v[j]);
+                        - 0.5 * h * h * self.stiffness[i] * a.v[j]
+                        + h * self.weight[i]);
         }
         b.q = core::array::from_fn(|i| a.q[i] + 0.5 * h * (a.v[i] + b.v[i]));
         let compression_a = self.compression(a);
@@ -598,6 +618,55 @@ mod tests {
             ActionProfile::default(),
         )
         .unwrap()
+    }
+    #[test]
+    fn gravity_adds_an_exact_potential_and_a_seated_rest() {
+        let h = 1e-6;
+        let profile = ActionProfile {
+            gravity_m_s2: 9.81,
+            ..ActionProfile::default()
+        };
+        let assembly = ModalAssemblyProfile {
+            hammer_mass_kg: 0.012,
+            ..ModalAssemblyProfile::default()
+        };
+        let mut v = ActionAssembly::new(
+            h,
+            TineGeometry::default(),
+            assembly,
+            FeltDamperProfile::default(),
+            profile,
+        )
+        .unwrap();
+        let r = v.initialize_rest().unwrap();
+        assert!(r.max_relative_force_defect < 1e-10);
+        let a = v.probe();
+        // The hammer sags into the pedestal, which carries the weight less the spring.
+        let sag = a.position[H] - profile.hammer_rest_m;
+        assert!(sag < 0.0 && sag > -1e-4);
+        let expected = 0.012 * 9.81 + profile.hammer_return_n_m * sag;
+        assert!((a.contact_force_n[2] - expected).abs() < 1e-9 * expected);
+        assert_eq!(a.velocity, [0.0; 11]);
+        let mut x = a.pedestal_position_m;
+        for i in 0..40_000 {
+            x = if i < 20_000 {
+                (x + h).min(-profile.escapement_m)
+            } else {
+                (x - h).max(profile.hammer_rest_m)
+            };
+            v.advance(x, a.pedal_position_m).unwrap();
+        }
+        let b = v.probe();
+        assert!(b.position[H] > a.position[H]);
+        assert!(b.balance_residual_j.abs() / (a.initial_energy_j + b.absolute_drive_work_j) < 1e-8);
+        assert!(
+            ActionProfile {
+                gravity_m_s2: -1.0,
+                ..profile
+            }
+            .validate()
+            .is_err()
+        );
     }
     #[test]
     fn isolated_hammer_return_matches_analytic_motion_and_static_rest_is_exact() {

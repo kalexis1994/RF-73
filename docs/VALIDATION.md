@@ -2945,3 +2945,42 @@ Verification passes 141 lab unit tests, 85 loaded CLI/receipt tests, strict
 Clippy and formatting. Forced-release identity, wrong-mass detection and
 full control-take tests remain explicit. No new WAVs or production changes
 are introduced; release cache remains approximately 183 MiB.
+
+## Loaded gravitational weight
+
+The [gravity matrix](LOADED-GRAVITY.md) adds a zero-by-default gravitational
+acceleration to the action profile. Weight acts as a constant force on the
+hammer and damper arm, its potential referenced to the prepared rest is part
+of the assembly energy and of the hammer, launch, flight and arm ledgers, and
+rest preparation sags both springs before solving the contacts. Weighted 4,
+8 and 12 g hammers, a 12 g case with the arm spring base raised by the arm's
+static sag and a 12 g case with the return spring halved are compared with
+the retained control under the sharp let-off at two nominal speeds and the
+60 ms repetition wait. All 24 takes and twelve refinement pairs qualify. The
+control replays the flight budget receipt exactly, and rerunning that study
+with the new code reproduces its receipt byte for byte.
+
+The pedestal carries the hammer weight less the sagged spring to nine
+digits; arm weight lowers the felt seating force from 0.0234 to 0.0172 N and
+the reseated base restores it exactly. Lifting the hammer through the 1.6 mm
+flight costs 0.062 to 0.187 mJ, which removes the marginal 4 g soft strike
+and leaves the 8 and 12 g strikes at 5.85 and 9.23 mNs. The key catches every
+hammer 31 to 33 ms after release, after which the hammer bounces and is still
+airborne at the repeat command; the 4 g and 8 g strong rows repeat within
+0.12%, the 12 g rows do not. Three paired rows pass repetition and no case is
+adopted. Window-end coupling terms after a chattering re-landing are retained
+but not gated; release-to-impact terms refine within 0.29%.
+
+Maximum relative total energy defect is 3.934e-12, launch momentum defect
+1.309e-11, key energy defect 5.234e-13, coupling defect 5.222e-14 and flight
+hammer defect 7.648e-14. Rest quantities agree between resolutions exactly;
+reseating times agree within 0.163 microseconds. Maximum velocity refinement
+error is 0.17628% and impact error 0.14278%.
+
+Receipt: `references/loaded-gravity-validation.json`, 2324897 bytes,
+SHA-256 `71a9ab02fa4ce67e5317500d1d5773bc872ebb6363324873c3114e3361d9f1fa`.
+Verification passes 143 lab unit tests, 116 DSP unit tests, 87 loaded
+CLI/receipt tests, strict Clippy and formatting. Weighted rest, exact
+balance and negative-gravity rejection tests remain explicit. No new WAVs or
+production changes are introduced; release cache remains approximately
+183 MiB.

@@ -66,9 +66,8 @@ impl Launch {
         let n = |key: &str| work[key].as_f64().unwrap();
         let initial_kinetic =
             0.5 * p.assembly.hammer_mass_kg * self.initial.mechanical.velocity[18].powi(2);
-        let initial_potential = 0.5
-            * p.action.hammer_return_n_m
-            * (self.initial.mechanical.position[18] - p.action.hammer_rest_m).powi(2);
+        let initial_potential =
+            threshold::hammer_potential(p, self.initial.mechanical.position[18]);
         let terms = [
             initial_kinetic,
             n("pedestal_to_hammer_work_j"),
@@ -103,7 +102,8 @@ impl Launch {
             f[2],
             -p.action.bridle_ratio * f[3],
             -f[0],
-            -p.action.hammer_return_n_m * (qmid - p.action.hammer_rest_m),
+            -p.action.hammer_return_n_m * (qmid - p.action.hammer_rest_m)
+                - p.assembly.hammer_mass_kg * p.action.gravity_m_s2,
             -p.action.hammer_return_n_s_m * vmid,
         ];
         for (impulse, force) in self.impulses.iter_mut().zip(forces) {

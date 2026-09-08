@@ -167,8 +167,8 @@ repetition wait are covered. Bridle work is signed transfer and the
 decomposition attributes it within the retained coupling ledger.
 
 The soft threshold is now a stated quantity: release kinetic energy against
-a displacement toll set by the damper-arm spring and damping. Next give the
-hammer and damper arm their gravitational weight and a return law consistent
-with a measured Rhodes hammer mass, then retune the arm spring so that the
-damper still seats, and requalify soft threshold, first strike and repetition
-against the retained control with the flight budget kept explicit.
+a displacement toll set by the damper-arm spring and damping. The
+[gravity study](LOADED-GRAVITY.md) now gives the hammer and damper arm their
+weight with an exact potential in every ledger, compares arm reseating and a
+weight-dominated return, and requalifies soft threshold, first strike and
+repetition against the retained control.

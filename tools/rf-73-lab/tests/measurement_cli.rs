@@ -10,6 +10,176 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_gravity_receipt_seats_weighted_rests_and_replays_the_flight_control() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-gravity-validation.json");
+    let prior = read("loaded-flight-budget-validation.json");
+    assert_eq!(r["experiment"], "loaded-gravity-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let attack = |first: &serde_json::Value, base: &serde_json::Value| -> bool {
+        let a = first["entries"].as_array().unwrap();
+        let b = base["entries"].as_array().unwrap();
+        let impact_ok = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+            .iter()
+            .all(|key| {
+                let reference = base["impact"][key].as_f64().unwrap();
+                reference > 0.0
+                    && (first["impact"][key].as_f64().unwrap() / reference - 1.0).abs() < 0.05
+            });
+        a.len() == 1 && b.len() == 1 && impact_ok && {
+            let va = a[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            let vb = b[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            (va / vb - 1.0).abs() < 0.05
+                && (a[0]["seconds"].as_f64().unwrap() - b[0]["seconds"].as_f64().unwrap()).abs()
+                    < 0.001
+        }
+    };
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let old = &prior["cases"][0];
+    let mut takes_seen = 0;
+    for (case_index, case) in cases.iter().enumerate() {
+        let s = &case["settings"];
+        let g = s["gravity_m_s2"].as_f64().unwrap();
+        assert_eq!(g, if case_index == 0 { 0.0 } else { 9.81 });
+        let mass = s["hammer_mass_kg"].as_f64().unwrap();
+        assert_eq!(mass, [0.004, 0.004, 0.008, 0.012, 0.012, 0.012][case_index]);
+        assert!((s["hammer_weight_n"].as_f64().unwrap() - mass * g).abs() < 1e-15);
+        assert_eq!(
+            s["return_stiffness_n_m"],
+            if case_index == 5 { 2.0 } else { 4.0 }
+        );
+        let base = 0.0002
+            + if case_index == 4 {
+                0.001 * 9.81 / 200.0
+            } else {
+                0.0
+            };
+        assert!((s["damper_closed_m"].as_f64().unwrap() - base).abs() < 1e-15);
+        let rows = case["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 2);
+        for (index, row) in rows.iter().enumerate() {
+            assert_eq!(row["measurement_qualified"], true);
+            for key in [
+                "convergence",
+                "launch_convergence",
+                "key_convergence",
+                "letoff_convergence",
+                "flight_qualification",
+                "gravity_convergence",
+            ] {
+                assert_eq!(row[key]["passed"], true);
+            }
+            for launch in row["flight_convergence"]["launches"].as_array().unwrap() {
+                assert_eq!(launch["release_to_impact"]["passed"], true);
+            }
+            let old_row = &old["rows"][index];
+            assert_eq!(old_row["nominal_speed_m_s"], row["nominal_speed_m_s"]);
+            let takes = row["takes"].as_array().unwrap();
+            assert_eq!(takes.len(), 2);
+            for (take, old_take) in takes.iter().zip(old_row["takes"].as_array().unwrap()) {
+                takes_seen += 1;
+                assert_eq!(take["passed"], true);
+                if case_index == 0 {
+                    let mut replay = take.clone();
+                    replay.as_object_mut().unwrap().remove("gravity");
+                    assert_eq!(replay, *old_take);
+                    for key in ["convergence", "launch_convergence", "flight_convergence"] {
+                        assert_eq!(row[key], old_row[key]);
+                    }
+                }
+                let gr = &take["gravity"];
+                let rest = &gr["rest"];
+                let sag = rest["hammer_sag_m"].as_f64().unwrap();
+                let pedestal = rest["pedestal_force_n"].as_f64().unwrap();
+                let weight = rest["hammer_weight_n"].as_f64().unwrap();
+                assert!((weight - mass * g).abs() < 1e-15);
+                if case_index == 0 {
+                    assert_eq!(sag, 0.0);
+                    assert_eq!(pedestal, 0.0);
+                    assert_eq!(rest["arm_weight_n"], 0.0);
+                } else {
+                    // The hammer sags into the pedestal, which carries the weight less
+                    // the sagged return spring; the arm sags against its own spring.
+                    assert!(sag < 0.0 && sag > -1e-4);
+                    let expected = weight + s["return_stiffness_n_m"].as_f64().unwrap() * sag;
+                    assert!((pedestal - expected).abs() < 1e-9 * expected);
+                    assert!((rest["arm_weight_n"].as_f64().unwrap() - 0.001 * 9.81).abs() < 1e-15);
+                }
+                assert!(rest["felt_force_n"].as_f64().unwrap() > 0.0);
+                assert!(gr["minimum_felt_force_key_up_n"].as_f64().unwrap() >= 0.0);
+                let returns = gr["returns"].as_array().unwrap();
+                assert_eq!(returns.len(), 2);
+                assert_eq!(returns[0]["key_up_seconds"], 0.15);
+                assert_eq!(returns[1]["key_up_seconds"], 0.33);
+                for ret in returns {
+                    if let Some(t) = ret["reseated_seconds_after_key_up"].as_f64() {
+                        assert!(t > 0.0 && t < 0.2);
+                    }
+                    // Landing compresses the pedestal by up to a few tenths of a millimetre.
+                    assert!(ret["lowest_hammer_position_m"].as_f64().unwrap() >= -0.0125);
+                }
+                let at_repeat = &returns[0]["at_repeat"];
+                assert!(at_repeat["hammer_position_m"].as_f64().unwrap() <= -0.0015);
+                // Flight identities close with the gravitational potential included.
+                for launch in take["flight"]["launches"].as_array().unwrap() {
+                    assert_eq!(launch["passed"], true);
+                    for key in ["release_to_impact", "release_to_window_end"] {
+                        let b = &launch[key];
+                        if b.is_null() {
+                            continue;
+                        }
+                        assert!(b["relative_hammer_defect"].as_f64().unwrap() < 1e-8);
+                        assert_eq!(b["gravity_potential_change_j"].is_null(), case_index == 0);
+                        if case_index > 0 {
+                            let distance = b["distance_m"].as_f64().unwrap();
+                            let expected = mass * g * distance;
+                            assert!(
+                                (b["gravity_potential_change_j"].as_f64().unwrap() - expected)
+                                    .abs()
+                                    < 1e-12
+                            );
+                        }
+                    }
+                }
+            }
+            let first = &takes[1]["repetition"]["phases"][0];
+            let base = &cases[0]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+            assert_eq!(row["first_vs_control"]["passed"], attack(first, base));
+            if case_index >= 4 {
+                let heavy = &cases[3]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+                assert_eq!(row["first_vs_gravity_12g"]["passed"], attack(first, heavy));
+            } else {
+                assert!(row["first_vs_gravity_12g"].is_null());
+            }
+        }
+    }
+    assert_eq!(takes_seen, 24);
+}
+
+#[test]
+fn loaded_gravity_cli_preserves_outputs_and_rejects_extra_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-gravity"],
+        vec!["loaded-gravity", "--output", "keep.json"],
+        vec!["loaded-gravity", "--output", "bad.wav"],
+        vec!["loaded-gravity", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_flight_budget_receipt_closes_release_to_impact_identities_and_replays_control() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

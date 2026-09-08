@@ -8,6 +8,7 @@ pub(crate) mod calibration;
 pub(crate) mod drive;
 pub(crate) mod dynamics;
 pub(crate) mod flight;
+pub(crate) mod gravity;
 pub(crate) mod key;
 pub(crate) mod launch;
 pub(crate) mod letoff;
@@ -38,6 +39,7 @@ pub const HELP: &str = "Electromechanical audit:
   loaded-key-inertia --output REPORT.json
   loaded-letoff --output REPORT.json
   loaded-flight-budget --output REPORT.json
+  loaded-gravity --output REPORT.json
 Eight loaded two-plane cases; render writes one 1.2-second WAV plus its JSON receipt.
 ";
 const DURATION: f64 = 0.18;

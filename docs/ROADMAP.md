@@ -210,10 +210,26 @@ not only parameter-identification diagnostics:
     the soft impulse 31- and 47-fold but fail repetition because the weak,
     gravity-free return cannot bring them back in 60 ms. No case is adopted.
 
-Next give the hammer and damper arm their gravitational weight and a return
-law consistent with a measured Rhodes hammer mass, retune the arm spring so
-the damper still seats, and requalify the soft threshold, first strike and
-repetition against the retained control with the flight budget explicit. Preserve
+22. **Gravitational weight:** the [gravity study](LOADED-GRAVITY.md) adds a
+    zero-by-default gravitational acceleration to the action profile, applied
+    as constant weights on the hammer and damper arm with their potential in
+    the assembly energy and in every laboratory ledger, and a weighted rest
+    preparation. Weighted 4, 8 and 12 g hammers, an arm reseating control and
+    a weight-dominated return are compared with the retained control. All 24
+    takes converge, the control replays the flight receipt and the zero-gravity
+    code reproduces it byte for byte. Weight seats the hammer on the pedestal,
+    lowers the felt seating force by 26% unless the arm spring is reseated,
+    and adds a mass-proportional 0.06 to 0.19 mJ to the flight toll, which
+    removes the marginal 4 g soft strike and leaves the heavier ones. The key
+    catches every hammer 31 to 33 ms after release, but the hammer bounces off
+    the pedestal and is still airborne at the repeat command; the 4 g and 8 g
+    strong rows now repeat within 0.12%, the 12 g rows do not. No case is
+    adopted.
+
+Next model the hammer landing on the returned pedestal, comparing pedestal
+contact loss, return damping and a back-check that captures the hammer after
+its first bounce, and requalify readiness, second-strike consistency and the
+first strike against the retained control with the flight budget explicit. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

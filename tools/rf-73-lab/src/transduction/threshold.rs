@@ -28,11 +28,14 @@ fn profile(position: f64, case: usize) -> ElectromechanicalProfile {
 pub(super) fn potential(k: f64, d: f64) -> f64 {
     k * d.max(0.0).powi(3) / 3.0
 }
+// Return potential includes the gravitational potential of the hammer weight.
+pub(super) fn hammer_potential(p: ElectromechanicalProfile, position: f64) -> f64 {
+    0.5 * p.action.hammer_return_n_m * (position - p.action.hammer_rest_m).powi(2)
+        + p.assembly.hammer_mass_kg * p.action.gravity_m_s2 * (position - p.action.hammer_rest_m)
+}
 fn hammer_energy(p: ElectromechanicalProfile, b: ElectromechanicalProbe) -> f64 {
     0.5 * p.assembly.hammer_mass_kg * b.mechanical.velocity[18].powi(2)
-        + 0.5
-            * p.action.hammer_return_n_m
-            * (b.mechanical.position[18] - p.action.hammer_rest_m).powi(2)
+        + hammer_potential(p, b.mechanical.position[18])
 }
 
 #[derive(Default)]
@@ -112,7 +115,7 @@ impl Work {
     ) -> Value {
         json!({"seconds":time,"hammer_position_m":b.mechanical.position[18],"hammer_velocity_m_s":b.mechanical.velocity[18],
             "hammer_energy_j":hammer_energy(p,b),"hammer_kinetic_j":0.5*p.assembly.hammer_mass_kg*b.mechanical.velocity[18].powi(2),
-            "hammer_return_potential_j":0.5*p.action.hammer_return_n_m*(b.mechanical.position[18]-p.action.hammer_rest_m).powi(2),
+            "hammer_return_potential_j":hammer_potential(p,b.mechanical.position[18]),
             "actuator_pedestal_work_j":b.mechanical.pedestal_work_j,"pedestal_to_hammer_work_j":self.pedestal_to_hammer,
             "hammer_to_contact_work_j":self.hammer_to_contact,"contact_to_structure_work_j":self.contact_to_structure,
             "hammer_to_bridle_work_j":self.hammer_to_bridle,"hammer_return_heat_j":self.return_heat,
