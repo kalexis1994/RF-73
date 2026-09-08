@@ -3021,3 +3021,40 @@ Verification passes 145 lab unit tests, 116 DSP unit tests, 89 loaded
 CLI/receipt tests, strict Clippy and formatting. Synthetic-bounce and
 declared-coefficient tests remain explicit. No new WAVs or production changes
 are introduced; release cache remains approximately 183 MiB.
+
+## Loaded damper felt re-seating
+
+The [damper seating matrix](LOADED-DAMPER-SEATING.md) traces felt/tine
+contact events after each key-up with arm landing speed, bounces, settling
+time, contact fraction, maximum lift and a raw-output damping onset in 1 ms
+bins relative to the millisecond before key-up. Felt rate loss 15 and
+40 s/m, damper-arm damping 2 Ns/m and damper-arm mass 0.002 kg are compared
+on the settled hammer (weighted 4 g hammer with pedestal rate loss 30 s/m)
+under the sharp let-off, with the gravity-free control as replay anchor, at
+two nominal speeds and the 60 ms repetition wait. All 24 takes and twelve
+refinement pairs qualify. The control and the settled hammer replay the
+landing receipt exactly after removing the damper record.
+
+The felt lifts 6.5 mm and lands on the tine 26.9 ms after key-up at
+0.36 m/s, before the key lands, then bounces for 17 to 31 ms; the strong
+strike's output falls 20 dB only 42 to 58 ms after key-up and never 40 dB
+within 60 ms. Felt rate loss 40 shortens settling from 47.9 to 43.6 ms and
+raises felt seating before the repeat from 0.754 to 0.890 while changing
+the strong first impulse by 0.001%. Arm damping 2 removes the bounce but
+creeps back in 51 ms and destroys the strike; arm mass 2 g lands harder,
+raises the strong strike by 9% and admits a 1.13 mNs soft strike. Five
+strong rows repeat within 0.7%; no row passes readiness, which still fails
+on 0.023 m/s of residual hammer vibration and on felt seating below 90%.
+
+Maximum relative total energy defect is 3.934e-12, launch momentum defect
+1.309e-11, key energy defect 4.255e-13 and flight hammer defect 1.942e-13.
+Maximum felt reseat and settling time errors are 0.163 and 0.326
+microseconds, onset-bin error zero and contact fraction error 1.98e-5.
+Maximum velocity refinement error is 0.23162% and impact error 0.14278%.
+
+Receipt: `references/loaded-damper-seating-validation.json`, 2208397 bytes,
+SHA-256 `9817786106b70899ceda8394a7574f8e9534a15dc979c7eddeebf619daabebc4`.
+Verification passes 147 lab unit tests, 116 DSP unit tests, 91 loaded
+CLI/receipt tests, strict Clippy and formatting. Synthetic-decay and
+declared-coefficient tests remain explicit. No new WAVs or production
+changes are introduced; release cache remains approximately 183 MiB.

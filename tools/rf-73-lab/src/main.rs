@@ -429,6 +429,9 @@ fn run() -> Result<(), Box<dyn Error>> {
     if args[0] == "loaded-landing" {
         return transduction::landing::run(&args);
     }
+    if args[0] == "loaded-damper-seating" {
+        return transduction::damper::run(&args);
+    }
     if args[0] == "electromechanical-render" {
         return transduction::render(&args);
     }

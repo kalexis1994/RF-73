@@ -148,6 +148,12 @@ the returned pedestal. A strongly dissipative pedestal contact settles the
 hammer within 40 ms of release without changing the strike, and the damper
 felt's own bounce becomes the remaining readiness defect.
 
+The [damper seating study](docs/LOADED-DAMPER-SEATING.md) traces the felt's
+own landing on the tine and the damping onset it produces. The felt lands
+27 ms after key-up at 0.36 m/s and bounces; felt contact loss shortens the
+bounce without changing the strike, and the lift geometry that throws the
+felt back becomes the next question.
+
 **This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
 
 ## Quick start

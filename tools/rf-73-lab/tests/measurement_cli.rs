@@ -10,6 +10,171 @@ struct Scratch(PathBuf);
 static SCRATCH_ID: AtomicU64 = AtomicU64::new(0);
 
 #[test]
+fn loaded_damper_seating_receipt_traces_felt_reseating_and_replays_the_settled_hammer() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
+    let read = |name: &str| -> serde_json::Value {
+        serde_json::from_slice(&fs::read(root.join(name)).unwrap()).unwrap()
+    };
+    let r = read("loaded-damper-seating-validation.json");
+    let prior = read("loaded-landing-validation.json");
+    assert_eq!(r["experiment"], "loaded-damper-seating-v1");
+    assert_eq!(r["measurement_qualified"], true);
+    assert!(r["failure_reason"].is_null());
+    assert_eq!(r["physical_calibration_claimed"], false);
+    assert_eq!(r["structural_fit"], prior["structural_fit"]);
+    let attack = |first: &serde_json::Value, base: &serde_json::Value| -> bool {
+        let a = first["entries"].as_array().unwrap();
+        let b = base["entries"].as_array().unwrap();
+        let impact_ok = ["impulse_n_s", "peak_force_n", "active_contact_seconds"]
+            .iter()
+            .all(|key| {
+                let reference = base["impact"][key].as_f64().unwrap();
+                reference > 0.0
+                    && (first["impact"][key].as_f64().unwrap() / reference - 1.0).abs() < 0.05
+            });
+        a.len() == 1 && b.len() == 1 && impact_ok && {
+            let va = a[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            let vb = b[0]["before"]["velocity_m_s"][18].as_f64().unwrap();
+            (va / vb - 1.0).abs() < 0.05
+                && (a[0]["seconds"].as_f64().unwrap() - b[0]["seconds"].as_f64().unwrap()).abs()
+                    < 0.001
+        }
+    };
+    let cases = r["cases"].as_array().unwrap();
+    assert_eq!(cases.len(), 6);
+    let mut takes_seen = 0;
+    for (case_index, case) in cases.iter().enumerate() {
+        // The control and the settled hammer replay the landing study.
+        let old = &prior["cases"][if case_index == 0 { 0 } else { 3 }];
+        let s = &case["settings"];
+        assert_eq!(s["gravity_m_s2"], if case_index == 0 { 0.0 } else { 9.81 });
+        assert_eq!(
+            s["pedestal_rate_loss_s_m"],
+            if case_index == 0 { 2.0 } else { 30.0 }
+        );
+        assert_eq!(s["hammer_mass_kg"], 0.004);
+        let felt_loss = [5.0, 5.0, 15.0, 40.0, 5.0, 5.0][case_index];
+        let arm_damping = [0.5, 0.5, 0.5, 0.5, 2.0, 0.5][case_index];
+        let arm_mass = [0.001, 0.001, 0.001, 0.001, 0.001, 0.002][case_index];
+        assert_eq!(s["felt_rate_loss_s_m"], felt_loss);
+        assert_eq!(s["arm_damping_n_s_m"], arm_damping);
+        assert_eq!(s["arm_mass_kg"], arm_mass);
+        let rows = case["rows"].as_array().unwrap();
+        assert_eq!(rows.len(), 2);
+        for (index, row) in rows.iter().enumerate() {
+            assert_eq!(row["measurement_qualified"], true);
+            for key in [
+                "convergence",
+                "launch_convergence",
+                "key_convergence",
+                "letoff_convergence",
+                "flight_qualification",
+                "damper_convergence",
+            ] {
+                assert_eq!(row[key]["passed"], true);
+            }
+            let old_row = &old["rows"][index];
+            assert_eq!(old_row["nominal_speed_m_s"], row["nominal_speed_m_s"]);
+            let takes = row["takes"].as_array().unwrap();
+            assert_eq!(takes.len(), 2);
+            for (take, old_take) in takes.iter().zip(old_row["takes"].as_array().unwrap()) {
+                takes_seen += 1;
+                assert_eq!(take["passed"], true);
+                if case_index <= 1 {
+                    let mut replay = take.clone();
+                    replay.as_object_mut().unwrap().remove("damper");
+                    let mut old_replay = old_take.clone();
+                    old_replay.as_object_mut().unwrap().remove("landing");
+                    assert_eq!(replay, old_replay);
+                    for key in ["convergence", "launch_convergence", "flight_convergence"] {
+                        assert_eq!(row[key], old_row[key]);
+                    }
+                }
+                let damper = &take["damper"];
+                assert_eq!(damper["passed"], true);
+                let windows = damper["windows"].as_array().unwrap();
+                assert_eq!(windows.len(), 2);
+                assert_eq!(windows[0]["key_up_seconds"], 0.15);
+                assert_eq!(windows[1]["key_up_seconds"], 0.33);
+                for w in windows {
+                    assert_eq!(w["overflow"], false);
+                    let events = w["events"].as_array().unwrap();
+                    assert!(events.len() <= 32);
+                    // The felt is lifted while the key is held, so the first event
+                    // after key-up is an entry; events then alternate.
+                    let mut expect_entry = true;
+                    for event in events {
+                        assert_eq!(event["kind"], if expect_entry { "entry" } else { "exit" });
+                        expect_entry = !expect_entry;
+                    }
+                    let reseat = w["first_reseat_seconds_after_key_up"].as_f64().unwrap();
+                    assert!(reseat > 0.0 && reseat < 0.06);
+                    if let Some(settled) = w["settled_seconds_after_key_up"].as_f64() {
+                        assert!(settled >= reseat - 1e-12);
+                    }
+                    let fraction = w["felt_contact_fraction"].as_f64().unwrap();
+                    assert!((0.0..=1.0).contains(&fraction));
+                    assert!(w["max_felt_lift_m"].as_f64().unwrap() > 0.0001);
+                    assert!(w["reference_voltage_rms_v"].as_f64().unwrap() > 0.0);
+                    let bins = w["output_level_db_per_ms"].as_array().unwrap();
+                    assert!(bins.len() >= 59);
+                    let t20 = w["onset_20db_seconds_after_key_up"].as_f64();
+                    let t40 = w["onset_40db_seconds_after_key_up"].as_f64();
+                    if let Some(t40) = t40 {
+                        assert!(t20.is_some_and(|t20| t20 <= t40));
+                    }
+                    // The retained onsets agree with the retained level bins.
+                    if let Some(t20) = t20 {
+                        let bin = (t20 / 0.001).round() as usize;
+                        assert!(bins[bin - 1].as_f64().unwrap() <= -20.0);
+                        assert!(bins[..bin - 1].iter().all(|d| d.as_f64().unwrap() > -20.0));
+                    }
+                }
+                // Readiness includes a seated felt for 90% of the last 20 ms.
+                let ready = take["repetition"]["readiness"]["passed"] == true;
+                if ready {
+                    assert!(
+                        take["repetition"]["readiness"]["felt_contact_fraction"]
+                            .as_f64()
+                            .unwrap()
+                            >= 0.9
+                    );
+                }
+            }
+            let first = &takes[1]["repetition"]["phases"][0];
+            let base = &cases[0]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+            assert_eq!(row["first_vs_control"]["passed"], attack(first, base));
+            if case_index >= 2 {
+                let settled = &cases[1]["rows"][index]["takes"][1]["repetition"]["phases"][0];
+                assert_eq!(
+                    row["first_vs_settled_hammer"]["passed"],
+                    attack(first, settled)
+                );
+            } else {
+                assert!(row["first_vs_settled_hammer"].is_null());
+            }
+        }
+    }
+    assert_eq!(takes_seen, 24);
+}
+
+#[test]
+fn loaded_damper_seating_cli_preserves_outputs_and_rejects_extra_arguments() {
+    let scratch = Scratch::new();
+    fs::write(scratch.0.join("keep.json"), b"preserve").unwrap();
+    for args in [
+        vec!["loaded-damper-seating"],
+        vec!["loaded-damper-seating", "--output", "keep.json"],
+        vec!["loaded-damper-seating", "--output", "bad.wav"],
+        vec!["loaded-damper-seating", "--output", "bad.json", "--unknown"],
+    ] {
+        assert!(!scratch.run(&args).status.success());
+    }
+    assert_eq!(fs::read(scratch.0.join("keep.json")).unwrap(), b"preserve");
+    assert!(!scratch.0.join("bad.json").exists() && !scratch.0.join("bad.wav").exists());
+}
+
+#[test]
 fn loaded_landing_receipt_traces_reseating_and_replays_the_control() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../references");
     let read = |name: &str| -> serde_json::Value {

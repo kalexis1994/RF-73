@@ -241,10 +241,26 @@ not only parameter-identification diagnostics:
     75% of the time before the repeat. Every weighted strong row repeats
     within 1.2%. No case is adopted.
 
-Next model the damper felt re-seating, comparing felt rate loss, arm damping
-and arm mass under the settled hammer, and requalify readiness, damping onset
-after key-up and the first strike against the retained control with the
-landing evidence explicit. Preserve
+24. **Damper felt re-seating:** the [damper seating study](LOADED-DAMPER-SEATING.md)
+    traces felt/tine contact events after each key-up with landing speed,
+    bounces, settling, contact fraction and a raw-output damping onset in
+    1 ms bins, and compares felt rate loss 15 and 40 s/m, arm damping 2 Ns/m
+    and arm mass 2 g on the settled hammer, with the gravity-free control as
+    replay anchor. All 24 takes converge and the control and settled hammer
+    replay the landing receipt. The felt lifts 6.5 mm and lands on the tine
+    27 ms after key-up at 0.36 m/s, before the key itself lands, then
+    bounces for 17 to 31 ms; the output falls 20 dB only 42 to 58 ms after
+    key-up. Felt rate loss shortens settling to 44 ms and raises seating
+    before the repeat to 89% without changing the strike; heavy arm damping
+    removes the bounce but destroys the strike; a heavier arm lands harder.
+    Readiness still fails on residual hammer vibration and felt seating. No
+    case is adopted.
+
+Next model the damper lift geometry: the bridle ratio and slack set how far
+the felt lifts and a softer arm spring with the same seating force sets how
+fast it returns. Compare smaller lifts and matched seating forces under the
+settled hammer and requalify damping onset, readiness and the first strike
+against the retained control with the felt landing evidence explicit. Preserve
 loss uncertainty and the physical non-striking threshold, and
 separate bank processing from parameter inference. A computational reduction
 suitable for the playable plugin remains necessary.

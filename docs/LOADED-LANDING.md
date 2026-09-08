@@ -151,8 +151,6 @@ wait are covered.
 A strongly dissipative pedestal landing settles the hammer within 40 ms of
 release without changing the strike. What still fails readiness is the
 damper arm: its felt bounces on the tine and is seated only three quarters
-of the time when the next gesture arrives. Next model the damper felt
-re-seating, comparing felt rate loss, arm damping and arm mass under the
-settled hammer, and requalify readiness, damping onset after key-up and the
-first strike against the retained control with the landing evidence kept
-explicit.
+of the time when the next gesture arrives. The
+[damper seating study](LOADED-DAMPER-SEATING.md) now traces that felt
+landing and its damping onset under felt loss, arm damping and arm mass.
