@@ -1,5 +1,10 @@
 # Close Aperture pickup path
 
+Follow-up (2026-09-15): the [independent quadrature diagnostic](APERTURE-QUADRATURE-DIAGNOSTIC.md)
+finds substantial differences between this retained 16-node surrogate and a
+uniform-disk integral at the selected geometry. The existing fitted sound is
+unchanged; its harmonic agreement is not evidence of disk-integration accuracy.
+
 The [pickup harmonics study](PICKUP-HARMONICS.md) found that the laboratory's
 finite-aperture flux law at gap 0.5 mm, lateral offset 0.5 mm and pole radius
 2 mm turns the playable engine's own tine motion into the recorded harmonic
