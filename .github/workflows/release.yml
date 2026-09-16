@@ -67,6 +67,8 @@ jobs:
           cargo test --locked -p rf-73-lab --bin rf-73-lab action::regression::generic_action_replays_the_committed_planar_reference_with_portable_precision -- --exact
       - name: Check release lints
         run: cargo clippy --locked --workspace --all-targets -- -D warnings
+      - name: Install RackForge Linux build dependencies
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libasound2-dev
       - name: Install matching browser binding generator
         run: cargo install wasm-bindgen-cli --version 0.2.127 --locked
       - name: Build RackForge validators

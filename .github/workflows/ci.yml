@@ -119,6 +119,8 @@ jobs:
         run: rustup show
       - name: Verify the reproducible dependency graph
         run: cargo metadata --locked --format-version 1 > /dev/null
+      - name: Install RackForge Linux build dependencies
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libasound2-dev
       - name: Install matching browser binding generator
         run: cargo install wasm-bindgen-cli --version 0.2.127 --locked
       - name: Build RackForge validators
