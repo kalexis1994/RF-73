@@ -1,0 +1,40 @@
+{
+  "constraints": {
+    "each_critical_case_max_ratio": 1.1,
+    "each_training_note_max_ratio": 1.1,
+    "global_max_ratio": 0.9
+  },
+  "critical_cases": [
+    [
+      64,
+      "f"
+    ],
+    [
+      47,
+      "mp"
+    ]
+  ],
+  "held_out_gates": "Unchanged matts_fit_gate aggregate, per-note, coverage and envelope policy",
+  "held_out_notes": [
+    45,
+    53,
+    60,
+    67,
+    76,
+    86
+  ],
+  "held_out_policy": "Only load reserved notes when training constraints and numerical qualification pass",
+  "objective": "Same H2-H4 spectral MSE as previous continuous study",
+  "scope": "Bounded local search, not global infeasibility proof; ordinal layer velocities remain unknown",
+  "search": "Six deterministic seeds, four coordinate rounds with log steps 0.4/0.2/0.1/0.05; 46 trials",
+  "selection": "Constraint-first: minimize maximum normalized violation until feasible, then mean MSE ratio",
+  "training_notes": [
+    43,
+    47,
+    50,
+    55,
+    59,
+    64,
+    72
+  ]
+}

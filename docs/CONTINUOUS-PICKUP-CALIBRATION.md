@@ -121,6 +121,10 @@ release Clippy passes with warnings denied.
 
 ## Next block
 
+Completed follow-up: [constraint-first calibration](ROBUST-PICKUP-CALIBRATION.md)
+adds development-note and critical-layer constraints and runs 147 bounded
+evaluations. No candidate passes; the new held-out split remains unused.
+
 Keep this as an offline research path. Constrain regressions within individual
 development notes and layers, especially E4/f and B2/mp, before accepting the
 next aggregate optimum. Do not use the now-inspected validation notes as fresh

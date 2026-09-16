@@ -2,6 +2,8 @@
 #[allow(dead_code)]
 #[path = "matts_fit.rs"]
 mod previous;
+#[path = "support/robust_pickup_fit.rs"]
+mod robust;
 use previous::{Case, Result, baseline, load, score, score_with, write};
 use rf_73_analysis::{AudioClip, ToneComparisonOptions, compare_tone, detect_timbre_onset};
 use rf_73_dsp::{ProductionDecimator, Profile, Voice};
@@ -204,6 +206,9 @@ fn verify_rendering(source: &Path, out: &Path, frozen: &Path) -> Result<()> {
 }
 fn main() -> Result<()> {
     let args: Vec<_> = std::env::args().collect();
+    if args.get(1).is_some_and(|a| a == "--robust") {
+        return robust::run(&args[2..]);
+    }
     if !(3..=4).contains(&args.len()) {
         return Err("usage: continuous_pickup_fit SOURCE_SAMPLES NEW_OUTPUT_DIRECTORY [FROZEN_SEARCH_FOR_RENDER_CHECK]".into());
     }
