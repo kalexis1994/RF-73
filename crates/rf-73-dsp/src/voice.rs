@@ -149,6 +149,7 @@ impl Voice {
         substeps: usize,
         refine_contact: bool,
     ) -> Self {
+        let profile = profile.for_note(note);
         let frequency = 440.0 * 2.0_f64.powf((note as f64 - 69.0) / 12.0);
         let dt = 1.0 / (sample_rate * substeps as f64);
         let scale = (220.0 / frequency).clamp(0.15, 4.0);
@@ -203,6 +204,7 @@ impl Voice {
     /// The contact subdivision stays as prepared; it depends on the fixed third
     /// ratio only. The caller validates the profile for its sample rate.
     pub(crate) fn set_profile(&mut self, profile: Profile) {
+        let profile = profile.for_note(self.note);
         let frequency = 440.0 * 2.0_f64.powf((self.note as f64 - 69.0) / 12.0);
         let scale = (220.0 / frequency).clamp(0.15, 4.0);
         let ratios = [1.0, profile.bar_partial_ratio, 17.55];

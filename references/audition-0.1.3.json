@@ -1,0 +1,50 @@
+{
+  "version": "0.1.3",
+  "git_base": "45110e07d65e0d9d7764999536c9999728ec1f0c",
+  "archive": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist\\RF-73-0.1.3.rfplugin",
+  "archive_sha256": "07cdb8ea08c5d045872292cd0ab70c059d0c810f82456c778e1bcdb3b5c9f60e",
+  "archive_bytes": 238033,
+  "audition": {
+    "archive": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\0.1.3-1789529101377871600-8280\\RF-73-0.1.3.rfplugin",
+    "desktop": "\\\\?\\C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist\\host\\rackforge.exe",
+    "installed_package": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\RackForgeData\\plugin-store\\packages\\org.rackforge.rhodes\\0.1.3",
+    "log": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\0.1.3-1789529101377871600-8280\\rackforge.log",
+    "pid": 11656,
+    "plugin_id": "org.rackforge.rhodes",
+    "rackforge_root": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\RackForgeData",
+    "schema_version": 1,
+    "status": "launch_requested",
+    "version": "0.1.3"
+  },
+  "desktop_release": "RackForge v0.1.20 Minimal",
+  "desktop_release_sha256": "cfbebbc70187282e9e6cc055c4c83ba42a4a25c26d13bd3dc0f8e2a3949b0e99",
+  "tests": {
+    "plugin": 12,
+    "ui": 3,
+    "clippy": "passed",
+    "package_metadata_consistency": "passed",
+    "calibrated_register_runtime_smoke": {
+      "passed": true,
+      "peak": 0.181163,
+      "state_bytes": 68
+    },
+    "original_runtime_smoke": {
+      "passed": true,
+      "peak": 0.159365
+    }
+  },
+  "desktop_audio": {
+    "available": false,
+    "reported_error": "Windows has no available audio output",
+    "source": "GET /api/v1/host/audio on the launched Desktop loopback server"
+  },
+  "listening_test_performed": false,
+  "startup_log": "STARTUP_PHASE host=desktop phase=starting elapsed_ms=0\nDESKTOP_UMP_UNAVAILABLE reason=the Windows MIDI Services App SDK runtime is not installed (Class not registered (0x80040154))\nDESKTOP_BUNDLED_CONTROLLER_INSTALLED id=org.rackforge.arturia-keylab-essential-mk3 version=0.2.37+bundled.e07662222100\nCONTROLLER_STARTED id=org.rackforge.arturia-keylab-essential-mk3 pid=2712\nCONTROLLER_HOST_READY packages=1 started=1 root=C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\RackForgeData\\controllers\nCould not refresh LITTLE plugin parameters: Could not read plugin parameters: Desktop audio is unavailable\nEsperando el KeyLab Essential mk3...\n",
+  "source_hashes": {
+    "crates\\rf-73-dsp\\src\\model.rs": "108a7c7d750f07c3795d1a677f7706a15b323f65cffcca97f04e48db60770e94",
+    "crates\\rf-73-dsp\\src\\voice.rs": "d7e0d594b271e5e2574ee4ba7c9efc45eb845c58904bd0592066ce618632c160",
+    "crates\\rf-73-plugin\\src\\settings.rs": "898b0ef10e31d2e0ef6bd85cf9be786320e67be320e430f52366981544caa6f4",
+    "crates\\rf-73-plugin\\tests\\register_audition.rs": "4ed6bb647d42d81879502cd1c0a8a582de8e9ba64f4cbffa23e719fc317bfd65",
+    "Cargo.lock": "1e3ead80454e80b74531578cbcb54edd47d2e40eec3585d29ecbbcde2a1b8019"
+  }
+}

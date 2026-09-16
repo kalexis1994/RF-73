@@ -56,7 +56,9 @@ impl App {
                     .set_value(&format!("{value}"));
                 self.text(
                     "law-value",
-                    if value == 1.0 {
+                    if value == 2.0 {
+                        "Register Aperture"
+                    } else if value == 1.0 {
                         "Aperture"
                     } else {
                         "Production"

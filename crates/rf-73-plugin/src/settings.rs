@@ -10,7 +10,7 @@ use serde::{Deserialize, Serialize};
 pub const DEFAULT_GAIN: f64 = 0.1;
 /// Parameter order: gain, law, distance, alignment, hardness, sustain, bell, dynamics.
 pub const PARAMETERS: usize = 8;
-pub const LAW_NAMES: [&str; 2] = ["Production", "Aperture"];
+pub const LAW_NAMES: [&str; 3] = ["Production", "Aperture", "Register Aperture"];
 
 /// The Sound page in physical and normalized terms. Every field maps to a
 /// `Profile` through `profile`; defaults are the retained 0.1.2 engine.
@@ -51,7 +51,7 @@ impl Default for Settings {
 }
 
 /// Factory presets: id, name, description, settings.
-pub fn presets() -> [(&'static str, &'static str, &'static str, Settings); 4] {
+pub fn presets() -> [(&'static str, &'static str, &'static str, Settings); 5] {
     let default = Settings::default();
     [
         (
@@ -94,6 +94,19 @@ pub fn presets() -> [(&'static str, &'static str, &'static str, Settings); 4] {
                 ..default
             },
         ),
+        (
+            "calibrated-register",
+            "Calibrated Register",
+            "Calibrated with the validated upper-register pickup geometry; normal MIDI dynamics.",
+            Settings {
+                law: 2,
+                distance_mm: 0.5,
+                alignment_mm: 0.5,
+                sustain: 0.5,
+                bell: 0.2582,
+                ..default
+            },
+        ),
     ]
 }
 
@@ -119,10 +132,10 @@ impl Settings {
     /// The mechanical and pickup profile these settings describe.
     pub fn profile(self) -> Profile {
         Profile {
-            pickup_law: if self.law == 1 {
-                PickupLaw::Aperture
-            } else {
-                PickupLaw::Production
+            pickup_law: match self.law {
+                1 => PickupLaw::Aperture,
+                2 => PickupLaw::RegisterAperture,
+                _ => PickupLaw::Production,
             },
             pickup_gap_m: self.distance_mm * 1e-3,
             pickup_offset_m: self.alignment_mm * 1e-3,

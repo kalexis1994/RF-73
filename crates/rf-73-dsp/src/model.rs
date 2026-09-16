@@ -24,6 +24,8 @@ pub enum PickupLaw {
     /// The laboratory's 16-node finite-aperture flux on the tine axis, with
     /// `pickup_pole_radius_m`; the law of the Close Aperture path.
     Aperture,
+    /// Aperture with the frozen upper-register geometry adjustment.
+    RegisterAperture,
 }
 
 /// Reference tip motion for level compensation: a sine of this amplitude at
@@ -89,6 +91,20 @@ impl Default for Profile {
 pub const PROFILE_NAMES: [&str; 3] = ["Original", "Calibrated Sustain", "Calibrated"];
 
 impl Profile {
+    /// Resolve the audition voicing once per voice/profile update, not per sample.
+    pub fn for_note(self, note: u8) -> Self {
+        if self.pickup_law != PickupLaw::RegisterAperture {
+            return self;
+        }
+        let t = ((f64::from(note) - 55.0) / 17.0).clamp(0.0, 1.0);
+        let w = t * t * (3.0 - 2.0 * t);
+        Self {
+            pickup_law: PickupLaw::Aperture,
+            pickup_gap_m: self.pickup_gap_m * (w * 0.135).exp(),
+            pickup_offset_m: self.pickup_offset_m * (w * (-0.020)).exp(),
+            ..self
+        }
+    }
     /// The named profile at `index` in `PROFILE_NAMES` order.
     pub fn named(index: usize) -> Option<Self> {
         Some(match index {
@@ -125,7 +141,11 @@ impl Profile {
 
     /// The aperture pickup of this profile's geometry, when its law is Aperture.
     pub(crate) fn aperture(&self) -> Option<AxialAperture> {
-        (self.pickup_law == PickupLaw::Aperture).then(|| {
+        matches!(
+            self.pickup_law,
+            PickupLaw::Aperture | PickupLaw::RegisterAperture
+        )
+        .then(|| {
             AxialAperture::new(SpatialPickupProfile {
                 gap_m: self.pickup_gap_m,
                 offset_xy_m: [self.pickup_offset_m, 0.0],
@@ -253,6 +273,9 @@ impl Profile {
             if !value.is_finite() || !(minimum..=maximum).contains(&value) {
                 return Err(ModelError(error));
             }
+        }
+        if self.pickup_law == PickupLaw::RegisterAperture {
+            self.for_note(72).validate(sample_rate)?;
         }
         Ok(())
     }

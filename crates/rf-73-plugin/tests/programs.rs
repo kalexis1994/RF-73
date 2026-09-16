@@ -77,8 +77,14 @@ fn editor_preview_install_catalog_reload_and_snapshot_agree() {
     assert_eq!(begin(&mut plugin, Some(&draft.preview_sound_id)), draft);
     let len = plugin.write_program_catalog(&mut destination).unwrap();
     let catalog: serde_json::Value = serde_json::from_slice(&destination[..len]).unwrap();
-    assert_eq!(catalog["presets"].as_array().unwrap().len(), 5);
-    assert_eq!(catalog["presets"][4]["id"], draft.preview_sound_id);
+    assert_eq!(
+        catalog["presets"].as_array().unwrap().len(),
+        presets().len() + 1
+    );
+    assert_eq!(
+        catalog["presets"][presets().len()]["id"],
+        draft.preview_sound_id
+    );
     // The host replays stored program documents into fresh instances.
     let mut restored = Rf73Processor::default();
     assert!(restored.install_program(&prepared));
@@ -129,7 +135,7 @@ fn malformed_programs_and_parameter_domains_reject_atomically() {
         (0, f64::NAN),
         (0, -0.1),
         (1, 0.5),
-        (1, 2.0),
+        (1, 3.0),
         (2, 0.4),
         (2, 3.1),
         (3, -1.1),
@@ -211,7 +217,10 @@ fn bounded_catalog_fits_transfer_and_rejects_overflow_without_losing_entries() {
     let mut out = [0; 4096];
     let len = plugin.write_program_catalog(&mut out).unwrap();
     let catalog: serde_json::Value = serde_json::from_slice(&out[..len]).unwrap();
-    assert_eq!(catalog["presets"].as_array().unwrap().len(), 12);
+    assert_eq!(
+        catalog["presets"].as_array().unwrap().len(),
+        presets().len() + 8
+    );
     let mut draft = last.unwrap();
     assert!(plugin.install_program(&serde_json::to_vec(&draft).unwrap()));
     draft.document.id = "overflow".into();
@@ -264,7 +273,7 @@ fn older_state_schemas_map_onto_the_voicing_they_were_listening_to() {
     // Schema 4 rejects every corrupted field atomically.
     assert!(plugin.set_parameter(1, 1.0));
     let before = state(&plugin);
-    for (index, value) in [(0, 0), (4, 5), (64, 2), (65, 1), (67, 9)] {
+    for (index, value) in [(0, 0), (4, 5), (64, 3), (65, 1), (67, 9)] {
         let mut malformed = before;
         malformed[index] = value;
         assert!(!plugin.load_state(&malformed), "{index}");

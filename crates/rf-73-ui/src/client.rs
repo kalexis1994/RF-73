@@ -37,7 +37,7 @@ pub fn valid(index: usize, value: f64) -> bool {
     value.is_finite()
         && match index {
             0 => (0.0..=2.0).contains(&value),
-            1 => [0.0, 1.0].contains(&value),
+            1 => [0.0, 1.0, 2.0].contains(&value),
             2 => (0.5..=3.0).contains(&value),
             3 => (-1.0..=1.5).contains(&value),
             4..=7 => (0.0..=1.0).contains(&value),
@@ -211,6 +211,8 @@ mod tests {
     fn snapshots_require_all_parameters_with_valid_domains_and_no_duplicates() {
         assert!(snapshot(&json!({"values":[{"index":1,"value":0.5}]})).is_none());
         assert!(!valid(1, 0.5));
+        assert!(valid(1, 2.0));
+        assert!(!valid(1, 3.0));
         assert!(!valid(0, f64::NAN));
         assert!(!valid(8, 0.0));
         assert!(valid(2, 0.5) && !valid(2, 0.4) && valid(3, -1.0) && !valid(3, 1.6));
