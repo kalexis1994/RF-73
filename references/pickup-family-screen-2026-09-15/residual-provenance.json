@@ -1,0 +1,22 @@
+{
+  "git_base": "3e16b0616cb927dcc667526ec5c0f8b76fff87bc",
+  "purpose": "Receipt-only spectral error decomposition; no DSP changes or model fitting",
+  "sha256_lf": {
+    "tools/matts_residuals.py": "bba0bb40863ff413f8e72577cce1d0813d24e535d193b8711bf9a3bbd558b9ff",
+    "tools/test_matts_residuals.py": "75886e9ad90d6e281b550675868ca8c0aeaeddff26be78998057512614d53275",
+    "docs/PICKUP-RESIDUAL-DIAGNOSIS.md": "26b0aafc504afa00f20d74722acba13b49f6133f1a1a5936cc57ce62394e1bfc",
+    "references\\pickup-family-screen-2026-09-15\\residual-decomposition.json": "867387780889fa505376d1cfdac83a07b614e299e4ea3a2beef05023b61d0b5d"
+  },
+  "validation": {
+    "python_tests_passed": 10,
+    "new_tests": 4,
+    "stored_case_scores_reconstructed": true,
+    "identical_cell_coverage_across_models": true,
+    "git_diff_check": "passed",
+    "rust_tests_rerun": false
+  },
+  "held_out_inspected": false,
+  "source_audio_loaded": false,
+  "plugin_changed": false,
+  "audition_run": false
+}

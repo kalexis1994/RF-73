@@ -60,6 +60,10 @@ attack/body window in the already retained spectra before broadening the
 parameter search. These results alone do not identify whether excitation,
 geometry, or reference performance explains the mismatch.
 
+Follow-up: the [residual diagnosis](PICKUP-RESIDUAL-DIAGNOSIS.md) decomposes
+the frozen fits and identifies opposite H2 errors in C5 and G3/f, along with
+the contribution of incomplete reference coverage.
+
 ## Measurement fixes and exclusions
 
 The first attempt stopped because the old 0.7 s render did not cover a full
