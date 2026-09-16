@@ -1,0 +1,56 @@
+{
+  "version": "0.1.7",
+  "archive": "dist/RF-73-0.1.7.rfplugin",
+  "archive_bytes": 264175,
+  "archive_sha256": "d3b8306f0a0a5bd9e365d08563f645ccf1fbb147194a6cb6bf7b6189b44c5116",
+  "audition": {
+    "archive": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\0.1.7-1789563654871427800-5256\\RF-73-0.1.7.rfplugin",
+    "desktop": null,
+    "installed_package": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\RackForgeData\\plugin-store\\packages\\org.rackforge.rhodes\\0.1.7",
+    "log": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\0.1.7-1789563654871427800-5256\\rackforge.log",
+    "pid": null,
+    "plugin_id": "org.rackforge.rhodes",
+    "rackforge_root": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\RackForgeData",
+    "schema_version": 1,
+    "status": "installed",
+    "version": "0.1.7"
+  },
+  "prepare_only": true,
+  "listening_test_performed": false,
+  "validation": {
+    "plugin_tests": 19,
+    "ui_unit_tests": 8,
+    "wasm_clippy": "passed",
+    "runtime_smoke": "passed",
+    "runtime_peak": 0.159365,
+    "state_bytes": 124,
+    "parameters": 15,
+    "factory_programs": 10,
+    "state_migration": "Versions 1-4 supported; v4 neutral render equality and custom-program migration tested.",
+    "dense_chord_peaks": {
+      "stage-early-70s": 0.44644,
+      "suitcase-mid-70s": 0.374095,
+      "stage-late-70s": 0.427845,
+      "suitcase-late-70s": 0.371579,
+      "stage-80s": 0.656457
+    },
+    "browser": "HeadlessChrome/153.0.0.0 on Windows; live RackForge browser host, isolated clean profile.",
+    "responsive_iframe_widths": [
+      320,
+      390,
+      640,
+      800,
+      1200
+    ],
+    "tabs": "All five tabs: no horizontal overflow, scrollY remains zero at all five widths.",
+    "programs": "Ten programs loaded. Early Stage and mid-70s Suitcase panels and values verified; compact selector loads 80s Stage, hardness .61, Bass Boost .78, Suitcase controls hidden.",
+    "knobs": "Bass numeric entry 3.5 dB and Speed ArrowUp 3.20 to 3.21 Hz confirmed after host update.",
+    "screenshots": [
+      "dist/rf73-0.1.7-desktop.png",
+      "dist/rf73-0.1.7-mobile.png"
+    ],
+    "upgrade_host_fix": "https://github.com/kalexis1994/rackforge/pull/93",
+    "upgrade_host_fix_status": "Browser WASI CI upgrade probe passed; integration pending other required checks.",
+    "limitations": "Programs are original physical-model approximations, not measured replicas. No manual listening or Desktop GUI test performed."
+  }
+}

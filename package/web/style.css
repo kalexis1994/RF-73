@@ -546,3 +546,361 @@ footer p {
     letter-spacing: 2.5px;
   }
 }
+
+/* Program navigation uses the host catalog in both layouts. */
+.workspace {
+  display: grid;
+  grid-template-columns: 205px minmax(0, 1fr);
+}
+.programs {
+  padding: 26px 16px;
+  background: var(--inset);
+  border: 1px solid var(--line);
+  border-top: 4px solid #131313;
+  border-radius: 0 0 0 8px;
+  min-width: 0;
+}
+.programs h2 {
+  font-size: 22px;
+  margin: 5px 0;
+}
+.programs .eyebrow {
+  color: var(--accent);
+}
+.program-hint,
+.library-note {
+  color: var(--muted);
+  font-size: 12px;
+}
+.library-note {
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.program-list {
+  display: grid;
+  gap: 7px;
+  margin-top: 24px;
+}
+.program-list button {
+  min-height: 48px;
+  padding: 12px;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid transparent;
+  border-left: 3px solid transparent;
+  border-radius: 3px;
+  text-align: left;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.program-list button:hover {
+  background: var(--panel);
+  color: var(--ink);
+}
+.program-list button[aria-pressed="true"] {
+  color: var(--accent);
+  background: var(--panel);
+  border-color: var(--line);
+  border-left-color: var(--accent);
+}
+.instrument-body {
+  min-width: 0;
+}
+.program-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--line);
+}
+.current-program {
+  min-width: 0;
+}
+.current-program .eyebrow {
+  color: var(--muted);
+  letter-spacing: 1.5px;
+}
+#program-name {
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: 550;
+  overflow-wrap: anywhere;
+}
+.program-step {
+  display: flex;
+  gap: 6px;
+}
+.program-step button {
+  width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  background: var(--inset);
+  color: var(--ink);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 26px;
+}
+#program-detail,
+#program-error {
+  grid-column: 1/-1;
+  font-size: 12px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+#program-error:empty {
+  display: none;
+}
+#program-error {
+  color: var(--accent);
+}
+.compact-programs {
+  display: none;
+}
+.section-nav {
+  padding: 0 6px;
+  gap: 0;
+}
+.section-nav button {
+  white-space: normal;
+}
+.section-nav button span {
+  display: none;
+}
+.control {
+  padding: 22px 18px;
+}
+.control label {
+  flex-wrap: wrap;
+  gap: 6px;
+}
+#pickup .sound {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+#pickup .control:last-child {
+  grid-column: 1/-1;
+  border-left: 0;
+  border-top: 1px solid var(--line);
+}
+.panels,
+.instrument-section {
+  min-height: 440px;
+}
+@media (max-width: 959px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .programs {
+    display: none;
+  }
+  .compact-programs {
+    display: block;
+    grid-column: 1/-1;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .compact-programs select {
+    display: block;
+    margin-top: 5px;
+    height: 44px;
+  }
+}
+@media (max-width: 480px) {
+  .program-bar {
+    padding: 16px 12px;
+    gap: 10px;
+  }
+  #program-name {
+    font-size: 19px;
+  }
+  .program-step {
+    gap: 4px;
+  }
+  .sound,
+  #pickup .sound {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .panels,
+  .instrument-section {
+    min-height: 600px;
+  }
+}
+
+/* Native ranges retain keyboard support inside tactile rotary controls. */
+.knob {
+  position: relative;
+  width: 86px;
+  height: 86px;
+  margin: 6px auto 16px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 225deg,
+    var(--accent) 0deg,
+    var(--line) 270deg,
+    transparent 270deg
+  );
+  padding: 6px;
+}
+.dial {
+  display: block;
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 35% 20%,
+    #62665f,
+    #292c29 60%,
+    #121412
+  );
+  border: 2px solid #101210;
+  box-shadow:
+    inset 0 2px 2px #ffffff40,
+    0 5px 8px #0008;
+  transform: rotate(var(--angle, -135deg));
+}
+.dial:before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 17px;
+  border-radius: 2px;
+  background: #efd5a6;
+  box-shadow: 0 0 3px #efb66d44;
+}
+.knob input[type="range"] {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  touch-action: none;
+  cursor: ns-resize;
+}
+.knob:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+.knob:has(:disabled) {
+  opacity: 0.4;
+}
+.knob-number {
+  display: block;
+  width: 90px;
+  min-height: 36px;
+  margin: 0 auto;
+  padding: 6px;
+  text-align: center;
+  background: var(--inset);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--accent);
+}
+.control label {
+  margin-bottom: 12px;
+}
+.control label output {
+  display: none;
+}
+.control:has(#law) label output {
+  display: block;
+}
+.control p {
+  margin-top: 14px;
+}
+.output > .knob {
+  margin: 0 auto;
+}
+@media (max-width: 480px) {
+  .sound,
+  #pickup .sound {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .control {
+    padding: 18px 10px;
+  }
+  .control + .control {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+  .control label {
+    font-size: 12px;
+    min-height: 38px;
+    align-items: flex-start;
+  }
+  .control p {
+    font-size: 11px;
+  }
+  .panels,
+  .instrument-section {
+    min-height: 510px;
+  }
+  .output > .knob {
+    grid-row: 2;
+    grid-column: 1/-1;
+  }
+}
+
+.knob-unit {
+  display: block;
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.section-nav {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.control-group {
+  display: contents;
+}
+.player-controls {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.panel-switches {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-bottom: 1px solid var(--line);
+}
+.panel-switches .control {
+  padding: 14px 18px;
+}
+.panel-switches label {
+  margin-bottom: 6px;
+}
+#gain-db {
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+}
+#instrument .control p {
+  min-height: 36px;
+}
+.panels {
+  display: grid;
+}
+.instrument-section {
+  grid-area: 1 / 1;
+}
+/* Keep panel geometry stable while allowing narrow layouts to grow naturally. */
+.instrument-section[hidden] {
+  display: block !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+@media (max-width: 760px) {
+  .player-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .section-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .panel-switches .control {
+    padding: 12px 10px;
+  }
+}

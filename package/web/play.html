@@ -28,286 +28,611 @@
           Connecting to RackForge…
         </p>
       </header>
-      <div class="instrument-body">
-        <div
-          class="section-nav"
-          role="tablist"
-          aria-label="Instrument sections"
-        >
-          <button
-            id="tab-hammer"
-            type="button"
-            role="tab"
-            aria-selected="true"
-            aria-controls="hammer"
-            tabindex="0"
-          >
-            <span>01</span> Hammer &amp; Touch
-          </button>
-          <button
-            id="tab-resonator"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="resonator"
-            tabindex="-1"
-          >
-            <span>02</span> Tine &amp; Tonebar
-          </button>
-          <button
-            id="tab-pickup"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="pickup"
-            tabindex="-1"
-          >
-            <span>03</span> Pickup
-          </button>
-          <button
-            id="tab-output"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="output"
-            tabindex="-1"
-          >
-            <span>04</span> Output
-          </button>
-        </div>
-        <div class="panels">
-          <section
-            id="hammer"
-            class="instrument-section"
-            role="tabpanel"
-            aria-labelledby="tab-hammer"
-          >
-            <div class="section-heading">
-              <h2 id="hammer-title">Hammer &amp; Touch</h2>
-              <p>How your playing sets the instrument in motion.</p>
+      <div class="workspace">
+        <aside class="programs" aria-label="Programs">
+          <p class="eyebrow">YOUR SOUND</p>
+          <h2>Programs</h2>
+          <p class="program-hint">Choose a voice.<br />Make it your own.</p>
+          <div
+            id="program-list"
+            class="program-list"
+            aria-label="Available programs"
+          ></div>
+          <p class="library-note">
+            Save custom voices with RackForge&#8217;s PRESETS menu.
+          </p>
+        </aside>
+        <div class="instrument-body">
+          <div class="program-bar">
+            <div class="current-program">
+              <p class="eyebrow">SELECTED PROGRAM</p>
+              <h2 id="program-name">Choose your voice</h2>
             </div>
-            <div class="sound">
-              <div class="control">
-                <label for="hardness"
-                  >Hammer Hardness
-                  <output id="hardness-value">0.500</output></label
-                >
-                <input
-                  id="hardness"
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.001"
-                  value="0.5"
-                  disabled
-                  data-rackforge-parameter-index="4"
-                />
-                <p>
-                  Stiffness of the hammer-tip contact. Changes how the strike
-                  excites the tine.
-                </p>
-              </div>
-              <div class="control">
-                <label for="dynamics"
-                  >Dynamics <output id="dynamics-value">0.500</output></label
-                >
-                <input
-                  id="dynamics"
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.001"
-                  value="0.5"
-                  disabled
-                  data-rackforge-parameter-index="7"
-                />
-                <p>
-                  How MIDI velocity becomes hammer speed. Adjust this to your
-                  keyboard and playing touch.
-                </p>
-              </div>
-            </div>
-          </section>
-          <section
-            id="resonator"
-            class="instrument-section"
-            role="tabpanel"
-            aria-labelledby="tab-resonator"
-            hidden
-          >
-            <div class="section-heading">
-              <h2 id="resonator-title">Tine &amp; Tonebar</h2>
-              <p>How the struck resonator rings and loses energy.</p>
-            </div>
-            <div class="sound">
-              <div class="control">
-                <label for="sustain"
-                  >Sustain <output id="sustain-value">0.000</output></label
-                >
-                <input
-                  id="sustain"
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.001"
-                  value="0"
-                  disabled
-                  data-rackforge-parameter-index="5"
-                />
-                <p>
-                  Natural ring of the resonator while held. This control changes
-                  tine and tonebar decay together.
-                </p>
-              </div>
-              <div class="control">
-                <label for="bell"
-                  >Bell <output id="bell-value">1.000</output></label
-                >
-                <input
-                  id="bell"
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.001"
-                  value="1"
-                  disabled
-                  data-rackforge-parameter-index="6"
-                />
-                <p>
-                  Excitation of the second bending mode. Shapes the bell-like
-                  component of the strike.
-                </p>
-              </div>
-            </div>
-          </section>
-          <section
-            id="pickup"
-            class="instrument-section"
-            role="tabpanel"
-            aria-labelledby="tab-pickup"
-            hidden
-          >
-            <div class="section-heading">
-              <h2 id="pickup-title">Pickup</h2>
-              <p>How tine motion becomes an electrical signal.</p>
-            </div>
-            <div class="sound">
-              <div class="control">
-                <label for="distance"
-                  >Pickup Distance
-                  <output id="distance-value">1.50 mm</output></label
-                >
-                <input
-                  id="distance"
-                  type="range"
-                  min="0.5"
-                  max="3"
-                  step="0.01"
-                  value="1.5"
-                  disabled
-                  data-rackforge-parameter-index="2"
-                />
-                <p>
-                  Distance from the tine to the pickup. Changes magnetic
-                  sensitivity and harmonic balance.
-                </p>
-              </div>
-              <div class="control">
-                <label for="alignment"
-                  >Tine Alignment
-                  <output id="alignment-value">0.50 mm</output></label
-                >
-                <input
-                  id="alignment"
-                  type="range"
-                  min="-1"
-                  max="1.5"
-                  step="0.01"
-                  value="0.5"
-                  disabled
-                  data-rackforge-parameter-index="3"
-                />
-                <p>
-                  Position relative to the tine axis. Changes the balance
-                  between the fundamental and upper harmonics.
-                </p>
-              </div>
-              <div class="control">
-                <label for="law"
-                  >Pickup Model
-                  <output id="law-value">Production</output></label
-                >
-                <select id="law" disabled data-rackforge-parameter-index="1">
-                  <option value="0" selected>Production</option>
-                  <option value="1">Aperture</option>
-                  <option value="2">Register Aperture</option>
-                </select>
-                <p>
-                  Register Aperture gradually adjusts pickup geometry in the
-                  upper register.
-                </p>
-              </div>
-            </div>
-          </section>
-          <section
-            id="output"
-            class="instrument-section"
-            role="tabpanel"
-            aria-labelledby="tab-output"
-            hidden
-          >
-            <div class="section-heading">
-              <h2>Output</h2>
-              <p>The final level, after pickup compensation.</p>
-            </div>
-            <div class="output">
-              <div>
-                <h2>Output gain</h2>
-                <p>After the level compensation.</p>
-              </div>
-              <input
-                id="gain"
-                aria-label="Output gain slider"
-                type="range"
-                min="0"
-                max="2"
-                step="0.01"
-                value="0.1"
+            <div class="program-step">
+              <button
+                id="program-prev"
+                type="button"
+                aria-label="Previous program"
                 disabled
-                data-rackforge-parameter-index="0"
-              />
-              <div class="gain-value">
-                <label for="gain-number" class="sr-only"
-                  >Output gain multiplier</label
-                ><input
-                  id="gain-number"
-                  type="number"
-                  min="0"
-                  max="2"
-                  step="0.01"
-                  value="0.1"
-                  disabled
-                /><span>x</span><output id="gain-db">-20.0 dB</output>
+              >
+                &#8249;
+              </button>
+              <button
+                id="program-next"
+                type="button"
+                aria-label="Next program"
+                disabled
+              >
+                &#8250;
+              </button>
+            </div>
+            <label class="compact-programs" for="program-select"
+              >Programs<select id="program-select" disabled>
+                <option value="">Connecting...</option>
+              </select></label
+            >
+            <p id="program-detail">
+              Select a starting point, then shape its character.
+            </p>
+            <p id="program-error" role="alert"></p>
+          </div>
+          <div
+            class="section-nav"
+            role="tablist"
+            aria-label="Instrument sections"
+          >
+            <button
+              id="tab-instrument"
+              type="button"
+              role="tab"
+              aria-selected="true"
+              aria-controls="instrument"
+              tabindex="0"
+            >
+              Instrument</button
+            ><button
+              id="tab-hammer"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="hammer"
+              tabindex="-1"
+            >
+              Hammer</button
+            ><button
+              id="tab-resonator"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="resonator"
+              tabindex="-1"
+            >
+              Resonator</button
+            ><button
+              id="tab-pickup"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="pickup"
+              tabindex="-1"
+            >
+              Pickup</button
+            ><button
+              id="tab-setup"
+              type="button"
+              role="tab"
+              aria-selected="false"
+              aria-controls="setup"
+              tabindex="-1"
+            >
+              Setup
+            </button>
+          </div>
+          <div class="panels">
+            <section
+              id="instrument"
+              class="instrument-section"
+              role="tabpanel"
+              aria-labelledby="tab-instrument"
+            >
+              <div class="section-heading">
+                <h2>Instrument</h2>
+                <p>
+                  Controls at your fingertips. Stage or Suitcase, your choice.
+                </p>
               </div>
-              <p class="headroom">
-                Watch the host’s output meter when playing dense chords. Start
-                at <strong>0.100×</strong> for plenty of headroom.
+              <div class="panel-switches">
+                <div class="control" id="preamp-control">
+                  <label for="preamp"
+                    >Panel<output id="preamp-value"></output></label
+                  ><select
+                    id="preamp"
+                    disabled
+                    data-rackforge-parameter-index="13"
+                  >
+                    <option value="0">Stage</option>
+                    <option value="1">Suitcase</option>
+                  </select>
+                </div>
+                <div class="control" id="vibrato-control">
+                  <label for="vibrato"
+                    >Vibrato<output id="vibrato-value"></output></label
+                  ><select
+                    id="vibrato"
+                    disabled
+                    data-rackforge-parameter-index="10"
+                  >
+                    <option value="0">Off</option>
+                    <option value="1">On</option>
+                  </select>
+                </div>
+              </div>
+              <div class="sound player-controls">
+                <div class="control">
+                  <label for="gain">Volume</label>
+                  <div class="knob" id="gain-knob">
+                    <span class="dial" aria-hidden="true"></span
+                    ><input
+                      id="gain"
+                      aria-label="Volume"
+                      type="range"
+                      min="0"
+                      max="2"
+                      step="0.01"
+                      value="0.1"
+                      disabled
+                      data-rackforge-parameter-index="0"
+                    />
+                  </div>
+                  <label for="gain-number" class="sr-only"
+                    >Volume multiplier</label
+                  ><input
+                    id="gain-number"
+                    class="knob-number"
+                    type="number"
+                    min="0"
+                    max="2"
+                    step="0.01"
+                    value="0.1"
+                    disabled
+                  /><output id="gain-db">-20 dB</output>
+                  <p>Instrument level. Watch the host meter.</p>
+                </div>
+                <div id="stage-controls" class="control-group">
+                  <div class="control">
+                    <label for="bass-boost"
+                      >Bass Boost<output id="bass-boost-value">1</output></label
+                    >
+                    <div class="knob" id="bass-boost-knob">
+                      <span class="dial" aria-hidden="true"></span
+                      ><input
+                        id="bass-boost"
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.001"
+                        value="1"
+                        disabled
+                        data-rackforge-parameter-index="14"
+                      />
+                    </div>
+                    <label class="sr-only" for="bass-boost-number"
+                      >Bass Boost value</label
+                    ><input
+                      class="knob-number"
+                      id="bass-boost-number"
+                      type="number"
+                      min="0"
+                      max="1"
+                      step="0.001"
+                      value="1"
+                      disabled
+                    /><span class="knob-unit"></span>
+                    <p>Restore low frequencies. Fully clockwise is flat.</p>
+                  </div>
+                </div>
+                <div id="suitcase-controls" class="control-group">
+                  <div class="control">
+                    <label for="bass"
+                      >Bass<output id="bass-value">0</output></label
+                    >
+                    <div class="knob" id="bass-knob">
+                      <span class="dial" aria-hidden="true"></span
+                      ><input
+                        id="bass"
+                        type="range"
+                        min="-12"
+                        max="12"
+                        step="0.1"
+                        value="0"
+                        disabled
+                        data-rackforge-parameter-index="8"
+                      />
+                    </div>
+                    <label class="sr-only" for="bass-number">Bass value</label
+                    ><input
+                      class="knob-number"
+                      id="bass-number"
+                      type="number"
+                      min="-12"
+                      max="12"
+                      step="0.1"
+                      value="0"
+                      disabled
+                    /><span class="knob-unit">dB</span>
+                    <p>Low-frequency tone shaping.</p>
+                  </div>
+                  <div class="control">
+                    <label for="treble"
+                      >Treble<output id="treble-value">0</output></label
+                    >
+                    <div class="knob" id="treble-knob">
+                      <span class="dial" aria-hidden="true"></span
+                      ><input
+                        id="treble"
+                        type="range"
+                        min="-12"
+                        max="12"
+                        step="0.1"
+                        value="0"
+                        disabled
+                        data-rackforge-parameter-index="9"
+                      />
+                    </div>
+                    <label class="sr-only" for="treble-number"
+                      >Treble value</label
+                    ><input
+                      class="knob-number"
+                      id="treble-number"
+                      type="number"
+                      min="-12"
+                      max="12"
+                      step="0.1"
+                      value="0"
+                      disabled
+                    /><span class="knob-unit">dB</span>
+                    <p>High-frequency tone shaping.</p>
+                  </div>
+                  <div class="control">
+                    <label for="speed"
+                      >Speed<output id="speed-value">4</output></label
+                    >
+                    <div class="knob" id="speed-knob">
+                      <span class="dial" aria-hidden="true"></span
+                      ><input
+                        id="speed"
+                        type="range"
+                        min="0.5"
+                        max="12"
+                        step="0.01"
+                        value="4"
+                        disabled
+                        data-rackforge-parameter-index="11"
+                      />
+                    </div>
+                    <label class="sr-only" for="speed-number">Speed value</label
+                    ><input
+                      class="knob-number"
+                      id="speed-number"
+                      type="number"
+                      min="0.5"
+                      max="12"
+                      step="0.01"
+                      value="4"
+                      disabled
+                    /><span class="knob-unit">Hz</span>
+                    <p>Rate of the stereo tremolo.</p>
+                  </div>
+                  <div class="control">
+                    <label for="intensity"
+                      >Intensity<output id="intensity-value">0</output></label
+                    >
+                    <div class="knob" id="intensity-knob">
+                      <span class="dial" aria-hidden="true"></span
+                      ><input
+                        id="intensity"
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.001"
+                        value="0"
+                        disabled
+                        data-rackforge-parameter-index="12"
+                      />
+                    </div>
+                    <label class="sr-only" for="intensity-number"
+                      >Intensity value</label
+                    ><input
+                      class="knob-number"
+                      id="intensity-number"
+                      type="number"
+                      min="0"
+                      max="1"
+                      step="0.001"
+                      value="0"
+                      disabled
+                    /><span class="knob-unit"></span>
+                    <p>Depth of the alternating stereo movement.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section
+              id="hammer"
+              class="instrument-section"
+              role="tabpanel"
+              aria-labelledby="tab-hammer"
+              hidden
+            >
+              <div class="section-heading">
+                <h2>Hammer</h2>
+                <p>How the strike sets the tine in motion.</p>
+              </div>
+              <div class="sound">
+                <div class="control">
+                  <label for="hardness"
+                    >Hammer Hardness<output id="hardness-value"
+                      >0.5</output
+                    ></label
+                  >
+                  <div class="knob" id="hardness-knob">
+                    <span class="dial" aria-hidden="true"></span
+                    ><input
+                      id="hardness"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.001"
+                      value="0.5"
+                      disabled
+                      data-rackforge-parameter-index="4"
+                    />
+                  </div>
+                  <label class="sr-only" for="hardness-number"
+                    >Hammer Hardness value</label
+                  ><input
+                    class="knob-number"
+                    id="hardness-number"
+                    type="number"
+                    min="0"
+                    max="1"
+                    step="0.001"
+                    value="0.5"
+                    disabled
+                  /><span class="knob-unit"></span>
+                  <p>Stiffness of the hammer-tip contact.</p>
+                </div>
+              </div>
+            </section>
+            <section
+              id="resonator"
+              class="instrument-section"
+              role="tabpanel"
+              aria-labelledby="tab-resonator"
+              hidden
+            >
+              <div class="section-heading">
+                <h2>Resonator</h2>
+                <p>How the struck resonator rings and loses energy.</p>
+              </div>
+              <div class="sound">
+                <div class="control">
+                  <label for="sustain"
+                    >Sustain<output id="sustain-value">0</output></label
+                  >
+                  <div class="knob" id="sustain-knob">
+                    <span class="dial" aria-hidden="true"></span
+                    ><input
+                      id="sustain"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.001"
+                      value="0"
+                      disabled
+                      data-rackforge-parameter-index="5"
+                    />
+                  </div>
+                  <label class="sr-only" for="sustain-number"
+                    >Sustain value</label
+                  ><input
+                    class="knob-number"
+                    id="sustain-number"
+                    type="number"
+                    min="0"
+                    max="1"
+                    step="0.001"
+                    value="0"
+                    disabled
+                  /><span class="knob-unit"></span>
+                  <p>Natural decay while held; not the sustain pedal.</p>
+                </div>
+                <div class="control">
+                  <label for="bell"
+                    >Bell<output id="bell-value">1</output></label
+                  >
+                  <div class="knob" id="bell-knob">
+                    <span class="dial" aria-hidden="true"></span
+                    ><input
+                      id="bell"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.001"
+                      value="1"
+                      disabled
+                      data-rackforge-parameter-index="6"
+                    />
+                  </div>
+                  <label class="sr-only" for="bell-number">Bell value</label
+                  ><input
+                    class="knob-number"
+                    id="bell-number"
+                    type="number"
+                    min="0"
+                    max="1"
+                    step="0.001"
+                    value="1"
+                    disabled
+                  /><span class="knob-unit"></span>
+                  <p>Excitation of the upper bending mode.</p>
+                </div>
+              </div>
+            </section>
+            <section
+              id="pickup"
+              class="instrument-section"
+              role="tabpanel"
+              aria-labelledby="tab-pickup"
+              hidden
+            >
+              <div class="section-heading">
+                <h2>Pickup</h2>
+                <p>How tine motion becomes an electrical signal.</p>
+              </div>
+              <div class="sound">
+                <div class="control">
+                  <label for="distance"
+                    >Pickup Distance<output id="distance-value"
+                      >1.5</output
+                    ></label
+                  >
+                  <div class="knob" id="distance-knob">
+                    <span class="dial" aria-hidden="true"></span
+                    ><input
+                      id="distance"
+                      type="range"
+                      min="0.5"
+                      max="3"
+                      step="0.01"
+                      value="1.5"
+                      disabled
+                      data-rackforge-parameter-index="2"
+                    />
+                  </div>
+                  <label class="sr-only" for="distance-number"
+                    >Pickup Distance value</label
+                  ><input
+                    class="knob-number"
+                    id="distance-number"
+                    type="number"
+                    min="0.5"
+                    max="3"
+                    step="0.01"
+                    value="1.5"
+                    disabled
+                  /><span class="knob-unit">mm</span>
+                  <p>Gap between tine and pickup.</p>
+                </div>
+                <div class="control">
+                  <label for="alignment"
+                    >Tine Alignment<output id="alignment-value"
+                      >0.5</output
+                    ></label
+                  >
+                  <div class="knob" id="alignment-knob">
+                    <span class="dial" aria-hidden="true"></span
+                    ><input
+                      id="alignment"
+                      type="range"
+                      min="-1"
+                      max="1.5"
+                      step="0.01"
+                      value="0.5"
+                      disabled
+                      data-rackforge-parameter-index="3"
+                    />
+                  </div>
+                  <label class="sr-only" for="alignment-number"
+                    >Tine Alignment value</label
+                  ><input
+                    class="knob-number"
+                    id="alignment-number"
+                    type="number"
+                    min="-1"
+                    max="1.5"
+                    step="0.01"
+                    value="0.5"
+                    disabled
+                  /><span class="knob-unit">mm</span>
+                  <p>Position relative to the pickup axis.</p>
+                </div>
+                <div class="control" id="law-control">
+                  <label for="law"
+                    >Pickup Model<output id="law-value"></output></label
+                  ><select id="law" disabled data-rackforge-parameter-index="1">
+                    <option value="0">Production</option>
+                    <option value="1">Aperture</option>
+                    <option value="2">Register Aperture</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+            <section
+              id="setup"
+              class="instrument-section"
+              role="tabpanel"
+              aria-labelledby="tab-setup"
+              hidden
+            >
+              <div class="section-heading">
+                <h2>Setup</h2>
+                <p>Playing response for your keyboard.</p>
+              </div>
+              <div class="sound">
+                <div class="control">
+                  <label for="dynamics"
+                    >Dynamics<output id="dynamics-value">0.5</output></label
+                  >
+                  <div class="knob" id="dynamics-knob">
+                    <span class="dial" aria-hidden="true"></span
+                    ><input
+                      id="dynamics"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.001"
+                      value="0.5"
+                      disabled
+                      data-rackforge-parameter-index="7"
+                    />
+                  </div>
+                  <label class="sr-only" for="dynamics-number"
+                    >Dynamics value</label
+                  ><input
+                    class="knob-number"
+                    id="dynamics-number"
+                    type="number"
+                    min="0"
+                    max="1"
+                    step="0.001"
+                    value="0.5"
+                    disabled
+                  /><span class="knob-unit"></span>
+                  <p>
+                    MIDI velocity response. Adjust to your keyboard and touch.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+          <footer>
+            <div>
+              <h2>FIND YOUR VOICE</h2>
+              <p>
+                Choose an era-inspired instrument, then adjust its physical
+                voicing.
               </p>
             </div>
-          </section>
+            <div>
+              <h2>HANDS ON</h2>
+              <p>
+                Drag knobs up or down. Hold Shift for fine adjustment;
+                double-click to reset.
+              </p>
+            </div>
+          </footer>
         </div>
-        <footer>
-          <div>
-            <h2>FIND YOUR VOICE</h2>
-            <p>Start with Calibrated Register in the host’s PRESETS menu.</p>
-          </div>
-          <div>
-            <h2>MAKE IT YOURS</h2>
-            <p>
-              Save your voicing as a RackForge preset. Ringing notes stay alive.
-            </p>
-          </div>
-        </footer>
       </div>
     </main>
     <noscript

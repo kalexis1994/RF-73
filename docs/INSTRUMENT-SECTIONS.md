@@ -75,3 +75,82 @@ Version 0.1.5 gives PLAY a brushed-metal nameplate, dark control panel,
 wood-tone side rails and metal faders. Both host lighting modes and narrow
 layouts remain supported. Tab behavior is implemented in Rust alongside the
 existing host protocol; no DSP or state format change is introduced.
+
+
+## 0.1.6 program navigation and rotary controls
+
+The PLAY surface reads the catalog and selected identity from host context,
+then selects through `plugin.select_sound`. Parameter writes finish before a
+selection; remaining edits are discarded, and selection always triggers a fresh
+parameter snapshot. A host-side program change invalidates older snapshots.
+Failed or timed-out selection is not automatically replayed; the error remains
+visible while current parameters are recovered.
+
+At 960 px of iframe width, programs occupy the left column. Narrower layouts
+use a native program selector with previous/next buttons. This avoids a second
+modal focus system and preserves native touch and keyboard behavior. Existing
+factory programs are retained; musical banks and new electronic controls remain
+next steps from `PLAYER-PANEL-AND-PROGRAMS-RESEARCH.md`.
+
+Continuous controls are rotary dials backed by native ranges. Vertical pointer
+drag, Shift fine adjustment, keyboard arrows, editable numeric values and a
+factory-default double-click reset are supported. Program selection and host
+parameter updates also update the dials. No DSP or saved-state layout changed.
+
+
+## 0.1.7 instrument panels and era-inspired programs
+
+The opening Instrument page selects Stage (Volume, Bass Boost) or Suitcase
+(Volume, Bass, Treble, Vibrato On/Off, Speed, Intensity). Hammer, Resonator and
+Pickup expose the internal model; Setup holds the keyboard response. These
+are simplified electronics inspired by player controls, not circuit emulations.
+
+Seven appended parameter IDs (8-14) leave the original IDs untouched. State
+version 5 appends 56 bytes to the version-4 prefix; versions 1-4 still load.
+Version-4 custom-program payloads default missing electronics to a neutral
+Suitcase path. New state is 124 bytes. Transfer capacity is now 16384 bytes to
+accommodate the expanded editor and ten factory plus eight custom programs.
+
+Low/high tone shaping uses first-order complementary shelves at 200/2500 Hz,
+with -12..12 dB nominal gain settings. Stage Bass Boost blends a 200 Hz high-pass
+response toward flat: fully clockwise restores bass. Frequencies, tapers and
+ranges are RF-73 design choices, not historical measurements. Tone gains,
+mode, modulation depth and speed settle with 10 ms exponential smoothing.
+
+Suitcase Vibrato is sinusoidal, complementary amplitude modulation. Each
+channel gain stays between zero and one. A single-channel host receives the
+left-channel tremolo; averaging stereo cancels the movement and retains the
+mean attenuation. Bypassed modulation has unity gain. No amplifier saturation,
+speaker cabinet or limiter is implied. Existing engine output gain smoothing
+remains in use. Electronic edits do not rebuild the physical voice profiles.
+
+### Instrument programs
+
+All five programs use Register Aperture and the same Dynamics (0.5). Values
+are original design approximations within our model, not measured historical
+specifications. Names indicate inspiration; individual vintage instruments
+vary with setup, wear, service and amplification. No listening validation
+against separate period instruments has been completed for these programs.
+
+| Program | Hardness | Sustain | Bell | Gap mm | Alignment mm | Electronics |
+| --- | --- | --- | --- | --- | --- | --- |
+| Stage 73 - Early '70s | .42 | .48 | .22 | .75 | .48 | Stage, Bass Boost .90 |
+| Suitcase 73 - Mid '70s | .46 | .52 | .28 | .58 | .40 | Bass +1 dB, Treble -1 dB, 3.2 Hz / .55 depth |
+| Stage 73 - Late '70s | .55 | .45 | .38 | .70 | .55 | Stage, Bass Boost .82 |
+| Suitcase 73 - Late '70s | .57 | .46 | .40 | .62 | .52 | Bass -1 dB, Treble +1.5 dB, 4.6 Hz / .50 depth |
+| Stage 73 - '80s | .61 | .40 | .46 | .85 | .60 | Stage, Bass Boost .78 |
+
+The previous five IDs remain in the Reference bank without setting changes.
+The new Instruments bank appears first. User programs remain host managed.
+
+Historical control and family references:
+- [Original service manual](https://www.fenderrhodes.com/service/manual.html):
+  documents earlier and later tone sources/actions and Suitcase electronics.
+- [Stage owner operation](https://www.fenderrhodes.com/img/service/guides/stage-mark2/p5.jpg).
+- [Suitcase owner panel](https://www.fenderrhodes.com/img/service/guides/suitcase-mark1/p2.jpg).
+
+Validation includes neutral bit identity, migrated-state audio equality,
+invalid-state rejection, EQ polarity at three sample rates, modulation period
+and complementary channels, event/block-size invariance, and dense repeated
+10-note chords for each new program. Peak checks establish headroom only for
+that test, not every possible performance or boosted-EQ setting.

@@ -1,25 +1,148 @@
 {
   "schema_version": 1,
-  "banks": [{ "id": "research", "name": "Research", "order": 0 }],
-  "presets": [{
-    "id": "research-direct", "name": "Original", "bank": "research", "editable": true,
-    "category": "Electric Piano", "order": 0, "tags": ["default", "uncalibrated"],
-    "description": "The 0.1.2 engine: production pickup at 1.5 / 0.5 mm, original losses. No limiter."
-  }, {
-    "id": "close-original", "name": "Close Original", "bank": "research", "editable": true,
-    "category": "Electric Piano", "order": 1, "tags": ["uncalibrated"],
-    "description": "Production pickup at 0.5 / 0.25 mm; level compensated. Original losses."
-  }, {
-    "id": "close-aperture", "name": "Close Aperture", "bank": "research", "editable": true,
-    "category": "Electric Piano", "order": 2, "tags": ["uncalibrated"],
-    "description": "Finite-aperture pickup at 0.5 / 0.5 mm with a 2 mm pole; original losses."
-  }, {
-    "id": "calibrated", "name": "Calibrated", "bank": "research", "editable": true,
-    "category": "Electric Piano", "order": 3, "tags": ["uncalibrated"],
-    "description": "Aperture pickup at 0.5 / 0.5 mm, recording-derived sustain, soft second partial."
-  }, {
-    "id": "calibrated-register", "name": "Calibrated Register", "bank": "research", "editable": true,
-    "category": "Electric Piano", "order": 4, "tags": ["research"],
-    "description": "Calibrated with the validated upper-register pickup geometry; normal MIDI dynamics."
-  }]
+  "banks": [
+    {
+      "id": "instruments",
+      "name": "Instruments",
+      "order": 0
+    },
+    {
+      "id": "research",
+      "name": "Reference",
+      "order": 1
+    },
+    {
+      "id": "user",
+      "name": "User",
+      "order": 2
+    }
+  ],
+  "presets": [
+    {
+      "id": "stage-early-70s",
+      "name": "Stage 73 - Early '70s",
+      "bank": "instruments",
+      "editable": true,
+      "category": "Electric Piano",
+      "order": 0,
+      "tags": [
+        "inspired",
+        "physical-model"
+      ],
+      "description": "Rounded attack, restrained bell, passive-style bass control. Editable approximation, not an exact replica."
+    },
+    {
+      "id": "suitcase-mid-70s",
+      "name": "Suitcase 73 - Mid '70s",
+      "bank": "instruments",
+      "editable": true,
+      "category": "Electric Piano",
+      "order": 1,
+      "tags": [
+        "inspired",
+        "physical-model"
+      ],
+      "description": "Warm voicing, gentle EQ and slow stereo movement. Editable approximation, not an exact replica."
+    },
+    {
+      "id": "stage-late-70s",
+      "name": "Stage 73 - Late '70s",
+      "bank": "instruments",
+      "editable": true,
+      "category": "Electric Piano",
+      "order": 2,
+      "tags": [
+        "inspired",
+        "physical-model"
+      ],
+      "description": "Firmer attack and open upper partials. Editable approximation, not an exact replica."
+    },
+    {
+      "id": "suitcase-late-70s",
+      "name": "Suitcase 73 - Late '70s",
+      "bank": "instruments",
+      "editable": true,
+      "category": "Electric Piano",
+      "order": 3,
+      "tags": [
+        "inspired",
+        "physical-model"
+      ],
+      "description": "Clearer attack and lively stereo movement. Editable approximation, not an exact replica."
+    },
+    {
+      "id": "stage-80s",
+      "name": "Stage 73 - '80s",
+      "bank": "instruments",
+      "editable": true,
+      "category": "Electric Piano",
+      "order": 4,
+      "tags": [
+        "inspired",
+        "physical-model"
+      ],
+      "description": "Articulate attack and restrained decay. Editable approximation, not an exact replica."
+    },
+    {
+      "id": "research-direct",
+      "name": "Original",
+      "bank": "research",
+      "editable": true,
+      "category": "Electric Piano",
+      "order": 0,
+      "tags": [
+        "default",
+        "uncalibrated"
+      ],
+      "description": "The 0.1.2 engine: production pickup at 1.5 / 0.5 mm, original losses. No limiter."
+    },
+    {
+      "id": "close-original",
+      "name": "Close Original",
+      "bank": "research",
+      "editable": true,
+      "category": "Electric Piano",
+      "order": 1,
+      "tags": [
+        "uncalibrated"
+      ],
+      "description": "Production pickup at 0.5 / 0.25 mm; level compensated. Original losses."
+    },
+    {
+      "id": "close-aperture",
+      "name": "Close Aperture",
+      "bank": "research",
+      "editable": true,
+      "category": "Electric Piano",
+      "order": 2,
+      "tags": [
+        "uncalibrated"
+      ],
+      "description": "Finite-aperture pickup at 0.5 / 0.5 mm with a 2 mm pole; original losses."
+    },
+    {
+      "id": "calibrated",
+      "name": "Calibrated",
+      "bank": "research",
+      "editable": true,
+      "category": "Electric Piano",
+      "order": 3,
+      "tags": [
+        "uncalibrated"
+      ],
+      "description": "Aperture pickup at 0.5 / 0.5 mm, recording-derived sustain, soft second partial."
+    },
+    {
+      "id": "calibrated-register",
+      "name": "Calibrated Register",
+      "bank": "research",
+      "editable": true,
+      "category": "Electric Piano",
+      "order": 4,
+      "tags": [
+        "research"
+      ],
+      "description": "Calibrated with the validated upper-register pickup geometry; normal MIDI dynamics."
+    }
+  ]
 }

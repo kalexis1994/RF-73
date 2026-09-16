@@ -10,7 +10,7 @@ fn begin(plugin: &mut Rf73Processor, id: Option<&str>) -> PreparedProgram {
         schema_version: 1,
         program_id: id.map(str::to_string),
     };
-    let mut destination = [0; 4096];
+    let mut destination = [0; 16384];
     let len = plugin
         .begin_program_edit(&serde_json::to_vec(&request).unwrap(), &mut destination)
         .unwrap();
@@ -27,7 +27,7 @@ fn state(plugin: &Rf73Processor) -> [u8; STATE_BYTES] {
 fn editor_preview_install_catalog_reload_and_snapshot_agree() {
     let mut plugin = Rf73Processor::default();
     let mut draft = begin(&mut plugin, Some("research-direct"));
-    let mut destination = [0; 4096];
+    let mut destination = [0; 16384];
     for (field, value, parameter, expected) in [
         ("law", ProgramEditorValue::Choice("1".into()), 1, 1.0),
         ("distance", ProgramEditorValue::Integer(75), 2, 0.75),
@@ -63,15 +63,15 @@ fn editor_preview_install_catalog_reload_and_snapshot_agree() {
         .unwrap();
     let view: ProgramEditorView = serde_json::from_slice(&destination[..len]).unwrap();
     view.validate().unwrap();
-    assert_eq!(view.pages.len(), 4);
+    assert_eq!(view.pages.len(), 5);
     assert_eq!(
         view.pages
             .iter()
             .map(|p| p.fields.len())
             .collect::<Vec<_>>(),
-        vec![2, 2, 3, 1]
+        vec![8, 1, 2, 3, 1]
     );
-    assert_eq!(view.pages.iter().flat_map(|p| p.fields.iter()).count(), 8);
+    assert_eq!(view.pages.iter().flat_map(|p| p.fields.iter()).count(), 15);
     assert!(
         view.pages
             .iter()
@@ -113,7 +113,7 @@ fn factory_presets_load_and_seed_drafts() {
     let mut plugin = Rf73Processor::default();
     for (id, _, _, settings) in presets() {
         assert!(plugin.load_preset(id), "{id}");
-        for index in 0..8 {
+        for index in 0..15 {
             assert_eq!(
                 plugin.get_parameter(index),
                 settings.parameter(index),
@@ -134,7 +134,7 @@ fn factory_presets_load_and_seed_drafts() {
     };
     assert!(
         plugin
-            .begin_program_edit(&serde_json::to_vec(&request).unwrap(), &mut [0; 4096])
+            .begin_program_edit(&serde_json::to_vec(&request).unwrap(), &mut [0; 16384])
             .is_none()
     );
 }
@@ -157,7 +157,14 @@ fn malformed_programs_and_parameter_domains_reject_atomically() {
         (5, -0.1),
         (6, f64::INFINITY),
         (7, 1.01),
-        (8, 0.0),
+        (15, 0.0),
+        (8, 12.1),
+        (9, -12.1),
+        (10, 0.5),
+        (11, 0.0),
+        (12, 1.1),
+        (13, 0.5),
+        (14, -0.1),
     ] {
         assert!(!plugin.set_parameter(index, value), "{index} {value}");
         assert_eq!(state(&plugin), before);
@@ -184,7 +191,7 @@ fn malformed_programs_and_parameter_domains_reject_atomically() {
     };
     assert!(
         plugin
-            .apply_program_edit(&serde_json::to_vec(&request).unwrap(), &mut [0; 4096])
+            .apply_program_edit(&serde_json::to_vec(&request).unwrap(), &mut [0; 16384])
             .is_none()
     );
     assert!(plugin.prepare(48000.0, 128, 0, 2));
@@ -227,7 +234,7 @@ fn bounded_catalog_fits_transfer_and_rejects_overflow_without_losing_entries() {
         assert!(plugin.install_program(&serde_json::to_vec(&draft).unwrap()));
         last = Some(draft);
     }
-    let mut out = [0; 4096];
+    let mut out = [0; 16384];
     let len = plugin.write_program_catalog(&mut out).unwrap();
     let catalog: serde_json::Value = serde_json::from_slice(&out[..len]).unwrap();
     assert_eq!(
@@ -240,7 +247,7 @@ fn bounded_catalog_fits_transfer_and_rejects_overflow_without_losing_entries() {
     draft.storage_path = "programs/overflow.json".into();
     draft.preview_sound_id = "custom.overflow".into();
     assert!(!plugin.install_program(&serde_json::to_vec(&draft).unwrap()));
-    assert_eq!(plugin.write_program_catalog(&mut [0; 4096]), Some(len));
+    assert_eq!(plugin.write_program_catalog(&mut [0; 16384]), Some(len));
 }
 
 #[test]
@@ -286,7 +293,7 @@ fn older_state_schemas_map_onto_the_voicing_they_were_listening_to() {
     // Schema 4 rejects every corrupted field atomically.
     assert!(plugin.set_parameter(1, 1.0));
     let before = state(&plugin);
-    for (index, value) in [(0, 0), (4, 5), (64, 3), (65, 1), (67, 9)] {
+    for (index, value) in [(0, 0), (4, 6), (64, 3), (65, 1), (67, 9)] {
         let mut malformed = before;
         malformed[index] = value;
         assert!(!plugin.load_state(&malformed), "{index}");
@@ -353,5 +360,42 @@ fn voicing_changes_keep_ringing_notes_and_stay_finite() {
         let peak = out.iter().fold(0.0f32, |m, s| m.max(s.abs()));
         assert!((out[0] - previous).abs() <= peak.max(1e-6), "{index}");
         previous = out[254];
+    }
+}
+
+#[test]
+fn version_four_custom_programs_keep_their_voicing_with_neutral_electronics() {
+    let mut plugin = Rf73Processor::default();
+    let mut draft = begin(&mut plugin, Some("calibrated-register"));
+    draft.document.plugin_state_version = 4;
+    for key in [
+        "bass_db",
+        "treble_db",
+        "vibrato",
+        "speed_hz",
+        "intensity",
+        "preamp",
+        "bass_boost",
+    ] {
+        draft.document.payload.as_object_mut().unwrap().remove(key);
+    }
+    let mut bytes = [0; 16384];
+    let len = plugin
+        .prepare_program_save(&serde_json::to_vec(&draft.document).unwrap(), &mut bytes)
+        .unwrap();
+    assert!(plugin.install_program(&bytes[..len]));
+    assert!(plugin.load_preset(&draft.preview_sound_id));
+    assert_eq!(plugin.get_parameter(1), Some(2.0));
+    assert_eq!(plugin.get_parameter(6), Some(0.2582));
+    for (index, value) in [
+        (8, 0.0),
+        (9, 0.0),
+        (10, 0.0),
+        (11, 4.0),
+        (12, 0.0),
+        (13, 1.0),
+        (14, 1.0),
+    ] {
+        assert_eq!(plugin.get_parameter(index), Some(value));
     }
 }

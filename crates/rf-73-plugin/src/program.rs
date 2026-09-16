@@ -10,7 +10,7 @@ use std::collections::BTreeMap;
 
 const PLUGIN_ID: &str = "org.rackforge.rhodes";
 const MAX_PROGRAMS: usize = 8;
-const MAX_TRANSFER: usize = 4096;
+const MAX_TRANSFER: usize = 16384;
 
 fn read<T: DeserializeOwned>(bytes: &[u8]) -> Option<T> {
     if bytes.len() > MAX_TRANSFER {
@@ -31,7 +31,7 @@ fn write<T: Serialize>(value: &T, destination: &mut [u8]) -> Option<usize> {
 pub fn settings(document: &ProgramDocument) -> Option<Settings> {
     document.validate().ok()?;
     if document.plugin_id != PLUGIN_ID
-        || document.plugin_state_version != STATE_VERSION
+        || ![4, STATE_VERSION].contains(&document.plugin_state_version)
         || document.payload_version != 1
         || document.id.len() > 64
         || document.name.len() > 64
@@ -133,7 +133,7 @@ pub fn catalog(
     for (i, document) in programs.values().enumerate() {
         entries.push(
             json!({"id": format!("custom.{}", document.id), "name": document.name,
-            "bank": "research", "category": "Electric Piano", "order": factory + i,
+            "bank": "user", "category": "Electric Piano", "order": factory + i,
             "tags": ["custom", "uncalibrated"], "editable": true,
             "description": "Saved voicing. Level compensated pickup; no limiter."}),
         );
@@ -154,7 +154,7 @@ type Field = (
     u32,
     &'static str,
 );
-const FIELDS: [Field; 8] = [
+const FIELDS: [Field; 15] = [
     (
         "distance",
         "Pickup Distance",
@@ -243,6 +243,83 @@ const FIELDS: [Field; 8] = [
         0,
         "",
     ),
+    (
+        "bass",
+        "Bass",
+        "Instrument electronics.",
+        8,
+        1000.0,
+        -12000,
+        12000,
+        3,
+        "dB",
+    ),
+    (
+        "treble",
+        "Treble",
+        "Instrument electronics.",
+        9,
+        1000.0,
+        -12000,
+        12000,
+        3,
+        "dB",
+    ),
+    (
+        "vibrato",
+        "Vibrato",
+        "Instrument electronics.",
+        10,
+        1.0,
+        0,
+        1,
+        0,
+        "",
+    ),
+    (
+        "speed",
+        "Speed",
+        "Instrument electronics.",
+        11,
+        1000.0,
+        500,
+        12000,
+        3,
+        "Hz",
+    ),
+    (
+        "intensity",
+        "Intensity",
+        "Instrument electronics.",
+        12,
+        1000.0,
+        0,
+        1000,
+        3,
+        "",
+    ),
+    (
+        "preamp",
+        "Panel",
+        "Instrument electronics.",
+        13,
+        1.0,
+        0,
+        1,
+        0,
+        "",
+    ),
+    (
+        "bass-boost",
+        "Bass Boost",
+        "Instrument electronics.",
+        14,
+        1000.0,
+        0,
+        1000,
+        3,
+        "",
+    ),
 ];
 
 pub fn view(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
@@ -256,10 +333,21 @@ pub fn view(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
     let mut fields = Vec::new();
     for (id, label, detail, index, scale, minimum, maximum, decimals, unit) in FIELDS {
         let value = settings.parameter(index)?;
-        fields.push(if id == "law" {
+        fields.push(if matches!(id, "law" | "preamp" | "vibrato") {
+            let options = match id {
+                "law" => laws.clone(),
+                "preamp" => vec![
+                    json!({"value":"0","label":"Stage"}),
+                    json!({"value":"1","label":"Suitcase"}),
+                ],
+                _ => vec![
+                    json!({"value":"0","label":"Off"}),
+                    json!({"value":"1","label":"On"}),
+                ],
+            };
             json!({"id": id, "label": label, "detail": detail,
                 "value": {"type": "choice", "value": (value as u8).to_string()},
-                "kind": {"type": "choice", "options": laws}, "live_preview": true})
+                "kind": {"type": "choice", "options": options}, "live_preview": true})
         } else {
             let mut kind = json!({"type": "number", "minimum": minimum, "maximum": maximum,
                 "step": if decimals == 6 { 10_000 } else { 1 }, "decimals": decimals});
@@ -274,9 +362,9 @@ pub fn view(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
     let groups = [
         (
             "hammer",
-            "Hammer & Touch",
+            "Hammer",
             "Contact and playing response.",
-            vec!["hardness", "dynamics"],
+            vec!["hardness"],
         ),
         (
             "resonator",
@@ -290,10 +378,26 @@ pub fn view(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
             "Magnetic pickup position and response.",
             vec!["distance", "alignment", "law"],
         ),
-        ("output", "Output", "Final instrument level.", vec!["gain"]),
+        (
+            "instrument",
+            "Instrument",
+            "Player controls.",
+            vec![
+                "gain",
+                "preamp",
+                "bass-boost",
+                "bass",
+                "treble",
+                "vibrato",
+                "speed",
+                "intensity",
+            ],
+        ),
+        ("setup", "Setup", "Controller response.", vec!["dynamics"]),
     ];
-    let pages: Vec<_> = groups
+    let pages: Vec<_> = [3usize, 0, 1, 2, 4]
         .into_iter()
+        .map(|index| groups[index].clone())
         .map(|(id, label, detail, ids)| {
             let grouped: Vec<_> = ids
                 .iter()
@@ -323,8 +427,10 @@ pub fn edit(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
     let current = settings(&request.document)?;
     let field = FIELDS.iter().find(|f| f.0 == request.field_id)?;
     let (index, value) = match (&request.value, field.0) {
-        (ProgramEditorValue::Choice(value), "law") => (field.3, value.parse::<u8>().ok()? as f64),
-        (ProgramEditorValue::Integer(value), id) if id != "law" => {
+        (ProgramEditorValue::Choice(value), "law" | "preamp" | "vibrato") => {
+            (field.3, value.parse::<u8>().ok()? as f64)
+        }
+        (ProgramEditorValue::Integer(value), id) if !matches!(id, "law" | "preamp" | "vibrato") => {
             if !(field.5..=field.6).contains(value) {
                 return None;
             }
@@ -334,6 +440,7 @@ pub fn edit(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
     };
     let updated = current.with_parameter(index, value)?;
     let mut document = request.document;
+    document.plugin_state_version = STATE_VERSION;
     document.payload = serde_json::to_value(updated).ok()?;
     write(&envelope(document)?, destination)
 }

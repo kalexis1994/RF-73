@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 /// Not a limiter or a guarantee for arbitrary accumulated mechanical energy.
 pub const DEFAULT_GAIN: f64 = 0.1;
 /// Parameter order: gain, law, distance, alignment, hardness, sustain, bell, dynamics.
-pub const PARAMETERS: usize = 8;
+pub const PARAMETERS: usize = 15;
 pub const LAW_NAMES: [&str; 3] = ["Production", "Aperture", "Register Aperture"];
 
 /// The Sound page in physical and normalized terms. Every field maps to a
@@ -33,6 +33,27 @@ pub struct Settings {
     pub bell: f64,
     /// Dynamics 0..=1: velocity exponent 1.4 * 2^(2d - 1).
     pub dynamics: f64,
+    #[serde(default)]
+    pub bass_db: f64,
+    #[serde(default)]
+    pub treble_db: f64,
+    #[serde(default)]
+    pub vibrato: f64,
+    #[serde(default = "default_speed")]
+    pub speed_hz: f64,
+    #[serde(default)]
+    pub intensity: f64,
+    #[serde(default = "one")]
+    pub preamp: f64,
+    #[serde(default = "one")]
+    pub bass_boost: f64,
+}
+
+fn default_speed() -> f64 {
+    4.0
+}
+fn one() -> f64 {
+    1.0
 }
 
 impl Default for Settings {
@@ -46,12 +67,19 @@ impl Default for Settings {
             sustain: 0.0,
             bell: 1.0,
             dynamics: 0.5,
+            bass_db: 0.0,
+            treble_db: 0.0,
+            vibrato: 0.0,
+            speed_hz: 4.0,
+            intensity: 0.0,
+            preamp: 1.0,
+            bass_boost: 1.0,
         }
     }
 }
 
 /// Factory presets: id, name, description, settings.
-pub fn presets() -> [(&'static str, &'static str, &'static str, Settings); 5] {
+pub fn presets() -> [(&'static str, &'static str, &'static str, Settings); 10] {
     let default = Settings::default();
     [
         (
@@ -107,6 +135,111 @@ pub fn presets() -> [(&'static str, &'static str, &'static str, Settings); 5] {
                 ..default
             },
         ),
+        (
+            "stage-early-70s",
+            "Stage 73 - Early '70s",
+            "Rounded early-stage inspired voicing; passive-style bass control.",
+            Settings {
+                law: 2,
+                hardness: 0.42,
+                sustain: 0.48,
+                bell: 0.22,
+                distance_mm: 0.75,
+                alignment_mm: 0.48,
+                preamp: 0.0,
+                bass_db: 0.0,
+                treble_db: 0.0,
+                vibrato: 0.0,
+                speed_hz: 4.0,
+                intensity: 0.0,
+                bass_boost: 0.9,
+                ..default
+            },
+        ),
+        (
+            "suitcase-mid-70s",
+            "Suitcase 73 - Mid '70s",
+            "Mid-seventies inspired voicing with warm EQ and slow stereo tremolo.",
+            Settings {
+                law: 2,
+                hardness: 0.46,
+                sustain: 0.52,
+                bell: 0.28,
+                distance_mm: 0.58,
+                alignment_mm: 0.4,
+                preamp: 1.0,
+                bass_db: 1.0,
+                treble_db: -1.0,
+                vibrato: 1.0,
+                speed_hz: 3.2,
+                intensity: 0.55,
+                bass_boost: 1.0,
+                ..default
+            },
+        ),
+        (
+            "stage-late-70s",
+            "Stage 73 - Late '70s",
+            "Late-stage inspired voicing; firmer attack and a more open bell component.",
+            Settings {
+                law: 2,
+                hardness: 0.55,
+                sustain: 0.45,
+                bell: 0.38,
+                distance_mm: 0.7,
+                alignment_mm: 0.55,
+                preamp: 0.0,
+                bass_db: 0.0,
+                treble_db: 0.0,
+                vibrato: 0.0,
+                speed_hz: 4.0,
+                intensity: 0.0,
+                bass_boost: 0.82,
+                ..default
+            },
+        ),
+        (
+            "suitcase-late-70s",
+            "Suitcase 73 - Late '70s",
+            "Late-suitcase inspired voicing; clearer attack and lively stereo movement.",
+            Settings {
+                law: 2,
+                hardness: 0.57,
+                sustain: 0.46,
+                bell: 0.4,
+                distance_mm: 0.62,
+                alignment_mm: 0.52,
+                preamp: 1.0,
+                bass_db: -1.0,
+                treble_db: 1.5,
+                vibrato: 1.0,
+                speed_hz: 4.6,
+                intensity: 0.5,
+                bass_boost: 1.0,
+                ..default
+            },
+        ),
+        (
+            "stage-80s",
+            "Stage 73 - '80s",
+            "Eighties-stage inspired voicing; articulate attack and restrained decay.",
+            Settings {
+                law: 2,
+                hardness: 0.61,
+                sustain: 0.4,
+                bell: 0.46,
+                distance_mm: 0.85,
+                alignment_mm: 0.6,
+                preamp: 0.0,
+                bass_db: 0.0,
+                treble_db: 0.0,
+                vibrato: 0.0,
+                speed_hz: 4.0,
+                intensity: 0.0,
+                bass_boost: 0.78,
+                ..default
+            },
+        ),
     ]
 }
 
@@ -127,6 +260,16 @@ impl Settings {
             && unit(self.sustain)
             && unit(self.bell)
             && unit(self.dynamics)
+            && self.bass_db.is_finite()
+            && (-12.0..=12.0).contains(&self.bass_db)
+            && self.treble_db.is_finite()
+            && (-12.0..=12.0).contains(&self.treble_db)
+            && [0.0, 1.0].contains(&self.vibrato)
+            && self.speed_hz.is_finite()
+            && (0.5..=12.0).contains(&self.speed_hz)
+            && unit(self.intensity)
+            && [0.0, 1.0].contains(&self.preamp)
+            && unit(self.bass_boost)
     }
 
     /// The mechanical and pickup profile these settings describe.
@@ -158,6 +301,13 @@ impl Settings {
             PARAMETER_SUSTAIN => self.sustain,
             PARAMETER_BELL => self.bell,
             PARAMETER_DYNAMICS => self.dynamics,
+            8 => self.bass_db,
+            9 => self.treble_db,
+            10 => self.vibrato,
+            11 => self.speed_hz,
+            12 => self.intensity,
+            13 => self.preamp,
+            14 => self.bass_boost,
             _ => return None,
         })
     }
@@ -179,6 +329,13 @@ impl Settings {
             PARAMETER_SUSTAIN => self.sustain = value,
             PARAMETER_BELL => self.bell = value,
             PARAMETER_DYNAMICS => self.dynamics = value,
+            8 => self.bass_db = value,
+            9 => self.treble_db = value,
+            10 => self.vibrato = value,
+            11 => self.speed_hz = value,
+            12 => self.intensity = value,
+            13 => self.preamp = value,
+            14 => self.bass_boost = value,
             _ => return None,
         }
         self.valid().then_some(self)

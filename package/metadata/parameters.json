@@ -2,32 +2,37 @@
   "schema_version": 1,
   "pages": [
     {
-      "id": "hammer",
-      "name": "Hammer & Touch",
+      "id": "instrument",
+      "name": "Instrument",
       "order": 0
+    },
+    {
+      "id": "hammer",
+      "name": "Hammer",
+      "order": 1
     },
     {
       "id": "resonator",
       "name": "Tine & Tonebar",
-      "order": 1
+      "order": 2
     },
     {
       "id": "pickup",
       "name": "Pickup",
-      "order": 2
+      "order": 3
     },
     {
-      "id": "output",
-      "name": "Output",
-      "order": 3
+      "id": "setup",
+      "name": "Setup",
+      "order": 4
     }
   ],
   "parameters": [
     {
       "index": 0,
       "id": "gain",
-      "name": "Output Gain",
-      "page": "output",
+      "name": "Volume",
+      "page": "instrument",
       "order": 0,
       "kind": {
         "type": "float",
@@ -170,7 +175,7 @@
       "index": 7,
       "id": "dynamics",
       "name": "Dynamics",
-      "page": "hammer",
+      "page": "setup",
       "order": 1,
       "kind": {
         "type": "float",
@@ -178,6 +183,151 @@
         "maximum": 1.0,
         "default": 0.5,
         "step": 0.001
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 8,
+      "id": "bass",
+      "name": "Bass",
+      "page": "instrument",
+      "order": 8,
+      "kind": {
+        "type": "float",
+        "minimum": -12,
+        "maximum": 12,
+        "default": 0,
+        "step": 0.1,
+        "unit": "dB"
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 9,
+      "id": "treble",
+      "name": "Treble",
+      "page": "instrument",
+      "order": 9,
+      "kind": {
+        "type": "float",
+        "minimum": -12,
+        "maximum": 12,
+        "default": 0,
+        "step": 0.1,
+        "unit": "dB"
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 10,
+      "id": "vibrato",
+      "name": "Vibrato",
+      "page": "instrument",
+      "order": 10,
+      "kind": {
+        "type": "enum",
+        "default": 0,
+        "choices": [
+          {
+            "value": 0,
+            "name": "Off"
+          },
+          {
+            "value": 1,
+            "name": "On"
+          }
+        ]
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "list"
+    },
+    {
+      "index": 11,
+      "id": "speed",
+      "name": "Speed",
+      "page": "instrument",
+      "order": 11,
+      "kind": {
+        "type": "float",
+        "minimum": 0.5,
+        "maximum": 12,
+        "default": 4,
+        "step": 0.01,
+        "unit": "Hz"
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 12,
+      "id": "intensity",
+      "name": "Intensity",
+      "page": "instrument",
+      "order": 12,
+      "kind": {
+        "type": "float",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 0,
+        "step": 0.001,
+        "unit": ""
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 13,
+      "id": "preamp",
+      "name": "Panel",
+      "page": "instrument",
+      "order": 13,
+      "kind": {
+        "type": "enum",
+        "default": 1,
+        "choices": [
+          {
+            "value": 0,
+            "name": "Stage"
+          },
+          {
+            "value": 1,
+            "name": "Suitcase"
+          }
+        ]
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "list"
+    },
+    {
+      "index": 14,
+      "id": "bass-boost",
+      "name": "Bass Boost",
+      "page": "instrument",
+      "order": 14,
+      "kind": {
+        "type": "float",
+        "minimum": 0,
+        "maximum": 1,
+        "default": 1,
+        "step": 0.001,
+        "unit": ""
       },
       "flags": {
         "automatable": true

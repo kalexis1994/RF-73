@@ -2,16 +2,33 @@ use serde_json::{Value, json};
 
 pub const PROTOCOL: &str = "rackforge.plugin.web@1";
 /// Gain, pickup law, distance, alignment, hardness, sustain, bell, dynamics.
-pub const PARAMETERS: usize = 8;
-pub const DEFAULTS: [f64; PARAMETERS] = [0.1, 0.0, 1.5, 0.5, 0.5, 0.0, 1.0, 0.5];
+pub const PARAMETERS: usize = 15;
+pub const DEFAULTS: [f64; PARAMETERS] = [
+    0.1, 0.0, 1.5, 0.5, 0.5, 0.0, 1.0, 0.5, 0.0, 0.0, 0.0, 4.0, 0.0, 1.0, 1.0,
+];
 
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub enum Operation {
     Fetch,
     Set(usize, f64),
+    Select(String),
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct Sound {
+    pub id: String,
+    pub name: String,
+    pub detail: String,
 }
 
 pub struct Client {
+    pub sounds: Vec<Sound>,
+    pub selected: String,
+    pub selection_error: Option<String>,
+    selection: Option<String>,
+    refresh: bool,
+    revision: u64,
+    pending_revision: u64,
     pub values: [f64; PARAMETERS],
     pub loaded: bool,
     pub status: String,
@@ -23,6 +40,13 @@ pub struct Client {
 impl Default for Client {
     fn default() -> Self {
         Self {
+            sounds: Vec::new(),
+            selected: String::new(),
+            selection_error: None,
+            selection: None,
+            refresh: false,
+            revision: 0,
+            pending_revision: 0,
             values: DEFAULTS,
             loaded: false,
             status: "Connecting to RackForge...".into(),
@@ -40,14 +64,56 @@ pub fn valid(index: usize, value: f64) -> bool {
             1 => [0.0, 1.0, 2.0].contains(&value),
             2 => (0.5..=3.0).contains(&value),
             3 => (-1.0..=1.5).contains(&value),
+            8 | 9 => (-12.0..=12.0).contains(&value),
+            10 | 13 => [0.0, 1.0].contains(&value),
+            11 => (0.5..=12.0).contains(&value),
+            12 | 14 => (0.0..=1.0).contains(&value),
             4..=7 => (0.0..=1.0).contains(&value),
             _ => false,
         }
 }
 
 impl Client {
+    pub fn context(&mut self, instance: &Value) {
+        self.sounds = instance["sounds"]
+            .as_array()
+            .into_iter()
+            .flatten()
+            .filter_map(|sound| {
+                Some(Sound {
+                    id: sound["id"].as_str()?.to_owned(),
+                    name: sound["name"].as_str()?.to_owned(),
+                    detail: sound["detail"].as_str().unwrap_or("").to_owned(),
+                })
+            })
+            .collect();
+        let selected = instance["selected_sound_id"].as_str().unwrap_or("");
+        if selected != self.selected {
+            self.selected = selected.to_owned();
+            self.revision = self.revision.wrapping_add(1);
+            self.queued.fill(None);
+            self.loaded = false;
+            self.refresh = true;
+        }
+    }
+
+    pub fn selecting(&self) -> bool {
+        self.selection.is_some() || matches!(self.pending, Some((_, Operation::Select(_), _)))
+    }
+
+    pub fn select(&mut self, id: &str) {
+        if !self.loaded || self.selecting() || !self.sounds.iter().any(|sound| sound.id == id) {
+            return;
+        }
+        self.queued.fill(None);
+        self.selection = Some(id.to_owned());
+        self.selection_error = None;
+        self.loaded = false;
+        self.status = "Loading program...".into();
+    }
+
     pub fn queue(&mut self, index: usize, value: f64) {
-        if self.loaded && valid(index, value) {
+        if self.loaded && !self.selecting() && valid(index, value) {
             self.queued[index] = Some(value);
         }
     }
@@ -58,7 +124,14 @@ impl Client {
             .as_ref()
             .is_some_and(|(_, _, sent)| now - sent > 5000.0)
         {
+            if self.selecting() {
+                self.selection_error = Some(
+                    "Program selection timed out. Check the active program before retrying.".into(),
+                );
+            }
             self.pending = None;
+            self.selection = None;
+            self.refresh = true;
             self.queued.fill(None);
             self.loaded = false;
             self.status = "Host timed out. Reconnecting...".into();
@@ -66,7 +139,13 @@ impl Client {
         if self.pending.is_some() {
             return None;
         }
-        let operation = if let Some(index) = self.queued.iter().position(Option::is_some) {
+        let operation = if let Some(id) = self.selection.take() {
+            self.loaded = false;
+            Operation::Select(id)
+        } else if self.refresh {
+            self.refresh = false;
+            Operation::Fetch
+        } else if let Some(index) = self.queued.iter().position(Option::is_some) {
             Operation::Set(index, self.queued[index].take().expect("queued value"))
         } else if poll {
             Operation::Fetch
@@ -75,9 +154,11 @@ impl Client {
         };
         self.serial = self.serial.wrapping_add(1);
         let id = format!("rf-73-ui-{}", self.serial);
-        self.pending = Some((id.clone(), operation, now));
+        self.pending_revision = self.revision;
+        self.pending = Some((id.clone(), operation.clone(), now));
         let (method, params) = match operation {
             Operation::Fetch => ("plugin.parameters", json!({})),
+            Operation::Select(sound) => ("plugin.select_sound", json!({"sound_id": sound})),
             Operation::Set(index, value) => (
                 "plugin.set_parameter",
                 json!({"parameter_index": index, "value": value}),
@@ -95,8 +176,21 @@ impl Client {
         if message["request_id"].as_str() != Some(id) {
             return;
         }
-        let operation = *operation;
+        let operation = operation.clone();
         self.pending = None;
+        if let Operation::Select(_) = operation {
+            if message["ok"].as_bool() != Some(true) {
+                self.selection_error = Some("Could not load the program. Please try again.".into());
+            }
+            self.loaded = false;
+            self.refresh = true;
+            return;
+        }
+        // A host-side program change invalidates any earlier parameter reply.
+        if self.pending_revision != self.revision {
+            self.refresh = true;
+            return;
+        }
         if message["ok"].as_bool() != Some(true) {
             self.queued.fill(None);
             self.loaded = false;
@@ -113,6 +207,7 @@ impl Client {
                     values
                 }),
             Operation::Fetch => snapshot(&message["result"]),
+            Operation::Select(_) => unreachable!("selection handled above"),
         };
         if let Some(values) = updated {
             self.values = values;
@@ -127,8 +222,8 @@ impl Client {
 
     pub fn display(&self, index: usize) -> f64 {
         self.queued[index]
-            .or_else(|| match self.pending.as_ref().map(|(_, op, _)| *op) {
-                Some(Operation::Set(i, value)) if i == index => Some(value),
+            .or_else(|| match self.pending.as_ref().map(|(_, op, _)| op) {
+                Some(Operation::Set(i, value)) if *i == index => Some(*value),
                 _ => None,
             })
             .unwrap_or(self.values[index])
@@ -208,13 +303,139 @@ mod tests {
         assert!(!client.loaded);
     }
     #[test]
+    fn packaged_html_contains_the_required_program_and_parameter_controls() {
+        let html = include_str!("../../../package/web/play.html");
+        for id in [
+            "program-list",
+            "program-select",
+            "program-prev",
+            "program-next",
+            "program-name",
+            "program-detail",
+            "program-error",
+            "status",
+            "gain",
+            "gain-number",
+            "gain-db",
+            "law",
+            "law-value",
+            "preamp",
+            "preamp-value",
+            "vibrato",
+            "vibrato-value",
+            "stage-controls",
+            "suitcase-controls",
+            "tab-instrument",
+            "tab-setup",
+        ] {
+            assert_eq!(
+                html.matches(&format!("id=\"{id}\"")).count(),
+                1,
+                "missing or duplicate {id}"
+            );
+        }
+        for id in [
+            "hardness",
+            "dynamics",
+            "distance",
+            "alignment",
+            "sustain",
+            "bell",
+        ] {
+            for suffix in ["", "-number", "-knob", "-value"] {
+                assert_eq!(html.matches(&format!("id=\"{id}{suffix}\"")).count(), 1);
+            }
+        }
+    }
+    fn catalog(client: &mut Client, selected: &str) {
+        client.context(&json!({"selected_sound_id": selected, "sounds": [
+            {"id":"a", "name":"First"}, {"id":"b", "name":"Second", "detail":"Bright"}
+        ]}));
+    }
+    #[test]
+    fn program_selection_serializes_after_inflight_write_and_discards_old_queued_edits() {
+        let mut client = Client::default();
+        catalog(&mut client, "a");
+        connect(&mut client);
+        client.queue(0, 0.2);
+        let write = client.next(1.0, false).unwrap();
+        client.queue(5, 0.9);
+        client.select("b");
+        client.queue(4, 0.8);
+        assert!(client.next(2.0, true).is_none());
+        client.response(&reply(&write, json!({"value":0.2})));
+        let select = client.next(3.0, false).unwrap();
+        assert_eq!(select["method"], "plugin.select_sound");
+        assert_eq!(select["params"]["sound_id"], "b");
+        assert!(!client.loaded);
+        client.response(&reply(&select, json!({})));
+        assert_eq!(
+            client.next(4.0, false).unwrap()["method"],
+            "plugin.parameters"
+        );
+        assert_eq!(
+            client.selected, "a",
+            "host context owns the selected identity"
+        );
+    }
+    #[test]
+    fn external_program_change_invalidates_an_inflight_parameter_snapshot() {
+        let mut client = Client::default();
+        catalog(&mut client, "a");
+        connect(&mut client);
+        let old = client.next(1.0, true).unwrap();
+        catalog(&mut client, "b");
+        client.response(&reply(
+            &old,
+            json!({"values": DEFAULTS.iter().enumerate()
+            .map(|(i,v)| json!({"index":i,"value":v})).collect::<Vec<_>>()}),
+        ));
+        assert!(!client.loaded);
+        assert_eq!(client.selected, "b");
+        assert_eq!(
+            client.next(2.0, false).unwrap()["method"],
+            "plugin.parameters"
+        );
+    }
+    #[test]
+    fn selection_failure_recovers_without_automatic_retry_and_remains_visible() {
+        let mut client = Client::default();
+        catalog(&mut client, "a");
+        connect(&mut client);
+        client.select("missing");
+        assert!(client.next(1.0, false).is_none());
+        client.select("b");
+        let request = client.next(2.0, false).unwrap();
+        client.response(&json!({"request_id":request["request_id"],"ok":false}));
+        assert!(client.selection_error.is_some());
+        connect(&mut client);
+        assert!(client.loaded);
+        assert_eq!(client.selected, "a");
+        assert!(client.selection_error.is_some());
+        assert!(client.next(3.0, false).is_none());
+    }
+    #[test]
+    fn ambiguous_selection_timeout_reads_state_instead_of_replaying_selection() {
+        let mut client = Client::default();
+        catalog(&mut client, "a");
+        connect(&mut client);
+        client.select("b");
+        let old = client.next(1.0, false).unwrap();
+        let fresh = client.next(6000.0, false).unwrap();
+        assert_eq!(fresh["method"], "plugin.parameters");
+        assert!(client.selection_error.is_some());
+        client.response(&reply(&old, json!({})));
+        assert!(!client.loaded);
+        assert!(client.next(6001.0, false).is_none());
+    }
+    #[test]
     fn snapshots_require_all_parameters_with_valid_domains_and_no_duplicates() {
         assert!(snapshot(&json!({"values":[{"index":1,"value":0.5}]})).is_none());
         assert!(!valid(1, 0.5));
         assert!(valid(1, 2.0));
         assert!(!valid(1, 3.0));
         assert!(!valid(0, f64::NAN));
-        assert!(!valid(8, 0.0));
+        assert!(!valid(15, 0.0));
         assert!(valid(2, 0.5) && !valid(2, 0.4) && valid(3, -1.0) && !valid(3, 1.6));
         assert!(valid(7, 1.0) && !valid(4, 1.5));
         let mut client = Client::default();

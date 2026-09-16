@@ -1,0 +1,44 @@
+{
+  "version": "0.1.6",
+  "archive": "dist/RF-73-0.1.6.rfplugin",
+  "archive_bytes": 256164,
+  "archive_sha256": "38f2fc00f3757956116606b002cf195bd7153327ff72485a02712bab22da9f2d",
+  "audition": {
+    "archive": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\0.1.6-1789562292062550500-12012\\RF-73-0.1.6.rfplugin",
+    "desktop": null,
+    "installed_package": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\RackForgeData\\plugin-store\\packages\\org.rackforge.rhodes\\0.1.6",
+    "log": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\0.1.6-1789562292062550500-12012\\rackforge.log",
+    "pid": null,
+    "plugin_id": "org.rackforge.rhodes",
+    "rackforge_root": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\RackForgeData",
+    "schema_version": 1,
+    "status": "installed",
+    "version": "0.1.6"
+  },
+  "prepare_only": true,
+  "listening_test_performed": false,
+  "validation": {
+    "ui_unit_tests": 8,
+    "wasm_clippy": "passed",
+    "runtime_smoke": "passed",
+    "runtime_peak": 0.159365,
+    "state_bytes": 68,
+    "browser_host": "https://kalexis1994.github.io/rackforge/",
+    "responsive_iframe_widths": [
+      320,
+      390,
+      640,
+      800,
+      1200
+    ],
+    "tabs": "All four panels: no horizontal overflow, scrollY remains zero at all five widths.",
+    "program_selection": "Final package: Calibrated Register selected through host, pickup law 2 and hardness 0.500 confirmed. Earlier same-code build: mobile selector loads Close Original, law 0, alignment 0.25.",
+    "knobs": "Real pointer drag: hardness 0.5 to 0.7; numeric pickup distance 0.8 roundtrip. Final package: ArrowUp hardness 0.500 to 0.501.",
+    "screenshots": [
+      "dist/rf73-0.1.6-desktop.png",
+      "dist/rf73-0.1.6-mobile.png"
+    ],
+    "scope": "Program browser and rotary controls only. No EQ, tremolo or new musical presets in this release.",
+    "reload": "Host initially waited for Core; after a page click, audio_ready completed and Calibrated Register UI reconnected with the final package."
+  }
+}

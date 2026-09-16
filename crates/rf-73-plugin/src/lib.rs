@@ -1,4 +1,5 @@
 //! RackForge adapter. Device access and persistence remain host responsibilities.
+mod electronics;
 mod program;
 mod settings;
 use rackforge_plugin_sdk::{
@@ -12,9 +13,9 @@ use std::collections::BTreeMap;
 
 pub const MAX_FRAMES: u32 = 4096;
 pub const MAX_EVENTS: usize = 256;
-pub const STATE_VERSION: u32 = 4;
-/// Magic, version, seven f64 fields, the law byte and three reserved zero bytes.
-pub const STATE_BYTES: usize = 68;
+pub const STATE_VERSION: u32 = 5;
+/// V4 prefix (68 bytes), followed by seven electronic-control f64 fields.
+pub const STATE_BYTES: usize = 124;
 pub const PARAMETER_GAIN: u32 = 0;
 pub const PARAMETER_LAW: u32 = 1;
 pub const PARAMETER_DISTANCE: u32 = 2;
@@ -28,6 +29,7 @@ pub const PARAMETER_DYNAMICS: u32 = 7;
 pub struct Rf73Processor {
     engine: Option<Box<Engine>>,
     settings: Settings,
+    electronics: electronics::Electronics,
     programs: BTreeMap<String, rackforge_program_api::ProgramDocument>,
     maximum_frames: u32,
     channels: u32,
@@ -38,10 +40,14 @@ impl Rf73Processor {
         if !settings.valid() {
             return false;
         }
+        let voicing_changed = (1..8).any(|i| self.settings.parameter(i) != settings.parameter(i));
+        self.electronics.target(settings);
         self.settings = settings;
         if let Some(engine) = &mut self.engine {
             engine.set_gain(settings.gain);
-            engine.set_profile(settings.profile());
+            if voicing_changed {
+                engine.set_profile(settings.profile());
+            }
         }
         true
     }
@@ -106,6 +112,7 @@ impl Processor for Rf73Processor {
         engine.set_gain(self.settings.gain);
         engine.set_level_compensation(true);
         engine.reset();
+        self.electronics = electronics::Electronics::new(rate, self.settings);
         self.engine = Some(Box::new(engine));
         self.maximum_frames = frames;
         self.channels = outputs;
@@ -124,6 +131,7 @@ impl Processor for Rf73Processor {
     }
 
     fn reset(&mut self) {
+        self.electronics.reset(self.settings);
         if let Some(engine) = &mut self.engine {
             engine.reset();
         }
@@ -163,11 +171,25 @@ impl Processor for Rf73Processor {
             bytes[8 + 8 * i..16 + 8 * i].copy_from_slice(&value.to_le_bytes());
         }
         bytes[64..68].copy_from_slice(&[s.law, 0, 0, 0]);
+        for (i, value) in [
+            s.bass_db,
+            s.treble_db,
+            s.vibrato,
+            s.speed_hz,
+            s.intensity,
+            s.preamp,
+            s.bass_boost,
+        ]
+        .into_iter()
+        .enumerate()
+        {
+            bytes[68 + 8 * i..76 + 8 * i].copy_from_slice(&value.to_le_bytes());
+        }
         Some(STATE_BYTES)
     }
 
     fn load_state(&mut self, state: &[u8]) -> bool {
-        if ![16, 20, STATE_BYTES].contains(&state.len()) || &state[..4] != b"RFRH" {
+        if ![16, 20, 68, STATE_BYTES].contains(&state.len()) || &state[..4] != b"RFRH" {
             return false;
         }
         let version = u32::from_le_bytes(state[4..8].try_into().expect("validated state length"));
@@ -211,7 +233,7 @@ impl Processor for Rf73Processor {
                     ..Settings::default()
                 }
             }
-            (STATE_VERSION, STATE_BYTES) if state[65..68] == [0, 0, 0] => Settings {
+            (4, 68) | (STATE_VERSION, STATE_BYTES) if state[65..68] == [0, 0, 0] => Settings {
                 gain,
                 law: state[64],
                 distance_mm: field(1),
@@ -220,9 +242,25 @@ impl Processor for Rf73Processor {
                 sustain: field(4),
                 bell: field(5),
                 dynamics: field(6),
+                ..Settings::default()
             },
             _ => return false,
         };
+        let mut settings = settings;
+        if version == STATE_VERSION {
+            for index in 8..15 {
+                let offset = 68 + (index as usize - 8) * 8;
+                let value = f64::from_le_bytes(
+                    state[offset..offset + 8]
+                        .try_into()
+                        .expect("validated state"),
+                );
+                let Some(updated) = settings.with_parameter(index, value) else {
+                    return false;
+                };
+                settings = updated;
+            }
+        }
         self.apply_settings(settings)
     }
 
@@ -336,8 +374,10 @@ impl Processor for Rf73Processor {
             }
             let sample = self.engine.as_mut().expect("prepared engine").next_sample();
             let offset = frame as usize * outputs as usize;
-            for channel in 0..outputs as usize {
-                output[offset + channel] = sample;
+            let [left, right] = self.electronics.process(sample);
+            output[offset] = left;
+            if outputs == 2 {
+                output[offset + 1] = right;
             }
         }
     }
@@ -371,6 +411,6 @@ fn valid_midi1(event: &MidiEvent) -> bool {
 
 export_processor!(Rf73Processor,
     max_frames = 4096, max_input_channels = 0, max_output_channels = 2,
-    max_midi_events = 256, max_parameter_events = 256, max_transfer_bytes = 4096,
+    max_midi_events = 256, max_parameter_events = 256, max_transfer_bytes = 16384,
     midi2 = { max_events = 256, families = MIDI_FAMILY_NOTE | MIDI_FAMILY_CONTROL }
 );
