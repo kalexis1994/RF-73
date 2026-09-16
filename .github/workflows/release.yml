@@ -82,6 +82,8 @@ jobs:
         run: |
           cd dist
           sha256sum "RF-73-${{ steps.version.outputs.version }}.rfplugin" > "RF-73-${{ steps.version.outputs.version }}.rfplugin.sha256"
+          cp "RF-73-${{ steps.version.outputs.version }}.rfplugin" RF-73.rfplugin
+          sha256sum RF-73.rfplugin > RF-73.rfplugin.sha256
       - name: Preserve the validated release artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
@@ -89,6 +91,8 @@ jobs:
           path: |
             RF-73/dist/RF-73-${{ steps.version.outputs.version }}.rfplugin
             RF-73/dist/RF-73-${{ steps.version.outputs.version }}.rfplugin.sha256
+            RF-73/dist/RF-73.rfplugin
+            RF-73/dist/RF-73.rfplugin.sha256
           if-no-files-found: error
           compression-level: 0
       - name: Publish the GitHub release
@@ -101,4 +105,6 @@ jobs:
             --title "RF-73 ${{ steps.version.outputs.version }}" \
             --generate-notes \
             "dist/RF-73-${{ steps.version.outputs.version }}.rfplugin" \
-            "dist/RF-73-${{ steps.version.outputs.version }}.rfplugin.sha256"
+            "dist/RF-73-${{ steps.version.outputs.version }}.rfplugin.sha256" \
+            dist/RF-73.rfplugin \
+            dist/RF-73.rfplugin.sha256

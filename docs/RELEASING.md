@@ -45,6 +45,12 @@ SHA-256 checksum, preserves both files as a workflow artifact and creates the
 GitHub release only after every previous step succeeds. The workflow never
 publishes from a branch or from a tag that disagrees with the source version.
 
+Each release carries both the versioned archive and the stable
+`RF-73.rfplugin` asset. RackForge pins the stable asset URL together with the
+declared plugin version and SHA-256, so future pin updates do not depend on a
+version embedded in the asset name.
+
 Source reference recordings, fit renders and audition libraries are excluded
 from the package. A release contains the DSP component, metadata, factory
-programs, static Web surfaces and validated branding assets only.
+programs, static Web surfaces, validated branding assets, the license and the
+distribution notice only.
