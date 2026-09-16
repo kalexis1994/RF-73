@@ -1,0 +1,74 @@
+{
+  "git_base": "5baa328ada19a5ef9c2a63b49448e29f1fb326f5",
+  "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+  "source_hashes": {
+    "tools/rf-73-lab/examples/continuous_pickup_fit.rs": {
+      "sha256_bytes": "df402a96a36e0b7395d72f7c9be806899d036bc681c859072187ebf4408c4227",
+      "sha256_lf": "df402a96a36e0b7395d72f7c9be806899d036bc681c859072187ebf4408c4227"
+    },
+    "tools/rf-73-lab/examples/matts_fit.rs": {
+      "sha256_bytes": "6434348cfa024f2f7354cc0c89567680e882c3b242c94baa4c8ec787641f34ed",
+      "sha256_lf": "6434348cfa024f2f7354cc0c89567680e882c3b242c94baa4c8ec787641f34ed"
+    },
+    "tools/matts_fit_gate.py": {
+      "sha256_bytes": "aa63a1ca2c1ee3ecb9b986808ed329177a4d60b61820201a1cc33cb6b1a024c8",
+      "sha256_lf": "aa63a1ca2c1ee3ecb9b986808ed329177a4d60b61820201a1cc33cb6b1a024c8"
+    },
+    "references/matts-reference-runner/Cargo.toml": {
+      "sha256_bytes": "1d6937154531be667cd21c3f9c63ebe966e62600e9ce13459aaaddf95152984a",
+      "sha256_lf": "4b0831a463f854c2fb0c3872fe08293bf27676b5d6d6a84c203bac7028342b86"
+    },
+    "references/matts-reference-runner/Cargo.lock": {
+      "sha256_bytes": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73",
+      "sha256_lf": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73"
+    },
+    "references/matts-fender-rhodes.inventory.json": {
+      "sha256_bytes": "1f9d9294cb16d3d54cb9172eb431f5b0ef7c2470a9485594a44bc0e7dea7e94b",
+      "sha256_lf": "62f712e45c63202198cfbe005a71edde9566e56444b53216e8d8018e0963c761"
+    }
+  },
+  "receipt_hashes": {
+    "decision.json": {
+      "sha256_bytes": "771047815856894924850a7dafa38cbaf1bb6b431ff56c49698dc69d652c4ee2",
+      "sha256_lf": "d0ac2f17bcff97b85b9347aa874396594b4ea9d71a1be9fbb6971d3fb0f169e3"
+    },
+    "held_out-baseline.json": {
+      "sha256_bytes": "56ea67fd305bc5f64fcb8b44820a58aaf24632e6fd55ab3f1a132b6520d4ed11",
+      "sha256_lf": "56ea67fd305bc5f64fcb8b44820a58aaf24632e6fd55ab3f1a132b6520d4ed11"
+    },
+    "held_out-candidate.json": {
+      "sha256_bytes": "4dac878b7dbd60440cb21997bb669c2fe566e42b9c5168d9206c99176a0cf46a",
+      "sha256_lf": "4dac878b7dbd60440cb21997bb669c2fe566e42b9c5168d9206c99176a0cf46a"
+    },
+    "protocol.json": {
+      "sha256_bytes": "4c6edcf7a28c5da3c0b3d3fa5ea88f80e12de0a338edb70fc9ff8d8cf3654aa2",
+      "sha256_lf": "4c6edcf7a28c5da3c0b3d3fa5ea88f80e12de0a338edb70fc9ff8d8cf3654aa2"
+    },
+    "rendering-qualification.json": {
+      "sha256_bytes": "18a4dc534c866e483e143bb345a14a819cffc22152754a520e3ab479177a78c2",
+      "sha256_lf": "18a4dc534c866e483e143bb345a14a819cffc22152754a520e3ab479177a78c2"
+    },
+    "search.json": {
+      "sha256_bytes": "60b8cf49dbc20588354c22cc354a36126a48560bd404bc65f633c9509fd461bb",
+      "sha256_lf": "60b8cf49dbc20588354c22cc354a36126a48560bd404bc65f633c9509fd461bb"
+    },
+    "training-baseline.json": {
+      "sha256_bytes": "54d47b602982a8e4fc157a059893bf583ab9b5231465df253f8d367d83610bbf",
+      "sha256_lf": "54d47b602982a8e4fc157a059893bf583ab9b5231465df253f8d367d83610bbf"
+    },
+    "training-candidate.json": {
+      "sha256_bytes": "3028d4154ce776d3dfcdd22b4ad0be5be584291fe8bddd2606c8434124c04304",
+      "sha256_lf": "3028d4154ce776d3dfcdd22b4ad0be5be584291fe8bddd2606c8434124c04304"
+    }
+  },
+  "repeat_baseline_cases": 24,
+  "max_repeated_baseline_mse_difference": 0.0,
+  "tests": {
+    "rust": 20,
+    "python": 6,
+    "release_clippy_warnings_denied": "passed"
+  },
+  "plugin_changed": false,
+  "audition_run": false,
+  "scope": "Winner rejected by frozen held-out per-note gate. Final source adds direct-render verification and refactors the unchanged rendering loop after the fit; no retuning after held-out evaluation."
+}

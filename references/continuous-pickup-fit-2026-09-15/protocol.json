@@ -1,0 +1,61 @@
+{
+  "bounds": [
+    [
+      0.0005,
+      0.003
+    ],
+    [
+      0.0001,
+      0.003
+    ],
+    [
+      0.0002,
+      0.003
+    ],
+    [
+      0.2,
+      1.6
+    ],
+    [
+      0.5,
+      3.0
+    ]
+  ],
+  "coordinate_order": [
+    "gap_m",
+    "offset_m",
+    "radius_m",
+    "maximum_hammer_speed_m_s",
+    "velocity_exponent"
+  ],
+  "held_out_notes": [
+    40,
+    47,
+    62,
+    69,
+    79,
+    88
+  ],
+  "numerical_gate": "2001 off-grid points vs 256-node boundary; table error/peak <1e-4 and 128-vs-256 error/peak <1e-6",
+  "objective": "Same H2-H4 attack96/body mean squared balance error and missing-data policy as matts_fit",
+  "promotion_rule": "Same 10% aggregate improvement, per-note regression <=10%, and envelope gates as matts_fit_gate; full harmonic case coverage required",
+  "scope": "Offline research only; no physical strike identification or realtime qualification",
+  "selection": "Three fixed seeds, then three coordinate rounds, log steps 0.4/0.2/0.1; held-out not loaded until winner frozen",
+  "table": {
+    "boundary_nodes": 128,
+    "cells": 8192,
+    "domain_m": [
+      -0.01,
+      0.01
+    ],
+    "interpolation": "linear; out-of-range is an error"
+  },
+  "training_notes": [
+    43,
+    50,
+    55,
+    59,
+    64,
+    72
+  ]
+}

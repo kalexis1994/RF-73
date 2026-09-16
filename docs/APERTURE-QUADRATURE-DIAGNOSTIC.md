@@ -92,6 +92,10 @@ The runner reuses the existing build directory and writes no WAV matrix.
 
 ## Decision and next experiment
 
+Completed follow-up: [continuous-disk calibration](CONTINUOUS-PICKUP-CALIBRATION.md)
+implements and numerically checks the offline table, then fits geometry and
+velocity response. It improves aggregate error but fails per-note validation.
+
 Keep the existing plugin unchanged. Treat its aperture path as a fitted
 discrete surrogate, not a converged disk integral. The next fit should compare
 a numerically checked continuous-disk pickup and alternate retained transfer

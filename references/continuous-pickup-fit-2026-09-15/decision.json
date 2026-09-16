@@ -1,0 +1,236 @@
+{
+  "promote": false,
+  "rejection_reasons": [
+    "held_out_note_47_regression_above_10_percent"
+  ],
+  "harmonic_mse_reductions": {
+    "training": 0.33427373758571466,
+    "held_out": 0.31449978753262087
+  },
+  "held_out_notes": [
+    {
+      "note": 40,
+      "scored_cases": 4,
+      "baseline_mse_db2": 92.83340165866919,
+      "candidate_mse_db2": 45.63929791727447
+    },
+    {
+      "note": 47,
+      "scored_cases": 4,
+      "baseline_mse_db2": 98.75842375867781,
+      "candidate_mse_db2": 148.11234172079992
+    },
+    {
+      "note": 62,
+      "scored_cases": 4,
+      "baseline_mse_db2": 85.24363663279122,
+      "candidate_mse_db2": 58.86152091280495
+    },
+    {
+      "note": 69,
+      "scored_cases": 4,
+      "baseline_mse_db2": 203.67797552276986,
+      "candidate_mse_db2": 176.12890268004932
+    },
+    {
+      "note": 79,
+      "scored_cases": 4,
+      "baseline_mse_db2": 243.76993961177638,
+      "candidate_mse_db2": 194.67806733510278
+    },
+    {
+      "note": 88,
+      "scored_cases": 4,
+      "baseline_mse_db2": 442.6187009659185,
+      "candidate_mse_db2": 176.49149193483316
+    }
+  ],
+  "envelope_error_increase_db_s": 0.02721748579995833,
+  "qualified_envelope_comparisons": [
+    {
+      "note": 40,
+      "layer": "p",
+      "reference_db_s": -1.6015142306891716,
+      "baseline_db_s": -1.7436258561973377,
+      "candidate_db_s": -1.667429362848227,
+      "baseline_absolute_error": 0.14211162550816603,
+      "candidate_absolute_error": 0.06591513215905542
+    },
+    {
+      "note": 47,
+      "layer": "p",
+      "reference_db_s": -1.6290381945228134,
+      "baseline_db_s": -2.2080898511594045,
+      "candidate_db_s": -2.1592066755030244,
+      "baseline_absolute_error": 0.5790516566365911,
+      "candidate_absolute_error": 0.530168480980211
+    },
+    {
+      "note": 62,
+      "layer": "p",
+      "reference_db_s": -4.076361733239697,
+      "baseline_db_s": -3.459359468916896,
+      "candidate_db_s": -3.448397119903271,
+      "baseline_absolute_error": 0.6170022643228008,
+      "candidate_absolute_error": 0.6279646133364261
+    },
+    {
+      "note": 62,
+      "layer": "mp",
+      "reference_db_s": -4.2656459454332545,
+      "baseline_db_s": -3.427282330464508,
+      "candidate_db_s": -3.3759331585546173,
+      "baseline_absolute_error": 0.8383636149687463,
+      "candidate_absolute_error": 0.8897127868786372
+    },
+    {
+      "note": 62,
+      "layer": "mf",
+      "reference_db_s": -4.3846608666952065,
+      "baseline_db_s": -3.332148139805867,
+      "candidate_db_s": -3.2200022549087697,
+      "baseline_absolute_error": 1.0525127268893395,
+      "candidate_absolute_error": 1.1646586117864368
+    },
+    {
+      "note": 62,
+      "layer": "f",
+      "reference_db_s": -4.634754756874462,
+      "baseline_db_s": -3.0956778951875763,
+      "candidate_db_s": -2.962263248699959,
+      "baseline_absolute_error": 1.5390768616868855,
+      "candidate_absolute_error": 1.6724915081745029
+    },
+    {
+      "note": 69,
+      "layer": "p",
+      "reference_db_s": -5.025113178363988,
+      "baseline_db_s": -4.239842933177682,
+      "candidate_db_s": -4.235120727050507,
+      "baseline_absolute_error": 0.7852702451863056,
+      "candidate_absolute_error": 0.7899924513134806
+    },
+    {
+      "note": 69,
+      "layer": "mp",
+      "reference_db_s": -5.106694406662533,
+      "baseline_db_s": -4.227503184107361,
+      "candidate_db_s": -4.2040578896781975,
+      "baseline_absolute_error": 0.8791912225551721,
+      "candidate_absolute_error": 0.9026365169843356
+    },
+    {
+      "note": 69,
+      "layer": "mf",
+      "reference_db_s": -5.399528855051793,
+      "baseline_db_s": -4.195995284122947,
+      "candidate_db_s": -4.136023751012088,
+      "baseline_absolute_error": 1.2035335709288457,
+      "candidate_absolute_error": 1.2635051040397052
+    },
+    {
+      "note": 79,
+      "layer": "p",
+      "reference_db_s": -6.877357832015768,
+      "baseline_db_s": -5.662520896151137,
+      "candidate_db_s": -5.661277455121492,
+      "baseline_absolute_error": 1.2148369358646312,
+      "candidate_absolute_error": 1.2160803768942765
+    }
+  ],
+  "newly_failed_envelopes": [],
+  "excluded_envelope_cases": [
+    {
+      "note": 40,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 40,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 40,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 47,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 47,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 47,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 69,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 79,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 79,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 79,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 88,
+      "layer": "p",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 88,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 88,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 88,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    }
+  ],
+  "receipt_hashes": {
+    "held_out-baseline.json": "56ea67fd305bc5f64fcb8b44820a58aaf24632e6fd55ab3f1a132b6520d4ed11",
+    "held_out-candidate.json": "4dac878b7dbd60440cb21997bb669c2fe566e42b9c5168d9206c99176a0cf46a",
+    "protocol.json": "4c6edcf7a28c5da3c0b3d3fa5ea88f80e12de0a338edb70fc9ff8d8cf3654aa2",
+    "search.json": "60b8cf49dbc20588354c22cc354a36126a48560bd404bc65f633c9509fd461bb",
+    "training-baseline.json": "54d47b602982a8e4fc157a059893bf583ab9b5231465df253f8d367d83610bbf",
+    "training-candidate.json": "3028d4154ce776d3dfcdd22b4ad0be5be584291fe8bddd2606c8434124c04304"
+  }
+}

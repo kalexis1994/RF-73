@@ -1,0 +1,3332 @@
+{
+  "candidate_parameters": [
+    0.0008187307530779819,
+    0.0007500000000000002,
+    0.0006703200460356392,
+    1.4,
+    1.4
+  ],
+  "cases": [
+    {
+      "balances": [
+        {
+          "candidate_db": -13.861851216901748,
+          "error_db": 1.2008988994357708,
+          "harmonic": 2,
+          "reference_db": -15.062750116337519,
+          "window": 1
+        },
+        {
+          "candidate_db": -21.593185763766805,
+          "error_db": -3.134265653101018,
+          "harmonic": 3,
+          "reference_db": -18.458920110665787,
+          "window": 1
+        },
+        {
+          "candidate_db": -27.693101745971767,
+          "error_db": -6.3180175923110085,
+          "harmonic": 4,
+          "reference_db": -21.375084153660758,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.156372163191293,
+          "error_db": 0.44233180361415947,
+          "harmonic": 2,
+          "reference_db": -14.598703966805452,
+          "window": 2
+        },
+        {
+          "candidate_db": -23.5516802376735,
+          "error_db": -2.6198494459610586,
+          "harmonic": 3,
+          "reference_db": -20.931830791712443,
+          "window": 2
+        },
+        {
+          "candidate_db": -29.91926980005031,
+          "error_db": -5.797716089707201,
+          "harmonic": 4,
+          "reference_db": -24.121553710343107,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 82.4068892282175,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.2007423452119485,
+          "amplitude_residual_rms_db": 0.02375235641531412,
+          "carrier_offset_hz": -5.065239321186686e-6,
+          "early_decay_per_second": 0.1951871424112954,
+          "fitted_drop_db": 6.025970959018,
+          "late_decay_per_second": 0.20523437916957502,
+          "phase_residual_rms_radians": 3.3193688862507145e-6
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 15.309317674744497,
+      "harmonic_terms": 6,
+      "layer": "p",
+      "model_velocity": 0.25,
+      "note": 40,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.501,
+          "frequency_hz": 82.33073260302506,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.501,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.18438113969013573,
+          "amplitude_residual_rms_db": 0.01303027794649974,
+          "carrier_offset_hz": -0.040951052948708364,
+          "early_decay_per_second": 0.1835194362552855,
+          "fitted_drop_db": 5.534833181261777,
+          "late_decay_per_second": 0.18344051371807002,
+          "phase_residual_rms_radians": 0.04863572067043966
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 82.33073260302506,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          65.40639132514967,
+          103.8261743949863
+        ],
+        "temporal_span_cents": 1.2519451295019304,
+        "windows": [
+          {
+            "amplitude_dbfs": -33.79374554974281,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 82.36325198460676,
+            "margin_above_band_background_db": 54.31818189103713,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -34.61168016200916,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 82.32524448680608,
+            "margin_above_band_background_db": 54.20870388419926,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -35.43853147220889,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 82.3037123760979,
+            "margin_above_band_background_db": 54.01207778552126,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -16.70475895793586,
+          "error_db": -12.99646872576875,
+          "harmonic": 2,
+          "reference_db": -3.7082902321671085,
+          "window": 1
+        },
+        {
+          "candidate_db": 0.5737792683235199,
+          "error_db": -1.6171065247850578,
+          "harmonic": 3,
+          "reference_db": 2.1908857931085777,
+          "window": 1
+        },
+        {
+          "candidate_db": -7.093505034792393,
+          "error_db": -0.07540136875217485,
+          "harmonic": 4,
+          "reference_db": -7.0181036660402185,
+          "window": 1
+        },
+        {
+          "candidate_db": -27.822889885250916,
+          "error_db": -20.91577819508624,
+          "harmonic": 2,
+          "reference_db": -6.907111690164676,
+          "window": 2
+        },
+        {
+          "candidate_db": -1.6160941219414937,
+          "error_db": -2.0677640056605355,
+          "harmonic": 3,
+          "reference_db": 0.4516698837190418,
+          "window": 2
+        },
+        {
+          "candidate_db": -8.45661421429783,
+          "error_db": -1.8881228492886493,
+          "harmonic": 4,
+          "reference_db": -6.56849136500918,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 82.4068892282175,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.10132508623458782,
+          "amplitude_residual_rms_db": 0.27635573212826076,
+          "carrier_offset_hz": 0.00001379887474173501,
+          "early_decay_per_second": 0.036639330350115296,
+          "fitted_drop_db": 3.041620473373238,
+          "late_decay_per_second": 0.15390156191017862,
+          "phase_residual_rms_radians": 0.000035114921415728354
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 102.80655860032557,
+      "harmonic_terms": 6,
+      "layer": "mp",
+      "model_velocity": 0.45,
+      "note": 40,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 82.50556916405165,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.08326955309388478,
+          "amplitude_residual_rms_db": 0.3788037985069689,
+          "carrier_offset_hz": -0.08753816739019188,
+          "early_decay_per_second": -0.005687729685359314,
+          "fitted_drop_db": 2.4996216328167637,
+          "late_decay_per_second": 0.1550766641697865,
+          "phase_residual_rms_radians": 0.18519954104352157
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "insufficient_decay",
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 82.50556916405165,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          65.40639132514967,
+          103.8261743949863
+        ],
+        "temporal_span_cents": 0.883914530251638,
+        "windows": [
+          {
+            "amplitude_dbfs": -32.62898591297631,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 82.5258564937716,
+            "margin_above_band_background_db": 49.94246876874353,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -32.115138457737146,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 82.50712429728769,
+            "margin_above_band_background_db": 53.97549745461811,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -31.928881505433473,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 82.48373209993271,
+            "margin_above_band_background_db": 54.76442437466482,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -1.3232624237297586,
+          "error_db": -5.118615767857982,
+          "harmonic": 2,
+          "reference_db": 3.7953533441282232,
+          "window": 1
+        },
+        {
+          "candidate_db": 15.841743120837286,
+          "error_db": 9.170354120979162,
+          "harmonic": 3,
+          "reference_db": 6.671388999858124,
+          "window": 1
+        },
+        {
+          "candidate_db": 4.535244706606157,
+          "error_db": 23.954820274852743,
+          "harmonic": 4,
+          "reference_db": -19.419575568246586,
+          "window": 1
+        },
+        {
+          "candidate_db": -0.0642030448271953,
+          "error_db": -1.511547607591936,
+          "harmonic": 2,
+          "reference_db": 1.4473445627647408,
+          "window": 2
+        },
+        {
+          "candidate_db": 12.97815591906732,
+          "error_db": 7.747952898010606,
+          "harmonic": 3,
+          "reference_db": 5.230203021056713,
+          "window": 2
+        },
+        {
+          "candidate_db": -6.920912233653631,
+          "error_db": 2.287523965107418,
+          "harmonic": 4,
+          "reference_db": -9.20843619876105,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 82.4068892282175,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": -0.20645924761829376,
+          "amplitude_residual_rms_db": 0.8167252944974595,
+          "carrier_offset_hz": 0.00005377781438831758,
+          "early_decay_per_second": -0.39240071207094684,
+          "fitted_drop_db": -6.197583419955446,
+          "late_decay_per_second": -0.04132718847160639,
+          "phase_residual_rms_radians": 0.00006146068357000672
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "insufficient_decay",
+          "non_exponential_amplitude",
+          "inconsistent_slopes"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 125.27955877572809,
+      "harmonic_terms": 6,
+      "layer": "mf",
+      "model_velocity": 0.65,
+      "note": 40,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 82.51146415046195,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": -0.020938360901258782,
+          "amplitude_residual_rms_db": 0.5663147797535127,
+          "carrier_offset_hz": -0.04659733777410826,
+          "early_decay_per_second": -0.15005453730175924,
+          "fitted_drop_db": -0.6285368171185105,
+          "late_decay_per_second": 0.09319494077904449,
+          "phase_residual_rms_radians": 0.130155470685264
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "insufficient_decay",
+          "non_exponential_amplitude",
+          "inconsistent_slopes",
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 82.51146415046195,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          65.40639132514967,
+          103.8261743949863
+        ],
+        "temporal_span_cents": 0.34385535122652855,
+        "windows": [
+          {
+            "amplitude_dbfs": -34.710914845740994,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 82.52155403554247,
+            "margin_above_band_background_db": 49.65650614794473,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -33.44857716971886,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 82.50767401583074,
+            "margin_above_band_background_db": 54.25123808855582,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -32.58001390801444,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 82.50516534436632,
+            "margin_above_band_background_db": 54.25883628612136,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -2.1734098102326698,
+          "error_db": -14.694727257148166,
+          "harmonic": 2,
+          "reference_db": 12.521317446915496,
+          "window": 1
+        },
+        {
+          "candidate_db": 12.686042361483103,
+          "error_db": 0.5973097870493085,
+          "harmonic": 3,
+          "reference_db": 12.088732574433795,
+          "window": 1
+        },
+        {
+          "candidate_db": -12.76006411053892,
+          "error_db": -21.010731391649003,
+          "harmonic": 4,
+          "reference_db": 8.250667281110083,
+          "window": 1
+        },
+        {
+          "candidate_db": 6.74420149393687,
+          "error_db": -3.7329681511801276,
+          "harmonic": 2,
+          "reference_db": 10.477169645116998,
+          "window": 2
+        },
+        {
+          "candidate_db": 17.61432704905468,
+          "error_db": 6.7735185321050615,
+          "harmonic": 3,
+          "reference_db": 10.840808516949618,
+          "window": 2
+        },
+        {
+          "candidate_db": 9.944616093956917,
+          "error_db": 7.076072584779823,
+          "harmonic": 4,
+          "reference_db": 2.868543509177094,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 82.4068892282175,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": -0.8959509252896598,
+          "amplitude_residual_rms_db": 3.807974452679117,
+          "carrier_offset_hz": 0.05548189590469315,
+          "early_decay_per_second": -1.6576653099527983,
+          "fitted_drop_db": -26.89504424589855,
+          "late_decay_per_second": -0.3882781419619657,
+          "phase_residual_rms_radians": 0.7166002545996
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "insufficient_decay",
+          "non_exponential_amplitude",
+          "inconsistent_slopes",
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 127.9381715838786,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 40,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.504,
+          "frequency_hz": 82.49670680373627,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.504,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": -0.22108205827162994,
+          "amplitude_residual_rms_db": 0.8051040522263295,
+          "carrier_offset_hz": -0.014305062861002487,
+          "early_decay_per_second": -0.40183373134777645,
+          "fitted_drop_db": -6.636537305062183,
+          "late_decay_per_second": -0.05662034407737488,
+          "phase_residual_rms_radians": 0.04206866126832447
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "insufficient_decay",
+          "non_exponential_amplitude",
+          "inconsistent_slopes"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 82.49670680373627,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          65.40639132514967,
+          103.8261743949863
+        ],
+        "temporal_span_cents": 1.0753279505693636,
+        "windows": [
+          {
+            "amplitude_dbfs": -40.1378304863751,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 82.52992123319994,
+            "margin_above_band_background_db": 46.67770652248813,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -37.55883184337197,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 82.48153420069282,
+            "margin_above_band_background_db": 53.01053824658434,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -35.52247885562121,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 82.47867502820675,
+            "margin_above_band_background_db": 54.29711950665854,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -15.53855177943666,
+          "error_db": 2.2992689316535717,
+          "harmonic": 2,
+          "reference_db": -17.83782071109023,
+          "window": 1
+        },
+        {
+          "candidate_db": -29.5017804246353,
+          "error_db": -17.975215567407616,
+          "harmonic": 3,
+          "reference_db": -11.526564857227683,
+          "window": 1
+        },
+        {
+          "candidate_db": -37.029692238819734,
+          "error_db": -15.974103774650807,
+          "harmonic": 4,
+          "reference_db": -21.055588464168927,
+          "window": 1
+        },
+        {
+          "candidate_db": -16.17807404635488,
+          "error_db": 3.3348401881067247,
+          "harmonic": 2,
+          "reference_db": -19.512914234461604,
+          "window": 2
+        },
+        {
+          "candidate_db": -31.64866560157413,
+          "error_db": -18.33507958569217,
+          "harmonic": 3,
+          "reference_db": -13.31358601588196,
+          "window": 2
+        },
+        {
+          "candidate_db": -39.70005736073265,
+          "error_db": -16.807650008444817,
+          "harmonic": 4,
+          "reference_db": -22.892407352287833,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 123.47082531403103,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.25421573876355436,
+          "amplitude_residual_rms_db": 0.011046761179246928,
+          "carrier_offset_hz": -6.3070053404463536e-6,
+          "early_decay_per_second": 0.25162360889675967,
+          "fitted_drop_db": 7.631158525606904,
+          "late_decay_per_second": 0.25628075560503366,
+          "phase_residual_rms_radians": 1.0896046705105065e-6
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 202.22673416973439,
+      "harmonic_terms": 6,
+      "layer": "p",
+      "model_velocity": 0.25,
+      "note": 47,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.502,
+          "frequency_hz": 123.65907205008358,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.502,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.18754995313130826,
+          "amplitude_residual_rms_db": 0.034171224267298836,
+          "carrier_offset_hz": -0.027400944680990916,
+          "early_decay_per_second": 0.17915332511126125,
+          "fitted_drop_db": 5.629956000270844,
+          "late_decay_per_second": 0.19267107324587984,
+          "phase_residual_rms_radians": 0.04547346543280638
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 123.65907205008358,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          97.99885899543733,
+          155.56349186104046
+        ],
+        "temporal_span_cents": 0.40176210682782254,
+        "windows": [
+          {
+            "amplitude_dbfs": -32.51376439016063,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 123.67465018321198,
+            "margin_above_band_background_db": 66.52323801686383,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -33.20989764401035,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 123.65661494719409,
+            "margin_above_band_background_db": 66.75717546217865,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -33.983392890927625,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 123.64595272139492,
+            "margin_above_band_background_db": 66.99167559057574,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -16.35887336711228,
+          "error_db": -7.85807804126722,
+          "harmonic": 2,
+          "reference_db": -8.500795325845061,
+          "window": 1
+        },
+        {
+          "candidate_db": -8.66478470558814,
+          "error_db": -3.4746980315493374,
+          "harmonic": 3,
+          "reference_db": -5.1900866740388025,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.27260054235176,
+          "error_db": 2.5771474755641464,
+          "harmonic": 4,
+          "reference_db": -16.849748017915907,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.703111989566501,
+          "error_db": -4.3158019663543215,
+          "harmonic": 2,
+          "reference_db": -10.38731002321218,
+          "window": 2
+        },
+        {
+          "candidate_db": -11.331509284966678,
+          "error_db": -4.300371269429085,
+          "harmonic": 3,
+          "reference_db": -7.031138015537593,
+          "window": 2
+        },
+        {
+          "candidate_db": -16.820712774087582,
+          "error_db": 0.9497136389515575,
+          "harmonic": 4,
+          "reference_db": -17.77042641303914,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 123.47082531403103,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.22033256992702727,
+          "amplitude_residual_rms_db": 0.1153754827306931,
+          "carrier_offset_hz": -9.897967185620809e-7,
+          "early_decay_per_second": 0.19297495427700992,
+          "fitted_drop_db": 6.6140388382143955,
+          "late_decay_per_second": 0.24108537406014746,
+          "phase_residual_rms_radians": 0.000013607917292719208
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 19.747650281272524,
+      "harmonic_terms": 6,
+      "layer": "mp",
+      "model_velocity": 0.45,
+      "note": 47,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.501,
+          "frequency_hz": 123.68380681547536,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.501,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.16850301215175015,
+          "amplitude_residual_rms_db": 0.11323925330867604,
+          "carrier_offset_hz": -0.031924420716578396,
+          "early_decay_per_second": 0.14135265204100883,
+          "fitted_drop_db": 5.058196648352524,
+          "late_decay_per_second": 0.18831317667794223,
+          "phase_residual_rms_radians": 0.06409135156921482
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 123.68380681547536,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          97.99885899543733,
+          155.56349186104046
+        ],
+        "temporal_span_cents": 0.3119822239698488,
+        "windows": [
+          {
+            "amplitude_dbfs": -31.39014464356359,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 123.69495799787774,
+            "margin_above_band_background_db": 67.0388383969134,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -31.77368582468564,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 123.68379426733605,
+            "margin_above_band_background_db": 66.91020898950103,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -32.336470292770336,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 123.67266918536868,
+            "margin_above_band_background_db": 67.05504524854189,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -6.2760178344912205,
+          "error_db": -3.765630145473068,
+          "harmonic": 2,
+          "reference_db": -2.5103876890181525,
+          "window": 1
+        },
+        {
+          "candidate_db": 5.524283075724057,
+          "error_db": 6.423903361420763,
+          "harmonic": 3,
+          "reference_db": -0.8996202856967059,
+          "window": 1
+        },
+        {
+          "candidate_db": -5.814515453663823,
+          "error_db": 13.887661420622152,
+          "harmonic": 4,
+          "reference_db": -19.702176874285975,
+          "window": 1
+        },
+        {
+          "candidate_db": -10.934130328471504,
+          "error_db": -6.5137919736025935,
+          "harmonic": 2,
+          "reference_db": -4.42033835486891,
+          "window": 2
+        },
+        {
+          "candidate_db": 2.8393816660608806,
+          "error_db": 5.429003718220763,
+          "harmonic": 3,
+          "reference_db": -2.589622052159882,
+          "window": 2
+        },
+        {
+          "candidate_db": -6.103678032552182,
+          "error_db": 11.327376834085563,
+          "harmonic": 4,
+          "reference_db": -17.431054866637744,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 123.47082531403103,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.08822471809376042,
+          "amplitude_residual_rms_db": 0.5049766632529495,
+          "carrier_offset_hz": 0.00001830977499579483,
+          "early_decay_per_second": -0.030933418131421014,
+          "fitted_drop_db": 2.64836792924399,
+          "late_decay_per_second": 0.18230443326298892,
+          "phase_residual_rms_radians": 0.00004812945162205463
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "insufficient_decay",
+          "non_exponential_amplitude",
+          "inconsistent_slopes"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 74.75444628540134,
+      "harmonic_terms": 6,
+      "layer": "mf",
+      "model_velocity": 0.65,
+      "note": 47,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 123.68950661432922,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.1370354895971884,
+          "amplitude_residual_rms_db": 0.21972511193849056,
+          "carrier_offset_hz": -0.021023105810299043,
+          "early_decay_per_second": 0.08472129024892186,
+          "fitted_drop_db": 4.113590880865725,
+          "late_decay_per_second": 0.17669116519179787,
+          "phase_residual_rms_radians": 0.06355039648632828
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 123.68950661432922,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          97.99885899543733,
+          155.56349186104046
+        ],
+        "temporal_span_cents": 0.03528975209429247,
+        "windows": [
+          {
+            "amplitude_dbfs": -31.303450367389914,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 123.68866395707619,
+            "margin_above_band_background_db": 66.68695254438998,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -31.263860566549223,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 123.69118527230704,
+            "margin_above_band_background_db": 66.72617115904536,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -31.516930950336498,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 123.68867063069065,
+            "margin_above_band_background_db": 67.04174107484917,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -4.636968457369399,
+          "error_db": -10.529176598206927,
+          "harmonic": 2,
+          "reference_db": 5.892208140837528,
+          "window": 1
+        },
+        {
+          "candidate_db": 17.662588998410662,
+          "error_db": 12.657866420781815,
+          "harmonic": 3,
+          "reference_db": 5.004722577628847,
+          "window": 1
+        },
+        {
+          "candidate_db": 8.937927656901493,
+          "error_db": 12.446888348487121,
+          "harmonic": 4,
+          "reference_db": -3.508960691585628,
+          "window": 1
+        },
+        {
+          "candidate_db": -0.11764880197262784,
+          "error_db": -4.257267537087007,
+          "harmonic": 2,
+          "reference_db": 4.139618735114379,
+          "window": 2
+        },
+        {
+          "candidate_db": 13.738135705068473,
+          "error_db": 10.091585408724143,
+          "harmonic": 3,
+          "reference_db": 3.64655029634433,
+          "window": 2
+        },
+        {
+          "candidate_db": -2.866996220808275,
+          "error_db": 6.622279903750702,
+          "harmonic": 4,
+          "reference_db": -9.489276124558977,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 123.47082531403103,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": -0.18474852686157622,
+          "amplitude_residual_rms_db": 1.0917775967494339,
+          "carrier_offset_hz": 0.000047200899657877806,
+          "early_decay_per_second": -0.43680760801182755,
+          "fitted_drop_db": -5.545861569036559,
+          "late_decay_per_second": 0.03065122305991607,
+          "phase_residual_rms_radians": 0.00007169329430963398
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "insufficient_decay",
+          "non_exponential_amplitude",
+          "inconsistent_slopes"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 98.304864298303,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 47,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 123.65377052975704,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.030131400037981794,
+          "amplitude_residual_rms_db": 0.4963820417478348,
+          "carrier_offset_hz": 0.02591590497318346,
+          "early_decay_per_second": -0.08615100135120385,
+          "fitted_drop_db": 0.9044974611197517,
+          "late_decay_per_second": 0.1253773413433032,
+          "phase_residual_rms_radians": 0.026106015901109503
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "insufficient_decay",
+          "inconsistent_slopes"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 123.65377052975704,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          97.99885899543733,
+          155.56349186104046
+        ],
+        "temporal_span_cents": 0.5610964274260559,
+        "windows": [
+          {
+            "amplitude_dbfs": -33.19571152826531,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 123.63371243729767,
+            "margin_above_band_background_db": 62.06548742925346,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -32.08062816130789,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 123.65381353366722,
+            "margin_above_band_background_db": 67.33115045973048,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -31.452209968285004,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 123.67378886553013,
+            "margin_above_band_background_db": 66.87466850099061,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -21.16049647426984,
+          "error_db": 11.467475488891381,
+          "harmonic": 2,
+          "reference_db": -32.62797196316122,
+          "window": 1
+        },
+        {
+          "candidate_db": -44.66678923896509,
+          "error_db": 4.93037411056325,
+          "harmonic": 3,
+          "reference_db": -49.59716334952834,
+          "window": 1
+        },
+        {
+          "candidate_db": -22.402960055726886,
+          "error_db": 12.016902856585936,
+          "harmonic": 2,
+          "reference_db": -34.41986291231282,
+          "window": 2
+        },
+        {
+          "candidate_db": -47.44882620712722,
+          "error_db": 5.3166479899783425,
+          "harmonic": 3,
+          "reference_db": -52.76547419710556,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 293.6647679174075,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.39827347722179224,
+          "amplitude_residual_rms_db": 0.0025413163683434374,
+          "carrier_offset_hz": -6.812786795683593e-6,
+          "early_decay_per_second": 0.3976699278137748,
+          "fitted_drop_db": 11.955546324576796,
+          "late_decay_per_second": 0.39872582359071407,
+          "phase_residual_rms_radians": 1.3366529498278592e-7
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 82.12107076810022,
+      "harmonic_terms": 4,
+      "layer": "p",
+      "model_velocity": 0.25,
+      "note": 62,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 293.8589320542606,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.46930848803045494,
+          "amplitude_residual_rms_db": 0.05237394707197379,
+          "carrier_offset_hz": 0.014290644701562326,
+          "early_decay_per_second": 0.48040906114151327,
+          "fitted_drop_db": 14.087906150076398,
+          "late_decay_per_second": 0.45783551385109217,
+          "phase_residual_rms_radians": 0.029311352415140417
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 293.8589320542606,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          233.0818807590449,
+          369.99442271163434
+        ],
+        "temporal_span_cents": 0.06618033650159075,
+        "windows": [
+          {
+            "amplitude_dbfs": -35.582755046472734,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 293.853332948028,
+            "margin_above_band_background_db": 83.84175039052838,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -37.769716554814856,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 293.8588969512085,
+            "margin_above_band_background_db": 83.17572285262534,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -39.923105473766064,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 293.8645663709038,
+            "margin_above_band_background_db": 82.18971432836,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -15.068484031064692,
+          "error_db": 11.058497332113085,
+          "harmonic": 2,
+          "reference_db": -26.126981363177777,
+          "window": 1
+        },
+        {
+          "candidate_db": -27.773437821275493,
+          "error_db": 4.384095133304243,
+          "harmonic": 3,
+          "reference_db": -32.157532954579736,
+          "window": 1
+        },
+        {
+          "candidate_db": -34.910780631997696,
+          "error_db": 7.132972752080363,
+          "harmonic": 4,
+          "reference_db": -42.04375338407806,
+          "window": 1
+        },
+        {
+          "candidate_db": -16.01748517725636,
+          "error_db": 11.416791902684082,
+          "harmonic": 2,
+          "reference_db": -27.434277079940443,
+          "window": 2
+        },
+        {
+          "candidate_db": -31.120538727649574,
+          "error_db": 5.533573089771416,
+          "harmonic": 3,
+          "reference_db": -36.65411181742099,
+          "window": 2
+        },
+        {
+          "candidate_db": -39.03371263220713,
+          "error_db": 9.296430137665887,
+          "harmonic": 4,
+          "reference_db": -48.330142769873014,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 293.6647679174075,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.39458046018047355,
+          "amplitude_residual_rms_db": 0.015979690829969178,
+          "carrier_offset_hz": -6.518644402161817e-6,
+          "early_decay_per_second": 0.39077266688732226,
+          "fitted_drop_db": 11.844687734085342,
+          "late_decay_per_second": 0.3973320013096805,
+          "phase_residual_rms_radians": 9.731380619390967e-7
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 73.29618924294547,
+      "harmonic_terms": 6,
+      "layer": "mp",
+      "model_velocity": 0.45,
+      "note": 62,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 293.8431087066945,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.49110063829725525,
+          "amplitude_residual_rms_db": 0.06728499434856217,
+          "carrier_offset_hz": 0.010456141257405802,
+          "early_decay_per_second": 0.5073010396607565,
+          "fitted_drop_db": 14.742072387417329,
+          "late_decay_per_second": 0.4794672808072266,
+          "phase_residual_rms_radians": 0.030432232689102272
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 293.8431087066945,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          233.0818807590449,
+          369.99442271163434
+        ],
+        "temporal_span_cents": 0.01938962473259151,
+        "windows": [
+          {
+            "amplitude_dbfs": -27.84393498721851,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 293.8424505465402,
+            "margin_above_band_background_db": 84.2726634318258,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -30.234312617491643,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 293.84179228536647,
+            "margin_above_band_background_db": 86.98690754181655,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -32.53128888945142,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 293.8450832984978,
+            "margin_above_band_background_db": 85.27432562534983,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -13.747814529480046,
+          "error_db": 13.327434275634296,
+          "harmonic": 2,
+          "reference_db": -27.07524880511434,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.982050149978903,
+          "error_db": 8.016510418453215,
+          "harmonic": 3,
+          "reference_db": -22.99856056843212,
+          "window": 1
+        },
+        {
+          "candidate_db": -20.510528137221186,
+          "error_db": 9.86723830146071,
+          "harmonic": 4,
+          "reference_db": -30.377766438681896,
+          "window": 1
+        },
+        {
+          "candidate_db": -13.625913913976085,
+          "error_db": 12.475048480641448,
+          "harmonic": 2,
+          "reference_db": -26.100962394617532,
+          "window": 2
+        },
+        {
+          "candidate_db": -18.891548452532675,
+          "error_db": 9.820156858065772,
+          "harmonic": 3,
+          "reference_db": -28.711705310598447,
+          "window": 2
+        },
+        {
+          "candidate_db": -24.680721996081658,
+          "error_db": 12.771585217025148,
+          "harmonic": 4,
+          "reference_db": -37.452307213106806,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 293.6647679174075,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.3836277317182415,
+          "amplitude_residual_rms_db": 0.06194657881646483,
+          "carrier_offset_hz": -5.495998076430393e-6,
+          "early_decay_per_second": 0.3688240161130212,
+          "fitted_drop_db": 11.51590397116908,
+          "late_decay_per_second": 0.39384137452944123,
+          "phase_residual_rms_radians": 4.389680930668774e-6
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 125.73717327090668,
+      "harmonic_terms": 6,
+      "layer": "mf",
+      "model_velocity": 0.65,
+      "note": 62,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 293.8438208859643,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.5048027374743368,
+          "amplitude_residual_rms_db": 0.10183101724414655,
+          "carrier_offset_hz": 0.001871095005365507,
+          "early_decay_per_second": 0.52919028029218,
+          "fitted_drop_db": 15.153387955298635,
+          "late_decay_per_second": 0.4866529939424468,
+          "phase_residual_rms_radians": 0.025849168334767945
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 293.8438208859643,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          233.0818807590449,
+          369.99442271163434
+        ],
+        "temporal_span_cents": 0.0858957556778739,
+        "windows": [
+          {
+            "amplitude_dbfs": -24.771032413397574,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 293.85310191666815,
+            "margin_above_band_background_db": 85.5575808706274,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -27.293117433839136,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 293.8398383040134,
+            "margin_above_band_background_db": 85.98927891330166,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -29.70684934073112,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 293.83852265853284,
+            "margin_above_band_background_db": 86.84985719449776,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -23.355969176983997,
+          "error_db": -11.692030794392402,
+          "harmonic": 2,
+          "reference_db": -11.663938382591596,
+          "window": 1
+        },
+        {
+          "candidate_db": -4.719694280817805,
+          "error_db": 1.65883576489124,
+          "harmonic": 3,
+          "reference_db": -6.378530045709045,
+          "window": 1
+        },
+        {
+          "candidate_db": -10.807400989640058,
+          "error_db": 3.637075512947284,
+          "harmonic": 4,
+          "reference_db": -14.444476502587342,
+          "window": 1
+        },
+        {
+          "candidate_db": -16.210920250721145,
+          "error_db": 12.082949982732629,
+          "harmonic": 2,
+          "reference_db": -28.293870233453774,
+          "window": 2
+        },
+        {
+          "candidate_db": -8.8511896613552,
+          "error_db": 4.926762449915124,
+          "harmonic": 3,
+          "reference_db": -13.777952111270324,
+          "window": 2
+        },
+        {
+          "candidate_db": -14.450913293318813,
+          "error_db": 5.997197053072341,
+          "harmonic": 4,
+          "reference_db": -20.448110346391154,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 293.6647679174075,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.3564030887085049,
+          "amplitude_residual_rms_db": 0.18757434140511212,
+          "carrier_offset_hz": -2.7076951141484677e-6,
+          "early_decay_per_second": 0.311467802226486,
+          "fitted_drop_db": 10.698662805768267,
+          "late_decay_per_second": 0.3865017180354333,
+          "phase_residual_rms_radians": 0.000014139492224395972
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 59.820113249212504,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 62,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 293.87090882305193,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.533595860643119,
+          "amplitude_residual_rms_db": 0.1482067750277482,
+          "carrier_offset_hz": -0.039335772841722384,
+          "early_decay_per_second": 0.5668787093428751,
+          "fitted_drop_db": 16.017712439758146,
+          "late_decay_per_second": 0.5023394827126131,
+          "phase_residual_rms_radians": 0.02147396282552198
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 293.87090882305193,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          233.0818807590449,
+          369.99442271163434
+        ],
+        "temporal_span_cents": 0.5091787165587427,
+        "windows": [
+          {
+            "amplitude_dbfs": -20.478968229513246,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 293.919631147009,
+            "margin_above_band_background_db": 79.98682294373019,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -22.882234726185818,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 293.8599037598022,
+            "margin_above_band_background_db": 88.53301244315794,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -25.465038745408595,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 293.833198226712,
+            "margin_above_band_background_db": 87.83292025186256,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -24.170632151757765,
+          "error_db": 11.377065082170816,
+          "harmonic": 2,
+          "reference_db": -35.54769723392858,
+          "window": 1
+        },
+        {
+          "candidate_db": -51.30284542855386,
+          "error_db": 4.484873913850848,
+          "harmonic": 3,
+          "reference_db": -55.787719342404706,
+          "window": 1
+        },
+        {
+          "candidate_db": -25.72638113277015,
+          "error_db": 11.940720175049549,
+          "harmonic": 2,
+          "reference_db": -37.6671013078197,
+          "window": 2
+        },
+        {
+          "candidate_db": -54.58438158597732,
+          "error_db": 3.5475613047317296,
+          "harmonic": 3,
+          "reference_db": -58.13194289070905,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 440.0,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.4881299567285541,
+          "amplitude_residual_rms_db": 0.0012635253882843317,
+          "carrier_offset_hz": -6.849168681405628e-6,
+          "early_decay_per_second": 0.48782793455545737,
+          "fitted_drop_db": 14.652897177062071,
+          "late_decay_per_second": 0.48834514260295303,
+          "phase_residual_rms_radians": 5.2584020125443154e-8
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 76.17942335418887,
+      "harmonic_terms": 4,
+      "layer": "p",
+      "model_velocity": 0.25,
+      "note": 69,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 440.48284218381133,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.5785375347554425,
+          "amplitude_residual_rms_db": 0.05346152421292398,
+          "carrier_offset_hz": 0.009531228691007905,
+          "early_decay_per_second": 0.5911824824837181,
+          "fitted_drop_db": 17.366791144425946,
+          "late_decay_per_second": 0.5686757406879458,
+          "phase_residual_rms_radians": 0.015527363531064403
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 440.48284218381133,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          349.2282314330039,
+          554.3652619537442
+        ],
+        "temporal_span_cents": 0.04319052626010968,
+        "windows": [
+          {
+            "amplitude_dbfs": -33.815256277626226,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 440.47715495958397,
+            "margin_above_band_background_db": 87.4871375171142,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -36.537236570067634,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 440.48322761645125,
+            "margin_above_band_background_db": 87.07903548759924,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -39.19525827624715,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 440.48814404419085,
+            "margin_above_band_background_db": 85.63728468106387,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -17.51552531670415,
+          "error_db": 15.038362551542939,
+          "harmonic": 2,
+          "reference_db": -32.55388786824709,
+          "window": 1
+        },
+        {
+          "candidate_db": -35.610737221287266,
+          "error_db": 15.350875330354441,
+          "harmonic": 3,
+          "reference_db": -50.96161255164171,
+          "window": 1
+        },
+        {
+          "candidate_db": -18.922269089997926,
+          "error_db": 15.92683330301604,
+          "harmonic": 2,
+          "reference_db": -34.849102393013965,
+          "window": 2
+        },
+        {
+          "candidate_db": -39.29597011931115,
+          "error_db": 14.907655107876636,
+          "harmonic": 3,
+          "reference_db": -54.203625227187786,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 440.0,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.48670929061552365,
+          "amplitude_residual_rms_db": 0.00708383670726371,
+          "carrier_offset_hz": -6.763647979200275e-6,
+          "early_decay_per_second": 0.48501554118916307,
+          "fitted_drop_db": 14.61025100427504,
+          "late_decay_per_second": 0.48789432487775103,
+          "phase_residual_rms_radians": 3.1728085915822685e-7
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 234.4259803792987,
+      "harmonic_terms": 4,
+      "layer": "mp",
+      "model_velocity": 0.45,
+      "note": 69,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.502,
+          "frequency_hz": 440.474391033318,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.502,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.5879299207628612,
+          "amplitude_residual_rms_db": 0.0747537884642058,
+          "carrier_offset_hz": 0.01300463065848585,
+          "early_decay_per_second": 0.6054098735085243,
+          "fitted_drop_db": 17.648735869425717,
+          "late_decay_per_second": 0.5736262967261995,
+          "phase_residual_rms_radians": 0.021565673273900812
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 440.474391033318,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          349.2282314330039,
+          554.3652619537442
+        ],
+        "temporal_span_cents": 0.054716275632286766,
+        "windows": [
+          {
+            "amplitude_dbfs": -31.01861280031058,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 440.4671725914632,
+            "margin_above_band_background_db": 88.73525040645255,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -33.83431575514487,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 440.4749066838589,
+            "margin_above_band_background_db": 88.64957807478537,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -36.563569906349564,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 440.4810939350826,
+            "margin_above_band_background_db": 88.20854579281198,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -14.265117566266902,
+          "error_db": 11.766850227807542,
+          "harmonic": 2,
+          "reference_db": -26.031967794074443,
+          "window": 1
+        },
+        {
+          "candidate_db": -24.16658021448233,
+          "error_db": 12.951811900990911,
+          "harmonic": 3,
+          "reference_db": -37.11839211547324,
+          "window": 1
+        },
+        {
+          "candidate_db": -30.63178432262214,
+          "error_db": 17.85510541499937,
+          "harmonic": 4,
+          "reference_db": -48.48688973762151,
+          "window": 1
+        },
+        {
+          "candidate_db": -15.251168318236175,
+          "error_db": 12.999520592214207,
+          "harmonic": 2,
+          "reference_db": -28.250688910450382,
+          "window": 2
+        },
+        {
+          "candidate_db": -28.43760375268989,
+          "error_db": 14.392655357950723,
+          "harmonic": 3,
+          "reference_db": -42.83025911064061,
+          "window": 2
+        },
+        {
+          "candidate_db": -35.713944285092154,
+          "error_db": 21.897907270535114,
+          "harmonic": 4,
+          "reference_db": -57.61185155562727,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 440.0,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.48308180957474073,
+          "amplitude_residual_rms_db": 0.02328973007483935,
+          "carrier_offset_hz": -6.520861904402124e-6,
+          "early_decay_per_second": 0.4775143894322399,
+          "fitted_drop_db": 14.501359701928907,
+          "late_decay_per_second": 0.48685497954416895,
+          "phase_residual_rms_radians": 1.1715933139600821e-6
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 246.77789864869126,
+      "harmonic_terms": 6,
+      "layer": "mf",
+      "model_velocity": 0.65,
+      "note": 69,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 440.44536343990757,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.6216437325416734,
+          "amplitude_residual_rms_db": 0.1512869827180906,
+          "carrier_offset_hz": 0.02464937538840126,
+          "early_decay_per_second": 0.656906190104045,
+          "fitted_drop_db": 18.660771723059,
+          "late_decay_per_second": 0.5934304596349473,
+          "phase_residual_rms_radians": 0.04023737268943735
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 440.44536343990757,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          349.2282314330039,
+          554.3652619537442
+        ],
+        "temporal_span_cents": 0.10303974097957071,
+        "windows": [
+          {
+            "amplitude_dbfs": -24.342722816808507,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 440.4317207900007,
+            "margin_above_band_background_db": 89.3856007255813,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -27.580190731695577,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 440.4464346975816,
+            "margin_above_band_background_db": 92.34302085484107,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -30.58294654013273,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 440.4579352241523,
+            "margin_above_band_background_db": 91.97531828304213,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -13.80002744785191,
+          "error_db": 10.874430553637676,
+          "harmonic": 2,
+          "reference_db": -24.674458001489587,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.609675141054517,
+          "error_db": 13.41948973622878,
+          "harmonic": 3,
+          "reference_db": -28.029164877283296,
+          "window": 1
+        },
+        {
+          "candidate_db": -20.12482301380367,
+          "error_db": 15.720953403027345,
+          "harmonic": 4,
+          "reference_db": -35.845776416831015,
+          "window": 1
+        },
+        {
+          "candidate_db": -13.656010320779217,
+          "error_db": 12.296506508323525,
+          "harmonic": 2,
+          "reference_db": -25.95251682910274,
+          "window": 2
+        },
+        {
+          "candidate_db": -19.3818652829127,
+          "error_db": 17.60535009887657,
+          "harmonic": 3,
+          "reference_db": -36.98721538178927,
+          "window": 2
+        },
+        {
+          "candidate_db": -25.218663092853845,
+          "error_db": 23.180484319645963,
+          "harmonic": 4,
+          "reference_db": -48.39914741249981,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 440.0,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.47526688708149467,
+          "amplitude_residual_rms_db": 0.0619102290873872,
+          "carrier_offset_hz": -5.932874935450753e-6,
+          "early_decay_per_second": 0.4604829917705618,
+          "fitted_drop_db": 14.266767962246101,
+          "late_decay_per_second": 0.4849247440361082,
+          "phase_residual_rms_radians": 3.480902227066172e-6
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 257.32859970890064,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 69,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 440.41416957078377,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.6418720219831121,
+          "amplitude_residual_rms_db": 0.2082245573341398,
+          "carrier_offset_hz": 0.03308794648402042,
+          "early_decay_per_second": 0.6909757898148431,
+          "fitted_drop_db": 19.26799330650728,
+          "late_decay_per_second": 0.6042324747582704,
+          "phase_residual_rms_radians": 0.052734198954614245
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 440.41416957078377,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          349.2282314330039,
+          554.3652619537442
+        ],
+        "temporal_span_cents": 0.13911639776445667,
+        "windows": [
+          {
+            "amplitude_dbfs": -21.71230457080348,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 440.3957603296898,
+            "margin_above_band_background_db": 88.81718284288681,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -25.255140218138163,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 440.4155985592255,
+            "margin_above_band_background_db": 93.60677894272462,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -28.443745751204244,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 440.43115053787506,
+            "margin_above_band_background_db": 92.85595193002965,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -28.680404322160733,
+          "error_db": 18.022463260455496,
+          "harmonic": 2,
+          "reference_db": -46.70286758261623,
+          "window": 1
+        },
+        {
+          "candidate_db": -30.780998643006903,
+          "error_db": 18.606629969146397,
+          "harmonic": 2,
+          "reference_db": -49.3876286121533,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 783.9908719634985,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.6519218102122447,
+          "amplitude_residual_rms_db": 0.0004220406275513336,
+          "carrier_offset_hz": -6.8640198675665024e-6,
+          "early_decay_per_second": 0.6518206037558724,
+          "fitted_drop_db": 19.569672217098333,
+          "late_decay_per_second": 0.6519874970296048,
+          "phase_residual_rms_radians": 1.2986312116569657e-8
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 335.5079303916025,
+      "harmonic_terms": 2,
+      "layer": "p",
+      "model_velocity": 0.25,
+      "note": 79,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.501,
+          "frequency_hz": 784.8457001305119,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.501,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.7917850811592679,
+          "amplitude_residual_rms_db": 0.05260913420235842,
+          "carrier_offset_hz": 0.011652296885741986,
+          "early_decay_per_second": 0.8045721761247476,
+          "fitted_drop_db": 23.768148667446496,
+          "late_decay_per_second": 0.7830582749905178,
+          "phase_residual_rms_radians": 0.014685392358744841
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 784.8457001305119,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          622.2539674441617,
+          987.7666025122481
+        ],
+        "temporal_span_cents": 0.02781654890887973,
+        "windows": [
+          {
+            "amplitude_dbfs": -45.74343035385494,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 784.8388642697031,
+            "margin_above_band_background_db": 81.41588928133856,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -49.43668879990032,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 784.8467614286604,
+            "margin_above_band_background_db": 78.38371913470885,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -53.04762056925251,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 784.8514747449042,
+            "margin_above_band_background_db": 74.02222186225492,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -21.711989595651197,
+          "error_db": 11.30576167681815,
+          "harmonic": 2,
+          "reference_db": -33.01775127246935,
+          "window": 1
+        },
+        {
+          "candidate_db": -45.91234859723851,
+          "error_db": 12.822433747825883,
+          "harmonic": 3,
+          "reference_db": -58.734782345064396,
+          "window": 1
+        },
+        {
+          "candidate_db": -23.752197850559476,
+          "error_db": 13.070351362524839,
+          "harmonic": 2,
+          "reference_db": -36.822549213084315,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 783.9908719634985,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.6515693419307815,
+          "amplitude_residual_rms_db": 0.0022234307416799303,
+          "carrier_offset_hz": -6.848867325985438e-6,
+          "early_decay_per_second": 0.6510365383205149,
+          "fitted_drop_db": 19.559091671046478,
+          "late_decay_per_second": 0.6519134366369528,
+          "phase_residual_rms_radians": 6.964635238764474e-8
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 154.35637968341632,
+      "harmonic_terms": 3,
+      "layer": "mp",
+      "model_velocity": 0.45,
+      "note": 79,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 784.787744647259,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.857840956107634,
+          "amplitude_residual_rms_db": 0.23499241387383865,
+          "carrier_offset_hz": 0.04226029609129857,
+          "early_decay_per_second": 0.9137731727302429,
+          "fitted_drop_db": 25.751042628813284,
+          "late_decay_per_second": 0.816613812990467,
+          "phase_residual_rms_radians": 0.052542919039211274
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 784.787744647259,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          622.2539674441617,
+          987.7666025122481
+        ],
+        "temporal_span_cents": 0.12120533608982198,
+        "windows": [
+          {
+            "amplitude_dbfs": -33.281231154576005,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 784.7578866396104,
+            "margin_above_band_background_db": 93.02927031918146,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -37.88772579859446,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 784.7925180795007,
+            "margin_above_band_background_db": 89.32852298671864,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -42.09027225147072,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 784.8128302061019,
+            "margin_above_band_background_db": 85.30289929591076,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -17.620695514354555,
+          "error_db": 10.576596740271903,
+          "harmonic": 2,
+          "reference_db": -28.197292254626458,
+          "window": 1
+        },
+        {
+          "candidate_db": -35.897179069105206,
+          "error_db": 12.856745765402778,
+          "harmonic": 3,
+          "reference_db": -48.753924834507984,
+          "window": 1
+        },
+        {
+          "candidate_db": -19.515108712840956,
+          "error_db": 13.371934873783964,
+          "harmonic": 2,
+          "reference_db": -32.88704358662492,
+          "window": 2
+        },
+        {
+          "candidate_db": -40.75104449822876,
+          "error_db": 17.465313527758397,
+          "harmonic": 3,
+          "reference_db": -58.216358025987155,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 783.9908719634985,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.6507551153490558,
+          "amplitude_residual_rms_db": 0.00649392730885307,
+          "carrier_offset_hz": -6.812534907636168e-6,
+          "early_decay_per_second": 0.6492014268570873,
+          "fitted_drop_db": 19.5346498636622,
+          "late_decay_per_second": 0.6517481341935678,
+          "phase_residual_rms_radians": 2.1216607226196743e-7
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 190.25153229353816,
+      "harmonic_terms": 4,
+      "layer": "mf",
+      "model_velocity": 0.65,
+      "note": 79,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 784.7456807967657,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.9088564677301909,
+          "amplitude_residual_rms_db": 0.37747879610846835,
+          "carrier_offset_hz": 0.0627473083992468,
+          "early_decay_per_second": 0.9987997415222595,
+          "fitted_drop_db": 27.28244842748717,
+          "late_decay_per_second": 0.8430326559643027,
+          "phase_residual_rms_radians": 0.07335644855075785
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 784.7456807967657,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          622.2539674441617,
+          987.7666025122481
+        ],
+        "temporal_span_cents": 0.19480501159211758,
+        "windows": [
+          {
+            "amplitude_dbfs": -29.467301594364024,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 784.6971476471184,
+            "margin_above_band_background_db": 95.20821097803025,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -34.82473650678276,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 784.7544475907902,
+            "margin_above_band_background_db": 91.98711031942148,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -39.48457228143676,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 784.7854497098621,
+            "margin_above_band_background_db": 89.33856763639616,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -15.069024082944392,
+          "error_db": 10.370550104250697,
+          "harmonic": 2,
+          "reference_db": -25.43957418719509,
+          "window": 1
+        },
+        {
+          "candidate_db": -27.7671643150827,
+          "error_db": 15.07336525935973,
+          "harmonic": 3,
+          "reference_db": -42.84052957444243,
+          "window": 1
+        },
+        {
+          "candidate_db": -34.90206581189993,
+          "error_db": 21.35810701668386,
+          "harmonic": 4,
+          "reference_db": -56.26017282858379,
+          "window": 1
+        },
+        {
+          "candidate_db": -16.66887331402269,
+          "error_db": 14.449313435857611,
+          "harmonic": 2,
+          "reference_db": -31.1181867498803,
+          "window": 2
+        },
+        {
+          "candidate_db": -33.12994999316423,
+          "error_db": 21.797099269905623,
+          "harmonic": 3,
+          "reference_db": -54.927049263069854,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 783.9908719634985,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.6492387415884576,
+          "amplitude_residual_rms_db": 0.014792178901050237,
+          "carrier_offset_hz": -6.7408123062282596e-6,
+          "early_decay_per_second": 0.6457091286504395,
+          "fitted_drop_db": 19.489130697116973,
+          "late_decay_per_second": 0.6514584010325313,
+          "phase_residual_rms_radians": 5.13817741880706e-7
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 294.96391607854855,
+      "harmonic_terms": 5,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 79,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.502,
+          "frequency_hz": 784.7086578660336,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.502,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.9516138101323529,
+          "amplitude_residual_rms_db": 0.48928275282977096,
+          "carrier_offset_hz": 0.07517693039012133,
+          "early_decay_per_second": 1.068614245245778,
+          "fitted_drop_db": 28.565956913592476,
+          "late_decay_per_second": 0.86866143795526,
+          "phase_residual_rms_radians": 0.08252986602182885
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 784.7086578660336,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          622.2539674441617,
+          987.7666025122481
+        ],
+        "temporal_span_cents": 0.25023902607142773,
+        "windows": [
+          {
+            "amplitude_dbfs": -27.859590764420563,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 784.6457374856867,
+            "margin_above_band_background_db": 93.84548606131005,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -33.89486428437864,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 784.7210790544844,
+            "margin_above_band_background_db": 93.08013708103657,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -38.942179460716304,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 784.7591613040644,
+            "margin_above_band_background_db": 87.66087637466036,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -32.8606099872103,
+          "error_db": 23.372436622429518,
+          "harmonic": 2,
+          "reference_db": -56.23304660963982,
+          "window": 1
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 1318.5102276514795,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.8455241810300781,
+          "amplitude_residual_rms_db": 0.00013902979632142887,
+          "carrier_offset_hz": -6.866826056152693e-6,
+          "early_decay_per_second": 0.8454911611969392,
+          "fitted_drop_db": 25.38131232179836,
+          "late_decay_per_second": 0.8455435756242018,
+          "phase_residual_rms_radians": 3.2926928353783893e-9
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 546.2707936694845,
+      "harmonic_terms": 1,
+      "layer": "p",
+      "model_velocity": 0.25,
+      "note": 88,
+      "reference_pitch_anchor": {
+        "frequency_hz": null,
+        "observation_resolution_hz": 1.953125,
+        "qualified": false,
+        "rejection_reasons": [
+          "unqualified_window"
+        ],
+        "search_band_hz": [
+          1046.5022612023943,
+          1661.2187903197803
+        ],
+        "temporal_span_cents": 0.38869163449303806,
+        "windows": [
+          {
+            "amplitude_dbfs": -62.09952939998859,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 1320.1517657331312,
+            "margin_above_band_background_db": 67.61926707926514,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -88.56219325427045,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 1320.1786831475101,
+            "margin_above_band_background_db": 41.22407435619047,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -113.68802085292063,
+            "competing_peak_frequency_hz": 1447.9209641057998,
+            "end_seconds": 1.786,
+            "frequency_hz": 1319.8823137397214,
+            "margin_above_band_background_db": 15.486709660577361,
+            "rejection_reasons": [
+              "insufficient_band_background_margin",
+              "competing_peak_within_20_db"
+            ],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -25.813000252417645,
+          "error_db": 20.493251877498217,
+          "harmonic": 2,
+          "reference_db": -46.30625212991586,
+          "window": 1
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 1318.5102276514795,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.8454325935844624,
+          "amplitude_residual_rms_db": 0.0007180123621654781,
+          "carrier_offset_hz": -6.863822985450002e-6,
+          "early_decay_per_second": 0.8452621397506946,
+          "fitted_drop_db": 25.37856301005296,
+          "late_decay_per_second": 0.8455325866025023,
+          "phase_residual_rms_radians": 1.7059101475419483e-8
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 419.9733725145842,
+      "harmonic_terms": 1,
+      "layer": "mp",
+      "model_velocity": 0.45,
+      "note": 88,
+      "reference_pitch_anchor": {
+        "frequency_hz": null,
+        "observation_resolution_hz": 1.953125,
+        "qualified": false,
+        "rejection_reasons": [
+          "unqualified_window"
+        ],
+        "search_band_hz": [
+          1046.5022612023943,
+          1661.2187903197803
+        ],
+        "temporal_span_cents": 0.17637538249648615,
+        "windows": [
+          {
+            "amplitude_dbfs": -48.95438740193608,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 1320.0542988208715,
+            "margin_above_band_background_db": 80.02689650976652,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -75.16087888544715,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 1320.1387376864275,
+            "margin_above_band_background_db": 54.50996862495637,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -102.45323338208671,
+            "competing_peak_frequency_hz": 1500.208080708714,
+            "end_seconds": 1.786,
+            "frequency_hz": 1320.1887907125508,
+            "margin_above_band_background_db": 27.0453963767781,
+            "rejection_reasons": [
+              "competing_peak_within_20_db"
+            ],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -21.48988758784952,
+          "error_db": 19.869246734235364,
+          "harmonic": 2,
+          "reference_db": -41.359134322084884,
+          "window": 1
+        },
+        {
+          "candidate_db": -45.409183703281926,
+          "error_db": 5.333335018673495,
+          "harmonic": 3,
+          "reference_db": -50.74251872195542,
+          "window": 1
+        },
+        {
+          "candidate_db": -24.12901555639845,
+          "error_db": 29.911642661032566,
+          "harmonic": 2,
+          "reference_db": -54.040658217431016,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 1318.5102276514795,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.8452268224402798,
+          "amplitude_residual_rms_db": 0.0020277016240630814,
+          "carrier_offset_hz": -6.857005520521683e-6,
+          "early_decay_per_second": 0.8447459237794152,
+          "fitted_drop_db": 25.37238608242098,
+          "late_decay_per_second": 0.8455081568155772,
+          "phase_residual_rms_radians": 4.8568303257396725e-8
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 439.3125982962117,
+      "harmonic_terms": 3,
+      "layer": "mf",
+      "model_velocity": 0.65,
+      "note": 88,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 1320.0774994296453,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 2.3863271810638937,
+          "amplitude_residual_rms_db": 13.932809507152301,
+          "carrier_offset_hz": -0.6830612093699842,
+          "early_decay_per_second": 5.519905459381014,
+          "fitted_drop_db": 71.6338063930838,
+          "late_decay_per_second": -0.22186768643803187,
+          "phase_residual_rms_radians": 1.9853786566756702
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "low_margin",
+          "non_exponential_amplitude",
+          "inconsistent_slopes",
+          "frequency_mismatch",
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 1320.0774994296453,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          1046.5022612023943,
+          1661.2187903197803
+        ],
+        "temporal_span_cents": 0.2623096342584989,
+        "windows": [
+          {
+            "amplitude_dbfs": -41.37811631663966,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 1319.9504174241395,
+            "margin_above_band_background_db": 86.80640604993123,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -66.38881616995661,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 1320.131663942473,
+            "margin_above_band_background_db": 63.91294305302367,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -92.9184807959412,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 1320.1504261652267,
+            "margin_above_band_background_db": 36.808544570031216,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -18.4759082378737,
+          "error_db": 22.118957927712383,
+          "harmonic": 2,
+          "reference_db": -40.59486616558608,
+          "window": 1
+        },
+        {
+          "candidate_db": -38.169947087340134,
+          "error_db": 5.810740865485215,
+          "harmonic": 3,
+          "reference_db": -43.98068795282535,
+          "window": 1
+        },
+        {
+          "candidate_db": -48.20208367132767,
+          "error_db": 6.5718815913555275,
+          "harmonic": 4,
+          "reference_db": -54.7739652626832,
+          "window": 1
+        },
+        {
+          "candidate_db": -21.00167027760243,
+          "error_db": 29.89096051767234,
+          "harmonic": 2,
+          "reference_db": -50.89263079527477,
+          "window": 2
+        }
+      ],
+      "candidate_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.5,
+          "frequency_hz": 1318.5102276514795,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.5,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 0.8448619374112559,
+          "amplitude_residual_rms_db": 0.004378984178481833,
+          "carrier_offset_hz": -6.844677337310721e-6,
+          "early_decay_per_second": 0.8438251342806979,
+          "fitted_drop_db": 25.361432805044664,
+          "late_decay_per_second": 0.8454656798930292,
+          "phase_residual_rms_radians": 1.0737304275540375e-7
+        },
+        "qualified": true,
+        "rejection_reasons": [],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "harmonic_mse_db2": 364.91803938339365,
+      "harmonic_terms": 4,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 88,
+      "reference_envelope": {
+        "actual_hop_seconds": 0.128,
+        "actual_window_seconds": 0.512,
+        "method": "fixed-carrier-hann-envelope-v1",
+        "minimum_separation_hz": 3.90625,
+        "observed_samples": 24576,
+        "options": {
+          "end_seconds": 4.503,
+          "frequency_hz": 1320.0470075578633,
+          "hop_seconds": 0.128,
+          "known_neighbor_frequencies_hz": [],
+          "start_seconds": 0.503,
+          "window_seconds": 0.512
+        },
+        "provisional_fit": {
+          "amplitude_decay_per_second": 2.7932976541679673,
+          "amplitude_residual_rms_db": 13.244028324087372,
+          "carrier_offset_hz": -0.07311182044738529,
+          "early_decay_per_second": 5.329540020944924,
+          "fitted_drop_db": 83.850422919675,
+          "late_decay_per_second": -0.2981089819698034,
+          "phase_residual_rms_radians": 1.3978448244239907
+        },
+        "qualified": false,
+        "rejection_reasons": [
+          "low_margin",
+          "non_exponential_amplitude",
+          "inconsistent_slopes",
+          "unstable_phase"
+        ],
+        "schema_version": 1,
+        "scope": "Conditional component-envelope observation, not mechanical modal identity or natural-decay calibration. Caller supplies frequency, interval and known neighbors. Unknown unresolved mixtures can evade the gates. Guard median is a local spectral heuristic, not measured broadband SNR. Overlapping windows are correlated; no confidence interval or T60 extrapolation. Finite Hann windows bias absolute amplitude and phase; rate and carrier slope are validated on controlled probes."
+      },
+      "reference_pitch_anchor": {
+        "frequency_hz": 1320.0470075578633,
+        "observation_resolution_hz": 1.953125,
+        "qualified": true,
+        "rejection_reasons": [],
+        "search_band_hz": [
+          1046.5022612023943,
+          1661.2187903197803
+        ],
+        "temporal_span_cents": 0.41204991489294024,
+        "windows": [
+          {
+            "amplitude_dbfs": -36.710044127709224,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 0.762,
+            "frequency_hz": 1319.8509118048576,
+            "margin_above_band_background_db": 90.58154221378621,
+            "rejection_reasons": [],
+            "start_seconds": 0.25
+          },
+          {
+            "amplitude_dbfs": -58.473989922300646,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.274,
+            "frequency_hz": 1320.1250469552244,
+            "margin_above_band_background_db": 71.6253324190436,
+            "rejection_reasons": [],
+            "start_seconds": 0.762
+          },
+          {
+            "amplitude_dbfs": -81.67594253986323,
+            "competing_peak_frequency_hz": null,
+            "end_seconds": 1.786,
+            "frequency_hz": 1320.16508606763,
+            "margin_above_band_background_db": 48.42412147374941,
+            "rejection_reasons": [],
+            "start_seconds": 1.274
+          }
+        ]
+      }
+    }
+  ],
+  "harmonic_mse_db2": 194.4836796917672,
+  "model": "baseline"
+}

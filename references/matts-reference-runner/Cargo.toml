@@ -16,6 +16,9 @@ path = "../../tools/rf-73-lab/examples/matts_fit.rs"
 [[bin]]
 name = "aperture_diagnostic"
 path = "../../tools/rf-73-lab/examples/aperture_diagnostic.rs"
+[[bin]]
+name = "continuous_pickup_fit"
+path = "../../tools/rf-73-lab/examples/continuous_pickup_fit.rs"
 [profile.release]
 lto = "thin"
 codegen-units = 1

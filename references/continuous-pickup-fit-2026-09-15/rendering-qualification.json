@@ -1,0 +1,78 @@
+{
+  "cases": [
+    {
+      "layer": "p",
+      "max_harmonic_balance_error_db": 0.00016521910422540032,
+      "measured_terms": 6,
+      "note": 40,
+      "qualified": true,
+      "relative_waveform_rms_error": 2.2005005610121754e-6
+    },
+    {
+      "layer": "f",
+      "max_harmonic_balance_error_db": 0.00001332571739709465,
+      "measured_terms": 6,
+      "note": 40,
+      "qualified": true,
+      "relative_waveform_rms_error": 2.1580618929866184e-6
+    },
+    {
+      "layer": "p",
+      "max_harmonic_balance_error_db": 0.00013283134288144538,
+      "measured_terms": 6,
+      "note": 55,
+      "qualified": true,
+      "relative_waveform_rms_error": 2.2425650868999205e-6
+    },
+    {
+      "layer": "f",
+      "max_harmonic_balance_error_db": 0.00004811153650052802,
+      "measured_terms": 6,
+      "note": 55,
+      "qualified": true,
+      "relative_waveform_rms_error": 2.18459150290721e-6
+    },
+    {
+      "layer": "p",
+      "max_harmonic_balance_error_db": 0.0001306714031485967,
+      "measured_terms": 4,
+      "note": 64,
+      "qualified": true,
+      "relative_waveform_rms_error": 2.2472266078327074e-6
+    },
+    {
+      "layer": "f",
+      "max_harmonic_balance_error_db": 0.0006088647574387096,
+      "measured_terms": 6,
+      "note": 64,
+      "qualified": true,
+      "relative_waveform_rms_error": 2.188231193605803e-6
+    },
+    {
+      "layer": "p",
+      "max_harmonic_balance_error_db": 0.00013038467334069992,
+      "measured_terms": 2,
+      "note": 88,
+      "qualified": true,
+      "relative_waveform_rms_error": 2.2464728909238607e-6
+    },
+    {
+      "layer": "f",
+      "max_harmonic_balance_error_db": 0.00013276996283906328,
+      "measured_terms": 6,
+      "note": 88,
+      "qualified": true,
+      "relative_waveform_rms_error": 2.2828182975533465e-6
+    }
+  ],
+  "method": "Same voice and filter; table versus 256-node direct integration; no waveform alignment or gain fitting",
+  "parameters": [
+    0.0008187307530779819,
+    0.0007500000000000002,
+    0.0006703200460356392,
+    1.4,
+    1.4
+  ],
+  "qualified": true,
+  "scope": "Selected frozen winner cases, not a whole-domain realtime or aliasing qualification"
+}

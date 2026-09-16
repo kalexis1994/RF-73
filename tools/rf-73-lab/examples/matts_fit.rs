@@ -6,16 +6,16 @@ use rf_73_analysis::{
 use rf_73_dsp::{Engine, PickupLaw, Profile};
 use serde_json::{Value, json};
 use std::{error::Error, fs, io::Write, path::Path};
-type Result<T> = std::result::Result<T, Box<dyn Error>>;
+pub(crate) type Result<T> = std::result::Result<T, Box<dyn Error>>;
 
-struct Case {
-    note: u8,
-    layer: &'static str,
-    velocity: f64,
-    clip: AudioClip,
-    onset: f64,
+pub(crate) struct Case {
+    pub(crate) note: u8,
+    pub(crate) layer: &'static str,
+    pub(crate) velocity: f64,
+    pub(crate) clip: AudioClip,
+    pub(crate) onset: f64,
 }
-fn baseline() -> Profile {
+pub(crate) fn baseline() -> Profile {
     Profile {
         pickup_law: PickupLaw::Aperture,
         pickup_gap_m: 0.0005,
@@ -36,7 +36,7 @@ fn profile(x: [f64; 4]) -> Profile {
         ..baseline()
     }
 }
-fn load(source: &Path, notes: &[u8]) -> Result<Vec<Case>> {
+pub(crate) fn load(source: &Path, notes: &[u8]) -> Result<Vec<Case>> {
     let names = [
         "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B",
     ];
@@ -90,12 +90,20 @@ fn envelope(clip: &AudioClip, frequency: f64, onset: f64) -> Result<Value> {
     value.as_object_mut().unwrap().remove("points");
     Ok(value)
 }
-fn score(cases: &[Case], p: Profile, detailed: bool) -> Result<(f64, Vec<Value>)> {
+pub(crate) fn score(cases: &[Case], p: Profile, detailed: bool) -> Result<(f64, Vec<Value>)> {
+    score_with(cases, p, detailed, render)
+}
+pub(crate) fn score_with(
+    cases: &[Case],
+    p: Profile,
+    detailed: bool,
+    renderer: impl Fn(&Case, Profile, f64) -> Result<AudioClip>,
+) -> Result<(f64, Vec<Value>)> {
     let mut rows = Vec::new();
     let mut total = 0.0;
     let mut scored_cases = 0;
     for c in cases {
-        let candidate = render(c, p, if detailed { 5.0 } else { 0.7 })?;
+        let candidate = renderer(c, p, if detailed { 5.0 } else { 0.7 })?;
         let onset = detect_timbre_onset(&candidate)?;
         let comparison = compare_tone(
             &c.clip,
@@ -165,7 +173,7 @@ fn score(cases: &[Case], p: Profile, detailed: bool) -> Result<(f64, Vec<Value>)
     }
     Ok((total / f64::from(scored_cases), rows))
 }
-fn write(path: &Path, value: &Value) -> Result<()> {
+pub(crate) fn write(path: &Path, value: &Value) -> Result<()> {
     let mut f = fs::OpenOptions::new()
         .write(true)
         .create_new(true)
