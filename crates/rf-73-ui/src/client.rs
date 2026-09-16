@@ -352,8 +352,9 @@ mod tests {
         let html = include_str!("../../../package/web/config.html");
         for id in [
             "connection",
+            "save-name",
+            "save-button",
             "export-source",
-            "export-name",
             "export-button",
             "import-file",
             "import-button",

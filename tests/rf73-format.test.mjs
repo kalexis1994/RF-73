@@ -38,8 +38,9 @@ const program = {
 };
 
 test("roundtrips a checksummed RF-73 program", async () => {
-  const text = await createRf73File(program);
-  assert.deepEqual(await parseRf73File(text), program);
+  const named = { ...program, name: "Cálido y brillante" };
+  const text = await createRf73File(named);
+  assert.deepEqual(await parseRf73File(text), named);
 });
 
 test("rejects corruption, foreign plugins, unknown fields and invalid ranges", async () => {

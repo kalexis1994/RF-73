@@ -192,3 +192,12 @@ pitch-bend mechanism.
 The PLAY and CONFIG surfaces hide their connection indicator after the bridge
 is ready. Desktop controls, spacing and headings are denser, while layouts at
 760 px and below retain larger rotary and numeric touch targets.
+
+## 0.1.12 local program workflow
+
+CONFIG separates library persistence from file transport. Save current controls
+creates a named program in RF-73's private host storage. Export only downloads
+an existing factory or user program, preserving its program name and identity.
+Import validates a `.rf73` file and allocates a new local user-program identity,
+so it never replaces an existing program. Portable names allow Unicode while
+rejecting control and formatting characters.

@@ -75,6 +75,10 @@
   gap: 12px;
   margin: 14px 0 12px;
 }
+.config-fields-single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 440px;
+}
 .config-fields label {
   display: grid;
   gap: 7px;

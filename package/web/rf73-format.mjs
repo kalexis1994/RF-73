@@ -51,9 +51,9 @@ function finiteRange(value, minimum, maximum) {
 function printable(value, maximum = 64) {
   return (
     typeof value === "string" &&
-    value.length > 0 &&
+    value.trim().length > 0 &&
     value.length <= maximum &&
-    /^[\x20-\x7e]+$/.test(value)
+    !/[\p{Cc}\p{Cf}]/u.test(value)
   );
 }
 

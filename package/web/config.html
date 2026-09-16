@@ -13,31 +13,44 @@
         <div>
           <p class="eyebrow">RF-73 PROGRAM LIBRARY</p>
           <h1>Programs</h1>
-          <p class="config-intro">Move complete RF-73 voices between computers with validated <strong>.rf73</strong> files.</p>
+          <p class="config-intro">Save voices in RF-73, then move them between computers with validated <strong>.rf73</strong> files.</p>
         </div>
         <p id="connection" class="config-connection" role="status">Connecting to RackForge…</p>
       </header>
 
-      <section class="program-card" aria-labelledby="export-title">
+      <section class="program-card" aria-labelledby="save-title">
         <div class="card-heading">
           <span class="step">01</span>
           <div>
-            <h2 id="export-title">Save a program file</h2>
-            <p>Choose a factory or user program, or capture the controls exactly as they are now.</p>
+            <h2 id="save-title">Save current controls</h2>
+            <p>Create a named user program in RF-73's private library on this computer.</p>
           </div>
         </div>
-        <div class="config-fields">
-          <label>Source<select id="export-source" disabled></select></label>
-          <label>File name<input id="export-name" maxlength="64" autocomplete="off" disabled /></label>
+        <div class="config-fields config-fields-single">
+          <label>Program name<input id="save-name" maxlength="64" autocomplete="off" placeholder="My RF-73" disabled /></label>
+        </div>
+        <button id="save-button" class="primary" type="button" disabled>SAVE TO RF-73</button>
+      </section>
+
+      <section class="program-card" aria-labelledby="export-title">
+        <div class="card-heading">
+          <span class="step">02</span>
+          <div>
+            <h2 id="export-title">Export a program</h2>
+            <p>Choose a factory or saved user program and download a portable copy.</p>
+          </div>
+        </div>
+        <div class="config-fields config-fields-single">
+          <label>Program<select id="export-source" disabled></select></label>
         </div>
         <button id="export-button" class="primary" type="button" disabled>DOWNLOAD .RF73</button>
       </section>
 
       <section class="program-card" aria-labelledby="import-title">
         <div class="card-heading">
-          <span class="step">02</span>
+          <span class="step">03</span>
           <div>
-            <h2 id="import-title">Load a program file</h2>
+            <h2 id="import-title">Import a program</h2>
             <p>RF-73 checks the file, checksum, plugin identity, version and every parameter before saving it.</p>
           </div>
         </div>

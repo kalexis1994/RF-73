@@ -2,13 +2,15 @@ import {
   RF73_MAX_FILE_BYTES,
   createRf73File,
   parseRf73File,
+  validateProgram,
 } from "./rf73-format.mjs";
 
 const PROTOCOL = "rackforge.plugin.web@1";
 const PLUGIN_ID = "org.rackforge.rhodes";
 const REQUEST_TIMEOUT_MS = 10_000;
 const source = document.querySelector("#export-source");
-const name = document.querySelector("#export-name");
+const saveName = document.querySelector("#save-name");
+const saveButton = document.querySelector("#save-button");
 const exportButton = document.querySelector("#export-button");
 const importButton = document.querySelector("#import-button");
 const fileInput = document.querySelector("#import-file");
@@ -76,10 +78,6 @@ function sounds() {
   return Array.isArray(context?.instance?.sounds) ? context.instance.sounds : [];
 }
 
-function selectedSound() {
-  return sounds().find((sound) => sound.id === source.value);
-}
-
 function render() {
   const connected = context?.instance?.plugin_id === PLUGIN_ID;
   connection.textContent = connected ? "Connected to RackForge" : "Connecting to RackForge…";
@@ -91,21 +89,19 @@ function render() {
     if (source.dataset.catalog !== signature) {
       const previous = source.value;
       source.replaceChildren();
-      const current = new Option("Current controls", "__current__");
-      source.add(current);
       for (const sound of sounds()) source.add(new Option(sound.name, sound.id));
       source.value = sounds().some((sound) => sound.id === previous)
         ? previous
-        : context.instance.selected_sound_id || "__current__";
+        : context.instance.selected_sound_id || sounds()[0]?.id || "";
       source.dataset.catalog = signature;
-      syncName();
     }
   }
   const foreignDraft = context?.program_draft && !busy;
   const ready = connected && !busy && !foreignDraft;
   source.disabled = !ready;
-  name.disabled = !ready;
-  exportButton.disabled = !ready || !name.value.trim();
+  saveName.disabled = !ready;
+  saveButton.disabled = !ready || !saveName.value.trim();
+  exportButton.disabled = !ready || !source.value;
   importButton.disabled = !ready;
   recoverButton.hidden = !foreignDraft;
   recoverButton.disabled = busy;
@@ -118,13 +114,14 @@ function render() {
   }
 }
 
-function syncName() {
-  name.value = source.value === "__current__" ? "My RF-73" : selectedSound()?.name || "RF-73 Program";
-  render();
-}
-
 function slug(value) {
-  const result = value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 56);
+  const result = value
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+    .slice(0, 56);
   return result || "rf73-program";
 }
 
@@ -167,19 +164,16 @@ async function recoverDraft() {
 }
 
 async function exportProgram() {
-  if (!name.value.trim()) return;
+  if (!source.value) return;
   setBusy(true);
   setStatus("Preparing the program file…");
   let draftId = null;
   try {
-    const programId = source.value === "__current__" ? null : source.value;
-    await call("plugin.begin_program_edit", { program_id: programId });
+    await call("plugin.begin_program_edit", { program_id: source.value });
     const next = await waitForContext((candidate) => candidate.program_draft);
     const draft = next.program_draft;
     draftId = draft.draft_id;
     const document = JSON.parse(draft.document_json);
-    document.id = programId ? programId.replace(/^custom\./, "") : slug(name.value.trim());
-    document.name = name.value.trim();
     const text = await createRf73File(document);
     download(text, safeFileName(document.name));
     await cancelDraft(draftId);
@@ -188,6 +182,41 @@ async function exportProgram() {
   } catch (cause) {
     if (draftId !== null) await cancelDraft(draftId);
     setStatus("The program was not downloaded.", cause instanceof Error ? cause.message : String(cause));
+  } finally {
+    setBusy(false);
+  }
+}
+
+async function saveCurrentProgram() {
+  const programName = saveName.value.trim();
+  if (!programName) return;
+  setBusy(true);
+  setStatus("Saving the current controls to RF-73…");
+  let draftId = null;
+  try {
+    await call("plugin.begin_program_edit", { program_id: null });
+    const opened = await waitForContext((candidate) => candidate.program_draft);
+    draftId = opened.program_draft.draft_id;
+    const document = JSON.parse(opened.program_draft.document_json);
+    document.name = programName;
+    validateProgram(document);
+    const id = document.id;
+    await call("plugin.replace_program_draft", { draft_id: draftId, document });
+    await waitForContext((candidate) => {
+      if (candidate.program_draft?.draft_id !== draftId) return false;
+      try { return JSON.parse(candidate.program_draft.document_json).name === programName; } catch { return false; }
+    });
+    await call("plugin.save_program", { draft_id: draftId });
+    await waitForContext(
+      (candidate) => !candidate.program_draft && candidate.instance.sounds.some((sound) => sound.id === `custom.${id}`),
+    );
+    draftId = null;
+    source.value = `custom.${id}`;
+    saveName.value = "";
+    setStatus(`${programName} saved in RF-73's local program library.`);
+  } catch (cause) {
+    if (draftId !== null) await cancelDraft(draftId);
+    setStatus("The local program was not saved.", cause instanceof Error ? cause.message : String(cause));
   } finally {
     setBusy(false);
   }
@@ -226,8 +255,8 @@ async function importProgram(file) {
   }
 }
 
-source.addEventListener("change", syncName);
-name.addEventListener("input", render);
+saveName.addEventListener("input", render);
+saveButton.addEventListener("click", () => void saveCurrentProgram());
 exportButton.addEventListener("click", () => void exportProgram());
 importButton.addEventListener("click", () => fileInput.click());
 recoverButton.addEventListener("click", () => void recoverDraft());
