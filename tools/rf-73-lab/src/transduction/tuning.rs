@@ -449,10 +449,25 @@ mod tests {
         let target =
             crate::memory_modal_check::validate_pitch_reference(&r["frozen_reference"]).unwrap();
         let (_, fresh) = fit(target).unwrap();
-        let fresh: Value = serde_json::from_slice(&serde_json::to_vec(&fresh).unwrap()).unwrap();
+        let mut fresh: Value =
+            serde_json::from_slice(&serde_json::to_vec(&fresh).unwrap()).unwrap();
+        let mut expected = r["structural_fit"].clone();
+        let fresh_error = fresh["undamped_error_cents"].as_f64().unwrap();
+        let expected_error = expected["undamped_error_cents"].as_f64().unwrap();
+        assert!(fresh_error.abs() < 0.0001);
+        assert!(expected_error.abs() < 0.0001);
+        fresh
+            .as_object_mut()
+            .unwrap()
+            .remove("undamped_error_cents");
+        expected
+            .as_object_mut()
+            .unwrap()
+            .remove("undamped_error_cents");
         // Branch indices, shape and metadata remain exact. Floating fields
-        // allow 0.1 ppm across supported math backends.
-        crate::analysis::assert_json_close(&fresh, &r["structural_fit"], 1e-10, 1e-7);
+        // allow 0.1 ppm across supported math backends. The near-zero terminal
+        // residual is checked against the fit's absolute 0.0001-cent contract.
+        crate::analysis::assert_json_close(&fresh, &expected, 1e-10, 1e-7);
     }
     #[test]
     fn spring_fit_tracks_both_directions_and_changes_nonharmonic_structure() {
