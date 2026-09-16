@@ -191,7 +191,7 @@ const FIELDS: [Field; 8] = [
     (
         "sustain",
         "Sustain",
-        "0 original 5 s, 0.5 calibrated 20 s, 1 is 80 s.",
+        "Changes tine sustain and tonebar decay together.",
         5,
         1000.0,
         0,
@@ -202,7 +202,7 @@ const FIELDS: [Field; 8] = [
     (
         "bell",
         "Bell",
-        "Second partial strike, 1 original, 0.258 calibrated.",
+        "Strike excitation of the second bending mode.",
         6,
         1000.0,
         0,
@@ -234,12 +234,12 @@ const FIELDS: [Field; 8] = [
     ),
     (
         "law",
-        "Pickup Law",
-        "Production surrogate or finite aperture, 2 mm pole.",
+        "Pickup Model",
+        "Original, aperture, or register-shaped aperture.",
         1,
         1.0,
         0,
-        1,
+        2,
         0,
         "",
     ),
@@ -271,11 +271,46 @@ pub fn view(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
                 "kind": kind, "live_preview": true})
         });
     }
+    let groups = [
+        (
+            "hammer",
+            "Hammer & Touch",
+            "Contact and playing response.",
+            vec!["hardness", "dynamics"],
+        ),
+        (
+            "resonator",
+            "Tine & Tonebar",
+            "Decay and bending-mode excitation.",
+            vec!["sustain", "bell"],
+        ),
+        (
+            "pickup",
+            "Pickup",
+            "Magnetic pickup position and response.",
+            vec!["distance", "alignment", "law"],
+        ),
+        ("output", "Output", "Final instrument level.", vec!["gain"]),
+    ];
+    let pages: Vec<_> = groups
+        .into_iter()
+        .map(|(id, label, detail, ids)| {
+            let grouped: Vec<_> = ids
+                .iter()
+                .map(|id| {
+                    fields
+                        .iter()
+                        .find(|f| f["id"] == *id)
+                        .expect("known editor field")
+                        .clone()
+                })
+                .collect();
+            json!({"id":id,"label":label,"detail":detail,"fields":grouped})
+        })
+        .collect();
     let view: ProgramEditorView = serde_json::from_value(json!({
         "schema_version": 1, "title": "RF-73 Voicing",
-        "pages": [{"id": "sound", "label": "Sound",
-            "detail": "Physical voicing; the pickup keeps its level.",
-            "fields": fields}]
+        "pages": pages
     }))
     .ok()?;
     view.validate().ok()?;

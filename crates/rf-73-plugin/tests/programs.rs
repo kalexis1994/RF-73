@@ -63,8 +63,21 @@ fn editor_preview_install_catalog_reload_and_snapshot_agree() {
         .unwrap();
     let view: ProgramEditorView = serde_json::from_slice(&destination[..len]).unwrap();
     view.validate().unwrap();
-    assert_eq!(view.pages[0].fields.len(), 8);
-    assert!(view.pages[0].fields.iter().all(|field| field.live_preview));
+    assert_eq!(view.pages.len(), 4);
+    assert_eq!(
+        view.pages
+            .iter()
+            .map(|p| p.fields.len())
+            .collect::<Vec<_>>(),
+        vec![2, 2, 3, 1]
+    );
+    assert_eq!(view.pages.iter().flat_map(|p| p.fields.iter()).count(), 8);
+    assert!(
+        view.pages
+            .iter()
+            .flat_map(|p| p.fields.iter())
+            .all(|field| field.live_preview)
+    );
     let len = plugin
         .prepare_program_save(&document, &mut destination)
         .unwrap();

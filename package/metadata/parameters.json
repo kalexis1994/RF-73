@@ -1,40 +1,188 @@
 {
   "schema_version": 1,
-  "pages": [{ "id": "sound", "name": "Sound", "order": 0 }, { "id": "output", "name": "Output", "order": 1 }],
-  "parameters": [{
-    "index": 0, "id": "gain", "name": "Output Gain", "page": "output", "order": 0,
-    "kind": { "type": "float", "minimum": 0.0, "maximum": 2.0, "default": 0.1, "step": 0.01, "unit": "x" },
-    "flags": { "automatable": true, "modulatable": false, "read_only": false, "advanced": false },
-    "suggested_control": "knob"
-  }, {
-    "index": 1, "id": "law", "name": "Pickup Law", "page": "sound", "order": 0,
-    "kind": { "type": "enum", "default": 0, "choices": [
-      { "value": 0, "name": "Production" }, { "value": 1, "name": "Aperture" }, { "value": 2, "name": "Register Aperture" }
-    ] },
-    "flags": { "automatable": true }, "suggested_control": "list"
-  }, {
-    "index": 2, "id": "distance", "name": "Pickup Distance", "page": "sound", "order": 1,
-    "kind": { "type": "float", "minimum": 0.5, "maximum": 3.0, "default": 1.5, "step": 0.01, "unit": "mm" },
-    "flags": { "automatable": true }, "suggested_control": "knob"
-  }, {
-    "index": 3, "id": "alignment", "name": "Tine Alignment", "page": "sound", "order": 2,
-    "kind": { "type": "float", "minimum": -1.0, "maximum": 1.5, "default": 0.5, "step": 0.01, "unit": "mm" },
-    "flags": { "automatable": true }, "suggested_control": "knob"
-  }, {
-    "index": 4, "id": "hardness", "name": "Hammer Hardness", "page": "sound", "order": 3,
-    "kind": { "type": "float", "minimum": 0.0, "maximum": 1.0, "default": 0.5, "step": 0.001 },
-    "flags": { "automatable": true }, "suggested_control": "knob"
-  }, {
-    "index": 5, "id": "sustain", "name": "Sustain", "page": "sound", "order": 4,
-    "kind": { "type": "float", "minimum": 0.0, "maximum": 1.0, "default": 0.0, "step": 0.001 },
-    "flags": { "automatable": true }, "suggested_control": "knob"
-  }, {
-    "index": 6, "id": "bell", "name": "Bell", "page": "sound", "order": 5,
-    "kind": { "type": "float", "minimum": 0.0, "maximum": 1.0, "default": 1.0, "step": 0.001 },
-    "flags": { "automatable": true }, "suggested_control": "knob"
-  }, {
-    "index": 7, "id": "dynamics", "name": "Dynamics", "page": "sound", "order": 6,
-    "kind": { "type": "float", "minimum": 0.0, "maximum": 1.0, "default": 0.5, "step": 0.001 },
-    "flags": { "automatable": true }, "suggested_control": "knob"
-  }]
+  "pages": [
+    {
+      "id": "hammer",
+      "name": "Hammer & Touch",
+      "order": 0
+    },
+    {
+      "id": "resonator",
+      "name": "Tine & Tonebar",
+      "order": 1
+    },
+    {
+      "id": "pickup",
+      "name": "Pickup",
+      "order": 2
+    },
+    {
+      "id": "output",
+      "name": "Output",
+      "order": 3
+    }
+  ],
+  "parameters": [
+    {
+      "index": 0,
+      "id": "gain",
+      "name": "Output Gain",
+      "page": "output",
+      "order": 0,
+      "kind": {
+        "type": "float",
+        "minimum": 0.0,
+        "maximum": 2.0,
+        "default": 0.1,
+        "step": 0.01,
+        "unit": "x"
+      },
+      "flags": {
+        "automatable": true,
+        "modulatable": false,
+        "read_only": false,
+        "advanced": false
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 1,
+      "id": "law",
+      "name": "Pickup Model",
+      "page": "pickup",
+      "order": 2,
+      "kind": {
+        "type": "enum",
+        "default": 0,
+        "choices": [
+          {
+            "value": 0,
+            "name": "Production"
+          },
+          {
+            "value": 1,
+            "name": "Aperture"
+          },
+          {
+            "value": 2,
+            "name": "Register Aperture"
+          }
+        ]
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "list"
+    },
+    {
+      "index": 2,
+      "id": "distance",
+      "name": "Pickup Distance",
+      "page": "pickup",
+      "order": 0,
+      "kind": {
+        "type": "float",
+        "minimum": 0.5,
+        "maximum": 3.0,
+        "default": 1.5,
+        "step": 0.01,
+        "unit": "mm"
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 3,
+      "id": "alignment",
+      "name": "Tine Alignment",
+      "page": "pickup",
+      "order": 1,
+      "kind": {
+        "type": "float",
+        "minimum": -1.0,
+        "maximum": 1.5,
+        "default": 0.5,
+        "step": 0.01,
+        "unit": "mm"
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 4,
+      "id": "hardness",
+      "name": "Hammer Hardness",
+      "page": "hammer",
+      "order": 0,
+      "kind": {
+        "type": "float",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "default": 0.5,
+        "step": 0.001
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 5,
+      "id": "sustain",
+      "name": "Sustain",
+      "page": "resonator",
+      "order": 0,
+      "kind": {
+        "type": "float",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "default": 0.0,
+        "step": 0.001
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 6,
+      "id": "bell",
+      "name": "Bell",
+      "page": "resonator",
+      "order": 1,
+      "kind": {
+        "type": "float",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "default": 1.0,
+        "step": 0.001
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    },
+    {
+      "index": 7,
+      "id": "dynamics",
+      "name": "Dynamics",
+      "page": "hammer",
+      "order": 1,
+      "kind": {
+        "type": "float",
+        "minimum": 0.0,
+        "maximum": 1.0,
+        "default": 0.5,
+        "step": 0.001
+      },
+      "flags": {
+        "automatable": true
+      },
+      "suggested_control": "knob"
+    }
+  ]
 }

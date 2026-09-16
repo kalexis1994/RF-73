@@ -8,43 +8,54 @@
 </head>
 <body>
   <main>
-    <header><div><p class="eyebrow">RF-73 <span>RESEARCH / 0.1.2</span></p><h1>Voicing</h1>
-      <p class="intro">One physical instrument. Move the pickup, the hammer and the losses; the level follows the physics.</p></div>
+    <header><div><p class="eyebrow">RF-73 <span>ELECTRIC PIANO</span></p><h1>Voicing</h1>
+      <p class="intro">Shape the strike, the resonator and the pickup. Save your instrument as a RackForge preset.</p></div>
       <p class="connection" id="status" role="status">Loading the Rust interface...</p></header>
-    <section class="sound" aria-label="Sound">
-      <div class="control"><label for="law">Pickup Law <output id="law-value">Production</output></label>
-        <select id="law" disabled data-rackforge-parameter-index="1"><option value="0" selected>Production</option><option value="1">Aperture</option><option value="2">Register Aperture</option></select>
-        <p>The original flux surrogate, or the laboratory's finite aperture with a 2 mm pole.</p></div>
-      <div class="control"><label for="distance">Pickup Distance <output id="distance-value">1.50 mm</output></label>
-        <input id="distance" type="range" min="0.5" max="3" step="0.01" value="1.5" disabled data-rackforge-parameter-index="2">
-        <p>The gap. Closer is brighter and more nonlinear; the level is compensated.</p></div>
-      <div class="control"><label for="alignment">Tine Alignment <output id="alignment-value">0.50 mm</output></label>
-        <input id="alignment" type="range" min="-1" max="1.5" step="0.01" value="0.5" disabled data-rackforge-parameter-index="3">
-        <p>The lateral offset. On centre the fundamental thins and the bark grows with velocity.</p></div>
+    <nav class="section-nav" aria-label="Instrument sections"><a href="#hammer">Hammer &amp; Touch</a><a href="#resonator">Tine &amp; Tonebar</a><a href="#pickup">Pickup</a><a href="#output">Output</a></nav>
+    <section id="hammer" class="instrument-section" aria-labelledby="hammer-title">
+      <div class="section-heading"><h2 id="hammer-title">Hammer &amp; Touch</h2><p>How your playing sets the instrument in motion.</p></div>
+      <div class="sound">
       <div class="control"><label for="hardness">Hammer Hardness <output id="hardness-value">0.500</output></label>
         <input id="hardness" type="range" min="0" max="1" step="0.001" value="0.5" disabled data-rackforge-parameter-index="4">
-        <p>Contact stiffness, 1.6e9 to 1e12 N/m&sup2;. 0.500 is the original.</p></div>
-      <div class="control"><label for="sustain">Sustain <output id="sustain-value">0.000</output></label>
-        <input id="sustain" type="range" min="0" max="1" step="0.001" value="0" disabled data-rackforge-parameter-index="5">
-        <p>First partial T60 at A3: 5 s at 0, the recording-derived 20 s at 0.5, 80 s at 1.</p></div>
-      <div class="control"><label for="bell">Bell <output id="bell-value">1.000</output></label>
-        <input id="bell" type="range" min="0" max="1" step="0.001" value="1" disabled data-rackforge-parameter-index="6">
-        <p>Second partial strike. 1 is the original; the recordings bound it near 0.26.</p></div>
+        <p>Stiffness of the hammer-tip contact. Changes how the strike excites the tine.</p></div>
       <div class="control"><label for="dynamics">Dynamics <output id="dynamics-value">0.500</output></label>
         <input id="dynamics" type="range" min="0" max="1" step="0.001" value="0.5" disabled data-rackforge-parameter-index="7">
-        <p>Velocity curve exponent 0.7 to 2.8; 0.5 is the original 1.4.</p></div>
-      <div class="control"><label>Presets</label>
-        <p>Compare Calibrated Register with Calibrated using RackForge presets, then adjust the sound. Every change keeps ringing notes.</p></div>
+        <p>How MIDI velocity becomes hammer speed. Adjust this to your keyboard and playing touch.</p></div>
+      </div>
     </section>
-    <section class="output" aria-label="Output">
+    <section id="resonator" class="instrument-section" aria-labelledby="resonator-title">
+      <div class="section-heading"><h2 id="resonator-title">Tine &amp; Tonebar</h2><p>How the struck resonator rings and loses energy.</p></div>
+      <div class="sound">
+      <div class="control"><label for="sustain">Sustain <output id="sustain-value">0.000</output></label>
+        <input id="sustain" type="range" min="0" max="1" step="0.001" value="0" disabled data-rackforge-parameter-index="5">
+        <p>Natural ring of the resonator while held. This control changes tine and tonebar decay together.</p></div>
+      <div class="control"><label for="bell">Bell <output id="bell-value">1.000</output></label>
+        <input id="bell" type="range" min="0" max="1" step="0.001" value="1" disabled data-rackforge-parameter-index="6">
+        <p>Excitation of the second bending mode. Shapes the bell-like component of the strike.</p></div>
+      </div>
+    </section>
+    <section id="pickup" class="instrument-section" aria-labelledby="pickup-title">
+      <div class="section-heading"><h2 id="pickup-title">Pickup</h2><p>How tine motion becomes an electrical signal.</p></div>
+      <div class="sound">
+      <div class="control"><label for="distance">Pickup Distance <output id="distance-value">1.50 mm</output></label>
+        <input id="distance" type="range" min="0.5" max="3" step="0.01" value="1.5" disabled data-rackforge-parameter-index="2">
+        <p>Distance from the tine to the pickup. Changes magnetic sensitivity and harmonic balance.</p></div>
+      <div class="control"><label for="alignment">Tine Alignment <output id="alignment-value">0.50 mm</output></label>
+        <input id="alignment" type="range" min="-1" max="1.5" step="0.01" value="0.5" disabled data-rackforge-parameter-index="3">
+        <p>Position relative to the tine axis. Changes the balance between the fundamental and upper harmonics.</p></div>
+      <div class="control"><label for="law">Pickup Model <output id="law-value">Production</output></label>
+        <select id="law" disabled data-rackforge-parameter-index="1"><option value="0" selected>Production</option><option value="1">Aperture</option><option value="2">Register Aperture</option></select>
+        <p>Register Aperture gradually adjusts pickup geometry in the upper register.</p></div>
+      </div>
+    </section>
+    <section id="output" class="output" aria-label="Output">
       <div><h2>Output gain</h2><p>After the level compensation.</p></div>
       <input id="gain" aria-label="Output gain slider" type="range" min="0" max="2" step="0.01" value="0.1" disabled data-rackforge-parameter-index="0">
       <div class="gain-value"><label for="gain-number" class="sr-only">Output gain multiplier</label><input id="gain-number" type="number" min="0" max="2" step="0.01" value="0.1" disabled><span>x</span><output id="gain-db">-20.0 dB</output></div>
       <p class="headroom">Start at <strong>0.100x</strong>. Watch RackForge's output meter when playing dense chords. No limiter.</p>
     </section>
-    <footer><div><h2>Physics, not presets</h2><p>Every control is a quantity of the model: geometry in millimetres, stiffness, losses, strike participation. The pickup's level is equalized for a medium note so the controls change the timbre, not the volume.</p></div>
-      <div><h2>Keep your voicing</h2><p>Use RackForge PRESETS to save the whole page and output gain. Restore any saved voicing from the host.</p></div>
-      <p class="research-note">UNCALIBRATED MODEL <span>Level compensation from the pickup law; dynamics follow the physics, so centred pickups play softer soft notes.</span></p></footer>
+    <footer><div><h2>Start from a voicing</h2><p>Choose Calibrated Register or Calibrated in RackForge PRESETS, then shape the instrument with these sections.</p></div>
+      <div><h2>Keep your instrument</h2><p>Save your adjustments as a RackForge preset. Changes preserve ringing notes.</p></div></footer>
   </main>
   <noscript>This interface requires WebAssembly and the RackForge host.</noscript>
   <script type="module" src="app.js"></script>
