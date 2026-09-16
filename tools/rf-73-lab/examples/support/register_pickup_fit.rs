@@ -17,7 +17,7 @@ fn coordinates(x: [f64; 8], note: u8) -> [f64; 5] {
         lo * (1.0 - w) + hi * w
     })
 }
-fn evaluate(cases: &[Case], x: [f64; 8], detailed: bool) -> Result<(f64, Vec<Value>)> {
+pub(super) fn evaluate(cases: &[Case], x: [f64; 8], detailed: bool) -> Result<(f64, Vec<Value>)> {
     let mut tables = BTreeMap::new();
     for note in cases.iter().map(|c| c.note).collect::<BTreeSet<_>>() {
         let p = profile(coordinates(x, note));

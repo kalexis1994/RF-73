@@ -1,0 +1,109 @@
+{
+  "git_base": "f13ee17aa79c5bab4f9bdbf66d2c18811a89754b",
+  "source_hashes": {
+    "tools/rf-73-lab/examples/support/velocity_mapping.rs": {
+      "sha256_bytes": "97c1a9c88d8a116f02b4771ca741cd4984779aaab481371698a7c4627d48126c",
+      "sha256_lf": "97c1a9c88d8a116f02b4771ca741cd4984779aaab481371698a7c4627d48126c"
+    },
+    "tools/rf-73-lab/examples/support/register_pickup_fit.rs": {
+      "sha256_bytes": "f598baadb9f66f6377b02db584915d0a046193fe868d3253ee608cd98023e98c",
+      "sha256_lf": "f598baadb9f66f6377b02db584915d0a046193fe868d3253ee608cd98023e98c"
+    },
+    "tools/rf-73-lab/examples/support/robust_pickup_fit.rs": {
+      "sha256_bytes": "976c5902d4b7a910020047dcc3479acdcde8afb829fd538dfe34964c9b2cfad4",
+      "sha256_lf": "976c5902d4b7a910020047dcc3479acdcde8afb829fd538dfe34964c9b2cfad4"
+    },
+    "tools/rf-73-lab/examples/continuous_pickup_fit.rs": {
+      "sha256_bytes": "6e276f50760efa4104468525ac5d819796cec2fdead4971587d1b833e7940b38",
+      "sha256_lf": "6e276f50760efa4104468525ac5d819796cec2fdead4971587d1b833e7940b38"
+    },
+    "tools/rf-73-lab/examples/matts_fit.rs": {
+      "sha256_bytes": "6434348cfa024f2f7354cc0c89567680e882c3b242c94baa4c8ec787641f34ed",
+      "sha256_lf": "6434348cfa024f2f7354cc0c89567680e882c3b242c94baa4c8ec787641f34ed"
+    },
+    "references/matts-reference-runner/Cargo.lock": {
+      "sha256_bytes": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73",
+      "sha256_lf": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73"
+    },
+    "references/matts-fender-rhodes.inventory.json": {
+      "sha256_bytes": "1f9d9294cb16d3d54cb9172eb431f5b0ef7c2470a9485594a44bc0e7dea7e94b",
+      "sha256_lf": "62f712e45c63202198cfbe005a71edde9566e56444b53216e8d8018e0963c761"
+    }
+  },
+  "receipt_hashes": {
+    "independent-replay.json": {
+      "sha256_bytes": "0c53bff8734acd97cfee76cbdd8b1770d4ae0624a7372dcffc99d8fa7d0224b7",
+      "sha256_lf": "bd5385168c35275934dd3de4108f22c4fd22cb86649662b847ff0bf04fa51308"
+    },
+    "coarse/calibrated-grid.json": {
+      "sha256_bytes": "d43fbdd1f5143d272f323798ca40fe161af8174e68ffbc621b048ee86a246f94",
+      "sha256_lf": "d43fbdd1f5143d272f323798ca40fe161af8174e68ffbc621b048ee86a246f94"
+    },
+    "coarse/calibrated-selection.json": {
+      "sha256_bytes": "a658b32d7d8f61bff43b2e2e523a8939166e7142941ee203e13a7a8793dbaca1",
+      "sha256_lf": "a658b32d7d8f61bff43b2e2e523a8939166e7142941ee203e13a7a8793dbaca1"
+    },
+    "coarse/decision.json": {
+      "sha256_bytes": "0e62439778ab59ce8c04b08940f6223c962133a81d1f2eb3b66b519658e6c9d6",
+      "sha256_lf": "0e62439778ab59ce8c04b08940f6223c962133a81d1f2eb3b66b519658e6c9d6"
+    },
+    "coarse/development-fixed-baseline.json": {
+      "sha256_bytes": "4e51ca901ea4d0ed3008ac1d97e1afdd34e796c3af071be19fa1ee6e39496ec1",
+      "sha256_lf": "4e51ca901ea4d0ed3008ac1d97e1afdd34e796c3af071be19fa1ee6e39496ec1"
+    },
+    "coarse/protocol.json": {
+      "sha256_bytes": "08ffdcae53237637329972fcd140134a687cede36a64ec98adc65a12098165b9",
+      "sha256_lf": "08ffdcae53237637329972fcd140134a687cede36a64ec98adc65a12098165b9"
+    },
+    "coarse/register-grid.json": {
+      "sha256_bytes": "55b4693f2ccc0c5682a92ca92aa7dc52cae80d0cbeda91c8a30926c42173ce66",
+      "sha256_lf": "55b4693f2ccc0c5682a92ca92aa7dc52cae80d0cbeda91c8a30926c42173ce66"
+    },
+    "coarse/register-selection.json": {
+      "sha256_bytes": "cbdba9681dd86d6911c68a6a58d83b7011842b40b72f9084e921d4b190587614",
+      "sha256_lf": "cbdba9681dd86d6911c68a6a58d83b7011842b40b72f9084e921d4b190587614"
+    },
+    "fine/calibrated-grid.json": {
+      "sha256_bytes": "6bdf84f3e8d49e02f9f24cc9dbb819f235792160644995cca6a5187f6f943d0a",
+      "sha256_lf": "6bdf84f3e8d49e02f9f24cc9dbb819f235792160644995cca6a5187f6f943d0a"
+    },
+    "fine/calibrated-selection.json": {
+      "sha256_bytes": "5584cdc8e88b3187607adcc0b63df2181df4bfd239a344f93c38fd1c63410165",
+      "sha256_lf": "5584cdc8e88b3187607adcc0b63df2181df4bfd239a344f93c38fd1c63410165"
+    },
+    "fine/decision.json": {
+      "sha256_bytes": "0e62439778ab59ce8c04b08940f6223c962133a81d1f2eb3b66b519658e6c9d6",
+      "sha256_lf": "0e62439778ab59ce8c04b08940f6223c962133a81d1f2eb3b66b519658e6c9d6"
+    },
+    "fine/development-fixed-baseline.json": {
+      "sha256_bytes": "4e51ca901ea4d0ed3008ac1d97e1afdd34e796c3af071be19fa1ee6e39496ec1",
+      "sha256_lf": "4e51ca901ea4d0ed3008ac1d97e1afdd34e796c3af071be19fa1ee6e39496ec1"
+    },
+    "fine/protocol.json": {
+      "sha256_bytes": "762d8d598683721a9f05872c32a6a6aeed0c589c0c0e60626dbfdd2d91cbd684",
+      "sha256_lf": "762d8d598683721a9f05872c32a6a6aeed0c589c0c0e60626dbfdd2d91cbd684"
+    },
+    "fine/register-grid.json": {
+      "sha256_bytes": "6c5eb5ea5353fa7fdcfb7291cc39bbcc8ff48a9305718bfe659b9a665b1897ca",
+      "sha256_lf": "6c5eb5ea5353fa7fdcfb7291cc39bbcc8ff48a9305718bfe659b9a665b1897ca"
+    },
+    "fine/register-selection.json": {
+      "sha256_bytes": "63cc3e83c49597c1a5872396df36827b607f00ca6677132f97df5f817566c5e0",
+      "sha256_lf": "63cc3e83c49597c1a5872396df36827b607f00ca6677132f97df5f817566c5e0"
+    }
+  },
+  "tests": {
+    "rust": 29,
+    "python": 6,
+    "release_clippy_warnings_denied": "passed"
+  },
+  "raw_protocol_sha256": {
+    "coarse": "87163ef662ee34568ddd48461b1f7bb4f54bf1ade68d7ba55300b9f64e115961",
+    "fine": "f799256513ed17577487d7f6a97c7ec9cfcbaf42cb638081f415ea845f02a5a6"
+  },
+  "protocol_metadata_correction": "Retained protocols rename mappings_per_family to coarse_grid_mappings_per_family; fine selections actually evaluate 14641 mappings per family, independently replayed. Numerical observations are unchanged.",
+  "source_note": "Final source factors selection into a tested function, uses an enumerate iterator and clarifies the protocol count; independent receipt-only replay reproduces all four selections exactly.",
+  "held_out_loaded": false,
+  "plugin_changed": false,
+  "audition_run": false
+}

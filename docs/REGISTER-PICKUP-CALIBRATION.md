@@ -101,6 +101,10 @@ standard release workflow before becoming an audition version.
 
 ## Remaining work
 
+Completed follow-up: [ordinal velocity mapping sensitivity](VELOCITY-MAPPING-SENSITIVITY.md)
+compares 37,034 mappings with both model families frozen. It reduces some
+residuals but does not pass the development gates; reserved notes stay unused.
+
 The reserved notes MIDI **45/53/60/67/76/86** remain unused by these fits. Before
 another geometry search, examine the residual spectra in B2/D3/G3 and whether
 the fixed ordinal velocity pairing can account for them. The current results

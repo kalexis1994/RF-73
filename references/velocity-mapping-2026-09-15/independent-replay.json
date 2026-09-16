@@ -1,0 +1,53 @@
+{
+  "method": "Independent Python receipt-only enumeration; no audio processing",
+  "cases": [
+    {
+      "phase": "01",
+      "family": "calibrated",
+      "mappings": 3876,
+      "selected_mapping": [
+        0.3,
+        0.45,
+        0.6,
+        0.85
+      ],
+      "max_mapping_error": 0.0
+    },
+    {
+      "phase": "01",
+      "family": "register",
+      "mappings": 3876,
+      "selected_mapping": [
+        0.25,
+        0.5,
+        0.65,
+        0.85
+      ],
+      "max_mapping_error": 0.0
+    },
+    {
+      "phase": "02",
+      "family": "calibrated",
+      "mappings": 14641,
+      "selected_mapping": [
+        0.29,
+        0.44,
+        0.61,
+        0.85
+      ],
+      "max_mapping_error": 0.0
+    },
+    {
+      "phase": "02",
+      "family": "register",
+      "mappings": 14641,
+      "selected_mapping": [
+        0.25,
+        0.5,
+        0.63,
+        0.85
+      ],
+      "max_mapping_error": 0.0
+    }
+  ]
+}

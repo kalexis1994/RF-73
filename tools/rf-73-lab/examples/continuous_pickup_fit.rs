@@ -6,6 +6,8 @@ mod previous;
 mod register;
 #[path = "support/robust_pickup_fit.rs"]
 mod robust;
+#[path = "support/velocity_mapping.rs"]
+mod velocity_mapping;
 use previous::{Case, Result, baseline, load, score, score_with, write};
 use rf_73_analysis::{AudioClip, ToneComparisonOptions, compare_tone, detect_timbre_onset};
 use rf_73_dsp::{ProductionDecimator, Profile, Voice};
@@ -208,6 +210,9 @@ fn verify_rendering(source: &Path, out: &Path, frozen: &Path) -> Result<()> {
 }
 fn main() -> Result<()> {
     let args: Vec<_> = std::env::args().collect();
+    if args.get(1).is_some_and(|a| a == "--velocity-map") {
+        return velocity_mapping::run(&args[2..]);
+    }
     if args.get(1).is_some_and(|a| a == "--register") {
         return register::run(&args[2..]);
     }
