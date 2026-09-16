@@ -178,3 +178,17 @@ versions and out-of-range parameters, then pass through the plugin's existing
 program validation before the host saves them atomically. Imported IDs are made
 unique, so loading a file never silently overwrites a user program. Version-4
 documents remain importable with neutral electronics defaults.
+
+## 0.1.11 controller roles and density
+
+The public parameter schema maps RackForge's standard plugin level and
+expression roles to Volume, LFO rate to Speed, and both LFO depth and
+performance modulation to Intensity. Sustain remains ordinary performance MIDI
+CC64 because it operates the dampers rather than the physical Sustain voicing
+parameter. Pitch Bend is deliberately not assigned: RackForge treats it as a
+14-bit gesture rather than a semantic parameter, and RF-73 has no physical
+pitch-bend mechanism.
+
+The PLAY and CONFIG surfaces hide their connection indicator after the bridge
+is ready. Desktop controls, spacing and headings are denser, while layouts at
+760 px and below retain larger rotary and numeric touch targets.

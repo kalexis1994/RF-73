@@ -1,7 +1,7 @@
 .config-main {
   max-width: 920px;
   display: grid;
-  gap: 18px;
+  gap: 12px;
 }
 .config-header,
 .program-card,
@@ -11,15 +11,12 @@
   box-shadow: 0 12px 30px #0003;
 }
 .config-header {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 24px;
-  align-items: end;
-  padding: 30px 34px;
-  border-top: 5px solid var(--accent);
+  padding: 20px 24px;
+  border-top: 4px solid var(--accent);
 }
 .config-header h1 {
-  margin: 3px 0 10px;
+  margin: 2px 0 6px;
+  font-size: 40px;
   color: var(--ink);
   font-style: normal;
   letter-spacing: -2px;
@@ -46,15 +43,18 @@
   background: #6fd59b;
   box-shadow: 0 0 8px #6fd59b88;
 }
+.config-connection[data-ready="true"] {
+  display: none;
+}
 .program-card {
-  padding: 26px 30px 30px;
+  padding: 18px 22px 20px;
 }
 .card-heading {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 18px;
+  gap: 13px;
   align-items: start;
-  padding-bottom: 22px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--line);
 }
 .card-heading h2 {
@@ -63,8 +63,8 @@
 .step {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 34px;
+  height: 34px;
   border: 1px solid var(--accent);
   color: var(--accent);
   font: 700 12px ui-monospace, Consolas, monospace;
@@ -72,8 +72,8 @@
 .config-fields {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin: 22px 0 18px;
+  gap: 12px;
+  margin: 14px 0 12px;
 }
 .config-fields label {
   display: grid;
@@ -84,16 +84,16 @@
 .config-fields select,
 .config-fields input {
   width: 100%;
-  min-height: 44px;
-  padding: 9px 12px;
+  min-height: 40px;
+  padding: 7px 10px;
   border: 1px solid var(--line);
   border-radius: 3px;
   background: var(--inset);
   color: var(--ink);
 }
 .primary {
-  min-height: 44px;
-  padding: 10px 18px;
+  min-height: 40px;
+  padding: 8px 16px;
   border: 1px solid var(--accent);
   border-radius: 3px;
   background: var(--accent);
@@ -111,11 +111,11 @@
   opacity: 0.5;
 }
 .safety-note {
-  margin-top: 14px;
+  margin-top: 10px;
   font-size: 12px;
 }
 .status-card {
-  padding: 20px 30px;
+  padding: 14px 22px;
 }
 .status-card .eyebrow {
   margin-bottom: 7px;
@@ -149,16 +149,17 @@
     padding: 12px;
   }
   .config-header {
-    grid-template-columns: 1fr;
-    align-items: start;
-    padding: 24px 20px;
+    padding: 20px 18px;
+  }
+  .config-header h1 {
+    font-size: 36px;
   }
   .config-connection {
     white-space: normal;
   }
   .program-card,
   .status-card {
-    padding: 22px 18px;
+    padding: 18px 16px;
   }
   .config-fields {
     grid-template-columns: 1fr;

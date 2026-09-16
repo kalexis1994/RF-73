@@ -14,6 +14,7 @@ const importButton = document.querySelector("#import-button");
 const fileInput = document.querySelector("#import-file");
 const activity = document.querySelector("#activity");
 const error = document.querySelector("#error");
+const statusCard = document.querySelector("#status-card");
 const connection = document.querySelector("#connection");
 const recoverButton = document.querySelector("#recover-button");
 
@@ -27,6 +28,7 @@ const contextWaiters = new Set();
 function setStatus(message, failure = "") {
   activity.textContent = message;
   error.textContent = failure;
+  statusCard.hidden = !message && !failure;
 }
 
 function setBusy(value) {
@@ -82,6 +84,8 @@ function render() {
   const connected = context?.instance?.plugin_id === PLUGIN_ID;
   connection.textContent = connected ? "Connected to RackForge" : "Connecting to RackForge…";
   connection.dataset.ready = connected ? "true" : "false";
+  connection.hidden = connected;
+  if (connected && activity.textContent === "Waiting for RackForge.") setStatus("");
   if (connected) {
     const signature = sounds().map((sound) => `${sound.id}:${sound.name}`).join("|");
     if (source.dataset.catalog !== signature) {

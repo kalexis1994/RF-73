@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-16T17:26:35.3605432Z",
+  "plugin_id": "org.rackforge.rhodes",
+  "version": "0.1.11",
+  "archive": {
+    "path": "dist/RF-73-0.1.11.rfplugin",
+    "bytes": 272614,
+    "sha256": "5ce79ae0faac0c60888790125a66d83fd9290cf8078ec9e6409533d029ad30f7"
+  },
+  "audition": {
+    "source_run": "dist/audition/0.1.11-1789579319234593600-8400",
+    "prepare_only": true,
+    "desktop_launched": false,
+    "listening_test": false,
+    "desktop_error": "RackForge Desktop executable was not built or configured on this machine."
+  },
+  "package_smoke": {
+    "parameters": 15,
+    "pages": 5,
+    "factory_programs": 5,
+    "default_program": "stage-early-70s",
+    "peak": 0.170631,
+    "state_bytes": 124
+  },
+  "semantic_controls": [
+    "plugin.output.level -> gain",
+    "performance.expression -> gain",
+    "synth.lfo.rate -> speed",
+    "synth.lfo.depth -> intensity",
+    "performance.modulation -> intensity"
+  ],
+  "checks": {
+    "rf73_format": "3 passed",
+    "plugin": "22 passed",
+    "ui": "9 passed",
+    "web_ui_packaging": "1 passed",
+    "wasm_clippy": "passed",
+    "format_and_diff": "passed"
+  },
+  "browser": {
+    "url": "https://kalexis1994.github.io/rackforge/#/play",
+    "install": "passed",
+    "parameter_schema": "schema 2 and all five semantic controls read from the installed package",
+    "desktop_play": "68 px knobs, connection indicator hidden, no horizontal overflow",
+    "mobile_play": "82 px knobs at 390x844, connection indicator hidden, no horizontal overflow",
+    "config_idle": "connection and activity cards hidden",
+    "config_activity": "valid import displayed the activity card and created custom.lab-1",
+    "runtime_errors": 0,
+    "screenshots": [
+      "dist/rf73-0.1.11-public-play.png",
+      "dist/rf73-0.1.11-public-config.png",
+      "dist/rf73-0.1.11-public-config-mobile.png"
+    ]
+  }
+}

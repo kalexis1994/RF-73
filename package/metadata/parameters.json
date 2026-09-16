@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "pages": [
     {
       "id": "instrument",
@@ -333,6 +333,28 @@
         "automatable": true
       },
       "suggested_control": "knob"
+    }
+  ],
+  "semantic_controls": [
+    {
+      "role": "plugin.output.level",
+      "parameter_index": 0
+    },
+    {
+      "role": "performance.expression",
+      "parameter_index": 0
+    },
+    {
+      "role": "synth.lfo.rate",
+      "parameter_index": 11
+    },
+    {
+      "role": "synth.lfo.depth",
+      "parameter_index": 12
+    },
+    {
+      "role": "performance.modulation",
+      "parameter_index": 12
     }
   ]
 }
