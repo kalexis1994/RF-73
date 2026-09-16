@@ -58,7 +58,7 @@
       "order": 2,
       "kind": {
         "type": "enum",
-        "default": 0,
+        "default": 2,
         "choices": [
           {
             "value": 0,
@@ -89,7 +89,7 @@
         "type": "float",
         "minimum": 0.5,
         "maximum": 3.0,
-        "default": 1.5,
+        "default": 0.75,
         "step": 0.01,
         "unit": "mm"
       },
@@ -108,7 +108,7 @@
         "type": "float",
         "minimum": -1.0,
         "maximum": 1.5,
-        "default": 0.5,
+        "default": 0.48,
         "step": 0.01,
         "unit": "mm"
       },
@@ -127,7 +127,7 @@
         "type": "float",
         "minimum": 0.0,
         "maximum": 1.0,
-        "default": 0.5,
+        "default": 0.42,
         "step": 0.001
       },
       "flags": {
@@ -145,7 +145,7 @@
         "type": "float",
         "minimum": 0.0,
         "maximum": 1.0,
-        "default": 0.0,
+        "default": 0.48,
         "step": 0.001
       },
       "flags": {
@@ -163,7 +163,7 @@
         "type": "float",
         "minimum": 0.0,
         "maximum": 1.0,
-        "default": 1.0,
+        "default": 0.22,
         "step": 0.001
       },
       "flags": {
@@ -298,7 +298,7 @@
       "order": 13,
       "kind": {
         "type": "enum",
-        "default": 1,
+        "default": 0,
         "choices": [
           {
             "value": 0,
@@ -325,7 +325,7 @@
         "type": "float",
         "minimum": 0,
         "maximum": 1,
-        "default": 1,
+        "default": 0.9,
         "step": 0.001,
         "unit": ""
       },

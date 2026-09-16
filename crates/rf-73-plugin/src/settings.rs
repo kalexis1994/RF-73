@@ -79,6 +79,8 @@ impl Default for Settings {
 }
 
 /// Factory presets: id, name, description, settings.
+/// Loadable factory IDs, including retired research IDs for saved-session compatibility.
+/// Only entries in metadata/presets.json are advertised to the host.
 pub fn presets() -> [(&'static str, &'static str, &'static str, Settings); 10] {
     let default = Settings::default();
     [

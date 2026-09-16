@@ -25,7 +25,6 @@ pub const PARAMETER_SUSTAIN: u32 = 5;
 pub const PARAMETER_BELL: u32 = 6;
 pub const PARAMETER_DYNAMICS: u32 = 7;
 
-#[derive(Default)]
 pub struct Rf73Processor {
     engine: Option<Box<Engine>>,
     settings: Settings,
@@ -33,6 +32,24 @@ pub struct Rf73Processor {
     programs: BTreeMap<String, rackforge_program_api::ProgramDocument>,
     maximum_frames: u32,
     channels: u32,
+}
+
+impl Default for Rf73Processor {
+    fn default() -> Self {
+        let settings = presets()
+            .into_iter()
+            .find(|preset| preset.0 == "stage-early-70s")
+            .expect("default factory program exists")
+            .3;
+        Self {
+            engine: None,
+            settings,
+            electronics: electronics::Electronics::new(48000.0, settings),
+            programs: BTreeMap::new(),
+            maximum_frames: 0,
+            channels: 0,
+        }
+    }
 }
 
 impl Rf73Processor {

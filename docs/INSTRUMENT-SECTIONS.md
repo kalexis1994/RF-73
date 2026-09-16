@@ -154,3 +154,17 @@ invalid-state rejection, EQ polarity at three sample rates, modulation period
 and complementary channels, event/block-size invariance, and dense repeated
 10-note chords for each new program. Peak checks establish headroom only for
 that test, not every possible performance or boosted-EQ setting.
+
+
+## 0.1.8 factory catalog cleanup
+
+The five research/reference programs and their Reference bank are no longer
+advertised. The catalog contains only the five era-inspired instrument programs
+and any user programs. Retired factory IDs remain loadable for compatibility
+with stored sessions and program references. Their settings and the state format are unchanged.
+
+Knob lighting and cast shadows stay fixed; only the position marker rotates.
+
+Stage 73 - Early '70s is first in the catalog and initializes fresh processor
+instances. Parameter defaults and UI resets match this voice. Legacy state
+migration keeps its original neutral-electronics defaults.

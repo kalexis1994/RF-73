@@ -315,7 +315,7 @@ fn checkpoint(previous: Option<Value>) -> Result<Value, Box<dyn Error>> {
     let sounds = value["selected_sounds"]
         .as_object_mut()
         .ok_or("invalid selected_sounds checkpoint")?;
-    sounds.entry(INSTANCE).or_insert(json!("research-direct"));
+    sounds.entry(INSTANCE).or_insert(json!("stage-early-70s"));
     Ok(value)
 }
 
@@ -378,7 +378,7 @@ mod tests {
     fn checkpoint_selects_rf73_and_preserves_user_controls() {
         let first = checkpoint(None).unwrap();
         assert_eq!(first["active_instance_id"], INSTANCE);
-        assert_eq!(first["selected_sounds"][INSTANCE], "research-direct");
+        assert_eq!(first["selected_sounds"][INSTANCE], "stage-early-70s");
         let next = checkpoint(Some(json!({"schema_version":4,"session_id":"live.main",
             "master_level":450,"master_pan":-50,"active_mode":"live", "selected_sounds":{INSTANCE:"saved-tone"},
             "parameter_links":[],"live":{"custom":"preserve"}}))).unwrap();

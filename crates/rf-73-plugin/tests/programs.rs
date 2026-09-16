@@ -92,10 +92,10 @@ fn editor_preview_install_catalog_reload_and_snapshot_agree() {
     let catalog: serde_json::Value = serde_json::from_slice(&destination[..len]).unwrap();
     assert_eq!(
         catalog["presets"].as_array().unwrap().len(),
-        presets().len() + 1
+        visible_factory_count() + 1
     );
     assert_eq!(
-        catalog["presets"][presets().len()]["id"],
+        catalog["presets"][visible_factory_count()]["id"],
         draft.preview_sound_id
     );
     // The host replays stored program documents into fresh instances.
@@ -239,7 +239,7 @@ fn bounded_catalog_fits_transfer_and_rejects_overflow_without_losing_entries() {
     let catalog: serde_json::Value = serde_json::from_slice(&out[..len]).unwrap();
     assert_eq!(
         catalog["presets"].as_array().unwrap().len(),
-        presets().len() + 8
+        visible_factory_count() + 8
     );
     let mut draft = last.unwrap();
     assert!(plugin.install_program(&serde_json::to_vec(&draft).unwrap()));
@@ -397,5 +397,66 @@ fn version_four_custom_programs_keep_their_voicing_with_neutral_electronics() {
         (14, 1.0),
     ] {
         assert_eq!(plugin.get_parameter(index), Some(value));
+    }
+}
+
+fn visible_factory_count() -> usize {
+    let catalog: serde_json::Value =
+        serde_json::from_str(include_str!("../../../package/metadata/presets.json")).unwrap();
+    catalog["presets"].as_array().unwrap().len()
+}
+
+#[test]
+fn catalog_retires_research_programs_but_keeps_saved_ids_loadable() {
+    let mut plugin = Rf73Processor::default();
+    let mut bytes = [0; 16384];
+    let len = plugin.write_program_catalog(&mut bytes).unwrap();
+    let catalog: serde_json::Value = serde_json::from_slice(&bytes[..len]).unwrap();
+    let ids: Vec<_> = catalog["presets"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|p| p["id"].as_str().unwrap())
+        .collect();
+    assert_eq!(
+        ids,
+        [
+            "stage-early-70s",
+            "suitcase-mid-70s",
+            "stage-late-70s",
+            "suitcase-late-70s",
+            "stage-80s"
+        ]
+    );
+    assert!(
+        catalog["banks"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .all(|b| b["id"] != "research")
+    );
+    for (id, _, _, expected) in presets().into_iter().take(5) {
+        assert!(!ids.contains(&id));
+        assert!(plugin.load_preset(id));
+        for index in 0..15 {
+            assert_eq!(plugin.get_parameter(index), expected.parameter(index));
+        }
+    }
+}
+
+#[test]
+fn initial_sound_and_declared_defaults_match_first_catalog_program() {
+    let initial = Rf73Processor::default();
+    let mut selected = Rf73Processor::default();
+    assert!(selected.load_preset("stage-early-70s"));
+    let schema: serde_json::Value =
+        serde_json::from_str(include_str!("../../../package/metadata/parameters.json")).unwrap();
+    for item in schema["parameters"].as_array().unwrap() {
+        let index = item["index"].as_u64().unwrap() as u32;
+        assert_eq!(initial.get_parameter(index), selected.get_parameter(index));
+        assert_eq!(
+            initial.get_parameter(index),
+            item["kind"]["default"].as_f64()
+        );
     }
 }

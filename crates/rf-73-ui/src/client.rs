@@ -4,7 +4,7 @@ pub const PROTOCOL: &str = "rackforge.plugin.web@1";
 /// Gain, pickup law, distance, alignment, hardness, sustain, bell, dynamics.
 pub const PARAMETERS: usize = 15;
 pub const DEFAULTS: [f64; PARAMETERS] = [
-    0.1, 0.0, 1.5, 0.5, 0.5, 0.0, 1.0, 0.5, 0.0, 0.0, 0.0, 4.0, 0.0, 1.0, 1.0,
+    0.1, 2.0, 0.75, 0.48, 0.42, 0.48, 0.22, 0.5, 0.0, 0.0, 0.0, 4.0, 0.0, 0.0, 0.9,
 ];
 
 #[derive(Clone, Debug, PartialEq)]
