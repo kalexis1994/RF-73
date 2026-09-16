@@ -1,0 +1,43 @@
+{
+  "bounds": [
+    [
+      0.0005,
+      0.003
+    ],
+    [
+      0.0001,
+      0.003
+    ],
+    [
+      0.2,
+      1.6
+    ],
+    [
+      0.5,
+      3.0
+    ]
+  ],
+  "coordinates": [
+    "gap_m",
+    "offset_m",
+    "max_hammer_speed_m_s",
+    "velocity_exponent"
+  ],
+  "held_out_notes": [
+    36,
+    43,
+    64,
+    72,
+    84,
+    96
+  ],
+  "objective": "Mean per-case squared dB error, H2-H4 attack96/body, -60 dB floor; missing reference excluded, missing candidate floored",
+  "promotion_rule": "At least 10% training and held-out harmonic MSE reduction; no held-out note MSE regression >10%; no newly failed envelope gate among qualified reference/baseline cases; mean qualified envelope absolute slope error must not worsen by >0.5 dB/s",
+  "scope": "Ordinal source layers only; fitted velocity law is not a measured hammer law. No release/T60 inference.",
+  "search": "Three deterministic coordinate rounds; log steps 0.5, 0.25, 0.125; no held-out feedback",
+  "training_notes": [
+    50,
+    55,
+    59
+  ]
+}

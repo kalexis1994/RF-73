@@ -1,0 +1,234 @@
+{
+  "promote": false,
+  "rejection_reasons": [
+    "held_out_incomplete_harmonic_coverage",
+    "held_out_note_64_regression_above_10_percent"
+  ],
+  "harmonic_mse_reductions": {
+    "training": 0.17345893042293425,
+    "held_out": 0.3121650098076547
+  },
+  "held_out_notes": [
+    {
+      "note": 36,
+      "scored_cases": 4,
+      "baseline_mse_db2": 588.1445117282882,
+      "candidate_mse_db2": 199.4605718453848
+    },
+    {
+      "note": 43,
+      "scored_cases": 4,
+      "baseline_mse_db2": 182.97612767039558,
+      "candidate_mse_db2": 122.62686425952519
+    },
+    {
+      "note": 64,
+      "scored_cases": 4,
+      "baseline_mse_db2": 74.03028942670049,
+      "candidate_mse_db2": 107.97352817748428
+    },
+    {
+      "note": 72,
+      "scored_cases": 4,
+      "baseline_mse_db2": 601.0996156537522,
+      "candidate_mse_db2": 493.05377906323577
+    },
+    {
+      "note": 84,
+      "scored_cases": 4,
+      "baseline_mse_db2": 192.67545890703946,
+      "candidate_mse_db2": 161.31647037734803
+    },
+    {
+      "note": 96,
+      "scored_cases": 2,
+      "baseline_mse_db2": 835.5874705879232,
+      "candidate_mse_db2": 660.5051751209536
+    }
+  ],
+  "envelope_error_increase_db_s": 0.020433848751899502,
+  "qualified_envelope_comparisons": [
+    {
+      "note": 43,
+      "layer": "p",
+      "reference_db_s": -1.6891289959380515,
+      "baseline_db_s": -1.9385340534744595,
+      "candidate_db_s": -1.9002380433900217,
+      "baseline_absolute_error": 0.24940505753640796,
+      "candidate_absolute_error": 0.21110904745197012
+    },
+    {
+      "note": 64,
+      "layer": "p",
+      "reference_db_s": -4.885819363607983,
+      "baseline_db_s": -3.666914045128521,
+      "candidate_db_s": -3.6624005427973723,
+      "baseline_absolute_error": 1.2189053184794623,
+      "candidate_absolute_error": 1.2234188208106112
+    },
+    {
+      "note": 64,
+      "layer": "mp",
+      "reference_db_s": -4.997055642576627,
+      "baseline_db_s": -3.6425364640195452,
+      "candidate_db_s": -3.6200586301410724,
+      "baseline_absolute_error": 1.3545191785570818,
+      "candidate_absolute_error": 1.3769970124355546
+    },
+    {
+      "note": 64,
+      "layer": "mf",
+      "reference_db_s": -5.202115395913762,
+      "baseline_db_s": -3.573755959204472,
+      "candidate_db_s": -3.5160198401627127,
+      "baseline_absolute_error": 1.6283594367092902,
+      "candidate_absolute_error": 1.6860955557510495
+    },
+    {
+      "note": 64,
+      "layer": "f",
+      "reference_db_s": -5.280708837082552,
+      "baseline_db_s": -3.409251225478234,
+      "candidate_db_s": -3.305194031033823,
+      "baseline_absolute_error": 1.8714576116043182,
+      "candidate_absolute_error": 1.9755148060487295
+    },
+    {
+      "note": 72,
+      "layer": "p",
+      "reference_db_s": -5.115702323927112,
+      "baseline_db_s": -4.624740734626008,
+      "candidate_db_s": -4.623079709064425,
+      "baseline_absolute_error": 0.49096158930110434,
+      "candidate_absolute_error": 0.49262261486268777
+    },
+    {
+      "note": 72,
+      "layer": "mp",
+      "reference_db_s": -5.238671101363775,
+      "baseline_db_s": -4.616555163395343,
+      "candidate_db_s": -4.60809216775754,
+      "baseline_absolute_error": 0.6221159379684318,
+      "candidate_absolute_error": 0.6305789336062348
+    },
+    {
+      "note": 72,
+      "layer": "mf",
+      "reference_db_s": -5.467101991255407,
+      "baseline_db_s": -4.596517404077512,
+      "candidate_db_s": -4.573536174280989,
+      "baseline_absolute_error": 0.8705845871778948,
+      "candidate_absolute_error": 0.8935658169744185
+    },
+    {
+      "note": 84,
+      "layer": "p",
+      "reference_db_s": -8.841468578818471,
+      "baseline_db_s": -6.542695583795436,
+      "candidate_db_s": -6.542384835635605,
+      "baseline_absolute_error": 2.298772995023035,
+      "candidate_absolute_error": 2.299083743182866
+    }
+  ],
+  "newly_failed_envelopes": [],
+  "excluded_envelope_cases": [
+    {
+      "note": 36,
+      "layer": "p",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 36,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 36,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 36,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 43,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 43,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 43,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 72,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 84,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 84,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 84,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 96,
+      "layer": "p",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 96,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 96,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 96,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    }
+  ],
+  "receipt_hashes": {
+    "held_out-baseline.json": "3f920e1f04fd5eb5631dddf9f35dba4cb039ef786b84d455d3d38e069b024d64",
+    "held_out-candidate.json": "d8f9308f1eb7724beed38ef4c22e9d73ebb266e80b5d8dfde18bdb3ef56fd72d",
+    "protocol.json": "7c9190e72aab7b7725260b83a8357decede28fb3bfbd464443a3ab9310dadb09",
+    "search.json": "5e03244737421b9ebb0a930ece23dfdfaf964752951b3893aab0cd99ff9afc38",
+    "training-baseline.json": "48b8b3ea725598af23e1299322ceb20e24885f994832460e24386f6be8c13a16",
+    "training-candidate.json": "e8c39b5a56612877372326b7370c502eab2e4b54bbf04392f7e35e4284d9d899"
+  }
+}

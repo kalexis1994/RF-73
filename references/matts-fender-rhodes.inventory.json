@@ -1,0 +1,5745 @@
+{
+  "schema_version": 1,
+  "inventory_type": "reference_acquisition_not_a_fit_manifest",
+  "acquired_on": "2026-09-15",
+  "author": "Matt Blostein",
+  "instrument": "Fender Rhodes Mark I 73",
+  "source_url": "https://www.pianobook.co.uk/packs/matts-fender-rhodes/",
+  "license_url": "https://www.pianobook.co.uk/terms-conditions/",
+  "license_status": "Pianobook terms; no standalone license file in supplied folder; no redistribution proposed",
+  "capture_chain_author_statement": "Countryman Type 10 Active DI into Chandler TG2 Mic Input, no processing",
+  "known_issue_author_statement": "A#2 weak/dead tine in author naming convention",
+  "capture_gain": "Unverified",
+  "octave_convention": "Unverified; MIDI notes intentionally unset until pitch/mapping validation",
+  "model_velocity": null,
+  "sustain_end_seconds": null,
+  "local_audio_directory": "references/audio/matts-fender-rhodes",
+  "archive": {
+    "filename": "293244_MattsFenderRhodes_MattBlostein.zip",
+    "bytes": 361037162,
+    "sha256": "d31054da1004d8620f62b2461ab0a18e08edf919c100d94e1fc66b00dcbe6ea3",
+    "zip_crc_check": "passed"
+  },
+  "verification": "All RIFF lengths/chunk bounds/data frame alignment checked; copied file SHA-256 verified. Audio samples not yet spectrally analyzed.",
+  "files": [
+    {
+      "file": "Matt's Fender Rhodes.nki",
+      "bytes": 11921,
+      "sha256": "2ad318ed6cb4998261f99247e50f69a9234dbf25367e875095f672d6a81eb21c"
+    },
+    {
+      "file": "README.txt",
+      "bytes": 584,
+      "sha256": "1275732982c03385bd9bf0a9ca3bb798db3cf3adebfc4d7b06f4bdfa76c88ea0"
+    },
+    {
+      "file": "rhodes.png",
+      "bytes": 417277,
+      "sha256": "30f443193273be9ca647b6e79c212e0cd52090be8616571a02f6730a206ea52c"
+    },
+    {
+      "file": "samples/original/A#0-f.wav",
+      "bytes": 1530336,
+      "sha256": "e1e1ca3673299f6ff8600dbe6670d8a44ae9ac758c17d0f6880a066aec2297e3",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 382561,
+      "duration_seconds": 7.970020833333334,
+      "filename_note": "A#0",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#0-mf.wav",
+      "bytes": 1530336,
+      "sha256": "eb32ef538dfb702cc48ac70464f358107cc9a9376e98da57c9b86e31735b9afd",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 382561,
+      "duration_seconds": 7.970020833333334,
+      "filename_note": "A#0",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#0-mp.wav",
+      "bytes": 1530336,
+      "sha256": "a3cc1704944890af3e7a234df37dfa57372593c0aa53163ec8613fe1497fe71e",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 382561,
+      "duration_seconds": 7.970020833333334,
+      "filename_note": "A#0",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#0-p.wav",
+      "bytes": 1530336,
+      "sha256": "88d488958bde0c9808cf6a112586c972571774fdfd50b4b7f07121ca3b41b0ee",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 382561,
+      "duration_seconds": 7.970020833333334,
+      "filename_note": "A#0",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#1-f.wav",
+      "bytes": 1536092,
+      "sha256": "ebdc9ccad9207584749676232cf8d792c859957f9bd78b49f404eebf4f2da62f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "0fdc89cf137f14964a92a0c4ce62383dcdb8354afb096d663e8b22719e6f6601",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "1af0e67016d7c953a2e2f6f1d4cf89adaba6b950894d0bfffa7a94e1f5a61043",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#1-p.wav",
+      "bytes": 1536092,
+      "sha256": "d1216b6c3a6cfc2f781ab149c875484ceaba127002f1c1eaa5b86cb419830691",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#2-f.wav",
+      "bytes": 1536092,
+      "sha256": "a1bd57572a6ff93233068209f53c808a71001f0270ab40fa6644a544e6d4d5a0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "7cf8fce9ed48cd22254fde9b907d7f0d70755f14ec29f7c51edef5319c8a4be7",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "773e8b01e57a22d05d095f96238fc7d8ac9b7b06be0016ab15733cd2314b3454",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#2-p.wav",
+      "bytes": 1536092,
+      "sha256": "c7d7efdee676ee9b6a130d5e8ddd53d3e1f03aac1ef9755d25e78944e0ea2481",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#3-f.wav",
+      "bytes": 1536092,
+      "sha256": "51622ce28faa38cc84c4a9eaf870c697c732fae794db6fa9279dc5a8213259fa",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "ac819471986f8cbab2a5df278cedb285f7074756068d31932a8c3e926567669f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "c90b3a7cb0d4821cd29c7678b9790a09306559d5d292ab5e96e27b801057e5ce",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#3-p.wav",
+      "bytes": 1536092,
+      "sha256": "ce78a050ad8dd378fbda7abb41fdf40b2f384f400bf56aac255dae290bb4b60b",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#4-f.wav",
+      "bytes": 1536092,
+      "sha256": "2d10b09c4e9b974518045ad2d36097a17047b4c21022d8559e14052440d9c0ad",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "dd918ea82baa5861ff63867fb980bece0a0240022f490f4d8f999c5708012557",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "d90b8a8b9ad11e3b53a10c93d116d373525244d2bbca384d45515433a8ea6665",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#4-p.wav",
+      "bytes": 1536092,
+      "sha256": "9cb71662c4b99a52832cd1a4342032b2630ebc8371702fbebe45e7dda1508f2b",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A#4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#5-f.wav",
+      "bytes": 1534514,
+      "sha256": "293ab2ef38635dd8dc8c6011ec25df5282c9c943efbe34f7caa934b031c876ba",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "A#5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "a7b853a94635928c3bbf28c939255074a0a6fe6160a5702fa38017b608b2f3a9",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "A#5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "a84fcfa063f0f4820dfc186797ed53733256f9b9030303f0ecd6e6c59a1aa86c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "A#5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A#5-p.wav",
+      "bytes": 1534514,
+      "sha256": "6dbc84ca541783376cf52aa2e5e25843ffd97f7494631cac300012e9446d39a7",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "A#5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A0-f.wav",
+      "bytes": 1536092,
+      "sha256": "0959a9fba0128626da8b651d1925cdc488abbf7f544a7536d4c7c3bd34a4013a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A0",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A0-mf.wav",
+      "bytes": 1536092,
+      "sha256": "2756b1f63de67c51a53229216bc19cc3339a6d922ccd0202330e1b1078ee2fdd",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A0",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A0-mp.wav",
+      "bytes": 1536092,
+      "sha256": "82d105bcef32c989c6b8346e8a4e8df43c138e55c2c4fd5fe6e85e2df542c2fe",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A0",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A0-p.wav",
+      "bytes": 1536092,
+      "sha256": "fc69f5fd114f1b14c156fbe90e733c93f89544c011dc3539d32c8cb2d76b7bfb",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A0",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A1-f.wav",
+      "bytes": 1536092,
+      "sha256": "348c1e59bd9137c732a93157c74943e8193ea07da42e033203fafa6dc7bd8285",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "1a262495683b19d583e355ba275a9b90082484ecedcef8941613d04f4e17fd6d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "c42e5415ac15b58e13446c9fc721cb279f3e238a55fec777cf9dbfe78b3ef19b",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A1-p.wav",
+      "bytes": 1536092,
+      "sha256": "981ac904d6b113c2e8307ac450170d90d82196b8d2401403cceae34fabb0f51b",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A2-f.wav",
+      "bytes": 1536092,
+      "sha256": "b9cf11f3ea3988db4da8f01654f47d6fab4fcc5f00bf9e6a49032976cb1794e7",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "d5769da1a95f5c8541ef13ec2fdff4a508a66c3b205061b086d9f5127deec7b4",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "536b32167d44c751f3e9797462394d9cdeb5cceca26b58bb97758bc8ae31e9ca",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A2-p.wav",
+      "bytes": 1536092,
+      "sha256": "cabaab8c69e46ec09a05bc816e77f73ef1ab7cce936d7f78887eb50a75d1e942",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A3-f.wav",
+      "bytes": 1536092,
+      "sha256": "911a64ba513c33313fed0d76f13d25e6f2d8c88fb07c61af3b1e254d13668bc1",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "f37977e2a1ed1c9b0de7557abd0fd16e5df36a94406f2d4ebf15aad9b1949639",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "25629ebb634a50ce9d737b80576e860b4ca9ab40b3323dfff437ad84c17971e2",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A3-p.wav",
+      "bytes": 1536092,
+      "sha256": "b394be070c8bd280f7690a1f615661d0f208e16030c14b283b30b454e582dd7c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A4-f.wav",
+      "bytes": 1536092,
+      "sha256": "849ba72738d91bc4989279e57324b276399fa7fac0a2babcf23cc3782e79a882",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "e35539e8bcb775ddb825add2f29b239dc276d3c06b8332d48686bb36bb655422",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "cf7846addb58ffc0897b75773e4d41317e00b47c9e8c71f33759ce856b1d3df4",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A4-p.wav",
+      "bytes": 1536092,
+      "sha256": "49f2c14e00dee953c9c94cde7701857113e8fe75b3d2e323952b78260be60399",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "A4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A5-f.wav",
+      "bytes": 1534514,
+      "sha256": "938245425b08469ef94ffffc288e806a0d5586aa72eb776309c38508c5cc277b",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "A5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "1af556cf53debd37d0e3c0f5d7819ac074dfec4fac28a2813d38c497f8e91be1",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "A5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "03a955c65d36e5cdfc1c788ebdde80e7a7be602e493b808df60c5bd02d67f686",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "A5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/A5-p.wav",
+      "bytes": 1534514,
+      "sha256": "bd501f64f307581cde6b3f748c1b37c485ee47206ce1b1c91ab429d5637a7a89",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "A5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B0-f.wav",
+      "bytes": 1536092,
+      "sha256": "09bbf8fe6cb7c8d0f57fbd48e5b8207e7aed2a7841b78cab3018b11864a2ae4a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B0",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B0-mf.wav",
+      "bytes": 1536092,
+      "sha256": "bc3560454028260171663b23b24483912f7dd510c9d3e16df470a76ef095765e",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B0",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B0-mp.wav",
+      "bytes": 1536092,
+      "sha256": "d1290e173b49e740a415a8fd27a6e584c8bd430eaac226fd7898bc501a2d677c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B0",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B0-p.wav",
+      "bytes": 1536092,
+      "sha256": "d55406e5bdcf2f31978efc8eebf93ca80b4c4f7ccd2e538904c55a97ee1e334b",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B0",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B1-f.wav",
+      "bytes": 1536092,
+      "sha256": "fcd5666948cb116d03f91a88d293985d52d696a83af40dfdd9d99d37485c2f8c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "5dbfeaf6aca8f2701beb955951c5b186ae39d623064b2f0994c95be653386e50",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "990c7a76335b55728270932bf5bc52c650905760d9f330791f800f2fbdddf6a2",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B1-p.wav",
+      "bytes": 1536092,
+      "sha256": "9505eba0a1f1fd022a9046557cf3453bd0e24744d466e7677d3c8d20ffc85db3",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B2-f.wav",
+      "bytes": 1536092,
+      "sha256": "dd03262abca9c153e10643d0c56ee2fdae083e5dcde295667d6d592025d99a54",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "170abb887fa3f401de577a1235dd835eee500e82683114204efe1d2c2afc20ba",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "f054c840b2fa436bc62dd7a81d6c94cc901b1fe8791d9d30aeabe8b7c35eab14",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B2-p.wav",
+      "bytes": 1536092,
+      "sha256": "f5c1d83c1ddb009bee763f67d779d4c0c9a1215a5f2ffea68d70a41d8e50caa0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B3-f.wav",
+      "bytes": 1536092,
+      "sha256": "87cc763ad559d9c8e572b72d7f72432b50bdc00addd732fcf2c9a40ece73492a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "bde9a567e8c62e6a71beb3acff32d621f7397e41514ec646fe77063ce74a2ed8",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "4f92274d21fb5c784572e2593c4ecf1d19f8927730bbeeeae3836d125cdc78f5",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B3-p.wav",
+      "bytes": 1536092,
+      "sha256": "d1adf235bbcb57d1acbeb4b69f2b246187541d4077fa2d1d6b27d4ee102feb23",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B4-f.wav",
+      "bytes": 1536092,
+      "sha256": "33886fb8eefcc1dad01e082457e9b2df689c2a61c0f58be564caebfe18af56c0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "7f9be21c64e1f538ead7c92679427c7ed30f3465446073a8001dd12483bbe19d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "533cb906e5c710498f2d978839b883a99c139c84498065ccfbe6469761e5e6ce",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B4-p.wav",
+      "bytes": 1536092,
+      "sha256": "a095ea9ee3d41ae5304e46f375548a710a02ea7e3d8b5818d038e9dac412ec32",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "B4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B5-f.wav",
+      "bytes": 1534514,
+      "sha256": "c683f40f01643d40a0ca1b67546f13b55b269126dacbb9373a44456b0e324355",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "B5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "31eede1e8d60766c49967a9c7e7e1afe2fca02b522cc957b81132d1eb744b677",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "B5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "9af767ce94926f4162e9837123d26a5a60f6987f0967f2d9083b6eba84dc4073",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "B5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/B5-p.wav",
+      "bytes": 1534514,
+      "sha256": "11183048d5ae25b06eaca8d9f40973a319d40e5a16fccec5f26e21becb865b75",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "B5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#1-f.wav",
+      "bytes": 1536092,
+      "sha256": "03315829290b0bca9a2955050374e40a7d33e24888dbc260662e84713035a24d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "41d4c453452a0728e33e26fa79ce052da9db90e404239a3f5d54f75a7e32c8b6",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "46640f0175702d323085768906656cd6182df25969ad6d878eeabd002c2b1be7",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#1-p.wav",
+      "bytes": 1536092,
+      "sha256": "e3120515eb115ad30777dea1fac1425f62da6a5b523dd8ee4e8c7874a38b8ac2",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#2-f.wav",
+      "bytes": 1536092,
+      "sha256": "7f1ccdd6d9250ce97ebb3af60bc90bb080f6180c13f9f9a5f85134d57c2cba82",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "0c9a60d4b4947e3e41942ba994bde3f149a09afd53d2420e18e832cdf204f0ea",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "60e619bb730e6b7c422a0c9d96238ac01e36b4e26c42699744bd7efcb74848f1",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#2-p.wav",
+      "bytes": 1536092,
+      "sha256": "733e76a1676a4dde3ec9845a0f2d3d89ca54767bf5e62d72302bbd4b3e3a6b58",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#3-f.wav",
+      "bytes": 1536092,
+      "sha256": "24f0ee6d59bc731a40b9f28d688f11b158b3ded1024e57e45fc85464ee477abb",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "4af26c99db778fe7008287fc1efe62c7d1a72081e3790a6207bb0aa7bc6a7e9f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "e8692f408c77eb87fb7d0e29ee162cccf93a6db7be943114a1b879da3546ec35",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#3-p.wav",
+      "bytes": 1536092,
+      "sha256": "1ebb60dd585eecb67e4dc96a7f6ce5464e878a0900c7f9515e37d31bd19b834f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#4-f.wav",
+      "bytes": 1536092,
+      "sha256": "bcbc2a8b53c6d907c88d8931b7a00ba939f94b3cc6c1cbafc0cf650e8e8035bf",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "cbac8e40d16f69c52b6a22941d2f0779c5f025a3b05fe626a4e2539410ddeef9",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "626cef39ae40ce0ca25a31b010feaa0c35d052b64eab6d8e0eef24f84d77f965",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#4-p.wav",
+      "bytes": 1536092,
+      "sha256": "8edfa21e32c5e41b030b2fa561cbf6647f4845bcf3f99340f5ce61a51143e6c7",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C#4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#5-f.wav",
+      "bytes": 1534514,
+      "sha256": "9eb4bcf72cf70472e5c2e1614a090daa916dd522f136c6988c9e54bb4e51e131",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C#5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "21562294fd7ea448c2c5449e9ba25575437dfcf9ed7b8e3c694160fd3da9a48f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C#5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "3e0fc72a7e9122dc761850723a759a258d82967211798831cc640e86e300068a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C#5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#5-p.wav",
+      "bytes": 1534514,
+      "sha256": "1093653fd278d22d556a1a5c4f0e471bc5bd4313c270494ce7bc14bb358773ea",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C#5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#6-f.wav",
+      "bytes": 1534514,
+      "sha256": "dc51affcf05bf954009579e2b5dc63f21c326430dddf7c59e384db7b56a64975",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C#6",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#6-mf.wav",
+      "bytes": 1534514,
+      "sha256": "480ba230ad6ee638f4557e997180c40f1608e1279ad40cde0c43b7e2246c3d31",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C#6",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#6-mp.wav",
+      "bytes": 1534514,
+      "sha256": "5877f5072cc4b2831d76f66c41575adc5a632cc0a9012ab3e5845f2aa81faa10",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C#6",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C#6-p.wav",
+      "bytes": 1534514,
+      "sha256": "d22d6907715a2b0f8646dbcd07bdffd5838ea02f4ec8282f0c9444cabc0dc927",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C#6",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C1-f.wav",
+      "bytes": 1536092,
+      "sha256": "a260f3175ccc577d6be527c84ca5fda2a21678d2805a1feab02e012d2794783f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "5da37c81c67aceef824ef4406027b2e728a73d3c65eb72d79aba47d6f74925e1",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "29d402dcd2ad22f40d0e9e8403c6b00dbe15165126b3399a723fff5c79651fec",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C1-p.wav",
+      "bytes": 1536092,
+      "sha256": "fdff5e1450a3868df69e8057425ee743d9eeb37760d649cd0b23f785641d5814",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C2-f.wav",
+      "bytes": 1536092,
+      "sha256": "02a0967f38573dd58cd7a47abfcc275623dad43a54c7aff823715051524c9da4",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "2f0e2492c58c1c8a811dc88acabf27eacdc25e97dc85ecb634117b8adfa9f084",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "cda048302cf4b485929dcc7b729c5ab199d79e09dc1dd5024681a0a6b3cb450e",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C2-p.wav",
+      "bytes": 1536092,
+      "sha256": "000a653dd48b8db0816c66e10ff5552c76c06b5ae0e224b9c14ac7252e9b356d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C3-f.wav",
+      "bytes": 1536092,
+      "sha256": "b8e8b0fefc517de3b6aa0ccf9b1151a6eada476ba2bbcfcf62e16ca2048cb82c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "9ba0f75bd40ef213f3151ba0e837c6a5e093e6e0a28f4ff93698cb767a7adcc9",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "bb8cc8ca094d6d721b4428933d258ee9d99f9c9e98da46939681fe895d005785",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C3-p.wav",
+      "bytes": 1536092,
+      "sha256": "53eff9444c07dc48e883af5bdee15b1dfc54f09ebb6f4001ec007ffa6eb4914b",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C4-f.wav",
+      "bytes": 1536092,
+      "sha256": "6eedaff880d14dad0af3b743aa920dba89c08d49cbfd3d18624c59b8074dde51",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "0ba9f3f4dbe880b886c82d8fd0ca06c2a0e2c9f1d7b6c20e1d7987c2c7709cd0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "02e42c3123df90cb4c8e5176abf0cc2c1cf38d4b112ad22e37d3525394c765d5",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C4-p.wav",
+      "bytes": 1536092,
+      "sha256": "43393206b21715106f461da2a66ae66be68e18032d1c165a01536436b29b1aac",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "C4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C5-f.wav",
+      "bytes": 1534514,
+      "sha256": "36981dec4ad4bce4fd3a42243d5ea81a85bf91acf519be7889e48675d01be568",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "63a3e397b020dfa8e06dbfc14cec02fe02b4aa629a101d324ecf37729120fd07",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "c8893b044b85cf96efd57c464a2638c1db7a89aa1462f9a2a1a5f174b780e805",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C5-p.wav",
+      "bytes": 1534514,
+      "sha256": "26f2e870a6e8db7095e398977d7e5b3703787305d419a140669ae58505bda446",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C6-f.wav",
+      "bytes": 1534514,
+      "sha256": "338c661f3b5fabdbf0756ead024e1492dd89adba9050320296e90d32b320ea82",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C6",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C6-mf.wav",
+      "bytes": 1534514,
+      "sha256": "b66273fde6e89ad2e161e3c22309b7de291999dfa3c89ee2274267fd0411bfde",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C6",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C6-mp.wav",
+      "bytes": 1534514,
+      "sha256": "f7a05293a8d6385705b022307a95433e47cb214747af64fe9c2d6923da5d54a4",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C6",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/C6-p.wav",
+      "bytes": 1534514,
+      "sha256": "0b68496613e5c94f13310a8e6d4d024ae179e64236144e44cce0502a5f7c95e5",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "C6",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#1-f.wav",
+      "bytes": 1536092,
+      "sha256": "e6efb8ee4dbbb7690531bdf74a53803018ba66cc26d64de72d302af633fd1ee4",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "ed5a5cb51153d0b2a74e4a8000a9abae4941a3e332b842bdb621dc2d4ecb1813",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "5fcc58873b4e01fec8a6ad2e4bae8bef56294d88801eeb80059330da2c6c69b7",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#1-p.wav",
+      "bytes": 1536092,
+      "sha256": "356e76fa5dc27524cda5bfeab2e0aea3a64b7a442d331476712769e7107cbc42",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#2-f.wav",
+      "bytes": 1536092,
+      "sha256": "fd9cff0517ea00075827e80fb038cf9ea17c1cfd2a719ac105e68cb3b152eb71",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "2476eb5539deb67d60c0931fc089add0c74fbb60a109b94d3b7cd9eda3c3fcd1",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "cf8e475ac14f37322a554edfd9f21892ebf112c77afe6485874790ae57a3a17f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#2-p.wav",
+      "bytes": 1536092,
+      "sha256": "17761ae5cc2766efc69454c2131df329c9bc10d35bf5b236f1346e8092bd2890",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#3-f.wav",
+      "bytes": 1536092,
+      "sha256": "203f381beeb56e453b3c9a29c95a9e03405fa443bc6dc2f822f65cc1e64f8b25",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "ac5568f4a0ff7700ae8d28831d561c22bef9d1e961c1ab6e578f61aee61aa5ab",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "5ccb34ca670d015588cec0d6bca95703f249c8fc6c5dbfdf1639e0e081b7ad99",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#3-p.wav",
+      "bytes": 1536092,
+      "sha256": "237ef274bd33ab9610c1fb01a4b5350b51296f732846735530962eda041d3fc2",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#4-f.wav",
+      "bytes": 1536092,
+      "sha256": "aa9b56bd428849e60533e83bbd27cded73dddb8755b50e830ad9733ef3dfd615",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "26c45aa81e989e2cd8fb6c633ee160ca316568d1fa89effbd407daccdd9a2ead",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "f1db66f99a3bec73db9ca22545d7d258da0dde9691a62e04b1c7d427f99d14d6",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#4-p.wav",
+      "bytes": 1536092,
+      "sha256": "0b08d8f3c19508cef83c76e03c39a0ae84ea6eb0dfc968f7537847ff09a71952",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D#4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#5-f.wav",
+      "bytes": 1534514,
+      "sha256": "b077a2201f98140aff04867fafa4e92d0dced1a298a9ad9221ffa32cc397c8b8",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D#5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "c0529e21843f7b0b102c8a4312870b30963f6b591bc3be818ea992844aa3527f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D#5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "ff8d069553ea6a8ac93a48e6870266b64c5c3f8a022dc1f60f686875d0c5cebc",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D#5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#5-p.wav",
+      "bytes": 1534514,
+      "sha256": "ad463e8db5f4e874136c2171321a44abdb22e60ef7d935b30daf249f9f697db0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D#5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#6-f.wav",
+      "bytes": 1534514,
+      "sha256": "328e8562790b33312f0a04b89bc5fd52fd57cc6bdf6da62f8c5d586ba5708c1d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D#6",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#6-mf.wav",
+      "bytes": 1534514,
+      "sha256": "6a85b324434c5ac729e8bba50cd8c010ae481711c249d3fe95f1a0e0ba3169c2",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D#6",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#6-mp.wav",
+      "bytes": 1534514,
+      "sha256": "22e838f2bd897382f781defa441edbb77b0cba6ca51b8382bb3fdc17184258a4",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D#6",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D#6-p.wav",
+      "bytes": 1534514,
+      "sha256": "6d4a87eb239e1cad24ecee3cb28724d60528c3619d8459886614d01c44e00627",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D#6",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D1-f.wav",
+      "bytes": 1536092,
+      "sha256": "d7e9f3b261980727437377a5d7ea280033dd42bde5c599a17e83700ee16be0aa",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "503bc52275c95921d200160f44cd2a91add4472bee3ea5020b965babd2286bac",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "6972f1d38d43ed326c4dac106e9035aab6504aa52e9f20d0bd533fe4511377be",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D1-p.wav",
+      "bytes": 1536092,
+      "sha256": "6b5f5013ccfc70b41125aa255d48d15168f5320bbe118d73121fd6dfd4370f14",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D2-f.wav",
+      "bytes": 1536092,
+      "sha256": "095bd645ec21313e08339c5400b3766e98b1e24f787704fc84774bc9a2474256",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "b3c7541c6e2177a02f8ba46f6dfb579b5c1b747b9e7bf9224c6bebd724285050",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "9d8e6ab198a3bf4257772f20baa9faa88b8e63aaadf623bf8b3c4146555cb68c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D2-p.wav",
+      "bytes": 1536092,
+      "sha256": "15fd9c99fff6bb193c722f5430d47c97d2e3e73adcbfaef47fd229eca736561b",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D3-f.wav",
+      "bytes": 1536092,
+      "sha256": "5255b41a23cd1879c4bad667b5a977bf81997495c65b439e6c617f7c58c44bd4",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "1994cae3da9152bdff32a3bd7b3122562c1cd526052ae0fc6012cc79b6ebc3c1",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "6f16cd8bc495a74ce74267e34fa58d6560d67a44aebb6ba4b0ef808cdc71539b",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D3-p.wav",
+      "bytes": 1536092,
+      "sha256": "fbbaf62df59d8741026784059feda86ec0e6507d96132b99821c0008bcffabf0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D4-f.wav",
+      "bytes": 1536092,
+      "sha256": "15a4a27131b7fc93bfe13081fec954edc0c8ab082972c9d42739ff4792e68bb3",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "145796adfce66e00abc6212026e018340673c0216d37b7720fcab10d778cf2d5",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "8b5914bb51b8cda43c0997e593a3491561b4c8cd529686c5d5ac9be7a2af9a00",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D4-p.wav",
+      "bytes": 1536092,
+      "sha256": "4736c6d8e61d928efdb6abf3bfc91b92fcc98b3c56501811d51ed2a979d923cd",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "D4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D5-f.wav",
+      "bytes": 1534514,
+      "sha256": "52bb79dcffa5c81a86dea60b9bc6fc7e401790556c631006ae4d821e0cfcccf1",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "c4708ffcb17ca04687f6cda7a66a0989882a1b7244dcf3249d4d9cc6eaf97dde",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "f69b72d3bea44dd074b204f01c848c117dc56ca87beec7cbf42ad60e4dcc2c49",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D5-p.wav",
+      "bytes": 1534514,
+      "sha256": "05b71b2068dfbc5f587e44929cd18976d3bd07fba93a240b1eb43fe1e352ffc0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D6-f.wav",
+      "bytes": 1534514,
+      "sha256": "36c5ae8882a799e8a7c6543610673c1040ecd2b247db042065049d08033024cf",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D6",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D6-mf.wav",
+      "bytes": 1534514,
+      "sha256": "8f3bd2fdc03a21c85859940226ad98908fa00302c2901367c01f3a4af7674e29",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D6",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D6-mp.wav",
+      "bytes": 1534514,
+      "sha256": "6641d2c92a8fb9ce909298fd7a589303581f9c00e78cd05c1d73b949fc80bdc4",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D6",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/D6-p.wav",
+      "bytes": 1534514,
+      "sha256": "f7239441a2c778c1fd134cd50e83f10faee54499251884e70a451e02c1839a9f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "D6",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E0-f.wav",
+      "bytes": 1536092,
+      "sha256": "1fbd528ca708f551e4928a20a4e09f44cbf6b33efe532c1890ba7017694941a6",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E0",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E0-mf.wav",
+      "bytes": 1536092,
+      "sha256": "4451c3bad21ad7704f2201506423fa6c3903a37bb63909b0230bf031aba4c084",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E0",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E0-mp.wav",
+      "bytes": 1536092,
+      "sha256": "998ee0c37dd1a90f2a7f4e98a5bbbc735aad7b2a0af9417dc5ba288f6d24f87d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E0",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E0-p.wav",
+      "bytes": 1536092,
+      "sha256": "37ebaec00c845530d36f66f4a459255a25bf211f312b3cf706e37d2802141144",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E0",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E1-f.wav",
+      "bytes": 1536092,
+      "sha256": "06b9ae76ae32e9fc19824954daf064d9b56ce84635f357ff9c1f3f23387e2935",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "cfd70d87480dfac9c72583df98d33070e02c26f3b769d20b0d171fe8143834f4",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "2c3a47e7deb5f71083873722175abfab7b5dbf88d85842fb7637399dd04f477e",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E1-p.wav",
+      "bytes": 1536092,
+      "sha256": "a706b806e1d8a25ac6fa8eeaeddacacbd74e5e89b2273deb415ebb3a48919761",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E2-f.wav",
+      "bytes": 1536092,
+      "sha256": "3228eb5be217b85be46815beec975e2454ab3afd933a6b0b38dc991f89cf53d5",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "d6eb071aa66b202221377357c0336aebdd92eb06f1d664c754c1d2f6dbe50eab",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "cd7e415cf58a60b7cc874e0dbabfc84f65e51d7b8f8cb1c7f3186e0ff4f62e9d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E2-p.wav",
+      "bytes": 1536092,
+      "sha256": "2184422e34b358e6772d1ac4b2c6206ed402570dcdbdd3b071405eeaecd2e47d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E3-f.wav",
+      "bytes": 1536092,
+      "sha256": "0895a2df631950a5579ff13fe0ed12e4b6c036e4c965b62dca11aefb888f018a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "6b440b3aef7eeab72acf8ca92f5d06c167dc16ec0c780718a1a59dd55173fb2f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "64133442409c16bde51ed6f1c3942dccb083e1fa5373fadde864bd62336420ed",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E3-p.wav",
+      "bytes": 1536092,
+      "sha256": "fc33475b86da1fa6e2488e3d9f46eab947f548cf41ca2c49b65431b032ae3320",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E4-f.wav",
+      "bytes": 1536092,
+      "sha256": "7d4579f54d36d1783945d97e58d82ac1aa8b346d0d7c5e551c512d19a0e4f4e7",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "c1b95958a77e026641679bf0eb6ddab1ce45917b6191183ae93dda36a67b660c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "9cd9e4cbc7f3f58235d2e5208e5326479ff984cb7c367c60e3e3ecc0ab5211f8",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E4-p.wav",
+      "bytes": 1536092,
+      "sha256": "291e537995a1cf718a50d09deb5e980ee4c8fcf7c2a48594f4db2eee3b9b1e63",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "E4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E5-f.wav",
+      "bytes": 1534514,
+      "sha256": "152e7bfb797c6e42f3de6fd760269d8279aae0092acdc33b74d9f09fe21f196e",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "E5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "cac5e3d95a1769a8f79e3f1c8dad4beeb273ded2dd185667db7bd5b72289676c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "E5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "253e38986e4e6a314395e6904186d40202723d14385bf2642f52cbb6c471a6d0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "E5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E5-p.wav",
+      "bytes": 1534514,
+      "sha256": "775358b15ea0dbdbd418ee15c437f9795d6530df377624c0a140a2ae4385e16c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "E5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E6-f.wav",
+      "bytes": 1534514,
+      "sha256": "a5684893042b1807828f0be2c565c72c94819b6f9bd626e233eeca703bbb055c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "E6",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E6-mf.wav",
+      "bytes": 1534514,
+      "sha256": "ba9a86b84eb7b99b6b55e940f4707daaa24fe9b41d43dc9587702bcb8f275850",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "E6",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E6-mp.wav",
+      "bytes": 1534514,
+      "sha256": "f18564251cb9c5808bfa88c2ec6d67706889dd2704d753a98407d8a25589ae12",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "E6",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/E6-p.wav",
+      "bytes": 1534514,
+      "sha256": "01cbbf35e99f2259fc1c833f7a495bf5225f17753e7bc179c5c1d21576ba52fd",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "E6",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#0-f.wav",
+      "bytes": 1536092,
+      "sha256": "8d52d6f86cc585ac4be1b59926c6b152b30bd4077f03cf3e32ba21eb62eeaa57",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#0",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#0-mf.wav",
+      "bytes": 1536092,
+      "sha256": "977148acd9cb315f7341b2c60e0f988d53597e23ed57224c6142d67b5b56fd6d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#0",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#0-mp.wav",
+      "bytes": 1536092,
+      "sha256": "d27129784572a5911c914aa05a14fa895d412ff3f3079b0fce46f7c894bd83cf",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#0",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#0-p.wav",
+      "bytes": 1536092,
+      "sha256": "34c3f14a74f326291a2acbfa0ab800d2b4e010958522d2247e6fed103ba4ac44",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#0",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#1-f.wav",
+      "bytes": 1536092,
+      "sha256": "c5a88d898a1111873b6ecebed35d0d5ce197a6591ec8bdbe4b9a5bf3f68b9f07",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "775268634f1ee755efac7c521e8a282492b461ead45e524c01296431ff197a20",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "74c3724db6f9646f7b0a55d68a36852bdbdc7ca221a407126d47557a83ca34d1",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#1-p.wav",
+      "bytes": 1536092,
+      "sha256": "292c012278ad4af781ce386b98d1d6007b3452fb6153aa15f334c38bd6ab324c",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#2-f.wav",
+      "bytes": 1536092,
+      "sha256": "4596dcbd64d6b0d3305599d7f4fd1630b0d2770d00f7b1d38bcf1906919d13b9",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "bbdadbd586df1449bd15aa6b5a30694a95c1a280a550547c383d589002ce3303",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "422380a0c227043c89bc98e57b4b00e9aa758f587c179503a60eaf0de67c7c41",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#2-p.wav",
+      "bytes": 1536092,
+      "sha256": "d449a3bc833e9bb15b57fda9c0d3fa60f7ea0f0d6727aaadc9a11ac059f63268",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#3-f.wav",
+      "bytes": 1536092,
+      "sha256": "8624f580dfa83d5e0724204c014bec4f621a74d5b83e1c1a19276e03540afccf",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "a15947b961625ddc354c7808cd37f49f6b83144e3675a3336efee04692958e12",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "0ce9657899835ec88a7400298255c6ab4d5640b38ac0b3b05e1017ae508b0f02",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#3-p.wav",
+      "bytes": 1536092,
+      "sha256": "b4de8f7555387328445b8da3d6d4033b316bf5bbf80bf0862a6cafcb80be8c85",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#4-f.wav",
+      "bytes": 1536092,
+      "sha256": "001d3990edde70fb886a3861ab28c3225252cb3b35b78dd7e7b1a493d93e2212",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "d4e9146961533bee4c30e4b4752db70f667d2d3fbca410c8083b2367867c547a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "a2bcc370e53fe91e38161c98f93c5acb8a64a98bdc0adc226fc67cbf9b0fcb11",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#4-p.wav",
+      "bytes": 1536092,
+      "sha256": "0b90b6df0169ff8d76ecaba16921c457f3d051e3e1a805d582fa7f0b7be18332",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F#4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#5-f.wav",
+      "bytes": 1534514,
+      "sha256": "70c342f5fa1baa5befa7fe77af68ab50178f6ede14ae697b7fdfdff11a20a6ef",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "F#5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "3b421a41ed2b58a1e98485164687d0f3f32c07da4b33d8595f69e3ce4911884a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "F#5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "3a2dd3fae3a67b37a87353e46652de1bfdb7e5e0a96a028610c03e4347aed7ec",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "F#5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F#5-p.wav",
+      "bytes": 1534514,
+      "sha256": "d1f9aefa71659f124b72c5af8f42b376a2d78bcbaa9ddd6cf89bdfce3005d996",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "F#5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F0-f.wav",
+      "bytes": 1536092,
+      "sha256": "570fe9dbe693303628fa90c387634b4d71faacfc4910f59a7747672a7f526dac",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F0",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F0-mf.wav",
+      "bytes": 1536092,
+      "sha256": "d4cca65d12db779f70bbc8a07cd9b158ef307f9d0638b2ebcbfc9c78523743bb",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F0",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F0-mp.wav",
+      "bytes": 1536092,
+      "sha256": "5f01406277bff0f9a80086582bf7c62bb645fcaf22136339a08324aeca261bf7",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F0",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F0-p.wav",
+      "bytes": 1536092,
+      "sha256": "2d83f4bbeb23c5acffcf097ae029335e6f28904cb82efacf02e8bfa190c7890f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F0",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F1-f.wav",
+      "bytes": 1536092,
+      "sha256": "2b7c0e6510a5b2a7f679bdf00ad392109c1c2dd95a6cab740768151df503a175",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "06d596f6ebc4eb6bcab23ec7e3421f2e152e50908031885fa3381fca66e2a4ab",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "df9f7c16f46fc19208b7874efa4352cc2bbd5afd9e53d01a7dfd16060ee1a4b6",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F1-p.wav",
+      "bytes": 1536092,
+      "sha256": "d81928e5b9ed6f87ad6c6017b5e1bc29d82db95c671b67b450ad6f1c655ee133",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F2-f.wav",
+      "bytes": 1536092,
+      "sha256": "8375407caed0b246459d01633a1a9f0e98214bffbb98a557d89995776f9b4dcc",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "1a85196a3155a307953619e81e9766a4f7d2ac9a0f7e155cc0b6ac8ecd68d467",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "11f3e6a098c0be19bf338cac8c1a95df390ab8da9271d87735a0a3b999b93f0d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F2-p.wav",
+      "bytes": 1536092,
+      "sha256": "add776f3f99c92d4bb477c2fe60abcc6396c7e4b69f0c58b4abf7b64a88c1a70",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F3-f.wav",
+      "bytes": 1536092,
+      "sha256": "69dacc75b92da9a77a30531fdb428dc2ea19b2a87235d322d5f8416827f65a58",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "1bfa033592eca817b7d32b6c73d94ada79ab6861bd60e578e24f4b8a56192409",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "bb44544e63683b7952372d4fa1b49863c79581a9f71542d6959bfe057dd61832",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F3-p.wav",
+      "bytes": 1536092,
+      "sha256": "ee923d02d3bc9896992b5338fe46eba6f4d70d13c319f10797978b7854a6ba6f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F4-f.wav",
+      "bytes": 1536092,
+      "sha256": "33ea3e6f51ff5575debb90119932e335e7ee4bf571084171785edb5b268ef332",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "807ff172d58aa2ff053296a65635717e75177e417a0ab7f392ec3ede6aaa2a5a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "99746fbdc0e23fcceffb3f9f2862c9e2fac53add1c194e5e1e626da2a6c4b9dc",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F4-p.wav",
+      "bytes": 1536092,
+      "sha256": "32c44126e4dfa528c7af7a79388b288e2b6844fcd0b57e703b2f1a147fb69605",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "F4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F5-f.wav",
+      "bytes": 1534514,
+      "sha256": "9ff5550c6197815fdcd1a44d5a4e47b14642a31560d653c32f11b6747f6ef2e7",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "F5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "b8a44fa4095b255de14f6c044b9cc0908f0bc94a0863c96952bdffaa51981df9",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "F5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "6124bf5e4c4ec99b56c8f86e8cd23d960c4e00d7069d3923f464eb2cf268bff9",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "F5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/F5-p.wav",
+      "bytes": 1534514,
+      "sha256": "7101f8c7478826a6b6507f42eaf6c26d37c7b022ba201e59547291bde1c3fae9",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "F5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#0-f.wav",
+      "bytes": 1536092,
+      "sha256": "c83cca070ab81a5e68a36102a227d847eb245664bd7338b3d9244a9471378e54",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#0",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#0-mf.wav",
+      "bytes": 1536092,
+      "sha256": "023bbf4896043978f190e322a88ee4d2dcab8e59c06670f47b7ef9137899eda8",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#0",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#0-mp.wav",
+      "bytes": 1536092,
+      "sha256": "39d323bbb209bed88bf769a78ea858e3888a600bdb4643649076543fca94c96f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#0",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#0-p.wav",
+      "bytes": 1536092,
+      "sha256": "c5069212f62555a2a1480ec4329072343ec3e6e96e98ff99a161b8e359bdbf9a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#0",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#1-f.wav",
+      "bytes": 1536092,
+      "sha256": "7bd535607216281e706c406562045cc9d29fffd36f8a12543df3f1e53ac2302d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "2f62c172ba54f459b57b2a752517180ee55ab0416fb38eaba87262149ffc7bd1",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "ef71fd14053f8349cf6664bb36aedc524091c8cd6e5f8cfc7b452a3652b4ec99",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#1-p.wav",
+      "bytes": 1536092,
+      "sha256": "77f7cb7b7989fb3470b84620dadb8c024c1dc11339c3b3a116a281e4fd2ec488",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#2-f.wav",
+      "bytes": 1536092,
+      "sha256": "9a21873543d0d4d37726da3dfa156ec5732c46a514163ed66e82f824c00ce065",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "70baee2a87cbeb3f26f74fef385952a06c1f6f0fdac66c2d6093fe0c112acadb",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "f728e04589b2a4eb76e5e4ea7d2d34208e87958b62a0b48b616e68bc401cb28e",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#2-p.wav",
+      "bytes": 1536092,
+      "sha256": "50b7b330a6d24e56c50ec0dd7501805e2c4775dc864d6c84fcf24076f819d290",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#3-f.wav",
+      "bytes": 1536092,
+      "sha256": "4dd6e42dcf1e5369c97e09b34be24864e43bb43e7743b8217ee71616bdd1f185",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "dcaa6cb1d60f71631bb387b2cc1f36bde539e14690f6a6de9259e824ac9bcd66",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "5233c6bf8130fab1c7e378c3fad70ded510e6a3452f5c6893bd35c8c217b6648",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#3-p.wav",
+      "bytes": 1536092,
+      "sha256": "d0c852ee953261a71af53ca6306ccc2d7ceccbfc0310bafe35ac5aaab386e202",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#4-f.wav",
+      "bytes": 1536092,
+      "sha256": "76a91dcc8f24ce8eae31a95cff5ce326135e272af19221c5541153d842c2fef3",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "9a249cd6f2675b2d6962456c29f63df9251299abd74697aeae97c75bfccb45a0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "bd4f8a8ba452ca6996d436dd27324b88c9f3e233a63473233fe99b92004e6e51",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#4-p.wav",
+      "bytes": 1536092,
+      "sha256": "a57c36a417d8b593a1a39375ebc823165ff5c9db02336e1aa2ffd76037259f95",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G#4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#5-f.wav",
+      "bytes": 1534514,
+      "sha256": "bc43196cd8ffa4b004677a2a022ce8f5263a934191ecb816916084e22857a74b",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "G#5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "53bce17cfb2f06d95e68281db4a932054ff16dfa0d7c2a22006602b936c61375",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "G#5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "c30af16e959facd293adfd698f02846717e4cd3207b8c172aaea424ed41e9071",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "G#5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G#5-p.wav",
+      "bytes": 1534514,
+      "sha256": "6ec1a40d5822150ac46d5e0aa7598a34517390e09d82d21e673cc9cdac4451b4",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "G#5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G0-f.wav",
+      "bytes": 1536092,
+      "sha256": "4acf73b13b3a007a928af67559b223a6f01ec4ce0a955ed5dd5725efcb2a4f4f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G0",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G0-mf.wav",
+      "bytes": 1536092,
+      "sha256": "a53f22e7e2370ff869b02915dcd92370fc1768b7c551a0a0d4adcb83aa998303",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G0",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G0-mp.wav",
+      "bytes": 1536092,
+      "sha256": "5b0cfa0ea72b8f490d1945cd2edbbc8f79fbe5e9325c93772b3503a4ba5eab7f",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G0",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G0-p.wav",
+      "bytes": 1536092,
+      "sha256": "9398ec5f63cc3c2214bec2b21c9d068d6e4bd52da58a04e0d0fd48935d35b335",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G0",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G1-f.wav",
+      "bytes": 1536092,
+      "sha256": "9b84560375ce0becf66efe88be35e924575262b27c54b214d600eaba8c4a9c51",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G1",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G1-mf.wav",
+      "bytes": 1536092,
+      "sha256": "8f1763b9c1f5b479a12bb4b8b104d994f6283545eec4545b4417700ed1e40168",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G1",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G1-mp.wav",
+      "bytes": 1536092,
+      "sha256": "3ba7657918a7e28bd094247d5f58d7b8872f59ef46a361d2180874cd1cca8499",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G1",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G1-p.wav",
+      "bytes": 1536092,
+      "sha256": "02bc4cb3b96a1311f079ddbf4749a990feaf105a2892efb898716dfb40ccb3a5",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G1",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G2-f.wav",
+      "bytes": 1536092,
+      "sha256": "7f1b18490570d37a0b2dc0ee985b436e87cb80ef839a6a4813761627e070f6f0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G2",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G2-mf.wav",
+      "bytes": 1536092,
+      "sha256": "da77cf1ba0e25ebc94c287f28d7697dbe1576c7b88be99da84aa4b741b66fb36",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G2",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G2-mp.wav",
+      "bytes": 1536092,
+      "sha256": "41fdb903a2e0d1f04c7eecad431055e850ee7b72c6cb3a2254750dceaec94d3a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G2",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G2-p.wav",
+      "bytes": 1536092,
+      "sha256": "45b57d0e0dfd7833144ed5734f7216c9eea08870573c0dc8784232ae1a5184af",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G2",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G3-f.wav",
+      "bytes": 1536092,
+      "sha256": "0919c3785037721b5382883059a147a6ddbf568a9b2825672594e0b162423cbc",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G3",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G3-mf.wav",
+      "bytes": 1536092,
+      "sha256": "ed5df2a030e58bc7adb03e8133198ad09f69584474d11ba6611b234ad289929a",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G3",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G3-mp.wav",
+      "bytes": 1536092,
+      "sha256": "e5af01bb8aef955b72c8dee91aa0e6d2abba876bd9794625113b7418467470e8",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G3",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G3-p.wav",
+      "bytes": 1536092,
+      "sha256": "c6d432465fb8e791cf87536a0b42ab86b660df02ae81c1402f58efee634de3ec",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G3",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G4-f.wav",
+      "bytes": 1536092,
+      "sha256": "2e100f936a7d39be0206d2b6443c44370714d4740b4ae3519ef7e85c8d070d47",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G4",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G4-mf.wav",
+      "bytes": 1536092,
+      "sha256": "cdfbb496f29a97760fe0340538bd708afffde36e38f07dbbbbfaab0b16cb88a7",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G4",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G4-mp.wav",
+      "bytes": 1536092,
+      "sha256": "0525e1e744e08efe7ce0b1d93a95d0759c4cc85c4c0d4d60b4239070d477c96d",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G4",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G4-p.wav",
+      "bytes": 1536092,
+      "sha256": "94405019fdf320f979e54e86150550042002ae175e892b7f203eff375fc213f0",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 384000,
+      "duration_seconds": 8.0,
+      "filename_note": "G4",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "JUNK",
+        "Fake",
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G5-f.wav",
+      "bytes": 1534514,
+      "sha256": "f1b64fe78a5891ae3931946d3221e0d2faa98a95b4b1eb9ebe14002df0ec58d5",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "G5",
+      "nominal_intensity": "f",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G5-mf.wav",
+      "bytes": 1534514,
+      "sha256": "af2bd9ce8968ac2f52dcb34eb5e1de97ebb69e66bd8e1d53f24a80dad37465c6",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "G5",
+      "nominal_intensity": "mf",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G5-mp.wav",
+      "bytes": 1534514,
+      "sha256": "8554f47c3232b736c79986b976eef6f6db10e3f12460516b24f8ba4019a58787",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "G5",
+      "nominal_intensity": "mp",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    },
+    {
+      "file": "samples/original/G5-p.wav",
+      "bytes": 1534514,
+      "sha256": "4f7fe2c6b5a402c65e9dd0747a4b70e46c02e4a142a7de415e3161e583ed9fdf",
+      "format_code": 3,
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 32,
+      "frames": 383617,
+      "duration_seconds": 7.992020833333333,
+      "filename_note": "G5",
+      "nominal_intensity": "p",
+      "midi_note": null,
+      "riff_chunk_names": [
+        "fmt ",
+        "data"
+      ]
+    }
+  ]
+}

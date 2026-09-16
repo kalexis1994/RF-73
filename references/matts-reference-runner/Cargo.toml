@@ -1,0 +1,29 @@
+[package]
+name = "matts-reference-runner"
+version = "0.1.0"
+edition = "2024"
+[workspace]
+[dependencies]
+rf-73-dsp = { path = "../../crates/rf-73-dsp" }
+rf-73-analysis = { path = "../../crates/rf-73-analysis" }
+serde_json = "1.0"
+[[bin]]
+name = "matts_reference"
+path = "../../tools/rf-73-lab/examples/matts_reference.rs"
+[[bin]]
+name = "matts_fit"
+path = "../../tools/rf-73-lab/examples/matts_fit.rs"
+[profile.release]
+lto = "thin"
+codegen-units = 1
+[[test]]
+name = "tone_comparison"
+path = "../../crates/rf-73-analysis/tests/tone_comparison.rs"
+[[test]]
+name = "pitch_anchor"
+path = "../../crates/rf-73-analysis/tests/pitch_anchor.rs"
+[[test]]
+name = "wav_input"
+path = "../../crates/rf-73-analysis/tests/wav_input.rs"
+[dev-dependencies]
+hound = "=3.5.1"

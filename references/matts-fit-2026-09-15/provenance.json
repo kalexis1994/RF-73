@@ -1,0 +1,33 @@
+{
+  "date": "2026-09-15",
+  "git_head": "5217eda6b195141a430086e64e9df601c8204a36",
+  "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+  "source_hashes": {
+    "tools/rf-73-lab/examples/matts_fit.rs": "42aefb4d0502f1e39cb2d54672d9660fb9b90e29d5bc4c2c94fee4f26ec411e1",
+    "tools/matts_fit_gate.py": "aa63a1ca2c1ee3ecb9b986808ed329177a4d60b61820201a1cc33cb6b1a024c8",
+    "tools/test_matts_fit_gate.py": "7f68e8a3017bec23e209bc6b7d0fa715973061b2762cdae30072472886a7552c",
+    "references/matts-reference-runner/Cargo.toml": "3eb3ad24a6edaebb5d1ccf5c9c1f6d4e6a08aab1b6210d442298ac8b7d9f424c",
+    "references/matts-reference-runner/Cargo.lock": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73",
+    "references/matts-fender-rhodes.inventory.json": "1f9d9294cb16d3d54cb9172eb431f5b0ef7c2470a9485594a44bc0e7dea7e94b"
+  },
+  "receipt_hashes": {
+    "decision.json": "2fa423d2fe4f606fe1f23624190a4e672dee63b5d210856169dd56ab17cef225",
+    "held_out-baseline.json": "3f920e1f04fd5eb5631dddf9f35dba4cb039ef786b84d455d3d38e069b024d64",
+    "held_out-candidate.json": "d8f9308f1eb7724beed38ef4c22e9d73ebb266e80b5d8dfde18bdb3ef56fd72d",
+    "protocol.json": "7c9190e72aab7b7725260b83a8357decede28fb3bfbd464443a3ab9310dadb09",
+    "search.json": "5e03244737421b9ebb0a930ece23dfdfaf964752951b3893aab0cd99ff9afc38",
+    "training-baseline.json": "48b8b3ea725598af23e1299322ceb20e24885f994832460e24386f6be8c13a16",
+    "training-candidate.json": "e8c39b5a56612877372326b7370c502eab2e4b54bbf04392f7e35e4284d9d899"
+  },
+  "search_origin": "renders/matts-reference/fit-03/search.json",
+  "final_validation_directory": "renders/matts-reference/fit-04",
+  "validation_used_frozen_winner": true,
+  "tests": {
+    "rust_passed": 14,
+    "python_gate_passed": 6,
+    "release_clippy_warnings_denied": "passed"
+  },
+  "plugin_changed": false,
+  "audition_run": false,
+  "reason": "Candidate failed promotion gates; no plugin version produced."
+}
