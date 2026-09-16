@@ -1,0 +1,239 @@
+{
+  "promote": true,
+  "rejection_reasons": [],
+  "harmonic_mse_reductions": {
+    "training": 0.10073173583835282,
+    "held_out": 0.1516672187516176
+  },
+  "held_out_notes": [
+    {
+      "note": 45,
+      "scored_cases": 4,
+      "baseline_mse_db2": 84.6763668603573,
+      "candidate_mse_db2": 84.6763668603573
+    },
+    {
+      "note": 53,
+      "scored_cases": 4,
+      "baseline_mse_db2": 89.74974596602434,
+      "candidate_mse_db2": 89.74974596602434
+    },
+    {
+      "note": 60,
+      "scored_cases": 4,
+      "baseline_mse_db2": 100.61678601105118,
+      "candidate_mse_db2": 89.31586521435382
+    },
+    {
+      "note": 67,
+      "scored_cases": 4,
+      "baseline_mse_db2": 71.16031145086376,
+      "candidate_mse_db2": 45.06121835375469
+    },
+    {
+      "note": 76,
+      "scored_cases": 4,
+      "baseline_mse_db2": 283.2116031503105,
+      "candidate_mse_db2": 224.9910660561533
+    },
+    {
+      "note": 86,
+      "scored_cases": 4,
+      "baseline_mse_db2": 194.97736781866544,
+      "candidate_mse_db2": 165.56464951475934
+    }
+  ],
+  "envelope_error_increase_db_s": 0.006885102315118963,
+  "qualified_envelope_comparisons": [
+    {
+      "note": 45,
+      "layer": "p",
+      "reference_db_s": -1.7272937249201787,
+      "baseline_db_s": -2.037975281579724,
+      "candidate_db_s": -2.037975281579724,
+      "baseline_absolute_error": 0.3106815566595451,
+      "candidate_absolute_error": 0.3106815566595451
+    },
+    {
+      "note": 53,
+      "layer": "p",
+      "reference_db_s": -2.100513586077688,
+      "baseline_db_s": -2.641934133666655,
+      "candidate_db_s": -2.641934133666655,
+      "baseline_absolute_error": 0.5414205475889671,
+      "candidate_absolute_error": 0.5414205475889671
+    },
+    {
+      "note": 60,
+      "layer": "p",
+      "reference_db_s": -2.8552515967696412,
+      "baseline_db_s": -3.2583747518787636,
+      "candidate_db_s": -3.256050687417153,
+      "baseline_absolute_error": 0.40312315510912233,
+      "candidate_absolute_error": 0.40079909064751185
+    },
+    {
+      "note": 60,
+      "layer": "mp",
+      "reference_db_s": -3.115277773615104,
+      "baseline_db_s": -3.2242357678241094,
+      "candidate_db_s": -3.2172316684158497,
+      "baseline_absolute_error": 0.10895799420900554,
+      "candidate_absolute_error": 0.1019538948007459
+    },
+    {
+      "note": 60,
+      "layer": "mf",
+      "reference_db_s": -3.29223578446655,
+      "baseline_db_s": -3.1264842103454273,
+      "candidate_db_s": -3.1114142149614423,
+      "baseline_absolute_error": 0.16575157412112285,
+      "candidate_absolute_error": 0.18082156950510786
+    },
+    {
+      "note": 67,
+      "layer": "p",
+      "reference_db_s": -3.712954188624373,
+      "baseline_db_s": -3.999014484527745,
+      "candidate_db_s": -3.995449546090912,
+      "baseline_absolute_error": 0.286060295903372,
+      "candidate_absolute_error": 0.282495357466539
+    },
+    {
+      "note": 67,
+      "layer": "mp",
+      "reference_db_s": -3.9813736395294654,
+      "baseline_db_s": -3.9860000431852076,
+      "candidate_db_s": -3.9748516996793497,
+      "baseline_absolute_error": 0.004626403655742184,
+      "candidate_absolute_error": 0.006521939850115732
+    },
+    {
+      "note": 67,
+      "layer": "mf",
+      "reference_db_s": -4.094047810508283,
+      "baseline_db_s": -3.9535966821324062,
+      "candidate_db_s": -3.927257728564519,
+      "baseline_absolute_error": 0.14045112837587714,
+      "candidate_absolute_error": 0.16679008194376443
+    },
+    {
+      "note": 67,
+      "layer": "f",
+      "reference_db_s": -4.304650037551123,
+      "baseline_db_s": -3.845655641966536,
+      "candidate_db_s": -3.7880793118082887,
+      "baseline_absolute_error": 0.45899439558458655,
+      "candidate_absolute_error": 0.516570725742834
+    },
+    {
+      "note": 76,
+      "layer": "p",
+      "reference_db_s": -4.727844058489199,
+      "baseline_db_s": -5.191547047293724,
+      "candidate_db_s": -5.190185912669832,
+      "baseline_absolute_error": 0.463702988804525,
+      "candidate_absolute_error": 0.46234185418063234
+    },
+    {
+      "note": 76,
+      "layer": "mp",
+      "reference_db_s": -4.9552563801800655,
+      "baseline_db_s": -5.187783925229187,
+      "candidate_db_s": -5.183456189262086,
+      "baseline_absolute_error": 0.23252754504912154,
+      "candidate_absolute_error": 0.2281998090820201
+    },
+    {
+      "note": 86,
+      "layer": "p",
+      "reference_db_s": -7.802887581050015,
+      "baseline_db_s": -6.931723088809812,
+      "candidate_db_s": -6.93140070343518,
+      "baseline_absolute_error": 0.8711644922402035,
+      "candidate_absolute_error": 0.871486877614835
+    }
+  ],
+  "newly_failed_envelopes": [],
+  "excluded_envelope_cases": [
+    {
+      "note": 45,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 45,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 45,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 53,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 53,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 53,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": false
+    },
+    {
+      "note": 60,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 76,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 76,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 86,
+      "layer": "mp",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 86,
+      "layer": "mf",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    },
+    {
+      "note": 86,
+      "layer": "f",
+      "reference_qualified": false,
+      "baseline_qualified": true
+    }
+  ],
+  "receipt_hashes": {
+    "held_out-baseline.json": "81d5232d657db18c5052f5501306e15eb8c09e7f7b454f2daf402fe6bf2bfa5a",
+    "held_out-candidate.json": "144ab914a06f36a7b8e9d799bd50b80e00abd5ced0cf53b817803bda4c8dffa2",
+    "protocol.json": "d996864fd7eca4c71a4f45a07ea7881d90ad578138f0d0f63f095b34d2040e6e",
+    "training-baseline.json": "fbe900e3ba3519101a4af9e8c65995d987bdba21e773e4bf776b2eb1562bcb8e",
+    "training-candidate.json": "55b3069d463acb8a23277dd2f5ecae9b15635fca959a5227e6690125251e20b4"
+  }
+}

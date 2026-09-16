@@ -61,7 +61,7 @@ pub(crate) fn load(source: &Path, notes: &[u8]) -> Result<Vec<Case>> {
     }
     Ok(cases)
 }
-fn render(c: &Case, p: Profile, seconds: f64) -> Result<AudioClip> {
+pub(crate) fn render(c: &Case, p: Profile, seconds: f64) -> Result<AudioClip> {
     let mut engine = Engine::new(48000.0, p)?;
     engine.set_gain(0.1);
     engine.set_level_compensation(true);

@@ -8,6 +8,8 @@ mod previous;
 mod register;
 #[path = "support/robust_pickup_fit.rs"]
 mod robust;
+#[path = "support/upper_register_fit.rs"]
+mod upper_register;
 #[path = "support/velocity_mapping.rs"]
 mod velocity_mapping;
 use previous::{Case, Result, baseline, load, score, score_with, write};
@@ -212,6 +214,12 @@ fn verify_rendering(source: &Path, out: &Path, frozen: &Path) -> Result<()> {
 }
 fn main() -> Result<()> {
     let args: Vec<_> = std::env::args().collect();
+    if args.get(1).is_some_and(|a| a == "--upper-control") {
+        return upper_register::control(&args[2..]);
+    }
+    if args.get(1).is_some_and(|a| a == "--upper-register") {
+        return upper_register::run(&args[2..]);
+    }
     if args.get(1).is_some_and(|a| a == "--families") {
         return pickup_families::run(&args[2..]);
     }

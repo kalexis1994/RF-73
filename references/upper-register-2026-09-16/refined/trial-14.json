@@ -1,0 +1,1552 @@
+{
+  "assessment": {
+    "constraint_violation": 0.9774859259397934,
+    "critical_cases": [
+      {
+        "baseline_mse_db2": 19.747650281272524,
+        "candidate_mse_db2": 19.35248867542557,
+        "layer": "mp",
+        "note": 47,
+        "ratio": 0.9799894367067203
+      },
+      {
+        "baseline_mse_db2": 179.6325084334478,
+        "candidate_mse_db2": 193.14707371845216,
+        "layer": "f",
+        "note": 64,
+        "ratio": 1.0752345185337728
+      }
+    ],
+    "feasible": true,
+    "maximum_note_or_critical_ratio": 1.0752345185337728,
+    "mean_ratio": 0.8557522834540893,
+    "notes": [
+      {
+        "baseline_mse_db2": 182.97612767039556,
+        "candidate_mse_db2": 160.54835988835015,
+        "cases": 4,
+        "note": 43,
+        "ratio": 0.8774279023849181
+      },
+      {
+        "baseline_mse_db2": 98.75842375867781,
+        "candidate_mse_db2": 77.94824202703602,
+        "cases": 4,
+        "note": 47,
+        "ratio": 0.7892819575321217
+      },
+      {
+        "baseline_mse_db2": 25.554866310729103,
+        "candidate_mse_db2": 22.144361173436057,
+        "cases": 4,
+        "note": 50,
+        "ratio": 0.8665418517231233
+      },
+      {
+        "baseline_mse_db2": 66.12724641162121,
+        "candidate_mse_db2": 58.71532669738059,
+        "cases": 4,
+        "note": 55,
+        "ratio": 0.887914284709456
+      },
+      {
+        "baseline_mse_db2": 82.65807354121648,
+        "candidate_mse_db2": 70.99789389407945,
+        "cases": 4,
+        "note": 59,
+        "ratio": 0.8589347761495698
+      },
+      {
+        "baseline_mse_db2": 74.03028942670048,
+        "candidate_mse_db2": 65.65268113196515,
+        "cases": 4,
+        "note": 64,
+        "ratio": 0.8868353972460119
+      },
+      {
+        "baseline_mse_db2": 601.0996156537523,
+        "candidate_mse_db2": 512.0240912946942,
+        "cases": 4,
+        "note": 72,
+        "ratio": 0.8518123751215845
+      }
+    ]
+  },
+  "c5_body_h2": [
+    {
+      "balance": {
+        "candidate_db": -29.08157499900792,
+        "error_db": 28.439714763038438,
+        "harmonic": 2,
+        "reference_db": -57.52128976204636,
+        "window": 2
+      },
+      "layer": "p"
+    },
+    {
+      "balance": {
+        "candidate_db": -24.254294481079086,
+        "error_db": 27.230789489760234,
+        "harmonic": 2,
+        "reference_db": -51.48508397083932,
+        "window": 2
+      },
+      "layer": "mp"
+    },
+    {
+      "balance": {
+        "candidate_db": -20.810920492779182,
+        "error_db": 24.966420503423684,
+        "harmonic": 2,
+        "reference_db": -45.77734099620287,
+        "window": 2
+      },
+      "layer": "mf"
+    },
+    {
+      "balance": {
+        "candidate_db": -18.31103276094633,
+        "error_db": 24.954077205270725,
+        "harmonic": 2,
+        "reference_db": -43.265109966217054,
+        "window": 2
+      },
+      "layer": "f"
+    }
+  ],
+  "cases": [
+    {
+      "balances": [
+        {
+          "candidate_db": -13.69726635905296,
+          "error_db": 5.586041046557554,
+          "harmonic": 2,
+          "reference_db": -19.283307405610515,
+          "window": 1
+        },
+        {
+          "candidate_db": -19.94091826226441,
+          "error_db": -1.859108454973466,
+          "harmonic": 3,
+          "reference_db": -18.081809807290945,
+          "window": 1
+        },
+        {
+          "candidate_db": -25.85029505015124,
+          "error_db": -2.0981366054903177,
+          "harmonic": 4,
+          "reference_db": -23.75215844466092,
+          "window": 1
+        },
+        {
+          "candidate_db": -13.928836886941525,
+          "error_db": 4.746205676772629,
+          "harmonic": 2,
+          "reference_db": -18.675042563714154,
+          "window": 2
+        },
+        {
+          "candidate_db": -22.115815205868884,
+          "error_db": -1.8040013561357746,
+          "harmonic": 3,
+          "reference_db": -20.31181384973311,
+          "window": 2
+        },
+        {
+          "candidate_db": -28.274485888279514,
+          "error_db": -1.9442625183652886,
+          "harmonic": 4,
+          "reference_db": -26.330223369914226,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 11.437226999327777,
+      "harmonic_terms": 6,
+      "layer": "p",
+      "model_velocity": 0.29,
+      "note": 43,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -25.496583185676755,
+          "error_db": -2.513179376406697,
+          "harmonic": 2,
+          "reference_db": -22.983403809270058,
+          "window": 1
+        },
+        {
+          "candidate_db": -4.218565556059026,
+          "error_db": 3.089330265639987,
+          "harmonic": 3,
+          "reference_db": -7.307895821699013,
+          "window": 1
+        },
+        {
+          "candidate_db": -10.408998254465736,
+          "error_db": 2.7628779162201056,
+          "harmonic": 4,
+          "reference_db": -13.171876170685842,
+          "window": 1
+        },
+        {
+          "candidate_db": -18.808312995905943,
+          "error_db": 20.942462395654623,
+          "harmonic": 2,
+          "reference_db": -39.750775391560566,
+          "window": 2
+        },
+        {
+          "candidate_db": -6.613989018392388,
+          "error_db": 3.1314999652860642,
+          "harmonic": 3,
+          "reference_db": -9.745488983678452,
+          "window": 2
+        },
+        {
+          "candidate_db": -12.420110756953612,
+          "error_db": 2.8337789661894384,
+          "harmonic": 4,
+          "reference_db": -15.25388972314305,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 79.98614215055737,
+      "harmonic_terms": 6,
+      "layer": "mp",
+      "model_velocity": 0.44,
+      "note": 43,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -2.723785301864261,
+          "error_db": -0.13375674491552658,
+          "harmonic": 2,
+          "reference_db": -2.5900285569487345,
+          "window": 1
+        },
+        {
+          "candidate_db": 8.421325008294595,
+          "error_db": 6.667507863714455,
+          "harmonic": 3,
+          "reference_db": 1.7538171445801396,
+          "window": 1
+        },
+        {
+          "candidate_db": -8.106404504482725,
+          "error_db": 2.1908867270941137,
+          "harmonic": 4,
+          "reference_db": -10.297291231576839,
+          "window": 1
+        },
+        {
+          "candidate_db": -5.630766828500391,
+          "error_db": 0.33721204522883497,
+          "harmonic": 2,
+          "reference_db": -5.967978873729226,
+          "window": 2
+        },
+        {
+          "candidate_db": 5.983237288061375,
+          "error_db": 6.189259082951242,
+          "harmonic": 3,
+          "reference_db": -0.2060217948898675,
+          "window": 2
+        },
+        {
+          "candidate_db": -5.943927731131353,
+          "error_db": 3.5274722856407728,
+          "harmonic": 4,
+          "reference_db": -9.471400016772126,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 16.689539552627874,
+      "harmonic_terms": 6,
+      "layer": "mf",
+      "model_velocity": 0.61,
+      "note": 43,
+      "reference_onset_seconds": 0.0
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": 14.228413110457026,
+          "error_db": 7.384908433441673,
+          "harmonic": 2,
+          "reference_db": 6.843504677015353,
+          "window": 1
+        },
+        {
+          "candidate_db": 25.62026458386446,
+          "error_db": 17.935063804955114,
+          "harmonic": 3,
+          "reference_db": 7.685200778909348,
+          "window": 1
+        },
+        {
+          "candidate_db": 20.79835521859156,
+          "error_db": 25.170038361441613,
+          "harmonic": 4,
+          "reference_db": -4.371683142850053,
+          "window": 1
+        },
+        {
+          "candidate_db": 9.5000502552274,
+          "error_db": 5.168212733124189,
+          "harmonic": 2,
+          "reference_db": 4.331837522103211,
+          "window": 2
+        },
+        {
+          "candidate_db": 27.361956008355463,
+          "error_db": 21.144427301241784,
+          "harmonic": 3,
+          "reference_db": 6.217528707113679,
+          "window": 2
+        },
+        {
+          "candidate_db": 22.50087915857287,
+          "error_db": 41.4843553520894,
+          "harmonic": 4,
+          "reference_db": -18.98347619351653,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 534.0805308508876,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 43,
+      "reference_onset_seconds": 0.001
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -14.368908362942598,
+          "error_db": 3.468912348147633,
+          "harmonic": 2,
+          "reference_db": -17.83782071109023,
+          "window": 1
+        },
+        {
+          "candidate_db": -24.688842654370205,
+          "error_db": -13.162277797142522,
+          "harmonic": 3,
+          "reference_db": -11.526564857227683,
+          "window": 1
+        },
+        {
+          "candidate_db": -31.244932959996476,
+          "error_db": -10.189344495827548,
+          "harmonic": 4,
+          "reference_db": -21.055588464168927,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.875008157294396,
+          "error_db": 4.637906077167209,
+          "harmonic": 2,
+          "reference_db": -19.512914234461604,
+          "window": 2
+        },
+        {
+          "candidate_db": -26.98064986597017,
+          "error_db": -13.667063850088212,
+          "harmonic": 3,
+          "reference_db": -13.31358601588196,
+          "window": 2
+        },
+        {
+          "candidate_db": -33.95421639791454,
+          "error_db": -11.06180904562671,
+          "harmonic": 4,
+          "reference_db": -22.892407352287833,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 103.29401289464245,
+      "harmonic_terms": 6,
+      "layer": "p",
+      "model_velocity": 0.29,
+      "note": 47,
+      "reference_onset_seconds": 0.002
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -15.686497078211659,
+          "error_db": -7.185701752366597,
+          "harmonic": 2,
+          "reference_db": -8.500795325845061,
+          "window": 1
+        },
+        {
+          "candidate_db": -9.530793683198368,
+          "error_db": -4.340707009159566,
+          "harmonic": 3,
+          "reference_db": -5.1900866740388025,
+          "window": 1
+        },
+        {
+          "candidate_db": -15.08461058999925,
+          "error_db": 1.765137427916656,
+          "harmonic": 4,
+          "reference_db": -16.849748017915907,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.377359894677717,
+          "error_db": -3.990049871465537,
+          "harmonic": 2,
+          "reference_db": -10.38731002321218,
+          "window": 2
+        },
+        {
+          "candidate_db": -12.187876487901839,
+          "error_db": -5.156738472364246,
+          "harmonic": 3,
+          "reference_db": -7.031138015537593,
+          "window": 2
+        },
+        {
+          "candidate_db": -17.666863627029244,
+          "error_db": 0.10356278600989555,
+          "harmonic": 4,
+          "reference_db": -17.77042641303914,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 19.35248867542557,
+      "harmonic_terms": 6,
+      "layer": "mp",
+      "model_velocity": 0.44,
+      "note": 47,
+      "reference_onset_seconds": 0.001
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -10.447486915437509,
+          "error_db": -7.937099226419356,
+          "harmonic": 2,
+          "reference_db": -2.5103876890181525,
+          "window": 1
+        },
+        {
+          "candidate_db": 3.076869315809148,
+          "error_db": 3.976489601505854,
+          "harmonic": 3,
+          "reference_db": -0.8996202856967059,
+          "window": 1
+        },
+        {
+          "candidate_db": -6.018522992973004,
+          "error_db": 13.68365388131297,
+          "harmonic": 4,
+          "reference_db": -19.702176874285975,
+          "window": 1
+        },
+        {
+          "candidate_db": -17.276759050255947,
+          "error_db": -12.856420695387037,
+          "harmonic": 2,
+          "reference_db": -4.42033835486891,
+          "window": 2
+        },
+        {
+          "candidate_db": 0.4015892596276984,
+          "error_db": 2.9912113117875805,
+          "harmonic": 3,
+          "reference_db": -2.589622052159882,
+          "window": 2
+        },
+        {
+          "candidate_db": -7.195708365145286,
+          "error_db": 10.235346501492458,
+          "harmonic": 4,
+          "reference_db": -17.431054866637744,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 90.84160223977307,
+      "harmonic_terms": 6,
+      "layer": "mf",
+      "model_velocity": 0.61,
+      "note": 47,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -4.636968457369399,
+          "error_db": -10.529176598206927,
+          "harmonic": 2,
+          "reference_db": 5.892208140837528,
+          "window": 1
+        },
+        {
+          "candidate_db": 17.662588998410662,
+          "error_db": 12.657866420781815,
+          "harmonic": 3,
+          "reference_db": 5.004722577628847,
+          "window": 1
+        },
+        {
+          "candidate_db": 8.937927656901493,
+          "error_db": 12.446888348487121,
+          "harmonic": 4,
+          "reference_db": -3.508960691585628,
+          "window": 1
+        },
+        {
+          "candidate_db": -0.11764880197262784,
+          "error_db": -4.257267537087007,
+          "harmonic": 2,
+          "reference_db": 4.139618735114379,
+          "window": 2
+        },
+        {
+          "candidate_db": 13.738135705068473,
+          "error_db": 10.091585408724143,
+          "harmonic": 3,
+          "reference_db": 3.64655029634433,
+          "window": 2
+        },
+        {
+          "candidate_db": -2.866996220808275,
+          "error_db": 6.622279903750702,
+          "harmonic": 4,
+          "reference_db": -9.489276124558977,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 98.304864298303,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 47,
+      "reference_onset_seconds": 0.0
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -15.155393493018579,
+          "error_db": 0.80383927770119,
+          "harmonic": 2,
+          "reference_db": -15.959232770719769,
+          "window": 1
+        },
+        {
+          "candidate_db": -28.110441316829004,
+          "error_db": 0.6742212824766405,
+          "harmonic": 3,
+          "reference_db": -28.784662599305644,
+          "window": 1
+        },
+        {
+          "candidate_db": -35.31731881638954,
+          "error_db": -1.0826719717417816,
+          "harmonic": 4,
+          "reference_db": -34.234646844647756,
+          "window": 1
+        },
+        {
+          "candidate_db": -15.824259565059165,
+          "error_db": 1.498409473500427,
+          "harmonic": 2,
+          "reference_db": -17.322669038559592,
+          "window": 2
+        },
+        {
+          "candidate_db": -30.487532378574244,
+          "error_db": 0.9899778751825217,
+          "harmonic": 3,
+          "reference_db": -31.477510253756765,
+          "window": 2
+        },
+        {
+          "candidate_db": -38.24437028807071,
+          "error_db": 0.15058676834082974,
+          "harmonic": 4,
+          "reference_db": -38.39495705641154,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 0.9201456731568194,
+      "harmonic_terms": 6,
+      "layer": "p",
+      "model_velocity": 0.29,
+      "note": 50,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -14.003161672977463,
+          "error_db": 8.24612050066748,
+          "harmonic": 2,
+          "reference_db": -22.249282173644943,
+          "window": 1
+        },
+        {
+          "candidate_db": -13.516007742462158,
+          "error_db": -3.7613358109446793,
+          "harmonic": 3,
+          "reference_db": -9.754671931517478,
+          "window": 1
+        },
+        {
+          "candidate_db": -19.002111229119983,
+          "error_db": -5.566493361097088,
+          "harmonic": 4,
+          "reference_db": -13.435617868022895,
+          "window": 1
+        },
+        {
+          "candidate_db": -13.6295386029756,
+          "error_db": 4.9499086567044515,
+          "harmonic": 2,
+          "reference_db": -18.57944725968005,
+          "window": 2
+        },
+        {
+          "candidate_db": -16.33794033671198,
+          "error_db": -1.470243471807052,
+          "harmonic": 3,
+          "reference_db": -14.867696864904929,
+          "window": 2
+        },
+        {
+          "candidate_db": -21.933659607590485,
+          "error_db": -3.2390569794275805,
+          "harmonic": 4,
+          "reference_db": -18.694602628162905,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 25.04778340424146,
+      "harmonic_terms": 6,
+      "layer": "mp",
+      "model_velocity": 0.44,
+      "note": 50,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -23.058147140377265,
+          "error_db": -8.053068059552615,
+          "harmonic": 2,
+          "reference_db": -15.00507908082465,
+          "window": 1
+        },
+        {
+          "candidate_db": -0.9414388270755794,
+          "error_db": 3.2260784062862093,
+          "harmonic": 3,
+          "reference_db": -4.167517233361789,
+          "window": 1
+        },
+        {
+          "candidate_db": -7.999933310306865,
+          "error_db": 1.2589686571608212,
+          "harmonic": 4,
+          "reference_db": -9.258901967467686,
+          "window": 1
+        },
+        {
+          "candidate_db": -27.45252265606043,
+          "error_db": -1.0274063989308537,
+          "harmonic": 2,
+          "reference_db": -26.425116257129577,
+          "window": 2
+        },
+        {
+          "candidate_db": -3.8697980064750155,
+          "error_db": 5.163997629548742,
+          "harmonic": 3,
+          "reference_db": -9.033795636023758,
+          "window": 2
+        },
+        {
+          "candidate_db": -10.129164035086347,
+          "error_db": 3.129114972942144,
+          "harmonic": 4,
+          "reference_db": -13.258279008028492,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 19.05971417924097,
+      "harmonic_terms": 6,
+      "layer": "mf",
+      "model_velocity": 0.61,
+      "note": 50,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -0.1915251946871237,
+          "error_db": 1.6424557421273498,
+          "harmonic": 2,
+          "reference_db": -1.8339809368144735,
+          "window": 1
+        },
+        {
+          "candidate_db": 12.154374141282766,
+          "error_db": 9.691166903401633,
+          "harmonic": 3,
+          "reference_db": 2.4632072378811323,
+          "window": 1
+        },
+        {
+          "candidate_db": -13.70153189379905,
+          "error_db": -4.866710400841626,
+          "harmonic": 4,
+          "reference_db": -8.834821492957424,
+          "window": 1
+        },
+        {
+          "candidate_db": -2.2162068149661494,
+          "error_db": 6.02491565118007,
+          "harmonic": 2,
+          "reference_db": -8.24112246614622,
+          "window": 2
+        },
+        {
+          "candidate_db": 8.967714644413583,
+          "error_db": 10.222784241399854,
+          "harmonic": 3,
+          "reference_db": -1.2550695969862709,
+          "window": 2
+        },
+        {
+          "candidate_db": -9.296556920033467,
+          "error_db": -0.4389025318766677,
+          "harmonic": 4,
+          "reference_db": -8.8576543881568,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 43.549801437104975,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 50,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -16.793177759639896,
+          "error_db": 10.996121891940618,
+          "harmonic": 2,
+          "reference_db": -27.789299651580514,
+          "window": 1
+        },
+        {
+          "candidate_db": -33.5412120323876,
+          "error_db": -3.611392369438576,
+          "harmonic": 3,
+          "reference_db": -29.929819662949022,
+          "window": 1
+        },
+        {
+          "candidate_db": -42.1136688341389,
+          "error_db": 3.990591459683735,
+          "harmonic": 4,
+          "reference_db": -46.104260293822634,
+          "window": 1
+        },
+        {
+          "candidate_db": -17.693701532748335,
+          "error_db": 14.296373096756533,
+          "harmonic": 2,
+          "reference_db": -31.990074629504868,
+          "window": 2
+        },
+        {
+          "candidate_db": -36.09016572320017,
+          "error_db": -3.4457993014792905,
+          "harmonic": 3,
+          "reference_db": -32.64436642172088,
+          "window": 2
+        },
+        {
+          "candidate_db": -45.43168132167237,
+          "error_db": 4.500150182265152,
+          "harmonic": 4,
+          "reference_db": -49.931831503937524,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 64.39880665287265,
+      "harmonic_terms": 6,
+      "layer": "p",
+      "model_velocity": 0.29,
+      "note": 55,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -13.69008501591992,
+          "error_db": -0.977685019102541,
+          "harmonic": 2,
+          "reference_db": -12.712399996817378,
+          "window": 1
+        },
+        {
+          "candidate_db": -19.997995656730808,
+          "error_db": -7.292986457846052,
+          "harmonic": 3,
+          "reference_db": -12.705009198884756,
+          "window": 1
+        },
+        {
+          "candidate_db": -25.89864920033604,
+          "error_db": -0.5353359692198332,
+          "harmonic": 4,
+          "reference_db": -25.363313231116205,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.07317688252784,
+          "error_db": 3.609201408645003,
+          "harmonic": 2,
+          "reference_db": -17.682378291172842,
+          "window": 2
+        },
+        {
+          "candidate_db": -23.044050892480378,
+          "error_db": -6.487068020814821,
+          "harmonic": 3,
+          "reference_db": -16.556982871665557,
+          "window": 2
+        },
+        {
+          "candidate_db": -29.333105953845433,
+          "error_db": -0.2309430102298542,
+          "harmonic": 4,
+          "reference_db": -29.10216294361558,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 18.265304176610233,
+      "harmonic_terms": 6,
+      "layer": "mp",
+      "model_velocity": 0.44,
+      "note": 55,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -17.23527945273674,
+          "error_db": -8.735418459507258,
+          "harmonic": 2,
+          "reference_db": -8.499860993229483,
+          "window": 1
+        },
+        {
+          "candidate_db": -7.778278711948566,
+          "error_db": 0.8545821854187565,
+          "harmonic": 3,
+          "reference_db": -8.632860897367323,
+          "window": 1
+        },
+        {
+          "candidate_db": -13.457042516600566,
+          "error_db": 8.91864928660408,
+          "harmonic": 4,
+          "reference_db": -22.375691803204646,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.790214129056679,
+          "error_db": -1.2829356770716167,
+          "harmonic": 2,
+          "reference_db": -13.507278451985062,
+          "window": 2
+        },
+        {
+          "candidate_db": -11.13880905926812,
+          "error_db": 1.3991939939284457,
+          "harmonic": 3,
+          "reference_db": -12.538003053196565,
+          "window": 2
+        },
+        {
+          "candidate_db": -16.632948085583912,
+          "error_db": 8.460421205847862,
+          "harmonic": 4,
+          "reference_db": -25.093369291431774,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 38.62709103938126,
+      "harmonic_terms": 6,
+      "layer": "mf",
+      "model_velocity": 0.61,
+      "note": 55,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -7.04155027792563,
+          "error_db": -8.851641871890603,
+          "harmonic": 2,
+          "reference_db": 1.810091593964973,
+          "window": 1
+        },
+        {
+          "candidate_db": 5.01555367583066,
+          "error_db": 4.7362677041816035,
+          "harmonic": 3,
+          "reference_db": 0.2792859716490561,
+          "window": 1
+        },
+        {
+          "candidate_db": -5.756879746110741,
+          "error_db": 11.440492712979005,
+          "harmonic": 4,
+          "reference_db": -17.197372459089745,
+          "window": 1
+        },
+        {
+          "candidate_db": -13.670631460648444,
+          "error_db": -10.176249729817858,
+          "harmonic": 2,
+          "reference_db": -3.494381730830586,
+          "window": 2
+        },
+        {
+          "candidate_db": 1.6413994965041567,
+          "error_db": 5.28448993196983,
+          "harmonic": 3,
+          "reference_db": -3.6430904354656732,
+          "window": 2
+        },
+        {
+          "candidate_db": -6.574839870200918,
+          "error_db": 17.84012522404578,
+          "harmonic": 4,
+          "reference_db": -24.4149650942467,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 113.57010492065824,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 55,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -18.74212026403101,
+          "error_db": 8.079784330906705,
+          "harmonic": 2,
+          "reference_db": -26.821904594937713,
+          "window": 1
+        },
+        {
+          "candidate_db": -36.84641439627308,
+          "error_db": -4.872193323682751,
+          "harmonic": 3,
+          "reference_db": -31.974221072590332,
+          "window": 1
+        },
+        {
+          "candidate_db": -47.66738992393186,
+          "error_db": -5.54702518398917,
+          "harmonic": 4,
+          "reference_db": -42.12036473994269,
+          "window": 1
+        },
+        {
+          "candidate_db": -19.815534267396643,
+          "error_db": 9.086985294273717,
+          "harmonic": 2,
+          "reference_db": -28.90251956167036,
+          "window": 2
+        },
+        {
+          "candidate_db": -39.51541459757438,
+          "error_db": -4.0546828284184855,
+          "harmonic": 3,
+          "reference_db": -35.46073176915589,
+          "window": 2
+        },
+        {
+          "candidate_db": -51.33077231012065,
+          "error_db": -4.57226159138434,
+          "harmonic": 4,
+          "reference_db": -46.75851071873631,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 39.95166694109689,
+      "harmonic_terms": 6,
+      "layer": "p",
+      "model_velocity": 0.29,
+      "note": 59,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -14.901064220374288,
+          "error_db": 17.150246295813105,
+          "harmonic": 2,
+          "reference_db": -32.05131051618739,
+          "window": 1
+        },
+        {
+          "candidate_db": -24.429840556015662,
+          "error_db": -5.385597909104803,
+          "harmonic": 3,
+          "reference_db": -19.04424264691086,
+          "window": 1
+        },
+        {
+          "candidate_db": -31.743640875459562,
+          "error_db": -5.790235953935344,
+          "harmonic": 4,
+          "reference_db": -25.953404921524218,
+          "window": 1
+        },
+        {
+          "candidate_db": -15.642176859665533,
+          "error_db": 14.968085221900441,
+          "harmonic": 2,
+          "reference_db": -30.610262081565974,
+          "window": 2
+        },
+        {
+          "candidate_db": -27.535823394976532,
+          "error_db": -3.8241398132268394,
+          "harmonic": 3,
+          "reference_db": -23.711683581749693,
+          "window": 2
+        },
+        {
+          "candidate_db": -35.533527338217766,
+          "error_db": -4.337768229854365,
+          "harmonic": 4,
+          "reference_db": -31.1957591083634,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 102.35771649749425,
+      "harmonic_terms": 6,
+      "layer": "mp",
+      "model_velocity": 0.44,
+      "note": 59,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -14.641920918874867,
+          "error_db": 4.227789187032307,
+          "harmonic": 2,
+          "reference_db": -18.869710105907174,
+          "window": 1
+        },
+        {
+          "candidate_db": -13.08627376389206,
+          "error_db": -2.0380773069590603,
+          "harmonic": 3,
+          "reference_db": -11.048196456932999,
+          "window": 1
+        },
+        {
+          "candidate_db": -19.067606818224213,
+          "error_db": -0.9933385990859094,
+          "harmonic": 4,
+          "reference_db": -18.074268219138304,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.138661968458251,
+          "error_db": 17.103665819168945,
+          "harmonic": 2,
+          "reference_db": -31.242327787627197,
+          "window": 2
+        },
+        {
+          "candidate_db": -16.637649345751697,
+          "error_db": -0.56471298511687,
+          "harmonic": 3,
+          "reference_db": -16.072936360634827,
+          "window": 2
+        },
+        {
+          "candidate_db": -22.829711705799056,
+          "error_db": -0.04802368588974559,
+          "harmonic": 4,
+          "reference_db": -22.78168801990931,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 52.64521226255615,
+      "harmonic_terms": 6,
+      "layer": "mf",
+      "model_velocity": 0.61,
+      "note": 59,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -20.159683608223418,
+          "error_db": -15.936512201216676,
+          "harmonic": 2,
+          "reference_db": -4.223171407006742,
+          "window": 1
+        },
+        {
+          "candidate_db": -0.5211459735158783,
+          "error_db": 1.4491639420554137,
+          "harmonic": 3,
+          "reference_db": -1.970309915571292,
+          "window": 1
+        },
+        {
+          "candidate_db": -8.104486846871133,
+          "error_db": 5.268189175858051,
+          "harmonic": 4,
+          "reference_db": -13.372676022729184,
+          "window": 1
+        },
+        {
+          "candidate_db": -26.91287014931767,
+          "error_db": -14.95883193213962,
+          "harmonic": 2,
+          "reference_db": -11.954038217178049,
+          "window": 2
+        },
+        {
+          "candidate_db": -4.278367776675637,
+          "error_db": 2.9832104361749963,
+          "harmonic": 3,
+          "reference_db": -7.261578212850633,
+          "window": 2
+        },
+        {
+          "candidate_db": -10.843358428148534,
+          "error_db": 4.210625548230336,
+          "harmonic": 4,
+          "reference_db": -15.05398397637887,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 89.0369798751705,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 59,
+      "reference_onset_seconds": 0.002
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -22.160866157828373,
+          "error_db": -0.023988084565587542,
+          "harmonic": 2,
+          "reference_db": -22.136878073262785,
+          "window": 1
+        },
+        {
+          "candidate_db": -39.68900904528118,
+          "error_db": -4.217491710486904,
+          "harmonic": 3,
+          "reference_db": -35.47151733479428,
+          "window": 1
+        },
+        {
+          "candidate_db": -54.85005287059313,
+          "error_db": 1.8742091301069124,
+          "harmonic": 4,
+          "reference_db": -56.724262000700044,
+          "window": 1
+        },
+        {
+          "candidate_db": -23.45077295385793,
+          "error_db": 1.6761992028593795,
+          "harmonic": 2,
+          "reference_db": -25.126972156717308,
+          "window": 2
+        },
+        {
+          "candidate_db": -42.575375482175396,
+          "error_db": -3.087638720456539,
+          "harmonic": 3,
+          "reference_db": -39.48773676171886,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 6.728725651066379,
+      "harmonic_terms": 5,
+      "layer": "p",
+      "model_velocity": 0.29,
+      "note": 64,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -17.840629014630558,
+          "error_db": -1.9093441929119486,
+          "harmonic": 2,
+          "reference_db": -15.93128482171861,
+          "window": 1
+        },
+        {
+          "candidate_db": -28.508720190130028,
+          "error_db": -4.354956324918252,
+          "harmonic": 3,
+          "reference_db": -24.153763865211776,
+          "window": 1
+        },
+        {
+          "candidate_db": -39.30884400887064,
+          "error_db": 3.4438429940944744,
+          "harmonic": 4,
+          "reference_db": -42.75268700296512,
+          "window": 1
+        },
+        {
+          "candidate_db": -18.916192339095893,
+          "error_db": 0.48208172678216243,
+          "harmonic": 2,
+          "reference_db": -19.398274065878056,
+          "window": 2
+        },
+        {
+          "candidate_db": -31.659374934139635,
+          "error_db": -2.6183177524283963,
+          "harmonic": 3,
+          "reference_db": -29.04105718171124,
+          "window": 2
+        },
+        {
+          "candidate_db": -43.55743163984498,
+          "error_db": 4.490737126049396,
+          "harmonic": 4,
+          "reference_db": -48.048168765894374,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 10.287667497697166,
+      "harmonic_terms": 6,
+      "layer": "mp",
+      "model_velocity": 0.44,
+      "note": 64,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -15.820561520988967,
+          "error_db": -10.851304596987244,
+          "harmonic": 2,
+          "reference_db": -4.969256924001723,
+          "window": 1
+        },
+        {
+          "candidate_db": -18.659353842114932,
+          "error_db": -9.27349362293473,
+          "harmonic": 3,
+          "reference_db": -9.385860219180202,
+          "window": 1
+        },
+        {
+          "candidate_db": -26.87516930731521,
+          "error_db": 4.969662955881326,
+          "harmonic": 4,
+          "reference_db": -31.844832263196537,
+          "window": 1
+        },
+        {
+          "candidate_db": -16.25242554068116,
+          "error_db": -6.1145591015635254,
+          "harmonic": 2,
+          "reference_db": -10.137866439117634,
+          "window": 2
+        },
+        {
+          "candidate_db": -22.215373761532213,
+          "error_db": -6.828482202613575,
+          "harmonic": 3,
+          "reference_db": -15.386891558918638,
+          "window": 2
+        },
+        {
+          "candidate_db": -31.191117449812765,
+          "error_db": 1.4904692011843679,
+          "harmonic": 4,
+          "reference_db": -32.68158665099713,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 52.44725766064494,
+      "harmonic_terms": 6,
+      "layer": "mf",
+      "model_velocity": 0.61,
+      "note": 64,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -21.317359586749596,
+          "error_db": -19.791191736649317,
+          "harmonic": 2,
+          "reference_db": -1.526167850100279,
+          "window": 1
+        },
+        {
+          "candidate_db": -7.261840177124284,
+          "error_db": -1.5659980053248788,
+          "harmonic": 3,
+          "reference_db": -5.695842171799406,
+          "window": 1
+        },
+        {
+          "candidate_db": -14.64317907089952,
+          "error_db": 22.871112967054493,
+          "harmonic": 4,
+          "reference_db": -37.514292037954014,
+          "window": 1
+        },
+        {
+          "candidate_db": -17.141883657878363,
+          "error_db": -9.422040195460404,
+          "harmonic": 2,
+          "reference_db": -7.719843462417959,
+          "window": 2
+        },
+        {
+          "candidate_db": -11.300896402275892,
+          "error_db": 1.0603994520001407,
+          "harmonic": 3,
+          "reference_db": -12.361295854276033,
+          "window": 2
+        },
+        {
+          "candidate_db": -18.6528515120535,
+          "error_db": 12.31875502665644,
+          "harmonic": 4,
+          "reference_db": -30.97160653870994,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 193.14707371845216,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 64,
+      "reference_onset_seconds": 0.003
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -27.399441732688267,
+          "error_db": 30.253682096841928,
+          "harmonic": 2,
+          "reference_db": -57.653123829530195,
+          "window": 1
+        },
+        {
+          "candidate_db": -29.08157499900792,
+          "error_db": 28.439714763038438,
+          "harmonic": 2,
+          "reference_db": -57.52128976204636,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 862.0513281098802,
+      "harmonic_terms": 2,
+      "layer": "p",
+      "model_velocity": 0.29,
+      "note": 72,
+      "reference_onset_seconds": 0.001
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -22.686496158238512,
+          "error_db": 28.58061139492262,
+          "harmonic": 2,
+          "reference_db": -51.26710755316113,
+          "window": 1
+        },
+        {
+          "candidate_db": -34.97871753828036,
+          "error_db": 16.487062804414094,
+          "harmonic": 3,
+          "reference_db": -51.46578034269445,
+          "window": 1
+        },
+        {
+          "candidate_db": -24.254294481079086,
+          "error_db": 27.230789489760234,
+          "harmonic": 2,
+          "reference_db": -51.48508397083932,
+          "window": 2
+        },
+        {
+          "candidate_db": -38.59529362915546,
+          "error_db": 16.681792289508962,
+          "harmonic": 3,
+          "reference_db": -55.27708591866442,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 527.1181694625582,
+      "harmonic_terms": 4,
+      "layer": "mp",
+      "model_velocity": 0.44,
+      "note": 72,
+      "reference_onset_seconds": 0.002
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -19.52864309385408,
+          "error_db": 24.443581132106033,
+          "harmonic": 2,
+          "reference_db": -43.97222422596011,
+          "window": 1
+        },
+        {
+          "candidate_db": -26.3478508374916,
+          "error_db": 10.741846466972987,
+          "harmonic": 3,
+          "reference_db": -37.089697304464586,
+          "window": 1
+        },
+        {
+          "candidate_db": -38.95558559457605,
+          "error_db": 14.756137030397902,
+          "harmonic": 4,
+          "reference_db": -53.71172262497395,
+          "window": 1
+        },
+        {
+          "candidate_db": -20.810920492779182,
+          "error_db": 24.966420503423684,
+          "harmonic": 2,
+          "reference_db": -45.77734099620287,
+          "window": 2
+        },
+        {
+          "candidate_db": -30.182137507423512,
+          "error_db": 12.619310346305149,
+          "harmonic": 3,
+          "reference_db": -42.80144785372866,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 342.63773010237776,
+      "harmonic_terms": 5,
+      "layer": "mf",
+      "model_velocity": 0.61,
+      "note": 72,
+      "reference_onset_seconds": 0.002
+    },
+    {
+      "balances": [
+        {
+          "candidate_db": -18.076184776029663,
+          "error_db": 20.890978033115232,
+          "harmonic": 2,
+          "reference_db": -38.967162809144895,
+          "window": 1
+        },
+        {
+          "candidate_db": -16.72982660675011,
+          "error_db": 10.917322121946228,
+          "harmonic": 3,
+          "reference_db": -27.647148728696337,
+          "window": 1
+        },
+        {
+          "candidate_db": -26.544089019312473,
+          "error_db": 13.585319594248425,
+          "harmonic": 4,
+          "reference_db": -40.1294086135609,
+          "window": 1
+        },
+        {
+          "candidate_db": -18.31103276094633,
+          "error_db": 24.954077205270725,
+          "harmonic": 2,
+          "reference_db": -43.265109966217054,
+          "window": 2
+        },
+        {
+          "candidate_db": -20.995393319328844,
+          "error_db": 13.767462845620397,
+          "harmonic": 3,
+          "reference_db": -34.76285616494924,
+          "window": 2
+        },
+        {
+          "candidate_db": -31.86319008291439,
+          "error_db": 18.582357995671682,
+          "harmonic": 4,
+          "reference_db": -50.44554807858607,
+          "window": 2
+        }
+      ],
+      "candidate_onset_seconds": 0.0,
+      "harmonic_mse_db2": 316.28913750396055,
+      "harmonic_terms": 6,
+      "layer": "f",
+      "model_velocity": 0.85,
+      "note": 72,
+      "reference_onset_seconds": 0.002
+    }
+  ],
+  "coordinates": [
+    0.135,
+    -0.020000000000000004,
+    0.0
+  ]
+}

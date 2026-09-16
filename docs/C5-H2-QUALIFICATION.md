@@ -85,6 +85,10 @@ uncertain evidence rather than directly tuning the model to their peak level.
 This experiment does not establish the correct pickup geometry or physical
 strike strength, nor does it remove recording-chain uncertainty.
 
+Follow-up: the [upper-register geometry experiment](UPPER-REGISTER-GEOMETRY.md)
+uses this diagnostic and passes the existing frozen validation gates against
+the original Calibrated pairing.
+
 No reserved notes were opened. No DSP engine, preset, source recording or
 playable package changed, so RackForge audition was not run.
 

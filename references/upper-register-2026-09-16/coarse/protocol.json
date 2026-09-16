@@ -1,0 +1,31 @@
+{
+  "constraints": "Unchanged robust full-score gates versus original Calibrated; C5 body H2 tracked diagnostically",
+  "geometry": "Three log multipliers; smoothstep MIDI55..72, zero below55, constant above72",
+  "held_out_notes": [
+    45,
+    53,
+    60,
+    67,
+    76,
+    86
+  ],
+  "held_out_policy": "Only after development passes; freeze parameters before loading",
+  "mapping": [
+    0.29,
+    0.44,
+    0.61,
+    0.85
+  ],
+  "model": "Existing Calibrated discrete Aperture; mechanics and velocity mapping frozen",
+  "scope": "Offline parameter screen, not physical identification or realtime implementation",
+  "search": "15 seeds including zero; coordinate steps 0.10/0.05; 27 evaluations including bounded duplicates",
+  "training_notes": [
+    43,
+    47,
+    50,
+    55,
+    59,
+    64,
+    72
+  ]
+}
