@@ -313,6 +313,12 @@ mod tests {
             "program-name",
             "program-detail",
             "program-error",
+            "save-program-open",
+            "save-program-dialog",
+            "save-program-form",
+            "save-program-name",
+            "save-program-submit",
+            "save-program-feedback",
             "status",
             "gain",
             "gain-number",
@@ -346,14 +352,13 @@ mod tests {
                 assert_eq!(html.matches(&format!("id=\"{id}{suffix}\"")).count(), 1);
             }
         }
+        assert!(html.contains("src=\"play-programs.mjs\""));
     }
     #[test]
     fn packaged_config_surface_contains_the_portable_program_workflow() {
         let html = include_str!("../../../package/web/config.html");
         for id in [
             "connection",
-            "save-name",
-            "save-button",
             "export-source",
             "export-button",
             "import-file",
@@ -370,6 +375,7 @@ mod tests {
         assert!(html.contains("accept=\".rf73,application/json\""));
         assert!(html.contains("id=\"recover-button\""));
         assert!(html.contains("src=\"config.mjs\""));
+        assert!(!html.contains("id=\"save-name\""));
         let manifest = include_str!("../../../package/rackforge-plugin.toml");
         assert!(manifest.contains("config_mode = true"));
         assert!(manifest.contains("kind = \"config\"\nentry = \"web/config.html\""));

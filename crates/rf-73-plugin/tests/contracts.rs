@@ -1,5 +1,6 @@
 use rackforge_plugin_sdk::{
-    MIDI2_FLAG_ORIGIN_7BIT, MIDI2_KIND_NOTE_ON, MidiEvent, MidiEvent2, ParameterEvent, Processor,
+    MIDI2_FLAG_ORIGIN_7BIT, MIDI2_KIND_NOTE_ON, MIDI2_KIND_PITCH_BEND, MidiEvent, MidiEvent2,
+    ParameterEvent, Processor,
 };
 use rf_73_plugin::{DEFAULT_GAIN, Rf73Processor, STATE_BYTES};
 
@@ -197,4 +198,74 @@ fn upscaled_midi1_matches_original_and_native_wide_velocity_is_preserved() {
         2,
     );
     assert_ne!(out_a, out_b);
+}
+
+#[test]
+fn midi1_and_midi2_pitch_bend_share_endpoints_and_exact_center() {
+    let note = MidiEvent {
+        frame: 0,
+        data: [0x90, 57, 90],
+        length: 3,
+    };
+    let bend = MidiEvent {
+        frame: 512,
+        data: [0xe0, 127, 127],
+        length: 3,
+    };
+    let wide_note = MidiEvent2 {
+        frame: 0,
+        kind: MIDI2_KIND_NOTE_ON,
+        channel: 0,
+        index: 57,
+        flags: MIDI2_FLAG_ORIGIN_7BIT,
+        value: 90 << 9,
+        extra: 0,
+    };
+    let wide_bend = MidiEvent2 {
+        frame: 512,
+        kind: MIDI2_KIND_PITCH_BEND,
+        channel: 0,
+        index: 0,
+        flags: 0,
+        value: u32::MAX,
+        extra: 0,
+    };
+    let mut midi1 = prepared();
+    let mut midi2 = prepared();
+    let mut out_midi1 = [0.0; 8192];
+    let mut out_midi2 = [0.0; 8192];
+    midi1.process(&[], &mut out_midi1, &[note, bend], &[], 4096, 0, 2);
+    midi2.process_wide(
+        &[],
+        &mut out_midi2,
+        &[],
+        &[wide_note, wide_bend],
+        &[],
+        4096,
+        0,
+        2,
+    );
+    assert_eq!(out_midi1, out_midi2);
+    assert!(out_midi1.iter().any(|sample| sample.abs() > 1e-5));
+
+    let mut plain = prepared();
+    let mut centered = prepared();
+    plain.process(&[], &mut out_midi1, &[note], &[], 4096, 0, 2);
+    centered.process(
+        &[],
+        &mut out_midi2,
+        &[
+            note,
+            MidiEvent {
+                frame: 512,
+                data: [0xe0, 0, 64],
+                length: 3,
+            },
+        ],
+        &[],
+        4096,
+        0,
+        2,
+    );
+    assert_eq!(out_midi1, out_midi2);
 }

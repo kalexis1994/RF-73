@@ -185,9 +185,7 @@ The public parameter schema maps RackForge's standard plugin level and
 expression roles to Volume, LFO rate to Speed, and both LFO depth and
 performance modulation to Intensity. Sustain remains ordinary performance MIDI
 CC64 because it operates the dampers rather than the physical Sustain voicing
-parameter. Pitch Bend is deliberately not assigned: RackForge treats it as a
-14-bit gesture rather than a semantic parameter, and RF-73 has no physical
-pitch-bend mechanism.
+parameter.
 
 The PLAY and CONFIG surfaces hide their connection indicator after the bridge
 is ready. Desktop controls, spacing and headings are denser, while layouts at
@@ -201,3 +199,17 @@ an existing factory or user program, preserving its program name and identity.
 Import validates a `.rf73` file and allocates a new local user-program identity,
 so it never replaces an existing program. Portable names allow Unicode while
 rejecting control and formatting characters.
+
+## 0.1.13 save from PLAY
+
+PLAY owns creation of local user programs because it is where controls are
+edited and auditioned. `SAVE AS` opens a naming dialog, waits until the host
+parameters match every displayed control, saves a new program in RF-73's
+private library and selects it. CONFIG now focuses on exporting saved factory
+or user programs and importing `.rf73` files as new local programs.
+
+Pitch Bend remains a performance gesture instead of a saved semantic
+parameter. MIDI 1.0's full 14-bit wheel and MIDI 2.0's 32-bit value now retune
+ringing resonators over ±2 semitones. The gesture preserves each mode's current
+motion and physical loss, applies to future notes on the same channel, and
+returns to exact tuning at the wheel center.

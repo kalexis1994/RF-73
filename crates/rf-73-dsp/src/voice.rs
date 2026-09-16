@@ -93,6 +93,7 @@ pub struct Voice {
     profile: Profile,
     pickup: MagneticPickup,
     aperture: Option<AxialAperture>,
+    pitch_ratio: f64,
     dt: f64,
     contact_steps: usize,
     hammer_mass: f64,
@@ -186,6 +187,7 @@ impl Voice {
             profile,
             pickup: MagneticPickup::from_validated_profile(profile),
             aperture: profile.aperture(),
+            pitch_ratio: 1.0,
             dt,
             contact_steps,
             hammer_mass: profile.hammer_mass_kg * scale.sqrt(),
@@ -205,8 +207,9 @@ impl Voice {
     /// ratio only. The caller validates the profile for its sample rate.
     pub(crate) fn set_profile(&mut self, profile: Profile) {
         let profile = profile.for_note(self.note);
-        let frequency = 440.0 * 2.0_f64.powf((self.note as f64 - 69.0) / 12.0);
-        let scale = (220.0 / frequency).clamp(0.15, 4.0);
+        let base_frequency = 440.0 * 2.0_f64.powf((self.note as f64 - 69.0) / 12.0);
+        let frequency = base_frequency * self.pitch_ratio;
+        let scale = (220.0 / base_frequency).clamp(0.15, 4.0);
         let ratios = [1.0, profile.bar_partial_ratio, 17.55];
         let t60 = [
             profile.decay_seconds * scale.sqrt(),
@@ -227,6 +230,29 @@ impl Voice {
         self.pickup = MagneticPickup::from_validated_profile(profile);
         self.aperture = profile.aperture();
         self.profile = profile;
+    }
+
+    /// Retune every structural mode while retaining displacement, velocity,
+    /// mass, loss, hammer state and pickup geometry. This models a performer
+    /// pitch gesture as a temporary stiffness/tuning change rather than moving
+    /// the hammer or pickup.
+    pub fn set_pitch_ratio(&mut self, ratio: f64) -> bool {
+        if !ratio.is_finite() || !(0.5..=2.0).contains(&ratio) {
+            return false;
+        }
+        self.pitch_ratio = ratio;
+        let frequency = 440.0 * 2.0_f64.powf((self.note as f64 - 69.0) / 12.0) * ratio;
+        let ratios = [1.0, self.profile.bar_partial_ratio, 17.55];
+        for (i, mode) in self.modes.iter_mut().enumerate() {
+            mode.set(
+                frequency * ratios[i],
+                mode.mass,
+                mode.gamma,
+                self.dt,
+                self.dt / self.contact_steps as f64,
+            );
+        }
+        true
     }
 
     /// Retriggering retains every resonator coordinate and its velocity.

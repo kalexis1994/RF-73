@@ -635,6 +635,11 @@ footer p {
   display: flex;
   gap: 6px;
 }
+.program-actions {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
 .program-step button {
   width: 44px;
   min-height: 44px;
@@ -645,18 +650,126 @@ footer p {
   cursor: pointer;
   font-size: 26px;
 }
+#save-program-open {
+  min-height: 44px;
+  padding: 8px 13px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+#save-program-open:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+#save-program-open:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
 #program-detail,
-#program-error {
+#program-error,
+#save-program-feedback {
   grid-column: 1/-1;
   font-size: 12px;
   color: var(--muted);
   overflow-wrap: anywhere;
 }
-#program-error:empty {
+#program-error:empty,
+#save-program-feedback:empty {
   display: none;
 }
 #program-error {
   color: var(--accent);
+}
+#save-program-feedback {
+  color: #9ed7b4;
+}
+.save-program-dialog {
+  width: min(430px, calc(100vw - 32px));
+  padding: 0;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--ink);
+  box-shadow: 0 24px 80px #000a;
+}
+.save-program-dialog::backdrop {
+  background: #050807c7;
+  backdrop-filter: blur(3px);
+}
+.save-program-dialog form {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding: 24px;
+}
+.save-program-dialog h2 {
+  margin: -8px 0 0;
+  color: var(--ink);
+  font-size: 27px;
+}
+.save-program-copy {
+  color: var(--muted);
+  font-size: 13px;
+}
+.save-program-dialog label {
+  font-weight: 700;
+}
+.save-program-dialog input {
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--inset);
+  color: var(--ink);
+  font: inherit;
+}
+.save-program-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.save-program-buttons button,
+.save-program-close {
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+}
+#save-program-submit {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.save-program-buttons button:disabled,
+.save-program-close:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.save-program-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  min-width: 38px;
+  padding: 4px 9px;
+  font-size: 24px;
+  line-height: 1;
+}
+#save-program-status {
+  min-height: 18px;
+  color: #e6a58f;
+  font-size: 12px;
 }
 .compact-programs {
   display: none;
@@ -719,6 +832,21 @@ footer p {
   }
   .program-step {
     gap: 4px;
+  }
+  .program-actions {
+    gap: 5px;
+  }
+  #save-program-open {
+    padding-inline: 9px;
+  }
+  .save-program-dialog form {
+    padding: 22px 18px 18px;
+  }
+  .save-program-buttons {
+    flex-direction: column-reverse;
+  }
+  .save-program-buttons button {
+    width: 100%;
   }
   .sound,
   #pickup .sound {
@@ -953,6 +1081,9 @@ footer p {
     width: 38px;
     min-height: 38px;
     font-size: 22px;
+  }
+  #save-program-open {
+    min-height: 38px;
   }
   .section-nav button {
     padding: 12px 6px 10px;

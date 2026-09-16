@@ -39,7 +39,7 @@
             aria-label="Available programs"
           ></div>
           <p class="library-note">
-            Save custom voices with RackForge&#8217;s PRESETS menu.
+            Shape a voice, then save it to your RF-73 library.
           </p>
         </aside>
         <div class="instrument-body">
@@ -48,22 +48,27 @@
               <p class="eyebrow">SELECTED PROGRAM</p>
               <h2 id="program-name">Choose your voice</h2>
             </div>
-            <div class="program-step">
-              <button
-                id="program-prev"
-                type="button"
-                aria-label="Previous program"
-                disabled
-              >
-                &#8249;
-              </button>
-              <button
-                id="program-next"
-                type="button"
-                aria-label="Next program"
-                disabled
-              >
-                &#8250;
+            <div class="program-actions">
+              <div class="program-step">
+                <button
+                  id="program-prev"
+                  type="button"
+                  aria-label="Previous program"
+                  disabled
+                >
+                  &#8249;
+                </button>
+                <button
+                  id="program-next"
+                  type="button"
+                  aria-label="Next program"
+                  disabled
+                >
+                  &#8250;
+                </button>
+              </div>
+              <button id="save-program-open" type="button" disabled>
+                SAVE AS
               </button>
             </div>
             <label class="compact-programs" for="program-select"
@@ -75,6 +80,7 @@
               Select a starting point, then shape its character.
             </p>
             <p id="program-error" role="alert"></p>
+            <p id="save-program-feedback" role="status" aria-live="polite"></p>
           </div>
           <div
             class="section-nav"
@@ -628,9 +634,44 @@
         </div>
       </div>
     </main>
+    <dialog
+      id="save-program-dialog"
+      class="save-program-dialog"
+      aria-labelledby="save-program-title"
+    >
+      <form id="save-program-form">
+        <button
+          id="save-program-close"
+          class="save-program-close"
+          type="button"
+          aria-label="Close"
+        >
+          &times;
+        </button>
+        <p class="eyebrow">RF-73 PROGRAM LIBRARY</p>
+        <h2 id="save-program-title">Save your sound</h2>
+        <p class="save-program-copy">
+          Store the current controls as a program on this computer.
+        </p>
+        <label for="save-program-name">Program name</label>
+        <input
+          id="save-program-name"
+          maxlength="64"
+          autocomplete="off"
+          placeholder="My RF-73"
+          required
+        />
+        <div class="save-program-buttons">
+          <button id="save-program-cancel" type="button">CANCEL</button>
+          <button id="save-program-submit" type="button">SAVE TO RF-73</button>
+        </div>
+        <p id="save-program-status" role="alert" aria-live="assertive"></p>
+      </form>
+    </dialog>
     <noscript
       >This interface requires WebAssembly and the RackForge host.</noscript
     >
     <script type="module" src="app.js"></script>
+    <script type="module" src="play-programs.mjs"></script>
   </body>
 </html>

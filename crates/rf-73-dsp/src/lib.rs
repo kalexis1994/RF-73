@@ -57,6 +57,7 @@ pub struct Engine {
     held: [u16; KEY_COUNT],
     sustained: [u16; KEY_COUNT],
     pedals: u16,
+    pitch_bends: [f64; 16],
     decimator: filter::Decimator,
     laboratory: Option<laboratory::Laboratory>,
     sample_rate: f64,
@@ -81,6 +82,7 @@ impl Engine {
             held: [0; KEY_COUNT],
             sustained: [0; KEY_COUNT],
             pedals: 0,
+            pitch_bends: [0.0; 16],
             decimator: filter::Decimator::new(),
             laboratory: None,
             sample_rate,
@@ -193,6 +195,7 @@ impl Engine {
         self.held[i] |= bit;
         self.sustained[i] &= !bit;
         self.voices[i].last_channel = channel;
+        self.voices[i].set_pitch_ratio(pitch_ratio(self.pitch_bends[channel as usize]));
         self.voices[i].strike(velocity);
         true
     }
@@ -260,8 +263,25 @@ impl Engine {
                     self.sustained[i] &= !bit;
                     self.update_damper(i);
                 }
+                self.pitch_bend(channel, 0.0);
             }
             _ => return false,
+        }
+        true
+    }
+
+    /// Apply the channel wheel to ringing tails and future strikes. The wheel
+    /// spans two semitones in each direction; zero is exact center.
+    pub fn pitch_bend(&mut self, channel: u8, normalized: f64) -> bool {
+        if channel >= 16 || !normalized.is_finite() || !(-1.0..=1.0).contains(&normalized) {
+            return false;
+        }
+        self.pitch_bends[channel as usize] = normalized;
+        let ratio = pitch_ratio(normalized);
+        for voice in &mut self.voices {
+            if voice.is_active() && voice.last_channel == channel {
+                voice.set_pitch_ratio(ratio);
+            }
         }
         true
     }
@@ -322,6 +342,10 @@ impl Engine {
         self.held.fill(0);
         self.sustained.fill(0);
         self.pedals = 0;
+        self.pitch_bends.fill(0.0);
+        for voice in &mut self.voices {
+            voice.set_pitch_ratio(1.0);
+        }
         self.decimator.clear();
         if let Some(lab) = &mut self.laboratory {
             lab.reset();
@@ -329,6 +353,10 @@ impl Engine {
         self.gain = self.target_gain;
         self.compensation = self.target_compensation;
     }
+}
+
+fn pitch_ratio(normalized: f64) -> f64 {
+    2.0_f64.powf((2.0 * normalized) / 12.0)
 }
 
 fn key_index(channel: u8, note: u8) -> Option<usize> {

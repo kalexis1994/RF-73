@@ -211,6 +211,40 @@ fn sustained_fundamental_tracks_target_pitch_at_all_output_rates() {
 }
 
 #[test]
+fn pitch_ratio_retunes_a_ringing_voice_without_resetting_it() {
+    let rate = 48_000.0;
+    let mut voice = Voice::new(rate, 57, Profile::default()).unwrap();
+    voice.strike(0.5);
+    let internal_rate = rate * OVERSAMPLE as f64;
+    for _ in 0..(internal_rate * 0.12) as usize {
+        voice.tick();
+    }
+    let before = voice.probe();
+    let ratio = 2.0_f64.powf(2.0 / 12.0);
+    assert!(voice.set_pitch_ratio(ratio));
+    let after = voice.probe();
+    assert_eq!(after.displacement_m, before.displacement_m);
+    assert_eq!(after.velocity_m_s, before.velocity_m_s);
+    let mut previous = after.displacement_m;
+    let mut crossings = Vec::new();
+    for frame in 0..(internal_rate * 0.12) as usize {
+        voice.tick();
+        let now = voice.probe().displacement_m;
+        if previous < 0.0 && now >= 0.0 {
+            crossings.push(frame as f64 + (-previous) / (now - previous));
+        }
+        previous = now;
+    }
+    let frequency =
+        (crossings.len() - 1) as f64 * internal_rate / (crossings.last().unwrap() - crossings[0]);
+    let expected = 440.0 * 2.0_f64.powf((57.0 - 69.0) / 12.0) * ratio;
+    let cents = 1200.0 * (frequency / expected).log2();
+    assert!(cents.abs() < 0.1, "pitch bend: {cents} cents");
+    assert!(!voice.set_pitch_ratio(f64::NAN));
+    assert!(!voice.set_pitch_ratio(3.0));
+}
+
+#[test]
 fn calibrated_sustain_profile_validates_and_rings_longer_on_both_partials() {
     let calibrated = Profile::calibrated_sustain();
     calibrated.validate(48_000.0).unwrap();

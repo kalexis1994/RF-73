@@ -3,9 +3,9 @@ mod electronics;
 mod program;
 mod settings;
 use rackforge_plugin_sdk::{
-    MIDI_FAMILY_CONTROL, MIDI_FAMILY_NOTE, MIDI2_FLAG_ORIGIN_7BIT, MIDI2_KIND_CONTROL_CHANGE,
-    MIDI2_KIND_NOTE_OFF, MIDI2_KIND_NOTE_ON, MidiEvent, MidiEvent2, ParameterEvent, Processor,
-    export_processor,
+    MIDI_FAMILY_BEND, MIDI_FAMILY_CONTROL, MIDI_FAMILY_NOTE, MIDI2_FLAG_ORIGIN_7BIT,
+    MIDI2_KIND_CONTROL_CHANGE, MIDI2_KIND_NOTE_OFF, MIDI2_KIND_NOTE_ON, MIDI2_KIND_PITCH_BEND,
+    MidiEvent, MidiEvent2, ParameterEvent, Processor, export_processor,
 };
 use rf_73_dsp::Engine;
 pub use settings::{DEFAULT_GAIN, LAW_NAMES, PARAMETERS, Settings, presets};
@@ -84,6 +84,9 @@ impl Rf73Processor {
             0xb0 => {
                 engine.control_change(status & 15, index, value as f64 / 127.0);
             }
+            0xe0 => {
+                engine.pitch_bend(status & 15, bend_14(index, value));
+            }
             _ => {}
         }
     }
@@ -112,6 +115,9 @@ impl Rf73Processor {
                     event.value as f64 / u32::MAX as f64
                 };
                 engine.control_change(event.channel, event.index, value);
+            }
+            MIDI2_KIND_PITCH_BEND => {
+                engine.pitch_bend(event.channel, bend_32(event.value));
             }
             _ => {}
         }
@@ -423,11 +429,29 @@ fn valid_midi1(event: &MidiEvent) -> bool {
     {
         return false;
     }
-    !matches!(event.data[0] & 0xf0, 0x80 | 0x90 | 0xb0) || event.length == 3
+    !matches!(event.data[0] & 0xf0, 0x80 | 0x90 | 0xb0 | 0xe0) || event.length == 3
+}
+
+fn bend_14(lsb: u8, msb: u8) -> f64 {
+    let value = u16::from(lsb) | (u16::from(msb) << 7);
+    if value >= 8192 {
+        f64::from(value - 8192) / 8191.0
+    } else {
+        -f64::from(8192 - value) / 8192.0
+    }
+}
+
+fn bend_32(value: u32) -> f64 {
+    const CENTER: u32 = 1 << 31;
+    if value >= CENTER {
+        f64::from(value - CENTER) / f64::from(u32::MAX - CENTER)
+    } else {
+        -f64::from(CENTER - value) / f64::from(CENTER)
+    }
 }
 
 export_processor!(Rf73Processor,
     max_frames = 4096, max_input_channels = 0, max_output_channels = 2,
     max_midi_events = 256, max_parameter_events = 256, max_transfer_bytes = 16384,
-    midi2 = { max_events = 256, families = MIDI_FAMILY_NOTE | MIDI_FAMILY_CONTROL }
+    midi2 = { max_events = 256, families = MIDI_FAMILY_NOTE | MIDI_FAMILY_CONTROL | MIDI_FAMILY_BEND }
 );
