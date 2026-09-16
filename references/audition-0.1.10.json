@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-16T17:02:54.2799166Z",
+  "plugin_id": "org.rackforge.rhodes",
+  "version": "0.1.10",
+  "archive": {
+    "path": "dist/RF-73-0.1.10.rfplugin",
+    "bytes": 272056,
+    "sha256": "09a8d0ee9ef83021b740010e9ca814be7568bf1de97c6dbbd6506f6f76d9e3c4"
+  },
+  "audition": {
+    "source_run": "dist/audition/0.1.10-1789577673760356900-18156",
+    "prepare_only": true,
+    "desktop_launched": false,
+    "listening_test": false,
+    "desktop_error": "RackForge Desktop executable was not built or configured on this machine."
+  },
+  "package_smoke": {
+    "parameters": 15,
+    "pages": 5,
+    "factory_programs": 5,
+    "default_program": "stage-early-70s",
+    "peak": 0.170631,
+    "state_bytes": 124
+  },
+  "checks": {
+    "rf73_format": "3 passed",
+    "plugin": "22 passed",
+    "ui": "9 passed",
+    "web_ui_packaging": "1 passed",
+    "wasm_clippy": "passed",
+    "format_and_diff": "passed"
+  },
+  "browser": {
+    "url": "https://kalexis1994.github.io/rackforge/#/play",
+    "rackforge_commit": "a44de265124bc575be83b1ca7cbb53a2231b7cdb",
+    "rackforge_pull_request": 98,
+    "deployment_run": 35124965130,
+    "install": "passed",
+    "valid_import": "custom.lab-1 created",
+    "reload_persistence": "custom.lab-1 restored from IndexedDB",
+    "duplicate_import": "custom.lab-2 created without replacing custom.lab-1",
+    "corrupt_import": "rejected without changing the two installed programs",
+    "persisted_path": "plugins/org.rackforge.rhodes/programs/lab-1.rackforge-program.json",
+    "mobile_viewport": "390x844 with no horizontal overflow",
+    "runtime_errors": 0,
+    "screenshot": "dist/rf73-0.1.10-config-mobile.png"
+  }
+}

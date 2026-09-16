@@ -1,0 +1,166 @@
+.config-main {
+  max-width: 920px;
+  display: grid;
+  gap: 18px;
+}
+.config-header,
+.program-card,
+.status-card {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: 0 12px 30px #0003;
+}
+.config-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: end;
+  padding: 30px 34px;
+  border-top: 5px solid var(--accent);
+}
+.config-header h1 {
+  margin: 3px 0 10px;
+  color: var(--ink);
+  font-style: normal;
+  letter-spacing: -2px;
+  text-shadow: none;
+}
+.config-intro,
+.program-card p,
+.status-card p {
+  color: var(--muted);
+}
+.config-connection {
+  white-space: nowrap;
+}
+.config-connection::before {
+  content: "";
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: 9px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.config-connection[data-ready="true"]::before {
+  background: #6fd59b;
+  box-shadow: 0 0 8px #6fd59b88;
+}
+.program-card {
+  padding: 26px 30px 30px;
+}
+.card-heading {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: start;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.card-heading h2 {
+  margin-bottom: 5px;
+}
+.step {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font: 700 12px ui-monospace, Consolas, monospace;
+}
+.config-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 22px 0 18px;
+}
+.config-fields label {
+  display: grid;
+  gap: 7px;
+  color: var(--ink);
+  font-weight: 650;
+}
+.config-fields select,
+.config-fields input {
+  width: 100%;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--inset);
+  color: var(--ink);
+}
+.primary {
+  min-height: 44px;
+  padding: 10px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.primary:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+.primary:disabled,
+.config-fields :disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.safety-note {
+  margin-top: 14px;
+  font-size: 12px;
+}
+.status-card {
+  padding: 20px 30px;
+}
+.status-card .eyebrow {
+  margin-bottom: 7px;
+  color: var(--accent);
+}
+#error {
+  margin-top: 5px;
+  color: #e28b78;
+}
+.recovery {
+  min-height: 40px;
+  margin-top: 14px;
+  padding: 8px 14px;
+  border: 1px solid #e28b78;
+  border-radius: 3px;
+  background: transparent;
+  color: #f1b0a2;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+}
+.recovery:hover:not(:disabled) {
+  background: #e28b7817;
+}
+.recovery:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+@media (max-width: 640px) {
+  .config-main {
+    padding: 12px;
+  }
+  .config-header {
+    grid-template-columns: 1fr;
+    align-items: start;
+    padding: 24px 20px;
+  }
+  .config-connection {
+    white-space: normal;
+  }
+  .program-card,
+  .status-card {
+    padding: 22px 18px;
+  }
+  .config-fields {
+    grid-template-columns: 1fr;
+  }
+}

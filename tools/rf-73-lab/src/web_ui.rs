@@ -7,7 +7,11 @@ pub fn verify_install(
 ) -> Result<(), Box<dyn Error>> {
     for asset in [
         "web/play.html",
+        "web/config.html",
         "web/style.css",
+        "web/config.css",
+        "web/config.mjs",
+        "web/rf73-format.mjs",
         "web/app.js",
         "web/app_bg.wasm",
     ] {
@@ -75,7 +79,16 @@ mod tests {
         let installed = root.join("installed");
         std::fs::create_dir_all(source.join("web")).unwrap();
         std::fs::create_dir_all(installed.join("web")).unwrap();
-        for asset in ["play.html", "style.css", "app.js", "app_bg.wasm"] {
+        for asset in [
+            "play.html",
+            "config.html",
+            "style.css",
+            "config.css",
+            "config.mjs",
+            "rf73-format.mjs",
+            "app.js",
+            "app_bg.wasm",
+        ] {
             std::fs::write(source.join("web").join(asset), asset).unwrap();
             assert!(verify_install(&installed, &source).is_err());
             std::fs::write(installed.join("web").join(asset), asset).unwrap();

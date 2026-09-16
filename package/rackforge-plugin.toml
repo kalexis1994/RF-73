@@ -4,12 +4,13 @@ schema_version = 1
 id = "org.rackforge.rhodes"
 name = "RF-73 Research"
 vendor = "RackForge"
-version = "0.1.8"
+version = "0.1.10"
 description = "Physical-model Rhodes voicing: pickup law, distance and alignment, hammer hardness, sustain, bell and dynamics with a level-compensated pickup"
 kind = "instrument"
 state_version = 5
 capabilities = ["audio_output", "midi_input", "presets", "state"]
 ui_layouts = ["little@1"]
+config_mode = true
 
 [api]
 major = 1
@@ -28,3 +29,7 @@ api_version = 1
 [[web_ui.surfaces]]
 kind = "play"
 entry = "web/play.html"
+
+[[web_ui.surfaces]]
+kind = "config"
+entry = "web/config.html"

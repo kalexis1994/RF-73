@@ -347,6 +347,32 @@ mod tests {
             }
         }
     }
+    #[test]
+    fn packaged_config_surface_contains_the_portable_program_workflow() {
+        let html = include_str!("../../../package/web/config.html");
+        for id in [
+            "connection",
+            "export-source",
+            "export-name",
+            "export-button",
+            "import-file",
+            "import-button",
+            "activity",
+            "error",
+        ] {
+            assert_eq!(
+                html.matches(&format!("id=\"{id}\"")).count(),
+                1,
+                "missing or duplicate {id}"
+            );
+        }
+        assert!(html.contains("accept=\".rf73,application/json\""));
+        assert!(html.contains("id=\"recover-button\""));
+        assert!(html.contains("src=\"config.mjs\""));
+        let manifest = include_str!("../../../package/rackforge-plugin.toml");
+        assert!(manifest.contains("config_mode = true"));
+        assert!(manifest.contains("kind = \"config\"\nentry = \"web/config.html\""));
+    }
     fn catalog(client: &mut Client, selected: &str) {
         client.context(&json!({"selected_sound_id": selected, "sounds": [
             {"id":"a", "name":"First"}, {"id":"b", "name":"Second", "detail":"Bright"}

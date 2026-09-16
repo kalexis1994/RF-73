@@ -168,3 +168,13 @@ Knob lighting and cast shadows stay fixed; only the position marker rotates.
 Stage 73 - Early '70s is first in the catalog and initializes fresh processor
 instances. Parameter defaults and UI resets match this voice. Legacy state
 migration keeps its original neutral-electronics defaults.
+
+## 0.1.10 portable program files
+
+The CONFIG surface exports and imports `.rf73` files. Schema 1 wraps one
+RackForge program document with a canonical SHA-256 checksum. Imports are
+limited to 32 KiB, reject unknown fields, foreign plugin IDs, unsupported state
+versions and out-of-range parameters, then pass through the plugin's existing
+program validation before the host saves them atomically. Imported IDs are made
+unique, so loading a file never silently overwrites a user program. Version-4
+documents remain importable with neutral electronics defaults.

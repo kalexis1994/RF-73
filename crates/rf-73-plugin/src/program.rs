@@ -46,7 +46,7 @@ fn envelope(document: ProgramDocument) -> Option<PreparedProgram> {
     settings(&document)?;
     let prepared = PreparedProgram {
         schema_version: 1,
-        storage_path: format!("programs/{}.json", document.id),
+        storage_path: format!("programs/{}.rackforge-program.json", document.id),
         preview_sound_id: format!("custom.{}", document.id),
         document,
         artifacts: Vec::new(),
@@ -81,10 +81,10 @@ pub fn begin(plugin: &Rf73Processor, request: &[u8], destination: &mut [u8]) -> 
         Some(Some(preset)) => preset.3,
         Some(None) => return None,
     };
-    if plugin.programs.len() >= MAX_PROGRAMS {
-        return None;
-    }
-    let id = (1..=MAX_PROGRAMS)
+    // A read-only export still needs a draft envelope, even when the user
+    // library is full. Keep one extra temporary identity available; install()
+    // remains the authority that refuses a ninth persisted program.
+    let id = (1..=MAX_PROGRAMS + 1)
         .map(|i| format!("lab-{i}"))
         .find(|id| !plugin.programs.contains_key(id))?;
     let document = ProgramDocument {
@@ -443,4 +443,28 @@ pub fn edit(bytes: &[u8], destination: &mut [u8]) -> Option<usize> {
     document.plugin_state_version = STATE_VERSION;
     document.payload = serde_json::to_value(updated).ok()?;
     write(&envelope(document)?, destination)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn a_full_library_can_still_open_a_temporary_export_draft() {
+        let request = serde_json::to_vec(&ProgramEditRequest::new(None)).unwrap();
+        let mut buffer = [0; MAX_TRANSFER];
+        let mut plugin = Rf73Processor::default();
+        let length = begin(&plugin, &request, &mut buffer).unwrap();
+        let template: PreparedProgram = serde_json::from_slice(&buffer[..length]).unwrap();
+        for index in 1..=MAX_PROGRAMS {
+            let mut document = template.document.clone();
+            document.id = format!("lab-{index}");
+            plugin.programs.insert(document.id.clone(), document);
+        }
+
+        let length = begin(&plugin, &request, &mut buffer).unwrap();
+        let draft: PreparedProgram = serde_json::from_slice(&buffer[..length]).unwrap();
+        assert_eq!(draft.document.id, "lab-9");
+        assert!(!install(&mut plugin, &serde_json::to_vec(&draft).unwrap()));
+    }
 }

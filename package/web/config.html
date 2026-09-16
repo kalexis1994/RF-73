@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-lighting="stage">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RF-73 Program Library</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="config.css" />
+  </head>
+  <body>
+    <main class="config-main">
+      <header class="config-header">
+        <div>
+          <p class="eyebrow">RF-73 PROGRAM LIBRARY</p>
+          <h1>Programs</h1>
+          <p class="config-intro">Move complete RF-73 voices between computers with validated <strong>.rf73</strong> files.</p>
+        </div>
+        <p id="connection" class="config-connection" role="status">Connecting to RackForge…</p>
+      </header>
+
+      <section class="program-card" aria-labelledby="export-title">
+        <div class="card-heading">
+          <span class="step">01</span>
+          <div>
+            <h2 id="export-title">Save a program file</h2>
+            <p>Choose a factory or user program, or capture the controls exactly as they are now.</p>
+          </div>
+        </div>
+        <div class="config-fields">
+          <label>Source<select id="export-source" disabled></select></label>
+          <label>File name<input id="export-name" maxlength="64" autocomplete="off" disabled /></label>
+        </div>
+        <button id="export-button" class="primary" type="button" disabled>DOWNLOAD .RF73</button>
+      </section>
+
+      <section class="program-card" aria-labelledby="import-title">
+        <div class="card-heading">
+          <span class="step">02</span>
+          <div>
+            <h2 id="import-title">Load a program file</h2>
+            <p>RF-73 checks the file, checksum, plugin identity, version and every parameter before saving it.</p>
+          </div>
+        </div>
+        <input id="import-file" type="file" accept=".rf73,application/json" hidden />
+        <button id="import-button" class="primary" type="button" disabled>CHOOSE .RF73 FILE</button>
+        <p class="safety-note">Imports always create a new user program. Existing programs are never silently replaced.</p>
+      </section>
+
+      <section class="status-card" aria-labelledby="activity-title">
+        <p class="eyebrow" id="activity-title">ACTIVITY</p>
+        <p id="activity" role="status" aria-live="polite">Waiting for RackForge.</p>
+        <p id="error" role="alert"></p>
+        <button id="recover-button" class="recovery" type="button" hidden>DISCARD PENDING EDIT</button>
+      </section>
+    </main>
+    <script type="module" src="config.mjs"></script>
+  </body>
+</html>
