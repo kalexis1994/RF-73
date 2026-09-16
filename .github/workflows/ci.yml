@@ -83,9 +83,9 @@ jobs:
       - name: Test Web surface contracts
         run: "cargo test --locked -p rf-73-lab --bin rf-73-lab web_ui::"
       - name: Replay retained action reference
-        run: cargo test --locked -p rf-73-lab --bin rf-73-lab action::regression::generic_action_replays_the_committed_planar_reference_exactly -- --exact
+        run: cargo test --locked -p rf-73-lab --bin rf-73-lab action::regression::generic_action_replays_the_committed_planar_reference_with_portable_precision -- --exact
       - name: Replay retained tuning reference
-        run: cargo test --locked -p rf-73-lab --bin rf-73-lab transduction::tuning::tests::retained_reference_replays_the_structural_fit_with_current_validation -- --exact
+        run: cargo test --locked -p rf-73-lab --bin rf-73-lab transduction::tuning::tests::retained_reference_replays_the_structural_fit_with_portable_precision -- --exact
       - name: Render and inspect a production-engine smoke sample
         shell: bash
         run: |

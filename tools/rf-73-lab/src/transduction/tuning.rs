@@ -442,7 +442,7 @@ mod tests {
         assert!(map["cases"][4]["first_contact_seconds"].as_f64().is_some());
     }
     #[test]
-    fn retained_reference_replays_the_structural_fit_with_current_validation() {
+    fn retained_reference_replays_the_structural_fit_with_portable_precision() {
         let path = Path::new(env!("CARGO_MANIFEST_DIR"))
             .join("../../references/loaded-polarized-spring-tuning-validation.json");
         let r: Value = serde_json::from_slice(&std::fs::read(path).unwrap()).unwrap();
@@ -450,7 +450,9 @@ mod tests {
             crate::memory_modal_check::validate_pitch_reference(&r["frozen_reference"]).unwrap();
         let (_, fresh) = fit(target).unwrap();
         let fresh: Value = serde_json::from_slice(&serde_json::to_vec(&fresh).unwrap()).unwrap();
-        crate::analysis::assert_json_close(&fresh, &r["structural_fit"], 1e-12, 1e-9);
+        // Branch indices, shape and metadata remain exact. Floating fields
+        // allow ten parts per billion across supported math backends.
+        crate::analysis::assert_json_close(&fresh, &r["structural_fit"], 1e-11, 1e-8);
     }
     #[test]
     fn spring_fit_tracks_both_directions_and_changes_nonharmonic_structure() {

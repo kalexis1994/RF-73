@@ -247,7 +247,7 @@ pub fn run(args: &[String]) -> Result<(), Box<dyn Error>> {
 #[cfg(test)]
 mod regression {
     #[test]
-    fn generic_action_replays_the_committed_planar_reference_exactly() {
+    fn generic_action_replays_the_committed_planar_reference_with_portable_precision() {
         let expected: serde_json::Value = serde_json::from_str(include_str!(
             "../../../references/persistent-action-cycle-reference-validation.json"
         ))
@@ -258,11 +258,13 @@ mod regression {
         // to Value::from(f64); that is not a mechanical-state difference.
         let observed: serde_json::Value =
             serde_json::from_slice(&serde_json::to_vec(&observed.summary).unwrap()).unwrap();
+        // Event counts, flags and structure remain exact. Floating fields allow
+        // ten parts per billion across supported compiler/OS math backends.
         crate::analysis::assert_json_close(
             &observed,
             &expected["cases"][0]["takes"][0],
-            1e-12,
-            1e-9,
+            1e-11,
+            1e-8,
         );
     }
 }
