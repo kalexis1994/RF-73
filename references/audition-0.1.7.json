@@ -43,14 +43,16 @@
       1200
     ],
     "tabs": "All five tabs: no horizontal overflow, scrollY remains zero at all five widths.",
-    "programs": "Ten programs loaded. Early Stage and mid-70s Suitcase panels and values verified; compact selector loads 80s Stage, hardness .61, Bass Boost .78, Suitcase controls hidden.",
+    "programs": "All five era programs selected through live host; expected hardness, sustain, bell, distance, alignment and Stage/Suitcase mode confirmed. All ten catalog entries load; compact program selector verified.",
     "knobs": "Bass numeric entry 3.5 dB and Speed ArrowUp 3.20 to 3.21 Hz confirmed after host update.",
     "screenshots": [
       "dist/rf73-0.1.7-desktop.png",
       "dist/rf73-0.1.7-mobile.png"
     ],
     "upgrade_host_fix": "https://github.com/kalexis1994/rackforge/pull/93",
-    "upgrade_host_fix_status": "Browser WASI CI upgrade probe passed; integration pending other required checks.",
-    "limitations": "Programs are original physical-model approximations, not measured replicas. No manual listening or Desktop GUI test performed."
+    "upgrade_host_fix_status": "Merged and deployed as 261bba88f47dde138fc26c355c92777aba8cd1e9. All six required checks passed; Pages run 35102810668 succeeded.",
+    "limitations": "Programs are original physical-model approximations, not measured replicas. No manual listening or Desktop GUI test performed.",
+    "browser_uncaught_errors": 0,
+    "upgrade_browser_verification": "Reproduced invalid parameter response with 0.1.6 and 0.1.7 installed. Reloaded published host v=261bba8 without uninstalling either version: Connected to RackForge, ten programs, fifteen enabled parameter controls. Late-70s Suitcase selected with Bass -1 dB, Treble 1.5 dB, Speed 4.6 Hz and Intensity .5. No uncaught browser errors."
   }
 }
