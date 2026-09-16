@@ -95,6 +95,10 @@ Before adding a harmonic correction to the plugin:
 3. Track the low-register attack/body direction separately; do not interpret
    a static balance improvement as an envelope fix.
 
+Step 1 is now complete: [C5 H2 qualification](C5-H2-QUALIFICATION.md) supports
+the body observations in all four layers, flags the soft attacks, and confirms
+that excluding two uncertain nominal terms does not make a frozen fit pass.
+
 No held-out data was inspected, no new model parameters were fitted, and no
 plugin version was produced. RackForge audition therefore was not run.
 

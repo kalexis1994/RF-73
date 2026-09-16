@@ -33,3 +33,9 @@ name = "wav_input"
 path = "../../crates/rf-73-analysis/tests/wav_input.rs"
 [dev-dependencies]
 hound = "=3.5.1"
+[[bin]]
+name = "c5_harmonic_probe"
+path = "../../tools/rf-73-lab/examples/c5_harmonic_probe.rs"
+[[test]]
+name = "harmonic_probe"
+path = "../../crates/rf-73-analysis/tests/harmonic_probe.rs"

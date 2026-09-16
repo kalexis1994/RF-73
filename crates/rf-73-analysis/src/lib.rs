@@ -1,5 +1,7 @@
 //! Offline measurements. No dependency from the realtime DSP to this crate.
 mod audio;
+mod harmonic_probe;
+pub use harmonic_probe::{HarmonicProbe, probe_second_harmonic};
 mod band_envelope;
 mod compare;
 mod component_envelope;

@@ -1,0 +1,92 @@
+{
+  "git_base": "c882c01b0664d58ef497e7fcf6e57dbaf3ee4885",
+  "run": "renders/matts-reference/c5-h2-01",
+  "source_hashes": {
+    "crates/rf-73-analysis/src/harmonic_probe.rs": {
+      "sha256_bytes": "504e9e80b896531124efc74f9d7cf1d5116cf86fa0fcebaa78b3b0f915feee20",
+      "sha256_lf": "504e9e80b896531124efc74f9d7cf1d5116cf86fa0fcebaa78b3b0f915feee20"
+    },
+    "crates/rf-73-analysis/src/spectrum.rs": {
+      "sha256_bytes": "51e491a931b32618fe40faa04d7c6e7553f4cd134bb8fde646b39c8358a35154",
+      "sha256_lf": "51e491a931b32618fe40faa04d7c6e7553f4cd134bb8fde646b39c8358a35154"
+    },
+    "crates/rf-73-analysis/src/lib.rs": {
+      "sha256_bytes": "3312f24543ced4bdd1cdf8c9652ebe830bddbd6bdadf1c0b54988d764ddcde34",
+      "sha256_lf": "3312f24543ced4bdd1cdf8c9652ebe830bddbd6bdadf1c0b54988d764ddcde34"
+    },
+    "crates/rf-73-analysis/tests/harmonic_probe.rs": {
+      "sha256_bytes": "858ae933a9a30b9e87125941bf6f3984b2535cfcd3caf834e2a4afca05ff61e1",
+      "sha256_lf": "858ae933a9a30b9e87125941bf6f3984b2535cfcd3caf834e2a4afca05ff61e1"
+    },
+    "tools/rf-73-lab/examples/c5_harmonic_probe.rs": {
+      "sha256_bytes": "50e8cb02fc5c70a1e568c0520bc970b83edca337feef0ad6fdc3fc8db53a9316",
+      "sha256_lf": "50e8cb02fc5c70a1e568c0520bc970b83edca337feef0ad6fdc3fc8db53a9316"
+    },
+    "references/matts-reference-runner/Cargo.toml": {
+      "sha256_bytes": "4ac4191150c24040041791ec13dd512e6a5ab66f494baf5b035c43a75a693ef4",
+      "sha256_lf": "d549cb86bee82d2285fc52d8eb92174284f3b0adbb9d0c4e43165b5e4048c7ce"
+    },
+    "references/matts-reference-runner/Cargo.lock": {
+      "sha256_bytes": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73",
+      "sha256_lf": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73"
+    },
+    "docs/C5-H2-QUALIFICATION.md": {
+      "sha256_bytes": "7f9cd782856e8e32ad55cb81b7e2f031a6f688ab06b7e10d5032170e95728199",
+      "sha256_lf": "7f9cd782856e8e32ad55cb81b7e2f031a6f688ab06b7e10d5032170e95728199"
+    }
+  },
+  "audio_sha256": {
+    "C4-p.wav": "43393206b21715106f461da2a66ae66be68e18032d1c165a01536436b29b1aac",
+    "C4-mp.wav": "02e42c3123df90cb4c8e5176abf0cc2c1cf38d4b112ad22e37d3525394c765d5",
+    "C4-mf.wav": "0ba9f3f4dbe880b886c82d8fd0ca06c2a0e2c9f1d7b6c20e1d7987c2c7709cd0",
+    "C4-f.wav": "6eedaff880d14dad0af3b743aa920dba89c08d49cbfd3d18624c59b8074dde51"
+  },
+  "receipt_hashes": {
+    "observations.json": {
+      "sha256_bytes": "2695cbd6dc37d725ffda0a056b934d040fe1b5a534ad7bdd176f673069905842",
+      "sha256_lf": "2695cbd6dc37d725ffda0a056b934d040fe1b5a534ad7bdd176f673069905842"
+    },
+    "summarize.py": {
+      "sha256_bytes": "05c7097542941e5d27185f1f5c713027496581d0fb2133539aa2535f9c03e253",
+      "sha256_lf": "05c7097542941e5d27185f1f5c713027496581d0fb2133539aa2535f9c03e253"
+    },
+    "summary.json": {
+      "sha256_bytes": "fc7d2f77f37b3de27a3c5e7af833986c3b353ddefa765e36a17e978c47e95eb0",
+      "sha256_lf": "a2b02fe4662cb075ed85d575aee2ee4d85ecdb98940493e4009fda259cc7880c"
+    }
+  },
+  "sensitivity_inputs": {
+    "fixed_calibrated": {
+      "path": "references/pickup-family-screen-2026-09-15/development-fixed-baseline.json",
+      "sha256_lf": "0d2d178a991cf717ee3c6f736493385fd50314e5f7f279e291c23dd8d3f7fa13"
+    },
+    "remapped_calibrated": {
+      "path": "references/velocity-mapping-2026-09-15/fine/calibrated-selection.json",
+      "sha256_lf": "5584cdc8e88b3187607adcc0b63df2181df4bfd239a344f93c38fd1c63410165"
+    },
+    "smooth_register": {
+      "path": "references/velocity-mapping-2026-09-15/fine/register-selection.json",
+      "sha256_lf": "63cc3e83c49597c1a5872396df36827b607f00ca6677132f97df5f817566c5e0"
+    },
+    "production": {
+      "path": "references/pickup-family-screen-2026-09-15/production-gap-500-speed-160.json",
+      "sha256_lf": "336ea8cd13fb78d87d3d9d2a6529240f7e67f4a279fb56b94394814233ef51e0"
+    },
+    "point_pole": {
+      "path": "references/pickup-family-screen-2026-09-15/point-pole-gap-1000-speed-80.json",
+      "sha256_lf": "59a34473263b65416eda4e7506bc8f36a8c94cf5c0fb42df729ddabd552f1378"
+    }
+  },
+  "validation": {
+    "rust_release_tests_passed": 35,
+    "python_tests_passed": 10,
+    "release_clippy_warnings_denied": "passed",
+    "formatting": "passed",
+    "input_hashes_verified": true
+  },
+  "build_cache_bytes": 399294823,
+  "held_out_loaded": false,
+  "plugin_changed": false,
+  "audition_run": false,
+  "limitations": "Exploratory background thresholds, correlated window perturbations, post-hoc exclusion sensitivity. No physical parameter inference."
+}
