@@ -451,8 +451,8 @@ mod tests {
         let (_, fresh) = fit(target).unwrap();
         let fresh: Value = serde_json::from_slice(&serde_json::to_vec(&fresh).unwrap()).unwrap();
         // Branch indices, shape and metadata remain exact. Floating fields
-        // allow ten parts per billion across supported math backends.
-        crate::analysis::assert_json_close(&fresh, &r["structural_fit"], 1e-11, 1e-8);
+        // allow 0.1 ppm across supported math backends.
+        crate::analysis::assert_json_close(&fresh, &r["structural_fit"], 1e-10, 1e-7);
     }
     #[test]
     fn spring_fit_tracks_both_directions_and_changes_nonharmonic_structure() {

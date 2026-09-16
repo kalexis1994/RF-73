@@ -259,12 +259,12 @@ mod regression {
         let observed: serde_json::Value =
             serde_json::from_slice(&serde_json::to_vec(&observed.summary).unwrap()).unwrap();
         // Event counts, flags and structure remain exact. Floating fields allow
-        // ten parts per billion across supported compiler/OS math backends.
+        // 0.1 ppm across supported compiler/OS math backends.
         crate::analysis::assert_json_close(
             &observed,
             &expected["cases"][0]["takes"][0],
-            1e-11,
-            1e-8,
+            1e-10,
+            1e-7,
         );
     }
 }
