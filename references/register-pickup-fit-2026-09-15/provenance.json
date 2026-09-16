@@ -1,0 +1,82 @@
+{
+  "git_base": "089c9f20c6debc6a0ee310594d14427a9db014e8",
+  "rustc": "rustc 1.98.0 (88d9e12ae 2026-08-18)",
+  "source_hashes": {
+    "tools/rf-73-lab/examples/support/register_pickup_fit.rs": {
+      "sha256_bytes": "315328d5442de4c7473fe68d5be0dec08875401c01219623fe2ee1b29920cf8b",
+      "sha256_lf": "315328d5442de4c7473fe68d5be0dec08875401c01219623fe2ee1b29920cf8b"
+    },
+    "tools/rf-73-lab/examples/support/robust_pickup_fit.rs": {
+      "sha256_bytes": "976c5902d4b7a910020047dcc3479acdcde8afb829fd538dfe34964c9b2cfad4",
+      "sha256_lf": "976c5902d4b7a910020047dcc3479acdcde8afb829fd538dfe34964c9b2cfad4"
+    },
+    "tools/rf-73-lab/examples/continuous_pickup_fit.rs": {
+      "sha256_bytes": "15d4a2627e8cb6009b4a34f957486d580922079a0966f6030468107add831690",
+      "sha256_lf": "15d4a2627e8cb6009b4a34f957486d580922079a0966f6030468107add831690"
+    },
+    "tools/rf-73-lab/examples/matts_fit.rs": {
+      "sha256_bytes": "6434348cfa024f2f7354cc0c89567680e882c3b242c94baa4c8ec787641f34ed",
+      "sha256_lf": "6434348cfa024f2f7354cc0c89567680e882c3b242c94baa4c8ec787641f34ed"
+    },
+    "references/matts-reference-runner/Cargo.lock": {
+      "sha256_bytes": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73",
+      "sha256_lf": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73"
+    },
+    "references/matts-fender-rhodes.inventory.json": {
+      "sha256_bytes": "1f9d9294cb16d3d54cb9172eb431f5b0ef7c2470a9485594a44bc0e7dea7e94b",
+      "sha256_lf": "62f712e45c63202198cfbe005a71edde9566e56444b53216e8d8018e0963c761"
+    }
+  },
+  "receipt_hashes": {
+    "coarse/decision.json": {
+      "sha256_bytes": "0a6360d66303e4668374b924aaa1625b32490bbb633a4474bea2ca01c0c28adf",
+      "sha256_lf": "0a6360d66303e4668374b924aaa1625b32490bbb633a4474bea2ca01c0c28adf"
+    },
+    "coarse/development-baseline.json": {
+      "sha256_bytes": "d84be711b43d89774acaf6624bb203396e216d30e70559aeb20a31235feeb534",
+      "sha256_lf": "d84be711b43d89774acaf6624bb203396e216d30e70559aeb20a31235feeb534"
+    },
+    "coarse/development-candidate.json": {
+      "sha256_bytes": "fb5d760bd8719d75f07ff2655f0206c3bc444a438d105b6df34c1e1e9f37c6b9",
+      "sha256_lf": "fb5d760bd8719d75f07ff2655f0206c3bc444a438d105b6df34c1e1e9f37c6b9"
+    },
+    "coarse/protocol.json": {
+      "sha256_bytes": "88ae3451afc0e2829ca33de28ce8b1ccf9405cde80ef8fa9924fedbbb3b4e051",
+      "sha256_lf": "88ae3451afc0e2829ca33de28ce8b1ccf9405cde80ef8fa9924fedbbb3b4e051"
+    },
+    "coarse/search.json": {
+      "sha256_bytes": "bf496495a825a19a32598ef1adcb355c575db4916999870ecde0baf7cd5dbbf5",
+      "sha256_lf": "bf496495a825a19a32598ef1adcb355c575db4916999870ecde0baf7cd5dbbf5"
+    },
+    "refined/decision.json": {
+      "sha256_bytes": "0a6360d66303e4668374b924aaa1625b32490bbb633a4474bea2ca01c0c28adf",
+      "sha256_lf": "0a6360d66303e4668374b924aaa1625b32490bbb633a4474bea2ca01c0c28adf"
+    },
+    "refined/development-baseline.json": {
+      "sha256_bytes": "d84be711b43d89774acaf6624bb203396e216d30e70559aeb20a31235feeb534",
+      "sha256_lf": "d84be711b43d89774acaf6624bb203396e216d30e70559aeb20a31235feeb534"
+    },
+    "refined/development-candidate.json": {
+      "sha256_bytes": "12b8fd9b0ce4bb826c250f3ddfff1373748cd15005540e21b52f9494828765da",
+      "sha256_lf": "12b8fd9b0ce4bb826c250f3ddfff1373748cd15005540e21b52f9494828765da"
+    },
+    "refined/protocol.json": {
+      "sha256_bytes": "011dd8656ef4f08ff1e4403963b64b211ed03d225fd63e1ce1df78fcd8743473",
+      "sha256_lf": "011dd8656ef4f08ff1e4403963b64b211ed03d225fd63e1ce1df78fcd8743473"
+    },
+    "refined/search.json": {
+      "sha256_bytes": "f01e2fefc9f43c6fbf09563a800484b1ffc19362d198874e35d4b26ed3d88728",
+      "sha256_lf": "f01e2fefc9f43c6fbf09563a800484b1ffc19362d198874e35d4b26ed3d88728"
+    }
+  },
+  "tests": {
+    "rust": 27,
+    "python": 6,
+    "release_clippy_warnings_denied": "passed"
+  },
+  "evaluations": 120,
+  "held_out_loaded": false,
+  "plugin_changed": false,
+  "audition_run": false,
+  "scope": "Coarse stage then development-only fine refinement. Final source adds register seed continuation after coarse stage. Same constraints and reserved split throughout; no claim of global optimum."
+}

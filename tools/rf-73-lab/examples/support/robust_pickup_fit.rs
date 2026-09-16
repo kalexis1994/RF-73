@@ -3,15 +3,15 @@ use super::*;
 use std::collections::BTreeMap;
 
 #[derive(Clone, Copy, Debug)]
-struct Merit {
-    violation: f64,
-    mean_ratio: f64,
+pub(super) struct Merit {
+    pub(super) violation: f64,
+    pub(super) mean_ratio: f64,
 }
 impl Merit {
-    fn feasible(self) -> bool {
+    pub(super) fn feasible(self) -> bool {
         self.violation <= 1.0
     }
-    fn better_than(self, other: Self) -> bool {
+    pub(super) fn better_than(self, other: Self) -> bool {
         match (self.feasible(), other.feasible()) {
             (true, false) => true,
             (false, true) => false,
@@ -20,7 +20,7 @@ impl Merit {
         }
     }
 }
-fn assess(base: &[Value], candidate: &[Value]) -> Result<(Merit, Value)> {
+pub(super) fn assess(base: &[Value], candidate: &[Value]) -> Result<(Merit, Value)> {
     let mut notes: BTreeMap<u64, (f64, f64, usize)> = BTreeMap::new();
     let mut critical = Vec::new();
     let mut maximum = 0.0_f64;

@@ -2,6 +2,8 @@
 #[allow(dead_code)]
 #[path = "matts_fit.rs"]
 mod previous;
+#[path = "support/register_pickup_fit.rs"]
+mod register;
 #[path = "support/robust_pickup_fit.rs"]
 mod robust;
 use previous::{Case, Result, baseline, load, score, score_with, write};
@@ -206,6 +208,9 @@ fn verify_rendering(source: &Path, out: &Path, frozen: &Path) -> Result<()> {
 }
 fn main() -> Result<()> {
     let args: Vec<_> = std::env::args().collect();
+    if args.get(1).is_some_and(|a| a == "--register") {
+        return register::run(&args[2..]);
+    }
     if args.get(1).is_some_and(|a| a == "--robust") {
         return robust::run(&args[2..]);
     }

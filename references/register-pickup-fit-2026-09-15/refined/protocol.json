@@ -1,0 +1,30 @@
+{
+  "anchors": [
+    43,
+    72
+  ],
+  "constraints": "Unchanged robust note/critical-case/global constraints; unchanged held-out and envelope gates",
+  "free_coordinates": "Five log center parameters plus three signed geometry half-differences bounded to +/-0.5",
+  "geometry": "Log endpoint interpolation with smoothstep; constant outside anchors; shared velocity law",
+  "held_out_notes": [
+    45,
+    53,
+    60,
+    67,
+    76,
+    86
+  ],
+  "held_out_policy": "Only load after development constraints and all-key numerical qualification pass",
+  "prior_search": "renders/matts-reference/register-fit-01/search.json",
+  "scope": "Offline research; ordinal source velocity; no physical parameter identification or realtime certification",
+  "search": "One prior seed, coordinate steps 0.02/0.01/0.005/0.0025; 65 evaluations",
+  "training_notes": [
+    43,
+    47,
+    50,
+    55,
+    59,
+    64,
+    72
+  ]
+}

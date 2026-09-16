@@ -71,6 +71,10 @@ candidate was not subjected to another direct-render or release qualification.
 
 ## What the history supports
 
+Completed follow-up: [smooth-register calibration](REGISTER-PICKUP-CALIBRATION.md)
+implements a bounded two-anchor geometry and runs 120 evaluations. It improves
+the development constraints but does not pass; the reserved split stays unused.
+
 The [per-note diagnostic](../references/robust-pickup-fit-2026-09-15/note_diagnostics.json)
 selects each note's lowest observed error from the retained trials, without
 additional audio renders. Different notes favor different parameter sets.
