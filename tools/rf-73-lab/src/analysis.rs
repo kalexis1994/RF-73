@@ -145,3 +145,100 @@ pub(crate) fn write_report(path: &Path, report: &impl Serialize) -> Result<(), B
     file.write_all(b"\n")?;
     Ok(())
 }
+
+#[cfg(test)]
+pub(crate) fn assert_json_close(
+    observed: &serde_json::Value,
+    expected: &serde_json::Value,
+    absolute_tolerance: f64,
+    relative_tolerance: f64,
+) {
+    fn compare(
+        observed: &serde_json::Value,
+        expected: &serde_json::Value,
+        absolute_tolerance: f64,
+        relative_tolerance: f64,
+        path: &str,
+    ) -> Result<(), String> {
+        use serde_json::Value;
+
+        match (observed, expected) {
+            (Value::Null, Value::Null) => Ok(()),
+            (Value::Bool(a), Value::Bool(b)) if a == b => Ok(()),
+            (Value::String(a), Value::String(b)) if a == b => Ok(()),
+            (Value::Number(a), Value::Number(b)) => {
+                if (a.is_i64() || a.is_u64()) && (b.is_i64() || b.is_u64()) {
+                    return (a == b)
+                        .then_some(())
+                        .ok_or_else(|| format!("{path}: expected {b}, observed {a}"));
+                }
+                let a = a.as_f64().ok_or_else(|| {
+                    format!("{path}: observed number is not representable as f64")
+                })?;
+                let b = b.as_f64().ok_or_else(|| {
+                    format!("{path}: expected number is not representable as f64")
+                })?;
+                let difference = (a - b).abs();
+                let tolerance = absolute_tolerance.max(relative_tolerance * a.abs().max(b.abs()));
+                (a.is_finite() && b.is_finite() && difference <= tolerance)
+                    .then_some(())
+                    .ok_or_else(|| {
+                        format!(
+                            "{path}: expected {b:.17e}, observed {a:.17e}, difference {difference:.3e} exceeds {tolerance:.3e}"
+                        )
+                    })
+            }
+            (Value::Array(a), Value::Array(b)) => {
+                if a.len() != b.len() {
+                    return Err(format!(
+                        "{path}: expected array length {}, observed {}",
+                        b.len(),
+                        a.len()
+                    ));
+                }
+                for (index, (a, b)) in a.iter().zip(b).enumerate() {
+                    compare(
+                        a,
+                        b,
+                        absolute_tolerance,
+                        relative_tolerance,
+                        &format!("{path}[{index}]"),
+                    )?;
+                }
+                Ok(())
+            }
+            (Value::Object(a), Value::Object(b)) => {
+                if a.len() != b.len() || a.keys().any(|key| !b.contains_key(key)) {
+                    return Err(format!(
+                        "{path}: object keys differ; expected {:?}, observed {:?}",
+                        b.keys().collect::<Vec<_>>(),
+                        a.keys().collect::<Vec<_>>()
+                    ));
+                }
+                for (key, expected_value) in b {
+                    compare(
+                        &a[key],
+                        expected_value,
+                        absolute_tolerance,
+                        relative_tolerance,
+                        &format!("{path}.{key}"),
+                    )?;
+                }
+                Ok(())
+            }
+            _ => Err(format!(
+                "{path}: expected {expected:?}, observed {observed:?}"
+            )),
+        }
+    }
+
+    if let Err(message) = compare(
+        observed,
+        expected,
+        absolute_tolerance,
+        relative_tolerance,
+        "$",
+    ) {
+        panic!("JSON values differ: {message}");
+    }
+}

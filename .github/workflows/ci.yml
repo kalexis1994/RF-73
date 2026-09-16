@@ -1,13 +1,28 @@
 name: Rust quality
+
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
+
+concurrency:
+  group: rf73-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
+
+env:
+  CARGO_INCREMENTAL: "0"
+  CARGO_TERM_COLOR: always
+
 jobs:
-  rust:
+  quality:
+    name: Quality (${{ matrix.os }})
+    timeout-minutes: 45
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-24.04, windows-2022]
     runs-on: ${{ matrix.os }}
@@ -20,86 +35,102 @@ jobs:
         with:
           path: RF-73
           persist-credentials: false
-      - name: Check out the compatible SDK
+      - name: Check out the compatible RackForge SDK
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: kalexis1994/rackforge
-          ref: 7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1
+          ref: 782012f10de903a67511a613fc999b392bf87afe
           path: rackforge
           persist-credentials: false
       - name: Install the pinned Rust toolchain
         run: rustup show
-      - name: Check formatting
-        run: cargo fmt --all -- --check
+      - name: Verify formatting and dependency lock
+        shell: bash
+        run: |
+          cargo fmt --all -- --check
+          cargo metadata --locked --format-version 1 > /dev/null
       - name: Check lints
         run: cargo clippy --locked --workspace --all-targets -- -D warnings
-      - name: Test Rust contracts and physics
-        run: cargo test --locked --workspace
-      - name: Build native tools and plugin
+      - name: Test production crates
+        run: cargo test --locked -p rf-73-analysis -p rf-73-dsp -p rf-73-plugin -p rf-73-ui
+      - name: Build native workspace
         run: cargo build --locked --release --workspace
-      - name: Build portable plugin
+      - name: Build portable component
         run: cargo build --locked --release --target wasm32-unknown-unknown -p rf-73-plugin
-      - name: Check Rust PLAY surface lints
-        run: cargo clippy --locked -p rf-73-ui --target wasm32-unknown-unknown -- -D warnings
+
+  laboratory:
+    name: Retained physics and Web contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: RF-73
+    steps:
+      - name: Check out RF-73
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: RF-73
+          persist-credentials: false
+      - name: Check out the compatible RackForge SDK
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: kalexis1994/rackforge
+          ref: 782012f10de903a67511a613fc999b392bf87afe
+          path: rackforge
+          persist-credentials: false
+      - name: Install the pinned Rust toolchain
+        run: rustup show
+      - name: Test Web surface contracts
+        run: "cargo test --locked -p rf-73-lab --bin rf-73-lab web_ui::"
+      - name: Replay retained action reference
+        run: cargo test --locked -p rf-73-lab --bin rf-73-lab action::regression::generic_action_replays_the_committed_planar_reference_exactly -- --exact
+      - name: Replay retained tuning reference
+        run: cargo test --locked -p rf-73-lab --bin rf-73-lab transduction::tuning::tests::retained_reference_replays_the_structural_fit_with_current_validation -- --exact
+      - name: Render and inspect a production-engine smoke sample
+        shell: bash
+        run: |
+          cargo run --locked --release -p rf-73-lab -- render --output renders/ci.wav --seconds 0.2 --hold 0.1
+          cargo run --locked --release -p rf-73-lab -- inspect renders/ci.wav
+      - name: Measure production integration convergence
+        run: cargo run --locked --release -p rf-73-lab -- converge --output renders/ci-convergence.json --seconds 0.05
+
+  package:
+    name: Validated RF-73 package
+    needs: [quality, laboratory]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: RF-73
+    steps:
+      - name: Check out RF-73
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: RF-73
+          persist-credentials: false
+      - name: Check out the compatible RackForge host
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: kalexis1994/rackforge
+          ref: 782012f10de903a67511a613fc999b392bf87afe
+          path: rackforge
+          persist-credentials: false
+      - name: Install the pinned Rust toolchain
+        run: rustup show
+      - name: Verify the reproducible dependency graph
+        run: cargo metadata --locked --format-version 1 > /dev/null
       - name: Install matching browser binding generator
         run: cargo install wasm-bindgen-cli --version 0.2.127 --locked
-      - name: Build Rust PLAY surface
-        run: cargo run --locked --release -p rf-73-lab -- build-ui
-      - name: Render a research reference
-        run: cargo run --locked --release -p rf-73-lab -- render --output renders/ci.wav --seconds 0.2 --hold 0.1
-      - name: Verify the reference file
-        run: cargo run --locked --release -p rf-73-lab -- inspect renders/ci.wav
-      - name: Analyze the reference file
-        run: cargo run --locked --release -p rf-73-lab -- analyze renders/ci.wav --output renders/ci-analysis.json --note 57 --sustain-end 0.09
-      - name: Compare identical audio
-        run: cargo run --locked --release -p rf-73-lab -- compare renders/ci.wav renders/ci.wav --output renders/ci-comparison.json
-      - name: Measure integration convergence
-        run: cargo run --locked --release -p rf-73-lab -- converge --output renders/ci-convergence.json --seconds 0.05
-      - name: Audit passive coupled assembly
-        run: cargo run --locked --release -p rf-73-lab -- assembly-check --output renders/ci-assembly.json
-      - name: Audit coupled free-motion refinement
-        run: cargo run --locked --release -p rf-73-lab -- assembly-refinement --output renders/ci-assembly-refinement.json
-      - name: Audit geometry-derived tine modes
-        run: cargo run --locked --release -p rf-73-lab -- tine-modes --output renders/ci-tine-modes.json
-      - name: Audit nine-coordinate modal assembly
-        run: cargo run --locked --release -p rf-73-lab -- modal-assembly-check --output renders/ci-modal-assembly.json
-      - name: Audit dissipative modal hammer
-        run: cargo run --locked --release -p rf-73-lab -- modal-hammer-check --output renders/ci-modal-hammer.json
-      - name: Audit material memory coupon
-        run: cargo run --locked --release -p rf-73-lab -- hammer-memory-check --output renders/ci-hammer-memory.json
-      - name: Audit material-memory hammer impacts and free recovery
-        run: cargo run --locked --release -p rf-73-lab -- memory-hammer-check --output renders/ci-memory-hammer.json
-      - name: Audit stateful hammer and modal assembly coupling
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-check --output renders/ci-memory-modal.json
-      - name: Audit certified hammer free recovery
-        run: cargo run --locked --release -p rf-73-lab -- memory-free-check --output renders/ci-memory-free.json
-      - name: Audit fourth-order fixed-wall hammer contact
-        run: cargo run --locked --release -p rf-73-lab -- memory-contact-check --output renders/ci-memory-contact-rk4.json
-      - name: Audit certified moving modal free recovery
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-free-check --output renders/ci-memory-modal-free.json
-      - name: Audit error-controlled modal contact
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-adaptive-check --output renders/ci-memory-modal-adaptive.json
-      - name: Audit economical contact scheduling
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-economical-check --output renders/ci-memory-modal-economical.json
-      - name: Audit coupled fourth-order memory contact
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-rk4-check --output renders/ci-memory-modal-rk4.json
-      - name: Qualify modal RK4 contact, free motion and reference resolution
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-rk4-refinement --output renders/ci-memory-modal-rk4-refinement.json
-      - name: Qualify modal attack and longer tail sections
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-tail-check --output renders/ci-memory-modal-tail.json
-      - name: Verify paired diagonal and dense stiffness states
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-stiffness-timing --output renders/ci-memory-modal-stiffness.json
-      - name: Verify paired reused and recomputed contact trials
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-trial-reuse-timing --output renders/ci-memory-modal-trial-reuse.json
-      - name: Verify paired diagonal and dense contact damping
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-damping-timing --output renders/ci-memory-modal-damping.json
-      - name: Qualify late impacts from shared physical checkpoints
-        run: cargo run --locked --release -p rf-73-lab -- memory-modal-checkpoint-check --output renders/ci-memory-modal-checkpoint.json
-      - name: Inspect contact resolution without committing trials
-        run: cargo run --locked --release -p rf-73-lab -- memory-contact-resolution --output renders/ci-memory-contact-resolution.json
-      - name: Render a qualified physical assembly preview
-        run: cargo run --locked --release -p rf-73-lab -- render-memory-modal --output renders/ci-memory-modal.wav --seconds 0.25 --hold 0.15
-      - name: Inspect the physical assembly preview
-        run: cargo run --locked --release -p rf-73-lab -- inspect renders/ci-memory-modal.wav
-      - name: Qualify equal-launch hammer alternatives
-        run: cargo run --locked --release -p rf-73-lab -- compare-modal-hammers --output renders/ci-hammer-comparison.wav --seconds 0.25 --hold 0.15
+      - name: Build RackForge validators
+        run: cargo build --locked --release --manifest-path ../rackforge/Cargo.toml -p rackforge-core -p rackforge-store
+      - name: Build portable RF-73 component
+        run: cargo build --locked --release --target wasm32-unknown-unknown -p rf-73-plugin
+      - name: Build, validate and pack RF-73
+        run: cargo run --locked --release -p rf-73-lab -- package
+      - name: Upload validated package
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: rf-73-${{ github.sha }}
+          path: RF-73/dist/RF-73-*.rfplugin
+          if-no-files-found: error
+          compression-level: 0

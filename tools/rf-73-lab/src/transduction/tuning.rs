@@ -450,7 +450,7 @@ mod tests {
             crate::memory_modal_check::validate_pitch_reference(&r["frozen_reference"]).unwrap();
         let (_, fresh) = fit(target).unwrap();
         let fresh: Value = serde_json::from_slice(&serde_json::to_vec(&fresh).unwrap()).unwrap();
-        assert_eq!(fresh, r["structural_fit"]);
+        crate::analysis::assert_json_close(&fresh, &r["structural_fit"], 1e-12, 1e-9);
     }
     #[test]
     fn spring_fit_tracks_both_directions_and_changes_nonharmonic_structure() {

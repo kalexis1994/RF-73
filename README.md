@@ -2,11 +2,14 @@
 
 [Project naming and compatibility](docs/RENAMING.md).
 
-A Rust physical-model electric piano research project for RackForge.
+A Rust physical-model electric piano for RackForge.
 
 The first working prototype includes a nonlinear hammer-contact solver, a three-mode resonator per key, a geometry-dependent magnetic pickup, sustain and sample-accurate MIDI. It renders audio offline and compiles to a portable RackForge WASM plugin.
 
-Version 0.1.2 grew from a Rust pickup laboratory editor in RackForge into a voiced instrument: a Sound page of physical parameters over a level-compensated pickup, four factory presets and complete saved settings. The physical profile remains provisional.
+Version 0.1.14 packages the playable instrument with its RF-73 visual identity,
+five era-inspired factory programs, responsive PLAY and CONFIG surfaces, local
+program saving, portable `.rf73` files and channel-aware MIDI pitch bend. The
+physical profile remains provisional while the reference fit continues.
 
 The offline [coupled assembly experiment](docs/COUPLED-ASSEMBLY.md) now models a tine, tonebar and compliant common support with reciprocal forces, nonlinear hammer contact and a complete energy ledger. Its parameters remain provisional; high-resolution validation precedes plugin integration.
 
@@ -189,7 +192,11 @@ out to govern both the soft threshold and the damping onset: a lower ratio
 halves the flight toll, and extra slack seats the felt in time for the next
 gesture.
 
-**This is an uncalibrated research instrument, not yet a high-fidelity Rhodes recreation.** The provisional target is a Mark I Stage 73 with direct output. A measured reference instrument has not been selected.
+**RF-73 is an independent physical-model electric piano and is not affiliated
+with or endorsed by any historical instrument manufacturer.** Reference
+recordings inform development and are never included in the plugin. The model
+is suitable for beta release and listening evaluation; its physical parameters
+remain provisional rather than measurements of one specific instrument.
 
 ## Quick start
 

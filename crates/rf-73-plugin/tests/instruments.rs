@@ -109,7 +109,7 @@ fn instrument_programs_have_distinct_physics_and_bounded_dense_chords() {
             }
             let mut audio = [0.0; 512];
             plugin.process(&[], &mut audio, &notes, &[], 256, 0, 2);
-            for pair in audio.chunks_exact(2) {
+            for pair in audio.as_chunks::<2>().0 {
                 assert!(pair[0].is_finite() && pair[1].is_finite());
                 peak = peak.max(pair[0].abs()).max(pair[1].abs());
                 stereo |= (pair[0] - pair[1]).abs() > 1e-5;

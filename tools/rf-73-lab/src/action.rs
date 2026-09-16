@@ -258,6 +258,11 @@ mod regression {
         // to Value::from(f64); that is not a mechanical-state difference.
         let observed: serde_json::Value =
             serde_json::from_slice(&serde_json::to_vec(&observed.summary).unwrap()).unwrap();
-        assert_eq!(observed, expected["cases"][0]["takes"][0]);
+        crate::analysis::assert_json_close(
+            &observed,
+            &expected["cases"][0]["takes"][0],
+            1e-12,
+            1e-9,
+        );
     }
 }

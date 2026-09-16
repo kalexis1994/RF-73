@@ -1,0 +1,102 @@
+name: Release RF-73
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+concurrency:
+  group: rf73-release-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  CARGO_INCREMENTAL: "0"
+  CARGO_TERM_COLOR: always
+
+jobs:
+  release:
+    name: Validate and publish RF-73
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: RF-73
+    steps:
+      - name: Check out the tagged RF-73 source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: RF-73
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check out the compatible RackForge host
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: kalexis1994/rackforge
+          ref: 782012f10de903a67511a613fc999b392bf87afe
+          path: rackforge
+          persist-credentials: false
+      - name: Match the tag to the package version
+        id: version
+        shell: bash
+        run: |
+          VERSION="$(python3 - <<'PY'
+          import tomllib
+          with open("Cargo.toml", "rb") as source:
+              print(tomllib.load(source)["workspace"]["package"]["version"])
+          PY
+          )"
+          test "$GITHUB_REF_NAME" = "v$VERSION"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      - name: Install the pinned Rust toolchain
+        run: rustup show
+      - name: Verify formatting and reproducible dependencies
+        run: |
+          cargo fmt --all -- --check
+          cargo metadata --locked --format-version 1 > /dev/null
+      - name: Test production crates
+        run: cargo test --locked -p rf-73-analysis -p rf-73-dsp -p rf-73-plugin -p rf-73-ui
+      - name: Test Web surface contracts
+        run: "cargo test --locked -p rf-73-lab --bin rf-73-lab web_ui::"
+      - name: Replay retained physical references
+        shell: bash
+        run: |
+          cargo test --locked -p rf-73-lab --bin rf-73-lab action::regression::generic_action_replays_the_committed_planar_reference_exactly -- --exact
+          cargo test --locked -p rf-73-lab --bin rf-73-lab transduction::tuning::tests::retained_reference_replays_the_structural_fit_with_current_validation -- --exact
+      - name: Check release lints
+        run: cargo clippy --locked --workspace --all-targets -- -D warnings
+      - name: Install matching browser binding generator
+        run: cargo install wasm-bindgen-cli --version 0.2.127 --locked
+      - name: Build RackForge validators
+        run: cargo build --locked --release --manifest-path ../rackforge/Cargo.toml -p rackforge-core -p rackforge-store
+      - name: Build portable RF-73 component
+        run: cargo build --locked --release --target wasm32-unknown-unknown -p rf-73-plugin
+      - name: Build, validate and pack RF-73
+        run: cargo run --locked --release -p rf-73-lab -- package
+      - name: Write SHA-256 checksum
+        shell: bash
+        run: |
+          cd dist
+          sha256sum "RF-73-${{ steps.version.outputs.version }}.rfplugin" > "RF-73-${{ steps.version.outputs.version }}.rfplugin.sha256"
+      - name: Preserve the validated release artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: RF-73-${{ steps.version.outputs.version }}
+          path: |
+            RF-73/dist/RF-73-${{ steps.version.outputs.version }}.rfplugin
+            RF-73/dist/RF-73-${{ steps.version.outputs.version }}.rfplugin.sha256
+          if-no-files-found: error
+          compression-level: 0
+      - name: Publish the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --verify-tag \
+            --title "RF-73 ${{ steps.version.outputs.version }}" \
+            --generate-notes \
+            "dist/RF-73-${{ steps.version.outputs.version }}.rfplugin" \
+            "dist/RF-73-${{ steps.version.outputs.version }}.rfplugin.sha256"
