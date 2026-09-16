@@ -103,7 +103,9 @@ pub(crate) fn score_with(
     let mut total = 0.0;
     let mut scored_cases = 0;
     for c in cases {
-        let candidate = renderer(c, p, if detailed { 5.0 } else { 0.7 })?;
+        // Onset detection searches the first 250 ms; body ends 600 ms after
+        // the detected anchor. Keep every supported short window complete.
+        let candidate = renderer(c, p, if detailed { 5.0 } else { 0.9 })?;
         let onset = detect_timbre_onset(&candidate)?;
         let comparison = compare_tone(
             &c.clip,
@@ -147,7 +149,8 @@ pub(crate) fn score_with(
         let mse = squared / f64::from(count);
         total += mse;
         let mut row = json!({"note":c.note,"layer":c.layer,"model_velocity":c.velocity,
-            "harmonic_terms":count,"harmonic_mse_db2":mse,"balances":balances});
+            "harmonic_terms":count,"harmonic_mse_db2":mse,"balances":balances,
+            "reference_onset_seconds":c.onset,"candidate_onset_seconds":onset});
         if detailed {
             let f = 440.0 * 2.0_f64.powf((f64::from(c.note) - 69.0) / 12.0);
             if (40..=90).contains(&c.note) {

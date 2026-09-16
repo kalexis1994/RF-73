@@ -1,0 +1,618 @@
+{
+  "configurations": [
+    {
+      "assessment": {
+        "constraint_violation": 2.3200000917707886,
+        "critical_cases": [
+          {
+            "baseline_mse_db2": 19.747650281272524,
+            "candidate_mse_db2": 30.865025535784696,
+            "layer": "mp",
+            "note": 47,
+            "ratio": 1.5629720547084642
+          },
+          {
+            "baseline_mse_db2": 179.6325084334478,
+            "candidate_mse_db2": 346.96037863039106,
+            "layer": "f",
+            "note": 64,
+            "ratio": 1.9315010498722545
+          }
+        ],
+        "feasible": false,
+        "maximum_note_or_critical_ratio": 2.552000100947868,
+        "mean_ratio": 1.3157211358429615,
+        "notes": [
+          {
+            "baseline_mse_db2": 182.97612767039556,
+            "candidate_mse_db2": 61.119381921132934,
+            "cases": 4,
+            "note": 43,
+            "ratio": 0.334029267638839
+          },
+          {
+            "baseline_mse_db2": 98.75842375867781,
+            "candidate_mse_db2": 166.9661132199269,
+            "cases": 4,
+            "note": 47,
+            "ratio": 1.6906518640669956
+          },
+          {
+            "baseline_mse_db2": 25.554866310729103,
+            "candidate_mse_db2": 63.72508040977918,
+            "cases": 4,
+            "note": 50,
+            "ratio": 2.4936573580517805
+          },
+          {
+            "baseline_mse_db2": 66.12724641162121,
+            "candidate_mse_db2": 139.56845395442906,
+            "cases": 4,
+            "note": 55,
+            "ratio": 2.1106043503710943
+          },
+          {
+            "baseline_mse_db2": 82.65807354121648,
+            "candidate_mse_db2": 210.94341202134075,
+            "cases": 4,
+            "note": 59,
+            "ratio": 2.552000100947868
+          },
+          {
+            "baseline_mse_db2": 74.03028942670048,
+            "candidate_mse_db2": 160.4474244913688,
+            "cases": 4,
+            "note": 64,
+            "ratio": 2.1673213185291194
+          },
+          {
+            "baseline_mse_db2": 601.0996156537523,
+            "candidate_mse_db2": 685.5799914422679,
+            "cases": 4,
+            "note": 72,
+            "ratio": 1.140543054077044
+          }
+        ]
+      },
+      "id": "production-gap-500-speed-80",
+      "mapping": [
+        0.5,
+        0.75,
+        0.85,
+        1.0
+      ]
+    },
+    {
+      "assessment": {
+        "constraint_violation": 2.018676878053647,
+        "critical_cases": [
+          {
+            "baseline_mse_db2": 19.747650281272524,
+            "candidate_mse_db2": 29.30482152871234,
+            "layer": "mp",
+            "note": 47,
+            "ratio": 1.4839649837481301
+          },
+          {
+            "baseline_mse_db2": 179.6325084334478,
+            "candidate_mse_db2": 228.46825710169625,
+            "layer": "f",
+            "note": 64,
+            "ratio": 1.2718647593029724
+          }
+        ],
+        "feasible": false,
+        "maximum_note_or_critical_ratio": 2.2205445658590115,
+        "mean_ratio": 1.2908772431869526,
+        "notes": [
+          {
+            "baseline_mse_db2": 182.97612767039556,
+            "candidate_mse_db2": 76.92209969973338,
+            "cases": 4,
+            "note": 43,
+            "ratio": 0.42039418299581227
+          },
+          {
+            "baseline_mse_db2": 98.75842375867781,
+            "candidate_mse_db2": 155.54262215423608,
+            "cases": 4,
+            "note": 47,
+            "ratio": 1.5749808090731978
+          },
+          {
+            "baseline_mse_db2": 25.554866310729103,
+            "candidate_mse_db2": 38.44878942292713,
+            "cases": 4,
+            "note": 50,
+            "ratio": 1.5045584256014897
+          },
+          {
+            "baseline_mse_db2": 66.12724641162121,
+            "candidate_mse_db2": 146.8384976745453,
+            "cases": 4,
+            "note": 55,
+            "ratio": 2.2205445658590115
+          },
+          {
+            "baseline_mse_db2": 82.65807354121648,
+            "candidate_mse_db2": 168.25040159980892,
+            "cases": 4,
+            "note": 59,
+            "ratio": 2.0354987043814035
+          },
+          {
+            "baseline_mse_db2": 74.03028942670048,
+            "candidate_mse_db2": 145.16570468255665,
+            "cases": 4,
+            "note": 64,
+            "ratio": 1.9608960846531527
+          },
+          {
+            "baseline_mse_db2": 601.0996156537523,
+            "candidate_mse_db2": 729.0782155094043,
+            "cases": 4,
+            "note": 72,
+            "ratio": 1.212907472443587
+          }
+        ]
+      },
+      "id": "production-gap-500-speed-160",
+      "mapping": [
+        0.3,
+        0.45,
+        0.55,
+        0.85
+      ]
+    },
+    {
+      "assessment": {
+        "constraint_violation": 3.303961410324743,
+        "critical_cases": [
+          {
+            "baseline_mse_db2": 19.747650281272524,
+            "candidate_mse_db2": 59.08656581440017,
+            "layer": "mp",
+            "note": 47,
+            "ratio": 2.9920808284940255
+          },
+          {
+            "baseline_mse_db2": 179.6325084334478,
+            "candidate_mse_db2": 338.1067116526374,
+            "layer": "f",
+            "note": 64,
+            "ratio": 1.8822133844326001
+          }
+        ],
+        "feasible": false,
+        "maximum_note_or_critical_ratio": 3.6343575513572177,
+        "mean_ratio": 0.7528345107001038,
+        "notes": [
+          {
+            "baseline_mse_db2": 182.97612767039556,
+            "candidate_mse_db2": 61.059666605570655,
+            "cases": 4,
+            "note": 43,
+            "ratio": 0.33370291186597095
+          },
+          {
+            "baseline_mse_db2": 98.75842375867781,
+            "candidate_mse_db2": 65.25364398226,
+            "cases": 4,
+            "note": 47,
+            "ratio": 0.6607400310652105
+          },
+          {
+            "baseline_mse_db2": 25.554866310729103,
+            "candidate_mse_db2": 88.82317141244799,
+            "cases": 4,
+            "note": 50,
+            "ratio": 3.4757830595715524
+          },
+          {
+            "baseline_mse_db2": 66.12724641162121,
+            "candidate_mse_db2": 128.97258530649066,
+            "cases": 4,
+            "note": 55,
+            "ratio": 1.950369814337604
+          },
+          {
+            "baseline_mse_db2": 82.65807354121648,
+            "candidate_mse_db2": 117.6137708588775,
+            "cases": 4,
+            "note": 59,
+            "ratio": 1.4228951367978686
+          },
+          {
+            "baseline_mse_db2": 74.03028942670048,
+            "candidate_mse_db2": 269.0525414070893,
+            "cases": 4,
+            "note": 64,
+            "ratio": 3.6343575513572177
+          },
+          {
+            "baseline_mse_db2": 601.0996156537523,
+            "candidate_mse_db2": 120.83451417103107,
+            "cases": 4,
+            "note": 72,
+            "ratio": 0.2010224445737038
+          }
+        ]
+      },
+      "id": "production-gap-1000-speed-80",
+      "mapping": [
+        0.55,
+        0.7,
+        0.95,
+        1.0
+      ]
+    },
+    {
+      "assessment": {
+        "constraint_violation": 2.397147963820108,
+        "critical_cases": [
+          {
+            "baseline_mse_db2": 19.747650281272524,
+            "candidate_mse_db2": 0.08053779429020413,
+            "layer": "mp",
+            "note": 47,
+            "ratio": 0.004078348215766273
+          },
+          {
+            "baseline_mse_db2": 179.6325084334478,
+            "candidate_mse_db2": 108.75844267295713,
+            "layer": "f",
+            "note": 64,
+            "ratio": 0.6054496684449026
+          }
+        ],
+        "feasible": false,
+        "maximum_note_or_critical_ratio": 2.6368627602021193,
+        "mean_ratio": 0.6993092442222462,
+        "notes": [
+          {
+            "baseline_mse_db2": 182.97612767039556,
+            "candidate_mse_db2": 140.16331822770957,
+            "cases": 4,
+            "note": 43,
+            "ratio": 0.7660196989204683
+          },
+          {
+            "baseline_mse_db2": 98.75842375867781,
+            "candidate_mse_db2": 5.596506100299415,
+            "cases": 4,
+            "note": 47,
+            "ratio": 0.05666864544106958
+          },
+          {
+            "baseline_mse_db2": 25.554866310729103,
+            "candidate_mse_db2": 67.3846753167053,
+            "cases": 4,
+            "note": 50,
+            "ratio": 2.6368627602021193
+          },
+          {
+            "baseline_mse_db2": 66.12724641162121,
+            "candidate_mse_db2": 74.59934587502579,
+            "cases": 4,
+            "note": 55,
+            "ratio": 1.1281181347045428
+          },
+          {
+            "baseline_mse_db2": 82.65807354121648,
+            "candidate_mse_db2": 73.15139290892319,
+            "cases": 4,
+            "note": 59,
+            "ratio": 0.8849878756543618
+          },
+          {
+            "baseline_mse_db2": 74.03028942670048,
+            "candidate_mse_db2": 188.50965527823138,
+            "cases": 4,
+            "note": 64,
+            "ratio": 2.546385496235027
+          },
+          {
+            "baseline_mse_db2": 601.0996156537523,
+            "candidate_mse_db2": 241.65697009145282,
+            "cases": 4,
+            "note": 72,
+            "ratio": 0.40202482882746177
+          }
+        ]
+      },
+      "id": "production-gap-1000-speed-160",
+      "mapping": [
+        0.4,
+        0.55,
+        0.65,
+        1.0
+      ]
+    },
+    {
+      "assessment": {
+        "constraint_violation": 3.379268758385723,
+        "critical_cases": [
+          {
+            "baseline_mse_db2": 19.747650281272524,
+            "candidate_mse_db2": 68.44213228917656,
+            "layer": "mp",
+            "note": 47,
+            "ratio": 3.4658367610491325
+          },
+          {
+            "baseline_mse_db2": 179.6325084334478,
+            "candidate_mse_db2": 35.546782948144106,
+            "layer": "f",
+            "note": 64,
+            "ratio": 0.19788613574537853
+          }
+        ],
+        "feasible": false,
+        "maximum_note_or_critical_ratio": 3.7171956342242956,
+        "mean_ratio": 1.594124979272643,
+        "notes": [
+          {
+            "baseline_mse_db2": 182.97612767039556,
+            "candidate_mse_db2": 162.65811412848902,
+            "cases": 4,
+            "note": 43,
+            "ratio": 0.8889581181950335
+          },
+          {
+            "baseline_mse_db2": 98.75842375867781,
+            "candidate_mse_db2": 198.1185913595706,
+            "cases": 4,
+            "note": 47,
+            "ratio": 2.006093088764614
+          },
+          {
+            "baseline_mse_db2": 25.554866310729103,
+            "candidate_mse_db2": 94.99243748342775,
+            "cases": 4,
+            "note": 50,
+            "ratio": 3.7171956342242956
+          },
+          {
+            "baseline_mse_db2": 66.12724641162121,
+            "candidate_mse_db2": 150.35646366134978,
+            "cases": 4,
+            "note": 55,
+            "ratio": 2.2737445125936184
+          },
+          {
+            "baseline_mse_db2": 82.65807354121648,
+            "candidate_mse_db2": 168.03111089326774,
+            "cases": 4,
+            "note": 59,
+            "ratio": 2.0328457184461355
+          },
+          {
+            "baseline_mse_db2": 74.03028942670048,
+            "candidate_mse_db2": 39.51336240943407,
+            "cases": 4,
+            "note": 64,
+            "ratio": 0.5337458858452444
+          },
+          {
+            "baseline_mse_db2": 601.0996156537523,
+            "candidate_mse_db2": 989.6114977782353,
+            "cases": 4,
+            "note": 72,
+            "ratio": 1.646335269574145
+          }
+        ]
+      },
+      "id": "point-pole-gap-500-speed-80",
+      "mapping": [
+        0.3,
+        0.65,
+        0.9,
+        0.95
+      ]
+    },
+    {
+      "completed_velocity_rows": 18,
+      "evaluated_mappings": 0,
+      "failure": {
+        "reason": "no sustained onset",
+        "velocity": 1.0
+      },
+      "id": "point-pole-gap-500-speed-160",
+      "law": "point-pole",
+      "profile": "Profile { hammer_mass_kg: 0.004, modal_mass_kg: 0.0015, contact_stiffness: 40000000000.0, maximum_hammer_speed_m_s: 1.6, pickup_gap_m: 0.0005, pickup_offset_m: 0.00075, decay_seconds: 20.0, bar_partial_decay_seconds: 2.3, third_partial_decay_seconds: 0.055, bar_partial_ratio: 6.267, pickup_law: Production, pickup_pole_radius_m: 0.002, velocity_exponent: 1.4, bar_partial_strike_weight: -0.020000171999999997 }",
+      "reason": "The complete common velocity grid is required; no partial-grid selection",
+      "status": "not_evaluable"
+    },
+    {
+      "assessment": {
+        "constraint_violation": 1.3679036526105204,
+        "critical_cases": [
+          {
+            "baseline_mse_db2": 19.747650281272524,
+            "candidate_mse_db2": 29.71417124525064,
+            "layer": "mp",
+            "note": 47,
+            "ratio": 1.5046940178715724
+          },
+          {
+            "baseline_mse_db2": 179.6325084334478,
+            "candidate_mse_db2": 115.38988442583754,
+            "layer": "f",
+            "note": 64,
+            "ratio": 0.6423663814091224
+          }
+        ],
+        "feasible": false,
+        "maximum_note_or_critical_ratio": 1.5046940178715724,
+        "mean_ratio": 0.8906260482570965,
+        "notes": [
+          {
+            "baseline_mse_db2": 182.97612767039556,
+            "candidate_mse_db2": 112.94775124266896,
+            "cases": 4,
+            "note": 43,
+            "ratio": 0.61728135074608
+          },
+          {
+            "baseline_mse_db2": 98.75842375867781,
+            "candidate_mse_db2": 98.19743937642104,
+            "cases": 4,
+            "note": 47,
+            "ratio": 0.9943196300537607
+          },
+          {
+            "baseline_mse_db2": 25.554866310729103,
+            "candidate_mse_db2": 35.57652656255999,
+            "cases": 4,
+            "note": 50,
+            "ratio": 1.3921624996967148
+          },
+          {
+            "baseline_mse_db2": 66.12724641162121,
+            "candidate_mse_db2": 70.44889968714988,
+            "cases": 4,
+            "note": 55,
+            "ratio": 1.0653535949255732
+          },
+          {
+            "baseline_mse_db2": 82.65807354121648,
+            "candidate_mse_db2": 82.32024333846897,
+            "cases": 4,
+            "note": 59,
+            "ratio": 0.9959129194732677
+          },
+          {
+            "baseline_mse_db2": 74.03028942670048,
+            "candidate_mse_db2": 77.32197068554795,
+            "cases": 4,
+            "note": 64,
+            "ratio": 1.044463979329794
+          },
+          {
+            "baseline_mse_db2": 601.0996156537523,
+            "candidate_mse_db2": 530.6674898702635,
+            "cases": 4,
+            "note": 72,
+            "ratio": 0.8828278642186665
+          }
+        ]
+      },
+      "id": "point-pole-gap-1000-speed-80",
+      "mapping": [
+        0.4,
+        0.7,
+        0.75,
+        1.0
+      ]
+    },
+    {
+      "assessment": {
+        "constraint_violation": 1.4150304574693875,
+        "critical_cases": [
+          {
+            "baseline_mse_db2": 19.747650281272524,
+            "candidate_mse_db2": 30.737879272599994,
+            "layer": "mp",
+            "note": 47,
+            "ratio": 1.5565335032163263
+          },
+          {
+            "baseline_mse_db2": 179.6325084334478,
+            "candidate_mse_db2": 186.49893020461366,
+            "layer": "f",
+            "note": 64,
+            "ratio": 1.0382248281842026
+          }
+        ],
+        "feasible": false,
+        "maximum_note_or_critical_ratio": 1.5565335032163263,
+        "mean_ratio": 0.9209521905741209,
+        "notes": [
+          {
+            "baseline_mse_db2": 182.97612767039556,
+            "candidate_mse_db2": 56.354975893214544,
+            "cases": 4,
+            "note": 43,
+            "ratio": 0.3079908653151175
+          },
+          {
+            "baseline_mse_db2": 98.75842375867781,
+            "candidate_mse_db2": 141.8004851179972,
+            "cases": 4,
+            "note": 47,
+            "ratio": 1.4358317976448802
+          },
+          {
+            "baseline_mse_db2": 25.554866310729103,
+            "candidate_mse_db2": 29.871977651878503,
+            "cases": 4,
+            "note": 50,
+            "ratio": 1.168935000037033
+          },
+          {
+            "baseline_mse_db2": 66.12724641162121,
+            "candidate_mse_db2": 68.98754153972394,
+            "cases": 4,
+            "note": 55,
+            "ratio": 1.0432544115068438
+          },
+          {
+            "baseline_mse_db2": 82.65807354121648,
+            "candidate_mse_db2": 98.25494577089756,
+            "cases": 4,
+            "note": 59,
+            "ratio": 1.1886914557947432
+          },
+          {
+            "baseline_mse_db2": 74.03028942670048,
+            "candidate_mse_db2": 89.10392243665456,
+            "cases": 4,
+            "note": 64,
+            "ratio": 1.2036144006282579
+          },
+          {
+            "baseline_mse_db2": 601.0996156537523,
+            "candidate_mse_db2": 557.4115453391295,
+            "cases": 4,
+            "note": 72,
+            "ratio": 0.9273197500432472
+          }
+        ]
+      },
+      "id": "point-pole-gap-1000-speed-160",
+      "mapping": [
+        0.2,
+        0.4,
+        0.6,
+        0.8
+      ]
+    }
+  ],
+  "held_out_loaded": false,
+  "plugin_promoted": false,
+  "reason": "No selected family passes development constraints",
+  "selected": [
+    {
+      "development_feasible": false,
+      "id": "production-gap-500-speed-160",
+      "law": "production",
+      "mapping": [
+        0.3,
+        0.45,
+        0.55,
+        0.85
+      ]
+    },
+    {
+      "development_feasible": false,
+      "id": "point-pole-gap-1000-speed-80",
+      "law": "point-pole",
+      "mapping": [
+        0.4,
+        0.7,
+        0.75,
+        1.0
+      ]
+    }
+  ]
+}

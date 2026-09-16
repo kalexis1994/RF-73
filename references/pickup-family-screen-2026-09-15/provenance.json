@@ -1,0 +1,275 @@
+{
+  "git_base": "258ea6dfa8bfc62b293a57329a39953f34a73d96",
+  "completed_run": "renders/matts-reference/pickup-families-03",
+  "earlier_incomplete_runs": {
+    "pickup-families-01": "Stopped on an incomplete tone window with 0.7 s renders",
+    "pickup-families-02": "Stopped on no sustained onset; final run records this configuration as not evaluable"
+  },
+  "source_hashes": {
+    "tools/rf-73-lab/examples/continuous_pickup_fit.rs": {
+      "sha256_bytes": "5fcbae309e1c369daad0e622bfc6710d776de954e12419fdfbefca2bece9d7fb",
+      "sha256_lf": "5fcbae309e1c369daad0e622bfc6710d776de954e12419fdfbefca2bece9d7fb"
+    },
+    "tools/rf-73-lab/examples/matts_fit.rs": {
+      "sha256_bytes": "b85036e51d5f60ec7760e2c90ea3790fa9a11807e62561e1c0590a6014efc032",
+      "sha256_lf": "b85036e51d5f60ec7760e2c90ea3790fa9a11807e62561e1c0590a6014efc032"
+    },
+    "tools/rf-73-lab/examples/support/pickup_families.rs": {
+      "sha256_bytes": "3af0fa5147b67f8d4f909203121b572b65d1fb02fc1041de2b6a9fb248582911",
+      "sha256_lf": "3af0fa5147b67f8d4f909203121b572b65d1fb02fc1041de2b6a9fb248582911"
+    },
+    "tools/rf-73-lab/examples/support/velocity_mapping.rs": {
+      "sha256_bytes": "24265ad36ad4f784f83b25c27210daf43855de1a42a58a61f62b211ea9a58413",
+      "sha256_lf": "24265ad36ad4f784f83b25c27210daf43855de1a42a58a61f62b211ea9a58413"
+    },
+    "tools/rf-73-lab/examples/support/robust_pickup_fit.rs": {
+      "sha256_bytes": "976c5902d4b7a910020047dcc3479acdcde8afb829fd538dfe34964c9b2cfad4",
+      "sha256_lf": "976c5902d4b7a910020047dcc3479acdcde8afb829fd538dfe34964c9b2cfad4"
+    },
+    "references/matts-reference-runner/Cargo.toml": {
+      "sha256_bytes": "1d6937154531be667cd21c3f9c63ebe966e62600e9ce13459aaaddf95152984a",
+      "sha256_lf": "4b0831a463f854c2fb0c3872fe08293bf27676b5d6d6a84c203bac7028342b86"
+    },
+    "references/matts-reference-runner/Cargo.lock": {
+      "sha256_bytes": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73",
+      "sha256_lf": "2bd1c003c4c8e2133d7a2fd7b980c4698d36f68cab523fad3190c3b24bb0da73"
+    },
+    "references/matts-fender-rhodes.inventory.json": {
+      "sha256_bytes": "1f9d9294cb16d3d54cb9172eb431f5b0ef7c2470a9485594a44bc0e7dea7e94b",
+      "sha256_lf": "62f712e45c63202198cfbe005a71edde9566e56444b53216e8d8018e0963c761"
+    },
+    "crates/rf-73-dsp/src/assembly.rs": {
+      "sha256_bytes": "68e2eba72ee8e179a6c415d3d25fcb663924a2267a06d769b564b3dfe318552e",
+      "sha256_lf": "68e2eba72ee8e179a6c415d3d25fcb663924a2267a06d769b564b3dfe318552e"
+    },
+    "crates/rf-73-dsp/src/filter.rs": {
+      "sha256_bytes": "cd39cad75f494dc6c70a898185ce197ad92ce10b130c6655e4590ea26a0f945c",
+      "sha256_lf": "cd39cad75f494dc6c70a898185ce197ad92ce10b130c6655e4590ea26a0f945c"
+    },
+    "crates/rf-73-dsp/src/hammer_memory.rs": {
+      "sha256_bytes": "382c6e001fdc7f754da4a654f85719089aad53def280d8f35635aa3d21bf006d",
+      "sha256_lf": "382c6e001fdc7f754da4a654f85719089aad53def280d8f35635aa3d21bf006d"
+    },
+    "crates/rf-73-dsp/src/laboratory.rs": {
+      "sha256_bytes": "cc29b9e1a2a98ad35e0943c7f16ac8bfdb0069af289ad3d4cc1a7affd76aa592",
+      "sha256_lf": "cc29b9e1a2a98ad35e0943c7f16ac8bfdb0069af289ad3d4cc1a7affd76aa592"
+    },
+    "crates/rf-73-dsp/src/lib.rs": {
+      "sha256_bytes": "58dd13049cf8430cb2c042815a10a1e62c2cfde27aec643c4dd491496426b77e",
+      "sha256_lf": "58dd13049cf8430cb2c042815a10a1e62c2cfde27aec643c4dd491496426b77e"
+    },
+    "crates/rf-73-dsp/src/memory_hammer.rs": {
+      "sha256_bytes": "24955f8055462e82597f2f294023c8138d714342d83be2597a703a5995c218dd",
+      "sha256_lf": "24955f8055462e82597f2f294023c8138d714342d83be2597a703a5995c218dd"
+    },
+    "crates/rf-73-dsp/src/modal_assembly.rs": {
+      "sha256_bytes": "60dcf85256f02b0837a612f36639b6194793ff6add69b41d9a6268b7e4ae028a",
+      "sha256_lf": "60dcf85256f02b0837a612f36639b6194793ff6add69b41d9a6268b7e4ae028a"
+    },
+    "crates/rf-73-dsp/src/model.rs": {
+      "sha256_bytes": "b0317f3e12d68e2a2e703408987e92d39dbb491bc41075367809a60394fdef0c",
+      "sha256_lf": "b0317f3e12d68e2a2e703408987e92d39dbb491bc41075367809a60394fdef0c"
+    },
+    "crates/rf-73-dsp/src/pickup.rs": {
+      "sha256_bytes": "6c08078c3f03fbd2e58c8ff6816e66f0b635faeb23893be8ecfc22fec7a87356",
+      "sha256_lf": "6c08078c3f03fbd2e58c8ff6816e66f0b635faeb23893be8ecfc22fec7a87356"
+    },
+    "crates/rf-73-dsp/src/tine.rs": {
+      "sha256_bytes": "6132402de737caf711c08eef8c7c9be4faa9941afbaa81cd723ce0838ba31945",
+      "sha256_lf": "6132402de737caf711c08eef8c7c9be4faa9941afbaa81cd723ce0838ba31945"
+    },
+    "crates/rf-73-dsp/src/voice.rs": {
+      "sha256_bytes": "773b4d42a8a7150b2804056f2766b9fd1be40107e4bc85c4ed5e9a984b889ee2",
+      "sha256_lf": "773b4d42a8a7150b2804056f2766b9fd1be40107e4bc85c4ed5e9a984b889ee2"
+    },
+    "crates/rf-73-dsp/src/assembly/free.rs": {
+      "sha256_bytes": "2aa32a39ecf4d212d46b8a6eff30be59ddd1430fb219ab43f71ca118e4df868c",
+      "sha256_lf": "2aa32a39ecf4d212d46b8a6eff30be59ddd1430fb219ab43f71ca118e4df868c"
+    },
+    "crates/rf-73-dsp/src/memory_hammer/contact_motion.rs": {
+      "sha256_bytes": "b28452b1271078aa81d94e8d6e06157e71225b519bfec10e23fee42507c4d324",
+      "sha256_lf": "b28452b1271078aa81d94e8d6e06157e71225b519bfec10e23fee42507c4d324"
+    },
+    "crates/rf-73-dsp/src/memory_hammer/free_motion.rs": {
+      "sha256_bytes": "1d1ed72083b0b084be446214f0dc17e40da58c935be4c079d680a1170fa1c160",
+      "sha256_lf": "1d1ed72083b0b084be446214f0dc17e40da58c935be4c079d680a1170fa1c160"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/action.rs": {
+      "sha256_bytes": "00c1e60471802a6af889adef9101f56e696a11136aeee4f9e59b6e8d0114a4c3",
+      "sha256_lf": "00c1e60471802a6af889adef9101f56e696a11136aeee4f9e59b6e8d0114a4c3"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/contact.rs": {
+      "sha256_bytes": "817617f7e7beabf52d88a502cdf57af24da777791eca88ba9b257efa652903f7",
+      "sha256_lf": "817617f7e7beabf52d88a502cdf57af24da777791eca88ba9b257efa652903f7"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/dissipative_contact.rs": {
+      "sha256_bytes": "3d17cb88a9137c2088063f235e10116537b7a6e44da1fc22a786b9d9523a4765",
+      "sha256_lf": "3d17cb88a9137c2088063f235e10116537b7a6e44da1fc22a786b9d9523a4765"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/felt_damper.rs": {
+      "sha256_bytes": "046b6e31a488c25f64692f03ce031ff9963289453ca2a0e0d7e54bcdccf77906",
+      "sha256_lf": "046b6e31a488c25f64692f03ce031ff9963289453ca2a0e0d7e54bcdccf77906"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/memory_coupling.rs": {
+      "sha256_bytes": "3834dcafcdc41c015502ef061f614385c75031049af2e47bd98ff47e36ae3483",
+      "sha256_lf": "3834dcafcdc41c015502ef061f614385c75031049af2e47bd98ff47e36ae3483"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/numerics.rs": {
+      "sha256_bytes": "8f3ead524202ddc4d6d5c39f8b76326bf207236b4ec7ad7c2c10b44520b6eea2",
+      "sha256_lf": "8f3ead524202ddc4d6d5c39f8b76326bf207236b4ec7ad7c2c10b44520b6eea2"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/polarization.rs": {
+      "sha256_bytes": "e4087a6a46793e30b829a318144b09fad6b6ae7df4733db5b21477025866e466",
+      "sha256_lf": "e4087a6a46793e30b829a318144b09fad6b6ae7df4733db5b21477025866e466"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/spectrum.rs": {
+      "sha256_bytes": "406c4679e00b68f4cc8cf90df150a3e37cd197108c1d3b510136e55d2e2dd86a",
+      "sha256_lf": "406c4679e00b68f4cc8cf90df150a3e37cd197108c1d3b510136e55d2e2dd86a"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/transduction.rs": {
+      "sha256_bytes": "318b2975c50974e8ee19f9a7897b94f1eff8593dfd8e72a7daeb285411c9eb4d",
+      "sha256_lf": "318b2975c50974e8ee19f9a7897b94f1eff8593dfd8e72a7daeb285411c9eb4d"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/action/rest.rs": {
+      "sha256_bytes": "434d3db611e6cb4eb9fc3eaee08e2f243193ac569089aea43477553ec3b98c40",
+      "sha256_lf": "434d3db611e6cb4eb9fc3eaee08e2f243193ac569089aea43477553ec3b98c40"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/memory_coupling/contact_motion.rs": {
+      "sha256_bytes": "485713200806a81c77d5d7d626d064aef2610ad15e0faa00c60e4b33d5c7eb2d",
+      "sha256_lf": "485713200806a81c77d5d7d626d064aef2610ad15e0faa00c60e4b33d5c7eb2d"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/memory_coupling/free_motion.rs": {
+      "sha256_bytes": "8896e1c581fa9e4c088b3404b935d653a54e3d635efea38a9892c781139f57f0",
+      "sha256_lf": "8896e1c581fa9e4c088b3404b935d653a54e3d635efea38a9892c781139f57f0"
+    },
+    "crates/rf-73-dsp/src/modal_assembly/memory_coupling/rk4_contact.rs": {
+      "sha256_bytes": "6ad778b7c757995bd4fbf14e52708a092d1a57d20fa71aa47eb8531d5f35202e",
+      "sha256_lf": "6ad778b7c757995bd4fbf14e52708a092d1a57d20fa71aa47eb8531d5f35202e"
+    },
+    "crates/rf-73-analysis/src/audio.rs": {
+      "sha256_bytes": "c0c2558cc8f78d4141964137c2b362078e9909f72651b933c9d5d49ee11c1bfa",
+      "sha256_lf": "c0c2558cc8f78d4141964137c2b362078e9909f72651b933c9d5d49ee11c1bfa"
+    },
+    "crates/rf-73-analysis/src/band_envelope.rs": {
+      "sha256_bytes": "00f9a5067842f00b8577d74721893499df28d5c3c540ed8443e9bd8f6541e1b2",
+      "sha256_lf": "00f9a5067842f00b8577d74721893499df28d5c3c540ed8443e9bd8f6541e1b2"
+    },
+    "crates/rf-73-analysis/src/compare.rs": {
+      "sha256_bytes": "d9b1fad1bee385d736caafda5e70cee29d024e27113dbb1ef0035ac46d1bdc03",
+      "sha256_lf": "d9b1fad1bee385d736caafda5e70cee29d024e27113dbb1ef0035ac46d1bdc03"
+    },
+    "crates/rf-73-analysis/src/component_envelope.rs": {
+      "sha256_bytes": "fbc30824737853c515aaac5330d67328f7dc16e559cf8c5163db66fb9be0912e",
+      "sha256_lf": "fbc30824737853c515aaac5330d67328f7dc16e559cf8c5163db66fb9be0912e"
+    },
+    "crates/rf-73-analysis/src/lib.rs": {
+      "sha256_bytes": "456e74b763de17af3af4992fe17b5d19f0407923b86c3b26c82c24f34a7c3ceb",
+      "sha256_lf": "456e74b763de17af3af4992fe17b5d19f0407923b86c3b26c82c24f34a7c3ceb"
+    },
+    "crates/rf-73-analysis/src/measurement.rs": {
+      "sha256_bytes": "68bb0aa52b68c6fb78c22fa4161098f89808a9d6853961f2734ea280b26daf86",
+      "sha256_lf": "68bb0aa52b68c6fb78c22fa4161098f89808a9d6853961f2734ea280b26daf86"
+    },
+    "crates/rf-73-analysis/src/modal_observation.rs": {
+      "sha256_bytes": "b9c49fafc22a1aad72f50633bd70395e2a3a133546f032467f57e86f7f8b608b",
+      "sha256_lf": "b9c49fafc22a1aad72f50633bd70395e2a3a133546f032467f57e86f7f8b608b"
+    },
+    "crates/rf-73-analysis/src/partial_comparison.rs": {
+      "sha256_bytes": "ab33be1a5c1d1d03c2582825cd68055038fec4209633c436e1650930d42ddaf8",
+      "sha256_lf": "ab33be1a5c1d1d03c2582825cd68055038fec4209633c436e1650930d42ddaf8"
+    },
+    "crates/rf-73-analysis/src/pitch_anchor.rs": {
+      "sha256_bytes": "e0d21d4d083f3579b758476827f1b10224b3c3520c5bf55aea6f143831f91361",
+      "sha256_lf": "e0d21d4d083f3579b758476827f1b10224b3c3520c5bf55aea6f143831f91361"
+    },
+    "crates/rf-73-analysis/src/short_envelope.rs": {
+      "sha256_bytes": "ce8d1fdaf6aea66aa689d293e061075a75fc9ae9f779831b73dc41d259e435c3",
+      "sha256_lf": "ce8d1fdaf6aea66aa689d293e061075a75fc9ae9f779831b73dc41d259e435c3"
+    },
+    "crates/rf-73-analysis/src/spectrum.rs": {
+      "sha256_bytes": "51e491a931b32618fe40faa04d7c6e7553f4cd134bb8fde646b39c8358a35154",
+      "sha256_lf": "51e491a931b32618fe40faa04d7c6e7553f4cd134bb8fde646b39c8358a35154"
+    },
+    "crates/rf-73-analysis/src/timbre_profile.rs": {
+      "sha256_bytes": "97476f15e2df57a3301d278333dc27d88caacb8b326b72844b24c8de1ab3f37a",
+      "sha256_lf": "97476f15e2df57a3301d278333dc27d88caacb8b326b72844b24c8de1ab3f37a"
+    },
+    "crates/rf-73-analysis/src/tone_comparison.rs": {
+      "sha256_bytes": "2fdfe7fcb77ae1540f24e3e2d761b8e0c1867ee3857496c67e42d96b0a645757",
+      "sha256_lf": "2fdfe7fcb77ae1540f24e3e2d761b8e0c1867ee3857496c67e42d96b0a645757"
+    },
+    "crates/rf-73-analysis/src/tracking.rs": {
+      "sha256_bytes": "4d2c40f3227af03104d91e5d0ecec3ece87e30dd47a0074c4dd9de5084d7a09a",
+      "sha256_lf": "4d2c40f3227af03104d91e5d0ecec3ece87e30dd47a0074c4dd9de5084d7a09a"
+    }
+  },
+  "receipt_hashes": {
+    "decision.json": {
+      "sha256_bytes": "0a11dbbc3f6122d6778f0475d8242fdcd53cfccc47870765e36d41535079f60c",
+      "sha256_lf": "0a11dbbc3f6122d6778f0475d8242fdcd53cfccc47870765e36d41535079f60c"
+    },
+    "development-fixed-baseline.json": {
+      "sha256_bytes": "0d2d178a991cf717ee3c6f736493385fd50314e5f7f279e291c23dd8d3f7fa13",
+      "sha256_lf": "0d2d178a991cf717ee3c6f736493385fd50314e5f7f279e291c23dd8d3f7fa13"
+    },
+    "independent-replay.json": {
+      "sha256_bytes": "061d0d2614e4bb3720b81236d570a5e22c66bfeb71437831654925b8207af67b",
+      "sha256_lf": "3a8b811798a456191e886003842571393e8585fd6a203bcaea3a6a2fa162b860"
+    },
+    "measurement-checks.json": {
+      "sha256_bytes": "532ba1279ca1fc1e0f5201ac4a23c46ee8e90e8a6c51fffcc12a0a1f316407e4",
+      "sha256_lf": "e9948372731caaa8fd10ceb60916069ea85eceb6e2e354073656f6abe52d6db3"
+    },
+    "point-pole-gap-1000-speed-160.json": {
+      "sha256_bytes": "da5fa0e0439add1af38d230ab5c15f8cf2ea61054b0dc8b92313afcb13f827cd",
+      "sha256_lf": "da5fa0e0439add1af38d230ab5c15f8cf2ea61054b0dc8b92313afcb13f827cd"
+    },
+    "point-pole-gap-1000-speed-80.json": {
+      "sha256_bytes": "59a34473263b65416eda4e7506bc8f36a8c94cf5c0fb42df729ddabd552f1378",
+      "sha256_lf": "59a34473263b65416eda4e7506bc8f36a8c94cf5c0fb42df729ddabd552f1378"
+    },
+    "point-pole-gap-500-speed-160.json": {
+      "sha256_bytes": "612b4c2df231c9aad2836b6a66c47fe93bf8175ccf223d8167098403701e1a04",
+      "sha256_lf": "612b4c2df231c9aad2836b6a66c47fe93bf8175ccf223d8167098403701e1a04"
+    },
+    "point-pole-gap-500-speed-80.json": {
+      "sha256_bytes": "35f09ba12b7ea85be40d82e931f020a5acd31986782412ff63811e562a9012e3",
+      "sha256_lf": "35f09ba12b7ea85be40d82e931f020a5acd31986782412ff63811e562a9012e3"
+    },
+    "production-gap-1000-speed-160.json": {
+      "sha256_bytes": "419ce1f6e25f0757ac1caecc9030a1162dc4f65a2ce92d12e12c90efbfe17c0b",
+      "sha256_lf": "419ce1f6e25f0757ac1caecc9030a1162dc4f65a2ce92d12e12c90efbfe17c0b"
+    },
+    "production-gap-1000-speed-80.json": {
+      "sha256_bytes": "09a54491227788425bdfbb8b6bcd78f689df6d106185f3c6c15ba22c862e3c8d",
+      "sha256_lf": "09a54491227788425bdfbb8b6bcd78f689df6d106185f3c6c15ba22c862e3c8d"
+    },
+    "production-gap-500-speed-160.json": {
+      "sha256_bytes": "336ea8cd13fb78d87d3d9d2a6529240f7e67f4a279fb56b94394814233ef51e0",
+      "sha256_lf": "336ea8cd13fb78d87d3d9d2a6529240f7e67f4a279fb56b94394814233ef51e0"
+    },
+    "production-gap-500-speed-80.json": {
+      "sha256_bytes": "fd9f8a58c85890453c6ac0235fc4acc5d858106b0e9e83c0739f854aa2ad459e",
+      "sha256_lf": "fd9f8a58c85890453c6ac0235fc4acc5d858106b0e9e83c0739f854aa2ad459e"
+    },
+    "protocol.json": {
+      "sha256_bytes": "f2ce301df2f9348e2d0f49f5a89ffdadd84aeaa7d54cd48d28f70c3cd08ae30b",
+      "sha256_lf": "f2ce301df2f9348e2d0f49f5a89ffdadd84aeaa7d54cd48d28f70c3cd08ae30b"
+    },
+    "replay.py": {
+      "sha256_bytes": "4f957c4ed2d0b5e56ec0878be109ca3f3ab72157aadcbda65eeb317fbbe11b64",
+      "sha256_lf": "4f957c4ed2d0b5e56ec0878be109ca3f3ab72157aadcbda65eeb317fbbe11b64"
+    }
+  },
+  "tests": {
+    "rust": 32,
+    "python": 6,
+    "release_clippy_warnings_denied": "passed",
+    "formatting": "passed",
+    "independent_mapping_replay": "all seven complete configurations match"
+  },
+  "held_out_loaded": false,
+  "plugin_changed": false,
+  "audition_run": false,
+  "scope": "Seven scored configurations and one onset-excluded configuration; not a global search or physical validation"
+}

@@ -77,6 +77,10 @@ under these separately optimized mappings and compare other existing pickup
 laws under the same matching freedom. Changing geometry and the assumed source
 velocities simultaneously without such controls can overstate improvement.
 
+Follow-up completed: the [retained pickup law screen](PICKUP-FAMILY-SCREEN.md)
+compares Production and PointPole with the same mapping freedom. Neither has
+a configuration that passes all development gates in the tested grid.
+
 ## Verification and artifacts
 
 An independent Python enumeration over the JSON costs (no Python audio

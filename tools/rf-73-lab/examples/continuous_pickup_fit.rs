@@ -1,4 +1,6 @@
 //! Offline continuous-disk fit. Never changes the realtime pickup or presets.
+#[path = "support/pickup_families.rs"]
+mod pickup_families;
 #[allow(dead_code)]
 #[path = "matts_fit.rs"]
 mod previous;
@@ -210,6 +212,9 @@ fn verify_rendering(source: &Path, out: &Path, frozen: &Path) -> Result<()> {
 }
 fn main() -> Result<()> {
     let args: Vec<_> = std::env::args().collect();
+    if args.get(1).is_some_and(|a| a == "--families") {
+        return pickup_families::run(&args[2..]);
+    }
     if args.get(1).is_some_and(|a| a == "--velocity-map") {
         return velocity_mapping::run(&args[2..]);
     }

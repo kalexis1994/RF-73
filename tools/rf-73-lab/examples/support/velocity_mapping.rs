@@ -24,8 +24,12 @@ fn combinations(n: usize) -> Vec<[usize; 4]> {
     }
     rows
 }
-type Selection = ([f64; 4], Merit, Value, Vec<Value>, usize);
-fn select(grid: &[Vec<Value>], choices: &[Vec<f64>; 4], base: &[Value]) -> Result<Selection> {
+pub(super) type Selection = ([f64; 4], Merit, Value, Vec<Value>, usize);
+pub(super) fn select(
+    grid: &[Vec<Value>],
+    choices: &[Vec<f64>; 4],
+    base: &[Value],
+) -> Result<Selection> {
     let mut best = Merit {
         violation: f64::INFINITY,
         mean_ratio: f64::INFINITY,
@@ -79,7 +83,7 @@ fn evaluate(
         register::evaluate(cases, coordinates, detailed)
     }
 }
-fn assign(cases: &mut [Case], mapping: [f64; 4]) {
+pub(super) fn assign(cases: &mut [Case], mapping: [f64; 4]) {
     for c in cases {
         c.velocity = mapping[layer_index(c.layer)];
     }

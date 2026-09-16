@@ -1,0 +1,62 @@
+{
+  "configurations": 8,
+  "gaps_m": [
+    0.0005,
+    0.001
+  ],
+  "held_out_notes": [
+    45,
+    53,
+    60,
+    67,
+    76,
+    86
+  ],
+  "held_out_policy": "Load only if a selected family passes development; freeze both selections first",
+  "laws": [
+    "production",
+    "point-pole"
+  ],
+  "mapping_grid": [
+    0.1,
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.35,
+    0.4,
+    0.45,
+    0.5,
+    0.55,
+    0.6,
+    0.65,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0
+  ],
+  "mappings_per_configuration": 3876,
+  "maximum_hammer_speeds_m_s": [
+    0.8,
+    1.6
+  ],
+  "mechanics": "Calibrated decay and bar excitation for every candidate; only maximum strike speed differs",
+  "offset_m": 0.00075,
+  "onset_failure_policy": "Reject the entire configuration if any velocity lacks a sustained onset; do not select a partial grid",
+  "scope": "Bounded screen of two existing formulas and previously motivated geometries, not global optimization or physical strike identification",
+  "selection": "Existing robust constraints versus original fixed Calibrated; same mapping freedom for both laws",
+  "short_render_seconds": 0.9,
+  "training_notes": [
+    43,
+    47,
+    50,
+    55,
+    59,
+    64,
+    72
+  ],
+  "velocity_exponent": 1.4
+}
