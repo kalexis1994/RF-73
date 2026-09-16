@@ -4,7 +4,8 @@ use serde_json::{Value, json};
 use std::{cell::RefCell, rc::Rc};
 use wasm_bindgen::{JsCast, prelude::*};
 use web_sys::{
-    Document, Element, Event, HtmlInputElement, HtmlSelectElement, MessageEvent, Window,
+    Document, Element, Event, HtmlElement, HtmlInputElement, HtmlSelectElement, KeyboardEvent,
+    MessageEvent, Window,
 };
 
 struct App {
@@ -15,6 +16,60 @@ struct App {
     client: Client,
 }
 type Shared = Rc<RefCell<App>>;
+
+const SECTIONS: [&str; 4] = ["hammer", "resonator", "pickup", "output"];
+
+fn select_section(document: &Document, selected: usize) -> Result<(), JsValue> {
+    for (index, id) in SECTIONS.iter().enumerate() {
+        let tab = document
+            .get_element_by_id(&format!("tab-{id}"))
+            .expect("section tab");
+        tab.set_attribute(
+            "aria-selected",
+            if index == selected { "true" } else { "false" },
+        )?;
+        tab.set_attribute("tabindex", if index == selected { "0" } else { "-1" })?;
+        let panel = document.get_element_by_id(id).expect("section panel");
+        if index == selected {
+            panel.remove_attribute("hidden")?;
+        } else {
+            panel.set_attribute("hidden", "")?;
+        }
+    }
+    Ok(())
+}
+
+fn section_events(document: &Document) -> Result<(), JsValue> {
+    for (index, id) in SECTIONS.iter().enumerate() {
+        let tab = document
+            .get_element_by_id(&format!("tab-{id}"))
+            .expect("section tab");
+        let page = document.clone();
+        let click = Closure::<dyn FnMut(Event)>::new(move |_| {
+            let _ = select_section(&page, index);
+        });
+        tab.add_event_listener_with_callback("click", click.as_ref().unchecked_ref())?;
+        click.forget();
+        let page = document.clone();
+        let key = Closure::<dyn FnMut(KeyboardEvent)>::new(move |event: KeyboardEvent| {
+            let next = match event.key().as_str() {
+                "ArrowRight" => (index + 1) % SECTIONS.len(),
+                "ArrowLeft" => (index + SECTIONS.len() - 1) % SECTIONS.len(),
+                "Home" => 0,
+                "End" => SECTIONS.len() - 1,
+                _ => return,
+            };
+            event.prevent_default();
+            let _ = select_section(&page, next);
+            if let Some(tab) = page.get_element_by_id(&format!("tab-{}", SECTIONS[next])) {
+                let _ = tab.unchecked_into::<HtmlElement>().focus();
+            }
+        });
+        tab.add_event_listener_with_callback("keydown", key.as_ref().unchecked_ref())?;
+        key.forget();
+    }
+    select_section(document, 0)
+}
 
 /// Sound-page controls: element id, parameter index, displayed decimals, unit.
 const CONTROLS: [(&str, usize, usize, &str); 7] = [
@@ -156,6 +211,7 @@ pub fn start() -> Result<(), JsValue> {
         .document()
         .ok_or_else(|| JsValue::from_str("missing document"))?;
     let origin = window.location().origin()?;
+    section_events(&document)?;
     let app = Rc::new(RefCell::new(App {
         window,
         document,

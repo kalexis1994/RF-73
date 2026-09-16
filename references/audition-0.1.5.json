@@ -1,0 +1,38 @@
+{
+  "version": "0.1.5",
+  "archive": "dist/RF-73-0.1.5.rfplugin",
+  "archive_bytes": 242654,
+  "archive_sha256": "015d9323f31f9390a25d8610efceb796e1fe085e7f941d9a29243057c073cf6b",
+  "audition": {
+    "archive": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\0.1.5-1789560171653964100-3096\\RF-73-0.1.5.rfplugin",
+    "desktop": null,
+    "installed_package": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\RackForgeData\\plugin-store\\packages\\org.rackforge.rhodes\\0.1.5",
+    "log": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\0.1.5-1789560171653964100-3096\\rackforge.log",
+    "pid": null,
+    "plugin_id": "org.rackforge.rhodes",
+    "rackforge_root": "C:\\Users\\Administrator\\source\\repos\\outliersminingsolutions\\RF-73\\dist/audition\\RackForgeData",
+    "schema_version": 1,
+    "status": "installed",
+    "version": "0.1.5"
+  },
+  "prepare_only": true,
+  "validation": {
+    "parameter_roundtrip": "Hammer Hardness changed to 0.6 and retained across tab changes and host polling",
+    "keyboard": "ArrowRight selects and focuses the next tab",
+    "runtime_smoke": "passed",
+    "lighting": [
+      "stage",
+      "day"
+    ],
+    "runtime_peak": 0.159365,
+    "ui_unit_tests": 3,
+    "mobile_scroll_width": 390,
+    "browser_host": "https://kalexis1994.github.io/rackforge/",
+    "wasm_clippy": "passed",
+    "tabs": "All four panels switch without fragment navigation; scrollY stays 0 and desktop panel height stays 330px",
+    "mobile_width": 390,
+    "browser_errors": 0,
+    "installed_version": "0.1.5"
+  },
+  "listening_test_performed": false
+}

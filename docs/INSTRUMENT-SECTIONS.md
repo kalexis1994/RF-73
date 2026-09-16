@@ -29,9 +29,10 @@ values, preset IDs and saved state are unchanged.
 | Pickup | Pickup Distance; Tine Alignment; Pickup Model | Base gap, lateral offset and transfer model. Register Aperture includes the frozen upper-register geometry. |
 | Output | Output Gain | Final gain after shared pickup compensation. No implied amplifier, cabinet, limiter or room simulation. |
 
-The PLAY page uses labelled sections with anchor navigation. This keeps the
-small existing control set visible; nested tabs are unnecessary at eight
-parameters. The native editor presents the same sections as pages. The pickup
+The PLAY page uses four accessible tabs with one visible panel, starting in
+Hammer & Touch. Switching panels does not navigate to a fragment or scroll
+the page. Left/Right arrows, Home and End move between tabs; Tab enters the
+visible controls. The native editor presents the same sections as pages. The pickup
 model choice remains available but is placed after the physical position
 controls. Original preset/state behavior is preserved.
 
@@ -70,10 +71,7 @@ constant.
 This change reorganizes existing controls and clarifies their descriptions.
 It introduces no DSP change and does not claim a new audible improvement.
 
-Validation: all 12 plugin tests pass, including editor preview, save/reload,
-state compatibility and register geometry. HTML checks confirm that all eight
-parameter bindings remain unique, labels and section links resolve, and the
-four sections match metadata. Formatting and plugin Clippy pass. This is a
-source update; the installed 0.1.3 package has not been replaced during the
-active RackForge session. A new packaged version requires the usual audition
-workflow once the host window is closed.
+Version 0.1.5 gives PLAY a brushed-metal nameplate, dark control panel,
+wood-tone side rails and metal faders. Both host lighting modes and narrow
+layouts remain supported. Tab behavior is implemented in Rust alongside the
+existing host protocol; no DSP or state format change is introduced.
