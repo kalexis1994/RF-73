@@ -10,8 +10,8 @@ assuming every measured component is a mechanical mode.
 ## Commands
 
 ```text
-cargo run --locked --release -p rf-73-lab -- validate-envelope --output renders/envelope-validation.json
-cargo run --locked --release -p rf-73-lab -- component-envelope INPUT.wav --output renders/envelope.json --frequency-hz 1426.7578125 --start 0.1 --end 1.5 --window-ms 128 --hop-ms 32
+cargo run --locked --release -p rf-tines-lab -- validate-envelope --output renders/envelope-validation.json
+cargo run --locked --release -p rf-tines-lab -- component-envelope INPUT.wav --output renders/envelope.json --frequency-hz 1426.7578125 --start 0.1 --end 1.5 --window-ms 128 --hop-ms 32
 ```
 
 The second example's frequency and interval are illustrative synthetic values,

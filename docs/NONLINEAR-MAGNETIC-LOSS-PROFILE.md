@@ -7,7 +7,7 @@ Unlike the preceding nonlinear state studies, neither true scale is supplied
 to the inverse. Mass, stiffness, event timing and the production pickup law and
 baseline geometry remain known. The nine-mode physical model is unchanged.
 
-Run `rf-73-lab magnetic-loss-profile --output NEW.json`. Existing outputs are
+Run `rf-tines-lab magnetic-loss-profile --output NEW.json`. Existing outputs are
 protected. The report retains every evaluated loss pair, compact outcomes for
 all state starts, both outer search histories and final held-out validation.
 

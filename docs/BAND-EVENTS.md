@@ -8,7 +8,7 @@ remain conditional observations and must not become natural mechanical losses.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- study-band-events --output renders/band-events.json
+cargo run --locked --release -p rf-tines-lab -- study-band-events --output renders/band-events.json
 ```
 
 The [receipt](../references/band-events-validation.json) uses experiment

@@ -10,7 +10,7 @@ fit the exploratory 1425 Hz reference candidate.
 
 ```powershell
 $env:CARGO_INCREMENTAL = '0'
-cargo run --locked --release -p rf-73-lab -- sweep-tuned-geometry references/g3-pitch-reference-validation.json --output references/g3-fixed-pitch-geometry-validation.json
+cargo run --locked --release -p rf-tines-lab -- sweep-tuned-geometry references/g3-pitch-reference-validation.json --output references/g3-fixed-pitch-geometry-validation.json
 ```
 
 The destination must be a new JSON file. The command revalidates and embeds the

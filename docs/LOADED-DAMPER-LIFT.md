@@ -9,7 +9,7 @@ the damper arm, and the arm spring that throws the felt back, with its
 seating force matched.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-damper-lift --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-damper-lift --output REPORT.json
 ```
 
 The command requires a new JSON output path. A failed numerical qualification

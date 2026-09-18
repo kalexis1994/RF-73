@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: rf73-ci-${{ github.workflow }}-${{ github.ref }}
+  group: rftines-ci-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -28,12 +28,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     defaults:
       run:
-        working-directory: RF-73
+        working-directory: RF-Tines
     steps:
-      - name: Check out RF-73
+      - name: Check out RF-Tines
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          path: RF-73
+          path: RF-Tines
           persist-credentials: false
       - name: Check out the compatible RackForge SDK
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -52,11 +52,11 @@ jobs:
       - name: Check lints
         run: cargo clippy --locked --workspace --all-targets -- -D warnings
       - name: Test production crates
-        run: cargo test --locked -p rf-73-analysis -p rf-73-dsp -p rf-73-plugin -p rf-73-ui
+        run: cargo test --locked -p rf-tines-analysis -p rf-tines-dsp -p rf-tines-plugin -p rf-tines-ui
       - name: Build native workspace
         run: cargo build --locked --release --workspace
       - name: Build portable component
-        run: cargo build --locked --release --target wasm32-unknown-unknown -p rf-73-plugin
+        run: cargo build --locked --release --target wasm32-unknown-unknown -p rf-tines-plugin
 
   laboratory:
     name: Retained physics and Web contracts
@@ -64,12 +64,12 @@ jobs:
     timeout-minutes: 30
     defaults:
       run:
-        working-directory: RF-73
+        working-directory: RF-Tines
     steps:
-      - name: Check out RF-73
+      - name: Check out RF-Tines
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          path: RF-73
+          path: RF-Tines
           persist-credentials: false
       - name: Check out the compatible RackForge SDK
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -81,32 +81,32 @@ jobs:
       - name: Install the pinned Rust toolchain
         run: rustup show
       - name: Test Web surface contracts
-        run: "cargo test --locked -p rf-73-lab --bin rf-73-lab web_ui::"
+        run: "cargo test --locked -p rf-tines-lab --bin rf-tines-lab web_ui::"
       - name: Replay retained tuning reference
-        run: cargo test --locked -p rf-73-lab --bin rf-73-lab transduction::tuning::tests::retained_reference_replays_the_structural_fit_with_portable_precision -- --exact
+        run: cargo test --locked -p rf-tines-lab --bin rf-tines-lab transduction::tuning::tests::retained_reference_replays_the_structural_fit_with_portable_precision -- --exact
       - name: Replay retained action reference
-        run: cargo test --locked -p rf-73-lab --bin rf-73-lab action::regression::generic_action_replays_the_committed_planar_reference_with_portable_precision -- --exact
+        run: cargo test --locked -p rf-tines-lab --bin rf-tines-lab action::regression::generic_action_replays_the_committed_planar_reference_with_portable_precision -- --exact
       - name: Render and inspect a production-engine smoke sample
         shell: bash
         run: |
-          cargo run --locked --release -p rf-73-lab -- render --output renders/ci.wav --seconds 0.2 --hold 0.1
-          cargo run --locked --release -p rf-73-lab -- inspect renders/ci.wav
+          cargo run --locked --release -p rf-tines-lab -- render --output renders/ci.wav --seconds 0.2 --hold 0.1
+          cargo run --locked --release -p rf-tines-lab -- inspect renders/ci.wav
       - name: Measure production integration convergence
-        run: cargo run --locked --release -p rf-73-lab -- converge --output renders/ci-convergence.json --seconds 0.05
+        run: cargo run --locked --release -p rf-tines-lab -- converge --output renders/ci-convergence.json --seconds 0.05
 
   package:
-    name: Validated RF-73 package
+    name: Validated RF-Tines package
     needs: [quality, laboratory]
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     defaults:
       run:
-        working-directory: RF-73
+        working-directory: RF-Tines
     steps:
-      - name: Check out RF-73
+      - name: Check out RF-Tines
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          path: RF-73
+          path: RF-Tines
           persist-credentials: false
       - name: Check out the compatible RackForge host
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -125,14 +125,14 @@ jobs:
         run: cargo install wasm-bindgen-cli --version 0.2.127 --locked
       - name: Build RackForge validators
         run: cargo build --locked --release --manifest-path ../rackforge/Cargo.toml -p rackforge-core -p rackforge-store
-      - name: Build portable RF-73 component
-        run: cargo build --locked --release --target wasm32-unknown-unknown -p rf-73-plugin
-      - name: Build, validate and pack RF-73
-        run: cargo run --locked --release -p rf-73-lab -- package
+      - name: Build portable RF-Tines component
+        run: cargo build --locked --release --target wasm32-unknown-unknown -p rf-tines-plugin
+      - name: Build, validate and pack RF-Tines
+        run: cargo run --locked --release -p rf-tines-lab -- package
       - name: Upload validated package
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: rf-73-${{ github.sha }}
-          path: RF-73/dist/RF-73-*.rfplugin
+          name: rf-tines-${{ github.sha }}
+          path: RF-Tines/dist/RF-Tines-*.rfplugin
           if-no-files-found: error
           compression-level: 0

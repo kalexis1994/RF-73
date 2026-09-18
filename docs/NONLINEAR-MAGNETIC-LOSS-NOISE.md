@@ -7,7 +7,7 @@ is compared with a separate state-only inverse that receives the true losses
 on the identical noisy waveform. That reference comparator runs after the
 unknown-loss selection and cannot influence it.
 
-Run `rf-73-lab magnetic-loss-noise --output NEW.json`. Existing outputs are
+Run `rf-tines-lab magnetic-loss-noise --output NEW.json`. Existing outputs are
 protected. The report retains all loss candidates, inner-start summaries,
 outer histories, failures, start agreement and paired state checks. No audio
 matrix is generated.

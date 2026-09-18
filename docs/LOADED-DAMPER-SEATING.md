@@ -9,7 +9,7 @@ felt contact loss, damper-arm damping and damper-arm mass with the hammer
 already settled.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-damper-seating --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-damper-seating --output REPORT.json
 ```
 
 The command requires a new JSON output path. A failed numerical qualification

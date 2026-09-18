@@ -6,7 +6,7 @@ end of constant-slew travel. This experiment changes the prescribed terminal
 trajectory and retains the existing contact laws and work accounting.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-drive-release --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-drive-release --output REPORT.json
 ```
 
 The command requires a new JSON output path. A failed numerical qualification

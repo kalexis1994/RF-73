@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>RF-73 Program Library</title>
+    <title>RF-Tines Program Library</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="config.css" />
   </head>
@@ -11,9 +11,9 @@
     <main class="config-main">
       <header class="config-header">
         <div>
-          <p class="eyebrow">RF-73 PROGRAM LIBRARY</p>
+          <p class="eyebrow">RF-TINES PROGRAM LIBRARY</p>
           <h1>Programs</h1>
-          <p class="config-intro">Move saved voices between computers with validated <strong>.rf73</strong> files.</p>
+          <p class="config-intro">Move saved voices between computers with validated <strong>.rftines</strong> files.</p>
         </div>
         <p id="connection" class="config-connection" role="status">Connecting to RackForge…</p>
       </header>
@@ -29,7 +29,7 @@
         <div class="config-fields config-fields-single">
           <label>Program<select id="export-source" disabled></select></label>
         </div>
-        <button id="export-button" class="primary" type="button" disabled>DOWNLOAD .RF73</button>
+        <button id="export-button" class="primary" type="button" disabled>DOWNLOAD .RFTINES</button>
       </section>
 
       <section class="program-card" aria-labelledby="import-title">
@@ -37,11 +37,11 @@
           <span class="step">02</span>
           <div>
             <h2 id="import-title">Import a program</h2>
-            <p>RF-73 checks the file, checksum, plugin identity, version and every parameter before saving it.</p>
+            <p>RF-Tines checks the file, checksum, plugin identity, version and every parameter before saving it.</p>
           </div>
         </div>
-        <input id="import-file" type="file" accept=".rf73,application/json" hidden />
-        <button id="import-button" class="primary" type="button" disabled>CHOOSE .RF73 FILE</button>
+        <input id="import-file" type="file" accept=".rftines,application/json" hidden />
+        <button id="import-button" class="primary" type="button" disabled>CHOOSE .RFTINES FILE</button>
         <p class="safety-note">Imports always create a new user program. Existing programs are never silently replaced.</p>
       </section>
 

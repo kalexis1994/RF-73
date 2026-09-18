@@ -6,7 +6,7 @@ tests which action/contact controls move the onset of impact and measures
 energy transfer independently of the existing whole-system ledger.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-strike-threshold --output references/loaded-strike-threshold-validation.json
+cargo run --locked --release -p rf-tines-lab -- loaded-strike-threshold --output references/loaded-strike-threshold-validation.json
 ```
 
 ## Frozen experiment

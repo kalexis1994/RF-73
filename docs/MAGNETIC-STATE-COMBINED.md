@@ -7,7 +7,7 @@ can hide sensor mismatch while changing the inferred mechanical state.
 Mechanical losses, longitudinal pickup/damper positions and event timing remain
 known. Only the continuous initial state is fitted.
 
-Run `rf-73-lab magnetic-state-combined --output NEW.json`. The output must be a
+Run `rf-tines-lab magnetic-state-combined --output NEW.json`. The output must be a
 new JSON file. Full sample histories are not stored; compact results retain all
 three starts, failed fits, unsupported geometry and explicit paired references.
 

@@ -6,7 +6,7 @@ because one spectrum cannot describe all layers. This experiment asks whether
 one physical voicing can describe different attacks when the drive speed varies.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-dynamics references/g3-pitch-reference.manifest.json --output references/loaded-dynamics-validation.json
+cargo run --locked --release -p rf-tines-lab -- loaded-dynamics references/g3-pitch-reference.manifest.json --output references/loaded-dynamics-validation.json
 ```
 
 ## Frozen training and reserved protocol

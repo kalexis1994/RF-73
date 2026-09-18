@@ -8,7 +8,7 @@ those assumptions, not identification of unknown losses from recorded audio.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- pickup-state --output renders/dynamic-pickup-state.json
+cargo run --locked --release -p rf-tines-lab -- pickup-state --output renders/dynamic-pickup-state.json
 ```
 
 The [receipt](../references/dynamic-pickup-state-validation.json) contains 108

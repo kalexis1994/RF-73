@@ -9,7 +9,7 @@ that those coordinates can already be extracted from recorded audio.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- reduced-mechanical-loss --output renders/reduced-mechanical-loss.json
+cargo run --locked --release -p rf-tines-lab -- reduced-mechanical-loss --output renders/reduced-mechanical-loss.json
 ```
 
 The [receipt](../references/reduced-mechanical-loss-validation.json), experiment

@@ -130,7 +130,7 @@ off-axis excitation.
 ## Validation and reproduction
 
 ```text
-cargo run --locked --release -p rf-73-lab -- polarized-action --output NEW.json
+cargo run --locked --release -p rf-tines-lab -- polarized-action --output NEW.json
 ```
 
 The [retained receipt](../references/polarized-action-validation.json) passes

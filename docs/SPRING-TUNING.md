@@ -21,7 +21,7 @@ both frequencies and their ratios, plus the spatial weights that couple hammer
 and pickup to each mode. Root/tonebar coupling and magnetic conversion further
 separate mechanical resonances from observed audio partials.
 
-RF-73 currently represents the spring as a 0.1 g point mass on a uniform beam.
+RF-Tines currently represents the spring as a 0.1 g point mass on a uniform beam.
 Reported millimeters locate this surrogate mass center from the fixed root;
 they are not measured coil edges or a calibrated service recommendation. Coil
 width, rotary inertia, local stiffening and real tine taper remain unmodeled.
@@ -37,7 +37,7 @@ The search is restricted to centers 35..59.5 mm from the root and starts at
 
 ```powershell
 $env:CARGO_INCREMENTAL = '0'
-cargo run --locked --release -p rf-73-lab -- tune-modal-pitch references/g3-pitch-reference-validation.json --output renders/g3-spring-tuned.wav
+cargo run --locked --release -p rf-tines-lab -- tune-modal-pitch references/g3-pitch-reference-validation.json --output renders/g3-spring-tuned.wav
 ```
 
 The output paths must be new. This writes the tuned WAV, a `-before.wav` sibling,

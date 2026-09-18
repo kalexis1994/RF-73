@@ -1,4 +1,4 @@
-# RF-73 player panel and programs
+# RF-Tines player panel and programs
 
 Research date: 2026-09-16. Original design proposal; see the implementation update below.
 
@@ -8,7 +8,7 @@ The player panel now switches between Stage (Volume, Bass Boost) and Suitcase
 (Volume, Bass, Treble, Vibrato On/Off, Speed, Intensity). Programs follow the
 user-requested instrument-family and era direction: early-1970s Stage,
 mid-1970s Suitcase, late-1970s Stage/Suitcase and 1980s Stage. Each changes
-physical-model parameters as well as electronics. These are original RF-73
+physical-model parameters as well as electronics. These are original RF-Tines
 approximations, not measured replicas of individual instruments. The earlier
 musical-character program proposal below is superseded.
 
@@ -20,7 +20,7 @@ instruments is still needed; automated DSP checks do not establish fidelity.
 
 Use a Suitcase-inspired **Instrument** page as the default player surface.
 Separate player electronics, internal voicing and controller setup. A program
-is a complete RF-73 sound configuration, not a claim that another historical
+is a complete RF-Tines sound configuration, not a claim that another historical
 piano has been modeled. Preserve the current visual language: brushed metal,
 dark instrument case, amber markings and restrained wood accents.
 
@@ -76,7 +76,7 @@ invent an independent control that disagrees with MIDI.
 
 ### Initial Instrument controls
 
-These ranges are RF-73 engineering proposals, not measured vintage circuit
+These ranges are RF-Tines engineering proposals, not measured vintage circuit
 specifications. Circuit emulation would require schematic analysis and response
 validation beyond this control-layout research.
 
@@ -158,7 +158,7 @@ No horizontal document overflow or invisible program-selection feedback.
 
 ## Integration and delivery order
 
-Local review: `crates/rf-73-plugin/src/settings.rs` defines eight parameters
+Local review: `crates/rf-tines-plugin/src/settings.rs` defines eight parameters
 and five presets. The UI client currently supports parameter fetch/set only.
 Concert Grand loads factory voices through `plugin.select_sound` with a
 `sound_id`, documented in RackForge's `docs/WEB_PLUGIN_API.md`.

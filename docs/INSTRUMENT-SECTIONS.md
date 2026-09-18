@@ -1,14 +1,14 @@
-# RF-73 instrument sections
+# RF-Tines instrument sections
 
 ## Reference: RF Concert Grand
 
 Reviewed RackForge's `plugins/concert-grand`: the PLAY surface, parameter
 metadata and model controls in `src/lib.rs`. Concert Grand separates everyday
 voicing from Room & Microphones, Action & Noises, laboratory controls and
-individual model subsystems. RF-73 adopts the subsystem organization while
+individual model subsystems. RF-Tines adopts the subsystem organization while
 keeping its controls tied to the implemented electric-piano model.
 
-The relevant RF-73 signal path is:
+The relevant RF-Tines signal path is:
 
 ```text
 MIDI touch -> hammer contact -> tine / tonebar motion -> magnetic pickup -> output
@@ -62,7 +62,7 @@ belong in research tools, not in the instrument's playing interface.
 ## Why not copy the piano pages directly?
 
 Concert Grand's strings, unison, soundboard and microphone controls correspond
-to its model. RF-73 currently models a struck resonator read by a magnetic
+to its model. RF-Tines currently models a struck resonator read by a magnetic
 pickup; the matching user concepts are hammer contact, resonator behavior,
 pickup placement and electrical output. A microphone or room section would
 require an actual amplifier/acoustic output stage rather than a renamed DSP
@@ -114,7 +114,7 @@ accommodate the expanded editor and ten factory plus eight custom programs.
 Low/high tone shaping uses first-order complementary shelves at 200/2500 Hz,
 with -12..12 dB nominal gain settings. Stage Bass Boost blends a 200 Hz high-pass
 response toward flat: fully clockwise restores bass. Frequencies, tapers and
-ranges are RF-73 design choices, not historical measurements. Tone gains,
+ranges are RF-Tines design choices, not historical measurements. Tone gains,
 mode, modulation depth and speed settle with 10 ms exponential smoothing.
 
 Suitcase Vibrato is sinusoidal, complementary amplitude modulation. Each
@@ -171,7 +171,7 @@ migration keeps its original neutral-electronics defaults.
 
 ## 0.1.10 portable program files
 
-The CONFIG surface exports and imports `.rf73` files. Schema 1 wraps one
+The CONFIG surface exports and imports `.rftines` files. Schema 1 wraps one
 RackForge program document with a canonical SHA-256 checksum. Imports are
 limited to 32 KiB, reject unknown fields, foreign plugin IDs, unsupported state
 versions and out-of-range parameters, then pass through the plugin's existing
@@ -194,9 +194,9 @@ is ready. Desktop controls, spacing and headings are denser, while layouts at
 ## 0.1.12 local program workflow
 
 CONFIG separates library persistence from file transport. Save current controls
-creates a named program in RF-73's private host storage. Export only downloads
+creates a named program in RF-Tines's private host storage. Export only downloads
 an existing factory or user program, preserving its program name and identity.
-Import validates a `.rf73` file and allocates a new local user-program identity,
+Import validates a `.rftines` file and allocates a new local user-program identity,
 so it never replaces an existing program. Portable names allow Unicode while
 rejecting control and formatting characters.
 
@@ -204,9 +204,9 @@ rejecting control and formatting characters.
 
 PLAY owns creation of local user programs because it is where controls are
 edited and auditioned. `SAVE AS` opens a naming dialog, waits until the host
-parameters match every displayed control, saves a new program in RF-73's
+parameters match every displayed control, saves a new program in RF-Tines's
 private library and selects it. CONFIG now focuses on exporting saved factory
-or user programs and importing `.rf73` files as new local programs.
+or user programs and importing `.rftines` files as new local programs.
 
 Pitch Bend remains a performance gesture instead of a saved semantic
 parameter. MIDI 1.0's full 14-bit wheel and MIDI 2.0's 32-bit value now retune

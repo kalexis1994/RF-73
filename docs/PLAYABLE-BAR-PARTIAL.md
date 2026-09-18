@@ -11,9 +11,9 @@ partial fifteen times more softly, and a correction to two earlier
 readings. The default profile is unchanged.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- render --output g3.wav --note 55 --velocity 0.6 --sample-rate 44100 --seconds 3 --hold 2.5 --pickup 3 --sustain calibrated --bar-strike -0.02
-cargo run --locked --release -p rf-73-lab -- render --output g3-trace.wav --note 55 --velocity 0.25 --sample-rate 192000 --seconds 0.05 --hold 0.04 --trace --contact-stiffness 4e8
-cargo run --locked --release -p rf-73-lab -- compare-partials LAYER.wav g3.wav --output attack.json --seconds 1 --reference-start 0.02 --candidate-start 0.02 --partial-window-ms 128
+cargo run --locked --release -p rf-tines-lab -- render --output g3.wav --note 55 --velocity 0.6 --sample-rate 44100 --seconds 3 --hold 2.5 --pickup 3 --sustain calibrated --bar-strike -0.02
+cargo run --locked --release -p rf-tines-lab -- render --output g3-trace.wav --note 55 --velocity 0.25 --sample-rate 192000 --seconds 0.05 --hold 0.04 --trace --contact-stiffness 4e8
+cargo run --locked --release -p rf-tines-lab -- compare-partials LAYER.wav g3.wav --output attack.json --seconds 1 --reference-start 0.02 --candidate-start 0.02 --partial-window-ms 128
 ```
 
 ## Three arguments that the line is a harmonic

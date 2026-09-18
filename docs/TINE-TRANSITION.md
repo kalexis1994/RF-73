@@ -65,7 +65,7 @@ using the single-mass hammer. Memory-hammer audio needs separate qualification.
 ## Fixed-pitch experiment
 
 ```text
-cargo run --locked --release -p rf-73-lab -- sweep-tine-transition references/g3-pitch-reference-validation.json --output renders/g3-tine-transition.json
+cargo run --locked --release -p rf-tines-lab -- sweep-tine-transition references/g3-pitch-reference-validation.json --output renders/g3-tine-transition.json
 ```
 
 The output must be a new JSON file. Four cases use `q=1/0.5/0.25/0.137` at

@@ -9,7 +9,7 @@ calibration from recordings or a claim of measured material properties.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- mechanical-loss --output renders/mechanical-loss.json
+cargo run --locked --release -p rf-tines-lab -- mechanical-loss --output renders/mechanical-loss.json
 ```
 
 The [receipt](../references/mechanical-loss-validation.json), experiment

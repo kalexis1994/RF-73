@@ -1,7 +1,7 @@
-import { validateProgram } from "./rf73-format.mjs";
+import { validateProgram } from "./rftines-format.mjs";
 
 const PROTOCOL = "rackforge.plugin.web@1";
-const PLUGIN_ID = "org.rackforge.rhodes";
+const PLUGIN_ID = "org.rackforge.rftines";
 const REQUEST_TIMEOUT_MS = 10_000;
 const SETTLE_TIMEOUT_MS = 10_000;
 const openButton = document.querySelector("#save-program-open");
@@ -40,7 +40,7 @@ function render() {
 }
 
 function call(method, params = {}) {
-  const requestId = `rf73-play-program-${++requestSerial}`;
+  const requestId = `rftines-play-program-${++requestSerial}`;
   return new Promise((resolve, reject) => {
     const timer = window.setTimeout(() => {
       requests.delete(requestId);
@@ -85,7 +85,7 @@ function displayedParameters() {
     const value = Number(control.value);
     if (Number.isInteger(index) && Number.isFinite(value)) values.set(index, value);
   }
-  if (values.size !== 15) throw new Error("The RF-73 controls are not ready yet.");
+  if (values.size !== 15) throw new Error("The RF-Tines controls are not ready yet.");
   return values;
 }
 
@@ -165,7 +165,7 @@ async function saveProgram() {
     }
     nameInput.value = "";
     dialogStatus.textContent = "";
-    feedback.textContent = `${programName} saved in your RF-73 library.`;
+    feedback.textContent = `${programName} saved in your RF-Tines library.`;
     dialog.close();
   } catch (cause) {
     if (draftId !== null) await cancelDraft(draftId);

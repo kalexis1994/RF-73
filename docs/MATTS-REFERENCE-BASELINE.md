@@ -73,7 +73,7 @@ The root locked build currently encounters an SDK dependency-resolution mismatch
 against the local RackForge checkout. The standalone
 [runner manifest](../references/matts-reference-runner/Cargo.toml) and its lock
 file build only the existing DSP/analysis crates and the laboratory example,
-without modifying the root Cargo.lock. From the RF-73 workspace in PowerShell:
+without modifying the root Cargo.lock. From the RF-Tines workspace in PowerShell:
 
 ```powershell
 $env:CARGO_INCREMENTAL = '0'

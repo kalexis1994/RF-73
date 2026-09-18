@@ -5,7 +5,7 @@ under fixed additive noise and incorrect assumed magnetic geometry or field law.
 Mechanical losses, longitudinal pickup/damper positions and event timing remain
 known. This is still an initial-state experiment, not a loss calibration.
 
-Run `rf-73-lab magnetic-state-robustness --output NEW.json`. Existing outputs
+Run `rf-tines-lab magnetic-state-robustness --output NEW.json`. Existing outputs
 are protected. The report retains every condition, failed fits and compact
 outcomes for all three starts; complete optimizer trial histories are not
 duplicated in this larger matrix.

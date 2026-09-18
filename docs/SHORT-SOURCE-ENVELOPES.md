@@ -8,7 +8,7 @@ measurement of the instrument's mechanical damping.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- observe-short-source-envelopes references/short-source-envelope.manifest.json --output renders/short-source-envelope.json
+cargo run --locked --release -p rf-tines-lab -- observe-short-source-envelopes references/short-source-envelope.manifest.json --output renders/short-source-envelope.json
 ```
 
 The [manifest](../references/short-source-envelope.manifest.json) was written

@@ -1,6 +1,6 @@
-# Releasing RF-73
+# Releasing RF-Tines
 
-RF-73 releases are built from an annotated or lightweight Git tag whose name
+RF-Tines releases are built from an annotated or lightweight Git tag whose name
 matches the workspace version exactly. Pushing `v0.1.14`, for example, can only
 publish a package whose Cargo and RackForge manifests both declare `0.1.14`.
 
@@ -14,7 +14,7 @@ Before tagging a version:
    crate suites, Web surface contracts and the retained action and tuning
    replays. Long exploratory laboratory matrices remain explicit research runs;
    they are not duplicated in every release build.
-3. Build the portable component and run `rf-73-lab package`. This command uses
+3. Build the portable component and run `rf-tines-lab package`. This command uses
    RackForge's own inspector, runtime smoke test and store packer.
 4. Install the resulting package in the browser and Desktop audition libraries
    and retain the validation receipt for the tested version.
@@ -26,8 +26,8 @@ workflows. Local release preparation uses:
 
 ```text
 cargo build --locked --release --manifest-path ../rackforge/Cargo.toml -p rackforge-core -p rackforge-store
-cargo build --locked --release --target wasm32-unknown-unknown -p rf-73-plugin
-cargo run --locked --release -p rf-73-lab -- package
+cargo build --locked --release --target wasm32-unknown-unknown -p rf-tines-plugin
+cargo run --locked --release -p rf-tines-lab -- package
 ```
 
 ## Publishing
@@ -35,7 +35,7 @@ cargo run --locked --release -p rf-73-lab -- package
 Create and push the matching tag only after the release commit is on `main`:
 
 ```text
-git tag -a v0.1.14 -m "RF-73 0.1.14"
+git tag -a v0.1.14 -m "RF-Tines 0.1.14"
 git push origin v0.1.14
 ```
 
@@ -46,7 +46,7 @@ GitHub release only after every previous step succeeds. The workflow never
 publishes from a branch or from a tag that disagrees with the source version.
 
 Each release carries both the versioned archive and the stable
-`RF-73.rfplugin` asset. RackForge pins the stable asset URL together with the
+`RF-Tines.rfplugin` asset. RackForge pins the stable asset URL together with the
 declared plugin version and SHA-256, so future pin updates do not depend on a
 version embedded in the asset name.
 

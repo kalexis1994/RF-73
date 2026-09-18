@@ -9,8 +9,8 @@ It does not yet identify source modes or calibrate physical damping.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- validate-short-envelope --output renders/short-envelope-validation.json
-cargo run --locked --release -p rf-73-lab -- short-envelope INPUT.wav --output renders/short-envelope.json --frequencies-hz 1620,1568 --start 0.02 --end 0.18 --window-ms 32 --hop-ms 8
+cargo run --locked --release -p rf-tines-lab -- validate-short-envelope --output renders/short-envelope-validation.json
+cargo run --locked --release -p rf-tines-lab -- short-envelope INPUT.wav --output renders/short-envelope.json --frequencies-hz 1620,1568 --start 0.02 --end 0.18 --window-ms 32 --hop-ms 8
 ```
 
 These frequencies and times are synthetic examples. The first carrier is the

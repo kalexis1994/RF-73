@@ -9,7 +9,7 @@ pedestal height becomes a monotone map of key position that stops rising at
 the let-off point while the key continues into aftertouch.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-letoff --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-letoff --output REPORT.json
 ```
 
 The command requires a new JSON output path. A failed numerical qualification

@@ -9,7 +9,7 @@ blob `72ef1d0838548765e3955eaf673da4ed82ad0494` and SHA-256
 The earlier relative-window diagnostic retains its own command and source.
 
 ```powershell
-cargo run --locked --release -p rf-73-lab -- magnetic-weighted-loss-resolution --input references/nonlinear-magnetic-loss-weighting-validation.json --output references/nonlinear-magnetic-weighted-loss-resolution-validation.json
+cargo run --locked --release -p rf-tines-lab -- magnetic-weighted-loss-resolution --input references/nonlinear-magnetic-loss-weighting-validation.json --output references/nonlinear-magnetic-weighted-loss-resolution-validation.json
 ```
 
 Read only schema/weighting, rate, noise condition, estimated loss scales,

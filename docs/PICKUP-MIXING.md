@@ -9,7 +9,7 @@ recorded spectral family or select a new physical profile.
 ## Reproduce and scope
 
 ```text
-cargo run --locked --release -p rf-73-lab -- pickup-mixing --output renders/pickup-mixing.json
+cargo run --locked --release -p rf-tines-lab -- pickup-mixing --output renders/pickup-mixing.json
 ```
 
 The output must be a new JSON file. The retained receipt is

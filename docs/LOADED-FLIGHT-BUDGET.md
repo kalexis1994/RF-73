@@ -8,7 +8,7 @@ damper-arm terms, and varies the provisional hammer mass and the
 bridle/damper-arm load one factor at a time under the sharp let-off.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-flight-budget --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-flight-budget --output REPORT.json
 ```
 
 The command requires a new JSON output path. A failed numerical qualification

@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["crates/rf-73-dsp", "crates/rf-73-plugin", "crates/rf-73-analysis", "crates/rf-73-ui", "tools/rf-73-lab"]
+members = ["crates/rf-tines-dsp", "crates/rf-tines-plugin", "crates/rf-tines-analysis", "crates/rf-tines-ui", "tools/rf-tines-lab"]
 
 [workspace.package]
 version = "0.1.14"
@@ -9,8 +9,8 @@ rust-version = "1.98"
 publish = false
 
 [workspace.dependencies]
-rf-73-dsp = { path = "crates/rf-73-dsp" }
-rf-73-analysis = { path = "crates/rf-73-analysis" }
+rf-tines-dsp = { path = "crates/rf-tines-dsp" }
+rf-tines-analysis = { path = "crates/rf-tines-analysis" }
 hound = "3.5"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"

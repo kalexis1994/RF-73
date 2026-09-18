@@ -76,7 +76,7 @@ and dissipation. This is not finite-taper memory-hammer audio qualification.
 ## Frozen-pitch protocol
 
 ```text
-cargo run --locked --release -p rf-73-lab -- sweep-tine-taper references/g3-pitch-reference-validation.json --output renders/g3-tine-taper.json
+cargo run --locked --release -p rf-tines-lab -- sweep-tine-taper references/g3-pitch-reference-validation.json --output renders/g3-tine-taper.json
 ```
 
 The output must not exist. Four fixed ratios, 0.90/0.95/1/1.05, use the same

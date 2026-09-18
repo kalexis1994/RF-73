@@ -2,7 +2,7 @@
 
 Historical results are retained below. The latest local results are in the component comparison section at the end.
 
-Date: 2026-09-04. RF-73 0.1.0 research prototype.
+Date: 2026-09-04. RF-Tines 0.1.0 research prototype.
 
 Environment: Windows, AMD Ryzen 5 5600X, Rust 1.98.0, Windows GNU toolchain. RackForge source revision `7c17bd4a480d1c0bd7fa18fa4d880e82429dffe1`; its host tools were rebuilt before integration validation.
 
@@ -44,7 +44,7 @@ The archive was produced after host validation. Its physical model is unchanged 
 
 Real-instrument timbral fidelity, measured hammer material response, high-order assembly modes, spectral convergence/aliasing bounds, browser execution, Android/Pi timing, actual audio-device latency and long-duration soak behavior.
 
-The initial commit passed hosted CI on Windows and Linux: [run 33915204770](https://github.com/kalexis1994/RF-73/actions/runs/33915204770).
+The initial commit passed hosted CI on Windows and Linux: [run 33915204770](https://github.com/kalexis1994/RF-Tines/actions/runs/33915204770).
 
 ## Offline analysis milestone
 
@@ -105,8 +105,8 @@ All six reports have zero dropped track observations. Minimum separation is repo
 Reproduce one case with fresh output names:
 
 ```text
-cargo run --locked --release -p rf-73-lab -- render --output renders/tracking-a3.wav --note 57 --velocity 0.9 --seconds 3 --hold 2.5
-cargo run --locked --release -p rf-73-lab -- analyze renders/tracking-a3.wav --output renders/tracking-a3-analysis.json --note 57 --sustain-end 2.4
+cargo run --locked --release -p rf-tines-lab -- render --output renders/tracking-a3.wav --note 57 --velocity 0.9 --seconds 3 --hold 2.5
+cargo run --locked --release -p rf-tines-lab -- analyze renders/tracking-a3.wav --output renders/tracking-a3-analysis.json --note 57 --sustain-end 2.4
 ```
 
 This validates the new measurement path against known signals and current model output. Untreated reference recordings, physical parameter identification and an audible realism improvement remain the next experiment.
@@ -1714,7 +1714,7 @@ the higher families. No cross-window rate is accepted and no loss is calibrated.
 The original long source receipt is byte-identical, SHA-256
 `fbf55a24583080668c55dae63c9cd8733cf66c1ab7f01d326fae0b50b9dccf4d`.
 
-All 159 release tests in `rf-73-analysis` and `rf-73-lab` pass, including the
+All 159 release tests in `rf-tines-analysis` and `rf-tines-lab` pass, including the
 existing 18-case short synthetic study. Three new unit tests check deterministic
 nuisance selection, unsupported/duplicate carriers, reliability failures,
 separate strict manifest support, and withholding on cross-window failure.
@@ -1755,7 +1755,7 @@ already-declared paired source criterion yields the intended outcome for all
 or establish event detection for other timings. No failed expectation, waveform
 or gate was changed to make the study pass.
 
-All 163 release tests in `rf-73-analysis` and `rf-73-lab` pass. Three added unit
+All 163 release tests in `rf-tines-analysis` and `rf-tines-lab` pass. Three added unit
 tests cover FIR response, exact exponential convolution and absolute crop phase,
 real-data halo/clipping protection, invalid support and bounded work. The CLI
 regression explicitly expects the failed study, checks the three retained onset

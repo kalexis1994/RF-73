@@ -82,7 +82,7 @@ command does not mean the instrument matches the recordings.
 ## Commands and storage
 
 ```text
-cargo run --locked --release -p rf-73-lab -- compare-loaded-bank references/g3-pitch-reference.manifest.json --output references/NEW.json --preview renders/NEW.wav --striking
+cargo run --locked --release -p rf-tines-lab -- compare-loaded-bank references/g3-pitch-reference.manifest.json --output references/NEW.json --preview renders/NEW.wav --striking
 ```
 
 Only the 1.125 m/s fine WAV is optionally written. Other waveforms remain in

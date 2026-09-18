@@ -7,7 +7,7 @@ geometry, pickup, gain or upper-mode losses. It selects a candidate from trainin
 layers and evaluates reserved layers only after selection.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- calibrate-loaded-loss references/g3-pitch-reference.manifest.json --output references/loaded-loss-calibration-qualified-validation.json --preview renders/loaded-loss-calibrated.wav --qualified-grid
+cargo run --locked --release -p rf-tines-lab -- calibrate-loaded-loss references/g3-pitch-reference.manifest.json --output references/loaded-loss-calibration-qualified-validation.json --preview renders/loaded-loss-calibrated.wav --qualified-grid
 ```
 
 ## Frozen selection and qualification

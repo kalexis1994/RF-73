@@ -36,7 +36,7 @@ without exposing a reset that could discard a ringing instrument's history.
 ## Idle control experiment
 
 ```text
-cargo run --locked --release -p rf-73-lab -- stationary-rest --output references/stationary-rest-validation.json
+cargo run --locked --release -p rf-tines-lab -- stationary-rest --output references/stationary-rest-validation.json
 ```
 
 The retained receipt covers 70 mm at 48 kHz and 120 mm at 96 kHz, each with felt
@@ -62,7 +62,7 @@ free return/support profiles, time-step independence, and atomic failure.
 ## Source comparison from rest
 
 ```text
-cargo run --locked --release -p rf-73-lab -- compare-loaded-bank references/g3-pitch-reference.manifest.json --output references/loaded-source-rest-validation.json --preview renders/loaded-bank-rest-soft.wav --striking --at-rest
+cargo run --locked --release -p rf-tines-lab -- compare-loaded-bank references/g3-pitch-reference.manifest.json --output references/loaded-source-rest-validation.json --preview renders/loaded-bank-rest-soft.wav --striking --at-rest
 ```
 
 The explicit flag changes only initialization. It retains the pinned sources,

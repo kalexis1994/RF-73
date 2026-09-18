@@ -6,7 +6,7 @@ separates that transfer into bridle storage/heat and arm motion, then checks
 whether changes still lift the felt and return after key release.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-bridle --output references/loaded-bridle-validation.json
+cargo run --locked --release -p rf-tines-lab -- loaded-bridle --output references/loaded-bridle-validation.json
 ```
 
 ## Frozen controls and gesture

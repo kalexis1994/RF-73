@@ -10,7 +10,7 @@ independent mechanical resonances.
 ## Reproduction and provenance
 
 ```text
-cargo run --locked --release -p rf-73-lab -- observe-families references/g3-spectral-families.manifest.json --output renders/g3-spectral-families.json
+cargo run --locked --release -p rf-tines-lab -- observe-families references/g3-spectral-families.manifest.json --output renders/g3-spectral-families.json
 ```
 
 The strict [manifest](../references/g3-spectral-families.manifest.json) includes

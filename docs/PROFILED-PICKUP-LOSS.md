@@ -9,7 +9,7 @@ the processed reference bank.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- pickup-loss --output renders/profiled-pickup-loss.json
+cargo run --locked --release -p rf-tines-lab -- pickup-loss --output renders/profiled-pickup-loss.json
 ```
 
 The [receipt](../references/profiled-pickup-loss-validation.json) contains six

@@ -9,7 +9,7 @@ estimates within 1% of truth, which remains 54.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- pickup-loss-continuity --output renders/continuous-pickup-loss.json
+cargo run --locked --release -p rf-tines-lab -- pickup-loss-continuity --output renders/continuous-pickup-loss.json
 ```
 
 The [receipt](../references/continuous-pickup-loss-validation.json) contains all
