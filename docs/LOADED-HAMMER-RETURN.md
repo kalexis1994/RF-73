@@ -6,7 +6,7 @@ experiment extends the same key gesture through 800 ms and distinguishes
 free hammer motion, pedestal contacts and the effect of two loss controls.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-hammer-return --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-hammer-return --output REPORT.json
 ```
 
 The output must be a new JSON path. Numerical failure retains a report and

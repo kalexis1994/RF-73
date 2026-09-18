@@ -96,7 +96,7 @@ qualification is case-specific and is not a realtime CPU or aliasing guarantee.
 
 ## Reproduction
 
-From the RF-73 workspace in PowerShell; output directories must be new:
+From the RF-Tines workspace in PowerShell; output directories must be new:
 
 ```powershell
 $env:CARGO_INCREMENTAL = '0'

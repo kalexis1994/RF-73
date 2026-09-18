@@ -8,7 +8,7 @@ recorded harmonic balance from a sinusoidal tine motion, at which geometry,
 and at which amplitude, with no mechanics, circuit or audio involved.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- pickup-harmonics --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- pickup-harmonics --output REPORT.json
 ```
 
 The command writes one JSON receipt at a new path. It adopts nothing.

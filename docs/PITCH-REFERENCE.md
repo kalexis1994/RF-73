@@ -5,7 +5,7 @@ frequency-only target from the acquired G3 recordings. It does not infer physica
 geometry, modal damping, hammer speed or pickup gain from processed audio.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- prepare-pitch-reference references/g3-pitch-reference.manifest.json --output renders/g3-pitch-target.json
+cargo run --locked --release -p rf-tines-lab -- prepare-pitch-reference references/g3-pitch-reference.manifest.json --output renders/g3-pitch-target.json
 ```
 
 The [manifest](../references/g3-pitch-reference.manifest.json) pins the five
@@ -79,8 +79,8 @@ participate in fitting or reference qualification, and its mismatch does not
 make the source target invalid. Reproduce it with:
 
 ```text
-cargo run --locked --release -p rf-73-lab -- render-memory-modal --output renders/pitch-reference-default-75mm.wav --seconds 2 --hold 1.85
-cargo run --locked --release -p rf-73-lab -- prepare-pitch-reference references/g3-pitch-reference.manifest.json --output renders/g3-pitch-target-with-candidate.json --candidate renders/pitch-reference-default-75mm.wav
+cargo run --locked --release -p rf-tines-lab -- render-memory-modal --output renders/pitch-reference-default-75mm.wav --seconds 2 --hold 1.85
+cargo run --locked --release -p rf-tines-lab -- prepare-pitch-reference references/g3-pitch-reference.manifest.json --output renders/g3-pitch-target-with-candidate.json --candidate renders/pitch-reference-default-75mm.wav
 ```
 
 The retained local WAV/report use the first path above. Fresh reproduction

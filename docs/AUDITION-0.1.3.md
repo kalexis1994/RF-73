@@ -1,4 +1,4 @@
-# RF-73 0.1.3 audition
+# RF-Tines 0.1.3 audition
 
 Select **Calibrated Register** to try the frozen upper-register geometry.
 Compare it with **Calibrated** at the same output gain and MIDI performance.
@@ -29,7 +29,7 @@ The workspace and package versions are 0.1.3. Cargo.lock now resolves the
 installed sibling RackForge SDK/program API 0.1.20, correcting the earlier
 local lock mismatch. The reference runner lock follows the workspace version.
 
-Use the standard `cargo run --locked --release -p rf-73-lab -- audition` flow.
+Use the standard `cargo run --locked --release -p rf-tines-lab -- audition` flow.
 Build/package/install receipts and startup logs are under `dist/audition/`.
 Startup and automated smoke validation do not establish an audible preference;
 that is the purpose of this audition.

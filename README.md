@@ -1,4 +1,4 @@
-# RF-73
+# RF-Tines
 
 [Project naming and compatibility](docs/RENAMING.md).
 
@@ -6,10 +6,13 @@ A Rust physical-model electric piano for RackForge.
 
 The first working prototype includes a nonlinear hammer-contact solver, a three-mode resonator per key, a geometry-dependent magnetic pickup, sustain and sample-accurate MIDI. It renders audio offline and compiles to a portable RackForge WASM plugin.
 
-Version 0.1.14 packages the playable instrument with its RF-73 visual identity,
-five era-inspired factory programs, responsive PLAY and CONFIG surfaces, local
-program saving, portable `.rf73` files and channel-aware MIDI pitch bend. The
-physical profile remains provisional while the reference fit continues.
+Version 0.1.14 packages the playable instrument with catalog artwork, five
+era-inspired factory programs, responsive PLAY and CONFIG surfaces, local
+program saving, portable `.rftines` files and channel-aware MIDI pitch bend. It
+also carries the [rename to RF-Tines](docs/RENAMING.md), which changes the
+plugin identity and the portable program format without compatibility shims.
+The physical profile remains provisional while the reference fit continues, and
+the packaged artwork still shows the previous RF 73 wordmark.
 
 The offline [coupled assembly experiment](docs/COUPLED-ASSEMBLY.md) now models a tine, tonebar and compliant common support with reciprocal forces, nonlinear hammer contact and a complete energy ledger. Its parameters remain provisional; high-resolution validation precedes plugin integration.
 
@@ -192,7 +195,7 @@ out to govern both the soft threshold and the damping onset: a lower ratio
 halves the flight toll, and extra slack seats the felt in time for the next
 gesture.
 
-**RF-73 is an independent physical-model electric piano and is not affiliated
+**RF-Tines is an independent physical-model electric piano and is not affiliated
 with or endorsed by any historical instrument manufacturer.** Reference
 recordings inform development and are never included in the plugin. The model
 is suitable for beta release and listening evaluation; its physical parameters
@@ -203,31 +206,31 @@ remain provisional rather than measurements of one specific instrument.
 To build, validate, install and open the current instrument in RackForge Desktop on Windows:
 
 ```text
-cargo run --locked --release -p rf-73-lab -- audition
+cargo run --locked --release -p rf-tines-lab -- audition
 ```
 
 The [audition workflow](docs/AUDITION.md) keeps a dedicated test library, retains audio/MIDI preferences and supports repeated builds of the same version.
 
 ```text
 cargo test --locked --workspace
-cargo run --release -p rf-73-lab -- demo --output renders/demo.wav
-cargo run --release -p rf-73-lab -- render --output renders/a3.wav --trace
-cargo run --release -p rf-73-lab -- inspect renders/demo.wav
-cargo run --release -p rf-73-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
-cargo run --release -p rf-73-lab -- compare renders/a3.wav renders/a3.wav --output renders/self-comparison.json
-cargo run --release -p rf-73-lab -- stress
-cargo run --release -p rf-73-lab -- converge --output renders/convergence.json --note 100 --velocity 0.2
+cargo run --release -p rf-tines-lab -- demo --output renders/demo.wav
+cargo run --release -p rf-tines-lab -- render --output renders/a3.wav --trace
+cargo run --release -p rf-tines-lab -- inspect renders/demo.wav
+cargo run --release -p rf-tines-lab -- analyze renders/a3.wav --output renders/a3-analysis.json --note 57 --sustain-end 1.8
+cargo run --release -p rf-tines-lab -- compare renders/a3.wav renders/a3.wav --output renders/self-comparison.json
+cargo run --release -p rf-tines-lab -- stress
+cargo run --release -p rf-tines-lab -- converge --output renders/convergence.json --note 100 --velocity 0.2
 ```
 
 Requires Rust 1.98 and a sibling RackForge checkout for its public SDK. See [Development](docs/DEVELOPMENT.md) for Windows linker setup, WASM builds and packaging. Existing audio and report files are never overwritten.
 
 ## What is here
 
-- `rf-73-dsp`: safe Rust DSP with bounded contact integration, 73 fixed key states, per-key pickups and 4x antialias filtering.
-- `rf-73-plugin`: RackForge adapter with MIDI 1.0/2.0, matched A/B, declarative program editing and versioned state.
-- `rf-73-ui`: Rust WebAssembly PLAY panel with A/B controls, host synchronization and day/stage styling.
-- `rf-73-analysis`: offline WAV input, FFT spectra, harmonic and independent partial tracks, qualified decay estimates and aligned comparisons.
-- `rf-73-lab`: Rust WAV renderer, physical CSV traces, measurement commands, JSON reports and timing diagnostics.
+- `rf-tines-dsp`: safe Rust DSP with bounded contact integration, 73 fixed key states, per-key pickups and 4x antialias filtering.
+- `rf-tines-plugin`: RackForge adapter with MIDI 1.0/2.0, matched A/B, declarative program editing and versioned state.
+- `rf-tines-ui`: Rust WebAssembly PLAY panel with A/B controls, host synchronization and day/stage styling.
+- `rf-tines-analysis`: offline WAV input, FFT spectra, harmonic and independent partial tracks, qualified decay estimates and aligned comparisons.
+- `rf-tines-lab`: Rust WAV renderer, physical CSV traces, measurement commands, JSON reports and timing diagnostics.
 - Tests for mechanical passivity, repeated strikes, dampers, MIDI ownership, block invariance, malformed input and file integrity.
 
 The rendering and parameter-automation paths use no allocation, locks or I/O. The offline laboratory does not open an audio device. No samples, reverb, amplifier, compressor or limiter hide the direct model output. The plugin applies documented, fixed pickup level compensation.

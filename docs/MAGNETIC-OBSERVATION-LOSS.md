@@ -8,7 +8,7 @@ real-instrument field law.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- magnetic-pickup-loss --output renders/magnetic-observation-loss.json
+cargo run --locked --release -p rf-tines-lab -- magnetic-pickup-loss --output renders/magnetic-observation-loss.json
 ```
 
 The output must be a new JSON file. Every observation and fit failure is retained;

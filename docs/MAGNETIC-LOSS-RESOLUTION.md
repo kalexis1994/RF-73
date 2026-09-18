@@ -6,7 +6,7 @@ estimates instead of rerunning the expensive outer search. Every alternative
 still refits the continuous initial state using the unchanged nonlinear inner
 optimizer and all three state starts.
 
-Run `rf-73-lab magnetic-loss-resolution --input NOISE_RECEIPT.json --output NEW.json`.
+Run `rf-tines-lab magnetic-loss-resolution --input NOISE_RECEIPT.json --output NEW.json`.
 The input must match the retained noisy-loss receipt exactly. Its bytes are
 checked with the repository's existing `git hash-object --stdin` convention,
 against blob `5e32ac1255599fd8aae280eb6656d14921c0f174`; the pinned source SHA-256

@@ -19,8 +19,8 @@ name = "matts-reference-runner"
 version = "0.1.0"
 dependencies = [
  "hound",
- "rf-73-analysis",
- "rf-73-dsp",
+ "rf-tines-analysis",
+ "rf-tines-dsp",
  "serde_json",
 ]
 
@@ -49,7 +49,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rf-73-analysis"
+name = "rf-tines-analysis"
 version = "0.1.5"
 dependencies = [
  "hound",
@@ -57,7 +57,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "rf-73-dsp"
+name = "rf-tines-dsp"
 version = "0.1.5"
 
 [[package]]

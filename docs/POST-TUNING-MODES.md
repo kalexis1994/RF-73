@@ -17,12 +17,12 @@ training/validation labels do not imply a blind test or a new fit.
 
 ```powershell
 $env:CARGO_INCREMENTAL = '0'
-cargo build --locked --release -p rf-73-lab
+cargo build --locked --release -p rf-tines-lab
 $manifest = Get-Content references/g3-post-tuning-observation.manifest.json -Raw | ConvertFrom-Json
 foreach ($inputTake in $manifest.inputs) {
     $modeList = ($inputTake.proposed_modes_hz | ForEach-Object { $_.ToString('R', [cultureinfo]::InvariantCulture) }) -join ','
     $fundamental = $inputTake.fundamental_hz.ToString('R', [cultureinfo]::InvariantCulture)
-    & ./target/release/rf-73-lab.exe observe-modes $inputTake.file --blob-sha1 $inputTake.git_blob_sha1 --fundamental $fundamental --modes $modeList --output $inputTake.output
+    & ./target/release/rf-tines-lab.exe observe-modes $inputTake.file --blob-sha1 $inputTake.git_blob_sha1 --fundamental $fundamental --modes $modeList --output $inputTake.output
     if ($LASTEXITCODE -ne 0) { throw 'Modal observation failed' }
 }
 ```

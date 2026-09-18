@@ -97,7 +97,7 @@ voltage and reaction, and reproduces the uncoupled mechanical trajectory.
 ## Retained qualification
 
 ```text
-cargo run --locked --release -p rf-73-lab -- electromechanical --output NEW.json
+cargo run --locked --release -p rf-tines-lab -- electromechanical --output NEW.json
 ```
 
 The [receipt](../references/electromechanical-validation.json) passes eight
@@ -137,8 +137,8 @@ Receipt: schema 1, 91847 bytes, SHA-256
 ## Offline listening artifact
 
 ```text
-cargo run --locked --release -p rf-73-lab -- electromechanical-render --output NEW.wav --gain 0.1
-cargo run --locked --release -p rf-73-lab -- inspect NEW.wav
+cargo run --locked --release -p rf-tines-lab -- electromechanical-render --output NEW.wav --gain 0.1
+cargo run --locked --release -p rf-tines-lab -- inspect NEW.wav
 ```
 
 The renderer produces 1.2 seconds at 48 kHz: one default 75 mm tine and two

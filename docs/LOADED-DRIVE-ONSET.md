@@ -7,7 +7,7 @@ experiment adds two onset ramps and a fully eased drive, and divides each
 key-down into segments with their own pedestal work and impulse ledgers.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-drive-onset --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-drive-onset --output REPORT.json
 ```
 
 The command requires a new JSON output path. A failed numerical qualification

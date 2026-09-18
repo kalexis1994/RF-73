@@ -49,7 +49,7 @@ from the current settings or from a factory preset and carry the whole page.
 The PLAY panel shows the seven Sound controls as sliders with their values
 in millimetres or thousandths, the law as a selector and the output gain as
 before; a slider being dragged keeps its own value until the host answers,
-as the gain field did. The controller editor, **RF-73 Voicing**, shows the
+as the gain field did. The controller editor, **RF-Tines Voicing**, shows the
 same eight fields with live preview, the distances in hundredths of a
 millimetre, the unit controls in thousandths and the gain in millionths.
 

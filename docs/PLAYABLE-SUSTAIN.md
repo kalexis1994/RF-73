@@ -10,9 +10,9 @@ The default profile is unchanged; the calibrated sustain is a named profile
 and a renderer option.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- render --output g3.wav --note 55 --velocity 0.6 --sample-rate 44100 --seconds 8 --hold 7.5 --pickup 3 --sustain calibrated
-cargo run --locked --release -p rf-73-lab -- render-midi SONG.mid --output song.wav --normalize --pickup 3 --sustain calibrated
-cargo run --locked --release -p rf-73-lab -- compare-partials LAYER.wav LAYER.wav --output decay.json --seconds 4 --reference-start 0.5 --candidate-start 0.5 --partial-window-ms 512
+cargo run --locked --release -p rf-tines-lab -- render --output g3.wav --note 55 --velocity 0.6 --sample-rate 44100 --seconds 8 --hold 7.5 --pickup 3 --sustain calibrated
+cargo run --locked --release -p rf-tines-lab -- render-midi SONG.mid --output song.wav --normalize --pickup 3 --sustain calibrated
+cargo run --locked --release -p rf-tines-lab -- compare-partials LAYER.wav LAYER.wav --output decay.json --seconds 4 --reference-start 0.5 --candidate-start 0.5 --partial-window-ms 512
 ```
 
 ## Per-partial losses

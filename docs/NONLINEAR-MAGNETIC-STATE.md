@@ -6,7 +6,7 @@ geometry and magnetic gain are supplied exactly. Only the 18 initial modal
 coordinates are estimated. This qualifies a component of a future loss inverse;
 it does not yet recover unknown losses from nonlinear voltage.
 
-Run `rf-73-lab magnetic-state --output NEW.json`. The command refuses to replace
+Run `rf-tines-lab magnetic-state --output NEW.json`. The command refuses to replace
 an existing output. The retained [receipt](../references/nonlinear-magnetic-state-validation.json)
 uses schema 1 and experiment `nonlinear-magnetic-state-v1`: 252573 bytes, SHA-256
 `86857559abb5b22d9c43265362f409c486ac30f05a39aa25a8e62c16c7b62f43`.

@@ -15,9 +15,9 @@ diagnostic's G3 strikes and the nocturne through it. No default changes: the
 plugin still opens on Current against Close Point Pole.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- render --output g3.wav --note 55 --velocity 1.0 --sample-rate 44100 --seconds 8 --hold 7.5 --pickup 3
-cargo run --locked --release -p rf-73-lab -- render-midi SONG.mid --output song.wav --normalize --pickup 3
-cargo run --locked --release -p rf-73-lab -- pickup-listening --output renders/pickup-listening
+cargo run --locked --release -p rf-tines-lab -- render --output g3.wav --note 55 --velocity 1.0 --sample-rate 44100 --seconds 8 --hold 7.5 --pickup 3
+cargo run --locked --release -p rf-tines-lab -- render-midi SONG.mid --output song.wav --normalize --pickup 3
+cargo run --locked --release -p rf-tines-lab -- pickup-listening --output renders/pickup-listening
 ```
 
 ## The path

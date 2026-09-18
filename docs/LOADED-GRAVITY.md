@@ -8,7 +8,7 @@ weight, keeps the return law explicit, and requalifies rest, first strike,
 flight and repetition under the sharp let-off.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-gravity --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-gravity --output REPORT.json
 ```
 
 The command requires a new JSON output path. A failed numerical qualification

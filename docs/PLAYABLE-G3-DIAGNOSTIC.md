@@ -16,10 +16,10 @@ harmonic balance relative to the fundamental, component frequencies and
 decay slopes are.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- render --output g3-v1.0.wav --note 55 --velocity 1.0 --sample-rate 44100 --seconds 8 --hold 7.5
-cargo run --locked --release -p rf-73-lab -- compare-tone LAYER.wav g3-v1.0.wav --note 55 --output tone.json --reference-start 0 --candidate-start 0
-cargo run --locked --release -p rf-73-lab -- compare-partials LAYER.wav g3-v1.0.wav --output attack.json --seconds 1 --reference-start 0.02 --candidate-start 0.02 --partial-window-ms 128
-cargo run --locked --release -p rf-73-lab -- compare-partials LAYER.wav g3-v1.0.wav --output sustain.json --seconds 4 --reference-start 0.5 --candidate-start 0.5 --partial-window-ms 512
+cargo run --locked --release -p rf-tines-lab -- render --output g3-v1.0.wav --note 55 --velocity 1.0 --sample-rate 44100 --seconds 8 --hold 7.5
+cargo run --locked --release -p rf-tines-lab -- compare-tone LAYER.wav g3-v1.0.wav --note 55 --output tone.json --reference-start 0 --candidate-start 0
+cargo run --locked --release -p rf-tines-lab -- compare-partials LAYER.wav g3-v1.0.wav --output attack.json --seconds 1 --reference-start 0.02 --candidate-start 0.02 --partial-window-ms 128
+cargo run --locked --release -p rf-tines-lab -- compare-partials LAYER.wav g3-v1.0.wav --output sustain.json --seconds 4 --reference-start 0.5 --candidate-start 0.5 --partial-window-ms 512
 ```
 
 The nine comparison reports and three render receipts are retained under

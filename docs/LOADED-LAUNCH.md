@@ -6,7 +6,7 @@ consistently but also alter the first attack. This study measures the incoming
 hammer state and the work and force impulses accumulated during launch.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-launch --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-launch --output REPORT.json
 ```
 
 The command requires a new JSON path, retains numerical failures in the

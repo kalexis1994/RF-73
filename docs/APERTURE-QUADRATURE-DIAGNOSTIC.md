@@ -75,7 +75,7 @@ it does not qualify decay, polyphony, CPU cost, aliasing or GUI/audio playback.
   16 sine-transfer cases, six independent area checks, and 16 source/model
   comparisons (eight performances × two pickup laws).
 - [Provenance](../references/aperture-diagnostic-2026-09-15.provenance.json).
-- [Rust diagnostic](../tools/rf-73-lab/examples/aperture_diagnostic.rs).
+- [Rust diagnostic](../tools/rf-tines-lab/examples/aperture_diagnostic.rs).
 
 From the workspace in PowerShell:
 

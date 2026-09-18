@@ -10,7 +10,7 @@ The baseline is the byte-pinned
 `5499232a9abd733a0e1a09169b14d8d17de6da855202923669e92cac8a54d1a1`).
 
 ```powershell
-cargo run --locked --release -p rf-73-lab -- magnetic-loss-weighting --input references/nonlinear-magnetic-loss-noise-validation.json --output references/nonlinear-magnetic-loss-weighting-validation.json
+cargo run --locked --release -p rf-tines-lab -- magnetic-loss-weighting --input references/nonlinear-magnetic-loss-noise-validation.json --output references/nonlinear-magnetic-loss-weighting-validation.json
 ```
 
 Use the shared noise-study generator: three loss pairs, 48/96 kHz, a noiseless

@@ -83,8 +83,8 @@ and felt contacts are explicitly outside this block's handoff interface.
 ## Frozen audit and refinement
 
 ```powershell
-cargo run --locked --release -p rf-73-lab -- felt-damper --output references/moving-felt-damper-validation.json
-cargo run --locked --release -p rf-73-lab -- felt-damper --output references/moving-felt-damper-refined-validation.json --refined
+cargo run --locked --release -p rf-tines-lab -- felt-damper --output references/moving-felt-damper-validation.json
+cargo run --locked --release -p rf-tines-lab -- felt-damper --output references/moving-felt-damper-refined-validation.json --refined
 ```
 
 Two tine lengths (75/120 mm), 48/96 kHz and six gestures give 24 cases:

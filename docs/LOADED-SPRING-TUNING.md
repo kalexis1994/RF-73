@@ -47,7 +47,7 @@ targets and changes in the fixed-root second-to-first frequency ratio.
 ## Output experiment
 
 ```text
-cargo run --locked --release -p rf-73-lab -- tune-electromechanical references/g3-pitch-reference-validation.json --output renders/NEW.wav
+cargo run --locked --release -p rf-tines-lab -- tune-electromechanical references/g3-pitch-reference-validation.json --output renders/NEW.wav
 ```
 
 The command validates the qualified G3 reference, including its training mean

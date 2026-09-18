@@ -106,9 +106,9 @@ startup relaxation; that is accounted for and is not a played strike.
 ## Reproducible validation
 
 ```text
-cargo run --locked --release -p rf-73-lab -- action-cycle --output NEW.json
-cargo run --locked --release -p rf-73-lab -- action-cycle --output NEW-FAST-REFINED.json --fast-drive --refined
-cargo run --locked --release -p rf-73-lab -- action-cycle --output NEW-REFERENCE.json --fast-drive --reference
+cargo run --locked --release -p rf-tines-lab -- action-cycle --output NEW.json
+cargo run --locked --release -p rf-tines-lab -- action-cycle --output NEW-FAST-REFINED.json --fast-drive --refined
+cargo run --locked --release -p rf-tines-lab -- action-cycle --output NEW-REFERENCE.json --fast-drive --reference
 ```
 
 Output creation is exclusive. Both commands cover 75/120 mm tines, 48/96 kHz

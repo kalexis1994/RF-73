@@ -6,7 +6,7 @@ experiment tests a second key gesture from the actual recovered state and
 keeps that first-attack tradeoff explicit.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-repetition --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-repetition --output REPORT.json
 ```
 
 A new JSON output path is required. Numerical failure retains a report and

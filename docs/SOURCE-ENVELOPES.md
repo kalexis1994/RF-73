@@ -9,7 +9,7 @@ the recorded pair.
 ## Frozen selection and reproduction
 
 ```text
-cargo run --locked --release -p rf-73-lab -- observe-source-envelopes references/source-envelope.manifest.json --output renders/source-envelopes.json
+cargo run --locked --release -p rf-tines-lab -- observe-source-envelopes references/source-envelope.manifest.json --output renders/source-envelopes.json
 ```
 
 The [manifest](../references/source-envelope.manifest.json) was fixed before
@@ -26,7 +26,7 @@ All five original mono G3 recordings are retained at 44.1 kHz. They come from
 the pinned jRhodes3d bank described in [Reference banks](REFERENCE-BANKS.md),
 with EQ/noise reduction and unknown recording gain, strike speed and note-off.
 Previously inspected recordings are reused; this is not a blind validation or
-an independently recorded instrument. Samples are not bundled in RF-73.
+an independently recorded instrument. Samples are not bundled in RF-Tines.
 
 Each take has three component slots:
 

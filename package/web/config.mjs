@@ -1,11 +1,11 @@
 import {
-  RF73_MAX_FILE_BYTES,
-  createRf73File,
-  parseRf73File,
-} from "./rf73-format.mjs";
+  RFTINES_MAX_FILE_BYTES,
+  createRfTinesFile,
+  parseRfTinesFile,
+} from "./rftines-format.mjs";
 
 const PROTOCOL = "rackforge.plugin.web@1";
-const PLUGIN_ID = "org.rackforge.rhodes";
+const PLUGIN_ID = "org.rackforge.rftines";
 const REQUEST_TIMEOUT_MS = 10_000;
 const source = document.querySelector("#export-source");
 const exportButton = document.querySelector("#export-button");
@@ -36,7 +36,7 @@ function setBusy(value) {
 }
 
 function call(method, params = {}) {
-  const requestId = `rf73-config-${++requestSerial}`;
+  const requestId = `rftines-config-${++requestSerial}`;
   return new Promise((resolve, reject) => {
     const timer = window.setTimeout(() => {
       requests.delete(requestId);
@@ -117,15 +117,15 @@ function slug(value) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
     .slice(0, 56);
-  return result || "rf73-program";
+  return result || "rftines-program";
 }
 
 function safeFileName(value) {
-  return `${slug(value)}.rf73`;
+  return `${slug(value)}.rftines`;
 }
 
 function download(text, fileName) {
-  const url = URL.createObjectURL(new Blob([text], { type: "application/vnd.rackforge.rf73+json" }));
+  const url = URL.createObjectURL(new Blob([text], { type: "application/vnd.rackforge.rftines+json" }));
   const link = document.createElement("a");
   link.href = url;
   link.download = fileName;
@@ -169,7 +169,7 @@ async function exportProgram() {
     const draft = next.program_draft;
     draftId = draft.draft_id;
     const document = JSON.parse(draft.document_json);
-    const text = await createRf73File(document);
+    const text = await createRfTinesFile(document);
     download(text, safeFileName(document.name));
     await cancelDraft(draftId);
     draftId = null;
@@ -184,11 +184,11 @@ async function exportProgram() {
 
 async function importProgram(file) {
   setBusy(true);
-  setStatus("Checking the .rf73 file…");
+  setStatus("Checking the .rftines file…");
   let draftId = null;
   try {
-    if (file.size > RF73_MAX_FILE_BYTES) throw new Error("The .rf73 file is larger than 32 KiB.");
-    const imported = await parseRf73File(await file.text());
+    if (file.size > RFTINES_MAX_FILE_BYTES) throw new Error("The .rftines file is larger than 32 KiB.");
+    const imported = await parseRfTinesFile(await file.text());
     await call("plugin.begin_program_edit", { program_id: null });
     const opened = await waitForContext((candidate) => candidate.program_draft);
     draftId = opened.program_draft.draft_id;

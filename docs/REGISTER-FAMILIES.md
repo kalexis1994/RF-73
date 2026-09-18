@@ -19,7 +19,7 @@ Ten new WAVs total 13955116 bytes. The [acquisition inventory](../references/jrh
 records source URLs, Git blob IDs, byte lengths and SHA-256 hashes. All bytes
 match author revision `a886e6cebf074c995a10634f82ebe4fdb90f5ca6`. Audio and the
 upstream LICENSE/README are retained under ignored
-`references/audio/jrhodes-neighbors-a886e6c/`; samples are not bundled in RF-73.
+`references/audio/jrhodes-neighbors-a886e6c/`; samples are not bundled in RF-Tines.
 [Author's pinned repository](https://github.com/jlearman/jRhodes3d-wav/tree/a886e6cebf074c995a10634f82ebe4fdb90f5ca6).
 
 The source is the same 1977 Mark I Stage 73 with harp-output recording, EQ and
@@ -30,7 +30,7 @@ numbers are playback mappings, not calibrated hammer velocities.
 ## Reproduction and qualification
 
 ```text
-cargo run --locked --release -p rf-73-lab -- observe-register references/register-families.manifest.json --output renders/register-families.json
+cargo run --locked --release -p rf-tines-lab -- observe-register references/register-families.manifest.json --output renders/register-families.json
 ```
 
 Output must be a new JSON file. The strict schema permits 2..5 distinct notes

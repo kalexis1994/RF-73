@@ -8,7 +8,7 @@ lumped key of finite inertia driven by a step finger force, so that onset,
 arrival and release follow from mass, return force and contact laws.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-key-inertia --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-key-inertia --output REPORT.json
 ```
 
 The command requires a new JSON output path. A failed numerical qualification

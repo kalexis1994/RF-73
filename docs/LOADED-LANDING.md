@@ -7,7 +7,7 @@ measures that landing and compares pedestal contact loss and hammer return
 damping as ways of settling the hammer before the next gesture.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-landing --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- loaded-landing --output REPORT.json
 ```
 
 The command requires a new JSON output path. A failed numerical qualification

@@ -8,7 +8,7 @@ would be detected. A small signal residual cannot certify physical loss values.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- pickup-loss-geometry --output renders/pickup-loss-position-errors.json
+cargo run --locked --release -p rf-tines-lab -- pickup-loss-geometry --output renders/pickup-loss-position-errors.json
 ```
 
 The [receipt](../references/pickup-loss-position-errors-validation.json) contains

@@ -8,7 +8,7 @@ the current reduction. It does not fit parameters to a recording.
 ## Frozen experiment
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-loss-budget --output references/loaded-loss-budget-validation.json
+cargo run --locked --release -p rf-tines-lab -- loaded-loss-budget --output references/loaded-loss-budget-validation.json
 ```
 
 The target remains 196.38614697959488 Hz, frozen from the qualified training

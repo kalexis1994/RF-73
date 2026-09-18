@@ -11,7 +11,7 @@ failure. This is not a fully qualified single-window source estimator.
 ## Reproduce and inspect
 
 ```text
-cargo run --locked --release -p rf-73-lab -- validate-band-envelope --output renders/band-envelope.json
+cargo run --locked --release -p rf-tines-lab -- validate-band-envelope --output renders/band-envelope.json
 ```
 
 The command writes a new JSON report before reporting failed expectations.

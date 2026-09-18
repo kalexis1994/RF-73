@@ -12,7 +12,7 @@ mechanism experiment, not a fit to recordings or a new plugin sound.
 ## Reproduce
 
 ```text
-cargo run --locked --release -p rf-73-lab -- pickup-decay --output renders/pickup-decay.json
+cargo run --locked --release -p rf-tines-lab -- pickup-decay --output renders/pickup-decay.json
 ```
 
 The output must be a new JSON file. The retained receipt is

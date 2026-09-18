@@ -6,7 +6,7 @@ study separates changes to excitation from changes to magnetic observation.
 It is a prescribed sensitivity experiment, not a parameter search.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- loaded-voicing references/g3-pitch-reference.manifest.json --output references/loaded-voicing-validation.json
+cargo run --locked --release -p rf-tines-lab -- loaded-voicing references/g3-pitch-reference.manifest.json --output references/loaded-voicing-validation.json
 ```
 
 ## Frozen controls

@@ -123,8 +123,8 @@ network's geometry, masses, mounting losses or mode shapes.
 ## Reproduce and interpret the audit
 
 ```text
-cargo test --locked -p rf-73-dsp assembly::tests
-cargo run --locked --release -p rf-73-lab -- assembly-check --output renders/assembly-audit.json
+cargo test --locked -p rf-tines-dsp assembly::tests
+cargo run --locked --release -p rf-tines-lab -- assembly-check --output renders/assembly-audit.json
 ```
 
 Existing report files are never overwritten. The command opens no audio device.

@@ -36,7 +36,7 @@ mapping places this at MIDI 58 (concert A#3).
 Source: [Pianobook pack](https://www.pianobook.co.uk/packs/matts-fender-rhodes/).
 Terms: [Pianobook EULA](https://www.pianobook.co.uk/terms-conditions/).
 The supplied folder has no separate license file. Reference acquisition does
-not imply permission to redistribute the WAVs inside RF-73.
+not imply permission to redistribute the WAVs inside RF-Tines.
 
 Fixed gain across takes, measured hammer velocities, release boundaries and
 sample editing are not documented in the supplied README. Dynamic labels are

@@ -9,8 +9,8 @@ those to the DSP core and measures the compensation over a grid of
 geometries. No plugin control changes yet; the defaults are byte-identical.
 
 ```text
-cargo run --locked --release -p rf-73-lab -- voicing-level --output REPORT.json
-cargo run --locked --release -p rf-73-lab -- render --output g3.wav --note 55 --velocity 0.6 --law aperture --gap-mm 0.5 --offset-mm 0.5 --sustain calibrated --bar-strike -0.02 --compensate
+cargo run --locked --release -p rf-tines-lab -- voicing-level --output REPORT.json
+cargo run --locked --release -p rf-tines-lab -- render --output g3.wav --note 55 --velocity 0.6 --law aperture --gap-mm 0.5 --offset-mm 0.5 --sustain calibrated --bar-strike -0.02 --compensate
 ```
 
 ## What the profile carries now

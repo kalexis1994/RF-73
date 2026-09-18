@@ -42,7 +42,7 @@ root rotation and modal coupling use that same mass distribution. The
 ## Frozen-pitch experiment
 
 ```text
-cargo run --locked --release -p rf-73-lab -- sweep-spring-span references/g3-pitch-reference-validation.json --output renders/g3-spring-span.json
+cargo run --locked --release -p rf-tines-lab -- sweep-spring-span references/g3-pitch-reference-validation.json --output renders/g3-spring-span.json
 ```
 
 The output must not exist. The command opens no device and writes no WAV.
