@@ -1,8 +1,8 @@
 # Releasing RF-Tines
 
 RF-Tines releases are built from an annotated or lightweight Git tag whose name
-matches the workspace version exactly. Pushing `v0.1.14`, for example, can only
-publish a package whose Cargo and RackForge manifests both declare `0.1.14`.
+matches the workspace version exactly. Pushing `v0.2.0`, for example, can only
+publish a package whose Cargo and RackForge manifests both declare `0.2.0`.
 
 ## Release contract
 
@@ -35,8 +35,8 @@ cargo run --locked --release -p rf-tines-lab -- package
 Create and push the matching tag only after the release commit is on `main`:
 
 ```text
-git tag -a v0.1.14 -m "RF-Tines 0.1.14"
-git push origin v0.1.14
+git tag -a v0.2.0 -m "RF-Tines 0.2.0"
+git push origin v0.2.0
 ```
 
 `.github/workflows/release.yml` independently repeats formatting, tests,
