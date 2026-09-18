@@ -4,6 +4,16 @@ All notable RF-Tines changes are recorded here. Versions follow semantic
 versioning while the public plugin contract is still below 1.0. Entries for
 releases published before the rename keep the names that were current then.
 
+## 0.2.1 - 2026-09-18
+
+- Fixed the instrument faceplate on the PLAY surface, which still read `RF–73`.
+  The wordmark is split across three nodes as `RF<span>–</span>73`, so the
+  literal string `RF-73` never occurs and every text search over the source, the
+  published package and the RackForge release reported it clean. It now reads
+  `RF–Tines`.
+- Kept that wordmark on one line. The dash is a line-break opportunity and the
+  new name is four characters longer, so a narrow panel could have split it.
+
 ## 0.2.0 - 2026-09-18
 
 - Renamed the project from RF-73 to RF-Tines across crates, the laboratory tool,

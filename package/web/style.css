@@ -114,6 +114,8 @@ h1 {
   font-style: italic;
   letter-spacing: -4px;
   text-shadow: 0 1px #fff8;
+  /* The dash in the wordmark is a line-break opportunity; keep it on one line. */
+  white-space: nowrap;
 }
 h1 span {
   font-weight: 400;
