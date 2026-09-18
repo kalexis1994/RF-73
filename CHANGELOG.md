@@ -16,9 +16,8 @@ versioning while the public plugin contract is still below 1.0.
 - Changed the desktop audition override to `RF_TINES_DESKTOP` and the library
   ownership marker to `.rf-tines-owned`. An existing library marked
   `.rf-73-owned` or `.rf-rhodes-owned` is still adopted with its settings intact.
-- Added the catalog icon, banner and loading splash and moved the package to
-  RackForge manifest schema 3. The artwork still carries the previous RF 73
-  wordmark and has not been regenerated.
+- Added the RF-Tines catalog icon, banner and loading splash and moved the
+  package to RackForge manifest schema 3.
 - Added a responsive Stage/Suitcase front panel with five era-inspired factory
   programs and compact physical controls.
 - Added local program saving from PLAY and `.rftines` import/export from CONFIG.

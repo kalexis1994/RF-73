@@ -94,5 +94,12 @@ The full `cargo test --workspace` run was not completed here; the laboratory
 suite is long-running and is not a CI or release gate. The gates listed above
 are the ones CI and the release workflow enforce.
 
-The branding images under `package/branding/` still render the previous `RF 73`
-wordmark. They are binary assets and were not regenerated here.
+## Branding
+
+The icon, banner and splash under `package/branding/` carry the RF-Tines
+wordmark. They were regenerated from WebP sources and encoded as the manifest
+and the host validator require: PNG at exactly 512x512, 1600x400 and 1920x1080,
+8-bit, non-animated, and RGB rather than a palette, which the validator rejects.
+Palette quantization is therefore unavailable, so they are compressed losslessly
+with zopflipng over all filter strategies. They occupy 12%, 17% and 27% of the
+per-asset size limits.

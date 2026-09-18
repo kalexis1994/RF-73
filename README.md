@@ -6,13 +6,13 @@ A Rust physical-model electric piano for RackForge.
 
 The first working prototype includes a nonlinear hammer-contact solver, a three-mode resonator per key, a geometry-dependent magnetic pickup, sustain and sample-accurate MIDI. It renders audio offline and compiles to a portable RackForge WASM plugin.
 
-Version 0.1.14 packages the playable instrument with catalog artwork, five
-era-inspired factory programs, responsive PLAY and CONFIG surfaces, local
-program saving, portable `.rftines` files and channel-aware MIDI pitch bend. It
-also carries the [rename to RF-Tines](docs/RENAMING.md), which changes the
-plugin identity and the portable program format without compatibility shims.
-The physical profile remains provisional while the reference fit continues, and
-the packaged artwork still shows the previous RF 73 wordmark.
+Version 0.1.14 packages the playable instrument with its RF-Tines catalog
+artwork, five era-inspired factory programs, responsive PLAY and CONFIG
+surfaces, local program saving, portable `.rftines` files and channel-aware
+MIDI pitch bend. It also carries the [rename to RF-Tines](docs/RENAMING.md),
+which changes the plugin identity and the portable program format without
+compatibility shims. The physical profile remains provisional while the
+reference fit continues.
 
 The offline [coupled assembly experiment](docs/COUPLED-ASSEMBLY.md) now models a tine, tonebar and compliant common support with reciprocal forces, nonlinear hammer contact and a complete energy ledger. Its parameters remain provisional; high-resolution validation precedes plugin integration.
 
